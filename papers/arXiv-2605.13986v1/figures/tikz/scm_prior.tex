@@ -1,0 +1,305 @@
+
+\definecolor{PriorInk}{HTML}{0C0C0C}
+\definecolor{PriorOff}{HTML}{F8F8F9}
+\definecolor{PriorPlum}{HTML}{101075}
+\definecolor{PriorPurple}{HTML}{3F2670}
+\definecolor{PriorMauve}{HTML}{B6698D}
+\definecolor{PriorPlumLight}{HTML}{8585BB}
+\definecolor{PriorPurpleSoft}{HTML}{C5BAD2}
+\definecolor{PriorMauvePale}{HTML}{E5CFD9}
+\definecolor{PriorYellow}{HTML}{FFD400}
+\definecolor{HeaderBg}{HTML}{E0E8F5}
+\colorlet{PriorGrid}{PriorPurpleSoft}
+\colorlet{SourceColor}{PriorPlumLight!55!white}
+\colorlet{HiddenColor}{PriorOff!92!PriorInk}
+\colorlet{FeatColor}{PriorPlum}
+\colorlet{TargetColor}{PriorYellow}
+\colorlet{HidColor}{PriorPlumLight}
+\colorlet{ChildGreen}{PriorMauvePale}
+\colorlet{ArrowBlue}{PriorPurple}
+\colorlet{MidBlue}{PriorPurple}
+\colorlet{HdrLabel1}{PriorPlum}
+\colorlet{HdrLabel2}{PriorPurple}
+
+\begin{center}
+\begin{tikzpicture}[
+    >=Latex, font=\small,
+    scmnode/.style={circle,draw=PriorInk!80,line width=0.5pt,
+                    minimum size=7mm,inner sep=0pt},
+    src/.style ={scmnode,fill=SourceColor},
+    hid/.style ={scmnode,fill=HidColor,text=PriorInk},
+    feat/.style={scmnode,fill=FeatColor,text=white},
+    tgt/.style ={scmnode,fill=TargetColor,text=PriorInk},
+    par/.style ={scmnode,fill=SourceColor},
+    chld/.style={scmnode,fill=ChildGreen},
+    edge/.style={->,line width=0.5pt,draw=PriorInk!70},
+    flow/.style={-{Triangle[length=3mm,width=2.4mm]},
+                 line width=1.4pt,draw=ArrowBlue,line cap=round},
+    panelttl/.style={font=\bfseries\small,text=PriorInk,anchor=west},
+    pcap/.style={font=\itshape\footnotesize,text=PriorInk!90},
+    boxout/.style={draw=PriorInk!80,rounded corners=2pt,line width=0.5pt,
+                   inner sep=6pt,fill=white},
+    minicard/.style={draw=PriorGrid,rounded corners=2pt,
+                     line width=0.4pt,fill=white},
+    dashbox/.style={draw=PriorInk!70,dashed,rounded corners=2pt,
+                    line width=0.5pt,fill=white,inner sep=0pt},
+]
+
+\begin{scope}[on background layer]
+  \foreach \xa/\ya/\xb/\yb in {%
+        0/8.5/7.5/12.5,
+        8.0/8.5/15.5/12.5,
+        0/4.0/15.5/8.0,
+        0/0/7.5/3.5,
+        8.0/0/15.5/3.5}{
+    \fill[white,rounded corners=3pt] (\xa,\ya) rectangle (\xb,\yb);
+    \begin{scope}
+      \clip[rounded corners=3pt] (\xa,\ya) rectangle (\xb,\yb);
+      \fill[HeaderBg] (\xa,{\yb-0.7}) rectangle (\xb,\yb);
+    \end{scope}
+    \draw[PriorGrid,line width=0.3pt] (\xa,{\yb-0.7}) -- (\xb,{\yb-0.7});
+    \draw[PriorGrid,rounded corners=3pt,line width=0.6pt]
+          (\xa,\ya) rectangle (\xb,\yb);
+  }
+\end{scope}
+
+\node[panelttl] at (0.20,12.15) {Step 1: Sample Hyper-parameters};
+\node[panelttl] at (8.20,12.15) {Step 2: Sample DAG};
+\node[panelttl] at (0.20, 7.65) {Step 3: Compute SCM};
+\node[panelttl] at (0.20, 3.15) {Step 4: Extract Dataset};
+\node[panelttl] at (8.20, 3.15) {Step 5: Post-processing};
+
+\begin{scope}[shift={(0,8.5)}]
+  \draw[minicard] (0.40,2.10) rectangle (1.95,2.90);
+  \begin{scope}
+    \clip (0.40,2.10) rectangle (1.95,3.80);
+    \fill[SourceColor!70] plot[domain=-1.5:1.5,samples=40]
+          ({1.175 + \x*0.42},{2.20 + 0.60*exp(-\x*\x)})
+          -- ({1.175+1.5*0.42},2.20) -- ({1.175-1.5*0.42},2.20) -- cycle;
+    \draw[MidBlue,line width=0.6pt] plot[domain=-1.5:1.5,samples=40]
+          ({1.175 + \x*0.42},{2.20 + 0.60*exp(-\x*\x)});
+    \draw[dashed,gray!70] (1.175,2.20) -- (1.175,2.80);
+  \end{scope}
+
+  \draw[minicard] (0.40,0.90) rectangle (1.95,1.70);
+  \foreach \i/\h/\c in {0/0.55/PriorPlum, 1/0.70/PriorPlum, 2/0.40/PriorYellow,
+                        3/0.30/PriorMauve, 4/0.50/PriorPlum}{
+    \fill[\c] ({0.55+\i*0.27},1.00) rectangle
+              ({0.78+\i*0.27},{1.30+\h*0.45});
+  }
+  \draw[gray!70] (0.45,1.00) -- (1.90,1.00);
+
+  \foreach \y in {2.7,2.3,1.5,1.1}{
+    \draw[gray!55,line width=2pt,line cap=round] (2.20,\y) -- (3.10,\y);
+  }
+  \foreach \y/\f in {2.7/0.55, 2.3/0.30, 1.5/0.65, 1.1/0.45}{
+    \draw[MidBlue,line width=2pt,line cap=round]
+          (2.20,\y) -- ({2.20+\f*0.90},\y);
+    \fill[white] ({2.20+\f*0.90},\y) circle (0.10);
+    \draw[MidBlue,line width=0.6pt] ({2.20+\f*0.90},\y) circle (0.10);
+  }
+
+  \draw[flow] (3.35,1.90) -- (4.25,1.9)
+       node[midway,above=2pt,font=\bfseries\footnotesize] {Sample};
+
+  \node[boxout,anchor=west,font=\scriptsize,inner sep=5pt, thin]
+       at (4.45,1.90) {%
+    \begin{tabular}{l@{\hspace{0.5em}}r}
+      \texttt{num\_rows:}       & $N$ \\
+      \texttt{num\_features:}   & $P$ \\
+      \texttt{num\_classes:}    & $C$ \\
+      \multicolumn{2}{c}{$\dots$} \\
+    \end{tabular}};
+\end{scope}
+
+\begin{scope}[shift={(8.0,8.5)}]
+  \node[font=\scriptsize\bfseries,anchor=south,text=PriorInk]
+        at (1.80,2.82) {DAG Sampler};
+  \draw[minicard] (0.30,1.92) rectangle (3.30,2.78);
+  \draw[minicard] (0.50,1.95) rectangle (1.55,2.75);
+  \foreach \px/\py in {0.70/2.55, 1.35/2.55, 0.80/2.25, 1.30/2.30}{
+    \fill[PriorPlum] (\px,\py) circle (0.06);
+    \draw[PriorInk!70,line width=0.3pt] (\px,\py) circle (0.06);
+  }
+  \draw[->,line width=0.55pt] (1.65,2.40) -- (1.80,2.40);
+  \draw[minicard] (1.85,1.95) rectangle (3.05,2.75);
+  \foreach \sx/\sy/\tx/\ty in {%
+      2.05/2.55/2.80/2.55,
+      2.05/2.55/2.10/2.20,
+      2.80/2.55/2.80/2.20,
+      2.10/2.20/2.80/2.20}{
+    \draw[line width=0.35pt,draw=PriorInk!70] (\sx,\sy) -- (\tx,\ty);
+  }
+  \draw[line width=0.65pt,draw=PriorYellow] (2.05,2.55) -- (2.80,2.20);
+  \foreach \px/\py in {2.05/2.55, 2.80/2.55, 2.10/2.20, 2.80/2.20}{
+    \fill[PriorPlum] (\px,\py) circle (0.06);
+    \draw[PriorInk!70,line width=0.3pt] (\px,\py) circle (0.06);
+  }
+
+  \node[font=\scriptsize\bfseries,anchor=south west,text=PriorInk]
+        at (0.42,1.30) {Noise processes};
+  \node[font=\tiny\itshape,anchor=south east,text=PriorInk!60]
+        at (3.18,1.30) {$\varepsilon_i$};
+  \draw[minicard] (0.30,0.20) rectangle (3.30,1.25);
+
+
+  \foreach \xs/\ys in {%
+      0.55/1.18, 0.78/1.02, 0.98/1.15, 1.20/1.00, 1.42/1.19,
+      1.65/1.05, 1.88/1.13, 2.10/1.20, 2.32/1.04, 2.55/1.16,
+      2.78/1.08, 3.00/1.12}{
+    \fill[PriorPlum] (\xs,\ys) circle (0.04);
+  }
+  \foreach \xs/\ys in {%
+      0.55/0.78, 0.80/0.92, 1.00/0.81, 1.22/0.95, 1.45/0.83,
+      1.68/0.89, 1.90/0.76, 2.12/0.93, 2.35/0.85, 2.58/0.79,
+      2.80/0.91, 3.02/0.84}{
+    \fill[PriorMauve] (\xs,\ys) circle (0.04);
+  }
+  \foreach \xs/\ys in {%
+      0.50/0.68, 0.75/0.52, 0.95/0.65, 1.18/0.55, 1.40/0.70,
+      1.62/0.58, 1.85/0.51, 2.08/0.66, 2.30/0.60, 2.52/0.54,
+      2.75/0.69, 2.98/0.57}{
+    \fill[PriorPurple] (\xs,\ys) circle (0.04);
+  }
+  \foreach \xs/\ys in {%
+      0.55/0.42, 0.78/0.28, 1.00/0.38, 1.23/0.45, 1.45/0.30,
+      1.68/0.40, 1.90/0.26, 2.12/0.36, 2.35/0.43, 2.57/0.29,
+      2.80/0.41, 3.03/0.33}{
+    \fill[PriorPlumLight] (\xs,\ys) circle (0.045);
+  }
+
+  \draw[flow] (3.40,2.37) -- (4.10,2.37);
+  \draw[flow] (3.40,0.73) -- (4.10,0.73);
+
+  \node[hid] (n1) at (4.55,1.65) {$1$};
+  \node[hid] (n4) at (5.65,2.90) {$4$};
+  \node[hid] (n2) at (5.65,1.65) {$2$};
+  \node[hid] (n3) at (6.95,2.30) {$3$};
+  \node[hid] (n5) at (6.20,0.55) {$5$};
+  \foreach \u/\v in {n1/n4,n1/n2,n1/n5,n4/n2,n4/n3,n2/n3,n2/n5,n3/n5}
+    \draw[edge] (\u) -- (\v);
+\end{scope}
+
+\begin{scope}[shift={(0,4.0)}]
+  \node[hid,scale=0.85] (m1) at (0.80,1.85) {$1$};
+  \node[hid,scale=0.85] (m4) at (1.65,2.75) {$4$};
+  \node[hid,scale=0.85] (m2) at (1.65,1.85) {$2$};
+  \node[hid,scale=0.85] (m3) at (2.65,2.25) {$3$};
+  \node[hid,scale=0.85] (m5) at (2.10,1.05) {$5$};
+  \foreach \u/\v in {m1/m4,m1/m2,m1/m5,m4/m2,m4/m3,m2/m3,m2/m5,m3/m5}
+    \draw[edge] (\u) -- (\v);
+
+  \draw[flow] (3.20,1.90) -- (3.95,1.90);
+
+  \node[pcap] at (5.40,3.10) {zoom-in};
+  \draw[dashbox] (4.15,0.85) rectangle (6.65,2.95);
+  \node[par] (zp4) at (4.80,2.40) {$4$};
+  \node[par] (zp2) at (6.00,2.40) {$2$};
+  \node[chld] (zc3) at (5.40,1.30) {$3$};
+  \draw[edge] (zp4) -- (zp2);
+  \draw[edge] (zp4) -- (zc3);
+  \draw[edge] (zp2) -- (zc3);
+  \node[pcap,align=center] at (5.40,0.40)
+        {Child node value combines\\\& aggregates parents};
+
+  \node[anchor=west,font=\small\bfseries,text=PriorInk]
+        at (7.30,2.75) {Per-node structural equation:};
+  \node[anchor=west,font=\small] at (7.50,2.25)
+        {General:\quad $X_i = f_i\bigl(\mathrm{pa}(X_i)\bigr) + \varepsilon_i$};
+  \node[anchor=west,font=\small] at (7.50,1.65)
+        {Specific (child~$3$):};
+  \node[anchor=west,font=\small] at (7.85,1.15)
+        {$X_{3} = f\!\bigl(X_{4}, X_{2}\bigr) + \varepsilon_{3}$};
+
+  \node[pcap,anchor=west] at (7.50,0.45)
+        {$\ast$ Computed in topological order over $G(V,E)$};
+\end{scope}
+
+\begin{scope}[shift={(0,0)}]
+  \node[feat] (e1) at (0.95,1.30) {$1$};
+  \node[feat] (e4) at (2.10,2.40) {$4$};
+  \node[hid] (e2) at (2.10,1.30) {$2$};
+  \node[tgt]  (e3) at (3.40,1.85) {$3$};
+  \node[feat]  (e5) at (2.65,0.40) {$5$};
+  \foreach \u/\v in {e1/e4,e1/e2,e1/e5,e4/e2,e4/e3,e2/e3,e2/e5,e3/e5}
+    \draw[edge] (\u) -- (\v);
+
+  \node[feat,scale=0.85] at (4.65,2.25) {};
+  \node[anchor=west,font=\footnotesize] at (4.90,2.25) {Features ($X$)};
+  \node[tgt,scale=0.85]  at (4.65,1.45) {};
+  \node[anchor=west,font=\footnotesize] at (4.90,1.45) {Target ($Y$)};
+  \node[hid,scale=0.85]  at (4.65,0.65) {};
+  \node[anchor=west,font=\footnotesize] at (4.90,0.65) {Hidden};
+\end{scope}
+
+\begin{scope}[shift={(8.0,0)}]
+  \def\cellW{0.375}
+  \def\cellH{0.25}
+  \begin{scope}[shift={(0.20,0.50)}]
+    \foreach \i in {0,1,2,3}{
+      \fill[gray!45] ({\i*\cellW},1.50)
+                     rectangle ({(\i+1)*\cellW-0.03},1.75);
+      \draw[gray!50,line width=0.3pt]
+            ({\i*\cellW},1.50) rectangle ({(\i+1)*\cellW-0.03},1.75);
+    }
+    \foreach \r in {0,1,2,3}{
+      \foreach \i in {0,1,2,3}{
+        \fill[white] ({\i*\cellW},{1.20 - \r*\cellH})
+                     rectangle ({(\i+1)*\cellW-0.03},{1.45 - \r*\cellH});
+        \draw[gray!50,line width=0.3pt]
+              ({\i*\cellW},{1.20 - \r*\cellH})
+              rectangle ({(\i+1)*\cellW-0.03},{1.45 - \r*\cellH});
+      }
+    }
+    \node[pcap] at (0.74,-0.10) {Raw data};
+  \end{scope}
+
+  \draw[flow] (1.85,1.50) -- (2.55,1.50);
+
+  \draw[minicard] (2.65,0.75) rectangle (4.65,2.40);
+  \foreach \cx/\cy in {3.10/1.925, 4.20/1.925, 3.10/1.225, 4.20/1.225}{
+    \draw[minicard] ({\cx-0.30},{\cy-0.25}) rectangle ({\cx+0.30},{\cy+0.25});
+  }
+  \foreach \pt in {(2.95,1.75),(3.05,1.85),(3.15,1.95),(3.25,2.05)}
+    \fill[PriorInk!85] \pt circle (0.024);
+  \draw[->,line width=0.6pt] (4.05,1.75) -- (4.37,2.05);
+  \foreach \i/\h in {0/0.16,1/0.26,2/0.14,3/0.28}{
+    \fill[PriorInk!85] ({2.85+0.14*\i},1.08)
+                       rectangle ({2.95+0.14*\i},{1.08+\h});
+  }
+  \draw[PriorInk!85,line width=0.6pt]
+        (3.95,1.05) -- (4.10,1.05) -- (4.10,1.22) --
+        (4.25,1.22) -- (4.25,1.40) -- (4.43,1.40);
+  \node[pcap] at (3.65,0.35) {Post-processing};
+
+  \draw[flow] (4.80,1.50) -- (5.50,1.50);
+
+  \begin{scope}[shift={(5.60,0.50)}]
+    \foreach \i/\c in {0/PriorPlum, 1/PriorPurple,
+                       2/PriorMauve, 3/PriorYellow}{
+      \fill[\c] ({\i*\cellW},1.50)
+                rectangle ({(\i+1)*\cellW-0.03},1.75);
+      \draw[gray!50,line width=0.3pt]
+            ({\i*\cellW},1.50) rectangle ({(\i+1)*\cellW-0.03},1.75);
+    }
+    \foreach \r in {0,1,2,3}{
+      \foreach \i in {0,1,2,3}{
+        \fill[white] ({\i*\cellW},{1.20 - \r*\cellH})
+                     rectangle ({(\i+1)*\cellW-0.03},{1.45 - \r*\cellH});
+        \draw[gray!50,line width=0.3pt]
+              ({\i*\cellW},{1.20 - \r*\cellH})
+              rectangle ({(\i+1)*\cellW-0.03},{1.45 - \r*\cellH});
+      }
+    }
+    \node[pcap] at (0.74,-0.18) {Synthetic Dataset};
+  \end{scope}
+\end{scope}
+
+\draw[flow] (7.55,10.50) -- (7.95,10.50);   %
+\draw[flow] (11.75,8.45) -- (11.75,8.05);   %
+\draw[flow] (3.75,3.95)  -- (3.75,3.55);    %
+\draw[flow] (7.55,1.75)  -- (7.95,1.75);    %
+
+\end{tikzpicture}
+\captionof{figure}{\textbf{Schematic visualization of our SCM prior.} (i) We first sample high-level hyperparameters for the dataset, including number of features and number of rows. (ii) Based on the hyperparameters, we utilize our graph sampling algorithms to generate a directed acyclic graph (DAG) underlying our SCM; in parallel, an i.i.d.\ noise sample $\varepsilon_i$ is drawn per node (each colour shade in the lower-left mini-panel corresponds to a different node). (iii) We compute a topological ordering of the DAG. Based on this, we create a computational graph: First we fill root nodes (i.e.\ exogenous variables) and subsequently traverse the computational graph in topological order, combining parent nodes using our combiner mechanisms and activations to propagate values to the child nodes. (iv) We choose suitable features and target variables from our fully computed SCM. (v) We apply post-processing to the dataset.}  
+\label{fig:prior}  \end{center}

@@ -1,0 +1,25 @@
+\begin{tabular}{lrrrrr}
+\toprule
+\textbf{Model} & \textbf{Win (\%)} & \textbf{Skill (\%)} & \textbf{Runtime (s)} & \textbf{Leak.\ (\%)} & \textbf{\# fails} \\
+\midrule
+Chronos-2            & 86.9 &  35.5 &   0.8 &  0 &  0 \\
+\textcolor{PriorMauve}{TabPFN-TS-3}          & 69.8 &  30.6 & 234.6 &  0 &  0 \\
+TimesFM-2.5          & 74.9 &  30.2 &   1.9 & 10 &  0 \\
+TiRex                & 76.9 &  30.0 &   0.2 &  1 &  0 \\
+Toto-1.0             & 66.3 &  28.2 &  22.1 &  8 &  0 \\
+\textcolor{PriorMauve}{TabPFN-v2-TS}         & 58.5 &  27.6 &  88.9 &  0 &  2 \\
+Moirai-2.0           & 61.4 &  27.3 &   0.3 & 28 &  0 \\
+Chronos-Bolt         & 60.7 &  26.5 &   0.2 &  0 &  0 \\
+Sundial-Base         & 53.4 &  24.7 &   8.0 &  1 &  0 \\
+CatBoost (Recursive) & 54.0 &  23.7 &   0.3 &  0 &  0 \\
+LightGBM (Recursive) & 50.3 &  22.4 &   0.3 &  0 &  0 \\
+Stat. Ensemble       & 46.7 &  15.7 & 148.6 &  0 & 11 \\
+AutoARIMA            & 36.0 &  11.2 &  19.5 &  0 & 10 \\
+AutoTheta            & 34.2 &  11.0 &   3.3 &  0 &  0 \\
+TabICL-v2$^{\dagger}$ & 33.2 &   7.0 &  64.7 &  0 &  0 \\
+AutoETS              & 33.5 &   2.3 &   3.5 &  0 &  3 \\
+Seasonal Naive       & 20.0 &   0.0 &   0.5 &  0 &  0 \\
+Naive                & 18.0 & -16.7 &   0.5 &  0 &  0 \\
+Drift                & 15.3 & -18.1 &   0.5 &  0 &  0 \\
+\bottomrule
+\end{tabular}

@@ -1,0 +1,146 @@
+\section{Additional Details on Internal Benchmarks}
+
+\subsection{Methodology}
+\label{app:methodology}
+
+\paragraph{Metric Normalization.}
+\label{sec:metric_norm}
+
+To aggregate heterogeneous metrics across datasets, we apply a per-fold min--max normalization.
+For each (dataset, fold) pair and metric $m$, we rescale a model's raw score $s_m^{(b)}$ as
+\begin{equation}
+    \tilde{s}_m^{(b)} = \frac{s_m^{(b)} - \min_{b' \in \mathcal{B}}\, s_m^{(b')}}{\max_{b' \in \mathcal{B}}\, s_m^{(b')} - \min_{b' \in \mathcal{B}}\, s_m^{(b')}},
+\end{equation}
+where $\mathcal{B}$ denotes the set of models we evaluate. This allows the model scores to live on a comparable $[0, 1]$ scale for each (dataset, fold) combination. We treat the tuned and default versions of a model as two different models.
+For lower-is-better metrics (e.g.\ RMSE, cross-entropy loss), we apply the additional transformation $\tilde{s}_m \mapsto 1 - \tilde{s}_m$, so that all metrics are higher-is-better on a common scale and can be meaningfully averaged or ranked across datasets and metric types.
+
+\paragraph{Statistical significance.}
+\label{sec:statistical_significance}
+
+To assess whether performance differences between models are statistically significant, we report critical difference (CD) diagrams using \texttt{scikit-posthocs}~\citep{scikit_posthocs_Terpilowski2019}.
+The critical difference diagram from \texttt{scikit-posthocs} summarizes the statistical comparison of methods across multiple datasets. Average ranks are computed per method across all datasets, with lower ranks indicating better performance. 
+Methods connected by a horizontal bar are not significantly different from each other.
+To assess statistical significance, we use a Friedman test followed by a Conover post hoc analysis at the significance level $\alpha=0.05$. 
+
+
+
+\subsection{Large Data Benchmark Details}
+\label{app:large_data_datasets}
+
+Classification datasets span domains including healthcare (patient
+survival, disease diagnosis), customer analytics (satisfaction, credit risk), insurance
+(claim prediction), microfinance (loan outcomes), and high-energy physics
+(signal/background classification). Regression datasets cover retail sales forecasting,
+climate and weather modeling, food delivery logistics, and e-commerce price prediction. All 4 regression datasets use temporal train/test splits reflecting real-world
+deployment conditions where the test period strictly follows the training period. For classification, all datasets are IID. These datasets are selected to have between 100K and 1M training rows, and fewer than 200 features, which is the regime TabPFN-3 was designed for.
+
+Figures~\ref{fig:large_data_cd_cls} and~\ref{fig:large_data_cd_reg} show critical difference
+diagrams for ROC-AUC and RMSE respectively, based on average ranks across all datasets in
+each benchmark.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=\textwidth]{figures/internal_benchmarking/large_data/big_data_cls_v2_wo_AG__roc_auc__cd_scikit_posthocs.pdf}
+    \caption{%
+        \textbf{Critical difference diagram for ROC-AUC on the large-scale classification
+        benchmark (100k--1M training rows).}
+        TabPFN-3 ranks first (avg.\ rank 2.11). Its rank differences to the
+        8-hour-tuned XGB/CatBoost baselines are not statistically significant,
+        while it ranks significantly ahead of tuned LightGBM, all default GBTs,
+        and TabICLv2. Bars connect methods whose rank differences are not
+        statistically significant at $\alpha = 0.05$ under a Conover-Friedman
+        post-hoc test~\citep{scikit_posthocs_Terpilowski2019}..
+    }
+    \label{fig:large_data_cd_cls}
+\end{figure}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=\textwidth]{figures/internal_benchmarking/large_data/big_data_reg_v3_wo_AG__rmse__cd_scikit_posthocs.pdf}
+    \caption{%
+         \textbf{Critical difference diagram for RMSE on the large-scale regression
+         benchmark (100k--1M rows, 4 datasets, temporal splits).} Methods are
+         ranked per (dataset, split); lower rank is better. TabPFN-3 achieves the best average rank ($2.25$). Its rank differences to the three 8h-tuned GBDTs and untuned CatBoost are not statistically significant, while it ranks significantly ahead of the remaining methods. Bars connect methods whose rank differences are not statistically significant at $\alpha = 0.05$ under a Conover-Friedman post-hoc test~\citep{scikit_posthocs_Terpilowski2019}.   
+    }
+    \label{fig:large_data_cd_reg}
+\end{figure}
+
+\subsection{Synthetic Many-Class Benchmark Construction}
+\label{app:many_class_construction}
+
+Continuous regression targets are partitioned into $K = 100$ bins using quantile-based
+bin edges whose spacings are drawn from a $\mathrm{Dirichlet}(\alpha{=}5.0)$
+distribution, producing realistic class imbalance. Bins with fewer than 10 samples are merged
+with their nearest neighbour to guarantee sufficient representation for inner cross-validations. 
+Class labels are then randomly permuted to remove the implicit ordinal structure inherited from the regression target.
+
+tasets from TabArena whose targets have heavy point masses or too few distinct values to fill 100 quantile bins meaningfully — wine\_quality (7 unique values), Food\_Delivery\_Time (45, discrete times), Fiat-500 (222, discrete prices), and QSAR-TID-11 (concentrated point masses). Dataset statistics are reported in Table~\ref{tab:many_class_datasets}. The resulting benchmark retains a large number of classes for most datasets (median $K=95$), while inducing moderate class imbalance (median IR $=9.9\times$) without collapsing the label distribution onto a few dominant classes (median $H/\log K=0.98$).
+
+\begin{table}[ht]
+\centering
+\caption{%
+    \textbf{Synthetic many-class benchmark datasets derived from continuous regression targets.}
+    $N$ is the number of samples before binning. Targets are first partitioned into
+    100 quantile-based bins with randomized Dirichlet-spaced bin widths, after which
+    bins with fewer than 10 samples are merged into their nearest neighbour. $K$ is
+    the resulting number of classes and \textbf{Merged} equals $100-K$. \textbf{Min}
+    and \textbf{Max} are the smallest and largest class sizes after merging, and
+    \textbf{IR} is their ratio. $H/\log K$ is the Shannon entropy of the class
+    distribution normalized by $\log K$, with 1 corresponding to perfectly balanced
+    classes.
+}
+\label{tab:many_class_datasets}
+\resizebox{\textwidth}{!}{%
+\begin{tabular}{lrrrrrrrrr}
+\toprule
+\textbf{Dataset} & \textbf{OpenML task} & \textbf{OpenML did} & $N$ & $K$ & \textbf{Merged} & \textbf{Min} & \textbf{Max} & \textbf{IR} & $H/\log K$ \\
+\midrule
+airfoil\_self\_noise            & 363612 & 46904 & 1{,}503  & 80      & 20 & 10  & 42    & $4.2\times$  & 0.984 \\
+concrete\_compressive\_strength & 363625 & 46917 & 1{,}030  & 60      & 40 & 10  & 28    & $2.8\times$  & 0.991 \\
+diamonds                        & 363631 & 46923 & 53{,}940 & 100     & 0  & 127 & 1{,}252 & $9.9\times$ & 0.979 \\
+healthcare\_insurance\_expenses & 363675 & 46931 & 1{,}338  & 73      & 27 & 10  & 32    & $3.2\times$  & 0.988 \\
+houses                          & 363678 & 46934 & 20{,}640 & 97      & 3  & 62  & 965   & $15.6\times$ & 0.974 \\
+miami\_housing                  & 363686 & 46942 & 13{,}776 & 95      & 5  & 19  & 339   & $17.8\times$ & 0.970 \\
+physiochemical\_protein         & 363693 & 46949 & 45{,}730 & 100     & 0  & 108 & 1{,}214 & $11.2\times$ & 0.982 \\
+QSAR\_fish\_toxicity            & 363698 & 46954 & 907      & 51      & 49 & 10  & 37    & $3.7\times$  & 0.980 \\
+superconductivity               & 363705 & 46961 & 21{,}263 & 100     & 0  & 28  & 508   & $18.1\times$ & 0.979 \\
+\midrule
+Aggregate (mean / median)       & ---    & ---   & ---      & 84 / 95 & --- & --- & ---  & $9.6\times$ / $9.9\times$ & 0.98 / 0.98 \\
+\bottomrule
+\end{tabular}%
+}
+\end{table}
+
+\subsection{Quantile Regression: Critical Difference Diagram}
+
+
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=\textwidth]{figures/internal_benchmarking/quantile/tabarena_regression__pinball_loss__cd_scikit_posthocs.pdf}
+    \caption{%
+        \textbf{Critical difference diagram for pinball loss on our quantile regression benchmark.} The quantile regression benchmark is constructed from TabArena regression datasets and evaluated
+        across 10 quantile levels $q \in \{0.1, 0.2, \ldots, 0.9\}$.
+        TabPFN-3 ranks first. Its rank difference to Quantile TabICLv2 is not
+        statistically significant, while it ranks significantly ahead of all
+        remaining baselines. Bars connect methods whose rank differences are not
+        statistically significant at $\alpha = 0.05$ under a Conover-Friedman
+        post-hoc test~\citep{scikit_posthocs_Terpilowski2019}.
+    }
+    \label{fig:quantile_cd}
+\end{figure}
+
+
+\subsection{Synthetic Many Class: Critical Difference Diagram}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=\textwidth]{figures/internal_benchmarking/many_class/tabarena_many_class_100_v2__roc_auc__cd_scikit_posthocs.pdf}             
+    \caption{%
+          \textbf{Critical difference diagram for ROC AUC on the synthetic
+          many-class benchmark (up to 100 classes).} 
+          TabPFN-3 is top-ranked on every (dataset, split) pair and ranks significantly ahead of all baselines. Bars connect methods whose rank differences are not statistically significant at $\alpha = 0.05$ under a Conover-Friedman post-hoc test~\citep{scikit_posthocs_Terpilowski2019}.
+      }                                                                                                          
+      \label{fig:many_class_roc_auc_cd}                     
+  \end{figure}                                                                                                   
+                        

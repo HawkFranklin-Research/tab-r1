@@ -1,0 +1,109 @@
+\section{Detailed Time-Series Forecasting Results on fev-bench}
+\label{app:time_series}
+
+This appendix complements the body Time-Series subsection
+(\Cref{tab:fev-bench}, \Cref{fig:fev-bench-qualitative}) with the full
+leaderboards (Table \ref{tab:fev-bench-full}), pairwise comparisons (Figure \ref{fig:fev-bench-pairwise}), additional qualitative forecasts (Section \ref{sec:fev-bench-qualitative} and per-task SQL results (Section \ref{sec:fev-bench-per-task}).
+
+
+\subsection*{Full leaderboards (SQL and MASE)}
+
+\begin{table}[H]
+\centering
+\caption{Full marginal forecasting performance on fev-bench (100 tasks),
+all 19 baselines, sorted by skill score. The body table
+(\Cref{tab:fev-bench}) shows the foundation-model + Stat.\ Ensemble +
+Seasonal Naive subset. $^{\dagger}$\,TabICL-v2 results were produced
+using the \texttt{tabicl[forecast]} package (v2.0.3) on fev-bench
+v0.7.0; results for this model are not currently available in the
+official fev-bench results repository.}
+\label{tab:fev-bench-full}
+\vspace{-3mm}
+
+\begin{minipage}{0.49\textwidth}
+\centering
+\textbf{(a) SQL (probabilistic)} \\[2pt]
+\resizebox{\linewidth}{!}{\input{tables/time_series/leaderboard_SQL}}
+\end{minipage}
+\hfill
+\begin{minipage}{0.49\textwidth}
+\centering
+\textbf{(b) MASE (point)} \\[2pt]
+\resizebox{\linewidth}{!}{\input{tables/time_series/leaderboard_MASE}}
+\end{minipage}
+\end{table}
+ 
+\subsection*{Qualitative forecast examples}
+\label{sec:fev-bench-qualitative}
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=\textwidth]{figures/time_series/model_comparison/solar_with_weather_15T_s0.pdf}
+\caption{\texttt{solar\_with\_weather\_15T} — 15-minute solar
+generation with weather covariates.}
+\end{figure}
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=\textwidth]{figures/time_series/model_comparison/rossmann_1W_s1.pdf}
+\caption{\texttt{rossmann\_1W} — weekly Rossmann store sales (series 1).}
+\end{figure}
+
+
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=\textwidth]{figures/time_series/model_comparison/rohlik_orders_1D_s0.pdf}
+\caption{\texttt{rohlik\_orders\_1D} — daily online-grocery orders.}
+\end{figure}
+
+
+
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=\textwidth]{figures/time_series/model_comparison/LOOP_SEATTLE_1H_s0.pdf}
+\caption{\texttt{LOOP\_SEATTLE\_1H} — hourly Seattle freeway loop-detector counts.}
+\end{figure}
+
+
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=\textwidth]{figures/time_series/model_comparison/ETT_1H_s0.pdf}
+\caption{\texttt{ETT\_1H} — hourly Electricity Transformer Temperature.}
+\end{figure}
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=\textwidth]{figures/time_series/model_comparison/entsoe_1H_s0.pdf}
+\caption{\texttt{entsoe\_1H} — hourly ENTSO-E European electricity load.}
+\end{figure}
+
+\subsection*{Pairwise skill-score heatmaps}
+
+\begin{figure}[H]
+\centering
+\begin{minipage}{0.49\textwidth}
+\centering
+\includegraphics[width=\linewidth]{figures/time_series/pairwise_skill_score/pairwise_skill_score_sql.pdf}
+\end{minipage}
+\hfill
+\begin{minipage}{0.49\textwidth}
+\centering
+\includegraphics[width=\linewidth]{figures/time_series/pairwise_skill_score/pairwise_skill_score_mase.pdf}
+\end{minipage}
+\caption{Pairwise skill-score comparison on fev-bench (100 tasks) under
+SQL (left) and MASE (right). Cell $(i, j)$ is the skill score of model
+$i$ relative to model $j$, with 95\% confidence intervals from
+bootstrapped resampling; cells whose interval overlaps zero are shown
+in italics. Rows and columns are ordered by overall skill score.
+Best viewed on screen.}
+\label{fig:fev-bench-pairwise}
+\end{figure}
+
+\subsection*{fev-bench per-task SQL leaderboard}
+\label{sec:fev-bench-per-task}
+
+\input{tables/time_series/per_task_SQL}
+

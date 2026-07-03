@@ -1,0 +1,218 @@
+\documentclass{article}
+
+
+\PassOptionsToPackage{numbers,compress,sort}{natbib}
+\usepackage{natbib}
+
+\usepackage{wrapfig}
+\usepackage[utf8]{inputenc} %
+\usepackage[T1]{fontenc}    %
+\usepackage{url}            %
+\usepackage{booktabs}       %
+\usepackage{longtable}
+\usepackage{amsfonts}       %
+\usepackage{nicefrac}       %
+\usepackage{xspace}         %
+\usepackage[
+  protrusion=true,
+  expansion=true,
+  final,
+  factor=1100,
+  stretch=20,
+  shrink=20
+]{microtype}
+\usepackage{xcolor}         %
+\usepackage{amsmath} 
+\usepackage{graphicx}
+\usepackage[rightcaption,raggedright]{sidecap}
+\usepackage{subcaption}
+\usepackage{multirow}
+\usepackage{todonotes}
+\usepackage{float}
+\usepackage{adjustbox}
+\usepackage{placeins}
+\usepackage{pdflscape}
+\usepackage{titletoc}      %
+
+\usepackage[a4paper,margin=1in]{geometry}
+
+
+
+\usepackage[table]{xcolor}  %
+\definecolor{medalGold}{HTML}{FFE89C}    %
+\definecolor{medalSilver}{HTML}{FFD2A6}  %
+\definecolor{medalBronze}{HTML}{E8C49C}  %
+
+\definecolor{gold}{RGB}{218,165,32}
+\definecolor{silver}{RGB}{160,160,160}
+\definecolor{bronze}{RGB}{205,127,50}
+
+\definecolor{priorlight}{RGB}{247,248,250} %
+\usepackage[colorlinks=true,linkcolor=black,urlcolor=blue]{hyperref}
+\usepackage{cleveref}
+\usepackage[most]{tcolorbox}
+\definecolor{priorAccent}{HTML}{4A3FB7}  %
+
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{0.5em}
+
+
+
+\tcbset{
+colback=priorlight,
+colframe=black!15,
+boxrule=0.5pt,
+arc=6pt,
+left=16pt,right=16pt,top=14pt,bottom=14pt,
+enhanced,
+}
+
+\newcommand{\field}[2]{\textbf{#1:}\enspace #2\par}
+\renewcommand{\field}[2]{%
+  \par\noindent
+  {\small\color{black!55}\textsc{#1}}\quad #2\par\addvspace{2pt}}
+
+\newenvironment{redblock}{\par\begingroup\color{red}}{\endgroup\par}
+\usepackage{tikz}
+\usepackage{circuitikz}
+\usepackage{amsmath, amssymb}
+\usepackage{xcolor}
+\usetikzlibrary{
+  arrows.meta,
+  positioning,
+  fit,
+  shapes.geometric,
+  shapes.symbols,
+  shapes.misc,
+  shapes.multipart,
+  matrix,
+  backgrounds,
+  calc,
+  decorations.pathreplacing,
+  decorations.markings
+}
+
+\usepackage{caption}
+\captionsetup{
+  font=small,
+  labelfont=bf,
+  labelsep=period,
+  justification=raggedright,
+  singlelinecheck=false,
+}
+\captionsetup[sub]{font=footnotesize, labelfont=bf}
+
+\usepackage{amsmath,amssymb}
+\usepackage{xcolor}
+
+
+
+\pgfdeclarelayer{midground}
+\pgfsetlayers{background,midground,main}
+
+\colorlet{groupCyan}{cyan!15}
+\colorlet{groupGreen}{green!15}
+\colorlet{groupOrange}{orange!15}
+\colorlet{groupPurple}{violet!12}
+\definecolor{darkgreen}{RGB}{0,100,0}
+
+\definecolor{groupCyanEdge}{RGB}{ 30, 110, 135}
+\definecolor{groupGreenEdge}{RGB}{ 60, 120,  55}
+\definecolor{groupOrangeEdge}{RGB}{180,  95,  20}
+\definecolor{groupPurpleEdge}{RGB}{ 95,  60, 140}
+\definecolor{groupGray}{RGB}{238, 238, 240}
+\definecolor{groupGrayEdge}{RGB}{ 90,  90,  95}
+
+\newcommand{\ourmodeltwofive}{\mbox{TabPFN-2.5}\xspace}
+\newcommand{\ourmodel}{\mbox{TabPFN-3}\xspace}
+\newcommand{\ourmodelenhanced}{\mbox{TabPFN-3-Plus} (Thinking)\xspace}
+\newcommand{\ourmodelplus}{\mbox{TabPFN-3-Plus}\xspace}
+\newcommand{\rtzero}{$\text{RT}_{\text{zero}}$}
+
+\newcommand{\err}{\operatorname{err}}
+\newcommand{\besterr}{\operatorname{best\_err}}
+
+\begin{document}
+
+\vspace*{-1cm}
+\begin{tcolorbox}
+
+\vspace{-0.35em}\hspace*{-0.2cm}\includegraphics[width=0.2\linewidth]{figures/prior-logo.png}
+
+{\LARGE\bfseries TabPFN-3: Technical Report\par}
+
+\vspace{0.35em}
+{\large \hyperref[app:contributors]{Prior Labs Team}}  (see Appendix \ref{app:contributors} for the list of contributors)
+
+
+\vspace{1.5em}
+
+Tabular data underpins most high-value prediction problems in science and industry, and TabPFN has driven the foundation model revolution for this modality. Designed with feedback from our users, \ourmodel builds on this foundation to scale state-of-the-art performance to datasets with 1M training rows and substantially reduce training and inference time. 
+Pretrained exclusively on synthetic data from our prior, \ourmodel dramatically pushes the frontier of tabular prediction and brings substantial gains on time series, relational, and tabular-text data.
+
+\vspace{-1.0em}
+\paragraph{A new performance standard.}
+On the standard tabular benchmark TabArena, a forward pass of \ourmodel outperforms all other models, including tuned and ensembled baselines, by a significant margin, and pareto-dominates the speed/performance frontier. \ourmodel also scales to more diverse datasets: it ranks first on datasets with many classes, and beats 8-hour-tuned gradient-boosted-tree baselines on datasets up to 1M training rows and 200 features.
+
+
+\vspace{-1.0em}
+\paragraph{Thinking mode.}
+\ourmodel introduces test-time compute scaling to tabular foundation models. Our API offering \ourmodelenhanced exploits this to beat all non-TabPFN models by over 200 Elo on the standard TabArena benchmark, rising to 420 Elo on the largest data subset, and outperforming AutoGluon 1.5 extreme in less than a tenth of its runtime, without using LLMs, real data, internet search or any other model besides TabPFN.
+
+\vspace{-1.0em}
+\paragraph{Broader capabilities.} 
+TabPFN-3 extends the capabilities of our models, enabling SOTA prediction on many-class datasets, relational data (new SOTA foundation model on RelBenchV1) and tabular-text datasets (SOTA on TabSTAR via \ourmodelplus). 
+It also directly improves existing integrations of TabPFN: 
+a specialized \ourmodel checkpoint, 
+TabPFN-TS-3, ranks 2$^{\text{nd}}$ on the time-series benchmark fev-bench,
+and SHAP-value computation through \texttt{shapiq} is up to $120\times$ faster with KV caching.
+
+\vspace{-1.0em}
+\paragraph{An enterprise-ready model.} \ourmodel achieves this performance while being up to 20x faster than \ourmodeltwofive. In addition, a reduced KV cache and row-chunking scale to 1M rows on a single H100 with fast inference speed.
+
+
+\vspace{.5em}
+
+We release TabPFN-3 under the \texttt{TABPFN-3.0 License v1.0}, permissive for research and internal evaluation. \ourmodelenhanced is available via API and enterprise licensing including on-prem and VPC environments (AWS SageMaker, Azure AI Foundry).
+
+\vspace{0.5em}
+
+  \field{Date}{May 12, 2026}
+   \field{License}{\texttt{TABPFN-3.0 License v1.0} (see Section \ref{sec:license} for details)}
+  \field{Docs}{\url{https://docs.priorlabs.ai}}
+
+\end{tcolorbox}
+
+\begin{figure}[h]
+    \centering
+    \includegraphics[width=\linewidth,trim={0 0 0 0.69cm}, %
+    clip]{figures/tabarena_v3/Medium/tuning-impact-elo.pdf}
+    \vspace{-0.5cm}
+    \caption{\textbf{Performance on the TabArena benchmark \citep{erickson2025tabarena}, largest data subset (10k-100k samples)}.   TabPFN-3 outperforms any other model in a forward pass. \ourmodelenhanced is dramatically better yet, outperforming AutoGluon 1.5 extreme \citep{autogluon_tabular}, 
+    a complex ensemble of models tuned for 4 hours, while being 10x faster.
+    }
+    \label{fig:tabarena-hero-plot}
+\end{figure}
+
+\newpage
+{
+  \setcounter{tocdepth}{2}
+  \tableofcontents
+}
+\newpage
+
+\input{sections/01_introduction}
+\input{sections/02_tabpfn3}
+\input{sections/03_experimental_results}
+\input{sections/04_adoption}
+\input{sections/05_license}
+\input{sections/A_contributors}
+\input{sections/B_acknowledgements}
+\input{sections/C_architectural_hyperparams}
+\input{sections/D_prior_visualizations}
+\input{sections/E_experimental_results_details}
+\input{sections/F_additional_internal_benchmarks}
+\input{sections/G_supplementary_inference_time}
+\input{sections/H_time_series_results}
+\input{sections/I_use_cases}
+\end{document}

@@ -1,0 +1,329 @@
+\section{Experimental results details}
+
+\subsection{Details on Causal Inference Results}
+\label{sec:causal_inference}
+
+
+\paragraph{Causal Inference.} 
+Many practical problems are rooted in causal logic, requiring an understanding of how interventions, rather than mere associations, shape outcomes. Estimating Conditional Average Treatment Effects (CATEs) serves as a primary tool for addressing these "what-if" scenarios, quantifying the expected change in an individual’s response when a treatment is applied compared to when it is withheld. Previous results \cite{TabPFN-2.5} have shown that TabPFN-2.5, especially when used as a T-Learner \cite{kunzel_meta_learners}, achieves SOTA performance on the RealCause benchmark \cite{neal_realcause}. While TabPFN-3 does not quite achieve the highest performance on RealCause (still surpassed by TabPFN-2.5), we see substantial improvements on larger datasets with up to 50k samples in the \texttt{scikit-uplift} library \cite{user-guide-for-uplift-modeling}. We describe the details of this evaluation below.
+
+\begin{figure}[t!]
+    \centering
+    \includegraphics[width=0.49\linewidth]{figures/causal/uplift.png}
+     \includegraphics[width=0.49\linewidth]{figures/causal/RealCause.png}
+    \caption{\textbf{TabPFN-3 as a T/X/S-Learner.} TabPFN-3 when used as a T/S-Learner achieves strong performance in terms of QINI-score ($\uparrow$) in Uplift Modeling on the \texttt{scikit-uplift} benchmark. We report worsened performance in terms of PEHE ($\downarrow$) on the RealCause benchmark compared to the previous version.}
+    \label{fig:causal_inference}
+\end{figure}
+
+\paragraph{Real-World QINI Evaluation.} One of the major drawbacks in evaluating causal inference methods is referred to by \citet{holland1986statistics} as the Fundamental Problem of Causal Inference, which states that individual treatment effects can never actually be observed in the real-world. In simple terms, one cannot experimentally test both potential outcomes without interference. Under the assumption of experimental (RCT) data, Uplift Modeling \cite{user-guide-for-uplift-modeling} allows to evaluate the benefit of using a causal estimator in terms of ranking individuals by treatment effect. Crucially, this evaluation strategy does not require access to ground truth (synthetic) treatment effects, and serves as arguably the most real-world evaluation of CATE estimators, for example, when A/B testing data is available. Using only observed treatment and outcomes, one can compute the Area-Under the QINI Curve (AUC-QINI) to evaluate CATE estimators by their ability to identify individuals for which the treatment has a strong impact. 
+
+\paragraph{Strong Performance in Uplift Modeling.} We report the mean normalized AUC-QINI score for the T/X/S meta-learners using TabPFN-2.5 and 3 (Figure \ref{fig:causal_inference}). TabPFN-3 used as an S and T-Learner achieves stronger performance than other baselines. We observe somewhat worsened performance on the RealCause benchmark \cite{neal_realcause}, which is characterized by smaller sample sizes.
+
+
+
+\subsection{Detailed TabArena Results}
+\label{app:tabarena-detailed}
+
+\subsubsection{Evaluation Metrics}
+\label{app:tabarena-metrics}
+
+We re-use the official TabArena \citep{erickson2025tabarena} evaluation metrics and code for generating TabArena plots and tables.
+
+\textbf{Elo}: Following TabArena, we evaluate models using the Elo rating system~\citep{elo1967proposed}. Elo is a pairwise
+comparison-based rating system where each model’s rating predicts its expected win probability against others, with a 400-point Elo gap corresponding to a 10 to 1 (91\%) expected win rate. We calibrate 1000 Elo to the performance of the default TabArena random forest configuration across all figures, and perform 200 rounds of bootstrapping to obtain 95\% confidence intervals, similar to what is done in ChatBot Arena \cite{chiang2024chatbot}. In our TabArena results, Elo scores are computed using ROC AUC for binary classification, log-loss for multiclass classification, and RMSE for regression.
+
+\textbf{Improvability}: The improvability metric introduced in TabArena measures how many percent lower the error of the best method is than the current method on a dataset. This is then averaged over datasets. Formally, for a single dataset,
+    \begin{equation*}
+        \operatorname{Improvability} := \frac{\err_i - \besterr_i}{\err_i} \cdot 100\%~.
+    \end{equation*}
+    Improvability is always between $0\%$ and $100\%$.
+
+\subsubsection{Experiment Details}
+
+For all TabArena results, we run experiments using the official TabArena code and evaluation pipeline. We will contribute a reproducible official TabArena submission for \ourmodel shortly after it becomes publicly available. While not strictly necessary to make predictions on test data, we follow TabArena's fit time procedure of fitting an 8-fold bagged ensemble to generate a cross-validation score followed by refitting the model on the full training data at test time, as is done for the other tabular foundation models on TabArena.
+
+All results for non-\ourmodel models in our TabArena experiments were from the official TabArena reported results. All cached results from tabular foundation models (TabPFN-2.5, TabPFN-2.6, TabICLv2 and TabDPT) were run on a single H200 GPU, while all results for \ourmodel and \ourmodelenhanced were run on a single RTX 6000 GPU, a weaker GPU compared to an H200.
+
+For both \ourmodel and \ourmodelenhanced, we ran all splits of TabArena, which includes a total of 816 tasks across 51 datasets. In all cases we report results for all splits of each dataset.
+
+\subsubsection{TabArena Pareto Frontier Explanation}
+\label{app:tabarena_pareto_frontier_explanation}
+
+Figure \ref{fig:tabarena_pareto_medium} and Figure \ref{fig:tabarena_pareto} show TabArena Pareto frontiers of models across Improvability and the median combined train + inference time per 1000 samples. The connected points for a given model type indicate tuning + ensembling performance with points from left to right marking ensembles of increasing numbers of random configurations (1, 2, 5, 10, 25, 50, 100, 150, 201). The trajectories are sampled 20 times from all
+trials and averaged. The left-most points use the default configuration, and the right-most highlighted points use all configurations.
+
+\subsubsection{TabArena Leaderboard Tables}
+\label{sec:tabarena_leaderboard_tables}
+
+We present the leaderboard tables for
+\hyperref[tab:tabarena_table]{TabArena},
+\hyperref[tab:tabarena_medium_table]{TabArena-medium},
+\hyperref[tab:tabarena_small_table]{TabArena-small}, \hyperref[tab:tabarena_classification_table]{TabArena-classification}, and \hyperref[tab:tabarena_regression_table]{TabArena-regression}, below.
+
+For all 5 views, \ourmodel ranks highest among all models on TabArena, while \ourmodelenhanced pushes even futher, strongly outperforming AutoGluon 1.5 extreme and ranking first in Elo, wins, and Improvability in every leaderboard.
+
+\begin{table}[H]
+\centering
+\caption{\textbf{TabArena leaderboard using all 51 datasets with 816 total tasks.}}
+\label{tab:tabarena_table}
+\input{figures/tabarena_v3/all/leaderboard.tex}
+\end{table}
+\begin{table}[H]
+\centering
+\caption{\textbf{TabArena-medium leaderboard on the 15 largest datasets in TabArena}, with 10k--100k training samples, evaluated on the full 135 tasks with 9 splits per dataset.}
+\label{tab:tabarena_medium_table}
+\input{figures/tabarena_v3/Medium/leaderboard.tex}
+\end{table}
+
+\begin{table}[H]
+\centering
+\caption{\textbf{TabArena-small leaderboard on the 36 smallest datasets in TabArena}, with 500--10k training samples, evaluated on the full 681 tasks.}
+\label{tab:tabarena_small_table}
+\input{figures/tabarena_v3/Small/leaderboard.tex}
+\end{table}
+
+\begin{table}[H]
+\centering
+\caption{\textbf{TabArena-classification leaderboard on the 38 classification datasets in TabArena.}}
+\label{tab:tabarena_classification_table}
+\input{figures/tabarena_v3/classification/leaderboard.tex}
+\end{table}
+
+\begin{table}[H]
+\centering
+\caption{\textbf{TabArena-regression leaderboard on the 13 regression datasets in TabArena.}}
+\label{tab:tabarena_regression_table}
+\input{figures/tabarena_v3/regression/leaderboard.tex}
+\end{table}
+
+
+\subsection{Details on TALENT benchmark results}
+\label{app:TALENT}
+
+\subsubsection{Benchmark description}
+TALENT \citep{talent_benchmark_jmlr} base contains 300 datasets (120 binary, 80 multiclass, 100 regression).
+Each dataset is split into 64\% training, 16\% validation, and 20\% test sets.
+
+
+\paragraph{Baselines.} We rely on precomputed baselines provided by the authors of
+the TALENT benchmark \citep{talent_benchmark_jmlr} (for the TALENT extensions which we
+use for the large-rows slice and the many-class slice) or the TabICLv2 paper
+\citep{qu2026tabiclv2} (for the main TALENT slice).
+
+\paragraph{Metrics.} Following the TALENT paper and \cite{qu2026tabiclv2}, we use accuracy for classification and rmse for regression.
+
+\paragraph{Datasets.} Following \cite{qu2026tabiclv2}, we exclude the 26 development datasets used for
+TabPFN-2 / TabICLv2 development from the main TALENT benchmark.
+
+
+\subsubsection{Per-task-type breakdown}
+\label{app:TALENT-per-task}
+
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=\linewidth]{figures/TALENT/by_task_average_rank_paper.pdf}
+  \caption{\textbf{Average rank on the TALENT benchmark broken down by task type
+    (regression, binary classification, multiclass classification), using the
+    TabICLv2 evaluation protocol from \citet{qu2026tabiclv2}.} Bars show mean rank
+    (lower is better); error bars are 95\% bootstrap confidence intervals over
+    datasets. Hatched bars mark methods with KNN-imputed scores. TabPFN-2.5,
+    LimiX, and TabPFNv2 share a 10-class cap, so their scores on the 12
+    multiclass datasets with $>$10 classes are KNN-imputed.}
+  \label{fig:per-task-TALENT-rank}
+\end{figure}
+
+\subsubsection{Many-class TALENT subset}
+\label{app:TALENT-many-class}
+
+We report results on the subset of TALENT~\cite{talent_benchmark_jmlr} datasets with more than $50$ classes, which yields 4 datasets with 100 classes, including 3 from the same family. While limited in number, these complement the results on synthetic data from Section \ref{sec:many-class-eval}. Results are shown in Figure~\ref{fig:talent_many_class}.
+
+\begin{figure}[H]
+  \centering
+  \begin{minipage}[c]{0.52\linewidth}
+    \centering
+    \footnotesize
+    \begin{tabular}{lrrr}
+      \toprule
+      Dataset                              & Classes & Samples & Feat. \\
+      \midrule
+      \texttt{one-hundred-plants-margin}   & 100 & 1{,}600  & 64 \\
+      \texttt{one-hundred-plants-shape}    & 100 & 1{,}600  & 64 \\
+      \texttt{one-hundred-plants-texture}  & 100 & 1{,}599  & 64 \\
+      \texttt{helena}                      & 100 & 65{,}196 & 27 \\
+      \bottomrule
+    \end{tabular}
+  \end{minipage}\hfill
+  \begin{minipage}[c]{0.45\linewidth}
+    \centering
+    \includegraphics[width=\linewidth]{figures/TALENT/many_classes_average_rank_paper_half.pdf}
+  \end{minipage}
+  \caption{\textbf{Average rank on the many-classes TALENT slice
+    (4 datasets, all 100 classes).} Three are the
+    \texttt{one-hundred-plants} variants (margin / shape / texture, $\approx$1.6\,k
+    samples each) and one is \texttt{helena} (65\,k samples).}
+  \label{fig:talent_many_class}
+\end{figure}
+
+
+\subsubsection{Large rows subset}
+
+We report here the list of datasets in the large-rows subset of TALENT we use in 
+Section \ref{sec:large-data}. The datasets are filtered for $>$100k samples and $\leq$1M training samples from the TALENT base and large extension. We report the model ranking in Figure \ref{fig:large_rows_rank}.
+
+
+
+\begin{figure}[H]
+\centering
+
+\begin{minipage}[t]{0.53\linewidth}
+\vspace{0pt}
+\centering
+\scriptsize
+
+\resizebox{\linewidth}{!}{%
+\begin{tabular}{lrrl}
+\toprule
+Dataset & Samples & Feat. & Task \\
+\midrule
+\texttt{microsoft} & 1{,}200{,}192 & 136 & Reg. \\
+\texttt{poker-hand} & 1{,}025{,}009 & 10 & Multi. \\
+\texttt{BNG(credit-a)} & 1{,}000{,}000 & 15 & Binary \\
+\texttt{Higgs} & 1{,}000{,}000 & 28 & Binary \\
+\texttt{Smoking\_and\_Drinking\_Dataset\_with\_body\_signal} & 991{,}346 & 23 & Binary \\
+\texttt{yahoo} & 709{,}877 & 699 & Reg. \\
+\texttt{Data\_Science\_for\_Good\_Kiva\_Crowdfunding} & 671{,}205 & 11 & Multi. \\
+\texttt{covertype} & 581{,}012 & 54 & Multi. \\
+\texttt{CDC\_Diabetes\_Health\_Indicators} & 253{,}680 & 21 & Binary \\
+\texttt{accelerometer} & 153{,}004 & 4 & Multi. \\
+\texttt{walking-activity} & 149{,}332 & 4 & Multi. \\
+\texttt{Rain\_in\_Australia} & 145{,}460 & 18 & Multi. \\
+\texttt{customer\_satisfaction\_in\_airline} & 129{,}880 & 21 & Binary \\
+\texttt{diabetes\_130-us\_hospitals} & 101{,}766 & 20 & Binary \\
+\bottomrule
+\end{tabular}%
+}
+
+\vspace{3.5em}
+\captionof{table}{Datasets in the large-rows TALENT slice.}
+\label{tab:large_rows_datasets}
+
+\end{minipage}\hfill
+\begin{minipage}[t]{0.42\linewidth}
+\vspace{0pt}
+\centering
+
+\includegraphics[width=0.82\linewidth]
+{figures/TALENT/talent_large_rows_average_rank_paper_half.pdf}
+
+\captionof{figure}{Average rank on the large-rows (100k-1M rows) TALENT slice.}
+\label{fig:large_rows_rank}
+
+\end{minipage}
+
+\end{figure}
+
+\subsubsection{Details}
+
+\paragraph{Per-dataset ranking.} For each (dataset, split) we rank all
+methods by their score (best $=1$; ties get average ranks). The reported
+\emph{mean rank} of a method is the average of these for ranks across all
+(dataset, split) pairs in the slice.
+
+\paragraph{Bootstrap confidence intervals.} 95\% confidence intervals are
+non-parametric bootstrap over datasets: for each of $B = 2{,}000$
+replicates we resample the (dataset, split) pairs with replacement and
+recompute each method's mean rank, then take the empirical $2.5/97.5$
+percentiles across replicates. 
+
+
+\subsection{Details on TabSTAR Text-Tabular Benchmark results}
+\label{app:TABSTAR}
+
+The TabSTAR benchmark is a union of previous text-tabular benchmarks: the Multimodal AutoML Benchmark \cite{shi2021benchmarking},
+\citet{grinsztajn2023vectorizing}, and CARTE \cite{kim2024carte}. After deduplication and exclusion of unavailable datasets, the final benchmark contains 50 datasets: 15 classification and 35 regression tasks.\footnote{The TabSTAR paper reports 14 classification tasks, having mistakenly treated \textit{Spotify Genres} as a regression dataset.} Each model is run 5 times, with per-task metrics AUROC (binary classification), log-loss (multiclass), and RMSE (regression); results are normalized with MinMax scaling to the $[0,1]$ range. As in the original paper
+\cite{arazi_tabstar_2025}, we limit each run to up to 100,000 examples. Figure~\ref{fig:text_leaderboard_cls} shows the results for
+classification, for which the TabSTAR model was reportedly the state of the art; we see that the TabPFN API family significantly outperforms
+it. Figure~\ref{fig:text_leaderboard_reg} shows the equivalent regression performance.
+
+  \begin{figure}[H]
+    \centering
+    \includegraphics[width=0.8\linewidth]{figures/text_leaderboard/tabstar_classification.pdf}
+    \caption{\textbf{Performance on the classification tasks of the TabSTAR text-tabular collection.} \ourmodelenhanced and TabPFN-3-Plus significantly
+  outperform the text-aware TabSTAR, which was otherwise the state-of-the-art reference for this task type.}
+    \label{fig:text_leaderboard_cls}
+  \end{figure}
+
+  \begin{figure}[H]
+    \centering
+    \includegraphics[width=0.8\linewidth]{figures/text_leaderboard/tabstar_regression.pdf}
+    \caption{\textbf{Performance on the regression tasks of the TabSTAR text-tabular collection.} \ourmodelenhanced and TabPFN-3-Plus significantly
+  outperform all baselines.}
+    \label{fig:text_leaderboard_reg}
+  \end{figure}
+
+\subsection{Per-dataset results on RelBenchV1}
+\label{sec:app/relbench/per-dataset-results}
+
+We report per-dataset results for entity regression and entity classification as well as aggregate metrics in \autoref{tab:relbench/classification} and \autoref{tab:relbench/regression}, respectively.
+
+\begin{table}[H]
+\centering
+\caption{\textbf{RelBenchV1 entity classification: per-task ROC AUC$\times$100.} \textbf{Bold} = best per task / column, \underline{underlined} = second best. Methods marked with $^{*}$ in their name (KumoRFMv1, \rtzero~) indicate methods that are likely following a different evaluation protocol, which overestimates model performance. KumoRFMv2 was reevaluated by us using the evaluation scripts provided by the authors; cells marked $^{*}$ in this row are imputed with the author's results because they were not supported in the evaluation scripts.}
+\label{tab:relbench/classification}
+\setlength{\tabcolsep}{2pt}
+\resizebox{\textwidth}{!}{%
+\begin{tabular}{lrrrrrrrrrrrrrr}
+\toprule
+Method & \multicolumn{2}{c}{\texttt{f1}} & \multicolumn{2}{c}{\texttt{avito}} & \multicolumn{2}{c}{\texttt{event}} & \multicolumn{1}{c}{\texttt{trial}} & \multicolumn{2}{c}{\texttt{amazon}} & \multicolumn{2}{c}{\texttt{stack}} & \multicolumn{1}{c}{\texttt{hm}} & Avg AUROC $\uparrow$ & Rank $\downarrow$ \\
+ & \texttt{\scriptsize dnf} & \texttt{\scriptsize top3} & \texttt{\scriptsize click} & \texttt{\scriptsize visit} & \texttt{\scriptsize repeat} & \texttt{\scriptsize ignore} & \texttt{\scriptsize out} & \texttt{\scriptsize user} & \texttt{\scriptsize item} & \texttt{\scriptsize eng} & \texttt{\scriptsize badge} & \texttt{\scriptsize churn} &  &  \\
+\midrule
+RelGNN & 75.29 & 85.69 & 68.23 & 66.18 & \textbf{79.61} & \underline{86.18} & 71.24 & \textbf{70.99} & \underline{82.64} & \textbf{90.75} & \textbf{88.98} & \textbf{70.93} & \textbf{78.06} & \textbf{2.83} \\
+RelGT & 75.87 & 83.52 & 68.30 & \underline{66.78} & 76.09 & 81.57 & 68.61 & 70.39 & 82.55 & 90.53 & 86.32 & 69.27 & 76.65 & 4.50 \\
+GraphSAGE & 72.62 & 75.54 & 65.90 & 66.20 & 76.89 & 81.62 & 68.60 & \underline{70.42} & \textbf{82.81} & 90.59 & \underline{88.86} & 69.88 & 75.83 & 5.17 \\
+\addlinespace[3pt]
+KumoRFMv1$^{*}$ & \textbf{82.41} & \textbf{91.07} & 64.85 & 64.11 & 76.08 & \textbf{89.20} & 70.79 & 67.29 & 79.93 & 87.09 & 80.00 & 67.71 & 76.71 & 6.75 \\
+Griffin & 57.70 & 82.50 & 45.90 & 60.70 & 71.88 & 83.27 & 51.00 & 62.30 & 69.00 & 77.50 & 73.50 & 60.20 & 66.29 & 9.92 \\
+RT$_{\text{zero}}^{*}$ & \underline{81.20} & \underline{89.30} & 59.50 & 61.80 & 73.22 & 77.47 & 51.80 & 64.00 & 70.90 & 75.70 & 80.10 & 62.80 & 70.65 & 8.67 \\
+RDBLearn & 70.87 & 79.69 & \underline{69.04} & 65.49 & 75.04 & 82.52 & 71.58 & 67.57 & 82.07 & 89.39 & 85.26 & 68.05 & 75.55 & 6.83 \\
+\addlinespace[3pt]
+RDBLearn + v2.5 & 71.72 & 77.60 & 65.72 & 66.47 & 75.55 & 78.65 & \underline{72.90} & 69.74 & 82.18 & 90.23 & 82.81 & 70.11 & 75.31 & 6.46 \\
+RDBLearn + v3 & 71.72 & 82.72 & \textbf{69.06} & 66.76 & 76.81 & 73.70 & 72.89 & 69.35 & 82.46 & 90.59 & 85.98 & 70.06 & 76.01 & 4.83 \\
+\addlinespace[3pt]
+KumoRFMv2 & 72.03 & 82.09 & 67.42$^{*}$ & \textbf{69.41$^{*}$} & \underline{79.34} & 78.86 & 72.03$^{*}$ & 67.71 & 80.18 & 88.69 & 85.40 & 67.81 & 75.91 & 5.75 \\
+\addlinespace[3pt]
+\textbf{TabPFN-REL} & 70.74 & 79.98 & 67.09 & 66.68 & 77.11 & 85.38 & \textbf{76.43} & 70.27 & \textbf{82.81} & \underline{90.66} & 85.17 & \underline{70.55} & \underline{76.91} & \underline{4.29} \\
+\bottomrule
+\end{tabular}}
+\end{table}
+
+\begin{table}[H]
+\centering
+\caption{\textbf{RelBenchV1 entity regression: per-task MAE.} \textbf{Bold} = best per task / column (ties bolded together at the displayed precision), \underline{underlined} = second best. Right column: LightGBM-normalised mean $S_{\text{KumoNorm}} = \mathrm{mean}_t \, \mathrm{MAE}_t / \mathrm{MAE}^{\text{LightGBM}}_t$. Methods marked with $^{*}$ in their name (KumoRFMv1, \rtzero~) indicate methods that are likely following a different evaluation protocol, which overestimates model performance. KumoRFMv2 was reevaluated by us using the evaluation scripts provided by the authors; cells marked $^{*}$ in this row are imputed with the author's results because they were not supported in the evaluation scripts. On one task (\texttt{rel-amazon/item}) marked with $^{**}$ we fall back to the default context size of $5000$, because the context exceeded the API's 30MB size limits.}
+\label{tab:relbench/regression}
+\setlength{\tabcolsep}{2pt}
+\resizebox{\textwidth}{!}{%
+\begin{tabular}{lrrrrrrrrrrr}
+\toprule
+Method & \multicolumn{1}{c}{\texttt{f1}} & \multicolumn{1}{c}{\texttt{avito}} & \multicolumn{1}{c}{\texttt{event}} & \multicolumn{2}{c}{\texttt{trial}} & \multicolumn{2}{c}{\texttt{amazon}} & \multicolumn{1}{c}{\texttt{stack}} & \multicolumn{1}{c}{\texttt{hm}} & Avg $S_{\text{KumoNorm}}$ $\downarrow$ & Rank $\downarrow$ \\
+ & \texttt{\scriptsize pos} & \texttt{\scriptsize ctr} & \texttt{\scriptsize attend} & \texttt{\scriptsize adverse} & \texttt{\scriptsize succ} & \texttt{\scriptsize user} & \texttt{\scriptsize item} & \texttt{\scriptsize votes} & \texttt{\scriptsize sales} &  &  \\
+\midrule
+RelGNN & 3.798 & 0.037 & \underline{0.238} & 44.461 & \textbf{0.301} & \textbf{14.230} & 48.767 & \textbf{0.065} & 0.054 & \textbf{0.861} & \underline{3.72} \\
+RelGT & 3.917 & 0.035 & 0.250 & 43.992 & \underline{0.326} & \underline{14.267} & 48.922 & \textbf{0.065} & 0.054 & 0.870 & 4.67 \\
+GraphSAGE & 4.022 & 0.041 & 0.258 & 44.473 & 0.400 & 14.313 & 50.053 & \textbf{0.065} & 0.056 & 0.918 & 6.39 \\
+\addlinespace[3pt]
+KumoRFMv1$^{*}$ & \textbf{2.747} & 0.035 & 0.264 & 58.231 & 0.417 & 16.161 & 55.254 & \textbf{0.065} & \textbf{0.040} & 0.908 & 6.06 \\
+Griffin & 4.460 & 0.050 & 0.461 & 78.232 & 0.463 & 35.590 & 53.214 & 0.092 & 0.151 & 1.471 & 10.56 \\
+RT$_{\text{zero}}^{*}$ & \underline{2.901} & 0.058 & 0.379 & 73.999 & 0.455 & 18.802 & 57.996 & 0.110 & 0.089 & 1.240 & 9.44 \\
+RDBLearn & 3.834 & 0.034 & \textbf{0.237} & 43.913 & 0.424 & 14.540 & 48.559 & \underline{0.068} & 0.064 & 0.906 & 5.11 \\
+\addlinespace[3pt]
+RDBLearn + v2.5 & 3.930 & 0.034 & 0.243 & 43.409 & 0.429 & 14.463 & 49.053 & \underline{0.068} & 0.066 & 0.913 & 6.28 \\
+RDBLearn + v3 & 3.835 & 0.034 & 0.245 & 43.290 & 0.375 & 14.720 & 50.097 & \underline{0.068} & 0.064 & 0.898 & 5.89 \\
+\addlinespace[3pt]
+KumoRFMv2 & 4.022 & \underline{0.033} & 0.241 & \underline{41.974} & 0.433$^{*}$ & 14.627 & \textbf{45.352} & \textbf{0.065$^{**}$} & \underline{0.043} & 0.866 & 4.33 \\
+\addlinespace[3pt]
+\textbf{TabPFN-REL} & 3.757 & \textbf{0.031} & 0.241 & \textbf{40.202} & 0.385 & 14.359 & \underline{46.199} & \underline{0.068} & 0.059 & \underline{0.864} & \textbf{3.56} \\
+\bottomrule
+\end{tabular}}
+\end{table}
+
+

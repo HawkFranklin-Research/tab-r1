@@ -1,0 +1,17 @@
+# Final Benchmark Summary: Satya's Recreation
+
+This table summarizes the performance across all evaluated datasets.
+
+  ┌────────────┬───────────────┬───────────────┬───────────────────┐
+  │ Model      │ ROC_AUC        │ ACCURACY       │ Mean Fit Time (s) │
+  ├────────────┼───────────────┼───────────────┼───────────────────┤
+  │ autogluon  │ 0.932 ± 0.02   │ 0.908 ± 0.05   │ 8.662            s │
+  │ catboost   │ 0.941 ± 0.01   │ 0.907 ± 0.05   │ 1.349            s │
+  │ lightgbm   │ 0.936 ± 0.01   │ 0.914 ± 0.04   │ 0.157            s │
+  │ logistic_regression │ 0.905 ± 0.06   │ 0.863 ± 0.01   │ 0.012            s │
+  │ random_forest │ 0.927 ± 0.01   │ 0.906 ± 0.05   │ 0.272            s │
+  │ tabpfn     │ 0.942 ± 0.02   │ 0.918 ± 0.05   │ 10.809           s │
+  │ xgboost    │ 0.939 ± 0.01   │ 0.913 ± 0.04   │ 0.326            s │
+  └────────────┴───────────────┴───────────────┴───────────────────┘
+
+*Note: Mean ± Std Dev computed across all successful runs.*

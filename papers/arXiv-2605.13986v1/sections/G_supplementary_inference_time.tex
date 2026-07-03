@@ -1,0 +1,88 @@
+\section{Supplementary Inference Time Details}
+
+\subsection{Compilation and FlashAttention-3} \label{app:compile-fa3}
+
+\ourmodel is shipped with two opt-in performance features that target different bottlenecks: \texttt{torch.compile} and FlashAttention-3. At the shapes relevant to large-data inference, the bulk of forward-pass cost is dispatch overhead and attention compute, and the speed-ups of \texttt{torch.compile} and FlashAttention-3 compose cleanly with our chunking strategy without changing the model's behaviour.
+
+\paragraph{torch.compile.} Three hot-path methods are wrapped with \texttt{@torch.compile(dynamic=True)}: feature preprocessing plus embedding grouping, the column-chunk processing block (used in the non-row-chunked path), and the row-chunk processing block (used when chunking is enabled). The \texttt{dynamic=True} mode keeps a single compiled graph across batch and feature-count variation, so the same compiled artefact serves the whole inference grid without re-tracing.
+
+
+Figure~\ref{fig:compile_vs_eager} shows the wall-clock impact on MI-250x. The y-axis is $T_\mathrm{eager} / T_\mathrm{compile}$, so a value above 1 means compile is faster on that shape; each marker is annotated with the absolute time. \texttt{torch.compile} fuses Python-level dispatch into single kernel calls, so it helps most where dispatch is the bottleneck: as $n_\mathrm{features}$ grows, more tensor work becomes compile-able per call. In the non-chunked series the speed-up climbs from $1.04$--$1.15{\times}$ at $n_\mathrm{features}=10$ to $1.10$--$1.46{\times}$ at $n_\mathrm{features}=100$ and $1.40$--$1.58{\times}$ at $n_\mathrm{features}=500$. The chunked series shows the same direction with a different shape: chunking already amortises some dispatch overhead by batching the inner loop, so compile's marginal benefit is largest at small $n_\mathrm{train}$ ($1.21$--$1.43{\times}$ at $n_\mathrm{train}=10^3$) and large $n_\mathrm{features}$ and converges toward parity ($0.95$--$1.06{\times}$) at $n_\mathrm{train} \ge 10^5$ for the smaller feature counts, where the residual cost is dominated by attention itself and compile has no further headroom to claim.
+
+
+\begin{figure}[!tb]
+    \centering
+
+    \begin{subfigure}{\linewidth}
+        \centering
+        \includegraphics[width=\linewidth]{figures/inference/compile_vs_eager}
+        \caption{
+        MI-250x -- speed-up of \texttt{torch.compile} over eager of
+        \ourmodel forward pass, for
+        $n_\mathrm{features} \in \{10, 100, 500\}$.
+        Values above 1 indicate compile wins.
+        }
+        \label{fig:compile_vs_eager}
+    \end{subfigure}
+
+    \vspace{1em}
+
+    \begin{subfigure}{\linewidth}
+        \centering
+        \includegraphics[width=\linewidth]{figures/inference/h100_auto_vs_sdpa}
+        \caption{
+        H100 -- speed-up of the auto backend
+        (Flash Attention 3 where eligible, SDPA fallback elsewhere)
+        over the SDPA-only backend on the
+        \ourmodel architecture forward pass, for
+        $n_\mathrm{features} \in \{10, 100, 500\}$.
+        Values above 1 indicate FA3 wins.
+        }
+        \label{fig:fa3_h100}
+    \end{subfigure}
+
+    \caption{
+    \textbf{Forward-pass inference speed-ups on the \ourmodel architecture.}
+    Top: \texttt{torch.compile} versus eager execution on MI-250x.
+    Bottom: auto attention backend (Flash Attention 3 where eligible)
+    versus SDPA-only on H100. Marker annotations report absolute execution times.
+    }
+    \label{fig:inference_speedups}
+\end{figure}
+
+\paragraph{FlashAttention-3.} FlashAttention-3 (FA3) \cite{flash_attention_3} is a Hopper-specific attention kernel that delivers higher throughput and lower memory use than the generic Scaled Dot-Product Attention (SDPA) path. Attention dominates the forward-pass cost of large-$n_\mathrm{train}$ inference, so even a constant-factor improvement in the attention kernel translates into a meaningful end-to-end speed-up. We therefore expose FA3 as an auto-detecting backend: on Hopper-class GPUs with the FA3 library installed, the in-context-learning self-attention -- which carries the bulk of the attention cost at large $n_\mathrm{train}$ -- is routed through FA3, while attention sites whose head dimensions are not FA3-eligible silently fall back to SDPA. On non-Hopper devices (consumer Ada, AMD MI-250x, Blackwell) the same dispatcher selects SDPA.
+
+Figure~\ref{fig:fa3_h100} shows the H100 SDPA-versus-auto comparison in ratio form. The y-axis is $T_\mathrm{sdpa} / T_\mathrm{auto}$, so a value above 1 means FA3 is faster than SDPA on that shape; each marker is annotated with the absolute auto time so the magnitude being sped up is recoverable.
+The pattern matches the FA3 design profile. At small training sets ($n_\mathrm{train} \le 1000$) the FA3 dispatch and kernel-launch overhead exceeds the per-call attention work, and SDPA is 10--15\% faster ($T_\mathrm{sdpa}/T_\mathrm{auto} \approx 0.84\text{--}0.91$ across feature counts). The cross-over arrives sooner the smaller $n_\mathrm{features}$: by $n_\mathrm{train}=10^4$ FA3 wins at $n_\mathrm{features}=10$ ($1.21{\times}$), is roughly even at $n_\mathrm{features}=100$ ($1.07{\times}$), and at parity at $n_\mathrm{features}=500$ ($1.02{\times}$). At the inference shapes we care about ($n_\mathrm{train} \ge 10^5$) FA3 is the clear win across all feature counts, with the speed-up climbing to $1.49$--$1.73{\times}$ at $n_\mathrm{train}=10^6$. Chunking does not interact with the FA3-versus-SDPA comparison: the chunked and non-chunked curves overlap to within run-to-run noise, since chunking changes the outer dispatch loop but leaves the underlying attention-kernel selection intact.
+
+\subsection{Interpretability: SHAP-Value Computation}
+\label{app:shap-kv-cache}
+
+TabPFN-3's improved, smaller KV cache (Section~\ref{sec:kv_cache}) can speed up the computation of SHAP values by multiple order of magnitudes. This is because imputation-based approaches to SHAP-value computation reuse the same \texttt{fit} on many different forward passes. \autoref{fig:shap-kv-speedup} shows the efficiency gains users can expect from enabling the KV cache during SHAP-value-computation.
+
+\begin{figure}[H]
+\centering
+
+\begin{subfigure}[t]{0.49\textwidth}
+    \centering
+    \includegraphics[width=\textwidth]{figures/shap/shap_kv_cache_speedup_heatmap_baseline.pdf}
+\end{subfigure}
+\hfill
+\begin{subfigure}[t]{0.49\textwidth}
+    \centering
+    \includegraphics[width=\textwidth]{figures/shap/shap_runtime_heatmap_baseline_cacheON.pdf}
+\end{subfigure}
+
+\caption{\textbf{Efficiency gains for SHAP-value computation with KV-cache across training table dimensions.}
+All experiments were conducted on a single RTX Pro 6000 Blackwell with a fixed budget of 1024 coalitions and are averaged over 10 repetitions.
+Left: expected speed-up from using KV cache.
+Right: expected runtime for computing SHAP values for one test row with KV cache enabled.}
+\label{fig:shap-kv-speedup}
+
+\end{figure}
+
+
+
+
+
+

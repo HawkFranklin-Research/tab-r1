@@ -1,0 +1,89 @@
+
+
+
+\begin{figure}[t]
+  \centering
+  \begin{minipage}[b]{0.48\linewidth}
+  \vspace*{-6.5cm}
+    \centering
+    \includegraphics[width=\linewidth]{figures/tabarena_v3/Medium/tuning_trajectories/pareto_n_configs_imp_total.pdf}
+    \caption{\textbf{TabPFN-3 dominates the Pareto frontier on the largest datasets in TabArena}
+    (10k--100k rows). %
+    N1, N2, and N4 are model versions with 1, 2, and 4 estimators. Improvability measures how much worse a model is than the best per-dataset model. See Appendix \ref{app:tabarena-metrics} and \ref{app:tabarena_pareto_frontier_explanation} for details.}
+    \label{fig:tabarena_pareto_medium}
+  \end{minipage}\hfill
+  \begin{minipage}[b]{0.48\linewidth}
+    \centering
+
+    \includegraphics[width=\linewidth]{figures/tabarena_v3/Medium/winrate_matrix.pdf}
+    \caption{\textbf{Pairwise win rates on TabArena-medium} (10k--100k rows) for a curated set of the strongest models on TabArena. See Appendix \ref{sec:tabarena_leaderboard_tables} for the full results.}
+    \label{fig:tabarena_winrate_medium}
+  \end{minipage}
+\end{figure}
+
+\section{Introduction}
+
+Tabular data sits at the core of operational decision-making across science and industry, including clinical risk prediction \cite{henry2015targeted, johnson2016mimic, ophir2020deep}, credit scoring \cite{abdou2011credit, khandani2010consumer, lessmann2015benchmarking}, predictive maintenance \cite{carvalho2019systematic, dalzochio2020machine}, and scientific measurement \cite{baldi2014searching, dunn2020benchmarking}. While gradient-boosted trees were the reliable default for decades \cite{shwartz2022tabular, grinsztajn2022tree,salinas2024tabrepo}, tabular foundation models have displaced them as the strongest predictors on standard small-to-medium-sized benchmarks over the last year~\citep{erickson2025tabarena}.
+
+Earlier TabPFN releases established and extended this paradigm. TabPFN~v1~\citep{hollmann2022tabpfnv1} showed that a transformer pretrained on synthetic tasks could approximate Bayesian inference in a single forward pass, though only on a thousand rows of clean numerical data. TabPFN~v2~\citep{Hollmann2025tabpfnv2} scaled this to 10,000 rows datasets with categorical features, missing values, and outliers, becoming the first tabular foundation model to outperform tuned gradient-boosted trees on standard benchmarks. TabPFN-2.5~\citep{TabPFN-2.5} extended the strong performance to 100{,}000 rows and 2{,}000 features and matched four-hour-tuned ensembles in a single forward pass. 
+Across these releases, an active research ecosystem of extensions grew on top of the core model -- domains include time-series forecasting~\citep{hoo2024tabpfn_ts}, causal inference~\citep{robertson_dopfn, balazadeh_causalpfn, feuerriegel_causalfm}, Bayesian optimization~\citep{Yu2025GITBO}, graph learning~\citep{Hayler2025GraphsTablesZeroShot, eremeev2025turningtabularfoundationmodels}, interpretability \cite{rundel2024interpretable, ye2026closer}, reinforcement learning \cite{Schiff2025TabPFNRL}
+-- with over 200 published applications (see Appendix \ref{app:use_cases}) and more than three million PyPI downloads.
+
+TabPFN-3 is shaped by the feedback from users and the entire ecosystem. To remove common bottlenecks, we scaled beyond a hundred thousand rows to one million rows, cut the memory and latency of inference at scale, added support for many-class classification, and honed our calibrated predictive distributions in a single forward pass.
+Furthermore, we carefully designed the TabPFN-3 model
+and training process to lift performance on both core tabular prediction as well as the
+many downstream extensions built on top of the open-source model, in particular time-series forecasting, multi-table relational data, and interpretability.
+
+The remainder of this report describes the architecture, prior, and inference-time optimizations of TabPFN-3 (Section~\ref{sec:methods}); evaluates its performance on public and internal benchmarks across classification, regression, many-class, time-series, and relational data (Section~\ref{sec:results}); surveys the adoption and ecosystem the model is built for (Section~\ref{sec:usecases_extensions}); and details licensing and availability (Section~\ref{sec:license}). Appendices provide architectural hyperparameters, prior visualizations, additional internal benchmarks, more detailed benchmark results and an extensive list of published TabPFN use cases. For installation and usage, see \url{https://docs.priorlabs.ai/}.
+
+
+\begin{figure}[!t]
+  \centering
+
+  \begin{subtable}[b]{0.47\textwidth}
+    \centering
+    \small
+    \begin{tabular}{lrrrr}
+      \toprule
+      \multirow{2}{*}{Model} & \multirow{2}{*}{Rows} & \multirow{2}{*}{Features}
+        & \multicolumn{2}{c}{Parameters} \\
+      \cmidrule(lr){4-5}
+      & & & Clf. & Reg. \\
+      \midrule
+      TabPFN-v1  & $1{,}000$       & $100$      & $26$\,M & ---       \\
+      TabPFN-v2  & $10{,}000$      & $500$      & $7$\,M  & $11$\,M \\
+      TabPFN-2.5 & $100{,}000$     & $2{,}000$  & $11$\,M & $10$\,M \\
+      TabPFN-2.6 & $100{,}000$     & $2{,}000$  & $11$\,M & $13$\,M \\
+      \midrule
+      \multirow{3}{*}{TabPFN-3}
+        & $1{,}000{,}000$ & $200$      & \multirow{3}{*}{$53$\,M} & \multirow{3}{*}{$58$\,M} \\
+        & $100{,}000$     & $2{,}000$  & & \\
+        & $1{,}000$       & $20{,}000$ & & \\
+      \bottomrule
+    \end{tabular}
+    \vspace{1.8cm}
+    \caption{\textbf{Overview of previous TabPFN releases}, the maximal numbers of rows and features that they yielded state-of-the-art performance in, and their parameter counts. 
+    TabPFN-v1 supports classification datasets only.}
+    \label{tab:tabpfn-variants}
+  \end{subtable}
+  \hfill
+  \begin{subfigure}[b]{0.47\textwidth}
+    \centering
+    \includegraphics[width=0.8\linewidth]{figures/hero_plots/latest_results_per_split_all__TabPFN-3_default_vs_v2p5.pdf}
+    \caption{\textbf{TabPFN-3 presents a significant improvement against TabPFN-2.5}. We report the per-datasets scores on TabArena. The normalization procedure is described in Section \ref{app:methodology}.}
+    \label{fig:tabpfn3-vs-v2p5}
+  \end{subfigure}
+
+  \caption{\textbf{Evolution and performance of the TabPFN model family.}
+    The row and feature counts in the table denote benchmark-validated regimes
+    where public and internal evaluations demonstrate state-of-the-art (SOTA) performance;
+    larger or different row--feature configurations may be feasible, but are outside
+    the validated SOTA envelope summarized here. Earlier releases are evaluated
+    within a single row--feature regime, whereas TabPFN-3 is benchmarked along a
+    cell-budget frontier: up to 1M rows at 200 features, 100k rows at 2{,}000
+    features, or 1k rows at 20{,}000 features. The right panel shows per-dataset
+    scores across TabArena; points below the diagonal indicate stronger TabPFN-3
+    performance, with a Wilcoxon test confirming that the improvement is significant
+    ($p < 0.0001$).}
+  \label{fig:table-and-figure}
+\end{figure}

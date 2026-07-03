@@ -1,0 +1,72 @@
+2026-04-30 07:03:03,268 | INFO | Starting Phase 4 batch orchestrator
+2026-04-30 07:03:03,268 | INFO | Config path: configs/batch_s2.json
+2026-04-30 07:03:03,268 | INFO | Launching Phase 2 for ada
+2026-04-30 07:04:04,557 | ERROR | Phase 2 failed for ada with exit code -6
+2026-04-30 07:04:04,568 | INFO | Launching Phase 2 for australian
+2026-04-30 07:04:21,502 | INFO | Phase 2 completed for australian
+2026-04-30 07:04:24,745 | INFO | Phase 3 completed for run_dir=/home/prime/Documents/g3/tab-r1/results-s2/runs/australian_dataset/20260430_070406
+2026-04-30 07:04:24,757 | INFO | Launching Phase 2 for blood_transfusion
+2026-04-30 07:04:40,081 | INFO | Phase 2 completed for blood_transfusion
+2026-04-30 07:04:40,119 | ERROR | Phase 3 failed for run_dir=/home/prime/Documents/g3/tab-r1/results-s2/runs/blood_transfusion_service_center/20260430_070426
+Traceback (most recent call last):
+  File "/home/prime/Documents/g3/tab-r1/Evaluate-TABPFN/scripts/phase4/run_eval.py", line 146, in run_phase3_hooks
+    Visualizer(str(run_dir)).run_all()
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^
+  File "/home/prime/Documents/g3/tab-r1/Evaluate-TABPFN/scripts/phase3/visualizer.py", line 156, in run_all
+    self.plot_classification_suite()
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^
+  File "/home/prime/Documents/g3/tab-r1/Evaluate-TABPFN/scripts/phase3/visualizer.py", line 59, in plot_classification_suite
+    fpr, tpr, _ = roc_curve(preds['y_true'], preds['prob_1'])
+                  ~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/prime/miniconda3/lib/python3.13/site-packages/sklearn/utils/_param_validation.py", line 218, in wrapper
+    return func(*args, **kwargs)
+  File "/home/prime/miniconda3/lib/python3.13/site-packages/sklearn/metrics/_ranking.py", line 1163, in roc_curve
+    fps, tps, thresholds = _binary_clf_curve(
+                           ~~~~~~~~~~~~~~~~~^
+        y_true, y_score, pos_label=pos_label, sample_weight=sample_weight
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "/home/prime/miniconda3/lib/python3.13/site-packages/sklearn/metrics/_ranking.py", line 880, in _binary_clf_curve
+    pos_label = _check_pos_label_consistency(pos_label, y_true)
+  File "/home/prime/miniconda3/lib/python3.13/site-packages/sklearn/utils/validation.py", line 2651, in _check_pos_label_consistency
+    raise ValueError(
+    ...<3 lines>...
+    )
+ValueError: y_true takes value in {1, 2} and pos_label is not specified: either make y_true take value in {0, 1} or {-1, 1} or pass pos_label explicitly.
+2026-04-30 07:04:40,123 | INFO | Launching Phase 2 for car
+2026-04-30 07:05:10,616 | INFO | Phase 2 completed for car
+2026-04-30 07:05:13,320 | INFO | Phase 3 completed for run_dir=/home/prime/Documents/g3/tab-r1/results-s2/runs/car/20260430_070441
+2026-04-30 07:05:13,331 | INFO | Launching Phase 2 for chum
+2026-04-30 07:05:49,539 | INFO | Phase 2 completed for chum
+2026-04-30 07:05:52,195 | INFO | Phase 3 completed for run_dir=/home/prime/Documents/g3/tab-r1/results-s2/runs/chum/20260430_070514
+2026-04-30 07:05:52,206 | INFO | Launching Phase 2 for cmc
+2026-04-30 07:06:11,650 | INFO | Phase 2 completed for cmc
+2026-04-30 07:06:11,681 | ERROR | Phase 3 failed for run_dir=/home/prime/Documents/g3/tab-r1/results-s2/runs/cmc/20260430_070553
+Traceback (most recent call last):
+  File "/home/prime/Documents/g3/tab-r1/Evaluate-TABPFN/scripts/phase4/run_eval.py", line 146, in run_phase3_hooks
+    Visualizer(str(run_dir)).run_all()
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^
+  File "/home/prime/Documents/g3/tab-r1/Evaluate-TABPFN/scripts/phase3/visualizer.py", line 156, in run_all
+    self.plot_classification_suite()
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^
+  File "/home/prime/Documents/g3/tab-r1/Evaluate-TABPFN/scripts/phase3/visualizer.py", line 59, in plot_classification_suite
+    fpr, tpr, _ = roc_curve(preds['y_true'], preds['prob_1'])
+                  ~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/prime/miniconda3/lib/python3.13/site-packages/sklearn/utils/_param_validation.py", line 218, in wrapper
+    return func(*args, **kwargs)
+  File "/home/prime/miniconda3/lib/python3.13/site-packages/sklearn/metrics/_ranking.py", line 1163, in roc_curve
+    fps, tps, thresholds = _binary_clf_curve(
+                           ~~~~~~~~~~~~~~~~~^
+        y_true, y_score, pos_label=pos_label, sample_weight=sample_weight
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "/home/prime/miniconda3/lib/python3.13/site-packages/sklearn/metrics/_ranking.py", line 863, in _binary_clf_curve
+    raise ValueError("{0} format is not supported".format(y_type))
+ValueError: multiclass format is not supported
+2026-04-30 07:06:11,682 | INFO | Launching Phase 2 for credit-g
+2026-04-30 07:06:33,331 | INFO | Phase 2 completed for credit-g
+2026-04-30 07:06:35,872 | INFO | Phase 3 completed for run_dir=/home/prime/Documents/g3/tab-r1/results-s2/runs/credit_g/20260430_070613
+2026-04-30 07:06:39,047 | INFO | Aggregation completed for output_root=/home/prime/Documents/g3/tab-r1/results-s2
+2026-04-30 07:06:39,048 | INFO | Phase 4 finished with summary: {'datasets_total': 7, 'datasets_success': 4, 'datasets_failed': 3, 'datasets_skipped': 0}

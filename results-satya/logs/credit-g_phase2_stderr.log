@@ -1,0 +1,45 @@
+2026-04-30 04:39:04,695 | INFO | Starting Phase 2 single-dataset evaluation
+2026-04-30 04:39:04,695 | INFO | Dataset path: /home/prime/Documents/g3/tab-r1/Accurate_Prediction_on_Small_Dataset_with_TabPFN_Research/Practical Research/Datasets/Datasets from TabPFN Classification/Classification DataSets/credit-g.csv
+INFO:DataLoader:Loading dataset from: /home/prime/Documents/g3/tab-r1/Accurate_Prediction_on_Small_Dataset_with_TabPFN_Research/Practical Research/Datasets/Datasets from TabPFN Classification/Classification DataSets/credit-g.csv
+INFO:DataLoader:Auto-selected last column as target: target
+INFO:DataLoader:Inferred task type: binary
+INFO:DataLoader:Successfully loaded and split dataset. Train: 700, Val: 150, Test: 150
+2026-04-30 04:39:06,926 | INFO | Running model: tabpfn
+INFO:phase2.20260430_043904:Running model: tabpfn
+2026-04-30 04:39:09,042 | ERROR | Model failed: tabpfn | pos_label=1 is not a valid label. It should be one of ['bad', 'good']
+ERROR:phase2.20260430_043904:Model failed: tabpfn | pos_label=1 is not a valid label. It should be one of ['bad', 'good']
+2026-04-30 04:39:09,042 | INFO | Running model: random_forest
+INFO:phase2.20260430_043904:Running model: random_forest
+2026-04-30 04:39:09,310 | ERROR | Model failed: random_forest | pos_label=1 is not a valid label. It should be one of ['bad', 'good']
+ERROR:phase2.20260430_043904:Model failed: random_forest | pos_label=1 is not a valid label. It should be one of ['bad', 'good']
+2026-04-30 04:39:09,310 | INFO | Running model: logistic_regression
+INFO:phase2.20260430_043904:Running model: logistic_regression
+2026-04-30 04:39:09,330 | ERROR | Model failed: logistic_regression | pos_label=1 is not a valid label. It should be one of ['bad', 'good']
+ERROR:phase2.20260430_043904:Model failed: logistic_regression | pos_label=1 is not a valid label. It should be one of ['bad', 'good']
+2026-04-30 04:39:09,330 | INFO | Running model: catboost
+INFO:phase2.20260430_043904:Running model: catboost
+2026-04-30 04:39:10,287 | ERROR | Model failed: catboost | pos_label=1 is not a valid label. It should be one of ['bad', 'good']
+ERROR:phase2.20260430_043904:Model failed: catboost | pos_label=1 is not a valid label. It should be one of ['bad', 'good']
+2026-04-30 04:39:10,288 | INFO | Running model: xgboost
+INFO:phase2.20260430_043904:Running model: xgboost
+2026-04-30 04:39:10,299 | ERROR | Model failed: xgboost | Invalid classes inferred from unique values of `y`.  Expected: [0 1], got ['bad' 'good']
+ERROR:phase2.20260430_043904:Model failed: xgboost | Invalid classes inferred from unique values of `y`.  Expected: [0 1], got ['bad' 'good']
+2026-04-30 04:39:10,299 | INFO | Running model: lightgbm
+INFO:phase2.20260430_043904:Running model: lightgbm
+/home/prime/miniconda3/lib/python3.13/site-packages/sklearn/utils/validation.py:2749: UserWarning: X does not have valid feature names, but LGBMClassifier was fitted with feature names
+  warnings.warn(
+/home/prime/miniconda3/lib/python3.13/site-packages/sklearn/utils/validation.py:2749: UserWarning: X does not have valid feature names, but LGBMClassifier was fitted with feature names
+  warnings.warn(
+2026-04-30 04:39:10,427 | ERROR | Model failed: lightgbm | pos_label=1 is not a valid label. It should be one of ['bad', 'good']
+ERROR:phase2.20260430_043904:Model failed: lightgbm | pos_label=1 is not a valid label. It should be one of ['bad', 'good']
+2026-04-30 04:39:10,428 | INFO | Running model: autogluon
+INFO:phase2.20260430_043904:Running model: autogluon
+	Warning: Exception caused NeuralNetFastAI to fail during training (ImportError)... Skipping this model.
+		Import fastai failed. A quick tip is to install via `pip install autogluon.tabular[fastai]==1.5.0`. 
+/home/prime/miniconda3/lib/python3.13/site-packages/sklearn/compose/_column_transformer.py:975: FutureWarning: The parameter `force_int_remainder_cols` is deprecated and will be removed in 1.9. It has no effect. Leave it to its default value to avoid this warning.
+  warnings.warn(
+2026-04-30 04:39:16,679 | ERROR | Model failed: autogluon | pos_label=1 is not a valid label. It should be one of ['bad', 'good']
+ERROR:phase2.20260430_043904:Model failed: autogluon | pos_label=1 is not a valid label. It should be one of ['bad', 'good']
+2026-04-30 04:39:16,681 | INFO | Phase 2 run finished. Output dir: /home/prime/Documents/g3/tab-r1/results-satya/runs/credit_g/20260430_043904
+INFO:phase2.20260430_043904:Phase 2 run finished. Output dir: /home/prime/Documents/g3/tab-r1/results-satya/runs/credit_g/20260430_043904
+[W430 04:39:17.901758061 AllocatorConfig.cpp:28] Warning: PYTORCH_CUDA_ALLOC_CONF is deprecated, use PYTORCH_ALLOC_CONF instead (function operator())

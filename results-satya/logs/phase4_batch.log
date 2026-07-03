@@ -1,0 +1,66 @@
+2026-04-30 04:03:32,049 | INFO | Starting Phase 4 batch orchestrator
+2026-04-30 04:03:32,049 | INFO | Config path: configs/satya_recreation.json
+2026-04-30 04:03:32,050 | INFO | Launching Phase 2 for ada
+2026-04-30 04:04:35,542 | INFO | Phase 2 completed for ada
+2026-04-30 04:04:39,121 | INFO | Phase 3 completed for run_dir=/home/prime/Documents/g3/tab-r1/results-satya/runs/ada_dataset/20260430_040333
+2026-04-30 04:04:39,128 | INFO | Launching Phase 2 for australian
+2026-04-30 04:04:54,078 | INFO | Phase 2 completed for australian
+2026-04-30 04:04:56,617 | INFO | Phase 3 completed for run_dir=/home/prime/Documents/g3/tab-r1/results-satya/runs/australian_dataset/20260430_040440
+2026-04-30 04:04:56,628 | INFO | Launching Phase 2 for blood_transfusion
+2026-04-30 04:05:03,469 | ERROR | Phase 2 failed for blood_transfusion with exit code 1
+2026-04-30 04:05:03,469 | INFO | Launching Phase 2 for car
+2026-04-30 04:05:12,103 | ERROR | Phase 2 failed for car with exit code 1
+2026-04-30 04:05:12,114 | INFO | Launching Phase 2 for chum
+2026-04-30 04:05:44,935 | INFO | Phase 2 completed for chum
+2026-04-30 04:05:47,440 | INFO | Phase 3 completed for run_dir=/home/prime/Documents/g3/tab-r1/results-satya/runs/chum/20260430_040513
+2026-04-30 04:05:47,441 | INFO | Launching Phase 2 for cmc
+2026-04-30 04:05:56,716 | ERROR | Phase 2 failed for cmc with exit code 1
+2026-04-30 04:05:56,728 | INFO | Launching Phase 2 for credit-g
+2026-04-30 04:06:12,007 | ERROR | Phase 2 failed for credit-g with exit code 1
+2026-04-30 04:06:12,025 | INFO | Aggregation completed for output_root=/home/prime/Documents/g3/tab-r1/results-satya
+2026-04-30 04:06:12,025 | INFO | Phase 4 finished with summary: {'datasets_total': 7, 'datasets_success': 3, 'datasets_failed': 4, 'datasets_skipped': 0}
+2026-04-30 04:23:52,788 | INFO | Starting Phase 4 batch orchestrator
+2026-04-30 04:23:52,788 | INFO | Config path: configs/satya_recreation.json
+2026-04-30 04:23:52,789 | INFO | Skipping completed dataset: ada
+2026-04-30 04:23:52,799 | INFO | Skipping completed dataset: australian
+2026-04-30 04:23:52,800 | INFO | Launching Phase 2 for blood_transfusion
+2026-04-30 04:24:01,151 | ERROR | Phase 2 failed for blood_transfusion with exit code 1
+2026-04-30 04:24:01,161 | INFO | Launching Phase 2 for car
+2026-04-30 04:24:09,827 | ERROR | Phase 2 failed for car with exit code 1
+2026-04-30 04:24:09,837 | INFO | Skipping completed dataset: chum
+2026-04-30 04:24:09,838 | INFO | Launching Phase 2 for cmc
+2026-04-30 04:24:18,743 | ERROR | Phase 2 failed for cmc with exit code 1
+2026-04-30 04:24:18,754 | INFO | Launching Phase 2 for credit-g
+2026-04-30 04:24:33,458 | ERROR | Phase 2 failed for credit-g with exit code 1
+2026-04-30 04:24:34,398 | INFO | Aggregation completed for output_root=/home/prime/Documents/g3/tab-r1/results-satya
+2026-04-30 04:24:34,398 | INFO | Phase 4 finished with summary: {'datasets_total': 7, 'datasets_success': 0, 'datasets_failed': 4, 'datasets_skipped': 3}
+2026-04-30 04:30:32,311 | INFO | Starting Phase 4 batch orchestrator
+2026-04-30 04:30:32,311 | INFO | Config path: configs/satya_recreation.json
+2026-04-30 04:30:32,312 | INFO | Skipping completed dataset: ada
+2026-04-30 04:30:32,322 | INFO | Skipping completed dataset: australian
+2026-04-30 04:30:32,323 | INFO | Launching Phase 2 for blood_transfusion
+2026-04-30 04:30:40,738 | ERROR | Phase 2 failed for blood_transfusion with exit code 1
+2026-04-30 04:30:40,749 | INFO | Launching Phase 2 for car
+2026-04-30 04:30:49,553 | ERROR | Phase 2 failed for car with exit code 1
+2026-04-30 04:30:49,563 | INFO | Skipping completed dataset: chum
+2026-04-30 04:30:49,564 | INFO | Launching Phase 2 for cmc
+2026-04-30 04:30:58,784 | ERROR | Phase 2 failed for cmc with exit code 1
+2026-04-30 04:30:58,795 | INFO | Launching Phase 2 for credit-g
+2026-04-30 04:31:13,538 | ERROR | Phase 2 failed for credit-g with exit code 1
+2026-04-30 04:31:14,548 | INFO | Aggregation completed for output_root=/home/prime/Documents/g3/tab-r1/results-satya
+2026-04-30 04:31:14,549 | INFO | Phase 4 finished with summary: {'datasets_total': 7, 'datasets_success': 0, 'datasets_failed': 4, 'datasets_skipped': 3}
+2026-04-30 04:38:37,754 | INFO | Starting Phase 4 batch orchestrator
+2026-04-30 04:38:37,754 | INFO | Config path: configs/satya_recreation.json
+2026-04-30 04:38:37,755 | INFO | Skipping completed dataset: ada
+2026-04-30 04:38:37,755 | INFO | Skipping completed dataset: australian
+2026-04-30 04:38:37,755 | INFO | Launching Phase 2 for blood_transfusion
+2026-04-30 04:38:45,931 | ERROR | Phase 2 failed for blood_transfusion with exit code 1
+2026-04-30 04:38:45,942 | INFO | Launching Phase 2 for car
+2026-04-30 04:38:55,156 | ERROR | Phase 2 failed for car with exit code 1
+2026-04-30 04:38:55,166 | INFO | Skipping completed dataset: chum
+2026-04-30 04:38:55,167 | INFO | Launching Phase 2 for cmc
+2026-04-30 04:39:03,369 | ERROR | Phase 2 failed for cmc with exit code 1
+2026-04-30 04:39:03,380 | INFO | Launching Phase 2 for credit-g
+2026-04-30 04:39:17,909 | ERROR | Phase 2 failed for credit-g with exit code 1
+2026-04-30 04:39:21,214 | INFO | Aggregation completed for output_root=/home/prime/Documents/g3/tab-r1/results-satya
+2026-04-30 04:39:21,214 | INFO | Phase 4 finished with summary: {'datasets_total': 7, 'datasets_success': 0, 'datasets_failed': 4, 'datasets_skipped': 3}

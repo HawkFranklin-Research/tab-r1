@@ -1,0 +1,47 @@
+2026-04-30 04:05:13,500 | INFO | Starting Phase 2 single-dataset evaluation
+2026-04-30 04:05:13,500 | INFO | Dataset path: /home/prime/Documents/g3/tab-r1/Accurate_Prediction_on_Small_Dataset_with_TabPFN_Research/Practical Research/Datasets/Datasets from TabPFN Classification/Classification DataSets/chum.csv
+INFO:DataLoader:Loading dataset from: /home/prime/Documents/g3/tab-r1/Accurate_Prediction_on_Small_Dataset_with_TabPFN_Research/Practical Research/Datasets/Datasets from TabPFN Classification/Classification DataSets/chum.csv
+INFO:DataLoader:Auto-selected last column as target: target
+INFO:DataLoader:Inferred task type: binary
+INFO:DataLoader:Successfully loaded and split dataset. Train: 3500, Val: 750, Test: 750
+2026-04-30 04:05:16,112 | INFO | Running model: tabpfn
+INFO:phase2.20260430_040513:Running model: tabpfn
+2026-04-30 04:05:25,361 | INFO | Saved plots for tabpfn: ['tabpfn_confusion_matrix.png', 'tabpfn_roc_curve.png']
+INFO:phase2.20260430_040513:Saved plots for tabpfn: ['tabpfn_confusion_matrix.png', 'tabpfn_roc_curve.png']
+2026-04-30 04:05:25,361 | INFO | Running model: random_forest
+INFO:phase2.20260430_040513:Running model: random_forest
+2026-04-30 04:05:26,150 | INFO | Saved plots for random_forest: ['random_forest_confusion_matrix.png', 'random_forest_roc_curve.png']
+INFO:phase2.20260430_040513:Saved plots for random_forest: ['random_forest_confusion_matrix.png', 'random_forest_roc_curve.png']
+2026-04-30 04:05:26,151 | INFO | Running model: logistic_regression
+INFO:phase2.20260430_040513:Running model: logistic_regression
+2026-04-30 04:05:26,461 | INFO | Saved plots for logistic_regression: ['logistic_regression_confusion_matrix.png', 'logistic_regression_roc_curve.png']
+INFO:phase2.20260430_040513:Saved plots for logistic_regression: ['logistic_regression_confusion_matrix.png', 'logistic_regression_roc_curve.png']
+2026-04-30 04:05:26,461 | INFO | Running model: catboost
+INFO:phase2.20260430_040513:Running model: catboost
+2026-04-30 04:05:28,438 | INFO | Saved plots for catboost: ['catboost_confusion_matrix.png', 'catboost_roc_curve.png']
+INFO:phase2.20260430_040513:Saved plots for catboost: ['catboost_confusion_matrix.png', 'catboost_roc_curve.png']
+2026-04-30 04:05:28,438 | INFO | Running model: xgboost
+INFO:phase2.20260430_040513:Running model: xgboost
+2026-04-30 04:05:29,123 | INFO | Saved plots for xgboost: ['xgboost_confusion_matrix.png', 'xgboost_roc_curve.png']
+INFO:phase2.20260430_040513:Saved plots for xgboost: ['xgboost_confusion_matrix.png', 'xgboost_roc_curve.png']
+2026-04-30 04:05:29,123 | INFO | Running model: lightgbm
+INFO:phase2.20260430_040513:Running model: lightgbm
+/home/prime/miniconda3/lib/python3.13/site-packages/sklearn/utils/validation.py:2749: UserWarning: X does not have valid feature names, but LGBMClassifier was fitted with feature names
+  warnings.warn(
+/home/prime/miniconda3/lib/python3.13/site-packages/sklearn/utils/validation.py:2749: UserWarning: X does not have valid feature names, but LGBMClassifier was fitted with feature names
+  warnings.warn(
+2026-04-30 04:05:29,620 | INFO | Saved plots for lightgbm: ['lightgbm_confusion_matrix.png', 'lightgbm_roc_curve.png']
+INFO:phase2.20260430_040513:Saved plots for lightgbm: ['lightgbm_confusion_matrix.png', 'lightgbm_roc_curve.png']
+2026-04-30 04:05:29,620 | INFO | Running model: autogluon
+INFO:phase2.20260430_040513:Running model: autogluon
+	Warning: Exception caused NeuralNetFastAI to fail during training (ImportError)... Skipping this model.
+		Import fastai failed. A quick tip is to install via `pip install autogluon.tabular[fastai]==1.5.0`. 
+/home/prime/miniconda3/lib/python3.13/site-packages/sklearn/compose/_column_transformer.py:975: FutureWarning: The parameter `force_int_remainder_cols` is deprecated and will be removed in 1.9. It has no effect. Leave it to its default value to avoid this warning.
+  warnings.warn(
+/home/prime/miniconda3/lib/python3.13/site-packages/sklearn/metrics/_classification.py:259: UserWarning: The y_prob values do not sum to one. Make sure to pass probabilities.
+  warnings.warn(
+2026-04-30 04:05:43,321 | INFO | Saved plots for autogluon: ['autogluon_confusion_matrix.png', 'autogluon_roc_curve.png']
+INFO:phase2.20260430_040513:Saved plots for autogluon: ['autogluon_confusion_matrix.png', 'autogluon_roc_curve.png']
+2026-04-30 04:05:43,324 | INFO | Phase 2 run finished. Output dir: /home/prime/Documents/g3/tab-r1/results-satya/runs/chum/20260430_040513
+INFO:phase2.20260430_040513:Phase 2 run finished. Output dir: /home/prime/Documents/g3/tab-r1/results-satya/runs/chum/20260430_040513
+[W430 04:05:44.832464001 AllocatorConfig.cpp:28] Warning: PYTORCH_CUDA_ALLOC_CONF is deprecated, use PYTORCH_ALLOC_CONF instead (function operator())

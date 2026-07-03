@@ -1,0 +1,29 @@
+[submodule "Accurate_Prediction_on_Small_Dataset_with_TabPFN_Research"]
+	path = Accurate_Prediction_on_Small_Dataset_with_TabPFN_Research
+	url = https://github.com/Bubu02/Accurate_Prediction_on_Small_Dataset_with_TabPFN_Research.git
+	ignore = dirty
+
+[submodule "Evaluate-TABPFN"]
+	path = Evaluate-TABPFN
+	url = git@github.com:HawkFranklin-Research/Evaluate-tabpfn.git
+	ignore = dirty
+
+[submodule "TabPFN"]
+	path = TabPFN
+	url = git@github.com:PriorLabs/TabPFN.git
+	ignore = dirty
+
+[submodule "tabpfn-client"]
+	path = tabpfn-client
+	url = git@github.com:PriorLabs/tabpfn-client.git
+	ignore = dirty
+
+[submodule "tabpfn-extensions"]
+	path = tabpfn-extensions
+	url = git@github.com:PriorLabs/tabpfn-extensions.git
+	ignore = dirty
+
+[submodule "tabpfn_3"]
+	path = tabpfn_3
+	url = git@hf.co:Prior-Labs/tabpfn_3
+	ignore = dirty

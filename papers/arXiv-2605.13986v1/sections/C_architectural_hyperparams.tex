@@ -1,0 +1,107 @@
+\section{Architectural Hyperparameters}\label{app:architecture-hyperparams}
+
+The tables below list the architectural hyperparameters of the released TabPFN-3 classifier and regressor checkpoints.
+The two models share all hyperparameters; the only differences are in the output decoder, which is task-specific (noted where applicable).
+
+\begin{table}[H]
+\centering
+\small
+\caption{Stage~1 — Feature embedding.}
+\begin{tabular}{lrl}
+\toprule
+\textbf{Hyperparameter} & \textbf{Value} & \textbf{Description} \\
+\midrule
+\texttt{embed\_dim}                         & 128 & Base embedding dimension used throughout the model \\
+\texttt{feature\_group\_size}               & 3   & Features per circular-shift group \\
+\texttt{dist\_embed\_num\_blocks}           & 3   & Induced self-attention blocks \\
+\texttt{dist\_embed\_num\_heads}            & 8   & Attention heads per block \\
+\texttt{dist\_embed\_num\_inducing\_points} & 128 & Inducing points per column \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\begin{table}[h]
+\centering
+\small
+\caption{Stage~2 — Feature aggregation.}
+\begin{tabular}{lrl}
+\toprule
+\textbf{Hyperparameter} & \textbf{Value} & \textbf{Description} \\
+\midrule
+\texttt{feat\_agg\_num\_blocks}     & 3        & Transformer blocks \\
+\texttt{feat\_agg\_num\_heads}      & 8        & Attention heads per block \\
+\texttt{feat\_agg\_num\_cls\_tokens} & 4       & CLS tokens aggregated per row \\
+\texttt{use\_rope}                  & True     & Rotary positional embeddings (RoPE) enabled \\
+\texttt{feat\_agg\_rope\_base}      & 100\,000 & RoPE base frequency $\theta$ \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\begin{table}[H]
+\centering
+\small
+\caption{Stage~3 — ICL transformer.}
+\begin{tabular}{lrl}
+\toprule
+\textbf{Hyperparameter} & \textbf{Value} & \textbf{Description} \\
+\midrule
+\texttt{icl\_emsize} (derived)     & 512 & $\texttt{embed\_dim} \times \texttt{feat\_agg\_num\_cls\_tokens} = 128 \times 4$ \\
+\midrule
+\texttt{nlayers}                   & 24  & Transformer blocks \\
+\texttt{icl\_num\_heads}           & 8   & Query heads per block \\
+\texttt{icl\_num\_kv\_heads}       & 8   & KV heads for train rows (standard MHA) \\
+\texttt{icl\_num\_kv\_heads\_test} & 1   & KV heads for test rows \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\begin{table}[H]
+\centering
+\small
+\caption{Many class output decoder — classifier.}
+\begin{tabular}{lrl}
+\toprule
+\textbf{Hyperparameter} & \textbf{Value} & \textbf{Description} \\
+\midrule
+\texttt{max\_num\_classes}              & 160  & Maximum supported class count \\
+\texttt{decoder\_num\_heads}            & 6    & Attention heads in retrieval decoder \\
+\texttt{decoder\_head\_dim}             & 64   & Head dimension in retrieval decoder \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\begin{table}[h]
+\centering
+\small
+\caption{MLP output decoder — regressor (2-layer MLP).}
+\begin{tabular}{lrl}
+\toprule
+\textbf{Hyperparameter} & \textbf{Value} & \textbf{Description} \\
+\midrule
+\texttt{architecture} (derived) & $512 \to 1024 \to 5000$ & $\texttt{icl\_emsize} \to \texttt{icl\_emsize} \times \texttt{ff\_factor} \xrightarrow{\text{GELU}} \texttt{num\_buckets}$ \\
+\midrule
+\texttt{num\_buckets} & 5000 & Output buckets for quantile regression \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\begin{table}[H]
+\centering
+\small
+\caption{Shared settings (both classifier and regressor).}
+\begin{tabular}{lrl}
+\toprule
+\textbf{Hyperparameter} & \textbf{Value} & \textbf{Description} \\
+\midrule
+\texttt{ff\_factor}                         & 2    & Feed-forward expansion factor (all stages) \\
+\texttt{softmax\_scaling\_mlp\_hidden\_dim} & 64   & Hidden units in query-aware softmax-scaling MLPs \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+
+
+
+
+
+

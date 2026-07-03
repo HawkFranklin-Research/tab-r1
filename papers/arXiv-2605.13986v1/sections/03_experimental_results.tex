@@ -1,0 +1,383 @@
+\section{Experimental Results}\label{sec:results}
+
+In this section, we report experimental results across a variety of benchmarks. In Section~\ref{subsec:results_tabular}, we focus on public tabular benchmarks: TabArena \citep{erickson2025tabarena}, TALENT \citep{talent_benchmark_jmlr}, and the text-tabular TabSTAR collection \citep{arazi_tabstar_2025}. Section~\ref{subsec:results_internal} describes internal benchmarks spanning various subtypes of tabular learning, including large-scale datasets and features, many-class classification, and quantile regression. The subsequent sections extend beyond classic tabular learning: Section~\ref{subsec:results_ts} addresses time-series data, Section~\ref{subsec:results_rel} covers relational learning, and Section~\ref{subsec:results_embed} focuses on embeddings.
+
+\subsection{Public Tabular Benchmarks}\label{subsec:results_tabular}
+
+
+\subsubsection{TabArena}
+\label{sec:tabarena-result}
+
+
+\begin{figure}[!t]
+  \centering
+  \includegraphics[width=\linewidth]{figures/tabarena_v3/all/tuning-impact-elo.pdf}
+  \caption{\textbf{TabPFN-3 performance on the standard TabArena benchmark} \citep{erickson2025tabarena}, including all 51 datasets (up to 100K rows). TabPFN-3 outperforms any other model in a forward pass, while \ourmodelenhanced strongly outperforms all existing methods, including AutoGluon 1.5 extreme \citep{autogluon_tabular}, a complex ensemble of models including TabPFN~v2 tuned for 4 hours, in less than a tenth of the runtime. 
+  }
+  \label{fig:tabarena_enhanced}
+\end{figure}
+
+
+TabArena \citep{erickson2025tabarena} (NeurIPS 2025 Datasets \& Benchmarks) is a recent  and heavily curated tabular benchmark, based on the largest number of candidate datasets considered, and created and maintained by open-source contributors from a wide range of institutions.
+In particular, it compares a large and regularly updated list of recent models, including tree-based models like CatBoost \citep{prokhorenkova2018catboost}, LightGBM \citep{lightgbm} or XGBoost \citep{chen2016xgboost}, as well as newer deep-learning models like RealMLP \citep{holzmuller2024realmlp}, TabM \citep{gorishniy2024tabm}, ModernNCA \citep{ye2025revisitingnearestneighbortabular} or xRFM \citep{beaglehole2025xrfmaccuratescalableinterpretable}, the AutoML system AutoGluon \citep{autogluon_tabular}, and other Tabular Foundation Models like TabICL \citep{qu2025tabicl,qu2026tabiclv2}, TabDPT \cite{ma2025tabdptscalingtabularfoundation}, TabSTAR \cite{arazi_tabstar_2025}, LimiX \citep{zhang2025limix}, Mitra \citep{zhang2025mitramixedsyntheticpriors} or TabPFN~v2 \citep{Hollmann2025tabpfnv2}.
+The benchmark contains a set of 51 datasets selected from 1053 to be representative of real-world tabular data. See \citet{erickson2025tabarena} for the list of datasets and Section \ref{app:tabarena-metrics} for definitions of TabArena's Elo and Improvability metrics.
+
+
+\begin{figure}[!t]
+  \centering
+  \begin{minipage}[t]{0.48\linewidth}
+    \centering
+    \includegraphics[width=\linewidth]{figures/tabarena_v3/all/tuning_trajectories/pareto_n_configs_imp_total.pdf}
+    \caption{\textbf{Pareto frontier on TabArena}: trade-off between prediction quality and total training + inference cost. N1, N2, and N4 are TabPFN-3 versions with 1, 2, and 4 estimators. Improvability measures how much a model would improve by switching to the best model on each individual dataset, see Appendix \ref{app:tabarena-metrics}.}
+    \label{fig:tabarena_pareto}
+  \end{minipage}\hfill
+  \begin{minipage}[t]{0.48\linewidth}
+    \centering
+    \includegraphics[width=\linewidth]{figures/tabarena_v3/all/winrate_matrix.pdf}
+    \caption{\textbf{Pairwise win rates on TabArena} for a curated set of the strongest models on TabArena. See Appendix \ref{sec:tabarena_leaderboard_tables} for the full results.}
+    \label{fig:tabarena_leaderboard}
+  \end{minipage}
+\end{figure}
+
+
+\paragraph{Pushing the performance frontier on TabArena.}
+Figure \ref{fig:tabarena_enhanced} shows the performance of \ourmodel and \ourmodelenhanced on TabArena.
+\ourmodel outperforms in one forward pass all other models, including tuned and ensembled baselines, by a significant margin, gaining 72 Elo points over our previous Real-TabPFN-2.5 tuned and ensembled.
+\ourmodelenhanced, leveraging test-time computation, significantly outperforms open-source \ourmodel on TabArena, beating any non-TabPFN model (including tuned and ensembled baselines) by over 200 Elo points,
+and outperforming AutoGluon 1.5 extreme, a complex ensemble of models including TabPFN~v2, tuned for 4 hours, by over 100 Elo points while being 10x faster.
+Looking at the win rate matrix in Figure \ref{fig:tabarena_leaderboard}, we can see that \ourmodelplus with Thinking mode (respectively \ourmodel) has over 93\% (respectively 80\%) win rate against tuned and ensembled CatBoost, LightGBM and XGBoost, and a 69\% (respectively 56\%) win rate against AutoGluon 1.5 extreme tuned for 4 hours.
+
+\paragraph{Dominating the time / performance Pareto-frontier.}
+The strong results of our models are achieved while being much faster to train than the baselines.
+On Figure \ref{fig:tabarena_pareto}, we can see that our model family, (\ourmodel with 1, 2, and 4 estimators and \ourmodelplus with Thinking mode) strictly dominates the combined training + inference time/performance pareto-frontier on TabArena by a large margin.
+
+
+\paragraph{Scaling to larger datasets.}
+\ourmodel was built to scale to large datasets, and \ourmodelenhanced benefits from this scalability. While TabArena only contains datasets up to 100k rows, we can still observe very strong performance on the 15 largest datasets in TabArena with between 10k and 100k rows, as shown in Figure \ref{fig:tabarena-hero-plot}.
+In particular, on this subset \ourmodel outperforms any other model by 100 Elo, and \ourmodelenhanced dramatically outperforms any other non-TabPFN model (including tuned and ensembled baselines) by over 420 Elo points, and beats AutoGluon 1.5 extreme (4h) by 220 Elo points.
+Looking at the win rate matrix in Figure \ref{fig:tabarena_winrate_medium}, \ourmodelenhanced has over 99\% win rate against tuned and ensembled LightGBM and XGBoost, 98\% win rate against CatBoost tuned and ensembled, and 82\% win rate against AutoGluon 1.5 extreme tuned for 4 hours. In Section \ref{sec:large-data}, we study the performance of our model beyond 100K rows, going up to 1M training rows.
+
+\subsubsection{TALENT}
+\label{sec:talent-result}
+
+The TALENT benchmark \citep{talent_benchmark_jmlr} provides a complementary view on the performance of \ourmodel. Instead of a smaller curated list of datasets, this benchmark uses a large number of diverse datasets (300) from a wide range of domains. The strong results of TabPFN-3 on this benchmark confirm the robustness of its performance.
+Indeed, TabPFN-3 ranks first on the TALENT benchmark in aggregate, as shown in Figure \ref{fig:TALENT-tabicl-datasets}, as well as for
+each task type (regression, binary and multiclass classification) in Figure \ref{fig:per-task-TALENT-rank}.
+
+\begin{figure}[!t]
+    \centering
+    \includegraphics[width=0.9\linewidth]{figures/TALENT/average_rank_horizontal_paper.pdf}
+    \caption{\textbf{Average rank on the TALENT benchmark, using the TabICLv2 evaluation protocol from \citet{qu2026tabiclv2}
+      (274 datasets).} The original 300-dataset TALENT
+      \citep{talent_benchmark_jmlr} minus the 26 development datasets used for TabPFN-2 / TabICLv2 development removed in the TabICLv2 paper), spanning regression, binary and multiclass classification. Bars show mean rank (lower is better); error bars are
+      95\% bootstrap confidence intervals over datasets (see appendix
+      \ref{app:TALENT}). Methods tagged \emph{(N imputed, X\%)} failed on some datasets and have that fraction of their score cells filled with K-nearest-neighbour values.}
+    \label{fig:TALENT-tabicl-datasets}
+  \end{figure}
+
+
+\subsubsection{TabSTAR}
+\label{sec:tabstar-result}
+
+The TabSTAR study \cite{arazi_tabstar_2025} assembled 50 text-tabular datasets, gathered from previous work \cite{shi2021benchmarking, grinsztajn2023vectorizing, kim2024carte}. These datasets represent real world tasks, where at least one feature is text-based and cannot be faithfully represented without text processing methods. While the open-source version of \ourmodel only supports numerical and categorical variables, \ourmodelplus also offers native support for text features. We compare TabPFN API models with both text-aware models and numerical-only baselines.
+Figure \ref{fig:text_leaderboard} shows that \ourmodelplus dominates the leaderboard by a significant margin, and combining our thinking mode with native text support pushes performance further. Furthermore, among models that omit text features due to lack of native support, \ourmodel remains the top performer. Appendix~\ref{app:TABSTAR} provides further details on the benchmark, as well as a performance breakdown by task type.
+
+\begin{figure}[!t]
+  \centering
+  \includegraphics[width=0.8\linewidth]{figures/text_leaderboard/tabstar_leaderboard.pdf}
+  \caption{\textbf{Performance over the TabSTAR Text-Tabular Collection}. \ourmodelenhanced and TabPFN-3-Plus significantly outperform text-aware models such as CatBoost, TabSTAR and SAP-RPT-OSS. In turn, these models dominate over numerical-only baselines, for which TabPFN-3 gets the best results.}
+  \label{fig:text_leaderboard}
+\end{figure}
+
+\subsection{Internal Benchmarks}\label{subsec:results_internal}
+
+To complement the public TabArena~\citep{erickson2025tabarena} and
+TALENT~\citep{talent_benchmark_jmlr} benchmarks, we evaluate TabPFN-3 on a
+set of internal benchmarks designed to stress capabilities that are only
+partially covered by existing public evaluations. These benchmarks test
+whether TabPFN-3 pushes the frontier of tabular foundation models beyond the
+small- and medium-data regimes emphasized in prior work. In particular, we
+evaluate scaling to more than one million samples, high-dimensional feature
+spaces, many-class classification, and quantile regression.
+
+Our primary comparisons are against the leading gradient boosted tree frameworks XGBoost \citep{chen2016xgboost}, CatBoost \citep{prokhorenkova2018catboost}, and LightGBM \citep{lightgbm}, as well as TabICLv2 \citep{qu2026tabiclv2}, a recent foundation model for tabular data with strong results on public benchmarks.
+
+
+\subsubsection{Large Data}
+\label{sec:large-data}
+
+
+\paragraph{Evaluation Protocol.} 
+The primary baselines for our large-data evaluation are tree-based methods, which recent large-scale tabular benchmarks have shown to be highly competitive beyond 100,000 samples~\citep{talent_benchmark_jmlr}. Our large-data benchmarking effort focuses on datasets with 100,000 to 1 million training rows and up to 200 features. 
+
+This benchmark targets the large-row regime for which \ourmodel was designed. As described in Section~\ref{sec:arch_overview}, \ourmodel first compresses feature information into fixed-dimensional row representations and subsequently performs in-context learning over these rows.
+This architectural decomposition enables inference on datasets with up to one million rows on a single GPU.
+At the same time, it induces a scaling trade-off: when both the number of rows and the number of features are very large, the early compression of feature information can become a bottleneck.
+We treat the high-dimensional, low-sample regime as a separate evaluation setting, studied in Section~\ref{sec_meany_feats}, rather than conflating it with the large-row setting considered here.
+
+Our benchmark datasets span diverse real-world domains including healthcare,
+finance, logistics, and environmental science. For regression, the datasets in our benchmark exhibit temporal structure, where models are trained on past data and must generalize to future data. We found this setting to be the most common and representative of real-world deployment conditions.
+
+
+\paragraph{Results.} \ourmodel achieves state-of-the-art performance on our large-data benchmark, outperforming default and 8-hour-tuned
+gradient-boosted tree baselines in a single forward pass, as shown in Figure \ref{fig:large_data_all}. Further, we show a preview version of \ourmodelenhanced on large data, which improves \ourmodel performance further for classification datasets (as \ourmodelplus with Thinking mode does not yet support temporal datasets as of the time of writing, we could not evaluate it on our regression benchmark). To better understand how \ourmodel performance scales with training size, we report performance on subsampled versions of our datasets (keeping test set constant, and only considering datasets with 1M training samples) in Figure ~\ref{fig:large_data_scaling}. Across the 100k–1M range, TabPFN-3 scales smoothly and retains the top normalized score at every training-set size.
+
+
+
+
+\begin{figure}[!t]
+    \centering
+    \begin{subfigure}[t]{0.48\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{figures/internal_benchmarking/large_data/big_data_cls_v2_wo_AG_w_thinking__roc_auc_normalized.pdf}
+    \end{subfigure}
+    \begin{subfigure}[t]{0.48\textwidth}
+    \centering
+    \includegraphics[width=\textwidth]{figures/internal_benchmarking/large_data/big_data_reg_v3_wo_AG__rmse_normalized.pdf}
+\end{subfigure}
+\caption{%
+    \textbf{TabPFN-3 achieves state-of-the-art performance on the large-rows benchmark
+    (up to 1M training rows and 200 features, 13 datasets)}, outperforming both default and 8-hour-tuned
+    gradient-boosted tree baselines as well as TabICLv2 in a single forward pass.
+    \textbf{(a)} Classification (9 datasets).
+    \textbf{(b)} Regression (4 datasets) use temporal splits.
+    Normalized scores are higher-is-better; see Section~\ref{sec:metric_norm} for the
+    normalization procedure and Appendix~\ref{app:large_data_datasets} for critical
+    difference diagrams.
+}
+\label{fig:large_data_all}
+\end{figure}
+
+
+
+
+
+\begin{figure}[!t]
+    \centering
+    \includegraphics[width=0.8\linewidth]{figures/internal_benchmarking/large_data/scaling_normalized_1M_combined.pdf}
+    \caption{\textbf{\ourmodel{} tops the normalized scaling curves for ROC-AUC OvR classification and RMSE regression across dataset scales.} Results are shown on the four large-data benchmark datasets that reach at least 1M training rows (one classification, three regression). For each dataset we subsample the training set to 100k, 250k, 500k and 1M rows with 3 random repeats. Shaded bands are 95\% bootstrap confidence intervals across the four datasets and 3 repeats. .
+    }
+    \label{fig:large_data_scaling}
+\end{figure}
+
+
+\paragraph{Large data results from TALENT benchmark.}
+
+To confirm our internal results, we also extract the 14 available datasets in the TALENT benchmark
+with more than 100K and less than 1M training samples (see Appendix \ref{app:large_data_datasets}).
+On this subset, TabPFN-3 is again the best ranked model against the baselines provided by the TALENT benchmark,
+as shown in Figure \ref{fig:large_rows_rank}.
+
+\subsubsection{Many-Class Classification}
+\label{sec:many-class-eval}
+
+\ourmodel introduces a many-class decoder (Section~\ref{sec:many-class-decoder}) that we trained to support up to 160 classes, a regime where most tabular foundation models fail entirely. Creating a benchmark from real-world datasets with naturally many classes is challenging; we therefore evaluate on a synthetic benchmark derived by bucketing regression targets from real regression benchmark datasets. We also confirm the strong performance of \ourmodel on the 4 datasets from the TALENT benchmark that have more than 50 classes in Section \ref{app:TALENT-many-class}.
+
+\paragraph{Synthetic many-class benchmark.}
+We construct
+a synthetic benchmark by converting the TabArena regression datasets into many-class
+classification problems via jittered quantile binning; full construction details
+are given in Appendix~\ref{app:many_class_construction}.
+Figure~\ref{fig:many_class_synthetic} shows the ROC-AUC (OvR) and accuracy.
+TabPFN-3 achieves the highest normalized ROC-AUC of $1.00$, ranking first overall and outperforming all baselines by a large margin.
+On ROC-AUC (OvR), the next best model is TabICLv2 at $0.89$ using its many-class wrapper to go beyond its 10 classes limit. TabPFN-2.5 achieves $0.83$, using its own many-class error-correcting-code-based wrapper\footnote{\url{https://github.com/PriorLabs/tabpfn-extensions/tree/main/src/tabpfn_extensions/many_class}}.
+Conventional tree-based methods and KNN all perform notably worse, even after $1$ hour of tuning.
+
+
+\begin{figure}[!t]
+    \centering
+    \begin{subfigure}[t]{0.48\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{figures/internal_benchmarking/many_class/tabarena_many_class_100_v2__roc_auc_normalized.pdf}        
+    \end{subfigure}
+    \begin{subfigure}[t]{0.48\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{figures/internal_benchmarking/many_class/tabarena_many_class_100_v2__accuracy_normalized.pdf}
+    \end{subfigure}
+    \caption{%
+        \textbf{On the synthetic many-class benchmark \ourmodel achieves a normalized ROC-AUC (OvR) of $1.00$, outperforming all GBT baselines by a large margin}. The benchmark contains up to 100 classes, 9 datasets that are derived from TabArena regression tasks via Dirichlet-jittered quantile binning
+        with shuffled labels). Normalized scores are higher-is-better; see Section~\ref{sec:metric_norm} for the normalization procedure. The corresponding Critical Difference diagram can be seen in Figure \ref{fig:many_class_roc_auc_cd}.
+    }
+    \label{fig:many_class_synthetic}
+\end{figure}
+
+
+
+
+\subsubsection{Many Features}
+\label{sec_meany_feats}
+
+The high-dimensional, low-sample regime poses a qualitatively different challenge from the large-row setting studied in Section~\ref{sec:large-data}. Whereas large-row benchmarks primarily test scalability to many training examples, the many-features setting tests robust generalization and feature-subset selection when the number of candidate features far exceeds the number of samples. 
+
+We evaluate this setting on a dedicated \emph{many-features} slice of six real-world classification datasets with 100--320 samples, 1{,}100--22{,}200 features, and 2--4 classes, mostly from biomedical or gene-expression-style domains. Such large feature-to-sample ratios are challenging for tree-based methods because they increase the risk of selecting spurious feature interactions.
+
+Figure~\ref{fig:many_feats_roc_auc} shows that \ourmodel performs strongly on this challenging slice, reaching the best normalized ROC-AUC with 32 estimators.
+Earlier TabPFN variants, in particular Real-TabPFN-2.5 and TabPFN~v2, also perform competitively, suggesting that TabPFN-style pretraining provides a robust inductive bias for high-dimensional, low-sample problems.
+
+As described in Section~\ref{sec:preprocessing}, each \ourmodel estimator is restricted to at most 200 input features per default. Thus, for datasets with tens of thousands of raw features, individual estimators operate on feature subsets rather than compressing the full feature set.
+At the same estimator budget, Real-TabPFN-2.5 can slightly outperform \ourmodel; we hypothesize that this reflects two factors: Real-TabPFN-2.5 uses up to 500 features per estimator, providing broader feature-space coverage on some datasets, and its alternating row-wise and feature-wise attention may better exploit the selected feature subset.
+For \ourmodel, increasing the number of estimators improves coverage of the raw feature space and raises the probability that informative feature subsets are included.
+In our OSS version, this estimator budget is scaled automatically for high-dimensional inputs, making the ensemble substantially more effective in this regime.
+
+Overall, the many-features slice suggests that TabPFN estimators can be ensembled effectively in a high-noise feature-selection regime, where conventional tree-based methods are prone to overfitting to noisy or spurious feature interactions.
+
+
+
+
+
+\begin{figure}[!htbp]
+    \centering
+    \begin{minipage}[t]{0.48\textwidth}
+        \centering
+        \includegraphics[width=\linewidth]{figures/internal_benchmarking/many_feats/many_feats_1k_25k_multiclass_v2__roc_auc_normalized.pdf}
+        \caption{%
+            \textbf{TabPFN scales well to high-dimensional, low-sample classification.}
+            Normalized ROC-AUC on the many-features benchmark slice, consisting of 6 classification datasets with 102--322 samples and 1{,}117--22{,}215 features.
+            This high-dimensional, low-sample regime is particularly challenging for standard tree-based baselines.
+            Increasing the number of \ourmodel estimators improves feature-space coverage and substantially boosts performance.
+        }
+        \label{fig:many_feats_roc_auc}
+    \end{minipage}\hfill
+    \begin{minipage}[t]{0.48\textwidth}
+        \centering
+        \includegraphics[width=\linewidth]{figures/internal_benchmarking/quantile/tabarena_regression__pinball_loss_normalized.pdf}
+        \caption{%
+             \textbf{TabPFN-3 exhibits strong predictive distribution modeling on quantile regression.}
+             Normalized pinball loss on our quantile regression benchmark, constructed from TabArena regression datasets and averaged across 10 quantile levels $q \in \{0.1, 0.2, \ldots, 0.9\}$~\cite{koenker_regression_quantiles}.
+            Normalized scores are higher-is-better; see Section~\ref{sec:metric_norm} for
+            the normalization procedure.
+        }
+        \label{fig:quantile_normalized}
+    \end{minipage}
+\end{figure}
+
+
+
+\subsubsection{Quantile Regression}
+\label{sec:quantile_regression}
+
+Beyond point predictions, TabPFN-3 provides full predictive distributions via a
+bar-distribution regression head (Section~\ref{app:architecture-hyperparams}), from
+which arbitrary quantiles are decoded at inference by inverting the predicted CDF ---
+all from a single forward pass, with no retraining per quantile level. Since TabArena does not natively support quantile regression evaluation, we construct
+a dedicated benchmark by downloading the TabArena regression datasets and evaluating
+all models on pinball loss~\cite{koenker_regression_quantiles}, averaged across 10
+quantile levels $q \in \{0.1, 0.2, \ldots, 0.9\}$. We compare against four baselines spanning the typical strategies for quantile regression: a linear quantile regressor, which fits a separate pinball-loss model per quantile level; XGBoost in quantile mode, which uses a single multi-output booster but adds one tree per quantile per boosting round, scaling training cost roughly linearly in the number of levels; quantile random forests~\cite{meinshausen2006qrf}, which train a single MSE-objective forest and read off all quantiles from leaf-level empirical CDFs at no extra training cost; and TabICL-v2, a tabular foundation model with a quantile head.
+
+TabPFN-3 achieves a normalized pinball loss score very close to $1.00$, ranking first overall
+and outperforming all baselines, demonstrating that the bar-distribution head produces
+well-calibrated predictive distributions superior to dedicated quantile regression
+baselines at no additional training cost per quantile level. The normalized Pinball loss is shown in Figure~\ref{fig:quantile_normalized}, while the corresponding Critical Difference plot can be found in the Appendix in Figure~\ref{fig:quantile_cd}.
+\FloatBarrier
+
+\subsection{Time-Series Forecasting}\label{subsec:results_ts}
+
+In addition to the classification and regression checkpoints, we
+release a new TabPFN-3 checkpoint for TabPFN-TS \citep{hoo2024tabpfn_ts} fine-tuned on \textbf{synthetic} time-series data for
+probabilistic time-series forecasting. This checkpoint can be used in our \href{https://github.com/PriorLabs/tabpfn-time-series}{\texttt{tabpfn-time-series}} library. We evaluate it on fev-bench~\citep{shchur2025fev}, a benchmark containing 100 diverse time-series forecasting tasks.
+Following this benchmark, we report win rates and skill scores relative to the Seasonal Naive baseline in Table \ref{tab:fev-bench} (full version in Appendix Table \ref{tab:fev-bench-full}).
+
+\begin{table}[!htbp]
+\centering
+\caption{Forecasting performance on fev-bench (100 tasks),
+sorted by skill score. 
+\textbf{TabPFN-TS-3 ranks 2nd among foundation models on both SQL and MASE skill score while being trained only on synthetic data.}
+The full 18-baseline leaderboard can be found in Appendix \ref{app:time_series}.}
+\label{tab:fev-bench}
+\vspace{-3mm}
+
+\begin{minipage}{0.49\textwidth}
+\centering
+\textbf{(a) SQL (probabilistic)} \\[2pt]
+\resizebox{\linewidth}{!}{\input{tables/time_series/leaderboard_SQL_subset}}
+\end{minipage}
+\hfill
+\begin{minipage}{0.49\textwidth}
+\centering
+\textbf{(b) MASE (point)} \\[2pt]
+\resizebox{\linewidth}{!}{\input{tables/time_series/leaderboard_MASE_subset}}
+\end{minipage}
+\end{table}
+
+\footnotetext{The fev-bench
+authors report 28.8 MASE skill for the original TabPFN-TS
+\citep{shchur2025fev}; our re-run in Table~\ref{tab:fev-bench-full}
+yields 27.6 — we report our own re-run for like-for-like comparison
+across the cohort.}
+
+\begin{figure}[!htbp]
+\centering
+\includegraphics[width=\textwidth]{figures/time_series/new_format/rohlik_orders_1D_s0.pdf}
+\caption{\textbf{Qualitative forecast comparison on a fev-bench task (\texttt{rohlik\_order\_1D}).} Each model column shows the forecast horizon (zoomed to time 880-935) against the held-out ground truth, with the shaded band indicating the 10th-90th quantile. The leftmost panel shows the full training history. MASE and CRPS scores are reported per model. Additional examples, including covariate panels, are in~\Cref{app:time_series}.}
+\label{fig:fev-bench-qualitative}
+\end{figure}
+
+Our checkpoint is evaluated with up to 32k historical time steps of
+context, well beyond the budgets typically used by patch- or
+window-based time-series foundation models.
+Compared to the original TabPFN-TS~\citep{hoo2024tabpfn_ts} as evaluated
+by the fev-bench authors (39.6 SQL skill, 28.8 MASE skill;
+\citealt{shchur2025fev}), our fine-tuned variant improves to
+\textbf{43.1 SQL skill} and \textbf{30.6 MASE skill}. On the full
+100-task cohort it ranks 2nd on mean SQL skill scores (ahead of TiRex and TimesFM-2.5)
+and 2nd on MASE (ahead of TimesFM-2.5, which has $10\%$ flagged
+train/test leakage, and TiRex), in both cases behind only Chronos-2.
+Looking at the win-rate results, TabPFN-TS-3's ranking drops to the 4th place, although we found these rates to be very sensitive to tiny differences on a few datasets.
+
+The strong performance of TabPFN-TS-3 is particularly noteworthy seeing that it is trained purely on synthetic data, while most other time-series models, including Chronos-2 \citep{ansari2025chronos2univariateuniversalforecasting}, TiRex \citep{auer:25tirex} and TimesFM-2.5 \citep{pmlr-v235-das24c} are trained on real-world data. This property of our model prevents many issues from real-data pretraining: historical series are leaky and frequently recirculated across forecasting libraries (fev-bench flags 10\% leakage in TimesFM-2.5 and 28\% in Moirai-2.0; see Table~\ref{tab:fev-bench}), forecasting the future from historical pretraining is fundamentally out-of-distribution, and the supply of public real-world time-series data is finite, so any model relying on it inherits both its biases and its ceiling. Our synthetic prior by design has zero contamination from any specific real time series.
+
+We also show qualitative examples in Figure \ref{fig:fev-bench-qualitative} to give a better intuition of our model forecasts. Appendix \ref{app:time_series} complements this section with the full
+leaderboards (Table \ref{tab:fev-bench-full}), pairwise comparisons (Figure \ref{fig:fev-bench-pairwise}), additional qualitative forecasts and per-task SQL results.
+
+\subsection{Relational Data}\label{subsec:results_rel}
+
+\begin{figure}[!htbp]
+    \centering
+    \begin{subfigure}[t]{0.46\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{figures/relbench/relbench_v1_classification_xticks.pdf}
+    \end{subfigure}
+    \begin{subfigure}[t]{0.46\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{figures/relbench/relbench_v1_regression.pdf}
+    \end{subfigure}
+    \caption{\textbf{\ourmodel tops performance on RelBenchV1 among foundation models.}
+    Following \citet{kumorfmv2}, we report the mean ROC AUC for entity classification and MAE scores for entity regression normalized by LightGBM's MAE. RelGNN~\cite{relgnn} achieves SOTA performance on both tasks, followed by TabPFN-REL, which sets a new SOTA for foundation models.
+    Methods marked with $^{*}$ in their name (KumoRFMv1, \rtzero) indicate methods that are likely following a different evaluation protocol than the one outlined in RelBench, which overestimates model performance.
+    }
+    \label{fig:relbench}
+\end{figure}
+
+Real-world data is often relational: commercial enterprises, healthcare systems, and financial institutions routinely store their core operational data across multiple interconnected tables in relational databases. Unlocking predictive insights from such data is therefore of substantial practical importance, and requires to reason jointly over heterogeneous tables linked by complex foreign-key relationships. This has motivated the development of dedicated relational foundation models (RFMs) that aim to provide accurate, up-to-date predictions via In-Context Learning (ICL) without the need for costly per-task model training and hyperparameter tuning.
+
+This has sparked the emergence of dedicated solutions for relational data, e.g., fully supervised solutions particularly tailored for relational data such as GraphSAGE~\cite{graphsage}, RelGT~\cite{relgt} and RelGNN~\cite{relgnn}, closed-source relational foundation models like KumoRFMv1~\cite{kumorfmv1} and KumoRFMv2~\cite{kumorfmv2}, as well as open-source RFMs, Griffin~\cite{griffin} and \rtzero~\cite{rt_zero}. Recently, RDBLearn~\cite{rdblearn} has shown that TFMs including TabPFN can be converted into RFMs by automatically flattening the underlying database into a table.
+
+In this section, we build on this research and show how \emph{TabPFN-REL} using TabPFN-3 achieves state of the art performance on the popular RelBenchV1~\cite{relbenchv1} benchmark for entity classification and regression. 
+
+For RelBench, we follow the general guidelines by truncating each database at the pre-specified test timestamp before constructing the featurization and context for all test entities. Following \citet{kumorfmv2}, we generally report baseline results as provided by the authors of the methods to ensure well-tuned baselines. For methods that likely follow a different evaluation regime, we rerun the evaluation using RelBench's data regime, falling back to author-reported numbers where rerunning is not possible due to model deprecation or missing checkpoints (as is the case for KumoRFMv1 and \rtzero); we note that these may not be directly comparable due to potentially different data setups. For KumoRFMv2 we adapt the original scripts provided by the authors and use four estimators and a context size of $10000$ (the respective maxima for each), which we found to slightly outperform the script defaults of one estimator and a context size of $5000$ samples. We compare three different versions of RDBLearn: Vanilla RDBLearn that tunes over a range of different TFMs including TabPFN-2.5, as well as versions which forgo the tuning and use either TabPFN-2.5 or \ourmodel as a fixed TFM.\footnote{The reported results were produced with early checkpoints that did not undergo the full training pipeline and separate binary from multiclass classification. They can be identified on HuggingFace by the \texttt{20260417\_\textless TASK\_TYPE\textgreater} suffix.}
+
+\paragraph{TabPFN-REL sets a new state-of-the-art among RFMs.} We report the aggregate performance of the different RFMs and fully-supervised baselines in~\autoref{fig:relbench} both for entity classification and entity regression on RelBenchV1, as well as per-dataset results in \autoref{sec:app/relbench/per-dataset-results}. \textit{TabPFN-REL achieves state-of-the-art performance among RFMs on both tasks}, with KumoRFMv1/v2 coming second on regression/classification. We attribute KumoRFMv1's strong classification results in part to a potentially different evaluation regime used by the authors, which likely overestimates performance, especially on the \texttt{rel-f1} task suite. We also observe that RDBLearn with the fixed TabPFN-3 backend consistently outperforms the original RDBLearn, which itself tunes over various TFMs including TabPFN-2.5. RDBLearn using \ourmodel hence Pareto-dominates vanilla RDBLearn in terms of runtime and performance, and to the best of our knowledge sets a \textit{new state-of-the-art among open-source RFMs}. \textit{At the time of writing, TabPFN-3 therefore powers both the best overall relational foundation model (TabPFN-REL) and the best open-source alternative (RDBLearn + v3).}
+
+\paragraph{Comparison to fully-supervised baselines.} The fully-supervised RelGNN outperforms TabPFN-REL, with the gap being larger on classification than regression. On regression, the gap between RelGNN and TabPFN-REL is slim, with TabPFN-REL achieving lower mean rank than RelGNN. RelGT and GraphSAGE fall behind TabPFN-REL both in terms of normalized score and rank. We note that training supervised methods is several orders of magnitude more expensive than the in-context learning performed in TabPFN-REL~\cite{rdblearn, kumorfmv1, kumorfmv2}. This is both because training a single supervised model takes significantly longer than the forward pass of TabPFN-REL, and because supervised methods require extensive per-dataset hyperparameter tuning to achieve optimal performance. For example, we identified at least seven axes of variability in RelGNN's per-dataset configs, yielding thousands of possible hyperparameter combinations to search over.
+
+\FloatBarrier
+
+\subsection{Causal Inference}
+
+We follow up on our previous results \cite{TabPFN-2.5}, which showed strong performance of TabPFN-2.5 as a meta (T/X/S) learner \cite{kunzel_meta_learners} on the RealCause benchmark, by providing an evaluation on the \texttt{scikit-uplift} benchmark \cite{user-guide-for-uplift-modeling}. In terms of QINI-score, a real-world evaluation strategy for experimental data, we observe that all TabPFN-3 meta-learners improve over TabPFN-2.5, with the top two spots occupied by T and S-Learners (Figure \ref{fig:causal_inference}). In contrast, we observe slightly worse performance compared to TabPFN-2.5 on RealCause \cite{neal_realcause}.
+We provide a more in-depth analysis of the results and description of the QINI evaluation protocol in Appendix \ref{sec:causal_inference}.
+
+\subsection{Embeddings}\label{subsec:results_embed}
+Finally, we demonstrate that \ourmodel generates semantically-meaningful embeddings. We follow the approach developed by \citet{ye2026closer} for TabPFN~v2: we partition the dataset into cross-validation folds, and take the embeddings from the test-portion of the dataset in each fold. The embeddings we capture are the output of the ICL layers at the end of Stage 3 of our model (see Section~/\ref{sec:arch_overview} for more details). Figure~\ref{fig:embeddings-scatter} shows that this approach continues to work well for TabPFN-3, with the generated embeddings capturing the dataset structure.
+
+\begin{figure}
+    \centering
+    \includegraphics{figures/embeddings/embeddings_scatter.pdf}
+    \caption{
+        \textbf{TabPFN-3 extracts semantically-meaningful row embeddings.}
+        The upper plots show 2D PCA applied directly to three classification datasets, where each point is a row, while the lower plots show PCA applied to embeddings of the rows.
+        Color indicates the class.
+        We observe that the embeddings are clustered by class.
+    }
+    \label{fig:embeddings-scatter}
+\end{figure}

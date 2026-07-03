@@ -1,0 +1,51 @@
+2026-04-30 04:38:56,458 | INFO | Starting Phase 2 single-dataset evaluation
+2026-04-30 04:38:56,458 | INFO | Dataset path: /home/prime/Documents/g3/tab-r1/Accurate_Prediction_on_Small_Dataset_with_TabPFN_Research/Practical Research/Datasets/Datasets from TabPFN Classification/Classification DataSets/cmc.csv
+INFO:DataLoader:Loading dataset from: /home/prime/Documents/g3/tab-r1/Accurate_Prediction_on_Small_Dataset_with_TabPFN_Research/Practical Research/Datasets/Datasets from TabPFN Classification/Classification DataSets/cmc.csv
+INFO:DataLoader:Auto-selected last column as target: target
+INFO:DataLoader:Inferred task type: multiclass
+INFO:DataLoader:Successfully loaded and split dataset. Train: 1031, Val: 221, Test: 221
+2026-04-30 04:38:58,737 | INFO | Running model: tabpfn
+INFO:phase2.20260430_043856:Running model: tabpfn
+2026-04-30 04:39:00,987 | INFO | Saved plots for tabpfn: ['tabpfn_confusion_matrix.png']
+INFO:phase2.20260430_043856:Saved plots for tabpfn: ['tabpfn_confusion_matrix.png']
+2026-04-30 04:39:00,987 | INFO | Running model: random_forest
+INFO:phase2.20260430_043856:Running model: random_forest
+2026-04-30 04:39:01,384 | INFO | Saved plots for random_forest: ['random_forest_confusion_matrix.png']
+INFO:phase2.20260430_043856:Saved plots for random_forest: ['random_forest_confusion_matrix.png']
+2026-04-30 04:39:01,384 | INFO | Running model: logistic_regression
+INFO:phase2.20260430_043856:Running model: logistic_regression
+/home/prime/miniconda3/lib/python3.13/site-packages/sklearn/linear_model/_logistic.py:1272: FutureWarning: 'multi_class' was deprecated in version 1.5 and will be removed in 1.8. From then on, it will always use 'multinomial'. Leave it to its default value to avoid this warning.
+  warnings.warn(
+2026-04-30 04:39:01,556 | INFO | Saved plots for logistic_regression: ['logistic_regression_confusion_matrix.png']
+INFO:phase2.20260430_043856:Saved plots for logistic_regression: ['logistic_regression_confusion_matrix.png']
+2026-04-30 04:39:01,557 | INFO | Running model: catboost
+INFO:phase2.20260430_043856:Running model: catboost
+Traceback (most recent call last):
+  File "<frozen runpy>", line 198, in _run_module_as_main
+  File "<frozen runpy>", line 88, in _run_code
+  File "/home/prime/Documents/g3/tab-r1/Evaluate-TABPFN/scripts/phase2/run_single.py", line 179, in <module>
+    raise SystemExit(main())
+                     ~~~~^^
+  File "/home/prime/Documents/g3/tab-r1/Evaluate-TABPFN/scripts/phase2/run_single.py", line 143, in main
+    write_predictions(
+    ~~~~~~~~~~~~~~~~~^
+        pred_path,
+        ^^^^^^^^^^
+    ...<2 lines>...
+        y_prob=result.y_prob,
+        ^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "/home/prime/Documents/g3/tab-r1/Evaluate-TABPFN/scripts/phase2/artifacts.py", line 62, in write_predictions
+    df = pd.DataFrame({"y_true": y_true.reset_index(drop=True), "y_pred": pd.Series(y_pred)})
+                                                                          ~~~~~~~~~^^^^^^^^
+  File "/home/prime/miniconda3/lib/python3.13/site-packages/pandas/core/series.py", line 587, in __init__
+    data = sanitize_array(data, index, dtype, copy)
+  File "/home/prime/miniconda3/lib/python3.13/site-packages/pandas/core/construction.py", line 656, in sanitize_array
+    subarr = _sanitize_ndim(subarr, data, dtype, index, allow_2d=allow_2d)
+  File "/home/prime/miniconda3/lib/python3.13/site-packages/pandas/core/construction.py", line 715, in _sanitize_ndim
+    raise ValueError(
+        f"Data must be 1-dimensional, got ndarray of shape {data.shape} instead"
+    )
+ValueError: Data must be 1-dimensional, got ndarray of shape (221, 1) instead
+[W430 04:39:03.371371329 AllocatorConfig.cpp:28] Warning: PYTORCH_CUDA_ALLOC_CONF is deprecated, use PYTORCH_ALLOC_CONF instead (function operator())

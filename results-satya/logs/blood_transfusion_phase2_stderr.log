@@ -1,0 +1,38 @@
+2026-04-30 04:38:39,033 | INFO | Starting Phase 2 single-dataset evaluation
+2026-04-30 04:38:39,033 | INFO | Dataset path: /home/prime/Documents/g3/tab-r1/Accurate_Prediction_on_Small_Dataset_with_TabPFN_Research/Practical Research/Datasets/Datasets from TabPFN Classification/Classification DataSets/blood_transfusion-service-center.csv
+INFO:DataLoader:Loading dataset from: /home/prime/Documents/g3/tab-r1/Accurate_Prediction_on_Small_Dataset_with_TabPFN_Research/Practical Research/Datasets/Datasets from TabPFN Classification/Classification DataSets/blood_transfusion-service-center.csv
+INFO:DataLoader:Auto-selected last column as target: target
+INFO:DataLoader:Inferred task type: binary
+INFO:DataLoader:Successfully loaded and split dataset. Train: 522, Val: 113, Test: 113
+2026-04-30 04:38:42,979 | INFO | Running model: tabpfn
+INFO:phase2.20260430_043839:Running model: tabpfn
+Traceback (most recent call last):
+  File "<frozen runpy>", line 198, in _run_module_as_main
+  File "<frozen runpy>", line 88, in _run_code
+  File "/home/prime/Documents/g3/tab-r1/Evaluate-TABPFN/scripts/phase2/run_single.py", line 179, in <module>
+    raise SystemExit(main())
+                     ~~~~^^
+  File "/home/prime/Documents/g3/tab-r1/Evaluate-TABPFN/scripts/phase2/run_single.py", line 151, in main
+    saved_plots = save_classification_plots(
+        output_dir=dirs["plots"],
+    ...<4 lines>...
+        y_prob=result.y_prob,
+    )
+  File "/home/prime/Documents/g3/tab-r1/Evaluate-TABPFN/scripts/phase2/plots.py", line 46, in save_classification_plots
+    RocCurveDisplay.from_predictions(y_true, y_prob[:, 1], ax=ax)
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/prime/miniconda3/lib/python3.13/site-packages/sklearn/metrics/_plot/roc_curve.py", line 598, in from_predictions
+    pos_label_validated, name = cls._validate_from_predictions_params(
+                                ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^
+        y_true, y_score, sample_weight=sample_weight, pos_label=pos_label, name=name
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "/home/prime/miniconda3/lib/python3.13/site-packages/sklearn/utils/_plotting.py", line 66, in _validate_from_predictions_params
+    pos_label = _check_pos_label_consistency(pos_label, y_true)
+  File "/home/prime/miniconda3/lib/python3.13/site-packages/sklearn/utils/validation.py", line 2651, in _check_pos_label_consistency
+    raise ValueError(
+    ...<3 lines>...
+    )
+ValueError: y_true takes value in {1, 2} and pos_label is not specified: either make y_true take value in {0, 1} or {-1, 1} or pass pos_label explicitly.
+[W430 04:38:45.944541748 AllocatorConfig.cpp:28] Warning: PYTORCH_CUDA_ALLOC_CONF is deprecated, use PYTORCH_ALLOC_CONF instead (function operator())

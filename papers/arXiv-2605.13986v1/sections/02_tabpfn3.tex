@@ -1,0 +1,240 @@
+\section{TabPFN-3}\label{sec:methods}
+
+TabPFN-3 comes with a new architecture (Section~\ref{sec:arch_overview}), including an attention-based many-class decoder (Section~\ref{sec:many-class-decoder}), an improved preprocessing pipeline (Section~\ref{sec:preprocessing}), inference-time optimizations that enable scaling to one million rows on a single GPU (Section~\ref{sec:inference-optimization}), and an improved synthetic SCM prior used for pre-training (Section~\ref{sec:synthetic-prior}). We also introduce the API and enterprise features \ourmodelplus which handles text in tables natively and \ourmodelenhanced which applies test-time-compute for dramatically improved performance (Section \ref{sec:tabpfn3plus}).
+
+\subsection{Architecture}
+\label{sec:arch_overview}
+
+An overview of TabPFN-3's full architecture is shown in~\Cref{fig:arch_diagram}. 
+TabPFN-3 introduces a substantially redesigned architecture that scales in-context learning to datasets with one million rows.
+\\
+
+TabPFN~v1~\citep{hollmann2022tabpfnv1} used a transformer architecture to perform in-context learning (ICL) on embeddings of entire rows.
+TabPFN-2.x (v2, v2.5, v2.6) \citep{Hollmann2025tabpfnv2, TabPFN-2.5} used a transformer architecture that alternates row-wise and feature-wise attention layers; this improves performance, but becomes prohibitively expensive as the dataset size grows.
+TabPFN-3 returns to TabPFN~v1's ICL for embeddings of entire rows. 
+It builds on the two-stage row-compression design introduced by \citet{qu2025tabicl, qu2026tabiclv2} in the TabICL architecture, which uses a column-wise feature embedding layer followed by row-wise feature aggregation to obtain the row representation that is used in a TabPFN~v1-like ICL layer. 
+
+
+Before entering the two compression stages, we group features, similar to TabPFN-2.x, while adopting TabICLv2's\citep{qu2026tabiclv2} group assignment, which creates triplets by grouping each feature with two cyclically shifted neighbors. Each triplet is mapped to the hidden dimension of the model by a learned linear projection (cell embedding), and target-aware embeddings are added to the cell embeddings of training rows \citep{qu2026tabiclv2}.
+
+
+The resulting grouped feature embeddings are processed by the following three stages:
+
+\begin{itemize}
+    \item \textbf{Stage~1: Feature distribution embedding (column-wise).}
+    Each feature column is embedded independently using a transformer with an efficient inducing-point attention mechanism.
+    This avoids the quadratic cost of full cross-row attention while still capturing column-level statistics at arbitrary dataset scales.
+
+    \item \textbf{Stage~2: Feature aggregation (row-wise).}
+    For each data point, a set of learned \textsc{cls} tokens and the feature embeddings of that row attend to one another via non-causal attention, allowing cross-feature information to be distilled into a fixed number of vectors.
+    Concatenating the \textsc{cls} tokens' hidden states yields a single, fixed-dimensional embedding per row, decoupling the subsequent in-context learning stage from the number of input features.
+
+    \item \textbf{Stage~3: In-context learning.}
+    The row embeddings for the training and test sets are jointly passed to a transformer that performs in-context learning: training-row embeddings attend to one another to capture relationships within the training set, while test-row embeddings attend to training-row embeddings to produce predictions.
+    Because each data point is now a single vector, this stage operates on a sequence proportional only to the number of rows, enabling efficient scaling to large datasets.
+\end{itemize}
+
+
+In Stages~1 and~3, and in the many-class decoder (introduced below), every attention layer applies the query-aware scalable softmax (QASSMax) \citep{qu2026tabiclv2}, itself inspired from SSMAX \citep{ssmax_vanilla}, which rescales attention queries as a function of input length, improving  length generalization of in-context learning to large training sets.
+Detailed architectural hyperparameters are provided in Appendix~\ref{app:architecture-hyperparams}.
+
+\begin{figure}[!t]
+    \centering
+    \adjustbox{width=0.75\linewidth}{
+    \input{figures/tikz/arch_diagram}}
+    \caption{\textbf{Architecture of TabPFN-3, adapted from the TabICLv2 architecture.} Changes include adding novel orthogonal embeddings, the many class decoder, NaN/Inf indicator variables, and the option to use low-memory chunked inference (dotted paths; dashed paths signal fully parallel path). C refers to number of colums, N to the number of rows, K is the number of inducing points, and $\mathcal{Y}$ is the set of labels. Shown is TabPFN-3 for classification; the regression variant does not use the many-class decoder.
+    }
+    \label{fig:arch_diagram}
+\end{figure}
+
+
+
+
+
+
+TabPFN-3 introduces several architectural innovations on top of the three-stage architecture: 
+
+\begin{itemize}
+    \item \textbf{Attention-based many-class decoder.}
+    For classification, the fixed-width MLP output head of previous TabPFN versions is replaced with an attention-based retrieval decoder that treats class prediction as soft nearest-neighbor retrieval over the in-context training set.
+    The decoder is non-parametric in the class count, enabling native support for an arbitrary number of classes. 
+    A detailed description is given in Section \ref{sec:many-class-decoder}.
+
+
+    \item \textbf{Row-chunking.} A two-phase inference scheme that decouples peak GPU activation memory from dataset size (rows $\times$ columns), while producing outputs equivalent to the unchunked computation: we precompute the distribution embedder's inducing-vector summary once over the full training set, then stream rows through feature embedding and column aggregation in fixed-size chunks that reuse this cached summary as their attention key/value set. See Section \ref{sec:row_chunking} for more details.
+    
+    \item \textbf{Reduced KV cache via multi-query attention.}
+    In the ICL transformer, test-row queries attend to train-row keys and values using a single KV head (multi-query attention), while train rows retain full multi-head attention.
+    This allows reducing the per-estimator KV cache to approximately 7\,GB for datasets of one million rows, enabling ultra-fast inference on common GPUs. This is described in detail in Section~\ref{sec:kv_cache}.
+
+
+    \item \textbf{Orthogonal target embeddings.}
+    Training labels are encoded with learned embeddings initialized via orthogonal decomposition, providing near-maximally separated class representations at the start of training and improving gradient flow in the many-class regime.
+
+    \item \textbf{RMSNorm.}
+    All normalization layers use RMSNorm in place of the layer normalization used in \ourmodeltwofive. RMSNorm omits the mean-centering term, reducing compute while preserving training stability.
+
+    \item \textbf{Native missing-value handling.}
+    For each cell that is \texttt{NaN}, TabPFN-3 computes a binary indicator and concatenates it with the cell value before embedding. The model therefore receives an explicit signal about missing data and can condition its predictions accordingly, rather than relying on upstream imputation.
+\end{itemize}
+
+\subsection{Many-class Decoder}
+\label{sec:many-class-decoder}
+For multiclass classification, \ourmodel replaces the fixed-width MLP classification head used in TabPFN-2.6 (and earlier versions) with an \emph{attention-based retrieval decoder} over the in-context training set,
+which treats class prediction as a soft nearest-neighbor retrieval: the final-layer train embeddings $\{h^\mathrm{train}_n\}_{n=1}^{N_\mathrm{train}}$ act as keys, the corresponding one-hot label vectors $\mathbf{y}_n \in \{0,1\}^{C}$ as values, and test embeddings $h^\mathrm{test}_m$ as queries. After the usual learned linear projections $W_Q, W_K$ and a multi-head split, the decoder computes
+\[
+p_m \;=\; \frac{1}{H}\sum_{h=1}^{H}\sum_{n=1}^{N}
+            \alpha^{(h)}_{m,n}\,\mathbf{y}_n,
+\qquad
+\alpha^{(h)}_{m,n}=\mathrm{softmax}_n\!\left(
+            \tfrac{q^{(h)}_m \cdot k^{(h)}_n}{\sqrt{D_h}}\right),
+\]
+that is: a (head-averaged) attention-weighted average of the in-context one-hot labels, which is then converted to logits via $\log\!\big(\mathrm{clip}(p_m)\big)$. This formulation has two consequences. First, classes are no longer tied to fixed output positions of a parametric head
+so the decoder is naturally permutation-equivariant in the class indices.
+Second, decoding is non-parametric in $C$: the decoder's parameters depend only on the embedding dimension and the number of attention heads, not on some $C_{\max}$, decoupling the head's capacity from the supported label cardinality.
+
+\textbf{Class-count limit from pre-training.}
+Although the decoder is non-parametric in $C$, the trained \ourmodel still fixes a hard ceiling $C_{\max} = 160$ at pre-training time via three checkpoint-bound tensors: the trainable orthogonal label embeddings $E_{\mathrm{col}}, E_{\mathrm{icl}} \in \mathbb{R}^{C_{\max} \times D}$ used by the column encoder and the ICL transformer, and the one-hot value tensor consumed by the decoder. Enlarging $C_{\max}$ at pre-training therefore costs only $\mathcal{O}(C_{\max}\,D)$ extra parameters and no extra decode-time memory.
+
+
+
+\subsection{Preprocessing}
+\label{sec:preprocessing}
+
+As in previous versions, TabPFN-3 aggregates predictions across multiple estimators, each operating on a distinct combination of dataset permutations and feature transformations, forming an effective ensemble that enhances robustness and generalization. Individual estimators apply complementary feature transformations—combining robust scaling and soft clipping (following \citep{holzmuller2024realmlp}) with quantile transformations and standard scaling—to balance stability and sensitivity across varying feature distributions. As in TabPFN-2.5, a subset of estimators augments the feature matrix with singular value decomposition (SVD) components, capturing high-energy directions of global variance.
+
+TabPFN-3 introduces two further improvements to this pipeline. First, features are subsampled in a round-robin fashion, ensuring that each feature appears in at least one estimator and is never systematically excluded from the ensemble. For datasets exceeding 100{,}000 rows, random feature subsampling is replaced by an informed selection based on Gini importance derived from a lightweight tree model fitted on a subsample, focusing each estimator on the most discriminative features rather than an arbitrary subset. Second, feature transformations such as quantile normalization are now executed on GPU, substantially reducing preprocessing latency and making the pipeline practical at the larger dataset scales supported by TabPFN-3. As in TabPFN-2.5~\citep{TabPFN-2.5}, post-processing capabilities are available, including decision threshold tuning for metric-specific optimization (e.g., F1-score) and temperature scaling for probability calibration.
+
+
+\subsection{Inference Optimization}\label{sec:inference-optimization}
+\ourmodel introduces several inference-time optimizations that together reduce its compute and memory footprint enough to scale to one-million-rows on a single GPU with sub-second inference latency.
+
+
+\subsubsection{Row-Chunking} \label{sec:row_chunking}
+
+\ourmodel's pre-ICL stages---cell embedding, feature distribution embedding, and feature aggregation---materialize an $(n_\mathrm{train}+n_\mathrm{test}){\times}n_\mathrm{features}{\times}d$ activation, so peak memory can saturate the GPU well before any operation becomes compute-bound. One solution is to offload activations to CPU memory or disk, as in TabICLv2~\citep{qu2026tabiclv2}. This however requires a large amount of CPU memory (250GB for a $1\text{M} \times 500$ table in \citet{qu2026tabiclv2}), or otherwise incurs substantial I/O overhead (\citet{qu2026tabiclv2} report a 4x slowdown).
+We instead stream the row dimension in fixed-size slices and keep all activations on the GPU.
+
+\begin{figure}[!t]
+    \centering
+    \includegraphics[width=\linewidth]{figures/inference/chunked_vs_nonchunked_h100}
+    \caption{\textbf{Chunking flattens the peak-memory without impacting the time-per-call.}
+    Model forward pass without preprocessing, measured on a H100, for $n_\mathrm{features} \in \{10, 100, 500\}$. Top row: peak GPU memory (GiB) versus number of training rows; bottom row: time per call (ms). Three series per panel: \ourmodel without chunking (blue), \ourmodel with chunking (pink), and the \ourmodeltwofive baseline (black). Both axes are log-scaled.
+    Note that \emph{TabPFN-3 is much faster than TabPFN-2.5, especially at large feature counts.}}
+    \label{fig:chunked_vs_nonchunked}
+\end{figure}
+
+
+A naive row-wise stream is not directly applicable: the distribution embedder summarizes the training set into a fixed-size\footnote{We use 128 inducing points, much smaller than the dataset sizes of interest, which often exceed 100,000 rows.} set of inducing points via cross-attention over all training rows, and splitting that call across chunks would change its semantics. \ourmodel resolves this with a two-phase scheme exactly equivalent to the unchunked computation: (i) the inducing states are computed once over the full training set, chunked along the (independent) column dimension to bound its own memory cost; (ii) rows are then streamed through feature distribution embedding and the feature aggregator in fixed-size chunks, each reusing the precomputed inducing states as its attention key/value set, and the per-chunk row embeddings are concatenated along the row axis. The scheme adds a small overhead from recomputing cell embeddings in phase~(ii) but avoids the disk-bandwidth bottleneck. We enable chunking when $n_\mathrm{train}+n_\mathrm{test} > 2048$.
+
+Figure~\ref{fig:chunked_vs_nonchunked} highlights the different memory–compute trade-offs of \ourmodel and \ourmodeltwofive. Without chunking, the peak memory of \ourmodel grows steeply with $n_\mathrm{train}$ and $n_\mathrm{features}$. This is because the model carries a pre-ICL activation $n_\mathrm{features}$-wide through cell embedding, feature distribution embedding, and feature aggregation before collapsing the feature axis into a single row representation for the ICL transformer. By contrast, \ourmodeltwofive alternates row- and column-attention layers over a representation grouped into $n_\mathrm{features}/3$ tokens, and therefore never materialises a tensor wider than this. This explains why \ourmodel's unchunked peak memory exceeds \ourmodeltwofive's. Applying row-chunking to \ourmodel flattens peak memory with respect to $n_\mathrm{features}$ and yields an approximately ${\sim}5{\times}$ reduction at the largest shapes, enabling 1M-row inference, while incurring only a small wall-clock overhead of a few percent near $n_\mathrm{train}\approx 10^4$ that becomes amortised at larger scales once the $n_\mathrm{train}^2$ ICL row-attention dominates. At the same time, the feature-collapsed row representation gives \ourmodel a substantial runtime advantage at large $n_\mathrm{train}$ or $n_\mathrm{features}$ since its ICL row-attention scales as $n_\mathrm{train}^2$ independently of $n_\mathrm{features}$, whereas \ourmodeltwofive's row attention retains linear dependence on $n_\mathrm{features}$ and scales with $n_\mathrm{features} \cdot n_\mathrm{train}^2$.
+
+
+
+
+\begin{figure}[!t]
+    \centering
+    \begin{subfigure}{\linewidth}
+        \centering
+        \includegraphics[width=\linewidth]{figures/inference/max_n_train_probe}
+        \caption{\textbf{Chunking eliminates the OOM frontier; the KV-cache adds memory essentially constant in $n_\mathrm{feature}$.} Maximum $n_\mathrm{train}$ that fits on one 80~GiB H100 for $n_\mathrm{features}\in\{10,50,200\}$. Bars: \ourmodeltwofive, \ourmodel, \ourmodel\,+\,chunking, \ourmodel\,+\,chunking\,+\,KV-cache. White labels: peak memory; ``$\geq 1.0$M'' marks bars that hit the search cap.}
+        \label{fig:max_n_train_probe}
+    \end{subfigure}
+    \begin{subfigure}{\linewidth}
+        \centering
+x        \includegraphics[width=\linewidth]{figures/inference/H100_kv_cache}
+        \caption{\textbf{Cached predict is 1--2 orders of magnitude faster than the uncached \ourmodel.} Time per model forward pass without preprocessing on H100 at $n_\mathrm{train}=50{,}000$, $n_\mathrm{test}=100$, $n_\mathrm{features}\in\{10,100\}$. Bars: \ourmodeltwofive cold fit+predict, \ourmodel cold fit+predict, \ourmodel fit-with-cache, \ourmodel cached predict.}
+        \label{fig:kv_cache_h100}
+    \end{subfigure}\\[2pt]
+    \caption{KV-cache on H100 for a single estimator without preprocessing: OOM frontier with chunking and KV-cache (\subref*{fig:max_n_train_probe}) and cached-predict latency vs.\ uncached paths (\subref*{fig:kv_cache_h100}).}
+    \label{fig:kv_cache}
+\end{figure}
+
+\subsubsection{Fast Inference with a Small KV-cache} \label{sec:kv_cache}
+
+Being an in-context-learning model, \ourmodel combines training (fit) and inference (predict) in one forward pass. While this allows for very fast training, it can make online or batched predictions too slow for production usecases. Caching the keys and values (KVs) from the train set removes this issue. While KV-caching has been available in our previous models, the memory cost of the cache was prohibitive for larger datasets. \ourmodel solves this in two ways:
+\begin{itemize}
+    \item Compared to \ourmodeltwofive, which needs to store an embedding for each cell of the table, \ourmodel only needs to store three components: the per-block inducing states produced by the feature distribution embedder, the train-side keys and values of the ICL self-attention at every transformer block in the ICL stage; as well as the train embeddings of the final ICL layer, which are consumed by the many-class decoder. The inducing states are small and the two other components only scale with the number of rows rather than rows × features.
+    \item We use multi-query with only a single head for cross attention between test and train samples, reducing KV-cache size by a factor of eight.
+\end{itemize}
+This achieves a KV-cache size of 7GiB per estimator for 1M rows datasets, making \ourmodel's default 8 estimators usable on common GPUs even for the largest datasets we support. As can be seen in Figure~\ref{fig:max_n_train_probe}, peak memory of (chunked) cache-predict is basically flat across feature sizes.
+On an H100, cached-predict is one to three orders of magnitude faster than either the \ourmodeltwofive baseline or \ourmodel's own cold ``fit+predict'' path (Figure~\ref{fig:kv_cache_h100}),  achieving between 0.1 and 3 ms/test point for batches of 100 test points. The fit-with-cache call costs essentially the same as the cold fit+predict at every measured shape, including $n_\mathrm{train}=10^6$ where both complete in ${\sim}107$~s (Figure~\ref{fig:kv_cache_scaling_h100}).
+
+ \begin{figure}[!t]
+      \centering
+      \hspace{-3em}
+      \includegraphics[width=0.85\linewidth]{figures/inference/H100_kv_cache_scaling}
+      \caption{\textbf{\ourmodel's KV-cached predict allows for one to three orders of magnitude speedup}. We report results for a single estimator without preprocessing on an H100, for $n_\mathrm{features} \in \{10, 100\}$ and $n_\mathrm{test} = 100$. Four series per panel: \ourmodeltwofive \texttt{fit+predict} (black, baseline), \ourmodel cold \texttt{fit+predict} (blue, no cache reuse), \ourmodel \texttt{fit (build cache)} that builds the cache (magenta -- overlaps the cold curve since the train-side work is identical, the cache is just retained), and \ourmodel cached \texttt{predict} (yellow). The KV-Cache is built under the deployed multi-query test-side configuration ($n_\mathrm{kv,test}=1$).}
+      \label{fig:kv_cache_scaling_h100}
+  \end{figure}
+
+
+
+
+
+\subsubsection{Model Distillation} \label{sec:distillation}
+In production environments constrained by latency or memory budgets, hardware availability, or regulatory requirements that mandate familiar model classes, \ourmodel also supports distillation into dataset-specific MLPs or tree ensembles via the engine introduced with \ourmodeltwofive \citep{TabPFN-2.5}. The distilled artifact runs on CPU at the sub-millisecond latency of a standard MLP or tree ensemble while retaining most of \ourmodel's predictive performance on the dataset it was distilled for.  
+
+\subsubsection{Compilation and FlashAttention-3} \label{sec:compile_and_fa3}
+
+\ourmodel ships with two opt-in performance features that target different bottlenecks: \texttt{torch.compile}, which fuses dispatch on the non-attention hot paths, and FlashAttention-3 (FA3) \cite{flash_attention_3}, a Hopper-specific kernel for the in-context-learning attention. On MI-250x, \texttt{torch.compile} reaches up to $1.58{\times}$ speedup on the non-chunked forward pass; on H100, FA3 reaches $1.5\text{--}1.7{\times}$ at $n_\mathrm{train}=10^6$ over the SDPA fallback. Both compose cleanly with row chunking and are auto-detected at runtime; see Appendix~\ref{app:compile-fa3} for the full measurements and per-shape breakdowns.
+
+
+\subsubsection{Improved interpretability for TabPFN}
+
+
+TabPFN-3's reduced KV-cache (Section~\ref{sec:kv_cache}) and fast inference make interpretability extensions significantly more practical.
+
+Through the \texttt{tabpfn-extensions} package, TabPFN is directly integrated with the popular \texttt{shapiq} library~\citep{shapiq}, enabling efficient approximation of any-order Shapley interactions. \autoref{fig:shap-kv-speedup} in the Appendix shows both the absolute runtime and the relative speed-ups achieved by KV caching. For large datasets, KV caching provides more than $120\times$ efficiency gains, reducing the runtime per test row to 1.08 seconds even for a training table with 200k rows and 500 features.
+
+
+
+
+\subsection{Synthetic Prior}\label{sec:synthetic-prior}
+Following previous TabPFN model variants \cite{TabPFN-2.5, hollmann2022tabpfnv1, Hollmann2025tabpfnv2}, TabPFN-3 is trained on synthetically generated data based on our Structural Causal Model (SCM) prior. A schematic flow chart demonstrating how our SCM prior works is shown in Figure \ref{fig:prior}.
+
+Our philosophy in designing our prior is to maximize breadth of possible datasets while capturing the structure models will encounter in real-world data. The result is an updated, more sophisticated prior that allows us to scale up training and continue extracting signal from the wide range of synthetic datasets it generates: our final TabPFN-3 model was trained on more than 8 trillion tokens.
+
+\input{figures/tikz/scm_prior}
+
+\begin{enumerate}
+    \item \textbf{Graph generation.} We expand the distribution of graphs
+    underlying the SCM by introducing new sampling algorithms, enabling
+    richer structural diversity. Sample graphs are shown in
+    Figure~\ref{fig:graph_sampling}.
+    
+    \item \textbf{Combiner mechanisms.} We introduce a host of new combiner mechanisms that combine values of parent nodes to propagate values to child nodes, some examples of which are visualized for a simple two-dimensional case in Figure \ref{fig:mechanisms}. Increasing the variety of functional forms by which child nodes depend on the respective parent nodes allows for richer node relationships in the SCM.
+    
+    
+    \item \textbf{Categorical variables.} Compared to TabPFN-2.5, we reworked the treatment of categorical variables in our SCM, moving from a comparatively simple categorical data model to more expressive variants.    
+    
+    
+    \item \textbf{High-frequency oscillators.} TabPFN-2.5 struggled with
+    high-frequency oscillations despite performing well on sinusoidal data
+    generally. Improved sinusoidal activations give TabPFN-3 strong
+    performance across the full frequency spectrum.
+    
+    \item \textbf{Spatial prior.} Many tabular datasets have underlying spatial structure (e.g. datasets containing longitude and latitude as covariates, grids of sensors, etc.). We add spatial activations that allow our prior to encode spatial relationships between variables. %
+    
+    \item \textbf{Many-class prior.} The flexible many-class decoder in TabPFN-3 enables native classification support for an arbitrary number of classes. We match this architectural design in the prior, ensuring high quality datasets that enable state-of-the-art downstream performance from binary datasets to datasets with hundreds of classes.
+
+    \item \textbf{Temporal prior.} Many tabular datasets have temporal structure: rows are collected over intervals of time, train and test splits are often ordered by time rather than drawn i.i.d., and temporal dependencies between variables are common. We extend the SCM into a discrete-time Dynamic Structural Causal Model \citep{boeken2024dynamicstructuralcausalmodels}. 
+
+    
+    \item \textbf{Out-of-distribution prior.} We add out-of-distribution prediction tasks, allowing models trained on our prior data to remain performant under distribution shifts, as well as moving from pure interpolation to extrapolation. A simple example highlighting how our o.o.d. prior allows \ourmodel to perform extrapolation is shown in Figure \ref{fig:ood} - a capability that is notably absent from most tree-based algorithms as well as most other tabular foundation models.
+    
+\end{enumerate}
+
+
+\subsection{TabPFN-3-Plus and Thinking mode}
+\label{sec:tabpfn3plus}
+
+On top of \ourmodel, which we release open-source, our API and enterprise deployments provide access to \ourmodelplus and its thinking mode "TabPFN-3-Plus (Thinking)" (named TabPFN-3-Thinking in our plots)
+These variants are fully compatible with the open-source \ourmodel interface and can be used as a drop-in replacement, while offering additional capabilities:
+
+\paragraph{Native text-feature support.} \ourmodelplus accepts string-valued columns directly, without requiring upstream featurization. Free-text fields -- such as product names, insurance claim descriptions, or customer reviews -- are encoded jointly with numeric and categorical features inside the model, so cross-feature interactions between text and structured columns are learned end-to-end rather than imposed by a fixed encoder.
+
+\paragraph{Thinking mode.} \ourmodelenhanced applies additional inference-time computation on top of \ourmodelplus to push prediction quality further. Thinking mode composes with native text-feature support, so a single call can handle mixed numerical, categorical, and text columns under the same inference-time-compute regime. We emphasize that our Thinking mode achieves this strong performance while only relying on TabPFN, without using LLMs, real data, internet search, or any other model.
+
+\ourmodelplus, including Thinking mode, is available through our API and through enterprise deployments including on-prem and VPC deployment on AWS SageMaker and Azure AI Foundry; see Section~\ref{sec:license} for licensing and access. Benchmark results are reported in Sections~\ref{sec:tabarena-result} (TabArena), \ref{sec:tabstar-result} (TabSTAR), and \ref{sec:large-data} (Large data).
+\FloatBarrier

@@ -1,0 +1,56 @@
+# Python/runtime noise
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.ipynb_checkpoints/
+.DS_Store
+
+# Local envs and secrets
+.env
+.venv/
+venv/
+env/
+*.token
+*.key
+*.pem
+.pypirc
+
+# Build artifacts
+build/
+dist/
+*.egg-info/
+
+# Large/generated model artifacts
+*.ckpt
+*.pt
+*.pth
+*.onnx
+*.pkl
+*.joblib
+*.model
+autogluon_models/
+
+# Raw archives and bulky downloaded data
+*.zip
+*.tar
+*.tar.gz
+*.tgz
+*.gz
+*.7z
+
+# Third-party/copyrighted PDFs and locally generated large reports
+*.pdf
+
+# Generated experiment run payloads. Compact reports/configs/summaries are kept.
+results-s2/runs/
+results-satya/runs/
+Evaluate-TABPFN/outputs_phase2_test/
+Evaluate-TABPFN/tests/outputs*/
+Evaluate-TABPFN/pfn3-test/outputs*/
+
+# Local agent/editor state
+.agents/
+.gemini/
+skills-lock.json

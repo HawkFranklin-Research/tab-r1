@@ -1,0 +1,63 @@
+2026-04-30 07:03:04,849 | INFO | Starting Phase 2 single-dataset evaluation
+2026-04-30 07:03:04,849 | INFO | Dataset path: /home/prime/Documents/g3/tab-r1/Accurate_Prediction_on_Small_Dataset_with_TabPFN_Research/Practical Research/Datasets/Datasets from TabPFN Classification/Classification DataSets/ada_dataset.csv
+INFO:DataLoader:Loading dataset from: /home/prime/Documents/g3/tab-r1/Accurate_Prediction_on_Small_Dataset_with_TabPFN_Research/Practical Research/Datasets/Datasets from TabPFN Classification/Classification DataSets/ada_dataset.csv
+INFO:DataLoader:Auto-selected last column as target: target
+INFO:DataLoader:Inferred task type: binary
+INFO:DataLoader:Successfully loaded and split dataset. Train: 2902, Val: 622, Test: 623
+2026-04-30 07:03:10,898 | INFO | Running model: tabpfn
+INFO:phase2.20260430_070304:Running model: tabpfn
+2026-04-30 07:03:23,800 | INFO | Saved plots for tabpfn: ['tabpfn_confusion_matrix.png', 'tabpfn_roc_curve.png']
+INFO:phase2.20260430_070304:Saved plots for tabpfn: ['tabpfn_confusion_matrix.png', 'tabpfn_roc_curve.png']
+2026-04-30 07:03:23,800 | INFO | Running model: random_forest
+INFO:phase2.20260430_070304:Running model: random_forest
+Exception ignored in: <function Image.__del__ at 0x7230a804bce0>
+Traceback (most recent call last):
+  File "/home/prime/miniconda3/lib/python3.13/tkinter/__init__.py", line 4269, in __del__
+    self.tk.call('image', 'delete', self.name)
+RuntimeError: main thread is not in main loop
+Exception ignored in: <function Variable.__del__ at 0x7230dc44e7a0>
+Traceback (most recent call last):
+  File "/home/prime/miniconda3/lib/python3.13/tkinter/__init__.py", line 414, in __del__
+    if self._tk.getboolean(self._tk.call("info", "exists", self._name)):
+RuntimeError: main thread is not in main loop
+Exception ignored in: <function Variable.__del__ at 0x7230dc44e7a0>
+Traceback (most recent call last):
+  File "/home/prime/miniconda3/lib/python3.13/tkinter/__init__.py", line 414, in __del__
+    if self._tk.getboolean(self._tk.call("info", "exists", self._name)):
+RuntimeError: main thread is not in main loop
+Exception ignored in: <function Variable.__del__ at 0x7230dc44e7a0>
+Traceback (most recent call last):
+  File "/home/prime/miniconda3/lib/python3.13/tkinter/__init__.py", line 414, in __del__
+    if self._tk.getboolean(self._tk.call("info", "exists", self._name)):
+RuntimeError: main thread is not in main loop
+Exception ignored in: <function Variable.__del__ at 0x7230dc44e7a0>
+Traceback (most recent call last):
+  File "/home/prime/miniconda3/lib/python3.13/tkinter/__init__.py", line 414, in __del__
+    if self._tk.getboolean(self._tk.call("info", "exists", self._name)):
+RuntimeError: main thread is not in main loop
+Exception ignored in: <function Image.__del__ at 0x7230a804bce0>
+Traceback (most recent call last):
+  File "/home/prime/miniconda3/lib/python3.13/tkinter/__init__.py", line 4269, in __del__
+    self.tk.call('image', 'delete', self.name)
+RuntimeError: main thread is not in main loop
+Exception ignored in: <function Variable.__del__ at 0x7230dc44e7a0>
+Traceback (most recent call last):
+  File "/home/prime/miniconda3/lib/python3.13/tkinter/__init__.py", line 414, in __del__
+    if self._tk.getboolean(self._tk.call("info", "exists", self._name)):
+RuntimeError: main thread is not in main loop
+Exception ignored in: <function Variable.__del__ at 0x7230dc44e7a0>
+Traceback (most recent call last):
+  File "/home/prime/miniconda3/lib/python3.13/tkinter/__init__.py", line 414, in __del__
+    if self._tk.getboolean(self._tk.call("info", "exists", self._name)):
+RuntimeError: main thread is not in main loop
+Exception ignored in: <function Variable.__del__ at 0x7230dc44e7a0>
+Traceback (most recent call last):
+  File "/home/prime/miniconda3/lib/python3.13/tkinter/__init__.py", line 414, in __del__
+    if self._tk.getboolean(self._tk.call("info", "exists", self._name)):
+RuntimeError: main thread is not in main loop
+Exception ignored in: <function Variable.__del__ at 0x7230dc44e7a0>
+Traceback (most recent call last):
+  File "/home/prime/miniconda3/lib/python3.13/tkinter/__init__.py", line 414, in __del__
+    if self._tk.getboolean(self._tk.call("info", "exists", self._name)):
+RuntimeError: main thread is not in main loop
+Tcl_AsyncDelete: async handler deleted by the wrong thread

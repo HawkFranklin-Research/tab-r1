@@ -1,0 +1,660 @@
+\begin{tikzpicture}[
+    >=Stealth,
+    font=\small,
+    cell/.style={
+      rectangle, draw=teal!80, thick, fill=teal!20,
+      minimum width=0.55cm, minimum height=0.38cm,
+      anchor=center, inner sep=1pt
+    },
+    cellEmpty/.style={
+      rectangle, draw=teal!80, thick, fill=white,
+      minimum width=0.55cm, minimum height=0.38cm,
+      anchor=center, inner sep=1pt
+    },
+    cellRed/.style={
+      rectangle, draw=red!80, thick, fill=red!20,
+      minimum width=0.55cm, minimum height=0.38cm,
+      anchor=center, inner sep=1pt
+    },
+    nanCell/.style={
+      rectangle, draw=red!80, thick, fill=red!15,
+      minimum width=0.30cm, minimum height=0.38cm,
+      anchor=center, inner sep=1pt, font=\tiny
+    },
+    block/.style={
+      rectangle, draw=black, thick, fill=white,
+      minimum width=6.0cm, minimum height=0.95cm,
+      align=center, inner sep=4pt
+    },
+    smallblock/.style={
+      rectangle, draw=black, thick, fill=white,
+      minimum width=2.2cm, minimum height=0.50cm,
+      align=center, font=\scriptsize, inner sep=2pt
+    },
+    decblock/.style={
+      rectangle, draw=violet!60!black, thick, fill=violet!8,
+      minimum width=2.6cm, minimum height=0.55cm,
+      align=center, font=\footnotesize, inner sep=3pt
+    },
+    sidelabel/.style={
+      align=left, font=\scriptsize\itshape, text=black!60,
+      anchor=west, inner sep=2pt
+    },
+    novelty/.style={
+      rectangle, draw=red!80, thick, fill=red!15,
+      rounded corners=2pt, align=left,
+      inner sep=4pt, font=\scriptsize, anchor=west
+    },
+    arrow/.style={-Stealth, thick, black},
+    bluearrow/.style={-Stealth, thick, black},
+    purplearrow/.style={-Stealth, thick, black},
+    thinarrow/.style={-Stealth, thin, black},
+    plus/.style={
+      circle, draw=black, thick, inner sep=0.5pt,
+      minimum size=0.40cm, font=\footnotesize, fill=white
+    },
+    embedbar/.style={
+      rectangle, draw=teal!80, thick, fill=teal!20,
+      minimum width=0.26cm, minimum height=0.55cm,
+      anchor=center, inner sep=0pt
+    },
+    embedbarY/.style={
+      rectangle, draw=orange!70!black, thick, fill=orange!25,
+      minimum width=0.26cm, minimum height=0.55cm,
+      anchor=center, inner sep=0pt
+    },
+    indvec/.style={
+      rectangle, draw=blue!70, thick, fill=cyan!25,
+      minimum width=0.26cm, minimum height=0.50cm,
+      anchor=center, inner sep=0pt
+    },
+    tensorbox/.style={
+      rectangle, draw=teal!80, very thick, fill=teal!8,
+      minimum width=2.6cm, minimum height=0.60cm,
+      align=center, font=\footnotesize
+    },
+    tensorboxV/.style={
+      rectangle, draw=violet!60!black, very thick, fill=violet!6,
+      minimum width=2.6cm, minimum height=0.60cm,
+      align=center, font=\footnotesize
+    }
+  ]
+
+  \definecolor{cA}{RGB}{ 70, 165, 195}
+  \definecolor{cB}{RGB}{110, 175,  95}
+  \definecolor{cX}{RGB}{225, 145,  60}
+  \definecolor{cD}{RGB}{145, 105, 175}
+  \colorlet{cA2}{cA!65!blue}
+  \colorlet{cB2}{cB!65!teal}
+  \colorlet{cX2}{cX!70!yellow}
+  \colorlet{cD2}{cD!65!magenta}
+
+  \pgfmathsetmacro{\orthXshift}{4.7}
+
+  \def\stageW{6.8cm}
+
+
+  \matrix (rawtbl) [
+    matrix of nodes,
+    nodes={cell, minimum height=0.32cm},
+    row 3/.style={nodes={minimum height=0.15cm, inner sep=0pt}},
+    column sep=-\pgflinewidth, row sep=-\pgflinewidth,
+    nodes in empty cells,
+  ] at (0, 7.1)
+  {
+    {\tiny $x_{11}$} & {\tiny $x_{12}$} & {\tiny $\cdots$} & {\tiny $x_{1m}$} \\
+    {\tiny $x_{21}$} & {\tiny \textcolor{red!80}{Inf}} & {\tiny $\cdots$} & {\tiny \textcolor{red!80}{NaN}} \\
+    {\tiny \raisebox{2pt}{\scalebox{1}[0.6]{$\vdots$}}} & {\tiny \raisebox{2pt}{\scalebox{1}[0.6]{$\vdots$}}} & {\tiny \raisebox{2pt}{\scalebox{1}[0.6]{$\ddots$}}} & {\tiny \raisebox{2pt}{\scalebox{1}[0.6]{$\vdots$}}} \\
+  };
+  \node[anchor=west, font=\scriptsize] at (rawtbl.east) {Input $X \in \mathbb{R}^{N \times C}$};
+
+  \coordinate (mainSplit) at (0, 6.30);
+  \draw[thick, solid] (rawtbl.south) -- (mainSplit);
+
+  \tikzset{
+    preprocstep/.style={
+      align=center, font=\scriptsize, inner ysep=1pt, inner xsep=2pt,
+      draw=groupGrayEdge, fill=white, rounded corners=2pt,
+      minimum width=4.7cm, minimum height=0.30cm
+    }
+  }
+
+  \coordinate (grayPanelTop) at (0, 5.65);
+
+  \node[preprocstep] (stdblk) at (0, 5.30)
+  {Mean-Imputation~\&~Standardize};
+
+  \node[preprocstep, below=2pt of stdblk] (group)
+  {Feature Grouping \tiny circular shifts $(0,1,3)$};
+
+  \node[preprocstep, below=2pt of group] (linear)
+  {Cell Embedding, Linear$(\,3{+}3 \to d\,)$};
+
+  \node[anchor=south, font=\footnotesize\bfseries, text=black,
+    draw=groupGrayEdge, thick, rounded corners=2pt,
+    fill=groupGray, inner xsep=3pt, inner ysep=1pt] (grayTitle)
+    at (grayPanelTop) {Feature Grouping \& Cell Embedding};
+
+  \begin{scope}[on background layer]
+    \node[fit=(grayPanelTop)(stdblk)(group)(linear), minimum width=\stageW,
+      fill=groupGray, draw=groupGrayEdge, thick,
+      rounded corners=4pt, inner xsep=10pt, inner ysep=4pt] (grayGroup) {};
+  \end{scope}
+
+  \draw[arrow] (mainSplit) -- (grayTitle.north);
+
+  \node[nanCell, fill=red!10] (nm1) at (4.0, 6.30) {0};
+  \node[nanCell, fill=red!25] (nm2) at (4.3, 6.30) {1};
+  \node[nanCell, fill=red!10] (nm3) at (4.6, 6.30) {0};
+  \node[anchor=south, font=\scriptsize, text=red!70!black]
+    at (4.3, 6.55) {NaN/Inf mask};
+
+  \draw[arrow] (mainSplit) -- (nm1.west);
+  \draw[arrow] (nm2.south) |- (linear.east);
+
+  \coordinate (addPos) at (0, 3.75);
+  \node[plus, fill=orange!25, draw=orange!70!black] (taeplus) at (addPos) {$+$};
+
+  \begin{scope}[shift={(\orthXshift, 3.75)}]
+    \foreach \i/\col in {0/cA, 1/cB, 2/cX, 3/cD} {
+      \filldraw[draw=black!40, line width=0.15pt, fill=\col]
+      (-0.42, {0.18 - \i*0.09}) rectangle (0.42, {0.10 - \i*0.09});
+    }
+    \node[draw=blue!60!black, thick, rounded corners=2pt,
+    minimum width=1.05cm, minimum height=0.50cm, inner sep=0pt]
+    (taeTable) at (0, 0) {};
+    \node[anchor=east, font=\scriptsize, text=black] at (1.8, 0) {$\leftarrow\!y_i \in \mathcal{Y}$};
+    \node[anchor=south, font=\tiny, text=black, align=center,
+    inner sep=0.5pt]
+    at (0, 0.25) {Label Embedding (trainable orth.)};
+  \end{scope}
+
+  \draw[bluearrow] (taeTable.west) -- (taeplus.east);
+  \draw[thick, black] (linear.south) -- (taeplus.north);
+
+  \begin{scope}[yshift=0.6cm]
+    \begin{scope}[yshift=1.1cm]
+      \coordinate (colCenter) at (0, 0.45);
+
+      \node[anchor=south, font=\footnotesize\bfseries, text=black,
+        draw=groupCyanEdge, thick, rounded corners=2pt,
+      fill=groupCyan, inner xsep=3pt, inner ysep=1pt] (cyanTitle)
+      at ($(colCenter) + (0, 0.95)$)
+      {Feature Embedding \tiny{(col-wise)}};
+      \node[draw=groupCyanEdge, thick, fill=white, rounded corners=2pt,
+        font=\scriptsize\bfseries, text=black,
+        inner sep=2pt, anchor=north east]
+      at (3.35, 1.49) {$\times\,3$};
+
+      \foreach \g in {2, 1} {
+        \pgfmathsetmacro{\dx}{\g * 0.16}
+        \pgfmathsetmacro{\dy}{\g * 0.10}
+        \pgfmathsetmacro{\sc}{0.90 - \g * 0.13}
+        \pgfmathsetmacro{\tealpct}{int(40 * \sc)}
+        \pgfmathsetmacro{\cyanpct}{int(40 * \sc)}
+        \pgfmathsetmacro{\tealdraw}{int(70 * \sc)}
+        \pgfmathsetmacro{\bluedraw}{int(60 * \sc)}
+        \foreach \r in {0, 1, 2, 3, 4} {
+          \pgfmathsetmacro{\yc}{0.95 - \r * 0.24 + \dy}
+          \pgfmathsetmacro{\xc}{-1.50 + \dx}
+          \filldraw[draw=teal!\tealdraw, line width=0.3pt, fill=teal!\tealpct,
+          rounded corners=1pt]
+          (\xc - 0.13, \yc - 0.10) rectangle (\xc + 0.13, \yc + 0.10);
+        }
+        \foreach \i in {0, 1, 2} {
+          \pgfmathsetmacro{\yi}{0.71 - \i * 0.26 + \dy}
+          \pgfmathsetmacro{\xi}{0.00 + \dx}
+          \filldraw[draw=blue!\bluedraw, line width=0.3pt, fill=cyan!\cyanpct,
+          rounded corners=1pt]
+          (\xi - 0.13, \yi - 0.11) rectangle (\xi + 0.13, \yi + 0.11);
+        }
+        \foreach \r in {0, 1, 2, 3, 4} {
+          \pgfmathsetmacro{\yc}{0.95 - \r * 0.24 + \dy}
+          \pgfmathsetmacro{\xc}{1.45 + \dx}
+          \filldraw[draw=teal!\tealdraw, line width=0.3pt, fill=teal!\tealpct,
+          rounded corners=1pt]
+          (\xc - 0.13, \yc - 0.10) rectangle (\xc + 0.13, \yc + 0.10);
+        }
+      }
+
+      \foreach \r in {0, 1, 2, 3, 4} {
+        \pgfmathsetmacro{\yc}{0.95 - \r * 0.24}
+        \filldraw[draw=teal!80, line width=0.5pt, fill=teal!45, rounded corners=1pt]
+        (-1.63, \yc - 0.10) rectangle (-1.37, \yc + 0.10);
+      }
+      \node[anchor=south, font=\tiny, text=black]
+      at (-1.50, 1.10) {$N$ rows};
+
+      \foreach \i in {0, 1, 2} {
+        \pgfmathsetmacro{\yi}{0.71 - \i * 0.26}
+        \filldraw[draw=blue!70, line width=0.5pt, fill=cyan!40, rounded corners=1pt]
+        (-0.13, \yi - 0.11) rectangle (0.13, \yi + 0.11);
+      }
+      \coordinate(inducingSouth) at (0, 0.19);
+
+      \node[anchor=south, font=\tiny, text=black, align=center]
+      at (0.00, 0.94) {$K$ inducing};
+
+      \foreach \r in {0, 1, 2, 3, 4} {
+        \pgfmathsetmacro{\yc}{0.95 - \r * 0.24}
+        \filldraw[draw=teal!80, line width=0.5pt, fill=teal!45, rounded corners=1pt]
+        (1.32, \yc - 0.10) rectangle (1.58, \yc + 0.10);
+      }
+      \node[anchor=south, font=\tiny, text=black]
+      at (1.45, 1.10) (colEmbOutRows) {$N$ rows};
+
+      \coordinate (bcAnchor) at (1.60, -0.15);
+      \begin{scope}[semithick, black!60]
+        \draw ($(bcAnchor) + (-0.08, -0.05)$) -- ($(bcAnchor) + (-0.104, -0.012)$);
+        \draw ($(bcAnchor) + (-0.08, -0.05)$) -- ($(bcAnchor) + (0.24, 0.15)$);
+        \draw ($(bcAnchor) + (0.24, 0.15)$) -- ($(bcAnchor) + (0.216, 0.188)$);
+        \draw ($(bcAnchor) + (0.24, 0.15)$) -- ($(bcAnchor) + (0.40, 0.25)$);
+        \draw ($(bcAnchor) + (0.40, 0.25)$) -- ($(bcAnchor) + (0.376, 0.288)$);
+        \node[anchor=south, font=\tiny, text=black, rotate=32] at ($(bcAnchor) + (0.3, -0.15)$)  {chunk};
+      \end{scope}
+
+      \coordinate (bcolAnchor) at (-1.30, -0.15);
+      \begin{scope}[semithick, black!60]
+        \draw ($(bcolAnchor) + (-0.08, -0.05)$) -- ($(bcolAnchor) + (-0.104, -0.012)$);
+        \draw ($(bcolAnchor) + (-0.08, -0.05)$) -- ($(bcolAnchor) + (0.24, 0.15)$);
+        \draw ($(bcolAnchor) + (0.24, 0.15)$) -- ($(bcolAnchor) + (0.40, 0.25)$);
+        \draw ($(bcolAnchor) + (0.40, 0.25)$) -- ($(bcolAnchor) + (0.376, 0.288)$);
+        \node[anchor=south, font=\tiny, text=black, rotate=32] at ($(bcolAnchor) + (0.3, -0.15)$)  {columns};
+      \end{scope}
+
+      \coordinate (funnelA) at (-0.75, 0.45);
+      \begin{scope}[every path/.style={
+        -, thin, draw=black, opacity=0.55, line cap=round}]
+        \foreach \rowy in {0.95, 0.71, 0.47, 0.23, -0.01} {
+          \draw (-1.35, \rowy) -- (funnelA);
+        }
+      \end{scope}
+      \begin{scope}[every path/.style={
+        -Stealth, thin, draw=black, opacity=0.75, line cap=round}]
+        \foreach \indy in {0.71, 0.45, 0.19} {
+          \draw (funnelA) -- (-0.15, \indy);
+        }
+      \end{scope}
+
+      \coordinate (funnelB) at (0.75, 0.45);
+      \begin{scope}[every path/.style={
+        -, thin, draw=black, opacity=0.55, line cap=round}]
+        \foreach \indy in {0.71, 0.45, 0.19} {
+          \draw (0.15, \indy) -- (funnelB);
+        }
+      \end{scope}
+      \begin{scope}[every path/.style={
+        -Stealth, thin, draw=black, opacity=0.75, line cap=round}]
+        \foreach \rowy in {0.95, 0.71, 0.47, 0.23, -0.01} {
+          \draw (funnelB) -- (1.30, \rowy);
+        }
+      \end{scope}
+
+      \node[anchor=west, font=\scriptsize, text=black, align=left,
+      text width=2.9cm]
+      at (3.70, 0.45)
+      {applied per column\\in parallel
+        \tikz[baseline=-0.5ex]{\draw[dash pattern={on 2pt off 1pt},black,thin](0,0)--(9pt,0);}
+      \\ or chunked~\tikz[baseline=-0.5ex]{\draw[dotted,black,thick](0,0)--(8pt,0);}};
+
+      \node[fit={(-2.05, -0.25) (2.05, 1.40)}, inner sep=0pt] (tfcol) {};
+    \end{scope}
+
+    \begin{pgfonlayer}{midground}
+      \draw[arrow] (taeplus.south) -- (taeplus.south |- cyanTitle.north);
+    \end{pgfonlayer}
+
+
+    \begin{scope}[yshift=-0.4cm]
+      \coordinate (featRow) at (0, -1.60);
+
+      \foreach \g in {2, 1} {
+        \pgfmathsetmacro{\dx}{\g * 0.16}
+        \pgfmathsetmacro{\dy}{\g * 0.10}
+        \pgfmathsetmacro{\sc}{0.45 - \g * 0.13}
+        \pgfmathsetmacro{\bluepct}{int(100 * \sc)}
+        \pgfmathsetmacro{\tealpct}{int(65 * \sc)}
+        \pgfmathsetmacro{\bluedraw}{int(120 * \sc)}
+        \pgfmathsetmacro{\tealdraw}{int(120 * \sc)}
+        \foreach \k in {0, 1, 2, 3} {
+          \pgfmathsetmacro{\xc}{-2.30 + \k * 0.43 + \dx}
+          \filldraw[draw=blue!\bluedraw, line width=0.3pt, fill=blue!\bluepct,
+          rounded corners=0.5pt]
+          (\xc, -1.85 + \dy) rectangle (\xc + 0.36, -1.35 + \dy);
+        }
+        \foreach \k in {0, 1, 2, 3, 4, 5} {
+          \pgfmathsetmacro{\xf}{-0.40 + \k * 0.43 + \dx}
+          \filldraw[draw=teal!\tealdraw, line width=0.3pt, fill=teal!\tealpct,
+          rounded corners=0.5pt]
+          (\xf, -1.85 + \dy) rectangle (\xf + 0.36, -1.35 + \dy);
+        }
+      }
+
+      \foreach \k in {0, 1, 2, 3} {
+        \pgfmathsetmacro{\xc}{-2.30 + \k * 0.43}
+        \filldraw[draw=blue!70!black, line width=0.4pt, fill=blue!40,
+        rounded corners=0.5pt]
+        (\xc, -1.85) rectangle (\xc + 0.36, -1.35);
+        \node[font=\tiny\bfseries, text=white] at (\xc + 0.18, -1.60) {C};
+      }
+      \foreach \k in {0, 1, 2, 3, 4, 5} {
+        \pgfmathsetmacro{\xf}{-0.40 + \k * 0.43}
+        \filldraw[draw=teal!80, line width=0.3pt, fill=teal!25,
+        rounded corners=0.5pt]
+        (\xf, -1.85) rectangle (\xf + 0.36, -1.35);
+      }
+
+      \coordinate (brAnchor) at (2.15, -1.88);
+      \begin{scope}[semithick, black!60]
+        \draw ($(brAnchor) + (-0.08, -0.05)$) -- ($(brAnchor) + (-0.104, -0.012)$);
+        \draw ($(brAnchor) + (-0.08, -0.05)$) -- ($(brAnchor) + (0.24, 0.15)$);
+        \draw ($(brAnchor) + (0.24, 0.15)$) -- ($(brAnchor) + (0.216, 0.188)$);
+        \draw ($(brAnchor) + (0.24, 0.15)$) -- ($(brAnchor) + (0.40, 0.25)$);
+        \draw ($(brAnchor) + (0.40, 0.25)$) -- ($(brAnchor) + (0.376, 0.288)$);
+        \node[anchor=south, font=\tiny, text=black, rotate=32] at ($(brAnchor) + (0.3, -0.15)$)  {chunk};
+      \end{scope}
+
+      \draw[decorate, decoration={brace, mirror, amplitude=3pt}, black]
+      (-0.42, -1.87) -- (2.13, -1.87);
+      \node[anchor=north, font=\scriptsize, text=black]
+      at (0.85, -1.82) {\tiny{columns}};
+    \end{scope}
+
+    \begin{scope}[yshift=0.15cm]
+      \node[anchor=south, font=\footnotesize\bfseries, text=black,
+        draw=groupGreenEdge, thick, rounded corners=2pt,
+      fill=groupGreen, inner xsep=3pt, inner ysep=1pt] (greenTitle)
+      at (0, -1.05) {Feature Aggregation \tiny{(row-wise)}};
+      \node[draw=groupGreenEdge, thick, fill=white, rounded corners=2pt,
+        font=\scriptsize\bfseries, text=black,
+        inner sep=2pt, anchor=north east]
+      at (3.35, -0.96) {$\times\,3$};
+
+      \coordinate (bowAnchor) at (-0.30, -1.15);
+      \begin{scope}[every path/.style={
+            -Stealth, thick, draw=black, opacity=0.55,
+        line cap=round}]
+        \foreach \k in {0, 1, 2, 3} {
+          \pgfmathsetmacro{\xc}{-2.12 + \k * 0.43}
+          \draw (bowAnchor) to [out=180,in=70 - 4 * \k] (\xc, -1.75);
+        }
+        \foreach \k in {0, 1, 2, 3, 4, 5} {
+          \pgfmathsetmacro{\xf}{-0.22 + \k * 0.43}
+          \draw (bowAnchor)to [out=0,in=100 + 4 * \k] (\xf, -1.75);
+        }
+
+      \end{scope}
+
+      \node[anchor=west, font=\scriptsize, text=black, align=left,
+      text width=2.7cm]
+      at (3.70, -1.80)
+      {applied per row\\
+      in parallel \\ or chunked\\ (recomputing column embeddings)};
+
+      \node[fit={(-2.55, -1.05) (2.55, -2.50)}, inner sep=0pt] (tfrow) {};
+
+
+      \pgfmathsetmacro{\yc}{-3.05}
+      \filldraw[draw=teal!85!black, line width=0.4pt, fill=teal!30, rounded corners=0.5pt] (-0.88, {\yc - 0.21}) rectangle (-0.88 + 0.43 * 3 + 0.36 + 0.1, {\yc + 0.21});
+      \foreach \k in {0,1,2,3} {
+        \pgfmathsetmacro{\xc}{-0.83 + \k * 0.43}
+        \filldraw[draw=blue!70!black, line width=0.4pt, fill=blue!40,
+        rounded corners=0.5pt]
+        (\xc, {\yc - 0.14}) rectangle (\xc + 0.36, {\yc + 0.14});
+        \node[font=\tiny\bfseries, text=white]
+        at (\xc + 0.18, \yc) {C};
+      }
+      \node[anchor=west, font=\scriptsize, text=black, align=left]
+      at (0.95, \yc)
+      {4 CLS per row\\flatten $\to 4d$};
+
+      \draw[arrow] (-1.475, -1.85) |- (-0.88, \yc);
+
+      \coordinate (addPos) at (0, -3.60);
+      \node[plus, fill=orange!25, draw=orange!70!black] (iclplus) at (addPos) {$+$};
+
+      \draw[thick, black] (0, \yc -0.2) -- (iclplus.north);
+
+      \begin{scope}[shift={(\orthXshift, -3.60)}]
+        \foreach \i/\col in {0/cA2, 1/cB2, 2/cX2, 3/cD2} {
+          \filldraw[draw=black!40, line width=0.15pt, fill=\col]
+          (-0.42, {0.18 - \i*0.09}) rectangle (0.42, {0.10 - \i*0.09});
+        }
+        \node[draw=blue!70!black, thick, rounded corners=2pt,
+        minimum width=1.05cm, minimum height=0.50cm, inner sep=0pt]
+        (iclTable) at (0, 0) {};
+        \node[anchor=east, font=\scriptsize, text=black] at (1.8, 0) {$\leftarrow\!y_i \in \mathcal{Y}$};
+        \node[anchor=south, font=\tiny, text=black, align=center]
+        at (0, 0.28) {Label Embedding (trainable orth.)};
+      \end{scope}
+
+      \draw[bluearrow] (iclTable.west) -- (iclplus.east);
+      \begin{scope}[yshift=0.4cm]
+        \def\iclTitleY{-4.65}      %
+        \def\iclTrainYC{-5.35}     %
+        \def\iclTestYC{-6.05}      %
+        \def\iclBarHH{0.20}        %
+        \def\iclBarHW{0.40}        %
+        \def\iclBotY{-6.35}        %
+
+        \foreach \i/\xc in {1/-1.50, 2/-0.50, 3/0.50, 4/1.50} {
+          \filldraw[draw=groupOrangeEdge!75, line width=0.4pt,
+            fill=groupOrangeEdge!22, rounded corners=0.5pt]
+            (\xc - \iclBarHW, \iclTrainYC - \iclBarHH)
+            rectangle
+            (\xc + \iclBarHW, \iclTrainYC + \iclBarHH);
+          \node[font=\scriptsize, text=black, inner sep=0pt]
+            at (\xc, \iclTrainYC)
+            {$h^{\mathrm{train}}_{\i}$};
+          \coordinate (trBar\i N) at (\xc, \iclTrainYC + \iclBarHH);
+          \coordinate (trBar\i S) at (\xc, \iclTrainYC - \iclBarHH);
+        }
+        \foreach \i/\xc in {1/-0.50, 2/0.50} {
+          \filldraw[draw=groupOrangeEdge!90, line width=0.4pt,
+            fill=groupOrangeEdge!42, rounded corners=0.5pt]
+            (\xc - \iclBarHW, \iclTestYC - \iclBarHH)
+            rectangle
+            (\xc + \iclBarHW, \iclTestYC + \iclBarHH);
+          \node[font=\scriptsize, text=black, inner sep=0pt]
+            at (\xc, \iclTestYC)
+            {$h^{\mathrm{test}}_{\i}$};
+          \coordinate (teBar\i N) at (\xc, \iclTestYC + \iclBarHH);
+          \coordinate (teBar\i S) at (\xc, \iclTestYC - \iclBarHH);
+        }
+
+        \coordinate (iclBowAnchor) at (0, -4.85);
+        \begin{scope}[every path/.style={
+          -Stealth, thick, draw=black, opacity=0.55, line cap=round}]
+          \foreach \k/\xc in {0/-1.50, 1/-0.50} {
+            \pgfmathsetmacro{\inAng}{70 - 12 * \k}
+            \draw (iclBowAnchor) to[out=180, in=\inAng]
+              (\xc, {\iclTrainYC + \iclBarHH});
+          }
+          \foreach \k/\xc in {0/0.50, 1/1.50} {
+            \pgfmathsetmacro{\inAng}{110 + 12 * \k}
+            \draw (iclBowAnchor) to[out=0, in=\inAng]
+              (\xc, {\iclTrainYC + \iclBarHH});
+          }
+        \end{scope}
+        \node[anchor=west, font=\scriptsize, text=black, align=left]
+          at (3.70, -5.10)
+          {train$\,\leftrightarrow\,$train\\\textit{multi-head self-attn}};
+
+        \begin{scope}[every path/.style={
+          -Stealth, thin, black, line cap=round}]
+          \foreach \teX in {-0.50, 0.50} {
+            \foreach \trX in {-1.50, -0.50, 0.50, 1.50} {
+              \draw[opacity=0.65]
+                (\teX, \iclTestYC + \iclBarHH)
+                -- (\trX, \iclTrainYC - \iclBarHH);
+            }
+          }
+        \end{scope}
+        \node[anchor=west, font=\scriptsize, text=black, align=left]
+          at (3.70, -6.00)
+          {test$\,\rightarrow\,$train\\\textit{multi-query cross-attn}};
+
+        \node[anchor=south, font=\footnotesize\bfseries, text=black,
+          draw=groupOrangeEdge, thick, rounded corners=2pt,
+          fill=groupOrange, inner xsep=3pt, inner ysep=1pt] (orangeTitle)
+          at (0, \iclTitleY)
+          {In-Context Learning};
+        \node[draw=groupOrangeEdge, thick, fill=white, rounded corners=2pt,
+          font=\scriptsize\bfseries, text=black, inner sep=2pt,
+          anchor=north east]
+          at (3.35, -4.56) {$\times\,24$};
+
+        \node[fit={(-2.00, \iclBotY) (2.00, \iclTitleY)},
+          inner sep=0pt] (tficl) {};
+
+        \begin{pgfonlayer}{midground}
+          \draw[arrow] (iclplus.south) -- (orangeTitle.north);
+        \end{pgfonlayer}
+
+
+        \coordinate (decTop) at (0, -7.40);
+
+        \def\trainx{-1.55}
+        \def\testx{1.20}
+        \def\rowdy{0.44}
+        \def\rowytop{-7.60}
+
+        \node[anchor=south, font=\footnotesize\bfseries, text=black,
+          draw=groupPurpleEdge, thick, rounded corners=2pt,
+        fill=groupPurple, inner xsep=3pt, inner ysep=1pt] (purpleTitle)
+        at (0, -7.40) {Many-Class Decoder};
+
+        \begin{pgfonlayer}{midground}
+          \draw[arrow] (0, {\iclBotY - 0.14}) -- (purpleTitle.north);
+        \end{pgfonlayer}
+
+        \foreach \i/\cls/\letter/\angA/\angB in {
+          1/cA/0/30/60,
+          2/cB/1/120/150,
+          3/cX/2/200/230,
+          4/cA/0/10/40
+        } {
+          \pgfmathsetmacro{\rowy}{\rowytop - (\i - 1) * \rowdy}
+          \node[anchor=east, font=\scriptsize] at ($(\trainx - 0.28, \rowy)$)
+          {$h^{\mathrm{train}}_{\i}$};
+          \filldraw[draw=\cls!60!black, line width=0.4pt, fill=\cls, rounded corners=1.5pt]
+          ($(\trainx - 0.18, \rowy - 0.15)$) rectangle
+          ($(\trainx + 0.48, \rowy + 0.15)$);
+          \node[font=\scriptsize\bfseries, text=white, anchor=center]
+          at ($(\trainx + 0.15, \rowy)$) {\letter};
+          \foreach \k/\ang in {0/\angA, 1/\angB} {
+            \pgfmathsetmacro{\cx}{\trainx + 0.68 + \k*0.32}
+            \filldraw[draw=violet!50!black, line width=0.3pt, fill=violet!15]
+            ($(\cx - 0.14, \rowy - 0.17)$) rectangle
+            ($(\cx + 0.14, \rowy + 0.17)$);
+            \draw[-{Stealth[length=3pt, width=2.4pt]},
+              line width=0.4pt, violet!55!black]
+              ($(\cx, \rowy) + ({0.09*cos(\ang+180)}, {0.09*sin(\ang+180)})$) --
+              ($(\cx, \rowy) + ({0.09*cos(\ang)},     {0.09*sin(\ang)})$);
+          }
+          \coordinate (tr\i) at ($(\trainx + 1.14, \rowy)$);
+        }
+
+        \def\testytop{-7.90}
+        \def\testdy{0.88}
+        \foreach \i/\angA/\angB in {1/25/55, 2/140/170} {
+          \pgfmathsetmacro{\rowy}{\testytop - (\i - 1) * \testdy}
+          \foreach \k/\ang in {0/\angA, 1/\angB} {
+            \pgfmathsetmacro{\cx}{\testx + \k*0.32 - 0.16}
+            \filldraw[draw=violet!60!black, line width=0.3pt, fill=violet!22]
+            ($(\cx - 0.14, \rowy - 0.17)$) rectangle
+            ($(\cx + 0.14, \rowy + 0.17)$);
+            \draw[-{Stealth[length=3pt, width=2.4pt]},
+              line width=0.4pt, violet!65!black]
+              ($(\cx, \rowy) + ({0.09*cos(\ang+180)}, {0.09*sin(\ang+180)})$) --
+              ($(\cx, \rowy) + ({0.09*cos(\ang)},     {0.09*sin(\ang)})$);
+          }
+          \node[anchor=west, font=\scriptsize] at ($(\testx + 0.32, \rowy)$)
+          {$h^{\mathrm{test}}_{\i}$};
+          \coordinate (te\i) at ($(\testx - 0.30, \rowy)$);
+          \coordinate (teR\i) at ($(\testx + 0.85, \rowy)$);
+        }
+
+        \draw[cA, line width=1.4pt, opacity=0.85] (te1) -- (tr1);
+        \draw[cA, line width=1.0pt, opacity=0.65] (te1) -- (tr4);
+        \draw[cB, line width=1.3pt, opacity=0.80] (te2) -- (tr2);
+        \draw[cX, line width=1.0pt, opacity=0.70] (te2) -- (tr3);
+
+        \node[anchor=west, font=\scriptsize, text=black, align=left]
+          at (3.70, -7.95)
+          {Attention-weighted\\ average of one-hot \\ encoded labels $(y_i)$};
+
+        \foreach \i/\wA/\wB/\wC/\wD in {
+          1/1.00/0.00/0.00/0.00,
+          2/0.00/0.60/0.40/0.00
+        } {
+          \pgfmathsetmacro{\rowy}{\testytop - (\i - 1) * \testdy}
+          \pgfmathsetmacro{\xstart}{\testx + 1.00}
+          \pgfmathsetmacro{\barH}{0.12}
+          \pgfmathsetmacro{\barW}{0.75}
+          \pgfmathsetmacro{\sA}{\wA * \barW}
+          \pgfmathsetmacro{\sB}{\wB * \barW}
+          \pgfmathsetmacro{\sC}{\wC * \barW}
+          \pgfmathsetmacro{\sD}{\wD * \barW}
+          \filldraw[fill=cA, draw=black!40, line width=0.2pt]
+          (\xstart, \rowy - \barH) rectangle (\xstart + \sA, \rowy + \barH);
+          \pgfmathsetmacro{\xa}{\xstart + \sA}
+          \filldraw[fill=cB, draw=black!40, line width=0.2pt]
+          (\xa, \rowy - \barH) rectangle (\xa + \sB, \rowy + \barH);
+          \pgfmathsetmacro{\xb}{\xa + \sB}
+          \filldraw[fill=cX, draw=black!40, line width=0.2pt]
+          (\xb, \rowy - \barH) rectangle (\xb + \sC, \rowy + \barH);
+          \pgfmathsetmacro{\xc}{\xb + \sC}
+          \filldraw[fill=cD, draw=black!40, line width=0.2pt]
+          (\xc, \rowy - \barH) rectangle (\xc + \sD, \rowy + \barH);
+        }
+        \node[anchor=south, font=\scriptsize\bfseries, text=black, align=center]
+        at ($(\testx + 1.40, \testytop + 0.2)$) {$p(y\!\mid\!h^{\mathrm{test}}_i)$};
+
+        \node[anchor=north, font=\scriptsize, align=center] at (0, -9.55)
+        {$\hat{y} \in \mathbb{R}^{N_\text{test} \times |\mathcal{Y}|}$ \,(class logits, many-class classification)};
+        \draw[arrow]
+        (0, -9.20) -- (0, -9.55);
+
+        \node[fit={(\trainx - 1.50, -7.40) (\trainx - 0.50, -9.05)},
+        inner sep=0pt] (purpleAnchorL) {};
+        \node[fit={(\testx + 0.85, -7.40) (\testx + 1.85, -9.05)},
+        inner sep=0pt] (purpleAnchorR) {};
+
+      \end{scope}
+
+      \def\stageW{6.8cm}
+      \begin{scope}[on background layer]
+        \node[fit=(tfcol), minimum width=\stageW,
+          fill=groupCyan, draw=groupCyanEdge, thick,
+        rounded corners=4pt, inner xsep=10pt, inner ysep=4pt] (cyanGroup) {};
+
+        \node[fit=(tfrow), minimum width=\stageW,
+          fill=groupGreen, draw=groupGreenEdge, thick,
+        rounded corners=4pt, inner xsep=10pt, inner ysep=4pt] (greenGroup) {};
+
+        \node[fit=(tficl), minimum width=\stageW,
+          fill=groupOrange, draw=groupOrangeEdge, thick,
+        rounded corners=4pt, inner xsep=10pt, inner ysep=4pt] (orangeGroup) {};
+
+        \node[fit=(purpleAnchorL)(purpleAnchorR), minimum width=\stageW,
+          fill=groupPurple, draw=groupPurpleEdge, thick,
+        rounded corners=4pt, inner xsep=10pt, inner ysep=6pt] (purpleGroup) {};
+      \end{scope}
+    \end{scope}
+
+    \begin{pgfonlayer}{midground}
+      \node[plus, fill=orange!25, draw=orange!70!black] (cyansw) at (0, -0.05) {};
+      \draw (0, -0.05) node[spdt, scale=0.3] {};
+      \draw[arrow, dotted] (inducingSouth.south -| cyansw) -- node[right, pos=0.65, font=\tiny, text=black] {$3\mkern-6mu\times\mkern-6muC\mkern-6mu\times\mkern-6muK$} (cyansw.north);
+      \draw[arrow, dash pattern={on 2pt off 1pt}] let
+      \p1 = (colEmbOutRows |- cyanGroup.south),
+      \p2 = (cyansw.east)
+      in
+      (\p1) -- node[right, pos=0.5, font=\tiny, text=black] {$C\mkern-6mu\times\mkern-6muN$} (\x1, \y2) -- (\p2);
+      \draw[arrow] (cyansw.south) -- (greenTitle.north);
+      \draw[dotted, thick] (linear.west) -- ++(-1.2, 0) coordinate (lhsCorner) -- (lhsCorner |- {$(cyansw.west) + (0.2, 0.4)$}) -- node[above=4pt, left, font=\tiny, text=black] {$(3\!+\!3)\mkern-6mu\times\mkern-6muC$} ($(cyansw.west) + (0.2, 0.4)$);
+
+    \end{pgfonlayer}
+  \end{scope}
+\end{tikzpicture}

@@ -1,0 +1,16 @@
+
+TabPFN requires a one-time license acceptance to download model weights for local inference.
+Opening your browser to complete login/registration…
+
+  https://ux.priorlabs.ai/login?callback=http://localhost:44877&hf_repo_id=tabpfn_2_6
+
+Waiting for login to complete…
+
+Having trouble? You can also authenticate manually:
+  1. Open https://ux.priorlabs.ai/account in a browser (log in or register if needed)
+  2. Accept the license at https://ux.priorlabs.ai/account/licenses
+  3. Copy your API Key
+  4. Paste the API key below
+
+API key (or press Enter to keep waiting): License accepted — API key cached for future sessions.
+
