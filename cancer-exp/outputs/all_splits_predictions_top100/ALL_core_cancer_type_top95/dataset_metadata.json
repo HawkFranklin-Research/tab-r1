@@ -1,0 +1,20 @@
+{
+  "dataset_name": "ALL_core_cancer_type_top95",
+  "dataset_path": "/home/prime/Documents/g3/cancer-exp/datasets_top100/ALL_core_cancer_type_top95.csv",
+  "task_type": "multiclass",
+  "target_name": "target",
+  "total_samples": 3238,
+  "train_samples": 2266,
+  "val_samples": 486,
+  "test_samples": 486,
+  "train_rows_cap": 512,
+  "train_rows_used_for_fit": 512,
+  "versions": [
+    "v1",
+    "v2",
+    "v2_5",
+    "v2_6",
+    "v3"
+  ],
+  "note": "Predictions are saved for train, val, test, and combined all_samples. Models are fit on the same capped training subset used by generation comparison."
+}

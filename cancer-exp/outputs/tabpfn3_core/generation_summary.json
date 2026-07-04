@@ -1,0 +1,182 @@
+{
+  "counts": {
+    "datasets_total": 10,
+    "datasets_success": 10,
+    "datasets_failed": 0
+  },
+  "runs": [
+    {
+      "dataset": "ALL_core_cancer_type_top488",
+      "status": "success",
+      "run_dir": "/home/prime/Documents/g3/cancer-exp/outputs/tabpfn3_core/runs/all_core_cancer_type_top488/20260528_063631",
+      "rows": [
+        {
+          "model_name": "tabpfn_v3",
+          "version": "v3",
+          "task_type": "multiclass",
+          "status": "success",
+          "accuracy": 0.9567901234567902,
+          "f1": 0.9600864940578436,
+          "roc_auc": 0.997906179792381,
+          "log_loss": 0.1386109235076032
+        }
+      ]
+    },
+    {
+      "dataset": "BRCA_core_os_event_top500",
+      "status": "success",
+      "run_dir": "/home/prime/Documents/g3/cancer-exp/outputs/tabpfn3_core/runs/brca_core_os_event_top500/20260528_063642",
+      "rows": [
+        {
+          "model_name": "tabpfn_v3",
+          "version": "v3",
+          "task_type": "binary",
+          "status": "success",
+          "accuracy": 0.8707865168539326,
+          "f1": 0.0,
+          "roc_auc": 0.4258064516129032,
+          "log_loss": 0.3910616996365645
+        }
+      ]
+    },
+    {
+      "dataset": "BRCA_core_source_top500",
+      "status": "success",
+      "run_dir": "/home/prime/Documents/g3/cancer-exp/outputs/tabpfn3_core/runs/brca_core_source_top500/20260528_063647",
+      "rows": [
+        {
+          "model_name": "tabpfn_v3",
+          "version": "v3",
+          "task_type": "binary",
+          "status": "success",
+          "accuracy": 0.994475138121547,
+          "f1": 0.9969230769230769,
+          "roc_auc": 0.9969325153374233,
+          "log_loss": 0.023876548264095493
+        }
+      ]
+    },
+    {
+      "dataset": "ESCA_core_os_event_top500",
+      "status": "success",
+      "run_dir": "/home/prime/Documents/g3/cancer-exp/outputs/tabpfn3_core/runs/esca_core_os_event_top500/20260528_063652",
+      "rows": [
+        {
+          "model_name": "tabpfn_v3",
+          "version": "v3",
+          "task_type": "binary",
+          "status": "success",
+          "accuracy": 0.6071428571428571,
+          "f1": 0.15384615384615385,
+          "roc_auc": 0.59375,
+          "log_loss": 0.6754794801081171
+        }
+      ]
+    },
+    {
+      "dataset": "HNSCC_core_os_event_top500",
+      "status": "success",
+      "run_dir": "/home/prime/Documents/g3/cancer-exp/outputs/tabpfn3_core/runs/hnscc_core_os_event_top500/20260528_063655",
+      "rows": [
+        {
+          "model_name": "tabpfn_v3",
+          "version": "v3",
+          "task_type": "binary",
+          "status": "success",
+          "accuracy": 0.6210526315789474,
+          "f1": 0.18181818181818182,
+          "roc_auc": 0.6228070175438597,
+          "log_loss": 0.6558289408789884
+        }
+      ]
+    },
+    {
+      "dataset": "HNSCC_core_source_top500",
+      "status": "success",
+      "run_dir": "/home/prime/Documents/g3/cancer-exp/outputs/tabpfn3_core/runs/hnscc_core_source_top500/20260528_063659",
+      "rows": [
+        {
+          "model_name": "tabpfn_v3",
+          "version": "v3",
+          "task_type": "binary",
+          "status": "success",
+          "accuracy": 1.0,
+          "f1": 1.0,
+          "roc_auc": 1.0,
+          "log_loss": 1.367904891291379e-05
+        }
+      ]
+    },
+    {
+      "dataset": "LSCC_core_os_event_top500",
+      "status": "success",
+      "run_dir": "/home/prime/Documents/g3/cancer-exp/outputs/tabpfn3_core/runs/lscc_core_os_event_top500/20260528_063703",
+      "rows": [
+        {
+          "model_name": "tabpfn_v3",
+          "version": "v3",
+          "task_type": "binary",
+          "status": "success",
+          "accuracy": 0.6067415730337079,
+          "f1": 0.0,
+          "roc_auc": 0.5084656084656085,
+          "log_loss": 0.6598261476588256
+        }
+      ]
+    },
+    {
+      "dataset": "LSCC_core_source_top500",
+      "status": "success",
+      "run_dir": "/home/prime/Documents/g3/cancer-exp/outputs/tabpfn3_core/runs/lscc_core_source_top500/20260528_063707",
+      "rows": [
+        {
+          "model_name": "tabpfn_v3",
+          "version": "v3",
+          "task_type": "binary",
+          "status": "success",
+          "accuracy": 1.0,
+          "f1": 1.0,
+          "roc_auc": 1.0,
+          "log_loss": 1.4201246559184278e-05
+        }
+      ]
+    },
+    {
+      "dataset": "LUAD_core_os_event_top500",
+      "status": "success",
+      "run_dir": "/home/prime/Documents/g3/cancer-exp/outputs/tabpfn3_core/runs/luad_core_os_event_top500/20260528_063711",
+      "rows": [
+        {
+          "model_name": "tabpfn_v3",
+          "version": "v3",
+          "task_type": "binary",
+          "status": "success",
+          "accuracy": 0.6666666666666666,
+          "f1": 0.0,
+          "roc_auc": 0.6524453694068678,
+          "log_loss": 0.6211500979974246
+        }
+      ]
+    },
+    {
+      "dataset": "LUAD_core_source_top500",
+      "status": "success",
+      "run_dir": "/home/prime/Documents/g3/cancer-exp/outputs/tabpfn3_core/runs/luad_core_source_top500/20260528_063715",
+      "rows": [
+        {
+          "model_name": "tabpfn_v3",
+          "version": "v3",
+          "task_type": "binary",
+          "status": "success",
+          "accuracy": 1.0,
+          "f1": 1.0,
+          "roc_auc": 1.0,
+          "log_loss": 0.003889468031006775
+        }
+      ]
+    }
+  ],
+  "versions": [
+    "v3"
+  ]
+}

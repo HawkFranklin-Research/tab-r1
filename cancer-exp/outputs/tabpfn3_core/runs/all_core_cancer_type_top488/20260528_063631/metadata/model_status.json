@@ -1,0 +1,12 @@
+{
+  "tabpfn_v3": {
+    "status": "success",
+    "plot_files": [
+      "tabpfn_v3_confusion_matrix.png"
+    ],
+    "raw_files": {
+      "json": "/home/prime/Documents/g3/cancer-exp/outputs/tabpfn3_core/runs/all_core_cancer_type_top488/20260528_063631/raw/tabpfn_v3/raw_predictions.json",
+      "npz": "/home/prime/Documents/g3/cancer-exp/outputs/tabpfn3_core/runs/all_core_cancer_type_top488/20260528_063631/raw/tabpfn_v3/raw_predictions.npz"
+    }
+  }
+}

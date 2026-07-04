@@ -1,0 +1,6 @@
+model_name,version,task_type,status,error_type,error_message,accuracy,f1,roc_auc,log_loss
+tabpfn_v1,v1,binary,failed,ValueError,"('The number of features for this classifier is restricted to ', 100)",,,,
+tabpfn_v2,v2,binary,success,,,0.5357142857142857,0.43478260869565216,0.5364583333333334,0.7080909743814953
+tabpfn_v2_5,v2_5,binary,success,,,0.6071428571428571,0.15384615384615385,0.5208333333333333,0.6716732535767472
+tabpfn_v2_6,v2_6,binary,success,,,0.5,0.36363636363636365,0.515625,0.7117895849069111
+tabpfn_v3,v3,binary,success,,,0.6071428571428571,0.15384615384615385,0.59375,0.6754794801081171

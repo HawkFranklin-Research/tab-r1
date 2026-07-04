@@ -1,0 +1,8 @@
+{
+  "plots": [
+    "/home/prime/Documents/g3/cancer-exp/plots/all_generations_top100/all_generations_mean_metric_heatmap.png",
+    "/home/prime/Documents/g3/cancer-exp/plots/all_generations_top100/all_generations_task_family_bars.png",
+    "/home/prime/Documents/g3/cancer-exp/plots/all_generations_top100/all_generations_dataset_accuracy.png"
+  ],
+  "report": "/home/prime/Documents/g3/cancer-exp/reports/tabpfn_all_generations_cancer_report.md"
+}

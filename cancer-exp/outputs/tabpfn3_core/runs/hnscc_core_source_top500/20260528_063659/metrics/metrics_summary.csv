@@ -1,0 +1,2 @@
+model_name,version,task_type,status,accuracy,f1,roc_auc,log_loss
+tabpfn_v3,v3,binary,success,1.0,1.0,1.0,1.367904891291379e-05

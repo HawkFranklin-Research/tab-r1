@@ -1,0 +1,55 @@
+{
+  "dataset_name": "LUAD_core_source_top100",
+  "rows": [
+    {
+      "model_name": "tabpfn_v1",
+      "version": "v1",
+      "task_type": "binary",
+      "status": "success",
+      "accuracy": 1.0,
+      "f1": 1.0,
+      "roc_auc": 1.0,
+      "log_loss": 0.008447174249581758
+    },
+    {
+      "model_name": "tabpfn_v2",
+      "version": "v2",
+      "task_type": "binary",
+      "status": "success",
+      "accuracy": 1.0,
+      "f1": 1.0,
+      "roc_auc": 1.0,
+      "log_loss": 0.12662860530793466
+    },
+    {
+      "model_name": "tabpfn_v2_5",
+      "version": "v2_5",
+      "task_type": "binary",
+      "status": "success",
+      "accuracy": 1.0,
+      "f1": 1.0,
+      "roc_auc": 1.0,
+      "log_loss": 0.010425341291922843
+    },
+    {
+      "model_name": "tabpfn_v2_6",
+      "version": "v2_6",
+      "task_type": "binary",
+      "status": "success",
+      "accuracy": 1.0,
+      "f1": 1.0,
+      "roc_auc": 1.0,
+      "log_loss": 0.017024403840643194
+    },
+    {
+      "model_name": "tabpfn_v3",
+      "version": "v3",
+      "task_type": "binary",
+      "status": "success",
+      "accuracy": 1.0,
+      "f1": 1.0,
+      "roc_auc": 1.0,
+      "log_loss": 0.0040713057109936016
+    }
+  ]
+}

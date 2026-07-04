@@ -1,0 +1,453 @@
+[
+  {
+    "dbId": 5693527,
+    "displayName": "p-S1981,Ac-K3016-ATM [nucleoplasm]",
+    "stId": "R-HSA-5693527",
+    "stIdVersion": "R-HSA-5693527.1",
+    "maxDepth": 1,
+    "name": [
+      "p-S1981,Ac-K3016-ATM"
+    ],
+    "speciesName": "Homo sapiens",
+    "endCoordinate": 3056,
+    "referenceType": "ReferenceGeneProduct",
+    "startCoordinate": 1,
+    "className": "Protein",
+    "inDisease": false,
+    "schemaClass": "EntityWithAccessionedSequence"
+  },
+  {
+    "dbId": 3209194,
+    "displayName": "TP53 Tetramer [nucleoplasm]",
+    "stId": "R-HSA-3209194",
+    "stIdVersion": "R-HSA-3209194.1",
+    "maxDepth": 2,
+    "name": [
+      "TP53 Tetramer"
+    ],
+    "speciesName": "Homo sapiens",
+    "isChimeric": false,
+    "inDisease": false,
+    "schemaClass": "Complex",
+    "className": "Complex"
+  },
+  {
+    "dbId": 29358,
+    "displayName": "ATP [nucleoplasm]",
+    "stId": "R-ALL-29358",
+    "stIdVersion": "R-ALL-29358.3",
+    "maxDepth": 1,
+    "name": [
+      "ATP",
+      "Adenosine 5'-triphosphate",
+      "ATP(4-)"
+    ],
+    "referenceType": "ReferenceMolecule",
+    "className": "Chemical Compound",
+    "inDisease": false,
+    "schemaClass": "SimpleEntity"
+  },
+  {
+    "dbId": 349474,
+    "displayName": "p-S15-TP53 Tetramer [nucleoplasm]",
+    "stId": "R-HSA-349474",
+    "stIdVersion": "R-HSA-349474.1",
+    "maxDepth": 2,
+    "name": [
+      "p-S15-TP53 Tetramer"
+    ],
+    "speciesName": "Homo sapiens",
+    "inDisease": false,
+    "schemaClass": "Complex",
+    "className": "Complex"
+  },
+  {
+    "dbId": 113582,
+    "displayName": "ADP [nucleoplasm]",
+    "stId": "R-ALL-113582",
+    "stIdVersion": "R-ALL-113582.3",
+    "maxDepth": 1,
+    "name": [
+      "ADP",
+      "Adenosine 5'-diphosphate",
+      "ADP(3-)"
+    ],
+    "referenceType": "ReferenceMolecule",
+    "className": "Chemical Compound",
+    "inDisease": false,
+    "schemaClass": "SimpleEntity"
+  },
+  {
+    "dbId": 6793669,
+    "displayName": "p-S166,S188-MDM2 [nucleoplasm]",
+    "stId": "R-HSA-6793669",
+    "stIdVersion": "R-HSA-6793669.1",
+    "maxDepth": 1,
+    "name": [
+      "p-S166,S188-MDM2",
+      "p-S166,188-MDM2",
+      "p-MDM2",
+      "Phospho-MDM2"
+    ],
+    "speciesName": "Homo sapiens",
+    "endCoordinate": 491,
+    "referenceType": "ReferenceGeneProduct",
+    "startCoordinate": 1,
+    "className": "Protein",
+    "inDisease": false,
+    "schemaClass": "EntityWithAccessionedSequence"
+  },
+  {
+    "dbId": 6804954,
+    "displayName": "p-5S,T-MDM2 [nucleoplasm]",
+    "stId": "R-HSA-6804954",
+    "stIdVersion": "R-HSA-6804954.1",
+    "maxDepth": 1,
+    "name": [
+      "p-5S,T-MDM2",
+      "p-S166,S188,S386,S395,S407,T419-MDM2"
+    ],
+    "speciesName": "Homo sapiens",
+    "endCoordinate": 491,
+    "referenceType": "ReferenceGeneProduct",
+    "startCoordinate": 1,
+    "className": "Protein",
+    "inDisease": false,
+    "schemaClass": "EntityWithAccessionedSequence"
+  },
+  {
+    "dbId": 6804932,
+    "displayName": "p-S166,S188-MDM2:MDM4 [nucleoplasm]",
+    "stId": "R-HSA-6804932",
+    "stIdVersion": "R-HSA-6804932.1",
+    "maxDepth": 2,
+    "name": [
+      "p-S166,S188-MDM2:MDM4"
+    ],
+    "speciesName": "Homo sapiens",
+    "isChimeric": false,
+    "inDisease": false,
+    "schemaClass": "Complex",
+    "className": "Complex"
+  },
+  {
+    "dbId": 6804939,
+    "displayName": "p-S166,S188-MDM2:p-S403-MDM4 [nucleoplasm]",
+    "stId": "R-HSA-6804939",
+    "stIdVersion": "R-HSA-6804939.1",
+    "maxDepth": 2,
+    "name": [
+      "p-S166,S188-MDM2:p-S403-MDM4"
+    ],
+    "speciesName": "Homo sapiens",
+    "isChimeric": false,
+    "inDisease": false,
+    "schemaClass": "Complex",
+    "className": "Complex"
+  },
+  {
+    "dbId": 6804885,
+    "displayName": "p-S166,S188-MDM2 dimer, p-S166,S188-MDM2,MDM4:TP53 [nucleoplasm]",
+    "stId": "R-HSA-6804885",
+    "stIdVersion": "R-HSA-6804885.2",
+    "maxDepth": 4,
+    "name": [
+      "p-S166,S188-MDM2 dimer, p-S166,S188-MDM2,MDM4:TP53"
+    ],
+    "speciesName": "Homo sapiens",
+    "inDisease": false,
+    "schemaClass": "Complex",
+    "className": "Complex"
+  },
+  {
+    "dbId": 68524,
+    "displayName": "Ub [nucleoplasm]",
+    "stId": "R-HSA-68524",
+    "stIdVersion": "R-HSA-68524.3",
+    "maxDepth": 2,
+    "name": [
+      "Ub",
+      "Ubiquitin",
+      "UBIQ_HUMAN"
+    ],
+    "speciesName": "Homo sapiens",
+    "className": "Set",
+    "inDisease": false,
+    "schemaClass": "DefinedSet"
+  },
+  {
+    "dbId": 3209186,
+    "displayName": "PolyUb-TP53 Tetramer [nucleoplasm]",
+    "stId": "R-HSA-3209186",
+    "stIdVersion": "R-HSA-3209186.2",
+    "maxDepth": 2,
+    "name": [
+      "PolyUb-TP53 Tetramer"
+    ],
+    "speciesName": "Homo sapiens",
+    "isChimeric": false,
+    "inDisease": false,
+    "schemaClass": "Complex",
+    "className": "Complex"
+  },
+  {
+    "dbId": 6804745,
+    "displayName": "p-S166,S188-MDM2 dimer, p-S166,S188-MDM2:MDM4 [nucleoplasm]",
+    "stId": "R-HSA-6804745",
+    "stIdVersion": "R-HSA-6804745.2",
+    "maxDepth": 3,
+    "name": [
+      "p-S166,S188-MDM2 dimer, p-S166,S188-MDM2:MDM4"
+    ],
+    "speciesName": "Homo sapiens",
+    "className": "Set",
+    "inDisease": false,
+    "schemaClass": "DefinedSet"
+  },
+  {
+    "dbId": 6804995,
+    "displayName": "p14ARF:p-S166,S188-MDM2 dimer,p-S166,S188-MDM2:MDM4 [nucleoplasm]",
+    "stId": "R-HSA-6804995",
+    "stIdVersion": "R-HSA-6804995.3",
+    "maxDepth": 4,
+    "name": [
+      "p14ARF:p-S166,S188-MDM2 dimer,p-S166,S188-MDM2:MDM4"
+    ],
+    "speciesName": "Homo sapiens",
+    "isChimeric": false,
+    "inDisease": false,
+    "schemaClass": "Complex",
+    "className": "Complex"
+  },
+  {
+    "dbId": 5683784,
+    "displayName": "p-S,3T-CHEK2 [nucleoplasm]",
+    "stId": "R-HSA-5683784",
+    "stIdVersion": "R-HSA-5683784.1",
+    "maxDepth": 1,
+    "name": [
+      "p-S,3T-CHEK2",
+      "p-T68,S379,T383,T387-CHEK2"
+    ],
+    "speciesName": "Homo sapiens",
+    "endCoordinate": 543,
+    "referenceType": "ReferenceGeneProduct",
+    "startCoordinate": 1,
+    "className": "Protein",
+    "inDisease": false,
+    "schemaClass": "EntityWithAccessionedSequence"
+  },
+  {
+    "dbId": 6804936,
+    "displayName": "p-S166,S188-MDM2:p-S346,S367,S403-MDM4 [nucleoplasm]",
+    "stId": "R-HSA-6804936",
+    "stIdVersion": "R-HSA-6804936.1",
+    "maxDepth": 2,
+    "name": [
+      "p-S166,S188-MDM2:p-S346,S367,S403-MDM4"
+    ],
+    "speciesName": "Homo sapiens",
+    "isChimeric": false,
+    "inDisease": false,
+    "schemaClass": "Complex",
+    "className": "Complex"
+  },
+  {
+    "dbId": 349454,
+    "displayName": "RFWD2 [nucleoplasm]",
+    "stId": "R-HSA-349454",
+    "stIdVersion": "R-HSA-349454.1",
+    "maxDepth": 1,
+    "name": [
+      "RFWD2",
+      "COP1"
+    ],
+    "speciesName": "Homo sapiens",
+    "endCoordinate": 731,
+    "referenceType": "ReferenceGeneProduct",
+    "startCoordinate": 1,
+    "className": "Protein",
+    "inDisease": false,
+    "schemaClass": "EntityWithAccessionedSequence"
+  },
+  {
+    "dbId": 349450,
+    "displayName": "p-S387-RFWD2 [nucleoplasm]",
+    "stId": "R-HSA-349450",
+    "stIdVersion": "R-HSA-349450.1",
+    "maxDepth": 1,
+    "name": [
+      "p-S387-RFWD2",
+      "phospho-COP1(Ser 387)"
+    ],
+    "speciesName": "Homo sapiens",
+    "endCoordinate": 731,
+    "referenceType": "ReferenceGeneProduct",
+    "startCoordinate": 1,
+    "className": "Protein",
+    "inDisease": false,
+    "schemaClass": "EntityWithAccessionedSequence"
+  },
+  {
+    "dbId": 349439,
+    "displayName": "p-S387-RFWD2 [cytosol]",
+    "stId": "R-HSA-349439",
+    "stIdVersion": "R-HSA-349439.1",
+    "maxDepth": 1,
+    "name": [
+      "p-S387-RFWD2",
+      "phosho-COP1(ser-387)"
+    ],
+    "speciesName": "Homo sapiens",
+    "endCoordinate": 731,
+    "referenceType": "ReferenceGeneProduct",
+    "startCoordinate": 1,
+    "className": "Protein",
+    "inDisease": false,
+    "schemaClass": "EntityWithAccessionedSequence"
+  },
+  {
+    "dbId": 349420,
+    "displayName": "p-S387-RFWD2:p-S15-TP53 [nucleoplasm]",
+    "stId": "R-HSA-349420",
+    "stIdVersion": "R-HSA-349420.1",
+    "maxDepth": 3,
+    "name": [
+      "p-S387-RFWD2:p-S15-TP53",
+      "Phospho-COP1(Ser-387):p53 complex"
+    ],
+    "speciesName": "Homo sapiens",
+    "inDisease": false,
+    "schemaClass": "Complex",
+    "className": "Complex"
+  },
+  {
+    "dbId": 113595,
+    "displayName": "Ub [cytosol]",
+    "stId": "R-HSA-113595",
+    "stIdVersion": "R-HSA-113595.1",
+    "maxDepth": 2,
+    "name": [
+      "Ub",
+      "ubiquitin"
+    ],
+    "speciesName": "Homo sapiens",
+    "className": "Set",
+    "inDisease": false,
+    "schemaClass": "DefinedSet"
+  },
+  {
+    "dbId": 349433,
+    "displayName": "ubiquitinated phospho-COP1(ser-387) [cytosol]",
+    "stId": "R-HSA-349433",
+    "stIdVersion": "R-HSA-349433.1",
+    "maxDepth": 3,
+    "name": [
+      "ubiquitinated phospho-COP1(ser-387)"
+    ],
+    "speciesName": "Homo sapiens",
+    "inDisease": false,
+    "schemaClass": "Complex",
+    "className": "Complex"
+  },
+  {
+    "dbId": 68819,
+    "displayName": "26S proteasome [cytosol]",
+    "stId": "R-HSA-68819",
+    "stIdVersion": "R-HSA-68819.3",
+    "maxDepth": 7,
+    "name": [
+      "26S proteasome"
+    ],
+    "speciesName": "Homo sapiens",
+    "inDisease": false,
+    "schemaClass": "Complex",
+    "className": "Complex"
+  },
+  {
+    "dbId": 3222171,
+    "displayName": "p-S15,S20-TP53 Tetramer [nucleoplasm]",
+    "stId": "R-HSA-3222171",
+    "stIdVersion": "R-HSA-3222171.1",
+    "maxDepth": 2,
+    "name": [
+      "p-S15,S20-TP53 Tetramer"
+    ],
+    "speciesName": "Homo sapiens",
+    "isChimeric": false,
+    "inDisease": false,
+    "schemaClass": "Complex",
+    "className": "Complex"
+  },
+  {
+    "dbId": 6804937,
+    "displayName": "PolyUb,p-S166,S188-MDM2:PolyUb,p-S342,S367,S403-MDM4 [nucleoplasm]",
+    "stId": "R-HSA-6804937",
+    "stIdVersion": "R-HSA-6804937.1",
+    "maxDepth": 2,
+    "name": [
+      "PolyUb,p-S166,S188-MDM2:PolyUb,p-S342,S367,S403-MDM4"
+    ],
+    "speciesName": "Homo sapiens",
+    "isChimeric": false,
+    "inDisease": false,
+    "schemaClass": "Complex",
+    "className": "Complex"
+  },
+  {
+    "dbId": 8856287,
+    "displayName": "PolyUb-TP53 Tetramer [cytosol]",
+    "stId": "R-HSA-8856287",
+    "stIdVersion": "R-HSA-8856287.1",
+    "maxDepth": 2,
+    "name": [
+      "PolyUb-TP53 Tetramer"
+    ],
+    "speciesName": "Homo sapiens",
+    "isChimeric": false,
+    "inDisease": false,
+    "schemaClass": "Complex",
+    "className": "Complex"
+  },
+  {
+    "dbId": 6804750,
+    "displayName": "p-S166,S188-MDM2,MDM4 [nucleoplasm]",
+    "stId": "R-HSA-6804750",
+    "stIdVersion": "R-HSA-6804750.1",
+    "maxDepth": 2,
+    "name": [
+      "p-S166,S188-MDM2,MDM4"
+    ],
+    "speciesName": "Homo sapiens",
+    "className": "Set",
+    "inDisease": false,
+    "schemaClass": "DefinedSet"
+  },
+  {
+    "dbId": 3222239,
+    "displayName": "PHF20 [nucleoplasm]",
+    "stId": "R-HSA-3222239",
+    "stIdVersion": "R-HSA-3222239.1",
+    "maxDepth": 1,
+    "name": [
+      "PHF20",
+      "PHD finger protein 20",
+      "Glioma-expressed antigen 2",
+      "Hepatocellular carcinoma-associated antigen 58",
+      "Novel zinc finger protein",
+      "Transcription factor TZP",
+      "C20orf104",
+      "GLEA2",
+      "HCA58",
+      "NZF",
+      "TZP"
+    ],
+    "speciesName": "Homo sapiens",
+    "endCoordinate": 1012,
+    "referenceType": "ReferenceGeneProduct",
+    "startCoordinate": 1,
+    "className": "Protein",
+    "inDisease": false,
+    "schemaClass": "EntityWithAccessionedSequence"
+  }
+]

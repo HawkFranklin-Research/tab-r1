@@ -1,0 +1,15 @@
+{
+  "dataset_name": "ALL_core_cancer_type_top488",
+  "rows": [
+    {
+      "model_name": "tabpfn_v3",
+      "version": "v3",
+      "task_type": "multiclass",
+      "status": "success",
+      "accuracy": 0.9567901234567902,
+      "f1": 0.9600864940578436,
+      "roc_auc": 0.997906179792381,
+      "log_loss": 0.1386109235076032
+    }
+  ]
+}

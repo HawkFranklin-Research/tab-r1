@@ -1,0 +1,15 @@
+{
+  "dataset_name": "LUAD_core_source_top500",
+  "rows": [
+    {
+      "model_name": "tabpfn_v3",
+      "version": "v3",
+      "task_type": "binary",
+      "status": "success",
+      "accuracy": 1.0,
+      "f1": 1.0,
+      "roc_auc": 1.0,
+      "log_loss": 0.003889468031006775
+    }
+  ]
+}

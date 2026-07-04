@@ -1,0 +1,15 @@
+{
+  "dataset_name": "LSCC_core_os_event_top500",
+  "rows": [
+    {
+      "model_name": "tabpfn_v3",
+      "version": "v3",
+      "task_type": "binary",
+      "status": "success",
+      "accuracy": 0.6067415730337079,
+      "f1": 0.0,
+      "roc_auc": 0.5084656084656085,
+      "log_loss": 0.6598261476588256
+    }
+  ]
+}

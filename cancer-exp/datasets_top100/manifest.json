@@ -1,0 +1,186 @@
+{
+  "input_root": "/home/prime/Documents/g3/c-5/gpt/processed/train_ready",
+  "output_dir": "/home/prime/Documents/g3/cancer-exp/datasets_top100",
+  "view": "core",
+  "max_features": 100,
+  "leakage_control": "All features with prefix clinical:: are excluded from exported model matrices.",
+  "records": [
+    {
+      "name": "BRCA_core_source_top100",
+      "path": "/home/prime/Documents/g3/cancer-exp/datasets_top100/BRCA_core_source_top100.csv",
+      "task": "binary",
+      "target": "target",
+      "source_cancers": [
+        "BRCA"
+      ],
+      "view": "core",
+      "samples": 1206,
+      "features": 100,
+      "class_counts": {
+        "TCGA": 1084,
+        "CPTAC": 122
+      },
+      "note": "Predicts TCGA/CPTAC source; useful as batch-effect and normalization diagnostic."
+    },
+    {
+      "name": "HNSCC_core_source_top100",
+      "path": "/home/prime/Documents/g3/cancer-exp/datasets_top100/HNSCC_core_source_top100.csv",
+      "task": "binary",
+      "target": "target",
+      "source_cancers": [
+        "HNSCC"
+      ],
+      "view": "core",
+      "samples": 631,
+      "features": 100,
+      "class_counts": {
+        "TCGA": 523,
+        "CPTAC": 108
+      },
+      "note": "Predicts TCGA/CPTAC source; useful as batch-effect and normalization diagnostic."
+    },
+    {
+      "name": "LSCC_core_source_top100",
+      "path": "/home/prime/Documents/g3/cancer-exp/datasets_top100/LSCC_core_source_top100.csv",
+      "task": "binary",
+      "target": "target",
+      "source_cancers": [
+        "LSCC"
+      ],
+      "view": "core",
+      "samples": 595,
+      "features": 100,
+      "class_counts": {
+        "TCGA": 487,
+        "CPTAC": 108
+      },
+      "note": "Predicts TCGA/CPTAC source; useful as batch-effect and normalization diagnostic."
+    },
+    {
+      "name": "LUAD_core_source_top100",
+      "path": "/home/prime/Documents/g3/cancer-exp/datasets_top100/LUAD_core_source_top100.csv",
+      "task": "binary",
+      "target": "target",
+      "source_cancers": [
+        "LUAD"
+      ],
+      "view": "core",
+      "samples": 624,
+      "features": 100,
+      "class_counts": {
+        "TCGA": 514,
+        "CPTAC": 110
+      },
+      "note": "Predicts TCGA/CPTAC source; useful as batch-effect and normalization diagnostic."
+    },
+    {
+      "name": "BRCA_core_os_event_top100",
+      "path": "/home/prime/Documents/g3/cancer-exp/datasets_top100/BRCA_core_os_event_top100.csv",
+      "task": "binary",
+      "target": "target",
+      "source_cancers": [
+        "BRCA"
+      ],
+      "view": "core",
+      "samples": 1183,
+      "features": 100,
+      "class_counts": {
+        "0": 1030,
+        "1": 153
+      },
+      "note": "Predicts observed OS event; preliminary only because time-to-event censoring is not modeled."
+    },
+    {
+      "name": "ESCA_core_os_event_top100",
+      "path": "/home/prime/Documents/g3/cancer-exp/datasets_top100/ESCA_core_os_event_top100.csv",
+      "task": "binary",
+      "target": "target",
+      "source_cancers": [
+        "ESCA"
+      ],
+      "view": "core",
+      "samples": 182,
+      "features": 100,
+      "class_counts": {
+        "0": 106,
+        "1": 76
+      },
+      "note": "Predicts observed OS event; preliminary only because time-to-event censoring is not modeled."
+    },
+    {
+      "name": "HNSCC_core_os_event_top100",
+      "path": "/home/prime/Documents/g3/cancer-exp/datasets_top100/HNSCC_core_os_event_top100.csv",
+      "task": "binary",
+      "target": "target",
+      "source_cancers": [
+        "HNSCC"
+      ],
+      "view": "core",
+      "samples": 628,
+      "features": 100,
+      "class_counts": {
+        "0": 375,
+        "1": 253
+      },
+      "note": "Predicts observed OS event; preliminary only because time-to-event censoring is not modeled."
+    },
+    {
+      "name": "LSCC_core_os_event_top100",
+      "path": "/home/prime/Documents/g3/cancer-exp/datasets_top100/LSCC_core_os_event_top100.csv",
+      "task": "binary",
+      "target": "target",
+      "source_cancers": [
+        "LSCC"
+      ],
+      "view": "core",
+      "samples": 590,
+      "features": 100,
+      "class_counts": {
+        "0": 355,
+        "1": 235
+      },
+      "note": "Predicts observed OS event; preliminary only because time-to-event censoring is not modeled."
+    },
+    {
+      "name": "LUAD_core_os_event_top100",
+      "path": "/home/prime/Documents/g3/cancer-exp/datasets_top100/LUAD_core_os_event_top100.csv",
+      "task": "binary",
+      "target": "target",
+      "source_cancers": [
+        "LUAD"
+      ],
+      "view": "core",
+      "samples": 620,
+      "features": 100,
+      "class_counts": {
+        "0": 410,
+        "1": 210
+      },
+      "note": "Predicts observed OS event; preliminary only because time-to-event censoring is not modeled."
+    },
+    {
+      "name": "ALL_core_cancer_type_top95",
+      "path": "/home/prime/Documents/g3/cancer-exp/datasets_top100/ALL_core_cancer_type_top95.csv",
+      "task": "multiclass",
+      "target": "target",
+      "source_cancers": [
+        "BRCA",
+        "ESCA",
+        "HNSCC",
+        "LSCC",
+        "LUAD"
+      ],
+      "view": "core",
+      "samples": 3238,
+      "features": 95,
+      "class_counts": {
+        "BRCA": 1206,
+        "HNSCC": 631,
+        "LUAD": 624,
+        "LSCC": 595,
+        "ESCA": 182
+      },
+      "note": "Predicts cancer type across all five cohorts; feature union is built from per-cancer high-variance features."
+    }
+  ]
+}

@@ -1,0 +1,586 @@
+{
+  "counts": {
+    "datasets_total": 10,
+    "datasets_success": 10,
+    "datasets_failed": 0
+  },
+  "runs": [
+    {
+      "dataset": "ALL_core_cancer_type_top95",
+      "status": "success",
+      "run_dir": "/home/prime/Documents/g3/cancer-exp/outputs/tabpfn_all_generations_top100/runs/all_core_cancer_type_top95/20260528_064439",
+      "rows": [
+        {
+          "model_name": "tabpfn_v1",
+          "version": "v1",
+          "task_type": "multiclass",
+          "status": "success",
+          "accuracy": 0.8353909465020576,
+          "f1": 0.8134565791243483,
+          "roc_auc": 0.9791199894239007,
+          "log_loss": 0.4419343674096525
+        },
+        {
+          "model_name": "tabpfn_v2",
+          "version": "v2",
+          "task_type": "multiclass",
+          "status": "success",
+          "accuracy": 0.8950617283950617,
+          "f1": 0.9051090944717777,
+          "roc_auc": 0.991807659007901,
+          "log_loss": 0.19305946794008785
+        },
+        {
+          "model_name": "tabpfn_v2_5",
+          "version": "v2_5",
+          "task_type": "multiclass",
+          "status": "success",
+          "accuracy": 0.8950617283950617,
+          "f1": 0.9051090944717777,
+          "roc_auc": 0.9918094204524044,
+          "log_loss": 0.20148419734345024
+        },
+        {
+          "model_name": "tabpfn_v2_6",
+          "version": "v2_6",
+          "task_type": "multiclass",
+          "status": "success",
+          "accuracy": 0.8950617283950617,
+          "f1": 0.9050566969007983,
+          "roc_auc": 0.991807659007901,
+          "log_loss": 0.1927936105304527
+        },
+        {
+          "model_name": "tabpfn_v3",
+          "version": "v3",
+          "task_type": "multiclass",
+          "status": "success",
+          "accuracy": 0.8950617283950617,
+          "f1": 0.9050297117878061,
+          "roc_auc": 0.9918094204524044,
+          "log_loss": 0.19070569377905286
+        }
+      ]
+    },
+    {
+      "dataset": "BRCA_core_os_event_top100",
+      "status": "success",
+      "run_dir": "/home/prime/Documents/g3/cancer-exp/outputs/tabpfn_all_generations_top100/runs/brca_core_os_event_top100/20260528_064506",
+      "rows": [
+        {
+          "model_name": "tabpfn_v1",
+          "version": "v1",
+          "task_type": "binary",
+          "status": "success",
+          "accuracy": 0.8707865168539326,
+          "f1": 0.0,
+          "roc_auc": 0.5514726507713885,
+          "log_loss": 0.3944163035412263
+        },
+        {
+          "model_name": "tabpfn_v2",
+          "version": "v2",
+          "task_type": "binary",
+          "status": "success",
+          "accuracy": 0.8707865168539326,
+          "f1": 0.0,
+          "roc_auc": 0.5997194950911642,
+          "log_loss": 0.3764511692959552
+        },
+        {
+          "model_name": "tabpfn_v2_5",
+          "version": "v2_5",
+          "task_type": "binary",
+          "status": "success",
+          "accuracy": 0.8707865168539326,
+          "f1": 0.0,
+          "roc_auc": 0.5688639551192145,
+          "log_loss": 0.3801186859475801
+        },
+        {
+          "model_name": "tabpfn_v2_6",
+          "version": "v2_6",
+          "task_type": "binary",
+          "status": "success",
+          "accuracy": 0.8707865168539326,
+          "f1": 0.0,
+          "roc_auc": 0.5866760168302945,
+          "log_loss": 0.3742835329641203
+        },
+        {
+          "model_name": "tabpfn_v3",
+          "version": "v3",
+          "task_type": "binary",
+          "status": "success",
+          "accuracy": 0.8707865168539326,
+          "f1": 0.0,
+          "roc_auc": 0.532117812061711,
+          "log_loss": 0.3818500309283459
+        }
+      ]
+    },
+    {
+      "dataset": "BRCA_core_source_top100",
+      "status": "success",
+      "run_dir": "/home/prime/Documents/g3/cancer-exp/outputs/tabpfn_all_generations_top100/runs/brca_core_source_top100/20260528_064527",
+      "rows": [
+        {
+          "model_name": "tabpfn_v1",
+          "version": "v1",
+          "task_type": "binary",
+          "status": "success",
+          "accuracy": 0.994475138121547,
+          "f1": 0.9969230769230769,
+          "roc_auc": 0.9969325153374233,
+          "log_loss": 0.027388504436006496
+        },
+        {
+          "model_name": "tabpfn_v2",
+          "version": "v2",
+          "task_type": "binary",
+          "status": "success",
+          "accuracy": 0.994475138121547,
+          "f1": 0.9969230769230769,
+          "roc_auc": 0.9969325153374233,
+          "log_loss": 0.023836691126507634
+        },
+        {
+          "model_name": "tabpfn_v2_5",
+          "version": "v2_5",
+          "task_type": "binary",
+          "status": "success",
+          "accuracy": 0.994475138121547,
+          "f1": 0.9969230769230769,
+          "roc_auc": 0.9969325153374233,
+          "log_loss": 0.02388342718795572
+        },
+        {
+          "model_name": "tabpfn_v2_6",
+          "version": "v2_6",
+          "task_type": "binary",
+          "status": "success",
+          "accuracy": 0.994475138121547,
+          "f1": 0.9969230769230769,
+          "roc_auc": 0.9969325153374233,
+          "log_loss": 0.026717744811939104
+        },
+        {
+          "model_name": "tabpfn_v3",
+          "version": "v3",
+          "task_type": "binary",
+          "status": "success",
+          "accuracy": 0.994475138121547,
+          "f1": 0.9969230769230769,
+          "roc_auc": 0.9969325153374233,
+          "log_loss": 0.024159376758501192
+        }
+      ]
+    },
+    {
+      "dataset": "ESCA_core_os_event_top100",
+      "status": "success",
+      "run_dir": "/home/prime/Documents/g3/cancer-exp/outputs/tabpfn_all_generations_top100/runs/esca_core_os_event_top100/20260528_064548",
+      "rows": [
+        {
+          "model_name": "tabpfn_v1",
+          "version": "v1",
+          "task_type": "binary",
+          "status": "success",
+          "accuracy": 0.5714285714285714,
+          "f1": 0.0,
+          "roc_auc": 0.43229166666666663,
+          "log_loss": 0.6913584794003115
+        },
+        {
+          "model_name": "tabpfn_v2",
+          "version": "v2",
+          "task_type": "binary",
+          "status": "success",
+          "accuracy": 0.6071428571428571,
+          "f1": 0.26666666666666666,
+          "roc_auc": 0.5026041666666667,
+          "log_loss": 0.6945179306792116
+        },
+        {
+          "model_name": "tabpfn_v2_5",
+          "version": "v2_5",
+          "task_type": "binary",
+          "status": "success",
+          "accuracy": 0.5714285714285714,
+          "f1": 0.3333333333333333,
+          "roc_auc": 0.5208333333333334,
+          "log_loss": 0.6854325798041081
+        },
+        {
+          "model_name": "tabpfn_v2_6",
+          "version": "v2_6",
+          "task_type": "binary",
+          "status": "success",
+          "accuracy": 0.5357142857142857,
+          "f1": 0.43478260869565216,
+          "roc_auc": 0.5364583333333334,
+          "log_loss": 0.705978422282665
+        },
+        {
+          "model_name": "tabpfn_v3",
+          "version": "v3",
+          "task_type": "binary",
+          "status": "success",
+          "accuracy": 0.6071428571428571,
+          "f1": 0.35294117647058826,
+          "roc_auc": 0.578125,
+          "log_loss": 0.6816552710379546
+        }
+      ]
+    },
+    {
+      "dataset": "HNSCC_core_os_event_top100",
+      "status": "success",
+      "run_dir": "/home/prime/Documents/g3/cancer-exp/outputs/tabpfn_all_generations_top100/runs/hnscc_core_os_event_top100/20260528_064557",
+      "rows": [
+        {
+          "model_name": "tabpfn_v1",
+          "version": "v1",
+          "task_type": "binary",
+          "status": "success",
+          "accuracy": 0.631578947368421,
+          "f1": 0.3137254901960784,
+          "roc_auc": 0.6181902123730378,
+          "log_loss": 0.6498728457937456
+        },
+        {
+          "model_name": "tabpfn_v2",
+          "version": "v2",
+          "task_type": "binary",
+          "status": "success",
+          "accuracy": 0.6526315789473685,
+          "f1": 0.47619047619047616,
+          "roc_auc": 0.6472760849492151,
+          "log_loss": 0.6352041555099384
+        },
+        {
+          "model_name": "tabpfn_v2_5",
+          "version": "v2_5",
+          "task_type": "binary",
+          "status": "success",
+          "accuracy": 0.6421052631578947,
+          "f1": 0.5,
+          "roc_auc": 0.6509695290858725,
+          "log_loss": 0.6527542916905777
+        },
+        {
+          "model_name": "tabpfn_v2_6",
+          "version": "v2_6",
+          "task_type": "binary",
+          "status": "success",
+          "accuracy": 0.6421052631578947,
+          "f1": 0.46875,
+          "roc_auc": 0.6375807940904893,
+          "log_loss": 0.6386046393551388
+        },
+        {
+          "model_name": "tabpfn_v3",
+          "version": "v3",
+          "task_type": "binary",
+          "status": "success",
+          "accuracy": 0.6526315789473685,
+          "f1": 0.42105263157894735,
+          "roc_auc": 0.623730378578024,
+          "log_loss": 0.6469273911732545
+        }
+      ]
+    },
+    {
+      "dataset": "HNSCC_core_source_top100",
+      "status": "success",
+      "run_dir": "/home/prime/Documents/g3/cancer-exp/outputs/tabpfn_all_generations_top100/runs/hnscc_core_source_top100/20260528_064615",
+      "rows": [
+        {
+          "model_name": "tabpfn_v1",
+          "version": "v1",
+          "task_type": "binary",
+          "status": "success",
+          "accuracy": 1.0,
+          "f1": 1.0,
+          "roc_auc": 1.0,
+          "log_loss": 0.006216193729191173
+        },
+        {
+          "model_name": "tabpfn_v2",
+          "version": "v2",
+          "task_type": "binary",
+          "status": "success",
+          "accuracy": 1.0,
+          "f1": 1.0,
+          "roc_auc": 1.0,
+          "log_loss": 0.02139620991120507
+        },
+        {
+          "model_name": "tabpfn_v2_5",
+          "version": "v2_5",
+          "task_type": "binary",
+          "status": "success",
+          "accuracy": 1.0,
+          "f1": 1.0,
+          "roc_auc": 1.0,
+          "log_loss": 0.0012643220480039036
+        },
+        {
+          "model_name": "tabpfn_v2_6",
+          "version": "v2_6",
+          "task_type": "binary",
+          "status": "success",
+          "accuracy": 1.0,
+          "f1": 1.0,
+          "roc_auc": 1.0,
+          "log_loss": 0.009922806243470004
+        },
+        {
+          "model_name": "tabpfn_v3",
+          "version": "v3",
+          "task_type": "binary",
+          "status": "success",
+          "accuracy": 1.0,
+          "f1": 1.0,
+          "roc_auc": 1.0,
+          "log_loss": 1.4953988396851263e-05
+        }
+      ]
+    },
+    {
+      "dataset": "LSCC_core_os_event_top100",
+      "status": "success",
+      "run_dir": "/home/prime/Documents/g3/cancer-exp/outputs/tabpfn_all_generations_top100/runs/lscc_core_os_event_top100/20260528_064633",
+      "rows": [
+        {
+          "model_name": "tabpfn_v1",
+          "version": "v1",
+          "task_type": "binary",
+          "status": "success",
+          "accuracy": 0.6067415730337079,
+          "f1": 0.0,
+          "roc_auc": 0.555026455026455,
+          "log_loss": 0.6588547587043636
+        },
+        {
+          "model_name": "tabpfn_v2",
+          "version": "v2",
+          "task_type": "binary",
+          "status": "success",
+          "accuracy": 0.6067415730337079,
+          "f1": 0.3137254901960784,
+          "roc_auc": 0.5698412698412698,
+          "log_loss": 0.6621887159624916
+        },
+        {
+          "model_name": "tabpfn_v2_5",
+          "version": "v2_5",
+          "task_type": "binary",
+          "status": "success",
+          "accuracy": 0.6629213483146067,
+          "f1": 0.3181818181818182,
+          "roc_auc": 0.5783068783068783,
+          "log_loss": 0.6536572158836075
+        },
+        {
+          "model_name": "tabpfn_v2_6",
+          "version": "v2_6",
+          "task_type": "binary",
+          "status": "success",
+          "accuracy": 0.6179775280898876,
+          "f1": 0.05555555555555555,
+          "roc_auc": 0.53994708994709,
+          "log_loss": 0.6555837300664691
+        },
+        {
+          "model_name": "tabpfn_v3",
+          "version": "v3",
+          "task_type": "binary",
+          "status": "success",
+          "accuracy": 0.6067415730337079,
+          "f1": 0.0,
+          "roc_auc": 0.5455026455026455,
+          "log_loss": 0.6539498393824705
+        }
+      ]
+    },
+    {
+      "dataset": "LSCC_core_source_top100",
+      "status": "success",
+      "run_dir": "/home/prime/Documents/g3/cancer-exp/outputs/tabpfn_all_generations_top100/runs/lscc_core_source_top100/20260528_064650",
+      "rows": [
+        {
+          "model_name": "tabpfn_v1",
+          "version": "v1",
+          "task_type": "binary",
+          "status": "success",
+          "accuracy": 1.0,
+          "f1": 1.0,
+          "roc_auc": 1.0,
+          "log_loss": 0.010978344131684218
+        },
+        {
+          "model_name": "tabpfn_v2",
+          "version": "v2",
+          "task_type": "binary",
+          "status": "success",
+          "accuracy": 1.0,
+          "f1": 1.0,
+          "roc_auc": 1.0,
+          "log_loss": 0.00651491516300202
+        },
+        {
+          "model_name": "tabpfn_v2_5",
+          "version": "v2_5",
+          "task_type": "binary",
+          "status": "success",
+          "accuracy": 1.0,
+          "f1": 1.0,
+          "roc_auc": 1.0,
+          "log_loss": 0.0008700939304908405
+        },
+        {
+          "model_name": "tabpfn_v2_6",
+          "version": "v2_6",
+          "task_type": "binary",
+          "status": "success",
+          "accuracy": 1.0,
+          "f1": 1.0,
+          "roc_auc": 1.0,
+          "log_loss": 0.006803956899265831
+        },
+        {
+          "model_name": "tabpfn_v3",
+          "version": "v3",
+          "task_type": "binary",
+          "status": "success",
+          "accuracy": 1.0,
+          "f1": 1.0,
+          "roc_auc": 1.0,
+          "log_loss": 1.719754422779665e-05
+        }
+      ]
+    },
+    {
+      "dataset": "LUAD_core_os_event_top100",
+      "status": "success",
+      "run_dir": "/home/prime/Documents/g3/cancer-exp/outputs/tabpfn_all_generations_top100/runs/luad_core_os_event_top100/20260528_064707",
+      "rows": [
+        {
+          "model_name": "tabpfn_v1",
+          "version": "v1",
+          "task_type": "binary",
+          "status": "success",
+          "accuracy": 0.6666666666666666,
+          "f1": 0.0,
+          "roc_auc": 0.6409989594172736,
+          "log_loss": 0.6350333413864628
+        },
+        {
+          "model_name": "tabpfn_v2",
+          "version": "v2",
+          "task_type": "binary",
+          "status": "success",
+          "accuracy": 0.5913978494623656,
+          "f1": 0.17391304347826086,
+          "roc_auc": 0.581165452653486,
+          "log_loss": 0.6493823850681475
+        },
+        {
+          "model_name": "tabpfn_v2_5",
+          "version": "v2_5",
+          "task_type": "binary",
+          "status": "success",
+          "accuracy": 0.5698924731182796,
+          "f1": 0.09090909090909091,
+          "roc_auc": 0.5744016649323621,
+          "log_loss": 0.6620670953502142
+        },
+        {
+          "model_name": "tabpfn_v2_6",
+          "version": "v2_6",
+          "task_type": "binary",
+          "status": "success",
+          "accuracy": 0.6666666666666666,
+          "f1": 0.0,
+          "roc_auc": 0.5647762747138397,
+          "log_loss": 0.6338844915564732
+        },
+        {
+          "model_name": "tabpfn_v3",
+          "version": "v3",
+          "task_type": "binary",
+          "status": "success",
+          "accuracy": 0.6666666666666666,
+          "f1": 0.0,
+          "roc_auc": 0.5853277835587929,
+          "log_loss": 0.6321349894661419
+        }
+      ]
+    },
+    {
+      "dataset": "LUAD_core_source_top100",
+      "status": "success",
+      "run_dir": "/home/prime/Documents/g3/cancer-exp/outputs/tabpfn_all_generations_top100/runs/luad_core_source_top100/20260528_064724",
+      "rows": [
+        {
+          "model_name": "tabpfn_v1",
+          "version": "v1",
+          "task_type": "binary",
+          "status": "success",
+          "accuracy": 1.0,
+          "f1": 1.0,
+          "roc_auc": 1.0,
+          "log_loss": 0.008447174249581758
+        },
+        {
+          "model_name": "tabpfn_v2",
+          "version": "v2",
+          "task_type": "binary",
+          "status": "success",
+          "accuracy": 1.0,
+          "f1": 1.0,
+          "roc_auc": 1.0,
+          "log_loss": 0.12662860530793466
+        },
+        {
+          "model_name": "tabpfn_v2_5",
+          "version": "v2_5",
+          "task_type": "binary",
+          "status": "success",
+          "accuracy": 1.0,
+          "f1": 1.0,
+          "roc_auc": 1.0,
+          "log_loss": 0.010425341291922843
+        },
+        {
+          "model_name": "tabpfn_v2_6",
+          "version": "v2_6",
+          "task_type": "binary",
+          "status": "success",
+          "accuracy": 1.0,
+          "f1": 1.0,
+          "roc_auc": 1.0,
+          "log_loss": 0.017024403840643194
+        },
+        {
+          "model_name": "tabpfn_v3",
+          "version": "v3",
+          "task_type": "binary",
+          "status": "success",
+          "accuracy": 1.0,
+          "f1": 1.0,
+          "roc_auc": 1.0,
+          "log_loss": 0.0040713057109936016
+        }
+      ]
+    }
+  ],
+  "versions": [
+    "v1",
+    "v2",
+    "v2_5",
+    "v2_6",
+    "v3"
+  ]
+}

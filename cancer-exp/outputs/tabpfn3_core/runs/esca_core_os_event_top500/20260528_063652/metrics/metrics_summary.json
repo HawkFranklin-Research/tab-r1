@@ -1,0 +1,15 @@
+{
+  "dataset_name": "ESCA_core_os_event_top500",
+  "rows": [
+    {
+      "model_name": "tabpfn_v3",
+      "version": "v3",
+      "task_type": "binary",
+      "status": "success",
+      "accuracy": 0.6071428571428571,
+      "f1": 0.15384615384615385,
+      "roc_auc": 0.59375,
+      "log_loss": 0.6754794801081171
+    }
+  ]
+}

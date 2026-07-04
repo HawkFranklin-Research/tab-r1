@@ -1,0 +1,6 @@
+dataset,model_name,version,status,output_dir,train_predictions,val_predictions,test_predictions,all_predictions
+ALL_core_cancer_type_top95,tabpfn_v1,v1,success,/home/prime/Documents/g3/cancer-exp/outputs/all_splits_predictions_top100/ALL_core_cancer_type_top95/tabpfn_v1,2266,486,486,3238
+ALL_core_cancer_type_top95,tabpfn_v2,v2,success,/home/prime/Documents/g3/cancer-exp/outputs/all_splits_predictions_top100/ALL_core_cancer_type_top95/tabpfn_v2,2266,486,486,3238
+ALL_core_cancer_type_top95,tabpfn_v2_5,v2_5,success,/home/prime/Documents/g3/cancer-exp/outputs/all_splits_predictions_top100/ALL_core_cancer_type_top95/tabpfn_v2_5,2266,486,486,3238
+ALL_core_cancer_type_top95,tabpfn_v2_6,v2_6,success,/home/prime/Documents/g3/cancer-exp/outputs/all_splits_predictions_top100/ALL_core_cancer_type_top95/tabpfn_v2_6,2266,486,486,3238
+ALL_core_cancer_type_top95,tabpfn_v3,v3,success,/home/prime/Documents/g3/cancer-exp/outputs/all_splits_predictions_top100/ALL_core_cancer_type_top95/tabpfn_v3,2266,486,486,3238

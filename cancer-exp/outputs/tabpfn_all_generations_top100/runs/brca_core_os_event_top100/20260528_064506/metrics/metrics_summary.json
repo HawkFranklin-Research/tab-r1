@@ -1,0 +1,55 @@
+{
+  "dataset_name": "BRCA_core_os_event_top100",
+  "rows": [
+    {
+      "model_name": "tabpfn_v1",
+      "version": "v1",
+      "task_type": "binary",
+      "status": "success",
+      "accuracy": 0.8707865168539326,
+      "f1": 0.0,
+      "roc_auc": 0.5514726507713885,
+      "log_loss": 0.3944163035412263
+    },
+    {
+      "model_name": "tabpfn_v2",
+      "version": "v2",
+      "task_type": "binary",
+      "status": "success",
+      "accuracy": 0.8707865168539326,
+      "f1": 0.0,
+      "roc_auc": 0.5997194950911642,
+      "log_loss": 0.3764511692959552
+    },
+    {
+      "model_name": "tabpfn_v2_5",
+      "version": "v2_5",
+      "task_type": "binary",
+      "status": "success",
+      "accuracy": 0.8707865168539326,
+      "f1": 0.0,
+      "roc_auc": 0.5688639551192145,
+      "log_loss": 0.3801186859475801
+    },
+    {
+      "model_name": "tabpfn_v2_6",
+      "version": "v2_6",
+      "task_type": "binary",
+      "status": "success",
+      "accuracy": 0.8707865168539326,
+      "f1": 0.0,
+      "roc_auc": 0.5866760168302945,
+      "log_loss": 0.3742835329641203
+    },
+    {
+      "model_name": "tabpfn_v3",
+      "version": "v3",
+      "task_type": "binary",
+      "status": "success",
+      "accuracy": 0.8707865168539326,
+      "f1": 0.0,
+      "roc_auc": 0.532117812061711,
+      "log_loss": 0.3818500309283459
+    }
+  ]
+}

@@ -1,0 +1,20 @@
+{
+  "dataset_name": "HNSCC_core_source_top100",
+  "dataset_path": "/home/prime/Documents/g3/cancer-exp/datasets_top100/HNSCC_core_source_top100.csv",
+  "task_type": "binary",
+  "target_name": "target",
+  "total_samples": 631,
+  "train_samples": 441,
+  "val_samples": 95,
+  "test_samples": 95,
+  "train_rows_cap": 512,
+  "train_rows_used_for_fit": 441,
+  "versions": [
+    "v1",
+    "v2",
+    "v2_5",
+    "v2_6",
+    "v3"
+  ],
+  "note": "Predictions are saved for train, val, test, and combined all_samples. Models are fit on the same capped training subset used by generation comparison."
+}

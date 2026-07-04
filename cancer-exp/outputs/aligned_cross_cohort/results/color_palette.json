@@ -1,0 +1,9 @@
+{
+  "logistic_regression": "#4b5563",
+  "random_forest": "#0d9488",
+  "xgboost": "#ea580c",
+  "lightgbm": "#16a34a",
+  "catboost": "#e11d48",
+  "autogluon": "#7c3aed",
+  "tabpfn_v3": "#1e3a8a"
+}

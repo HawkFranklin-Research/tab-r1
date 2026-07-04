@@ -1,0 +1,2526 @@
+{
+  "results": [
+    {
+      "entries": [
+        {
+          "dbId": "69541",
+          "stId": "R-HSA-69541",
+          "id": "R-HSA-69541",
+          "name": "Stabilization of <span class=\"highlighting\" >p53</span>",
+          "type": "Pathway",
+          "exactType": "Pathway",
+          "species": [
+            "Homo sapiens"
+          ],
+          "summation": "Later studies pin-pointed that a single serine (Ser-15) was phosphorylated by ATM and phosphorylation of Ser-15 was rapidly-induced in IR-treated cells and this response was ATM-dependent (Canman et al, 1998; Banin et al, 1998 and Khanna et al, 1998).  ATM also regulates the phosphorylation of <span class=\"highlighting\" >p53</span> at other sites, especially Ser-20, by activating other serine/threonine kinases in response to IR (Chehab et al, 2000; Shieh et al, 2000; Hirao et al 2000). Phosphorylation of <span class=\"highlighting\" >p53</span> at Ser-20 interferes with <span class=\"highlighting\" >p53</span>-MDM2 interaction.  MDM2 is transcriptionally activated by <span class=\"highlighting\" >p53</span> and is a negative regulator of <span class=\"highlighting\" >p53</span> that targets it for degradation (Haupt et al, 1997; Kubbutat et al, 1997).  In addition modification of MDM2 by ATM also affects <span class=\"highlighting\" >p53</span> stabilization (Maya et al, 2001).  ",
+          "isDisease": false,
+          "hasReferenceEntity": false,
+          "hasEHLD": false,
+          "disease": false
+        },
+        {
+          "dbId": "11049782",
+          "stId": "R-DDI-69541",
+          "id": "R-DDI-69541",
+          "name": "Stabilization of <span class=\"highlighting\" >p53</span>",
+          "type": "Pathway",
+          "exactType": "Pathway",
+          "species": [
+            "Dictyostelium discoideum"
+          ],
+          "summation": "This event has been computationally inferred from an event that has been demonstrated in another species.<p>The inference is based on the homology mapping from PANTHER. Briefly, reactions for which all involved PhysicalEntities (in input, output and catalyst) have a mapped orthologue/paralogue (for complexes at least 75% of components must have a mapping) are inferred to the other species. High level events are also inferred for these events to allow for easier navigation.<p><a href='/electronic_inference_compara.html' target = 'NEW'>More details and caveats of the event inference in Reactome.</a> For details on PANTHER see also: <a href='http://www.pantherdb.org/about.jsp' target='NEW'>http://www.pantherdb.org/about.jsp</a>",
+          "isDisease": false,
+          "hasReferenceEntity": false,
+          "hasEHLD": false,
+          "disease": false
+        },
+        {
+          "dbId": "10098457",
+          "stId": "R-MMU-69541",
+          "id": "R-MMU-69541",
+          "name": "Stabilization of <span class=\"highlighting\" >p53</span>",
+          "type": "Pathway",
+          "exactType": "Pathway",
+          "species": [
+            "Mus musculus"
+          ],
+          "summation": "This event has been computationally inferred from an event that has been demonstrated in another species.<p>The inference is based on the homology mapping from PANTHER. Briefly, reactions for which all involved PhysicalEntities (in input, output and catalyst) have a mapped orthologue/paralogue (for complexes at least 75% of components must have a mapping) are inferred to the other species. High level events are also inferred for these events to allow for easier navigation.<p><a href='/electronic_inference_compara.html' target = 'NEW'>More details and caveats of the event inference in Reactome.</a> For details on PANTHER see also: <a href='http://www.pantherdb.org/about.jsp' target='NEW'>http://www.pantherdb.org/about.jsp</a>",
+          "isDisease": false,
+          "hasReferenceEntity": false,
+          "hasEHLD": false,
+          "disease": false
+        },
+        {
+          "dbId": "10221987",
+          "stId": "R-RNO-69541",
+          "id": "R-RNO-69541",
+          "name": "Stabilization of <span class=\"highlighting\" >p53</span>",
+          "type": "Pathway",
+          "exactType": "Pathway",
+          "species": [
+            "Rattus norvegicus"
+          ],
+          "summation": "This event has been computationally inferred from an event that has been demonstrated in another species.<p>The inference is based on the homology mapping from PANTHER. Briefly, reactions for which all involved PhysicalEntities (in input, output and catalyst) have a mapped orthologue/paralogue (for complexes at least 75% of components must have a mapping) are inferred to the other species. High level events are also inferred for these events to allow for easier navigation.<p><a href='/electronic_inference_compara.html' target = 'NEW'>More details and caveats of the event inference in Reactome.</a> For details on PANTHER see also: <a href='http://www.pantherdb.org/about.jsp' target='NEW'>http://www.pantherdb.org/about.jsp</a>",
+          "isDisease": false,
+          "hasReferenceEntity": false,
+          "hasEHLD": false,
+          "disease": false
+        },
+        {
+          "dbId": "10328595",
+          "stId": "R-CFA-69541",
+          "id": "R-CFA-69541",
+          "name": "Stabilization of <span class=\"highlighting\" >p53</span>",
+          "type": "Pathway",
+          "exactType": "Pathway",
+          "species": [
+            "Canis familiaris"
+          ],
+          "summation": "This event has been computationally inferred from an event that has been demonstrated in another species.<p>The inference is based on the homology mapping from PANTHER. Briefly, reactions for which all involved PhysicalEntities (in input, output and catalyst) have a mapped orthologue/paralogue (for complexes at least 75% of components must have a mapping) are inferred to the other species. High level events are also inferred for these events to allow for easier navigation.<p><a href='/electronic_inference_compara.html' target = 'NEW'>More details and caveats of the event inference in Reactome.</a> For details on PANTHER see also: <a href='http://www.pantherdb.org/about.jsp' target='NEW'>http://www.pantherdb.org/about.jsp</a>",
+          "isDisease": false,
+          "hasReferenceEntity": false,
+          "hasEHLD": false,
+          "disease": false
+        },
+        {
+          "dbId": "10442824",
+          "stId": "R-BTA-69541",
+          "id": "R-BTA-69541",
+          "name": "Stabilization of <span class=\"highlighting\" >p53</span>",
+          "type": "Pathway",
+          "exactType": "Pathway",
+          "species": [
+            "Bos taurus"
+          ],
+          "summation": "This event has been computationally inferred from an event that has been demonstrated in another species.<p>The inference is based on the homology mapping from PANTHER. Briefly, reactions for which all involved PhysicalEntities (in input, output and catalyst) have a mapped orthologue/paralogue (for complexes at least 75% of components must have a mapping) are inferred to the other species. High level events are also inferred for these events to allow for easier navigation.<p><a href='/electronic_inference_compara.html' target = 'NEW'>More details and caveats of the event inference in Reactome.</a> For details on PANTHER see also: <a href='http://www.pantherdb.org/about.jsp' target='NEW'>http://www.pantherdb.org/about.jsp</a>",
+          "isDisease": false,
+          "hasReferenceEntity": false,
+          "hasEHLD": false,
+          "disease": false
+        },
+        {
+          "dbId": "10555619",
+          "stId": "R-SSC-69541",
+          "id": "R-SSC-69541",
+          "name": "Stabilization of <span class=\"highlighting\" >p53</span>",
+          "type": "Pathway",
+          "exactType": "Pathway",
+          "species": [
+            "Sus scrofa"
+          ],
+          "summation": "This event has been computationally inferred from an event that has been demonstrated in another species.<p>The inference is based on the homology mapping from PANTHER. Briefly, reactions for which all involved PhysicalEntities (in input, output and catalyst) have a mapped orthologue/paralogue (for complexes at least 75% of components must have a mapping) are inferred to the other species. High level events are also inferred for these events to allow for easier navigation.<p><a href='/electronic_inference_compara.html' target = 'NEW'>More details and caveats of the event inference in Reactome.</a> For details on PANTHER see also: <a href='http://www.pantherdb.org/about.jsp' target='NEW'>http://www.pantherdb.org/about.jsp</a>",
+          "isDisease": false,
+          "hasReferenceEntity": false,
+          "hasEHLD": false,
+          "disease": false
+        },
+        {
+          "dbId": "10648808",
+          "stId": "R-DRE-69541",
+          "id": "R-DRE-69541",
+          "name": "Stabilization of <span class=\"highlighting\" >p53</span>",
+          "type": "Pathway",
+          "exactType": "Pathway",
+          "species": [
+            "Danio rerio"
+          ],
+          "summation": "This event has been computationally inferred from an event that has been demonstrated in another species.<p>The inference is based on the homology mapping from PANTHER. Briefly, reactions for which all involved PhysicalEntities (in input, output and catalyst) have a mapped orthologue/paralogue (for complexes at least 75% of components must have a mapping) are inferred to the other species. High level events are also inferred for these events to allow for easier navigation.<p><a href='/electronic_inference_compara.html' target = 'NEW'>More details and caveats of the event inference in Reactome.</a> For details on PANTHER see also: <a href='http://www.pantherdb.org/about.jsp' target='NEW'>http://www.pantherdb.org/about.jsp</a>",
+          "isDisease": false,
+          "hasReferenceEntity": false,
+          "hasEHLD": false,
+          "disease": false
+        },
+        {
+          "dbId": "10728438",
+          "stId": "R-XTR-69541",
+          "id": "R-XTR-69541",
+          "name": "Stabilization of <span class=\"highlighting\" >p53</span>",
+          "type": "Pathway",
+          "exactType": "Pathway",
+          "species": [
+            "Xenopus tropicalis"
+          ],
+          "summation": "This event has been computationally inferred from an event that has been demonstrated in another species.<p>The inference is based on the homology mapping from PANTHER. Briefly, reactions for which all involved PhysicalEntities (in input, output and catalyst) have a mapped orthologue/paralogue (for complexes at least 75% of components must have a mapping) are inferred to the other species. High level events are also inferred for these events to allow for easier navigation.<p><a href='/electronic_inference_compara.html' target = 'NEW'>More details and caveats of the event inference in Reactome.</a> For details on PANTHER see also: <a href='http://www.pantherdb.org/about.jsp' target='NEW'>http://www.pantherdb.org/about.jsp</a>",
+          "isDisease": false,
+          "hasReferenceEntity": false,
+          "hasEHLD": false,
+          "disease": false
+        },
+        {
+          "dbId": "10826517",
+          "stId": "R-GGA-69541",
+          "id": "R-GGA-69541",
+          "name": "Stabilization of <span class=\"highlighting\" >p53</span>",
+          "type": "Pathway",
+          "exactType": "Pathway",
+          "species": [
+            "Gallus gallus"
+          ],
+          "summation": "This event has been computationally inferred from an event that has been demonstrated in another species.<p>The inference is based on the homology mapping from PANTHER. Briefly, reactions for which all involved PhysicalEntities (in input, output and catalyst) have a mapped orthologue/paralogue (for complexes at least 75% of components must have a mapping) are inferred to the other species. High level events are also inferred for these events to allow for easier navigation.<p><a href='/electronic_inference_compara.html' target = 'NEW'>More details and caveats of the event inference in Reactome.</a> For details on PANTHER see also: <a href='http://www.pantherdb.org/about.jsp' target='NEW'>http://www.pantherdb.org/about.jsp</a>",
+          "isDisease": false,
+          "hasReferenceEntity": false,
+          "hasEHLD": false,
+          "disease": false
+        }
+      ],
+      "typeName": "Pathway",
+      "entriesCount": 1732,
+      "rowCount": 10
+    },
+    {
+      "entries": [
+        {
+          "dbId": "1912406",
+          "stId": "R-HSA-1912406",
+          "id": "R-HSA-1912406",
+          "name": "<span class=\"highlighting\" >p53</span> positively regulates <span class=\"highlighting\" >transcription</span> of MIR34 microRNAs",
+          "type": "Reaction",
+          "exactType": "omitted",
+          "species": [
+            "Homo sapiens"
+          ],
+          "summation": "<span class=\"highlighting\" >Transcription</span> of microRNA MIR34A is directly induced by the tumor suppressor <span class=\"highlighting\" >p53</span>, which binds to the conserved <span class=\"highlighting\" >p53</span> binding site located in the vicinity of the MIR34A <span class=\"highlighting\" >transcription</span> start (Chang et al. 2007, Raver-Shapira et al. 2007). Genomic loss of the chromosomal band 1p36, harboring the MIR34A gene, is a frequent event in pancreatic cancer, and MIR34A is considered to act as a tumor suppressor. Conserved <span class=\"highlighting\" >p53</span> binding sites were also mapped to the promoter of clustered MIR34B and MIR34C genes, and the <span class=\"highlighting\" >transcription</span> of MIR34B and MIR34C microRNAs was shown to be positively regulated by <span class=\"highlighting\" >p53</span> (He et al. 2007, Corney et al. 2007). The steps involved in processing of pri-microRNA into pre-microRNA have been omitted in this event - please refer to the diagram of Regulatory RNA Pathways for details.",
+          "compartmentNames": [
+            "nucleoplasm"
+          ],
+          "compartmentAccession": [
+            "0005654"
+          ],
+          "isDisease": false,
+          "hasReferenceEntity": false,
+          "disease": false
+        },
+        {
+          "dbId": "992753",
+          "stId": "R-NUL-992753",
+          "id": "R-NUL-992753",
+          "name": "<span class=\"highlighting\" >p53</span> and Sin3a bind c-Myb",
+          "type": "Reaction",
+          "exactType": "binding",
+          "species": [
+            "Mus musculus",
+            "Homo sapiens"
+          ],
+          "summation": "The DNA-binding domain of c-Myb binds the co-repressor protein SIN3A (Nomura et al. 2004). The tumor repressor <span class=\"highlighting\" >p53</span> also binds MYB directly (Tanikawa et al. 2004), promoting formation of a trimeric SIN3A:c-Myb:p53 complex. This does not affect the ability of c-Myb to bind to DNA, but may represent the mechanism that allows <span class=\"highlighting\" >p53</span> to to regulate specific Myb target genes. <br>c-Myb (gene symbol MYB) is highly conserved in all vertebrates and some invertebrate species (Lipsick 1996). It plays an important role in the control of proliferation and differentiation of hematopoietic progenitor cells (Duprey & Boettiger 1985); Down-regulation of c-Myb is believed to be critical for the commitment of cells to terminal differentiation (Oh & Reddy, 1999). c-Myb interacts with many other <span class=\"highlighting\" >transcription</span> factors including CBP, several CCAAT binding protein (c/EBP) family members, and Ets family proteins such as Ets-2 (Oh & Reddy, 1999). <br>Loss of c-Myb function results in embryonic lethality due to failure of fetal hepatic hematopoiesis (Mucenski et al. 1991).  ",
+          "compartmentNames": [
+            "nucleoplasm"
+          ],
+          "compartmentAccession": [
+            "0005654"
+          ],
+          "isDisease": false,
+          "hasReferenceEntity": false,
+          "disease": false
+        },
+        {
+          "dbId": "9653724",
+          "stId": "R-HSA-9653724",
+          "id": "R-HSA-9653724",
+          "name": "<span class=\"highlighting\" >Transcription</span> of ATF5",
+          "type": "Reaction",
+          "exactType": "omitted",
+          "species": [
+            "Homo sapiens"
+          ],
+          "summation": "ATF4 and DDIT3 (CHOP) bind an CARE element in the promoter of the ATF5 gene and enhance <span class=\"highlighting\" >transcription</span> (inferred from mouse homologs).<br>The ATF5 gene is transcribed to yield mRNA (Watatani et al. 2007, Wei et al. 2010, and inferred from the mouse homolog). <span class=\"highlighting\" >Transcription</span> of ATF5 is activated by a heterodimer of ATF4 and a CEBP factor in response to proteasome inhibition, heme deficiency, endoplasmic reticulum stress, and amino acid deficiency (inferred from mouse homologs).",
+          "compartmentNames": [
+            "nucleoplasm",
+            "cytosol"
+          ],
+          "compartmentAccession": [
+            "0005654",
+            "0005829"
+          ],
+          "isDisease": false,
+          "hasReferenceEntity": false,
+          "disease": false
+        },
+        {
+          "dbId": "9909623",
+          "stId": "R-HSA-9909623",
+          "id": "R-HSA-9909623",
+          "name": "CD274 <span class=\"highlighting\" >Transcription</span>",
+          "type": "Reaction",
+          "exactType": "omitted",
+          "species": [
+            "Homo sapiens"
+          ],
+          "summation": "The transcriptional regulation of CD274 (PD-L1/programmed death-ligand 1) is crucial in cancer biology, enabling tumor cells to evade immune detection. PD-L1 expression is tightly controlled by various <span class=\"highlighting\" >transcription</span> factors and signalling pathways responding to both intrinsic cellular signals and extrinsic environmental perturbations. It is regulated transcriptionally by multiple mechanisms, including epigenetic modifications (EZH2, DNMTs, MLLs) and <span class=\"highlighting\" >transcription</span> factors (STAT3, STAT1, IRF1, MYC, HIF, and others) activated by various upstream signalling pathways. The regulation of PD-L1 is a complex interplay of oncogenic signalling pathways, cytokine responses, epigenetic modifications, specific <span class=\"highlighting\" >transcription</span> factors, the tumor microenvironment, and non-coding RNAs. This multifaceted regulation finely tunes PD-L1 expression to promote immune evasion in cancer, making it a critical target for cancer immunotherapy (Zhou et al., 2023, Cha et al.,2019, Yamaguchi et al.,2022, Ju et al., 2020).",
+          "compartmentNames": [
+            "nucleoplasm"
+          ],
+          "compartmentAccession": [
+            "0005654"
+          ],
+          "isDisease": false,
+          "hasReferenceEntity": false,
+          "disease": false
+        },
+        {
+          "dbId": "9839371",
+          "stId": "R-HSA-9839371",
+          "id": "R-HSA-9839371",
+          "name": "TGFBR3 <span class=\"highlighting\" >transcription</span>",
+          "type": "Reaction",
+          "exactType": "omitted",
+          "species": [
+            "Homo sapiens"
+          ],
+          "summation": "TGFBR3 is transcriptionally regulated by SP1, MyoD and its promoter contains RAR binding element (L\u00f3pez\u2011Casillas., 2003, Cook et al, 2019). Using Transient Transfection, TGF\u2011\u03b2 Affinity Labeling and Immunoprecipitation techniques, transcriptional regulation of TGFBR3 by these <span class=\"highlighting\" >transcription</span> factors has been confirmed in the C2C12 myoblast cell line (L\u00f3pez\u2011Casillas., 2003). TGFBR3 <span class=\"highlighting\" >transcription</span> is also known to be negatively regulated by TGFbeta signaling through SMADs (Hempel et al.,2008), negatively regulated by MYCN through an HDAC1-mediated mechanism (Knelson et al.,2013) and also epigenetically through HELLS (Hou et al.,2021) and KLF16 (Chen et al.,2022).",
+          "compartmentNames": [
+            "nucleoplasm"
+          ],
+          "compartmentAccession": [
+            "0005654"
+          ],
+          "isDisease": false,
+          "hasReferenceEntity": false,
+          "disease": false
+        },
+        {
+          "dbId": "9670149",
+          "stId": "R-HSA-9670149",
+          "id": "R-HSA-9670149",
+          "name": "TERRA <span class=\"highlighting\" >transcription</span>",
+          "type": "Reaction",
+          "exactType": "omitted",
+          "species": [
+            "Homo sapiens"
+          ],
+          "summation": "<span class=\"highlighting\" >Transcription</span> of the telomeric noncoding RNA TERRA (the telomere repeat-containing RNA) is inhibited by ATRX (Flynn et al. 2015). Tumors with ATRX and DAXX mutations associated with the alternative lengthening of telomeres (ALT) show increased TERRA levels (Barthel et al. 2017).",
+          "compartmentNames": [
+            "nucleoplasm"
+          ],
+          "compartmentAccession": [
+            "0005654"
+          ],
+          "isDisease": false,
+          "hasReferenceEntity": false,
+          "disease": false
+        },
+        {
+          "dbId": "9654774",
+          "stId": "R-HSA-9654774",
+          "id": "R-HSA-9654774",
+          "name": "<span class=\"highlighting\" >Transcription</span> of PPP1R15A",
+          "type": "Reaction",
+          "exactType": "omitted",
+          "species": [
+            "Homo sapiens"
+          ],
+          "summation": "The PPP1R15A (GADD34) gene is transcribed to yield mRNA (Hollander et al. 1997, Hollander et al. 2001, Oh-Hashi et al. 2001, and inferred from the mouse homolog). <span class=\"highlighting\" >Transcription</span> of PPP1R15A is activated by ATF4, which binds the PPP1R15A promoter in response to certain stresses such as endoplasmic reticulum stress, traumatic brain injury, and heme deficiency (inferred from mouse homologs).",
+          "compartmentNames": [
+            "nucleoplasm",
+            "cytosol"
+          ],
+          "compartmentAccession": [
+            "0005654",
+            "0005829"
+          ],
+          "isDisease": false,
+          "hasReferenceEntity": false,
+          "disease": false
+        },
+        {
+          "dbId": "9653714",
+          "stId": "R-MMU-9653714",
+          "id": "R-MMU-9653714",
+          "name": "<span class=\"highlighting\" >Transcription</span> of Atf5",
+          "type": "Reaction",
+          "exactType": "omitted",
+          "species": [
+            "Mus musculus"
+          ],
+          "summation": "The Atf5 gene is transcribed to yield mRNA. <span class=\"highlighting\" >Transcription</span> of Atf5 is activated by a heterodimer of Atf4 and a Cebp factor in response to proteasome inhibition (Teske et al. 2013), heme deficiency (Zhang et al. 2019), endoplasmic reticulum stress, and amino acid deficiency (Huggins et al. 2015).",
+          "compartmentNames": [
+            "nucleoplasm"
+          ],
+          "compartmentAccession": [
+            "0005654"
+          ],
+          "isDisease": false,
+          "hasReferenceEntity": false,
+          "disease": false
+        },
+        {
+          "dbId": "9654771",
+          "stId": "R-MMU-9654771",
+          "id": "R-MMU-9654771",
+          "name": "<span class=\"highlighting\" >Transcription</span> of Ppp1r15a",
+          "type": "Reaction",
+          "exactType": "omitted",
+          "species": [
+            "Mus musculus"
+          ],
+          "summation": "The Ppp1r15a gene is transcribed to yield mRNA (Ma and Hendershot 2003, Zhang et al. 2019). <span class=\"highlighting\" >Transcription</span> of Ppp1r15a is activated by Atf4, which binds the Ppp1r15a promoter in response to certain stresses such as endoplasmic reticulum stress (Ma and Hendershot 2003), traumatic brain injury (Farook et al. 2013), and heme deficiency (Zhang et al. 2019).",
+          "compartmentNames": [
+            "nucleoplasm"
+          ],
+          "compartmentAccession": [
+            "0005654"
+          ],
+          "isDisease": false,
+          "hasReferenceEntity": false,
+          "disease": false
+        },
+        {
+          "dbId": "9655072",
+          "stId": "R-MMU-9655072",
+          "id": "R-MMU-9655072",
+          "name": "<span class=\"highlighting\" >Transcription</span> of Ddit3",
+          "type": "Reaction",
+          "exactType": "omitted",
+          "species": [
+            "Mus musculus"
+          ],
+          "summation": "The Ddit3 gene is transcribed to yield mRNA (Harding et al. 2000, Harding et al. 2003, Zhang et al. 2019). <span class=\"highlighting\" >Transcription</span> of Ddit3 is activated by Atf4 in response to certain stresses (Harding et al. 2000, Harding et al. 2003), including heme deficiency, which acts via the integrated stress kinase Eif2ak1 (HRI) (Zhang et al. 2019).",
+          "compartmentNames": [
+            "nucleoplasm",
+            "cytosol"
+          ],
+          "compartmentAccession": [
+            "0005654",
+            "0005829"
+          ],
+          "isDisease": false,
+          "hasReferenceEntity": false,
+          "disease": false
+        }
+      ],
+      "typeName": "Reaction",
+      "entriesCount": 3350,
+      "rowCount": 10
+    },
+    {
+      "entries": [
+        {
+          "dbId": "73710",
+          "stId": "R-MMU-73710",
+          "id": "R-MMU-73710",
+          "name": "<span class=\"highlighting\" >p53</span> - RNA Pol I associated factor",
+          "type": "Protein",
+          "exactType": "ReferenceGeneProduct",
+          "species": [
+            "Mus musculus"
+          ],
+          "referenceName": "Polr1e",
+          "referenceIdentifier": "Q8K202",
+          "compartmentNames": [
+            "nucleoplasm"
+          ],
+          "compartmentAccession": [
+            "0005654"
+          ],
+          "isDisease": false,
+          "hasReferenceEntity": true,
+          "databaseName": "UniProt",
+          "referenceURL": "http://purl.uniprot.org/uniprot/Q8K202",
+          "disease": false
+        },
+        {
+          "dbId": "1008198",
+          "stId": "R-MMU-1008198",
+          "id": "R-MMU-1008198",
+          "name": "<span class=\"highlighting\" >Transcription</span> factor MafK",
+          "type": "Protein",
+          "exactType": "ReferenceGeneProduct",
+          "species": [
+            "Mus musculus"
+          ],
+          "referenceName": "Mafk",
+          "referenceIdentifier": "Q61827",
+          "compartmentNames": [
+            "nucleoplasm"
+          ],
+          "compartmentAccession": [
+            "0005654"
+          ],
+          "isDisease": false,
+          "hasReferenceEntity": true,
+          "databaseName": "UniProt",
+          "referenceURL": "http://purl.uniprot.org/uniprot/Q61827",
+          "disease": false
+        },
+        {
+          "dbId": "1008258",
+          "stId": "R-MMU-1008258",
+          "id": "R-MMU-1008258",
+          "name": "<span class=\"highlighting\" >Transcription</span> factor MafF",
+          "type": "Protein",
+          "exactType": "ReferenceGeneProduct",
+          "species": [
+            "Mus musculus"
+          ],
+          "referenceName": "Maff",
+          "referenceIdentifier": "O54791",
+          "compartmentNames": [
+            "nucleoplasm"
+          ],
+          "compartmentAccession": [
+            "0005654"
+          ],
+          "isDisease": false,
+          "hasReferenceEntity": true,
+          "databaseName": "UniProt",
+          "referenceURL": "http://purl.uniprot.org/uniprot/O54791",
+          "disease": false
+        },
+        {
+          "dbId": "1008225",
+          "stId": "R-MMU-1008225",
+          "id": "R-MMU-1008225",
+          "name": "<span class=\"highlighting\" >Transcription</span> factor MafF",
+          "type": "Protein",
+          "exactType": "ReferenceGeneProduct",
+          "species": [
+            "Mus musculus"
+          ],
+          "referenceName": "Maff",
+          "referenceIdentifier": "O54791",
+          "compartmentNames": [
+            "nucleoplasm"
+          ],
+          "compartmentAccession": [
+            "0005654"
+          ],
+          "isDisease": false,
+          "hasReferenceEntity": true,
+          "databaseName": "UniProt",
+          "referenceURL": "http://purl.uniprot.org/uniprot/O54791",
+          "disease": false
+        },
+        {
+          "dbId": "111840",
+          "stId": "R-SCE-111840",
+          "id": "R-SCE-111840",
+          "name": "<span class=\"highlighting\" >Transcription</span> factor IIIA",
+          "type": "Protein",
+          "exactType": "ReferenceGeneProduct",
+          "species": [
+            "Saccharomyces cerevisiae"
+          ],
+          "referenceName": "PZF1",
+          "referenceIdentifier": "P39933",
+          "compartmentNames": [
+            "nucleoplasm"
+          ],
+          "compartmentAccession": [
+            "0005654"
+          ],
+          "isDisease": false,
+          "hasReferenceEntity": true,
+          "databaseName": "UniProt",
+          "referenceURL": "http://purl.uniprot.org/uniprot/P39933",
+          "disease": false
+        },
+        {
+          "dbId": "198734",
+          "stId": "R-RNO-198734",
+          "id": "R-RNO-198734",
+          "name": "Signal transducer and activator of <span class=\"highlighting\" >transcription</span> 3",
+          "type": "Protein",
+          "exactType": "ReferenceGeneProduct",
+          "species": [
+            "Rattus norvegicus"
+          ],
+          "referenceName": "Stat3",
+          "referenceIdentifier": "P52631",
+          "compartmentNames": [
+            "cytosol"
+          ],
+          "compartmentAccession": [
+            "0005829"
+          ],
+          "isDisease": false,
+          "hasReferenceEntity": true,
+          "databaseName": "UniProt",
+          "referenceURL": "http://purl.uniprot.org/uniprot/P52631",
+          "disease": false
+        },
+        {
+          "dbId": "1008239",
+          "stId": "R-MMU-1008239",
+          "id": "R-MMU-1008239",
+          "name": "<span class=\"highlighting\" >Transcription</span> factor Nf-e2 45 kDa subunit",
+          "type": "Protein",
+          "exactType": "ReferenceGeneProduct",
+          "species": [
+            "Mus musculus"
+          ],
+          "referenceName": "Nfe2",
+          "referenceIdentifier": "Q07279",
+          "compartmentNames": [
+            "nucleoplasm"
+          ],
+          "compartmentAccession": [
+            "0005654"
+          ],
+          "isDisease": false,
+          "hasReferenceEntity": true,
+          "databaseName": "UniProt",
+          "referenceURL": "http://purl.uniprot.org/uniprot/Q07279",
+          "disease": false
+        },
+        {
+          "dbId": "556814",
+          "stId": "R-MMU-556814",
+          "id": "R-MMU-556814",
+          "name": "Mediator of RNA polymerase II <span class=\"highlighting\" >transcription</span> subunit 9",
+          "type": "Protein",
+          "exactType": "ReferenceGeneProduct",
+          "species": [
+            "Mus musculus"
+          ],
+          "referenceName": "Med9",
+          "referenceIdentifier": "Q8VCS6",
+          "compartmentNames": [
+            "nucleoplasm"
+          ],
+          "compartmentAccession": [
+            "0005654"
+          ],
+          "isDisease": false,
+          "hasReferenceEntity": true,
+          "databaseName": "UniProt",
+          "referenceURL": "http://purl.uniprot.org/uniprot/Q8VCS6",
+          "disease": false
+        },
+        {
+          "dbId": "556820",
+          "stId": "R-MMU-556820",
+          "id": "R-MMU-556820",
+          "name": "Mediator of RNA polymerase II <span class=\"highlighting\" >transcription</span> subunit 8",
+          "type": "Protein",
+          "exactType": "ReferenceGeneProduct",
+          "species": [
+            "Mus musculus"
+          ],
+          "referenceName": "Med8",
+          "referenceIdentifier": "Q9D7W5",
+          "compartmentNames": [
+            "nucleoplasm"
+          ],
+          "compartmentAccession": [
+            "0005654"
+          ],
+          "isDisease": false,
+          "hasReferenceEntity": true,
+          "databaseName": "UniProt",
+          "referenceURL": "http://purl.uniprot.org/uniprot/Q9D7W5",
+          "disease": false
+        },
+        {
+          "dbId": "556790",
+          "stId": "R-MMU-556790",
+          "id": "R-MMU-556790",
+          "name": "Mediator of RNA polymerase II <span class=\"highlighting\" >transcription</span> subunit 4",
+          "type": "Protein",
+          "exactType": "ReferenceGeneProduct",
+          "species": [
+            "Mus musculus"
+          ],
+          "referenceName": "Med4",
+          "referenceIdentifier": "Q9CQA5",
+          "compartmentNames": [
+            "nucleoplasm"
+          ],
+          "compartmentAccession": [
+            "0005654"
+          ],
+          "isDisease": false,
+          "hasReferenceEntity": true,
+          "databaseName": "UniProt",
+          "referenceURL": "http://purl.uniprot.org/uniprot/Q9CQA5",
+          "disease": false
+        }
+      ],
+      "typeName": "Protein",
+      "entriesCount": 1875,
+      "rowCount": 10
+    },
+    {
+      "entries": [
+        {
+          "dbId": "167101",
+          "stId": "R-HSA-167101",
+          "id": "R-HSA-167101",
+          "name": "HIV-1 <span class=\"highlighting\" >transcription</span> complex",
+          "type": "Complex",
+          "exactType": "Complex",
+          "species": [
+            "Homo sapiens"
+          ],
+          "compartmentNames": [
+            "nucleoplasm"
+          ],
+          "compartmentAccession": [
+            "0005654"
+          ],
+          "isDisease": false,
+          "hasReferenceEntity": false,
+          "disease": false
+        },
+        {
+          "dbId": "192703",
+          "stId": "R-FLU-192703",
+          "id": "R-FLU-192703",
+          "name": "vRNA <span class=\"highlighting\" >Transcription</span> Complex",
+          "type": "Complex",
+          "exactType": "Complex",
+          "species": [
+            "Influenza A virus"
+          ],
+          "summation": "The 5' and 3' ends of the vRNA bound to the PB1 subunit of the viral RNA polymerase; PB2 bound to the methylated cap on a host pre-mRNA amino acids (Cianci, 1995; Brownlee, 2002; Honda, 1999).",
+          "compartmentNames": [
+            "nucleoplasm"
+          ],
+          "compartmentAccession": [
+            "0005654"
+          ],
+          "isDisease": false,
+          "hasReferenceEntity": false,
+          "disease": false
+        },
+        {
+          "dbId": "992748",
+          "stId": "R-HSA-992748",
+          "id": "R-HSA-992748",
+          "name": "<span class=\"highlighting\" >p53</span>:MYB:SIN3A",
+          "type": "Complex",
+          "exactType": "Complex",
+          "species": [
+            "Homo sapiens"
+          ],
+          "compartmentNames": [
+            "nucleoplasm"
+          ],
+          "compartmentAccession": [
+            "0005654"
+          ],
+          "isDisease": false,
+          "hasReferenceEntity": false,
+          "disease": false
+        },
+        {
+          "dbId": "109878",
+          "stId": "R-HSA-109878",
+          "id": "R-HSA-109878",
+          "name": "pol II <span class=\"highlighting\" >transcription</span> complex",
+          "type": "Complex",
+          "exactType": "Complex",
+          "species": [
+            "Homo sapiens"
+          ],
+          "compartmentNames": [
+            "nucleoplasm"
+          ],
+          "compartmentAccession": [
+            "0005654"
+          ],
+          "isDisease": false,
+          "hasReferenceEntity": false,
+          "disease": false
+        },
+        {
+          "dbId": "163321",
+          "stId": "R-HSA-163321",
+          "id": "R-HSA-163321",
+          "name": "mTERF:mitochondrial <span class=\"highlighting\" >transcription</span> termination sequence",
+          "type": "Complex",
+          "exactType": "Complex",
+          "species": [
+            "Homo sapiens"
+          ],
+          "compartmentNames": [
+            "mitochondrial matrix"
+          ],
+          "compartmentAccession": [
+            "0005759"
+          ],
+          "isDisease": false,
+          "hasReferenceEntity": false,
+          "disease": false
+        },
+        {
+          "dbId": "10833444",
+          "stId": "R-DME-109878",
+          "id": "R-DME-109878",
+          "name": "pol II <span class=\"highlighting\" >transcription</span> complex",
+          "type": "Complex",
+          "exactType": "Complex",
+          "species": [
+            "Drosophila melanogaster"
+          ],
+          "summation": "This complex/polymer has been computationally inferred (based on PANTHER) from a complex/polymer involved in an event that has been demonstrated in another species.",
+          "compartmentNames": [
+            "nucleoplasm"
+          ],
+          "compartmentAccession": [
+            "0005654"
+          ],
+          "isDisease": false,
+          "hasReferenceEntity": false,
+          "disease": false
+        },
+        {
+          "dbId": "10451323",
+          "stId": "R-SSC-109878",
+          "id": "R-SSC-109878",
+          "name": "pol II <span class=\"highlighting\" >transcription</span> complex",
+          "type": "Complex",
+          "exactType": "Complex",
+          "species": [
+            "Sus scrofa"
+          ],
+          "summation": "This complex/polymer has been computationally inferred (based on PANTHER) from a complex/polymer involved in an event that has been demonstrated in another species.",
+          "compartmentNames": [
+            "nucleoplasm"
+          ],
+          "compartmentAccession": [
+            "0005654"
+          ],
+          "isDisease": false,
+          "hasReferenceEntity": false,
+          "disease": false
+        },
+        {
+          "dbId": "10337240",
+          "stId": "R-BTA-109878",
+          "id": "R-BTA-109878",
+          "name": "pol II <span class=\"highlighting\" >transcription</span> complex",
+          "type": "Complex",
+          "exactType": "Complex",
+          "species": [
+            "Bos taurus"
+          ],
+          "summation": "This complex/polymer has been computationally inferred (based on PANTHER) from a complex/polymer involved in an event that has been demonstrated in another species.",
+          "compartmentNames": [
+            "nucleoplasm"
+          ],
+          "compartmentAccession": [
+            "0005654"
+          ],
+          "isDisease": false,
+          "hasReferenceEntity": false,
+          "disease": false
+        },
+        {
+          "dbId": "10655015",
+          "stId": "R-XTR-109878",
+          "id": "R-XTR-109878",
+          "name": "pol II <span class=\"highlighting\" >transcription</span> complex",
+          "type": "Complex",
+          "exactType": "Complex",
+          "species": [
+            "Xenopus tropicalis"
+          ],
+          "summation": "This complex/polymer has been computationally inferred (based on PANTHER) from a complex/polymer involved in an event that has been demonstrated in another species.",
+          "compartmentNames": [
+            "nucleoplasm"
+          ],
+          "compartmentAccession": [
+            "0005654"
+          ],
+          "isDisease": false,
+          "hasReferenceEntity": false,
+          "disease": false
+        },
+        {
+          "dbId": "10108060",
+          "stId": "R-RNO-109878",
+          "id": "R-RNO-109878",
+          "name": "pol II <span class=\"highlighting\" >transcription</span> complex",
+          "type": "Complex",
+          "exactType": "Complex",
+          "species": [
+            "Rattus norvegicus"
+          ],
+          "summation": "This complex/polymer has been computationally inferred (based on PANTHER) from a complex/polymer involved in an event that has been demonstrated in another species.",
+          "compartmentNames": [
+            "nucleoplasm"
+          ],
+          "compartmentAccession": [
+            "0005654"
+          ],
+          "isDisease": false,
+          "hasReferenceEntity": false,
+          "disease": false
+        }
+      ],
+      "typeName": "Complex",
+      "entriesCount": 554,
+      "rowCount": 10
+    },
+    {
+      "entries": [
+        {
+          "dbId": "6782229",
+          "stId": "R-ALL-6782229",
+          "id": "R-ALL-6782229",
+          "name": "dsDNA with <span class=\"highlighting\" >transcription</span> bubble",
+          "type": "OtherEntity",
+          "exactType": "OtherEntity",
+          "species": [
+            "Entries without species"
+          ],
+          "compartmentNames": [
+            "nucleoplasm"
+          ],
+          "compartmentAccession": [
+            "0005654"
+          ],
+          "isDisease": false,
+          "hasReferenceEntity": false,
+          "disease": false
+        },
+        {
+          "dbId": "164569",
+          "stId": "R-ALL-164569",
+          "id": "R-ALL-164569",
+          "name": "mitochondrial <span class=\"highlighting\" >transcription</span> termination sequence",
+          "type": "OtherEntity",
+          "exactType": "OtherEntity",
+          "species": [
+            "Entries without species"
+          ],
+          "compartmentNames": [
+            "mitochondrial matrix"
+          ],
+          "compartmentAccession": [
+            "0005759"
+          ],
+          "isDisease": false,
+          "hasReferenceEntity": false,
+          "disease": false
+        },
+        {
+          "dbId": "6781820",
+          "stId": "R-ALL-6781820",
+          "id": "R-ALL-6781820",
+          "name": "Damaged dsDNA with open <span class=\"highlighting\" >transcription</span> bubble",
+          "type": "OtherEntity",
+          "exactType": "OtherEntity",
+          "species": [
+            "Entries without species"
+          ],
+          "compartmentNames": [
+            "nucleoplasm"
+          ],
+          "compartmentAccession": [
+            "0005654"
+          ],
+          "isDisease": false,
+          "hasReferenceEntity": false,
+          "disease": false
+        },
+        {
+          "dbId": "113443",
+          "stId": "R-ALL-113443",
+          "id": "R-ALL-113443",
+          "name": "Polymerase III gene DNA with <span class=\"highlighting\" >transcription</span> bubble (single-stranded region)",
+          "type": "OtherEntity",
+          "exactType": "OtherEntity",
+          "species": [
+            "Entries without species"
+          ],
+          "compartmentNames": [
+            "nucleoplasm"
+          ],
+          "compartmentAccession": [
+            "0005654"
+          ],
+          "isDisease": false,
+          "hasReferenceEntity": false,
+          "disease": false
+        },
+        {
+          "dbId": "1535904",
+          "stId": "R-ALL-1535904",
+          "id": "R-ALL-1535904",
+          "name": "FoxO3a-binding Element",
+          "type": "OtherEntity",
+          "exactType": "OtherEntity",
+          "species": [
+            "Entries without species"
+          ],
+          "summation": "The consensus sequence bound by FoxO3a is TTGTTTCA.",
+          "compartmentNames": [
+            "nucleoplasm"
+          ],
+          "compartmentAccession": [
+            "0005654"
+          ],
+          "isDisease": false,
+          "hasReferenceEntity": false,
+          "disease": false
+        }
+      ],
+      "typeName": "OtherEntity",
+      "entriesCount": 5,
+      "rowCount": 5
+    },
+    {
+      "entries": [
+        {
+          "dbId": "P04637-7",
+          "stId": "P04637-7",
+          "id": "P04637-7",
+          "name": "TP53",
+          "type": "Interactor",
+          "exactType": "Interactor",
+          "species": [
+            "Homo sapiens"
+          ],
+          "referenceIdentifier": "P04637-7",
+          "databaseName": "UniProt",
+          "referenceURL": "https://www.uniprot.org/uniprotkb/P04637-7/entry"
+        },
+        {
+          "dbId": "P04637-1",
+          "stId": "P04637-1",
+          "id": "P04637-1",
+          "name": "TP53",
+          "type": "Interactor",
+          "exactType": "Interactor",
+          "species": [
+            "Homo sapiens"
+          ],
+          "referenceIdentifier": "P04637-1",
+          "databaseName": "UniProt",
+          "referenceURL": "https://www.uniprot.org/uniprotkb/P04637-1/entry"
+        },
+        {
+          "dbId": "Q9N6D8",
+          "stId": "Q9N6D8",
+          "id": "Q9N6D8",
+          "name": "Q9N6D8",
+          "type": "Interactor",
+          "exactType": "Interactor",
+          "species": [
+            "Drosophila melanogaster"
+          ],
+          "referenceIdentifier": "Q9N6D8",
+          "databaseName": "UniProt",
+          "referenceURL": "https://www.uniprot.org/uniprotkb/Q9N6D8/entry"
+        },
+        {
+          "dbId": "Q96PG8",
+          "stId": "Q96PG8",
+          "id": "Q96PG8",
+          "name": "BBC3B",
+          "type": "Interactor",
+          "exactType": "Interactor",
+          "species": [
+            "Homo sapiens"
+          ],
+          "referenceIdentifier": "Q96PG8",
+          "databaseName": "UniProt",
+          "referenceURL": "https://www.uniprot.org/uniprotkb/Q96PG8/entry"
+        },
+        {
+          "dbId": "Q9BXH1-2",
+          "stId": "Q9BXH1-2",
+          "id": "Q9BXH1-2",
+          "name": "BBC3",
+          "type": "Interactor",
+          "exactType": "Interactor",
+          "species": [
+            "Homo sapiens"
+          ],
+          "referenceIdentifier": "Q9BXH1-2",
+          "databaseName": "UniProt",
+          "referenceURL": "https://www.uniprot.org/uniprotkb/Q9BXH1-2/entry"
+        },
+        {
+          "dbId": "Q15051-2",
+          "stId": "Q15051-2",
+          "id": "Q15051-2",
+          "name": "IQCB1",
+          "type": "Interactor",
+          "exactType": "Interactor",
+          "species": [
+            "Homo sapiens"
+          ],
+          "referenceIdentifier": "Q15051-2",
+          "databaseName": "UniProt",
+          "referenceURL": "https://www.uniprot.org/uniprotkb/Q15051-2/entry"
+        },
+        {
+          "dbId": "Q9NQB0-10",
+          "stId": "Q9NQB0-10",
+          "id": "Q9NQB0-10",
+          "name": "TCF7L2",
+          "type": "Interactor",
+          "exactType": "Interactor",
+          "species": [
+            "Homo sapiens"
+          ],
+          "referenceIdentifier": "Q9NQB0-10",
+          "databaseName": "UniProt",
+          "referenceURL": "https://www.uniprot.org/uniprotkb/Q9NQB0-10/entry"
+        },
+        {
+          "dbId": "Q01978",
+          "stId": "Q01978",
+          "id": "Q01978",
+          "name": "TFE2",
+          "type": "Interactor",
+          "exactType": "Interactor",
+          "species": [
+            "Xenopus laevis"
+          ],
+          "referenceIdentifier": "Q01978",
+          "databaseName": "UniProt",
+          "referenceURL": "https://www.uniprot.org/uniprotkb/Q01978/entry"
+        },
+        {
+          "dbId": "Q9ULV5-2",
+          "stId": "Q9ULV5-2",
+          "id": "Q9ULV5-2",
+          "name": "HSF4",
+          "type": "Interactor",
+          "exactType": "Interactor",
+          "species": [
+            "Homo sapiens"
+          ],
+          "referenceIdentifier": "Q9ULV5-2",
+          "databaseName": "UniProt",
+          "referenceURL": "https://www.uniprot.org/uniprotkb/Q9ULV5-2/entry"
+        },
+        {
+          "dbId": "P18847-3",
+          "stId": "P18847-3",
+          "id": "P18847-3",
+          "name": "ATF3",
+          "type": "Interactor",
+          "exactType": "Interactor",
+          "species": [
+            "Homo sapiens"
+          ],
+          "referenceIdentifier": "P18847-3",
+          "databaseName": "UniProt",
+          "referenceURL": "https://www.uniprot.org/uniprotkb/P18847-3/entry"
+        }
+      ],
+      "typeName": "Interactor",
+      "entriesCount": 158,
+      "rowCount": 10
+    },
+    {
+      "entries": [
+        {
+          "dbId": "112464",
+          "stId": "R-SCE-112464",
+          "id": "R-SCE-112464",
+          "name": "SUP4 tRNATyr gene DNA with <span class=\"highlighting\" >transcription</span> bubble (single-stranded)",
+          "type": "Genes and Transcripts",
+          "exactType": "GenomeEncodedEntity",
+          "species": [
+            "Saccharomyces cerevisiae"
+          ],
+          "compartmentNames": [
+            "nucleoplasm"
+          ],
+          "compartmentAccession": [
+            "0005654"
+          ],
+          "isDisease": false,
+          "hasReferenceEntity": false,
+          "disease": false
+        }
+      ],
+      "typeName": "Genes and Transcripts",
+      "entriesCount": 1,
+      "rowCount": 1
+    },
+    {
+      "entries": [
+        {
+          "dbId": "5632387",
+          "stId": "R-HSA-5632387",
+          "id": "R-HSA-5632387",
+          "name": "TP63 Tetramer/ TP53 Tetramer",
+          "type": "Set",
+          "exactType": "CandidateSet",
+          "species": [
+            "Homo sapiens"
+          ],
+          "compartmentNames": [
+            "nucleoplasm"
+          ],
+          "compartmentAccession": [
+            "0005654"
+          ],
+          "isDisease": false,
+          "hasReferenceEntity": false,
+          "disease": false
+        },
+        {
+          "dbId": "6804745",
+          "stId": "R-HSA-6804745",
+          "id": "R-HSA-6804745",
+          "name": "p-S166,S188-MDM2 dimer, p-S166,S188-MDM2:MDM4",
+          "type": "Set",
+          "exactType": "DefinedSet",
+          "species": [
+            "Homo sapiens"
+          ],
+          "compartmentNames": [
+            "nucleoplasm"
+          ],
+          "compartmentAccession": [
+            "0005654"
+          ],
+          "isDisease": false,
+          "hasReferenceEntity": false,
+          "disease": false
+        },
+        {
+          "dbId": "9909605",
+          "stId": "R-HSA-9909605",
+          "id": "R-HSA-9909605",
+          "name": "AP-1",
+          "type": "Set",
+          "exactType": "CandidateSet",
+          "species": [
+            "Homo sapiens"
+          ],
+          "compartmentNames": [
+            "nucleoplasm"
+          ],
+          "compartmentAccession": [
+            "0005654"
+          ],
+          "isDisease": false,
+          "hasReferenceEntity": false,
+          "disease": false
+        },
+        {
+          "dbId": "199272",
+          "stId": "R-HSA-199272",
+          "id": "R-HSA-199272",
+          "name": "FOXO1,FOXO3,FOXO4,(FOXO6)",
+          "type": "Set",
+          "exactType": "CandidateSet",
+          "species": [
+            "Homo sapiens"
+          ],
+          "compartmentNames": [
+            "nucleoplasm"
+          ],
+          "compartmentAccession": [
+            "0005654"
+          ],
+          "isDisease": false,
+          "hasReferenceEntity": false,
+          "disease": false
+        },
+        {
+          "dbId": "8868839",
+          "stId": "R-HSA-8868839",
+          "id": "R-HSA-8868839",
+          "name": "RPS27,RPS27L",
+          "type": "Set",
+          "exactType": "CandidateSet",
+          "species": [
+            "Homo sapiens"
+          ],
+          "compartmentNames": [
+            "cytosol"
+          ],
+          "compartmentAccession": [
+            "0005829"
+          ],
+          "isDisease": false,
+          "hasReferenceEntity": false,
+          "disease": false
+        },
+        {
+          "dbId": "8868823",
+          "stId": "R-HSA-8868823",
+          "id": "R-HSA-8868823",
+          "name": "RPS27,RPS27L",
+          "type": "Set",
+          "exactType": "CandidateSet",
+          "species": [
+            "Homo sapiens"
+          ],
+          "compartmentNames": [
+            "nucleoplasm"
+          ],
+          "compartmentAccession": [
+            "0005654"
+          ],
+          "isDisease": false,
+          "hasReferenceEntity": false,
+          "disease": false
+        },
+        {
+          "dbId": "10665087",
+          "stId": "R-XTR-199272",
+          "id": "R-XTR-199272",
+          "name": "FOXO1,FOXO3,FOXO4,(FOXO6)",
+          "type": "Set",
+          "exactType": "DefinedSet",
+          "species": [
+            "Xenopus tropicalis"
+          ],
+          "compartmentNames": [
+            "nucleoplasm"
+          ],
+          "compartmentAccession": [
+            "0005654"
+          ],
+          "isDisease": false,
+          "hasReferenceEntity": false,
+          "disease": false
+        },
+        {
+          "dbId": "10243966",
+          "stId": "R-CFA-199272",
+          "id": "R-CFA-199272",
+          "name": "FOXO1,FOXO3,FOXO4,(FOXO6)",
+          "type": "Set",
+          "exactType": "CandidateSet",
+          "species": [
+            "Canis familiaris"
+          ],
+          "compartmentNames": [
+            "nucleoplasm"
+          ],
+          "compartmentAccession": [
+            "0005654"
+          ],
+          "isDisease": false,
+          "hasReferenceEntity": false,
+          "disease": false
+        },
+        {
+          "dbId": "10124169",
+          "stId": "R-RNO-199272",
+          "id": "R-RNO-199272",
+          "name": "FOXO1,FOXO3,FOXO4,(FOXO6)",
+          "type": "Set",
+          "exactType": "CandidateSet",
+          "species": [
+            "Rattus norvegicus"
+          ],
+          "compartmentNames": [
+            "nucleoplasm"
+          ],
+          "compartmentAccession": [
+            "0005654"
+          ],
+          "isDisease": false,
+          "hasReferenceEntity": false,
+          "disease": false
+        },
+        {
+          "dbId": "10351160",
+          "stId": "R-BTA-199272",
+          "id": "R-BTA-199272",
+          "name": "FOXO1,FOXO3,FOXO4,(FOXO6)",
+          "type": "Set",
+          "exactType": "CandidateSet",
+          "species": [
+            "Bos taurus"
+          ],
+          "compartmentNames": [
+            "nucleoplasm"
+          ],
+          "compartmentAccession": [
+            "0005654"
+          ],
+          "isDisease": false,
+          "hasReferenceEntity": false,
+          "disease": false
+        }
+      ],
+      "typeName": "Set",
+      "entriesCount": 72,
+      "rowCount": 10
+    },
+    {
+      "entries": [
+        {
+          "dbId": "6797244",
+          "stId": "R-HSA-6797244",
+          "id": "R-HSA-6797244",
+          "name": "TP53 gene",
+          "type": "DNA Sequence",
+          "exactType": "ReferenceDNASequence",
+          "species": [
+            "Homo sapiens"
+          ],
+          "referenceIdentifier": "ENSEMBL:ENSG00000141510",
+          "compartmentNames": [
+            "nucleoplasm"
+          ],
+          "compartmentAccession": [
+            "0005654"
+          ],
+          "isDisease": false,
+          "hasReferenceEntity": true,
+          "databaseName": "ENSEMBL",
+          "referenceURL": "https://www.ensembl.org/id/ENSG00000141510",
+          "disease": false
+        },
+        {
+          "dbId": "74975",
+          "stId": "R-HSA-74975",
+          "id": "R-HSA-74975",
+          "name": "Sal Box",
+          "type": "DNA Sequence",
+          "exactType": "ReferenceDNASequence",
+          "species": [
+            "Homo sapiens"
+          ],
+          "summation": "Named the \"Sal Box\" as a Sal I restriction endonuclease site is located within the sequence. An 18 base pair sequence element found in multiple copies in the nontranscribed spacer downstream of the 18S rRNA coding region.  This element provides the termination signal for ribosomal gene <span class=\"highlighting\" >transcription</span>.",
+          "referenceName": "Human ribosomal DNA",
+          "referenceIdentifier": "NCBI-Nucleotide:U13369",
+          "compartmentNames": [
+            "nucleoplasm"
+          ],
+          "compartmentAccession": [
+            "0005654"
+          ],
+          "isDisease": false,
+          "hasReferenceEntity": true,
+          "databaseName": "NCBI Nucleotide",
+          "referenceURL": "https://www.ncbi.nlm.nih.gov/nuccore/U13369",
+          "disease": false
+        }
+      ],
+      "typeName": "DNA Sequence",
+      "entriesCount": 2,
+      "rowCount": 2
+    },
+    {
+      "entries": [
+        {
+          "dbId": "013613",
+          "stId": "R-ICO-013613",
+          "id": "R-ICO-013613",
+          "name": "<span class=\"highlighting\" >Transcription</span> factories",
+          "type": "Icon",
+          "exactType": "Icon",
+          "species": [
+            "Homo sapiens"
+          ],
+          "summation": "<span class=\"highlighting\" >Transcription</span> factories are the discrete sites where <span class=\"highlighting\" >transcription</span> occurs in the nucleus",
+          "iconName": "Transcription factories",
+          "iconCategories": [
+            "cell_element"
+          ],
+          "iconCuratorName": "Kaiqiang You",
+          "iconCuratorOrcidId": "0000-0002-5038-1185",
+          "iconDesignerName": "Cristoffer Sevilla",
+          "iconDesignerUrl": "https://graphsolutions.co.uk",
+          "icon": true
+        },
+        {
+          "dbId": "014197",
+          "stId": "R-ICO-014197",
+          "id": "R-ICO-014197",
+          "name": "TCF7L2",
+          "type": "Icon",
+          "exactType": "Icon",
+          "species": [
+            "Homo sapiens"
+          ],
+          "summation": "<span class=\"highlighting\" >Transcription</span> factor 7-like 2",
+          "iconName": "TCF7L2",
+          "iconCategories": [
+            "protein"
+          ],
+          "iconCuratorName": "Karen Rothfels",
+          "iconCuratorOrcidId": "0000-0002-0705-7048",
+          "iconDesignerName": "Cristoffer Sevilla",
+          "iconDesignerUrl": "https://graphsolutions.co.uk",
+          "iconReferences": [
+            "Q9NQB0",
+            "UNIPROT:Q9NQB0"
+          ],
+          "iconPhysicalEntities": [
+            {
+              "stId": "R-HSA-4411392",
+              "type": "ReferenceGeneProduct",
+              "name": "pT201,T212-TCF7L2",
+              "compartments": "nucleoplasm",
+              "displayName": "pT201,T212-TCF7L2 [nucleoplasm]"
+            },
+            {
+              "stId": "R-HSA-201923",
+              "type": "ReferenceGeneProduct",
+              "name": "TCF7L2",
+              "compartments": "nucleoplasm",
+              "displayName": "TCF7L2 [nucleoplasm]"
+            },
+            {
+              "stId": "uniprot:Q9NQB0",
+              "type": "ReferenceGeneProduct",
+              "name": "TCF7L2",
+              "compartments": "null",
+              "displayName": "TCF7L2 [null]"
+            },
+            {
+              "stId": "R-HSA-5334040",
+              "type": "ReferenceGeneProduct",
+              "name": "TCF7L2 K485fs*25",
+              "compartments": "nucleoplasm",
+              "displayName": "TCF7L2 K485fs*25 [nucleoplasm]"
+            },
+            {
+              "stId": "R-HSA-5339696",
+              "type": "ReferenceGeneProduct",
+              "name": "TCF7L2 R397W",
+              "compartments": "nucleoplasm",
+              "displayName": "TCF7L2 R397W [nucleoplasm]"
+            }
+          ],
+          "iconEhlds": [
+            "R-HSA-4791275"
+          ],
+          "icon": true
+        },
+        {
+          "dbId": "014327",
+          "stId": "R-ICO-014327",
+          "id": "R-ICO-014327",
+          "name": "STAT1,3,5",
+          "type": "Icon",
+          "exactType": "Icon",
+          "species": [
+            "Homo sapiens"
+          ],
+          "summation": "Set of STAT1,3 and 5",
+          "iconName": "STAT1,3,5",
+          "iconCategories": [
+            "protein"
+          ],
+          "iconCuratorName": "Bruce May",
+          "iconCuratorOrcidId": "0000-0001-5193-0855",
+          "iconDesignerName": "Cristoffer Sevilla",
+          "iconDesignerUrl": "https://graphsolutions.co.uk",
+          "iconReferences": [
+            "P42224",
+            "UNIPROT:P42224",
+            "P40763",
+            "UNIPROT:P40763",
+            "P42229",
+            "UNIPROT:P42229"
+          ],
+          "iconPhysicalEntities": [
+            {
+              "stId": "R-HSA-9701435",
+              "type": "ReferenceGeneProduct",
+              "name": "AcK685- p-Y705,S727-STAT3",
+              "compartments": "nucleoplasm",
+              "displayName": "AcK685- p-Y705,S727-STAT3 [nucleoplasm]"
+            },
+            {
+              "stId": "R-HSA-909563",
+              "type": "ReferenceIsoform",
+              "name": "p-S727,Y701-STAT1-1",
+              "compartments": "cytosol",
+              "displayName": "p-S727,Y701-STAT1-1 [cytosol]"
+            },
+            {
+              "stId": "R-HSA-873792",
+              "type": "ReferenceIsoform",
+              "name": "p-S727,Y701-STAT1-1",
+              "compartments": "nucleoplasm",
+              "displayName": "p-S727,Y701-STAT1-1 [nucleoplasm]"
+            },
+            {
+              "stId": "R-HSA-198705",
+              "type": "ReferenceGeneProduct",
+              "name": "p-S727-STAT3",
+              "compartments": "cytosol",
+              "displayName": "p-S727-STAT3 [cytosol]"
+            },
+            {
+              "stId": "R-HSA-8950418",
+              "type": "ReferenceGeneProduct",
+              "name": "p-STAT1",
+              "compartments": "cytosol",
+              "displayName": "p-STAT1 [cytosol]"
+            },
+            {
+              "stId": "R-HSA-8987140",
+              "type": "ReferenceGeneProduct",
+              "name": "p-STAT1",
+              "compartments": "nucleoplasm",
+              "displayName": "p-STAT1 [nucleoplasm]"
+            },
+            {
+              "stId": "R-HSA-8982823",
+              "type": "ReferenceGeneProduct",
+              "name": "p-STAT3",
+              "compartments": "cytosol",
+              "displayName": "p-STAT3 [cytosol]"
+            },
+            {
+              "stId": "R-HSA-8983188",
+              "type": "ReferenceGeneProduct",
+              "name": "p-STAT3",
+              "compartments": "nucleoplasm",
+              "displayName": "p-STAT3 [nucleoplasm]"
+            },
+            {
+              "stId": "R-HSA-507936",
+              "type": "ReferenceGeneProduct",
+              "name": "p-Y694-STAT5A",
+              "compartments": "cytosol",
+              "displayName": "p-Y694-STAT5A [cytosol]"
+            },
+            {
+              "stId": "R-HSA-507995",
+              "type": "ReferenceGeneProduct",
+              "name": "p-Y694-STAT5A",
+              "compartments": "nucleoplasm",
+              "displayName": "p-Y694-STAT5A [nucleoplasm]"
+            },
+            {
+              "stId": "R-HSA-9850842",
+              "type": "ReferenceGeneProduct",
+              "name": "p-Y701,S727-STAT1",
+              "compartments": "cytosol",
+              "displayName": "p-Y701,S727-STAT1 [cytosol]"
+            },
+            {
+              "stId": "R-HSA-8951202",
+              "type": "ReferenceGeneProduct",
+              "name": "p-Y701-STAT1",
+              "compartments": "cytosol",
+              "displayName": "p-Y701-STAT1 [cytosol]"
+            },
+            {
+              "stId": "R-HSA-6788624",
+              "type": "ReferenceGeneProduct",
+              "name": "p-Y701-STAT1",
+              "compartments": "nucleoplasm",
+              "displayName": "p-Y701-STAT1 [nucleoplasm]"
+            },
+            {
+              "stId": "R-HSA-873791",
+              "type": "ReferenceIsoform",
+              "name": "p-Y701-STAT1-1",
+              "compartments": "cytosol",
+              "displayName": "p-Y701-STAT1-1 [cytosol]"
+            },
+            {
+              "stId": "R-HSA-909684",
+              "type": "ReferenceIsoform",
+              "name": "p-Y701-STAT1-1",
+              "compartments": "nucleoplasm",
+              "displayName": "p-Y701-STAT1-1 [nucleoplasm]"
+            },
+            {
+              "stId": "R-HSA-909686",
+              "type": "ReferenceIsoform",
+              "name": "p-Y701-STAT1-2",
+              "compartments": "cytosol",
+              "displayName": "p-Y701-STAT1-2 [cytosol]"
+            },
+            {
+              "stId": "R-HSA-909676",
+              "type": "ReferenceIsoform",
+              "name": "p-Y701-STAT1-2",
+              "compartments": "nucleoplasm",
+              "displayName": "p-Y701-STAT1-2 [nucleoplasm]"
+            },
+            {
+              "stId": "R-HSA-539048",
+              "type": "ReferenceGeneProduct",
+              "name": "p-Y705,S727-STAT3",
+              "compartments": "cytosol",
+              "displayName": "p-Y705,S727-STAT3 [cytosol]"
+            },
+            {
+              "stId": "R-HSA-9701429",
+              "type": "ReferenceGeneProduct",
+              "name": "p-Y705,S727-STAT3",
+              "compartments": "nucleoplasm",
+              "displayName": "p-Y705,S727-STAT3 [nucleoplasm]"
+            },
+            {
+              "stId": "R-HSA-8983130",
+              "type": "ReferenceGeneProduct",
+              "name": "p-Y705-STAT3",
+              "compartments": "cytosol",
+              "displayName": "p-Y705-STAT3 [cytosol]"
+            },
+            {
+              "stId": "R-HSA-1112554",
+              "type": "ReferenceGeneProduct",
+              "name": "p-Y705-STAT3",
+              "compartments": "nucleoplasm",
+              "displayName": "p-Y705-STAT3 [nucleoplasm]"
+            },
+            {
+              "stId": "R-HSA-629622",
+              "type": "ReferenceGeneProduct",
+              "name": "STAT1",
+              "compartments": "cytosol",
+              "displayName": "STAT1 [cytosol]"
+            },
+            {
+              "stId": "uniprot:P42224",
+              "type": "ReferenceGeneProduct",
+              "name": "STAT1",
+              "compartments": "null",
+              "displayName": "STAT1 [null]"
+            },
+            {
+              "stId": "uniprot:P42224-1",
+              "type": "ReferenceIsoform",
+              "name": "STAT1 Isoform P42224-1",
+              "compartments": "null",
+              "displayName": "STAT1 Isoform P42224-1 [null]"
+            },
+            {
+              "stId": "uniprot:P42224-2",
+              "type": "ReferenceIsoform",
+              "name": "STAT1 Isoform P42224-2",
+              "compartments": "null",
+              "displayName": "STAT1 Isoform P42224-2 [null]"
+            },
+            {
+              "stId": "R-HSA-380745",
+              "type": "ReferenceIsoform",
+              "name": "STAT1-1",
+              "compartments": "cytosol",
+              "displayName": "STAT1-1 [cytosol]"
+            },
+            {
+              "stId": "R-HSA-997294",
+              "type": "ReferenceIsoform",
+              "name": "STAT1-1",
+              "compartments": "nucleoplasm",
+              "displayName": "STAT1-1 [nucleoplasm]"
+            },
+            {
+              "stId": "R-HSA-380741",
+              "type": "ReferenceIsoform",
+              "name": "STAT1-2",
+              "compartments": "cytosol",
+              "displayName": "STAT1-2 [cytosol]"
+            },
+            {
+              "stId": "R-HSA-539044",
+              "type": "ReferenceGeneProduct",
+              "name": "STAT3",
+              "compartments": "cytosol",
+              "displayName": "STAT3 [cytosol]"
+            },
+            {
+              "stId": "uniprot:P40763",
+              "type": "ReferenceGeneProduct",
+              "name": "STAT3",
+              "compartments": "null",
+              "displayName": "STAT3 [null]"
+            },
+            {
+              "stId": "R-HSA-380747",
+              "type": "ReferenceGeneProduct",
+              "name": "STAT5A",
+              "compartments": "cytosol",
+              "displayName": "STAT5A [cytosol]"
+            },
+            {
+              "stId": "R-HSA-9701901",
+              "type": "ReferenceGeneProduct",
+              "name": "STAT5A",
+              "compartments": "nucleoplasm",
+              "displayName": "STAT5A [nucleoplasm]"
+            },
+            {
+              "stId": "uniprot:P42229",
+              "type": "ReferenceGeneProduct",
+              "name": "STAT5A",
+              "compartments": "null",
+              "displayName": "STAT5A [null]"
+            },
+            {
+              "stId": "R-HSA-6813811",
+              "type": "ReferenceGeneProduct",
+              "name": "Unfolded STAT3",
+              "compartments": "cytosol",
+              "displayName": "Unfolded STAT3 [cytosol]"
+            }
+          ],
+          "iconEhlds": [
+            "R-HSA-1280215"
+          ],
+          "icon": true
+        },
+        {
+          "dbId": "013424",
+          "stId": "R-ICO-013424",
+          "id": "R-ICO-013424",
+          "name": "TCF",
+          "type": "Icon",
+          "exactType": "Icon",
+          "species": [
+            "Homo sapiens"
+          ],
+          "summation": "Generic representation of a T-cell Factor",
+          "iconName": "TCF",
+          "iconCategories": [
+            "protein"
+          ],
+          "iconCuratorName": "Karen Rothfels",
+          "iconCuratorOrcidId": "0000-0002-0705-7048\ufeff",
+          "iconDesignerName": "Cristoffer Sevilla",
+          "iconDesignerUrl": "https://graphsolutions.co.uk",
+          "iconReferences": [
+            "Q9HCS4",
+            "UNIPROT:Q9HCS4",
+            "Q9NQB0",
+            "UNIPROT:Q9NQB0"
+          ],
+          "iconPhysicalEntities": [
+            {
+              "stId": "R-HSA-4411392",
+              "type": "ReferenceGeneProduct",
+              "name": "pT201,T212-TCF7L2",
+              "compartments": "nucleoplasm",
+              "displayName": "pT201,T212-TCF7L2 [nucleoplasm]"
+            },
+            {
+              "stId": "R-HSA-5228649",
+              "type": "ReferenceGeneProduct",
+              "name": "TCF7L1",
+              "compartments": "nucleoplasm",
+              "displayName": "TCF7L1 [nucleoplasm]"
+            },
+            {
+              "stId": "uniprot:Q9HCS4",
+              "type": "ReferenceGeneProduct",
+              "name": "TCF7L1",
+              "compartments": "null",
+              "displayName": "TCF7L1 [null]"
+            },
+            {
+              "stId": "R-HSA-201923",
+              "type": "ReferenceGeneProduct",
+              "name": "TCF7L2",
+              "compartments": "nucleoplasm",
+              "displayName": "TCF7L2 [nucleoplasm]"
+            },
+            {
+              "stId": "uniprot:Q9NQB0",
+              "type": "ReferenceGeneProduct",
+              "name": "TCF7L2",
+              "compartments": "null",
+              "displayName": "TCF7L2 [null]"
+            },
+            {
+              "stId": "R-HSA-5334040",
+              "type": "ReferenceGeneProduct",
+              "name": "TCF7L2 K485fs*25",
+              "compartments": "nucleoplasm",
+              "displayName": "TCF7L2 K485fs*25 [nucleoplasm]"
+            },
+            {
+              "stId": "R-HSA-5339696",
+              "type": "ReferenceGeneProduct",
+              "name": "TCF7L2 R397W",
+              "compartments": "nucleoplasm",
+              "displayName": "TCF7L2 R397W [nucleoplasm]"
+            }
+          ],
+          "iconEhlds": [
+            "R-HSA-195721",
+            "R-HSA-4791275",
+            "R-HSA-4839735",
+            "R-HSA-4839743",
+            "R-HSA-4839744",
+            "R-HSA-4839748"
+          ],
+          "icon": true
+        },
+        {
+          "dbId": "014623",
+          "stId": "R-ICO-014623",
+          "id": "R-ICO-014623",
+          "name": "M2-1 protein",
+          "type": "Icon",
+          "exactType": "Icon",
+          "species": [
+            "Homo sapiens"
+          ],
+          "summation": "Acts as a tetrameric <span class=\"highlighting\" >transcription</span> processivity factor that binds in a competitive manner to RNA and the phosphoprotein (P) to prevent premature termination during <span class=\"highlighting\" >transcription</span>.",
+          "iconName": "M2-1 protein",
+          "iconCategories": [
+            "protein"
+          ],
+          "iconCuratorName": "Ralf Stephan",
+          "iconCuratorOrcidId": "0000-0002-4650-631X",
+          "iconDesignerName": "Cristoffer Sevilla",
+          "iconDesignerUrl": "https://graphsolutions.co.uk",
+          "iconReferences": [
+            "P04545",
+            "UNIPROT:P04545"
+          ],
+          "icon": true
+        },
+        {
+          "dbId": "014466",
+          "stId": "R-ICO-014466",
+          "id": "R-ICO-014466",
+          "name": "STAT1,3",
+          "type": "Icon",
+          "exactType": "Icon",
+          "species": [
+            "Homo sapiens"
+          ],
+          "summation": "Set of Signal transducer and activator of <span class=\"highlighting\" >transcription</span> 1-alpha/beta and 3",
+          "iconName": "STAT1,3",
+          "iconCategories": [
+            "protein"
+          ],
+          "iconCuratorName": "Bruce May",
+          "iconCuratorOrcidId": "0000-0001-5193-0855",
+          "iconDesignerName": "Cristoffer Sevilla",
+          "iconDesignerUrl": "https://graphsolutions.co.uk",
+          "iconReferences": [
+            "P42224",
+            "UNIPROT:P42224",
+            "P40763",
+            "UNIPROT:P40763"
+          ],
+          "iconPhysicalEntities": [
+            {
+              "stId": "R-HSA-9701435",
+              "type": "ReferenceGeneProduct",
+              "name": "AcK685- p-Y705,S727-STAT3",
+              "compartments": "nucleoplasm",
+              "displayName": "AcK685- p-Y705,S727-STAT3 [nucleoplasm]"
+            },
+            {
+              "stId": "R-HSA-909563",
+              "type": "ReferenceIsoform",
+              "name": "p-S727,Y701-STAT1-1",
+              "compartments": "cytosol",
+              "displayName": "p-S727,Y701-STAT1-1 [cytosol]"
+            },
+            {
+              "stId": "R-HSA-873792",
+              "type": "ReferenceIsoform",
+              "name": "p-S727,Y701-STAT1-1",
+              "compartments": "nucleoplasm",
+              "displayName": "p-S727,Y701-STAT1-1 [nucleoplasm]"
+            },
+            {
+              "stId": "R-HSA-198705",
+              "type": "ReferenceGeneProduct",
+              "name": "p-S727-STAT3",
+              "compartments": "cytosol",
+              "displayName": "p-S727-STAT3 [cytosol]"
+            },
+            {
+              "stId": "R-HSA-8950418",
+              "type": "ReferenceGeneProduct",
+              "name": "p-STAT1",
+              "compartments": "cytosol",
+              "displayName": "p-STAT1 [cytosol]"
+            },
+            {
+              "stId": "R-HSA-8987140",
+              "type": "ReferenceGeneProduct",
+              "name": "p-STAT1",
+              "compartments": "nucleoplasm",
+              "displayName": "p-STAT1 [nucleoplasm]"
+            },
+            {
+              "stId": "R-HSA-8982823",
+              "type": "ReferenceGeneProduct",
+              "name": "p-STAT3",
+              "compartments": "cytosol",
+              "displayName": "p-STAT3 [cytosol]"
+            },
+            {
+              "stId": "R-HSA-8983188",
+              "type": "ReferenceGeneProduct",
+              "name": "p-STAT3",
+              "compartments": "nucleoplasm",
+              "displayName": "p-STAT3 [nucleoplasm]"
+            },
+            {
+              "stId": "R-HSA-9850842",
+              "type": "ReferenceGeneProduct",
+              "name": "p-Y701,S727-STAT1",
+              "compartments": "cytosol",
+              "displayName": "p-Y701,S727-STAT1 [cytosol]"
+            },
+            {
+              "stId": "R-HSA-8951202",
+              "type": "ReferenceGeneProduct",
+              "name": "p-Y701-STAT1",
+              "compartments": "cytosol",
+              "displayName": "p-Y701-STAT1 [cytosol]"
+            },
+            {
+              "stId": "R-HSA-6788624",
+              "type": "ReferenceGeneProduct",
+              "name": "p-Y701-STAT1",
+              "compartments": "nucleoplasm",
+              "displayName": "p-Y701-STAT1 [nucleoplasm]"
+            },
+            {
+              "stId": "R-HSA-873791",
+              "type": "ReferenceIsoform",
+              "name": "p-Y701-STAT1-1",
+              "compartments": "cytosol",
+              "displayName": "p-Y701-STAT1-1 [cytosol]"
+            },
+            {
+              "stId": "R-HSA-909684",
+              "type": "ReferenceIsoform",
+              "name": "p-Y701-STAT1-1",
+              "compartments": "nucleoplasm",
+              "displayName": "p-Y701-STAT1-1 [nucleoplasm]"
+            },
+            {
+              "stId": "R-HSA-909686",
+              "type": "ReferenceIsoform",
+              "name": "p-Y701-STAT1-2",
+              "compartments": "cytosol",
+              "displayName": "p-Y701-STAT1-2 [cytosol]"
+            },
+            {
+              "stId": "R-HSA-909676",
+              "type": "ReferenceIsoform",
+              "name": "p-Y701-STAT1-2",
+              "compartments": "nucleoplasm",
+              "displayName": "p-Y701-STAT1-2 [nucleoplasm]"
+            },
+            {
+              "stId": "R-HSA-539048",
+              "type": "ReferenceGeneProduct",
+              "name": "p-Y705,S727-STAT3",
+              "compartments": "cytosol",
+              "displayName": "p-Y705,S727-STAT3 [cytosol]"
+            },
+            {
+              "stId": "R-HSA-9701429",
+              "type": "ReferenceGeneProduct",
+              "name": "p-Y705,S727-STAT3",
+              "compartments": "nucleoplasm",
+              "displayName": "p-Y705,S727-STAT3 [nucleoplasm]"
+            },
+            {
+              "stId": "R-HSA-8983130",
+              "type": "ReferenceGeneProduct",
+              "name": "p-Y705-STAT3",
+              "compartments": "cytosol",
+              "displayName": "p-Y705-STAT3 [cytosol]"
+            },
+            {
+              "stId": "R-HSA-1112554",
+              "type": "ReferenceGeneProduct",
+              "name": "p-Y705-STAT3",
+              "compartments": "nucleoplasm",
+              "displayName": "p-Y705-STAT3 [nucleoplasm]"
+            },
+            {
+              "stId": "R-HSA-629622",
+              "type": "ReferenceGeneProduct",
+              "name": "STAT1",
+              "compartments": "cytosol",
+              "displayName": "STAT1 [cytosol]"
+            },
+            {
+              "stId": "uniprot:P42224",
+              "type": "ReferenceGeneProduct",
+              "name": "STAT1",
+              "compartments": "null",
+              "displayName": "STAT1 [null]"
+            },
+            {
+              "stId": "uniprot:P42224-1",
+              "type": "ReferenceIsoform",
+              "name": "STAT1 Isoform P42224-1",
+              "compartments": "null",
+              "displayName": "STAT1 Isoform P42224-1 [null]"
+            },
+            {
+              "stId": "uniprot:P42224-2",
+              "type": "ReferenceIsoform",
+              "name": "STAT1 Isoform P42224-2",
+              "compartments": "null",
+              "displayName": "STAT1 Isoform P42224-2 [null]"
+            },
+            {
+              "stId": "R-HSA-380745",
+              "type": "ReferenceIsoform",
+              "name": "STAT1-1",
+              "compartments": "cytosol",
+              "displayName": "STAT1-1 [cytosol]"
+            },
+            {
+              "stId": "R-HSA-997294",
+              "type": "ReferenceIsoform",
+              "name": "STAT1-1",
+              "compartments": "nucleoplasm",
+              "displayName": "STAT1-1 [nucleoplasm]"
+            },
+            {
+              "stId": "R-HSA-380741",
+              "type": "ReferenceIsoform",
+              "name": "STAT1-2",
+              "compartments": "cytosol",
+              "displayName": "STAT1-2 [cytosol]"
+            },
+            {
+              "stId": "R-HSA-539044",
+              "type": "ReferenceGeneProduct",
+              "name": "STAT3",
+              "compartments": "cytosol",
+              "displayName": "STAT3 [cytosol]"
+            },
+            {
+              "stId": "uniprot:P40763",
+              "type": "ReferenceGeneProduct",
+              "name": "STAT3",
+              "compartments": "null",
+              "displayName": "STAT3 [null]"
+            },
+            {
+              "stId": "R-HSA-6813811",
+              "type": "ReferenceGeneProduct",
+              "name": "Unfolded STAT3",
+              "compartments": "cytosol",
+              "displayName": "Unfolded STAT3 [cytosol]"
+            }
+          ],
+          "iconEhlds": [
+            "R-HSA-1280215"
+          ],
+          "icon": true
+        },
+        {
+          "dbId": "014041",
+          "stId": "R-ICO-014041",
+          "id": "R-ICO-014041",
+          "name": "ATF2",
+          "type": "Icon",
+          "exactType": "Icon",
+          "species": [
+            "Homo sapiens"
+          ],
+          "summation": "Cyclic AMP-dependent <span class=\"highlighting\" >transcription</span> factor ATF-2 regulates the <span class=\"highlighting\" >transcription</span> of various genes, including those involved in anti-apoptosis, cell growth, and DNA damage response",
+          "iconName": "ATF2",
+          "iconCategories": [
+            "protein"
+          ],
+          "iconCuratorName": "Thawfeek Varusai",
+          "iconCuratorOrcidId": "0000-0002-7864-5971",
+          "iconDesignerName": "Cristoffer Sevilla",
+          "iconDesignerUrl": "https://graphsolutions.co.uk",
+          "iconReferences": [
+            "P15336",
+            "UNIPROT:P15336"
+          ],
+          "iconPhysicalEntities": [
+            {
+              "stId": "R-HSA-450336",
+              "type": "ReferenceGeneProduct",
+              "name": "ATF2",
+              "compartments": "nucleoplasm",
+              "displayName": "ATF2 [nucleoplasm]"
+            },
+            {
+              "stId": "uniprot:P15336",
+              "type": "ReferenceGeneProduct",
+              "name": "ATF2",
+              "compartments": "null",
+              "displayName": "ATF2 [null]"
+            },
+            {
+              "stId": "R-HSA-450243",
+              "type": "ReferenceGeneProduct",
+              "name": "p-T69,T71-ATF2",
+              "compartments": "nucleoplasm",
+              "displayName": "p-T69,T71-ATF2 [nucleoplasm]"
+            }
+          ],
+          "icon": true
+        },
+        {
+          "dbId": "014154",
+          "stId": "R-ICO-014154",
+          "id": "R-ICO-014154",
+          "name": "FOXO",
+          "type": "Icon",
+          "exactType": "Icon",
+          "species": [
+            "Homo sapiens"
+          ],
+          "summation": "Generic representation of Forkhead box protein O1, O3, O4 and/or O6",
+          "iconName": "FOXO",
+          "iconCategories": [
+            "protein"
+          ],
+          "iconCuratorName": "Marija Orlic-Milacic",
+          "iconCuratorOrcidId": "0000-0002-3218-5631",
+          "iconDesignerName": "Cristoffer Sevilla",
+          "iconDesignerUrl": "https://graphsolutions.co.uk",
+          "iconReferences": [
+            "Q12778",
+            "UNIPROT:Q12778",
+            "O43524",
+            "UNIPROT:O43524",
+            "P98177",
+            "UNIPROT:P98177",
+            "A8MYZ6",
+            "UNIPROT:A8MYZ6"
+          ],
+          "iconPhysicalEntities": [
+            {
+              "stId": "R-HSA-9617761",
+              "type": "ReferenceGeneProduct",
+              "name": "Ac-K-FOXO4",
+              "compartments": "nucleoplasm",
+              "displayName": "Ac-K-FOXO4 [nucleoplasm]"
+            },
+            {
+              "stId": "R-HSA-9620514",
+              "type": "ReferenceGeneProduct",
+              "name": "Ac-K242,K259,K271,K290,K569-FOXO3",
+              "compartments": "nucleoplasm",
+              "displayName": "Ac-K242,K259,K271,K290,K569-FOXO3 [nucleoplasm]"
+            },
+            {
+              "stId": "R-HSA-9626942",
+              "type": "ReferenceGeneProduct",
+              "name": "Ac-K245,K248,K265-FOXO1",
+              "compartments": "nucleoplasm",
+              "displayName": "Ac-K245,K248,K265-FOXO1 [nucleoplasm]"
+            },
+            {
+              "stId": "R-HSA-9841849",
+              "type": "ReferenceGeneProduct",
+              "name": "Ac-K271,K290-FOXO3(?-673)",
+              "compartments": "mitochondrial matrix",
+              "displayName": "Ac-K271,K290-FOXO3(?-673) [mitochondrial matrix]"
+            },
+            {
+              "stId": "R-HSA-9617679",
+              "type": "ReferenceGeneProduct",
+              "name": "CREBBP-S-S-FOXO4",
+              "compartments": "nucleoplasm",
+              "displayName": "CREBBP-S-S-FOXO4 [nucleoplasm]"
+            },
+            {
+              "stId": "R-HSA-9617681",
+              "type": "ReferenceGeneProduct",
+              "name": "EP300-S-S-FOXO4",
+              "compartments": "nucleoplasm",
+              "displayName": "EP300-S-S-FOXO4 [nucleoplasm]"
+            },
+            {
+              "stId": "R-HSA-199300",
+              "type": "ReferenceGeneProduct",
+              "name": "FOXO1",
+              "compartments": "nucleoplasm",
+              "displayName": "FOXO1 [nucleoplasm]"
+            },
+            {
+              "stId": "uniprot:Q12778",
+              "type": "ReferenceGeneProduct",
+              "name": "FOXO1",
+              "compartments": "null",
+              "displayName": "FOXO1 [null]"
+            },
+            {
+              "stId": "R-HSA-5687032",
+              "type": "ReferenceGeneProduct",
+              "name": "FOXO3",
+              "compartments": "cytosol",
+              "displayName": "FOXO3 [cytosol]"
+            },
+            {
+              "stId": "R-HSA-199305",
+              "type": "ReferenceGeneProduct",
+              "name": "FOXO3",
+              "compartments": "nucleoplasm",
+              "displayName": "FOXO3 [nucleoplasm]"
+            },
+            {
+              "stId": "uniprot:O43524",
+              "type": "ReferenceGeneProduct",
+              "name": "FOXO3",
+              "compartments": "null",
+              "displayName": "FOXO3 [null]"
+            },
+            {
+              "stId": "R-HSA-9841824",
+              "type": "ReferenceGeneProduct",
+              "name": "FOXO3(?-673)",
+              "compartments": "mitochondrial matrix",
+              "displayName": "FOXO3(?-673) [mitochondrial matrix]"
+            },
+            {
+              "stId": "R-HSA-5690183",
+              "type": "ReferenceGeneProduct",
+              "name": "FOXO4",
+              "compartments": "nucleoplasm",
+              "displayName": "FOXO4 [nucleoplasm]"
+            },
+            {
+              "stId": "uniprot:P98177",
+              "type": "ReferenceGeneProduct",
+              "name": "FOXO4",
+              "compartments": "null",
+              "displayName": "FOXO4 [null]"
+            },
+            {
+              "stId": "R-HSA-9614396",
+              "type": "ReferenceGeneProduct",
+              "name": "FOXO6",
+              "compartments": "nucleoplasm",
+              "displayName": "FOXO6 [nucleoplasm]"
+            },
+            {
+              "stId": "uniprot:A8MYZ6",
+              "type": "ReferenceGeneProduct",
+              "name": "FOXO6",
+              "compartments": "null",
+              "displayName": "FOXO6 [null]"
+            },
+            {
+              "stId": "R-HSA-5687014",
+              "type": "ReferenceGeneProduct",
+              "name": "p-S215 FOXO3",
+              "compartments": "cytosol",
+              "displayName": "p-S215 FOXO3 [cytosol]"
+            },
+            {
+              "stId": "R-HSA-5687010",
+              "type": "ReferenceGeneProduct",
+              "name": "p-S215 FOXO3",
+              "compartments": "nucleoplasm",
+              "displayName": "p-S215 FOXO3 [nucleoplasm]"
+            },
+            {
+              "stId": "R-HSA-5692651",
+              "type": "ReferenceGeneProduct",
+              "name": "p-S218-FOXO1",
+              "compartments": "nucleoplasm",
+              "displayName": "p-S218-FOXO1 [nucleoplasm]"
+            },
+            {
+              "stId": "R-HSA-8870560",
+              "type": "ReferenceGeneProduct",
+              "name": "p-S43,S173,S294,S325-FOXO3",
+              "compartments": "cytosol",
+              "displayName": "p-S43,S173,S294,S325-FOXO3 [cytosol]"
+            },
+            {
+              "stId": "R-HSA-8870627",
+              "type": "ReferenceGeneProduct",
+              "name": "p-S43,S173,S294,S325-FOXO3",
+              "compartments": "nucleoplasm",
+              "displayName": "p-S43,S173,S294,S325-FOXO3 [nucleoplasm]"
+            },
+            {
+              "stId": "R-HSA-211158",
+              "type": "ReferenceGeneProduct",
+              "name": "p-T24,S256,S319-FOXO1",
+              "compartments": "cytosol",
+              "displayName": "p-T24,S256,S319-FOXO1 [cytosol]"
+            },
+            {
+              "stId": "R-HSA-199306",
+              "type": "ReferenceGeneProduct",
+              "name": "p-T24,S256,S319-FOXO1",
+              "compartments": "nucleoplasm",
+              "displayName": "p-T24,S256,S319-FOXO1 [nucleoplasm]"
+            },
+            {
+              "stId": "R-HSA-9614995",
+              "type": "ReferenceGeneProduct",
+              "name": "p-T26,S184-FOXO6",
+              "compartments": "nucleoplasm",
+              "displayName": "p-T26,S184-FOXO6 [nucleoplasm]"
+            },
+            {
+              "stId": "R-HSA-9614415",
+              "type": "ReferenceGeneProduct",
+              "name": "p-T32,S197,S262-FOXO4",
+              "compartments": "cytosol",
+              "displayName": "p-T32,S197,S262-FOXO4 [cytosol]"
+            },
+            {
+              "stId": "R-HSA-199314",
+              "type": "ReferenceGeneProduct",
+              "name": "p-T32,S197,S262-FOXO4",
+              "compartments": "nucleoplasm",
+              "displayName": "p-T32,S197,S262-FOXO4 [nucleoplasm]"
+            },
+            {
+              "stId": "R-HSA-9614413",
+              "type": "ReferenceGeneProduct",
+              "name": "p-T32,S253,S315-FOXO3",
+              "compartments": "cytosol",
+              "displayName": "p-T32,S253,S315-FOXO3 [cytosol]"
+            },
+            {
+              "stId": "R-HSA-199289",
+              "type": "ReferenceGeneProduct",
+              "name": "p-T32,S253,S315-FOXO3",
+              "compartments": "nucleoplasm",
+              "displayName": "p-T32,S253,S315-FOXO3 [nucleoplasm]"
+            },
+            {
+              "stId": "R-HSA-6782501",
+              "type": "ReferenceGeneProduct",
+              "name": "PolyUb-FOXO4",
+              "compartments": "nucleoplasm",
+              "displayName": "PolyUb-FOXO4 [nucleoplasm]"
+            },
+            {
+              "stId": "R-HSA-9617655",
+              "type": "ReferenceGeneProduct",
+              "name": "SOH-C481-FOXO4",
+              "compartments": "nucleoplasm",
+              "displayName": "SOH-C481-FOXO4 [nucleoplasm]"
+            }
+          ],
+          "iconEhlds": [
+            "R-HSA-2219528"
+          ],
+          "icon": true
+        },
+        {
+          "dbId": "013992",
+          "stId": "R-ICO-013992",
+          "id": "R-ICO-013992",
+          "name": "CHUK",
+          "type": "Icon",
+          "exactType": "Icon",
+          "species": [
+            "Homo sapiens"
+          ],
+          "summation": "Inhibitor of nuclear factor kappa-B kinase subunit alpha",
+          "iconName": "CHUK",
+          "iconCategories": [
+            "protein"
+          ],
+          "iconCuratorName": "Thawfeek Varusai",
+          "iconCuratorOrcidId": "0000-0002-7864-5971",
+          "iconDesignerName": "Cristoffer Sevilla",
+          "iconDesignerUrl": "https://graphsolutions.co.uk",
+          "iconReferences": [
+            "O15111",
+            "UNIPROT:O15111"
+          ],
+          "iconPhysicalEntities": [
+            {
+              "stId": "R-HSA-168104",
+              "type": "ReferenceGeneProduct",
+              "name": "CHUK",
+              "compartments": "cytosol",
+              "displayName": "CHUK [cytosol]"
+            },
+            {
+              "stId": "uniprot:O15111",
+              "type": "ReferenceGeneProduct",
+              "name": "CHUK",
+              "compartments": "null",
+              "displayName": "CHUK [null]"
+            },
+            {
+              "stId": "R-HSA-177667",
+              "type": "ReferenceGeneProduct",
+              "name": "p-S176,S180-CHUK",
+              "compartments": "cytosol",
+              "displayName": "p-S176,S180-CHUK [cytosol]"
+            },
+            {
+              "stId": "R-HSA-198615",
+              "type": "ReferenceGeneProduct",
+              "name": "p-T23-CHUK",
+              "compartments": "cytosol",
+              "displayName": "p-T23-CHUK [cytosol]"
+            },
+            {
+              "stId": "R-HSA-9861501",
+              "type": "ReferenceGeneProduct",
+              "name": "p-Y187,Y198-CHUK",
+              "compartments": "cytosol",
+              "displayName": "p-Y187,Y198-CHUK [cytosol]"
+            }
+          ],
+          "iconEhlds": [
+            "R-HSA-2219528",
+            "R-HSA-5602358",
+            "R-HSA-913531"
+          ],
+          "icon": true
+        },
+        {
+          "dbId": "014346",
+          "stId": "R-ICO-014346",
+          "id": "R-ICO-014346",
+          "name": "SKP1",
+          "type": "Icon",
+          "exactType": "Icon",
+          "species": [
+            "Homo sapiens"
+          ],
+          "summation": "S-phase kinase-associated protein 1.",
+          "iconName": "SKP1",
+          "iconCategories": [
+            "protein"
+          ],
+          "iconCuratorName": "Marija Orlic-Milacic",
+          "iconCuratorOrcidId": "0000-0002-3218-5631",
+          "iconDesignerName": "Cristoffer Sevilla",
+          "iconDesignerUrl": "https://graphsolutions.co.uk",
+          "iconReferences": [
+            "P63208",
+            "UNIPROT:P63208"
+          ],
+          "iconPhysicalEntities": [
+            {
+              "stId": "R-HSA-174150",
+              "type": "ReferenceGeneProduct",
+              "name": "SKP1",
+              "compartments": "cytosol",
+              "displayName": "SKP1 [cytosol]"
+            },
+            {
+              "stId": "R-HSA-187538",
+              "type": "ReferenceGeneProduct",
+              "name": "SKP1",
+              "compartments": "nucleoplasm",
+              "displayName": "SKP1 [nucleoplasm]"
+            },
+            {
+              "stId": "uniprot:P63208",
+              "type": "ReferenceGeneProduct",
+              "name": "SKP1",
+              "compartments": "null",
+              "displayName": "SKP1 [null]"
+            }
+          ],
+          "iconEhlds": [
+            "R-HSA-2644603",
+            "R-HSA-9687139"
+          ],
+          "icon": true
+        }
+      ],
+      "typeName": "Icon",
+      "entriesCount": 55,
+      "rowCount": 10
+    }
+  ],
+  "rowCount": 78,
+  "numberOfGroups": 12,
+  "numberOfMatches": 7808
+}

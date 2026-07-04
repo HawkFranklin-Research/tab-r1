@@ -1,0 +1,7 @@
+{
+  "datasets": 10,
+  "model_runs": 50,
+  "success": 50,
+  "failed": 0,
+  "output_dir": "/home/prime/Documents/g3/cancer-exp/outputs/all_splits_predictions_top100"
+}

@@ -1,0 +1,7 @@
+Traceback (most recent call last):
+  File "/home/prime/Documents/g3/tab-r1/package/src/ev_tabpfn/evaluation/generations.py", line 177, in _run_one_dataset
+    model.fit(X_train, capped.y_train, overwrite_warning=True)
+    ~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/tmp/TabPFN_v1/tabpfn/scripts/transformer_prediction_interface.py", line 235, in fit
+    raise ValueError("The number of features for this classifier is restricted to ", self.max_num_features)
+ValueError: ('The number of features for this classifier is restricted to ', 100)

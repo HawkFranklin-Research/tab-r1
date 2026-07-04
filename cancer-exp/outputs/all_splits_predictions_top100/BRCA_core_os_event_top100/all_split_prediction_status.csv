@@ -1,0 +1,6 @@
+dataset,model_name,version,status,output_dir,train_predictions,val_predictions,test_predictions,all_predictions
+BRCA_core_os_event_top100,tabpfn_v1,v1,success,/home/prime/Documents/g3/cancer-exp/outputs/all_splits_predictions_top100/BRCA_core_os_event_top100/tabpfn_v1,827,178,178,1183
+BRCA_core_os_event_top100,tabpfn_v2,v2,success,/home/prime/Documents/g3/cancer-exp/outputs/all_splits_predictions_top100/BRCA_core_os_event_top100/tabpfn_v2,827,178,178,1183
+BRCA_core_os_event_top100,tabpfn_v2_5,v2_5,success,/home/prime/Documents/g3/cancer-exp/outputs/all_splits_predictions_top100/BRCA_core_os_event_top100/tabpfn_v2_5,827,178,178,1183
+BRCA_core_os_event_top100,tabpfn_v2_6,v2_6,success,/home/prime/Documents/g3/cancer-exp/outputs/all_splits_predictions_top100/BRCA_core_os_event_top100/tabpfn_v2_6,827,178,178,1183
+BRCA_core_os_event_top100,tabpfn_v3,v3,success,/home/prime/Documents/g3/cancer-exp/outputs/all_splits_predictions_top100/BRCA_core_os_event_top100/tabpfn_v3,827,178,178,1183

@@ -1,0 +1,71 @@
+{
+  "counts": {
+    "datasets_total": 1,
+    "datasets_success": 1,
+    "datasets_failed": 0
+  },
+  "runs": [
+    {
+      "dataset": "ESCA_core_os_event_top500",
+      "status": "success",
+      "run_dir": "/home/prime/Documents/g3/cancer-exp/outputs/tabpfn_all_generations_smoke/runs/esca_core_os_event_top500/20260528_064205",
+      "rows": [
+        {
+          "model_name": "tabpfn_v1",
+          "version": "v1",
+          "task_type": "binary",
+          "status": "failed",
+          "error_type": "ValueError",
+          "error_message": "('The number of features for this classifier is restricted to ', 100)"
+        },
+        {
+          "model_name": "tabpfn_v2",
+          "version": "v2",
+          "task_type": "binary",
+          "status": "success",
+          "accuracy": 0.5357142857142857,
+          "f1": 0.43478260869565216,
+          "roc_auc": 0.5364583333333334,
+          "log_loss": 0.7080909743814953
+        },
+        {
+          "model_name": "tabpfn_v2_5",
+          "version": "v2_5",
+          "task_type": "binary",
+          "status": "success",
+          "accuracy": 0.6071428571428571,
+          "f1": 0.15384615384615385,
+          "roc_auc": 0.5208333333333333,
+          "log_loss": 0.6716732535767472
+        },
+        {
+          "model_name": "tabpfn_v2_6",
+          "version": "v2_6",
+          "task_type": "binary",
+          "status": "success",
+          "accuracy": 0.5,
+          "f1": 0.36363636363636365,
+          "roc_auc": 0.515625,
+          "log_loss": 0.7117895849069111
+        },
+        {
+          "model_name": "tabpfn_v3",
+          "version": "v3",
+          "task_type": "binary",
+          "status": "success",
+          "accuracy": 0.6071428571428571,
+          "f1": 0.15384615384615385,
+          "roc_auc": 0.59375,
+          "log_loss": 0.6754794801081171
+        }
+      ]
+    }
+  ],
+  "versions": [
+    "v1",
+    "v2",
+    "v2_5",
+    "v2_6",
+    "v3"
+  ]
+}

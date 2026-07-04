@@ -1,0 +1,55 @@
+{
+  "dataset_name": "ESCA_core_os_event_top100",
+  "rows": [
+    {
+      "model_name": "tabpfn_v1",
+      "version": "v1",
+      "task_type": "binary",
+      "status": "success",
+      "accuracy": 0.5714285714285714,
+      "f1": 0.0,
+      "roc_auc": 0.43229166666666663,
+      "log_loss": 0.6913584794003115
+    },
+    {
+      "model_name": "tabpfn_v2",
+      "version": "v2",
+      "task_type": "binary",
+      "status": "success",
+      "accuracy": 0.6071428571428571,
+      "f1": 0.26666666666666666,
+      "roc_auc": 0.5026041666666667,
+      "log_loss": 0.6945179306792116
+    },
+    {
+      "model_name": "tabpfn_v2_5",
+      "version": "v2_5",
+      "task_type": "binary",
+      "status": "success",
+      "accuracy": 0.5714285714285714,
+      "f1": 0.3333333333333333,
+      "roc_auc": 0.5208333333333334,
+      "log_loss": 0.6854325798041081
+    },
+    {
+      "model_name": "tabpfn_v2_6",
+      "version": "v2_6",
+      "task_type": "binary",
+      "status": "success",
+      "accuracy": 0.5357142857142857,
+      "f1": 0.43478260869565216,
+      "roc_auc": 0.5364583333333334,
+      "log_loss": 0.705978422282665
+    },
+    {
+      "model_name": "tabpfn_v3",
+      "version": "v3",
+      "task_type": "binary",
+      "status": "success",
+      "accuracy": 0.6071428571428571,
+      "f1": 0.35294117647058826,
+      "roc_auc": 0.578125,
+      "log_loss": 0.6816552710379546
+    }
+  ]
+}

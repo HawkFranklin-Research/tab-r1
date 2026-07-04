@@ -1,0 +1,1441 @@
+{
+  "results": [
+    {
+      "entries": [
+        {
+          "dbId": "69541",
+          "stId": "R-HSA-69541",
+          "id": "R-HSA-69541",
+          "name": "Stabilization of <span class=\"highlighting\" >p53</span>",
+          "type": "Pathway",
+          "exactType": "Pathway",
+          "species": [
+            "Homo sapiens"
+          ],
+          "summation": "Later studies pin-pointed that a single serine (Ser-15) was phosphorylated by ATM and phosphorylation of Ser-15 was rapidly-induced in IR-treated cells and this response was ATM-dependent (Canman et al, 1998; Banin et al, 1998 and Khanna et al, 1998).  ATM also regulates the phosphorylation of <span class=\"highlighting\" >p53</span> at other sites, especially Ser-20, by activating other serine/threonine kinases in response to IR (Chehab et al, 2000; Shieh et al, 2000; Hirao et al 2000). Phosphorylation of <span class=\"highlighting\" >p53</span> at Ser-20 interferes with <span class=\"highlighting\" >p53</span>-MDM2 interaction.  MDM2 is transcriptionally activated by <span class=\"highlighting\" >p53</span> and is a negative regulator of <span class=\"highlighting\" >p53</span> that targets it for degradation (Haupt et al, 1997; Kubbutat et al, 1997).  In addition modification of MDM2 by ATM also affects <span class=\"highlighting\" >p53</span> stabilization (Maya et al, 2001).  ",
+          "isDisease": false,
+          "hasReferenceEntity": false,
+          "hasEHLD": false,
+          "disease": false
+        },
+        {
+          "dbId": "11049782",
+          "stId": "R-DDI-69541",
+          "id": "R-DDI-69541",
+          "name": "Stabilization of <span class=\"highlighting\" >p53</span>",
+          "type": "Pathway",
+          "exactType": "Pathway",
+          "species": [
+            "Dictyostelium discoideum"
+          ],
+          "summation": "This event has been computationally inferred from an event that has been demonstrated in another species.<p>The inference is based on the homology mapping from PANTHER. Briefly, reactions for which all involved PhysicalEntities (in input, output and catalyst) have a mapped orthologue/paralogue (for complexes at least 75% of components must have a mapping) are inferred to the other species. High level events are also inferred for these events to allow for easier navigation.<p><a href='/electronic_inference_compara.html' target = 'NEW'>More details and caveats of the event inference in Reactome.</a> For details on PANTHER see also: <a href='http://www.pantherdb.org/about.jsp' target='NEW'>http://www.pantherdb.org/about.jsp</a>",
+          "isDisease": false,
+          "hasReferenceEntity": false,
+          "hasEHLD": false,
+          "disease": false
+        },
+        {
+          "dbId": "10098457",
+          "stId": "R-MMU-69541",
+          "id": "R-MMU-69541",
+          "name": "Stabilization of <span class=\"highlighting\" >p53</span>",
+          "type": "Pathway",
+          "exactType": "Pathway",
+          "species": [
+            "Mus musculus"
+          ],
+          "summation": "This event has been computationally inferred from an event that has been demonstrated in another species.<p>The inference is based on the homology mapping from PANTHER. Briefly, reactions for which all involved PhysicalEntities (in input, output and catalyst) have a mapped orthologue/paralogue (for complexes at least 75% of components must have a mapping) are inferred to the other species. High level events are also inferred for these events to allow for easier navigation.<p><a href='/electronic_inference_compara.html' target = 'NEW'>More details and caveats of the event inference in Reactome.</a> For details on PANTHER see also: <a href='http://www.pantherdb.org/about.jsp' target='NEW'>http://www.pantherdb.org/about.jsp</a>",
+          "isDisease": false,
+          "hasReferenceEntity": false,
+          "hasEHLD": false,
+          "disease": false
+        },
+        {
+          "dbId": "10221987",
+          "stId": "R-RNO-69541",
+          "id": "R-RNO-69541",
+          "name": "Stabilization of <span class=\"highlighting\" >p53</span>",
+          "type": "Pathway",
+          "exactType": "Pathway",
+          "species": [
+            "Rattus norvegicus"
+          ],
+          "summation": "This event has been computationally inferred from an event that has been demonstrated in another species.<p>The inference is based on the homology mapping from PANTHER. Briefly, reactions for which all involved PhysicalEntities (in input, output and catalyst) have a mapped orthologue/paralogue (for complexes at least 75% of components must have a mapping) are inferred to the other species. High level events are also inferred for these events to allow for easier navigation.<p><a href='/electronic_inference_compara.html' target = 'NEW'>More details and caveats of the event inference in Reactome.</a> For details on PANTHER see also: <a href='http://www.pantherdb.org/about.jsp' target='NEW'>http://www.pantherdb.org/about.jsp</a>",
+          "isDisease": false,
+          "hasReferenceEntity": false,
+          "hasEHLD": false,
+          "disease": false
+        },
+        {
+          "dbId": "10328595",
+          "stId": "R-CFA-69541",
+          "id": "R-CFA-69541",
+          "name": "Stabilization of <span class=\"highlighting\" >p53</span>",
+          "type": "Pathway",
+          "exactType": "Pathway",
+          "species": [
+            "Canis familiaris"
+          ],
+          "summation": "This event has been computationally inferred from an event that has been demonstrated in another species.<p>The inference is based on the homology mapping from PANTHER. Briefly, reactions for which all involved PhysicalEntities (in input, output and catalyst) have a mapped orthologue/paralogue (for complexes at least 75% of components must have a mapping) are inferred to the other species. High level events are also inferred for these events to allow for easier navigation.<p><a href='/electronic_inference_compara.html' target = 'NEW'>More details and caveats of the event inference in Reactome.</a> For details on PANTHER see also: <a href='http://www.pantherdb.org/about.jsp' target='NEW'>http://www.pantherdb.org/about.jsp</a>",
+          "isDisease": false,
+          "hasReferenceEntity": false,
+          "hasEHLD": false,
+          "disease": false
+        },
+        {
+          "dbId": "10442824",
+          "stId": "R-BTA-69541",
+          "id": "R-BTA-69541",
+          "name": "Stabilization of <span class=\"highlighting\" >p53</span>",
+          "type": "Pathway",
+          "exactType": "Pathway",
+          "species": [
+            "Bos taurus"
+          ],
+          "summation": "This event has been computationally inferred from an event that has been demonstrated in another species.<p>The inference is based on the homology mapping from PANTHER. Briefly, reactions for which all involved PhysicalEntities (in input, output and catalyst) have a mapped orthologue/paralogue (for complexes at least 75% of components must have a mapping) are inferred to the other species. High level events are also inferred for these events to allow for easier navigation.<p><a href='/electronic_inference_compara.html' target = 'NEW'>More details and caveats of the event inference in Reactome.</a> For details on PANTHER see also: <a href='http://www.pantherdb.org/about.jsp' target='NEW'>http://www.pantherdb.org/about.jsp</a>",
+          "isDisease": false,
+          "hasReferenceEntity": false,
+          "hasEHLD": false,
+          "disease": false
+        },
+        {
+          "dbId": "10555619",
+          "stId": "R-SSC-69541",
+          "id": "R-SSC-69541",
+          "name": "Stabilization of <span class=\"highlighting\" >p53</span>",
+          "type": "Pathway",
+          "exactType": "Pathway",
+          "species": [
+            "Sus scrofa"
+          ],
+          "summation": "This event has been computationally inferred from an event that has been demonstrated in another species.<p>The inference is based on the homology mapping from PANTHER. Briefly, reactions for which all involved PhysicalEntities (in input, output and catalyst) have a mapped orthologue/paralogue (for complexes at least 75% of components must have a mapping) are inferred to the other species. High level events are also inferred for these events to allow for easier navigation.<p><a href='/electronic_inference_compara.html' target = 'NEW'>More details and caveats of the event inference in Reactome.</a> For details on PANTHER see also: <a href='http://www.pantherdb.org/about.jsp' target='NEW'>http://www.pantherdb.org/about.jsp</a>",
+          "isDisease": false,
+          "hasReferenceEntity": false,
+          "hasEHLD": false,
+          "disease": false
+        },
+        {
+          "dbId": "10648808",
+          "stId": "R-DRE-69541",
+          "id": "R-DRE-69541",
+          "name": "Stabilization of <span class=\"highlighting\" >p53</span>",
+          "type": "Pathway",
+          "exactType": "Pathway",
+          "species": [
+            "Danio rerio"
+          ],
+          "summation": "This event has been computationally inferred from an event that has been demonstrated in another species.<p>The inference is based on the homology mapping from PANTHER. Briefly, reactions for which all involved PhysicalEntities (in input, output and catalyst) have a mapped orthologue/paralogue (for complexes at least 75% of components must have a mapping) are inferred to the other species. High level events are also inferred for these events to allow for easier navigation.<p><a href='/electronic_inference_compara.html' target = 'NEW'>More details and caveats of the event inference in Reactome.</a> For details on PANTHER see also: <a href='http://www.pantherdb.org/about.jsp' target='NEW'>http://www.pantherdb.org/about.jsp</a>",
+          "isDisease": false,
+          "hasReferenceEntity": false,
+          "hasEHLD": false,
+          "disease": false
+        },
+        {
+          "dbId": "10728438",
+          "stId": "R-XTR-69541",
+          "id": "R-XTR-69541",
+          "name": "Stabilization of <span class=\"highlighting\" >p53</span>",
+          "type": "Pathway",
+          "exactType": "Pathway",
+          "species": [
+            "Xenopus tropicalis"
+          ],
+          "summation": "This event has been computationally inferred from an event that has been demonstrated in another species.<p>The inference is based on the homology mapping from PANTHER. Briefly, reactions for which all involved PhysicalEntities (in input, output and catalyst) have a mapped orthologue/paralogue (for complexes at least 75% of components must have a mapping) are inferred to the other species. High level events are also inferred for these events to allow for easier navigation.<p><a href='/electronic_inference_compara.html' target = 'NEW'>More details and caveats of the event inference in Reactome.</a> For details on PANTHER see also: <a href='http://www.pantherdb.org/about.jsp' target='NEW'>http://www.pantherdb.org/about.jsp</a>",
+          "isDisease": false,
+          "hasReferenceEntity": false,
+          "hasEHLD": false,
+          "disease": false
+        },
+        {
+          "dbId": "10826517",
+          "stId": "R-GGA-69541",
+          "id": "R-GGA-69541",
+          "name": "Stabilization of <span class=\"highlighting\" >p53</span>",
+          "type": "Pathway",
+          "exactType": "Pathway",
+          "species": [
+            "Gallus gallus"
+          ],
+          "summation": "This event has been computationally inferred from an event that has been demonstrated in another species.<p>The inference is based on the homology mapping from PANTHER. Briefly, reactions for which all involved PhysicalEntities (in input, output and catalyst) have a mapped orthologue/paralogue (for complexes at least 75% of components must have a mapping) are inferred to the other species. High level events are also inferred for these events to allow for easier navigation.<p><a href='/electronic_inference_compara.html' target = 'NEW'>More details and caveats of the event inference in Reactome.</a> For details on PANTHER see also: <a href='http://www.pantherdb.org/about.jsp' target='NEW'>http://www.pantherdb.org/about.jsp</a>",
+          "isDisease": false,
+          "hasReferenceEntity": false,
+          "hasEHLD": false,
+          "disease": false
+        }
+      ],
+      "typeName": "Pathway",
+      "entriesCount": 3196,
+      "rowCount": 10
+    },
+    {
+      "entries": [
+        {
+          "dbId": "992753",
+          "stId": "R-NUL-992753",
+          "id": "R-NUL-992753",
+          "name": "<span class=\"highlighting\" >p53</span> and Sin3a bind c-Myb",
+          "type": "Reaction",
+          "exactType": "binding",
+          "species": [
+            "Mus musculus",
+            "Homo sapiens"
+          ],
+          "summation": "The DNA-binding domain of c-Myb binds the co-repressor protein SIN3A (Nomura et al. 2004). The tumor repressor <span class=\"highlighting\" >p53</span> also binds MYB directly (Tanikawa et al. 2004), promoting formation of a trimeric SIN3A:c-Myb:p53 complex. This does not affect the ability of c-Myb to bind to DNA, but may represent the mechanism that allows <span class=\"highlighting\" >p53</span> to to regulate specific Myb target genes. <br>c-Myb (gene symbol MYB) is highly conserved in all vertebrates and some invertebrate species (Lipsick 1996). It plays an important role in the control of proliferation and differentiation of hematopoietic progenitor cells (Duprey & Boettiger 1985); Down-<span class=\"highlighting\" >regulation</span> of c-Myb is believed to be critical for the commitment of cells to terminal differentiation (Oh & Reddy, 1999). c-Myb interacts with many other transcription factors including CBP, several CCAAT binding protein (c/EBP) family members, and Ets family proteins such as Ets-2 (Oh & Reddy, 1999). <br>Loss of c-Myb function results in embryonic lethality due to failure of fetal hepatic hematopoiesis (Mucenski et al. 1991).  ",
+          "compartmentNames": [
+            "nucleoplasm"
+          ],
+          "compartmentAccession": [
+            "0005654"
+          ],
+          "isDisease": false,
+          "hasReferenceEntity": false,
+          "disease": false
+        },
+        {
+          "dbId": "1912406",
+          "stId": "R-HSA-1912406",
+          "id": "R-HSA-1912406",
+          "name": "<span class=\"highlighting\" >p53</span> positively regulates transcription of MIR34 microRNAs",
+          "type": "Reaction",
+          "exactType": "omitted",
+          "species": [
+            "Homo sapiens"
+          ],
+          "summation": "Transcription of microRNA MIR34A is directly induced by the tumor suppressor <span class=\"highlighting\" >p53</span>, which binds to the conserved <span class=\"highlighting\" >p53</span> binding site located in the vicinity of the MIR34A transcription start (Chang et al. 2007, Raver-Shapira et al. 2007). Genomic loss of the chromosomal band 1p36, harboring the MIR34A gene, is a frequent event in pancreatic cancer, and MIR34A is considered to act as a tumor suppressor. Conserved <span class=\"highlighting\" >p53</span> binding sites were also mapped to the promoter of clustered MIR34B and MIR34C genes, and the transcription of MIR34B and MIR34C microRNAs was shown to be positively regulated by <span class=\"highlighting\" >p53</span> (He et al. 2007, Corney et al. 2007). The steps involved in processing of pri-microRNA into pre-microRNA have been omitted in this event - please refer to the diagram of Regulatory RNA Pathways for details.",
+          "compartmentNames": [
+            "nucleoplasm"
+          ],
+          "compartmentAccession": [
+            "0005654"
+          ],
+          "isDisease": false,
+          "hasReferenceEntity": false,
+          "disease": false
+        },
+        {
+          "dbId": "3790130",
+          "stId": "R-HSA-3790130",
+          "id": "R-HSA-3790130",
+          "name": "<span class=\"highlighting\" >Regulation</span> of IL6 transcription",
+          "type": "Reaction",
+          "exactType": "omitted",
+          "species": [
+            "Homo sapiens"
+          ],
+          "summation": "Methylation of the IL6 promoter by EHMT1:EHMT2 (GLP:G9a) histone methyltransferases inhibits IL6 transcription, while Cdh1:APC/C-mediated degradation of EHTM1:EHTM2 downstream of the ATM-TP53-CDKN1A axis stimulates IL6 transcription (Takahashi et al. 2012). Oncogenic RAS signaling stimulates activation of the CEBPB transcription factor (C/EBP-beta) which binds IL6 promoter and stimulates IL6 transcription (Kuilman et al. 2008, Lee et al. 2010). NF kappa B transcription factor is also activated in senescent cells (Chien et al. 2011) through interleukin-1-alpha (IL1A) signaling (Jimi et al. 1996, Hartupee et al. 2008, Orjalo et al. 2009), and it cooperates with CEBPB in the activation of IL6 transcription (Shimizu et al. 1990, Libermann and Baltimore 1990, Matsusaka et al. 1993, Acosta et al. 2008). Autocrine IL6 signaling stimulates CEBPB expression (Kuilman et al. 2008), creating a positive feedback loop. STAT3, activated by IL6 signaling cascade is necessary for CEBPB transcription, but the direct binding of STAT3 to the CEBPB promoter has not been demonstrated (Niehof et al. 2001).<br>VENTX inhibits transcription of the Interleukin-6 (IL6) gene, thus promoting differentiation of primary monocytes into dendritic cells (Wu et al. 2014). The NF\u03baB complex which competes with VENTX for binding to the IL6 gene promoter (Wu et al. 2014). It is not known whether histone H3K9 dimethylation at the VENTX promoter (Takahashi et al. 2012) is involved in VENTX-mediated transcriptional repression of IL6.",
+          "compartmentNames": [
+            "extracellular region",
+            "nucleoplasm"
+          ],
+          "compartmentAccession": [
+            "0005576",
+            "0005654"
+          ],
+          "isDisease": false,
+          "hasReferenceEntity": false,
+          "disease": false
+        },
+        {
+          "dbId": "156673",
+          "stId": "R-HSA-156673",
+          "id": "R-HSA-156673",
+          "name": "<span class=\"highlighting\" >Regulation</span> of KIF23 (MKLP1) by phosphorylation",
+          "type": "Reaction",
+          "exactType": "transition",
+          "species": [
+            "Homo sapiens"
+          ],
+          "summation": "The polo-like kinase PLK1 phosphorylates KIF23 (also known as MKLP1 i.e. mitotic kinesin-like protein 1) on serine residues S911 and S912. ",
+          "compartmentNames": [
+            "nucleoplasm"
+          ],
+          "compartmentAccession": [
+            "0005654"
+          ],
+          "isDisease": false,
+          "hasReferenceEntity": false,
+          "disease": false
+        },
+        {
+          "dbId": "156723",
+          "stId": "R-HSA-156723",
+          "id": "R-HSA-156723",
+          "name": "<span class=\"highlighting\" >Regulation</span> of KIF20A (MKL2) by phosphorylation",
+          "type": "Reaction",
+          "exactType": "transition",
+          "species": [
+            "Homo sapiens"
+          ],
+          "summation": "The polo-like kinase PLK1 phosphorylates KIF20A (also known as MKLP2 i.e. mitotic kinesin-like protein 2) on serine residue S528.",
+          "compartmentNames": [
+            "nucleoplasm"
+          ],
+          "compartmentAccession": [
+            "0005654"
+          ],
+          "isDisease": false,
+          "hasReferenceEntity": false,
+          "disease": false
+        },
+        {
+          "dbId": "10342929",
+          "stId": "R-BTA-156673",
+          "id": "R-BTA-156673",
+          "name": "<span class=\"highlighting\" >Regulation</span> of KIF23 (MKLP1) by phosphorylation",
+          "type": "Reaction",
+          "exactType": "transition",
+          "species": [
+            "Bos taurus"
+          ],
+          "summation": "This event has been computationally inferred from an event that has been demonstrated in another species.<p>The inference is based on the homology mapping from PANTHER. Briefly, reactions for which all involved PhysicalEntities (in input, output and catalyst) have a mapped orthologue/paralogue (for complexes at least 75% of components must have a mapping) are inferred to the other species. High level events are also inferred for these events to allow for easier navigation.<p><a href='/electronic_inference_compara.html' target = 'NEW'>More details and caveats of the event inference in Reactome.</a> For details on PANTHER see also: <a href='http://www.pantherdb.org/about.jsp' target='NEW'>http://www.pantherdb.org/about.jsp</a>",
+          "compartmentNames": [
+            "nucleoplasm"
+          ],
+          "compartmentAccession": [
+            "0005654"
+          ],
+          "isDisease": false,
+          "hasReferenceEntity": false,
+          "disease": false
+        },
+        {
+          "dbId": "9994482",
+          "stId": "R-MMU-156673",
+          "id": "R-MMU-156673",
+          "name": "<span class=\"highlighting\" >Regulation</span> of KIF23 (MKLP1) by phosphorylation",
+          "type": "Reaction",
+          "exactType": "transition",
+          "species": [
+            "Mus musculus"
+          ],
+          "summation": "This event has been computationally inferred from an event that has been demonstrated in another species.<p>The inference is based on the homology mapping from PANTHER. Briefly, reactions for which all involved PhysicalEntities (in input, output and catalyst) have a mapped orthologue/paralogue (for complexes at least 75% of components must have a mapping) are inferred to the other species. High level events are also inferred for these events to allow for easier navigation.<p><a href='/electronic_inference_compara.html' target = 'NEW'>More details and caveats of the event inference in Reactome.</a> For details on PANTHER see also: <a href='http://www.pantherdb.org/about.jsp' target='NEW'>http://www.pantherdb.org/about.jsp</a>",
+          "compartmentNames": [
+            "nucleoplasm"
+          ],
+          "compartmentAccession": [
+            "0005654"
+          ],
+          "isDisease": false,
+          "hasReferenceEntity": false,
+          "disease": false
+        },
+        {
+          "dbId": "10114572",
+          "stId": "R-RNO-156673",
+          "id": "R-RNO-156673",
+          "name": "<span class=\"highlighting\" >Regulation</span> of KIF23 (MKLP1) by phosphorylation",
+          "type": "Reaction",
+          "exactType": "transition",
+          "species": [
+            "Rattus norvegicus"
+          ],
+          "summation": "This event has been computationally inferred from an event that has been demonstrated in another species.<p>The inference is based on the homology mapping from PANTHER. Briefly, reactions for which all involved PhysicalEntities (in input, output and catalyst) have a mapped orthologue/paralogue (for complexes at least 75% of components must have a mapping) are inferred to the other species. High level events are also inferred for these events to allow for easier navigation.<p><a href='/electronic_inference_compara.html' target = 'NEW'>More details and caveats of the event inference in Reactome.</a> For details on PANTHER see also: <a href='http://www.pantherdb.org/about.jsp' target='NEW'>http://www.pantherdb.org/about.jsp</a>",
+          "compartmentNames": [
+            "nucleoplasm"
+          ],
+          "compartmentAccession": [
+            "0005654"
+          ],
+          "isDisease": false,
+          "hasReferenceEntity": false,
+          "disease": false
+        },
+        {
+          "dbId": "10236219",
+          "stId": "R-CFA-156673",
+          "id": "R-CFA-156673",
+          "name": "<span class=\"highlighting\" >Regulation</span> of KIF23 (MKLP1) by phosphorylation",
+          "type": "Reaction",
+          "exactType": "transition",
+          "species": [
+            "Canis familiaris"
+          ],
+          "summation": "This event has been computationally inferred from an event that has been demonstrated in another species.<p>The inference is based on the homology mapping from PANTHER. Briefly, reactions for which all involved PhysicalEntities (in input, output and catalyst) have a mapped orthologue/paralogue (for complexes at least 75% of components must have a mapping) are inferred to the other species. High level events are also inferred for these events to allow for easier navigation.<p><a href='/electronic_inference_compara.html' target = 'NEW'>More details and caveats of the event inference in Reactome.</a> For details on PANTHER see also: <a href='http://www.pantherdb.org/about.jsp' target='NEW'>http://www.pantherdb.org/about.jsp</a>",
+          "compartmentNames": [
+            "nucleoplasm"
+          ],
+          "compartmentAccession": [
+            "0005654"
+          ],
+          "isDisease": false,
+          "hasReferenceEntity": false,
+          "disease": false
+        },
+        {
+          "dbId": "10456996",
+          "stId": "R-SSC-156673",
+          "id": "R-SSC-156673",
+          "name": "<span class=\"highlighting\" >Regulation</span> of KIF23 (MKLP1) by phosphorylation",
+          "type": "Reaction",
+          "exactType": "transition",
+          "species": [
+            "Sus scrofa"
+          ],
+          "summation": "This event has been computationally inferred from an event that has been demonstrated in another species.<p>The inference is based on the homology mapping from PANTHER. Briefly, reactions for which all involved PhysicalEntities (in input, output and catalyst) have a mapped orthologue/paralogue (for complexes at least 75% of components must have a mapping) are inferred to the other species. High level events are also inferred for these events to allow for easier navigation.<p><a href='/electronic_inference_compara.html' target = 'NEW'>More details and caveats of the event inference in Reactome.</a> For details on PANTHER see also: <a href='http://www.pantherdb.org/about.jsp' target='NEW'>http://www.pantherdb.org/about.jsp</a>",
+          "compartmentNames": [
+            "nucleoplasm"
+          ],
+          "compartmentAccession": [
+            "0005654"
+          ],
+          "isDisease": false,
+          "hasReferenceEntity": false,
+          "disease": false
+        }
+      ],
+      "typeName": "Reaction",
+      "entriesCount": 3531,
+      "rowCount": 10
+    },
+    {
+      "entries": [
+        {
+          "dbId": "73710",
+          "stId": "R-MMU-73710",
+          "id": "R-MMU-73710",
+          "name": "<span class=\"highlighting\" >p53</span> - RNA Pol I associated factor",
+          "type": "Protein",
+          "exactType": "ReferenceGeneProduct",
+          "species": [
+            "Mus musculus"
+          ],
+          "referenceName": "Polr1e",
+          "referenceIdentifier": "Q8K202",
+          "compartmentNames": [
+            "nucleoplasm"
+          ],
+          "compartmentAccession": [
+            "0005654"
+          ],
+          "isDisease": false,
+          "hasReferenceEntity": true,
+          "databaseName": "UniProt",
+          "referenceURL": "http://purl.uniprot.org/uniprot/Q8K202",
+          "disease": false
+        },
+        {
+          "dbId": "6813797",
+          "stId": "R-HSA-6813797",
+          "id": "R-HSA-6813797",
+          "name": "Unfolded TP53",
+          "type": "Protein",
+          "exactType": "ReferenceGeneProduct",
+          "species": [
+            "Homo sapiens"
+          ],
+          "referenceName": "TP53",
+          "referenceIdentifier": "P04637",
+          "compartmentNames": [
+            "cytosol"
+          ],
+          "compartmentAccession": [
+            "0005829"
+          ],
+          "isDisease": false,
+          "hasReferenceEntity": true,
+          "databaseName": "UniProt",
+          "referenceURL": "http://purl.uniprot.org/uniprot/P04637",
+          "disease": false
+        },
+        {
+          "dbId": "69488",
+          "stId": "R-HSA-69488",
+          "id": "R-HSA-69488",
+          "name": "TP53",
+          "type": "Protein",
+          "exactType": "ReferenceGeneProduct",
+          "species": [
+            "Homo sapiens"
+          ],
+          "referenceName": "TP53",
+          "referenceIdentifier": "P04637",
+          "compartmentNames": [
+            "nucleoplasm"
+          ],
+          "compartmentAccession": [
+            "0005654"
+          ],
+          "isDisease": false,
+          "hasReferenceEntity": true,
+          "databaseName": "UniProt",
+          "referenceURL": "http://purl.uniprot.org/uniprot/P04637",
+          "disease": false
+        },
+        {
+          "dbId": "8869337",
+          "stId": "R-HSA-8869337",
+          "id": "R-HSA-8869337",
+          "name": "TP53",
+          "type": "Protein",
+          "exactType": "ReferenceGeneProduct",
+          "species": [
+            "Homo sapiens"
+          ],
+          "referenceName": "TP53",
+          "referenceIdentifier": "P04637",
+          "compartmentNames": [
+            "cytosol"
+          ],
+          "compartmentAccession": [
+            "0005829"
+          ],
+          "isDisease": false,
+          "hasReferenceEntity": true,
+          "databaseName": "UniProt",
+          "referenceURL": "http://purl.uniprot.org/uniprot/P04637",
+          "disease": false
+        },
+        {
+          "dbId": "61175",
+          "stId": "R-HSA-61175",
+          "id": "R-HSA-61175",
+          "name": "TP53BP1",
+          "type": "Protein",
+          "exactType": "ReferenceGeneProduct",
+          "species": [
+            "Homo sapiens"
+          ],
+          "referenceName": "TP53BP1",
+          "referenceIdentifier": "Q12888",
+          "compartmentNames": [
+            "nucleoplasm"
+          ],
+          "compartmentAccession": [
+            "0005654"
+          ],
+          "isDisease": false,
+          "hasReferenceEntity": true,
+          "databaseName": "UniProt",
+          "referenceURL": "http://purl.uniprot.org/uniprot/Q12888",
+          "disease": false
+        },
+        {
+          "dbId": "6799780",
+          "stId": "R-HSA-6799780",
+          "id": "R-HSA-6799780",
+          "name": "TP53BP2",
+          "type": "Protein",
+          "exactType": "ReferenceGeneProduct",
+          "species": [
+            "Homo sapiens"
+          ],
+          "referenceName": "TP53BP2",
+          "referenceIdentifier": "Q13625",
+          "compartmentNames": [
+            "nucleoplasm"
+          ],
+          "compartmentAccession": [
+            "0005654"
+          ],
+          "isDisease": false,
+          "hasReferenceEntity": true,
+          "databaseName": "UniProt",
+          "referenceURL": "http://purl.uniprot.org/uniprot/Q13625",
+          "disease": false
+        },
+        {
+          "dbId": "6799460",
+          "stId": "R-HSA-6799460",
+          "id": "R-HSA-6799460",
+          "name": "TP53I3",
+          "type": "Protein",
+          "exactType": "ReferenceGeneProduct",
+          "species": [
+            "Homo sapiens"
+          ],
+          "referenceName": "TP53I3",
+          "referenceIdentifier": "Q53FA7",
+          "compartmentNames": [
+            "cytosol"
+          ],
+          "compartmentAccession": [
+            "0005829"
+          ],
+          "isDisease": false,
+          "hasReferenceEntity": true,
+          "databaseName": "UniProt",
+          "referenceURL": "http://purl.uniprot.org/uniprot/Q53FA7",
+          "disease": false
+        },
+        {
+          "dbId": "3215226",
+          "stId": "R-HSA-3215226",
+          "id": "R-HSA-3215226",
+          "name": "TP53INP1",
+          "type": "Protein",
+          "exactType": "ReferenceGeneProduct",
+          "species": [
+            "Homo sapiens"
+          ],
+          "referenceName": "TP53INP1",
+          "referenceIdentifier": "Q96A56",
+          "compartmentNames": [
+            "nucleoplasm"
+          ],
+          "compartmentAccession": [
+            "0005654"
+          ],
+          "isDisease": false,
+          "hasReferenceEntity": true,
+          "databaseName": "UniProt",
+          "referenceURL": "http://purl.uniprot.org/uniprot/Q96A56",
+          "disease": false
+        },
+        {
+          "dbId": "351424",
+          "stId": "R-GGA-351424",
+          "id": "R-GGA-351424",
+          "name": "TP53BP1",
+          "type": "Protein",
+          "exactType": "ReferenceGeneProduct",
+          "species": [
+            "Gallus gallus"
+          ],
+          "referenceName": "TP53BP1",
+          "referenceIdentifier": "ENSEMBL:ENSGALP00000013866",
+          "compartmentNames": [
+            "nucleoplasm"
+          ],
+          "compartmentAccession": [
+            "0005654"
+          ],
+          "isDisease": false,
+          "hasReferenceEntity": true,
+          "databaseName": "ENSEMBL",
+          "referenceURL": "https://www.ensembl.org/id/ENSGALP00000013866",
+          "disease": false
+        },
+        {
+          "dbId": "6800837",
+          "stId": "R-HSA-6800837",
+          "id": "R-HSA-6800837",
+          "name": "PERP",
+          "type": "Protein",
+          "exactType": "ReferenceGeneProduct",
+          "species": [
+            "Homo sapiens"
+          ],
+          "referenceName": "PERP",
+          "referenceIdentifier": "Q96FX8",
+          "compartmentNames": [
+            "plasma membrane"
+          ],
+          "compartmentAccession": [
+            "0005886"
+          ],
+          "isDisease": false,
+          "hasReferenceEntity": true,
+          "databaseName": "UniProt",
+          "referenceURL": "http://purl.uniprot.org/uniprot/Q96FX8",
+          "disease": false
+        }
+      ],
+      "typeName": "Protein",
+      "entriesCount": 1448,
+      "rowCount": 10
+    },
+    {
+      "entries": [
+        {
+          "dbId": "P04637-7",
+          "stId": "P04637-7",
+          "id": "P04637-7",
+          "name": "TP53",
+          "type": "Interactor",
+          "exactType": "Interactor",
+          "species": [
+            "Homo sapiens"
+          ],
+          "referenceIdentifier": "P04637-7",
+          "databaseName": "UniProt",
+          "referenceURL": "https://www.uniprot.org/uniprotkb/P04637-7/entry"
+        },
+        {
+          "dbId": "P04637-1",
+          "stId": "P04637-1",
+          "id": "P04637-1",
+          "name": "TP53",
+          "type": "Interactor",
+          "exactType": "Interactor",
+          "species": [
+            "Homo sapiens"
+          ],
+          "referenceIdentifier": "P04637-1",
+          "databaseName": "UniProt",
+          "referenceURL": "https://www.uniprot.org/uniprotkb/P04637-1/entry"
+        },
+        {
+          "dbId": "Q9N6D8",
+          "stId": "Q9N6D8",
+          "id": "Q9N6D8",
+          "name": "Q9N6D8",
+          "type": "Interactor",
+          "exactType": "Interactor",
+          "species": [
+            "Drosophila melanogaster"
+          ],
+          "referenceIdentifier": "Q9N6D8",
+          "databaseName": "UniProt",
+          "referenceURL": "https://www.uniprot.org/uniprotkb/Q9N6D8/entry"
+        },
+        {
+          "dbId": "Q96PG8",
+          "stId": "Q96PG8",
+          "id": "Q96PG8",
+          "name": "BBC3B",
+          "type": "Interactor",
+          "exactType": "Interactor",
+          "species": [
+            "Homo sapiens"
+          ],
+          "referenceIdentifier": "Q96PG8",
+          "databaseName": "UniProt",
+          "referenceURL": "https://www.uniprot.org/uniprotkb/Q96PG8/entry"
+        },
+        {
+          "dbId": "Q9BXH1-2",
+          "stId": "Q9BXH1-2",
+          "id": "Q9BXH1-2",
+          "name": "BBC3",
+          "type": "Interactor",
+          "exactType": "Interactor",
+          "species": [
+            "Homo sapiens"
+          ],
+          "referenceIdentifier": "Q9BXH1-2",
+          "databaseName": "UniProt",
+          "referenceURL": "https://www.uniprot.org/uniprotkb/Q9BXH1-2/entry"
+        },
+        {
+          "dbId": "Q15051-2",
+          "stId": "Q15051-2",
+          "id": "Q15051-2",
+          "name": "IQCB1",
+          "type": "Interactor",
+          "exactType": "Interactor",
+          "species": [
+            "Homo sapiens"
+          ],
+          "referenceIdentifier": "Q15051-2",
+          "databaseName": "UniProt",
+          "referenceURL": "https://www.uniprot.org/uniprotkb/Q15051-2/entry"
+        },
+        {
+          "dbId": "EBI-15697717",
+          "stId": "EBI-15697717",
+          "id": "EBI-15697717",
+          "name": "P53K382AC",
+          "type": "Interactor",
+          "exactType": "Interactor",
+          "species": [
+            "Entries without species"
+          ],
+          "referenceIdentifier": "EBI-15697717",
+          "databaseName": "IntAct",
+          "referenceURL": "https://www.ebi.ac.uk/intact/query/EBI-15697717"
+        }
+      ],
+      "typeName": "Interactor",
+      "entriesCount": 7,
+      "rowCount": 7
+    },
+    {
+      "entries": [
+        {
+          "dbId": "992748",
+          "stId": "R-HSA-992748",
+          "id": "R-HSA-992748",
+          "name": "<span class=\"highlighting\" >p53</span>:MYB:SIN3A",
+          "type": "Complex",
+          "exactType": "Complex",
+          "species": [
+            "Homo sapiens"
+          ],
+          "compartmentNames": [
+            "nucleoplasm"
+          ],
+          "compartmentAccession": [
+            "0005654"
+          ],
+          "isDisease": false,
+          "hasReferenceEntity": false,
+          "disease": false
+        },
+        {
+          "dbId": "399845",
+          "stId": "R-HSA-399845",
+          "id": "R-HSA-399845",
+          "name": "NRP1:PlexinA1-4:FYN:pCdk5:<span class=\"highlighting\" >p53</span>",
+          "type": "Complex",
+          "exactType": "Complex",
+          "species": [
+            "Homo sapiens"
+          ],
+          "compartmentNames": [
+            "plasma membrane"
+          ],
+          "compartmentAccession": [
+            "0005886"
+          ],
+          "isDisease": false,
+          "hasReferenceEntity": false,
+          "disease": false
+        },
+        {
+          "dbId": "10756580",
+          "stId": "R-GGA-399845",
+          "id": "R-GGA-399845",
+          "name": "NRP1:PlexinA1-4:FYN:pCdk5:<span class=\"highlighting\" >p53</span>",
+          "type": "Complex",
+          "exactType": "Complex",
+          "species": [
+            "Gallus gallus"
+          ],
+          "summation": "This complex/polymer has been computationally inferred (based on PANTHER) from a complex/polymer involved in an event that has been demonstrated in another species.",
+          "compartmentNames": [
+            "plasma membrane"
+          ],
+          "compartmentAccession": [
+            "0005886"
+          ],
+          "isDisease": false,
+          "hasReferenceEntity": false,
+          "disease": false
+        },
+        {
+          "dbId": "10361404",
+          "stId": "R-BTA-399845",
+          "id": "R-BTA-399845",
+          "name": "NRP1:PlexinA1-4:FYN:pCdk5:<span class=\"highlighting\" >p53</span>",
+          "type": "Complex",
+          "exactType": "Complex",
+          "species": [
+            "Bos taurus"
+          ],
+          "summation": "This complex/polymer has been computationally inferred (based on PANTHER) from a complex/polymer involved in an event that has been demonstrated in another species.",
+          "compartmentNames": [
+            "plasma membrane"
+          ],
+          "compartmentAccession": [
+            "0005886"
+          ],
+          "isDisease": false,
+          "hasReferenceEntity": false,
+          "disease": false
+        },
+        {
+          "dbId": "10135983",
+          "stId": "R-RNO-399845",
+          "id": "R-RNO-399845",
+          "name": "NRP1:PlexinA1-4:FYN:pCdk5:<span class=\"highlighting\" >p53</span>",
+          "type": "Complex",
+          "exactType": "Complex",
+          "species": [
+            "Rattus norvegicus"
+          ],
+          "summation": "This complex/polymer has been computationally inferred (based on PANTHER) from a complex/polymer involved in an event that has been demonstrated in another species.",
+          "compartmentNames": [
+            "plasma membrane"
+          ],
+          "compartmentAccession": [
+            "0005886"
+          ],
+          "isDisease": false,
+          "hasReferenceEntity": false,
+          "disease": false
+        },
+        {
+          "dbId": "10013774",
+          "stId": "R-MMU-399845",
+          "id": "R-MMU-399845",
+          "name": "NRP1:PlexinA1-4:FYN:pCdk5:<span class=\"highlighting\" >p53</span>",
+          "type": "Complex",
+          "exactType": "Complex",
+          "species": [
+            "Mus musculus"
+          ],
+          "summation": "This complex/polymer has been computationally inferred (based on PANTHER) from a complex/polymer involved in an event that has been demonstrated in another species.",
+          "compartmentNames": [
+            "plasma membrane"
+          ],
+          "compartmentAccession": [
+            "0005886"
+          ],
+          "isDisease": false,
+          "hasReferenceEntity": false,
+          "disease": false
+        },
+        {
+          "dbId": "10583575",
+          "stId": "R-DRE-399845",
+          "id": "R-DRE-399845",
+          "name": "NRP1:PlexinA1-4:FYN:pCdk5:<span class=\"highlighting\" >p53</span>",
+          "type": "Complex",
+          "exactType": "Complex",
+          "species": [
+            "Danio rerio"
+          ],
+          "summation": "This complex/polymer has been computationally inferred (based on PANTHER) from a complex/polymer involved in an event that has been demonstrated in another species.",
+          "compartmentNames": [
+            "plasma membrane"
+          ],
+          "compartmentAccession": [
+            "0005886"
+          ],
+          "isDisease": false,
+          "hasReferenceEntity": false,
+          "disease": false
+        },
+        {
+          "dbId": "10672331",
+          "stId": "R-XTR-399845",
+          "id": "R-XTR-399845",
+          "name": "NRP1:PlexinA1-4:FYN:pCdk5:<span class=\"highlighting\" >p53</span>",
+          "type": "Complex",
+          "exactType": "Complex",
+          "species": [
+            "Xenopus tropicalis"
+          ],
+          "summation": "This complex/polymer has been computationally inferred (based on PANTHER) from a complex/polymer involved in an event that has been demonstrated in another species.",
+          "compartmentNames": [
+            "plasma membrane"
+          ],
+          "compartmentAccession": [
+            "0005886"
+          ],
+          "isDisease": false,
+          "hasReferenceEntity": false,
+          "disease": false
+        },
+        {
+          "dbId": "10475493",
+          "stId": "R-SSC-399845",
+          "id": "R-SSC-399845",
+          "name": "NRP1:PlexinA1-4:FYN:pCdk5:<span class=\"highlighting\" >p53</span>",
+          "type": "Complex",
+          "exactType": "Complex",
+          "species": [
+            "Sus scrofa"
+          ],
+          "summation": "This complex/polymer has been computationally inferred (based on PANTHER) from a complex/polymer involved in an event that has been demonstrated in another species.",
+          "compartmentNames": [
+            "plasma membrane"
+          ],
+          "compartmentAccession": [
+            "0005886"
+          ],
+          "isDisease": false,
+          "hasReferenceEntity": false,
+          "disease": false
+        },
+        {
+          "dbId": "10253842",
+          "stId": "R-CFA-399845",
+          "id": "R-CFA-399845",
+          "name": "NRP1:PlexinA1-4:FYN:pCdk5:<span class=\"highlighting\" >p53</span>",
+          "type": "Complex",
+          "exactType": "Complex",
+          "species": [
+            "Canis familiaris"
+          ],
+          "summation": "This complex/polymer has been computationally inferred (based on PANTHER) from a complex/polymer involved in an event that has been demonstrated in another species.",
+          "compartmentNames": [
+            "plasma membrane"
+          ],
+          "compartmentAccession": [
+            "0005886"
+          ],
+          "isDisease": false,
+          "hasReferenceEntity": false,
+          "disease": false
+        }
+      ],
+      "typeName": "Complex",
+      "entriesCount": 412,
+      "rowCount": 10
+    },
+    {
+      "entries": [
+        {
+          "dbId": "6804745",
+          "stId": "R-HSA-6804745",
+          "id": "R-HSA-6804745",
+          "name": "p-S166,S188-MDM2 dimer, p-S166,S188-MDM2:MDM4",
+          "type": "Set",
+          "exactType": "DefinedSet",
+          "species": [
+            "Homo sapiens"
+          ],
+          "compartmentNames": [
+            "nucleoplasm"
+          ],
+          "compartmentAccession": [
+            "0005654"
+          ],
+          "isDisease": false,
+          "hasReferenceEntity": false,
+          "disease": false
+        },
+        {
+          "dbId": "5632387",
+          "stId": "R-HSA-5632387",
+          "id": "R-HSA-5632387",
+          "name": "TP63 Tetramer/ TP53 Tetramer",
+          "type": "Set",
+          "exactType": "CandidateSet",
+          "species": [
+            "Homo sapiens"
+          ],
+          "compartmentNames": [
+            "nucleoplasm"
+          ],
+          "compartmentAccession": [
+            "0005654"
+          ],
+          "isDisease": false,
+          "hasReferenceEntity": false,
+          "disease": false
+        },
+        {
+          "dbId": "8868839",
+          "stId": "R-HSA-8868839",
+          "id": "R-HSA-8868839",
+          "name": "RPS27,RPS27L",
+          "type": "Set",
+          "exactType": "CandidateSet",
+          "species": [
+            "Homo sapiens"
+          ],
+          "compartmentNames": [
+            "cytosol"
+          ],
+          "compartmentAccession": [
+            "0005829"
+          ],
+          "isDisease": false,
+          "hasReferenceEntity": false,
+          "disease": false
+        },
+        {
+          "dbId": "8868823",
+          "stId": "R-HSA-8868823",
+          "id": "R-HSA-8868823",
+          "name": "RPS27,RPS27L",
+          "type": "Set",
+          "exactType": "CandidateSet",
+          "species": [
+            "Homo sapiens"
+          ],
+          "compartmentNames": [
+            "nucleoplasm"
+          ],
+          "compartmentAccession": [
+            "0005654"
+          ],
+          "isDisease": false,
+          "hasReferenceEntity": false,
+          "disease": false
+        },
+        {
+          "dbId": "2990834",
+          "stId": "R-HSA-2990834",
+          "id": "R-HSA-2990834",
+          "name": "SENP1,2,5",
+          "type": "Set",
+          "exactType": "DefinedSet",
+          "species": [
+            "Homo sapiens"
+          ],
+          "compartmentNames": [
+            "nucleoplasm"
+          ],
+          "compartmentAccession": [
+            "0005654"
+          ],
+          "isDisease": false,
+          "hasReferenceEntity": false,
+          "disease": false
+        },
+        {
+          "dbId": "391287",
+          "stId": "R-HSA-391287",
+          "id": "R-HSA-391287",
+          "name": "unfolded CCT/TRiC substrate candidates",
+          "type": "Set",
+          "exactType": "CandidateSet",
+          "species": [
+            "Homo sapiens"
+          ],
+          "compartmentNames": [
+            "cytosol"
+          ],
+          "compartmentAccession": [
+            "0005829"
+          ],
+          "isDisease": false,
+          "hasReferenceEntity": false,
+          "disease": false
+        },
+        {
+          "dbId": "1299463",
+          "stId": "R-HSA-1299463",
+          "id": "R-HSA-1299463",
+          "name": "Precursor Cargo of TIMM23 PAM",
+          "type": "Set",
+          "exactType": "CandidateSet",
+          "species": [
+            "Homo sapiens"
+          ],
+          "compartmentNames": [
+            "mitochondrial inner membrane"
+          ],
+          "compartmentAccession": [
+            "0005743"
+          ],
+          "isDisease": false,
+          "hasReferenceEntity": false,
+          "disease": false
+        },
+        {
+          "dbId": "1299472",
+          "stId": "R-HSA-1299472",
+          "id": "R-HSA-1299472",
+          "name": "Cargo of TIMM23 PAM",
+          "type": "Set",
+          "exactType": "CandidateSet",
+          "species": [
+            "Homo sapiens"
+          ],
+          "compartmentNames": [
+            "mitochondrial inner membrane"
+          ],
+          "compartmentAccession": [
+            "0005743"
+          ],
+          "isDisease": false,
+          "hasReferenceEntity": false,
+          "disease": false
+        },
+        {
+          "dbId": "1299468",
+          "stId": "R-HSA-1299468",
+          "id": "R-HSA-1299468",
+          "name": "Precursor Cargo of TIMM23 PAM",
+          "type": "Set",
+          "exactType": "CandidateSet",
+          "species": [
+            "Homo sapiens"
+          ],
+          "compartmentNames": [
+            "mitochondrial intermembrane space"
+          ],
+          "compartmentAccession": [
+            "0005758"
+          ],
+          "isDisease": false,
+          "hasReferenceEntity": false,
+          "disease": false
+        },
+        {
+          "dbId": "1299465",
+          "stId": "R-HSA-1299465",
+          "id": "R-HSA-1299465",
+          "name": "Precursor Cargo of TIMM23 SORT",
+          "type": "Set",
+          "exactType": "CandidateSet",
+          "species": [
+            "Homo sapiens"
+          ],
+          "compartmentNames": [
+            "mitochondrial inner membrane"
+          ],
+          "compartmentAccession": [
+            "0005743"
+          ],
+          "isDisease": false,
+          "hasReferenceEntity": false,
+          "disease": false
+        }
+      ],
+      "typeName": "Set",
+      "entriesCount": 34,
+      "rowCount": 10
+    },
+    {
+      "entries": [
+        {
+          "dbId": "6797244",
+          "stId": "R-HSA-6797244",
+          "id": "R-HSA-6797244",
+          "name": "TP53 gene",
+          "type": "DNA Sequence",
+          "exactType": "ReferenceDNASequence",
+          "species": [
+            "Homo sapiens"
+          ],
+          "referenceIdentifier": "ENSEMBL:ENSG00000141510",
+          "compartmentNames": [
+            "nucleoplasm"
+          ],
+          "compartmentAccession": [
+            "0005654"
+          ],
+          "isDisease": false,
+          "hasReferenceEntity": true,
+          "databaseName": "ENSEMBL",
+          "referenceURL": "https://www.ensembl.org/id/ENSG00000141510",
+          "disease": false
+        }
+      ],
+      "typeName": "DNA Sequence",
+      "entriesCount": 1,
+      "rowCount": 1
+    },
+    {
+      "entries": [
+        {
+          "dbId": "9009800",
+          "stId": "R-ALL-9009800",
+          "id": "R-ALL-9009800",
+          "name": "acitretin",
+          "type": "Drug",
+          "exactType": "ReferenceTherapeutic",
+          "species": [
+            "Entries without species"
+          ],
+          "referenceName": "acitretin",
+          "referenceIdentifier": "7598",
+          "compartmentNames": [
+            "nucleoplasm"
+          ],
+          "compartmentAccession": [
+            "0005654"
+          ],
+          "isDisease": true,
+          "hasReferenceEntity": true,
+          "databaseName": "Guide to Pharmacology - Ligands",
+          "referenceURL": "http://www.guidetopharmacology.org/GRAC/LigandDisplayForward?ligandId=7598",
+          "disease": true
+        }
+      ],
+      "typeName": "Drug",
+      "entriesCount": 1,
+      "rowCount": 1
+    },
+    {
+      "entries": [
+        {
+          "dbId": "450605",
+          "stId": "R-ALL-450605",
+          "id": "R-ALL-450605",
+          "name": "mRNA Transcript Targeted by HuR Phosphorylated on Ser158 and Ser318.",
+          "type": "OtherEntity",
+          "exactType": "OtherEntity",
+          "species": [
+            "Entries without species"
+          ],
+          "summation": "Phosphorylated HuR (phosphoserine158 and phosphoserine318) binds AU-rich elements in the Cyclooxygenase-2 (COX-2, PTGS2) mRNA.",
+          "compartmentNames": [
+            "nucleoplasm"
+          ],
+          "compartmentAccession": [
+            "0005654"
+          ],
+          "isDisease": false,
+          "hasReferenceEntity": false,
+          "disease": false
+        },
+        {
+          "dbId": "450425",
+          "stId": "R-ALL-450425",
+          "id": "R-ALL-450425",
+          "name": "mRNA Transcript Targeted by HuR Phosphorylated on Ser158 and Ser318",
+          "type": "OtherEntity",
+          "exactType": "OtherEntity",
+          "species": [
+            "Entries without species"
+          ],
+          "summation": "Phosphorylated HuR (phosphoserine158 and phosphoserine318) binds AU-rich elements in the Cyclooxygenase-2 (COX-2, PTGS2) mRNA.",
+          "compartmentNames": [
+            "cytosol"
+          ],
+          "compartmentAccession": [
+            "0005829"
+          ],
+          "isDisease": false,
+          "hasReferenceEntity": false,
+          "disease": false
+        },
+        {
+          "dbId": "450386",
+          "stId": "R-ALL-450386",
+          "id": "R-ALL-450386",
+          "name": "mRNA Transcript Targeted by KSRP",
+          "type": "OtherEntity",
+          "exactType": "OtherEntity",
+          "species": [
+            "Entries without species"
+          ],
+          "summation": "KSRP binds AU-rich elements in the following mRNAs: IL-8, LDLR, and NOS2 (iNOS). Binding of KSRP to the mRNA encoding Beta-catenin is inferred from mouse.",
+          "compartmentNames": [
+            "cytosol"
+          ],
+          "compartmentAccession": [
+            "0005829"
+          ],
+          "isDisease": false,
+          "hasReferenceEntity": false,
+          "disease": false
+        },
+        {
+          "dbId": "450444",
+          "stId": "R-ALL-450444",
+          "id": "R-ALL-450444",
+          "name": "mRNA Transcript Targeted by AUF1(hnRNP D0)",
+          "type": "OtherEntity",
+          "exactType": "OtherEntity",
+          "species": [
+            "Entries without species"
+          ],
+          "summation": "AUF1 (hnRNP D0) binds AU-rich elements in mRNAs encoding Interleukin-1 beta (IL1B), Tumor Necrosis Factor alpha (TNFA), Cyclin-dependent kinase inhibitor 1 (CDNK1A, p21), Cyclin-D1 (CCND1), Granulocyte-macrophage colony stimulating factor (GM-CSF, CSF2), inducible Nitric oxide synthase (iNOS, NOS2), Proto-oncogene cFos (FOS), Myc proto-oncogene (MYC), Apoptosis regulator Bcl-2 (BCL2).",
+          "compartmentNames": [
+            "cytosol"
+          ],
+          "compartmentAccession": [
+            "0005829"
+          ],
+          "isDisease": false,
+          "hasReferenceEntity": false,
+          "disease": false
+        }
+      ],
+      "typeName": "OtherEntity",
+      "entriesCount": 4,
+      "rowCount": 4
+    },
+    {
+      "entries": [
+        {
+          "dbId": "189721",
+          "stId": "R-MMU-189721",
+          "id": "R-MMU-189721",
+          "name": "Positive <span class=\"highlighting\" >regulation</span> by 'Rbpj [nucleoplasm]'",
+          "type": "PositiveRegulation",
+          "exactType": "PositiveRegulation",
+          "deleted": true,
+          "explanation": "This instance will not be replaced by other instance(s)",
+          "date": 1614614590000
+        },
+        {
+          "dbId": "189774",
+          "stId": "R-MMU-189774",
+          "id": "R-MMU-189774",
+          "name": "Positive <span class=\"highlighting\" >regulation</span> by 'ngn3 [nucleoplasm]'",
+          "type": "PositiveRegulation",
+          "exactType": "PositiveRegulation",
+          "deleted": true,
+          "explanation": "This instance will not be replaced by other instance(s)",
+          "date": 1614614590000
+        },
+        {
+          "dbId": "189718",
+          "stId": "R-MMU-189718",
+          "id": "R-MMU-189718",
+          "name": "Positive <span class=\"highlighting\" >regulation</span> by 'ngn3 [nucleoplasm]'",
+          "type": "PositiveRegulation",
+          "exactType": "PositiveRegulation",
+          "deleted": true,
+          "explanation": "This instance will not be replaced by other instance(s)",
+          "date": 1614614590000
+        },
+        {
+          "dbId": "189764",
+          "stId": "R-MMU-189764",
+          "id": "R-MMU-189764",
+          "name": "Positive <span class=\"highlighting\" >regulation</span> by 'ngn3 [nucleoplasm]'",
+          "type": "PositiveRegulation",
+          "exactType": "PositiveRegulation",
+          "deleted": true,
+          "explanation": "This instance will not be replaced by other instance(s)",
+          "date": 1614614590000
+        },
+        {
+          "dbId": "189761",
+          "stId": "R-MMU-189761",
+          "id": "R-MMU-189761",
+          "name": "Positive <span class=\"highlighting\" >regulation</span> by 'ngn3 [nucleoplasm]'",
+          "type": "PositiveRegulation",
+          "exactType": "PositiveRegulation",
+          "deleted": true,
+          "explanation": "This instance will not be replaced by other instance(s)",
+          "date": 1614614590000
+        },
+        {
+          "dbId": "190278",
+          "stId": "R-MMU-190278",
+          "id": "R-MMU-190278",
+          "name": "Positive <span class=\"highlighting\" >regulation</span> by 'nicd1 [nucleoplasm]'",
+          "type": "PositiveRegulation",
+          "exactType": "PositiveRegulation",
+          "deleted": true,
+          "explanation": "This instance will not be replaced by other instance(s)",
+          "date": 1614614590000
+        },
+        {
+          "dbId": "3261227",
+          "stId": "R-HSA-3261227",
+          "id": "R-HSA-3261227",
+          "name": "Positive <span class=\"highlighting\" >regulation</span> by 'STING activators [cytosol]'",
+          "type": "PositiveRegulation",
+          "exactType": "PositiveRegulation",
+          "deleted": true,
+          "explanation": "This instance will be split into multiple instances",
+          "date": 1541653371000,
+          "replacementDbIds": [
+            9628332,
+            9628329,
+            9628328,
+            9628331,
+            9628330,
+            9628325,
+            9628327
+          ]
+        },
+        {
+          "dbId": "188380",
+          "stId": "R-HSA-188380",
+          "id": "R-HSA-188380",
+          "name": "'p-S15-TP53 Tetramer:CDKN1A Gene [nucleoplasm]' positively regulates 'Transcriptional activation of p21 by <span class=\"highlighting\" >p53</span> after DNA damage'",
+          "type": "PositiveRegulation",
+          "exactType": "PositiveRegulation",
+          "deleted": true,
+          "explanation": "This instance is now obsolete",
+          "date": 1463512279000,
+          "replacementDbIds": [
+            6803387
+          ],
+          "replacementStIds": [
+            "R-HSA-6803387"
+          ]
+        },
+        {
+          "dbId": "668802",
+          "stId": "R-HSA-668802",
+          "id": "R-HSA-668802",
+          "name": "Positive <span class=\"highlighting\" >regulation</span> by 'G alpha (s):GTP:Adenylate cyclase [plasma membrane]'",
+          "type": "PositiveRegulation",
+          "exactType": "PositiveRegulation",
+          "deleted": true,
+          "explanation": "This instance is now obsolete",
+          "date": 1538590956000
+        }
+      ],
+      "typeName": "PositiveRegulation",
+      "entriesCount": 9,
+      "rowCount": 9
+    }
+  ],
+  "rowCount": 72,
+  "numberOfGroups": 12,
+  "numberOfMatches": 8650
+}

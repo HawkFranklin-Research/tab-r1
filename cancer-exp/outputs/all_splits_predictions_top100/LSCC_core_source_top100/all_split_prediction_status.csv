@@ -1,0 +1,6 @@
+dataset,model_name,version,status,output_dir,train_predictions,val_predictions,test_predictions,all_predictions
+LSCC_core_source_top100,tabpfn_v1,v1,success,/home/prime/Documents/g3/cancer-exp/outputs/all_splits_predictions_top100/LSCC_core_source_top100/tabpfn_v1,415,90,90,595
+LSCC_core_source_top100,tabpfn_v2,v2,success,/home/prime/Documents/g3/cancer-exp/outputs/all_splits_predictions_top100/LSCC_core_source_top100/tabpfn_v2,415,90,90,595
+LSCC_core_source_top100,tabpfn_v2_5,v2_5,success,/home/prime/Documents/g3/cancer-exp/outputs/all_splits_predictions_top100/LSCC_core_source_top100/tabpfn_v2_5,415,90,90,595
+LSCC_core_source_top100,tabpfn_v2_6,v2_6,success,/home/prime/Documents/g3/cancer-exp/outputs/all_splits_predictions_top100/LSCC_core_source_top100/tabpfn_v2_6,415,90,90,595
+LSCC_core_source_top100,tabpfn_v3,v3,success,/home/prime/Documents/g3/cancer-exp/outputs/all_splits_predictions_top100/LSCC_core_source_top100/tabpfn_v3,415,90,90,595
