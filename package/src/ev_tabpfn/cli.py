@@ -56,7 +56,12 @@ def build_parser() -> argparse.ArgumentParser:
     single.add_argument("--seed", type=int, default=42)
     single.add_argument("--run-reports", action="store_true")
     single.add_argument("--models-config", default=None, help="Optional JSON file containing the models object")
-    single.add_argument("--preset", default=None, choices=["smoke", "standard", "full"], help="Model preset to use when --models-config is omitted")
+    single.add_argument(
+        "--preset",
+        default=None,
+        choices=["smoke", "standard", "full", "tabfm", "tabfm-ensemble", "foundation", "tabpfn-generation"],
+        help="Model preset to use when --models-config is omitted",
+    )
 
     agg = subparsers.add_parser("aggregate", help="Aggregate an output folder or runs/results paths")
     agg.add_argument("--output-root", default=None)
@@ -106,7 +111,7 @@ def build_parser() -> argparse.ArgumentParser:
         help="Output folder/root written into the generated config; evaluation artifacts will be saved there",
     )
     make_config.add_argument("--run-name", default="ev_tabpfn_run")
-    make_config.add_argument("--preset", default="smoke", choices=["smoke", "standard", "full"])
+    make_config.add_argument("--preset", default="smoke", choices=["smoke", "standard", "full", "tabfm", "tabfm-ensemble", "foundation", "tabpfn-generation"])
     make_config.add_argument("--no-reports", action="store_true")
     make_config.add_argument("--no-aggregate", action="store_true")
 
@@ -114,7 +119,7 @@ def build_parser() -> argparse.ArgumentParser:
     sample_config.add_argument("--samples-dir", required=True)
     sample_config.add_argument("--output", required=True)
     sample_config.add_argument("--output-root", default="outputs_sample")
-    sample_config.add_argument("--preset", default="smoke", choices=["smoke", "standard", "full"])
+    sample_config.add_argument("--preset", default="smoke", choices=["smoke", "standard", "full", "tabfm", "tabfm-ensemble", "foundation", "tabpfn-generation"])
 
     presets = subparsers.add_parser("presets", help="List model presets")
     presets.add_argument("--json", action="store_true", help="Print machine-readable JSON")

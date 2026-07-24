@@ -21,6 +21,14 @@ env/
 build/
 dist/
 *.egg-info/
+*.aux
+*.bbl
+*.blg
+*.log
+*.out
+*.toc
+*.synctex.gz
+
 
 # Large/generated model artifacts
 *.ckpt
@@ -54,3 +62,18 @@ Evaluate-TABPFN/pfn3-test/outputs*/
 .agents/
 .gemini/
 skills-lock.json
+
+# Experiments bulky datasets & runs outputs
+experiments/**/outputs/
+experiments/**/outputs_*/
+experiments/**/datasets/
+experiments/**/datasets_*/
+experiments/**/catboost_info/
+experiments/**/shared/
+experiments/**/__pycache__/
+**/raw/
+**/*.npz
+**/*.jsonl
+**/*.pyc
+
+

@@ -1,0 +1,48 @@
+{
+  "input_root": "/home/prime/Documents/g3/cancer-exp/outputs/all_splits_predictions_top100",
+  "output_dir": "/home/prime/Documents/g3/cancer-exp/plots/publication_suite",
+  "plots": [
+    "/home/prime/Documents/g3/cancer-exp/plots/publication_suite/figure_01_generation_metric_atlas.png",
+    "/home/prime/Documents/g3/cancer-exp/plots/publication_suite/figure_01_generation_metric_atlas.pdf",
+    "/home/prime/Documents/g3/cancer-exp/plots/publication_suite/figure_01_generation_metric_atlas.svg",
+    "/home/prime/Documents/g3/cancer-exp/plots/publication_suite/figure_02_generalization_gap_heatmap.png",
+    "/home/prime/Documents/g3/cancer-exp/plots/publication_suite/figure_02_generalization_gap_heatmap.pdf",
+    "/home/prime/Documents/g3/cancer-exp/plots/publication_suite/figure_02_generalization_gap_heatmap.svg",
+    "/home/prime/Documents/g3/cancer-exp/plots/publication_suite/figure_03_confidence_correctness_violin.png",
+    "/home/prime/Documents/g3/cancer-exp/plots/publication_suite/figure_03_confidence_correctness_violin.pdf",
+    "/home/prime/Documents/g3/cancer-exp/plots/publication_suite/figure_03_confidence_correctness_violin.svg",
+    "/home/prime/Documents/g3/cancer-exp/plots/publication_suite/figure_04_binary_calibration_curves.png",
+    "/home/prime/Documents/g3/cancer-exp/plots/publication_suite/figure_04_binary_calibration_curves.pdf",
+    "/home/prime/Documents/g3/cancer-exp/plots/publication_suite/figure_04_binary_calibration_curves.svg",
+    "/home/prime/Documents/g3/cancer-exp/plots/publication_suite/figure_05_cancer_type_confusion_small_multiples.png",
+    "/home/prime/Documents/g3/cancer-exp/plots/publication_suite/figure_05_cancer_type_confusion_small_multiples.pdf",
+    "/home/prime/Documents/g3/cancer-exp/plots/publication_suite/figure_05_cancer_type_confusion_small_multiples.svg",
+    "/home/prime/Documents/g3/cancer-exp/plots/publication_suite/figure_06_source_signal_warning.png",
+    "/home/prime/Documents/g3/cancer-exp/plots/publication_suite/figure_06_source_signal_warning.pdf",
+    "/home/prime/Documents/g3/cancer-exp/plots/publication_suite/figure_06_source_signal_warning.svg",
+    "/home/prime/Documents/g3/cancer-exp/plots/publication_suite/figure_07_os_event_failure_modes.png",
+    "/home/prime/Documents/g3/cancer-exp/plots/publication_suite/figure_07_os_event_failure_modes.pdf",
+    "/home/prime/Documents/g3/cancer-exp/plots/publication_suite/figure_07_os_event_failure_modes.svg",
+    "/home/prime/Documents/g3/cancer-exp/plots/publication_suite/figure_08_cancer_probability_geometry.png",
+    "/home/prime/Documents/g3/cancer-exp/plots/publication_suite/figure_08_cancer_probability_geometry.pdf",
+    "/home/prime/Documents/g3/cancer-exp/plots/publication_suite/figure_08_cancer_probability_geometry.svg"
+  ],
+  "metrics": "/home/prime/Documents/g3/cancer-exp/plots/publication_suite/split_level_metrics.csv",
+  "palette": {
+    "name": "Cancer-exp editorial palette",
+    "versions": {
+      "tabpfn_v1": "#6F777D",
+      "tabpfn_v2": "#167A72",
+      "tabpfn_v2_5": "#2E6F9E",
+      "tabpfn_v2_6": "#D89C33",
+      "tabpfn_v3": "#B75D43"
+    },
+    "tasks": {
+      "cancer_type": "#7A3E48",
+      "os_event": "#2E6F9E",
+      "source": "#167A72"
+    },
+    "background": "#FBFAF6",
+    "ink": "#23343B"
+  }
+}

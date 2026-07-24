@@ -1,0 +1,12 @@
+{
+  "datasets_dir": "/home/prime/Documents/g3/cancer-survival-exp/datasets_fixed_window_top100",
+  "dataset_count": 10,
+  "output_root": "/home/prime/Documents/g3/cancer-survival-exp/outputs/fixed_window_foundation_top100",
+  "package_src": "/home/prime/Documents/g3/tab-r1/package/src",
+  "legacy_v1_root": "/tmp/TabPFN_v1",
+  "train_rows_cap": 256,
+  "seed": 42,
+  "tabfm_backend": "pytorch",
+  "skip_tabpfn": true,
+  "skip_tabfm": false
+}

@@ -1,0 +1,8 @@
+{
+  "plots": [
+    "/home/prime/Documents/g3/cancer-survival-exp/plots/fixed_window_foundation_top100/fixed_window_horizon_metric_bars.png",
+    "/home/prime/Documents/g3/cancer-survival-exp/plots/fixed_window_foundation_top100/fixed_window_dataset_roc_auc.png",
+    "/home/prime/Documents/g3/cancer-survival-exp/plots/fixed_window_foundation_top100/fixed_window_model_metric_heatmap.png"
+  ],
+  "report": "/home/prime/Documents/g3/cancer-survival-exp/reports/fixed_window_foundation_os_report.md"
+}

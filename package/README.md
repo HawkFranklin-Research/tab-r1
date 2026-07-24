@@ -41,6 +41,38 @@ ev-tabpfn run-single --dataset my_data.csv --target target_column --output ./out
 
 `--output` is the output folder. The evaluator creates `runs/`, `predictions/`, `metrics/`, `plots/`, `metadata/`, and `logs/` inside it.
 
+### Run TabFM
+
+`ev-tabpfn` can also run Google's TabFM when the `tabfm` package and model backend are installed locally:
+
+```bash
+ev-tabpfn run-single \
+  --dataset my_data.csv \
+  --target target_column \
+  --task binary \
+  --preset tabfm \
+  --output ./outputs_tabfm
+```
+
+For batch mode, set `"preset": "tabfm"` in the JSON config.
+
+To run the ensemble variant that uses feature crosses, SVD features, NNLS blending, and calibration:
+
+```bash
+ev-tabpfn run-single \
+  --dataset my_data.csv \
+  --target target_column \
+  --task binary \
+  --preset tabfm-ensemble \
+  --output ./outputs_tabfm_ensemble
+```
+
+Notes:
+- TabFM model weights use Google's TabFM non-commercial license.
+- Classification supports up to 10 classes.
+- The default package preset uses the JAX backend, single estimator, and a 1024-row training cap for practical local evaluation.
+- If CUDA-enabled `jaxlib` is not installed, TabFM runs on CPU and can be slower.
+
 ### 3. Run a Batch Evaluation
 Run multiple datasets as defined in a configuration file:
 

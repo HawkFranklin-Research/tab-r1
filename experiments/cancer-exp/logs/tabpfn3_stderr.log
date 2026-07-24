@@ -1,0 +1,11 @@
+2026-05-28 06:36:42,486 | INFO | Completed tabpfn_v3
+2026-05-28 06:36:47,346 | INFO | Completed tabpfn_v3
+2026-05-28 06:36:52,281 | INFO | Completed tabpfn_v3
+2026-05-28 06:36:54,866 | INFO | Completed tabpfn_v3
+2026-05-28 06:36:59,177 | INFO | Completed tabpfn_v3
+2026-05-28 06:37:03,507 | INFO | Completed tabpfn_v3
+2026-05-28 06:37:07,348 | INFO | Completed tabpfn_v3
+2026-05-28 06:37:11,323 | INFO | Completed tabpfn_v3
+2026-05-28 06:37:15,147 | INFO | Completed tabpfn_v3
+2026-05-28 06:37:19,519 | INFO | Completed tabpfn_v3
+[W528 06:37:20.078869318 AllocatorConfig.cpp:28] Warning: PYTORCH_CUDA_ALLOC_CONF is deprecated, use PYTORCH_ALLOC_CONF instead (function operator())

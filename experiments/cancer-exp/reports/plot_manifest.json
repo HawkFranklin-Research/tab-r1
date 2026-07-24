@@ -1,0 +1,9 @@
+{
+  "plots": [
+    "/home/prime/Documents/g3/cancer-exp/plots/tabpfn3_metric_bars.png",
+    "/home/prime/Documents/g3/cancer-exp/plots/tabpfn3_task_family_heatmap.png",
+    "/home/prime/Documents/g3/cancer-exp/plots/tabpfn3_binary_roc_grid.png",
+    "/home/prime/Documents/g3/cancer-exp/plots/all_core_cancer_type_top488_confusion_norm.png"
+  ],
+  "report": "/home/prime/Documents/g3/cancer-exp/reports/tabpfn3_cancer_experiment_report.md"
+}

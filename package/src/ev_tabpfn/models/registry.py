@@ -35,6 +35,11 @@ try:
 except Exception:  # pragma: no cover
     AutoGluonAdapter = None
 
+try:
+    from .tabfm_backend import TabFMAdapter
+except Exception:  # pragma: no cover
+    TabFMAdapter = None
+
 from .tabpfn_versions import build_tabpfn_classifier, build_tabpfn_regressor
 
 
@@ -95,6 +100,24 @@ def _autogluon_estimator(
         time_limit=config.get("time_limit", 60.0),
         eval_metric=config.get("eval_metric"),
         verbosity=config.get("verbosity", 0),
+    )
+
+
+def _tabfm_estimator(*, task_type: str, model_config: dict[str, Any] | None) -> Any | None:
+    if TabFMAdapter is None:
+        return None
+    config = dict(model_config or {})
+    config.pop("enabled", None)
+    return TabFMAdapter(
+        task_type=task_type,
+        backend=config.pop("backend", "jax"),
+        ensemble=bool(config.pop("ensemble", False)),
+        checkpoint_path=config.pop("checkpoint_path", None),
+        max_classes=int(config.pop("max_classes", 10)),
+        max_train_rows=config.pop("max_train_rows", None),
+        random_state=int(config.pop("random_state", 42)),
+        load_kwargs=dict(config.pop("load_kwargs", {})),
+        estimator_kwargs=config,
     )
 
 
@@ -221,6 +244,10 @@ def build_models(
             )
             if estimator is not None:
                 specs.append(ModelSpec("autogluon", task_type, "baseline", estimator))
+        if _model_enabled(models, "tabfm"):
+            estimator = _tabfm_estimator(task_type=task_type, model_config=(models or {}).get("tabfm"))
+            if estimator is not None:
+                specs.append(ModelSpec("tabfm", task_type, "tabfm", estimator))
         return specs
 
     if task_type == "regression":
@@ -294,6 +321,10 @@ def build_models(
             )
             if estimator is not None:
                 specs.append(ModelSpec("autogluon", task_type, "baseline", estimator))
+        if _model_enabled(models, "tabfm"):
+            estimator = _tabfm_estimator(task_type=task_type, model_config=(models or {}).get("tabfm"))
+            if estimator is not None:
+                specs.append(ModelSpec("tabfm", "regression", "tabfm", estimator))
         return specs
 
     raise ValueError(f"Unsupported task_type: {task_type}")

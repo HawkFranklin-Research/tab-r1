@@ -1,0 +1,10 @@
+{
+  "output_root": "/home/prime/Documents/g3/cancer-exp/outputs/tabpfn3_core",
+  "summary_path": "/home/prime/Documents/g3/cancer-exp/outputs/tabpfn3_core/generation_summary.json",
+  "aggregate_path": "/home/prime/Documents/g3/cancer-exp/outputs/tabpfn3_core/aggregate/generation_mean_metrics.csv",
+  "counts": {
+    "datasets_total": 10,
+    "datasets_success": 10,
+    "datasets_failed": 0
+  }
+}
