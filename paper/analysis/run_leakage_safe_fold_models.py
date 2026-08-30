@@ -181,10 +181,30 @@ def read_table(path: str | Path) -> pd.DataFrame:
     return pd.read_csv(path)
 
 
-def read_split(path: str | Path) -> tuple[pd.DataFrame, np.ndarray]:
-    frame = read_table(path)
+def resolve_split_path(path_str: str | Path, manifest_dir: Path | None = None) -> Path:
+    p = Path(path_str)
+    if p.exists():
+        return p
+    # Try finding relative path if manifest_dir is known or standard structure
+    parts = p.parts
+    for anchor in ("per_cancer", "pooled"):
+        if anchor in parts:
+            idx = parts.index(anchor)
+            rel = Path(*parts[idx:])
+            if manifest_dir and (manifest_dir / rel).exists():
+                return manifest_dir / rel
+            # Search common locations
+            for search_base in (Path("paper/analysis/generated_folds"), Path("generated_folds"), Path("/opt/workspace/tab-r1/paper/analysis/generated_folds")):
+                if (search_base / rel).exists():
+                    return search_base / rel
+    return p
+
+
+def read_split(path: str | Path, manifest_dir: Path | None = None) -> tuple[pd.DataFrame, np.ndarray]:
+    resolved = resolve_split_path(path, manifest_dir)
+    frame = read_table(resolved)
     if "target" not in frame.columns:
-        raise ValueError(f"Target column is missing from {path}")
+        raise ValueError(f"Target column is missing from {resolved}")
     return frame.drop(columns=["target"]), frame["target"].to_numpy(dtype=int)
 
 
@@ -198,10 +218,11 @@ def execute_model(
     tabfm_backend: str,
     autogluon_time_limit: int,
     device: str = "auto",
+    manifest_dir: Path | None = None,
 ) -> dict[str, Any]:
-    X_train, y_train = read_split(fold["train_path"])
-    X_validation, y_validation = read_split(fold["validation_path"])
-    X_test, y_test = read_split(fold["test_path"])
+    X_train, y_train = read_split(fold["train_path"], manifest_dir)
+    X_validation, y_validation = read_split(fold["validation_path"], manifest_dir)
+    X_test, y_test = read_split(fold["test_path"], manifest_dir)
     run_dir = (
         output_root
         / str(fold["scope"])
@@ -361,6 +382,7 @@ def main() -> int:
                 tabfm_backend=args.tabfm_backend,
                 autogluon_time_limit=args.autogluon_time_limit,
                 device=args.device,
+                manifest_dir=manifest_path.parent,
             )
             status_str = res.get("status", "unknown")
             auc_str = f"AUC={res.get('roc_auc', 0.0):.4f}" if status_str == "success" else f"ERR={res.get('error_type', 'fail')}"
