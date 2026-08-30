@@ -263,7 +263,7 @@ def execute_model(
         predict_time = time.perf_counter() - predict_start
         threshold = select_threshold(y_validation, validation_probability)
         metrics = binary_metrics(y_test, test_probability, threshold=threshold)
-        test_metadata = read_table(fold["test_metadata_path"])
+        test_metadata = read_table(resolve_split_path(fold["test_metadata_path"], manifest_dir))
         prediction_frame = pd.DataFrame(
             {
                 "test_position": np.arange(len(y_test)),
