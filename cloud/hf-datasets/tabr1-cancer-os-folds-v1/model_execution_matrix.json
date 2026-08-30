@@ -1,0 +1,47 @@
+{
+  "cloud_pending": [
+    {
+      "hardware": "cpu-upgrade",
+      "model": "autogluon"
+    },
+    {
+      "context_cap": 1024,
+      "hardware": "l4x1",
+      "model": "tabpfn_v2"
+    },
+    {
+      "context_cap": 1024,
+      "hardware": "l4x1",
+      "model": "tabpfn_v2_5"
+    },
+    {
+      "context_cap": 1024,
+      "hardware": "l4x1",
+      "model": "tabpfn_v2_6"
+    },
+    {
+      "context_cap": 1024,
+      "hardware": "l4x1",
+      "model": "tabpfn_v3"
+    },
+    {
+      "context_cap": 1024,
+      "hardware": "l4x1",
+      "model": "tabfm_default"
+    }
+  ],
+  "common_contract": {
+    "fold_count": 400,
+    "maximum_features": 100,
+    "seed": 42,
+    "threshold_selection": "Validation-set balanced accuracy only"
+  },
+  "dataset_revision_policy": "Pin the Hugging Face dataset commit SHA for every run",
+  "local_completed": [
+    "logistic_regression",
+    "random_forest",
+    "catboost",
+    "xgboost",
+    "lightgbm"
+  ]
+}

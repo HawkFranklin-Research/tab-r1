@@ -1,0 +1,88 @@
+{
+  "clinical_features_excluded": true,
+  "feature_harmonization": "Exact common non-clinical feature identifiers for pooled cohorts",
+  "feature_selection": "Top 100 variance-ranked features fitted independently on training rows",
+  "fold_exporter": "paper/analysis/prepare_leakage_safe_folds.py",
+  "generated_at": "2026-08-30T15:45:51.668751+00:00",
+  "git_commit": "f98cf5b1879b41f91962a1913a12f13c8090860e",
+  "hub_packager": "cloud/scripts/build_hf_fold_dataset.py",
+  "repository": "HawkFranklin-Research/tab-r1",
+  "source_description": "Processed TCGA and CPTAC/LinkedOmics core-view multiomics matrices",
+  "source_files": [
+    {
+      "path": "train_ready/BRCA/core/X.npz",
+      "sha256": "7551d945ef095f7c24199bf19b074fc84bc88bd80ad22bde87261654de8ba2d5",
+      "size_bytes": 360652098
+    },
+    {
+      "path": "train_ready/BRCA/core/sample_index.csv",
+      "sha256": "dd9a85d5eb9a533deb43f2ed037ab47099cba95224a41dfe33f9b16dfdac0d4f",
+      "size_bytes": 179821
+    },
+    {
+      "path": "train_ready/BRCA/core/feature_index.csv",
+      "sha256": "cbe839495ce6f5e8a04b734965f1c850a57fc16b19231708507bbe524b2cdaf4",
+      "size_bytes": 9216418
+    },
+    {
+      "path": "train_ready/ESCA/core/X.npz",
+      "sha256": "a1c6aa3bf13c4d175ccb2d90ca4f89ed1a44a12f99e88182f631214fc6bc3b61",
+      "size_bytes": 48015693
+    },
+    {
+      "path": "train_ready/ESCA/core/sample_index.csv",
+      "sha256": "106fdc91d48c079ee3dbdcc1ffe8272195585fb9c7cd66df41c2890a2603e1b4",
+      "size_bytes": 27311
+    },
+    {
+      "path": "train_ready/ESCA/core/feature_index.csv",
+      "sha256": "455659feb22c23a94e2f3866d5ac7d6e502b4b8c3705babb11119f9f066f14ca",
+      "size_bytes": 3217138
+    },
+    {
+      "path": "train_ready/HNSCC/core/X.npz",
+      "sha256": "05f6fd981715e8478b36c0776c4a205f343a2b7ff889aaeb1894421aeb6a27dc",
+      "size_bytes": 164225604
+    },
+    {
+      "path": "train_ready/HNSCC/core/sample_index.csv",
+      "sha256": "cab14d3a76b76434da6fae6760fa3af09fc3573519604c7de425d58467e26a67",
+      "size_bytes": 88519
+    },
+    {
+      "path": "train_ready/HNSCC/core/feature_index.csv",
+      "sha256": "9586f3ddfc3a20c761840e9c942f2a77be4972c7479b322d017c1a55f8df55e5",
+      "size_bytes": 9772940
+    },
+    {
+      "path": "train_ready/LSCC/core/X.npz",
+      "sha256": "a08372d5b7f2bc7d0b342a30fdf27e6278809f3c905bfb9fd3c0fbf37c905321",
+      "size_bytes": 180513503
+    },
+    {
+      "path": "train_ready/LSCC/core/sample_index.csv",
+      "sha256": "4f60bfbc039138b386ae6f1e1e302d8ae0c7c6c4afe81ea0a2c310103047d6e5",
+      "size_bytes": 83678
+    },
+    {
+      "path": "train_ready/LSCC/core/feature_index.csv",
+      "sha256": "6eb70e10e7d72ac20d0fc7aa15a22d9ef35ac350d089dce934a6c29bad8a0e35",
+      "size_bytes": 9870437
+    },
+    {
+      "path": "train_ready/LUAD/core/X.npz",
+      "sha256": "3fe3b71ce9026518dfccdaf4bb9d0a1259d5b5b130980048bd31953a8d08401e",
+      "size_bytes": 188922983
+    },
+    {
+      "path": "train_ready/LUAD/core/sample_index.csv",
+      "sha256": "d674a26744455b0bd9e1f018272174eda436830498f14b8ceb1a15d00e439bd4",
+      "size_bytes": 87377
+    },
+    {
+      "path": "train_ready/LUAD/core/feature_index.csv",
+      "sha256": "b63c9067d8aa1ec906aebba8006b00a110e2f98734206ce5eaaee6dbbbb463cf",
+      "size_bytes": 9886969
+    }
+  ]
+}
