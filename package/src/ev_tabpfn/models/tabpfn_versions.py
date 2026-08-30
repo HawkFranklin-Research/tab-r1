@@ -65,14 +65,15 @@ def build_tabpfn_classifier(version: str | None = None, config: dict[str, Any] |
 
     from tabpfn import TabPFNClassifier
 
+    device = _device(config)
     model_path = config.get("model_path") or config.get("checkpoint")
     if model_path:
-        return TabPFNClassifier(model_path=str(Path(model_path).expanduser()))
+        return TabPFNClassifier(model_path=str(Path(model_path).expanduser()), device=device)
     if hasattr(TabPFNClassifier, "create_default_for_version"):
-        return TabPFNClassifier.create_default_for_version(_model_version_enum(normalized))
+        return TabPFNClassifier.create_default_for_version(_model_version_enum(normalized), device=device)
     if normalized != DEFAULT_TABPFN_VERSION:
         raise RuntimeError("Installed tabpfn runtime does not expose create_default_for_version.")
-    return TabPFNClassifier(device=_device(config))
+    return TabPFNClassifier(device=device)
 
 
 def build_tabpfn_regressor(version: str | None = None, config: dict[str, Any] | None = None) -> Any:
@@ -83,14 +84,15 @@ def build_tabpfn_regressor(version: str | None = None, config: dict[str, Any] | 
 
     from tabpfn import TabPFNRegressor
 
+    device = _device(config)
     model_path = config.get("model_path") or config.get("checkpoint")
     if model_path:
-        return TabPFNRegressor(model_path=str(Path(model_path).expanduser()))
+        return TabPFNRegressor(model_path=str(Path(model_path).expanduser()), device=device)
     if hasattr(TabPFNRegressor, "create_default_for_version"):
-        return TabPFNRegressor.create_default_for_version(_model_version_enum(normalized))
+        return TabPFNRegressor.create_default_for_version(_model_version_enum(normalized), device=device)
     if normalized != DEFAULT_TABPFN_VERSION:
         raise RuntimeError("Installed tabpfn runtime does not expose create_default_for_version.")
-    return TabPFNRegressor(device=_device(config))
+    return TabPFNRegressor(device=device)
 
 
 def build_legacy_v1_classifier(config: dict[str, Any] | None = None) -> Any:
