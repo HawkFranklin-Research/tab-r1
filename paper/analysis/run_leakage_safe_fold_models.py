@@ -174,8 +174,15 @@ def select_threshold(y_validation: np.ndarray, validation_probability: np.ndarra
     return float(candidates[best[np.argmin(np.abs(candidates[best] - 0.5))]])
 
 
-def read_split(path: str) -> tuple[pd.DataFrame, np.ndarray]:
-    frame = pd.read_csv(path)
+def read_table(path: str | Path) -> pd.DataFrame:
+    path = Path(path)
+    if path.suffix == ".parquet":
+        return pd.read_parquet(path)
+    return pd.read_csv(path)
+
+
+def read_split(path: str | Path) -> tuple[pd.DataFrame, np.ndarray]:
+    frame = read_table(path)
     if "target" not in frame.columns:
         raise ValueError(f"Target column is missing from {path}")
     return frame.drop(columns=["target"]), frame["target"].to_numpy(dtype=int)
@@ -235,7 +242,7 @@ def execute_model(
         predict_time = time.perf_counter() - predict_start
         threshold = select_threshold(y_validation, validation_probability)
         metrics = binary_metrics(y_test, test_probability, threshold=threshold)
-        test_metadata = pd.read_csv(fold["test_metadata_path"])
+        test_metadata = read_table(fold["test_metadata_path"])
         prediction_frame = pd.DataFrame(
             {
                 "test_position": np.arange(len(y_test)),
@@ -391,4 +398,3 @@ def main() -> int:
 
 if __name__ == "__main__":
     raise SystemExit(main())
-

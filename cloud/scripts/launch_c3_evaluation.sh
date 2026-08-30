@@ -14,9 +14,9 @@ ROOT_DIR="$(cd "${SCRIPT_DIR}/../.." && pwd)"
 
 PROJECT_ID="${1:-pelliscope-scout}"
 ZONE="${2:-us-central1-a}"
-MACHINE_TYPE="c3-highcpu-44"
-VM_NAME="tabr1-c3-44cpu-worker"
-PROVISIONING_MODEL="${3:-SPOT}" # SPOT or STANDARD
+MACHINE_TYPE="${3:-c3-highcpu-22}"
+PROVISIONING_MODEL="${4:-SPOT}" # SPOT or STANDARD
+VM_NAME="tabr1-c3-eval-worker"
 
 HF_TOKEN_FILE="/home/prime/Documents/hugging-face-read-token.txt"
 if [[ -f "${HF_TOKEN_FILE}" ]]; then
@@ -31,10 +31,10 @@ if [[ -z "${HF_TOKEN}" ]]; then
 fi
 
 echo "======================================================================"
-echo "TAB-R1: C3 HIGH-CORE (44 vCPUs) VM PROVISIONING"
+echo "TAB-R1: C3 HIGH-CORE VM PROVISIONING"
 echo "Project:            ${PROJECT_ID}"
 echo "Zone:               ${ZONE} (Cheapest US Region)"
-echo "Machine Type:       ${MACHINE_TYPE} (44 vCPUs / 88 GB RAM)"
+echo "Machine Type:       ${MACHINE_TYPE} (22 vCPUs / 44 GB RAM)"
 echo "Provisioning Model: ${PROVISIONING_MODEL}"
 echo "VM Name:            ${VM_NAME}"
 echo "======================================================================"
@@ -73,8 +73,8 @@ export TABR1_MODELS="tabpfn_v2,tabpfn_v2_5,tabpfn_v2_6,tabpfn_v3,tabfm_default,a
 python paper/analysis/run_cloud_evaluation.py \
   --models "${TABR1_MODELS}" \
   --device cpu \
-  --threads 40 \
-  --memory-gb 80 \
+  --threads 20 \
+  --memory-gb 40 \
   --autogluon-time-limit 180 \
   --output-root /opt/tabr1_results \
   --export-zip /opt/tabr1_results_completed.zip \
@@ -87,9 +87,9 @@ EOF
 sed -i "s|__HF_TOKEN_PLACEHOLDER__|${HF_TOKEN}|g" "${STARTUP_SCRIPT}"
 
 # Build provisioning args
-EXTRA_FLAGS=""
+EXTRA_FLAGS="--no-address"
 if [[ "${PROVISIONING_MODEL}" == "SPOT" ]]; then
-    EXTRA_FLAGS="--provisioning-model=SPOT --instance-termination-action=STOP"
+    EXTRA_FLAGS="${EXTRA_FLAGS} --provisioning-model=SPOT --instance-termination-action=STOP"
 fi
 
 echo "Creating VM instance in ${ZONE}..."
@@ -112,8 +112,9 @@ echo "======================================================================"
 echo "VM ${VM_NAME} is CREATED and STARTING EXECUTION!"
 echo ""
 echo "Live Monitoring Command:"
-echo "  gcloud compute ssh ${VM_NAME} --zone=${ZONE} --project=${PROJECT_ID} --command='tail -f /var/log/tabr1_c3_startup.log'"
+echo "  gcloud compute ssh ${VM_NAME} --zone=${ZONE} --project=${PROJECT_ID} --tunnel-through-iap --command='tail -f /var/log/tabr1_c3_startup.log'"
 echo ""
 echo "Automated Downloader Command:"
 echo "  ./cloud/scripts/sync_results_from_vm.sh ${PROJECT_ID} ${ZONE}"
 echo "======================================================================"
+

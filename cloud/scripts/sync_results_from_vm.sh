@@ -8,7 +8,7 @@ set -euo pipefail
 
 PROJECT_ID="${1:-pelliscope-scout}"
 ZONE="${2:-us-central1-a}"
-VM_NAME="tabr1-c3-44cpu-worker"
+VM_NAME="tabr1-c3-eval-worker"
 AUTO_DELETE="${3:-false}" # Set to true to automatically delete the VM upon completion
 
 TARGET_DIR="./paper/tables/source_data"
@@ -33,13 +33,13 @@ while true; do
     fi
 
     # Check if completion flag exists on VM
-    COMPLETE=$(gcloud compute ssh "${VM_NAME}" --zone="${ZONE}" --project="${PROJECT_ID}" --command="test -f /opt/tabr1_complete.flag && echo 'YES' || echo 'NO'" 2>/dev/null || echo "SSH_WAIT")
+    COMPLETE=$(gcloud compute ssh "${VM_NAME}" --zone="${ZONE}" --project="${PROJECT_ID}" --tunnel-through-iap --command="test -f /opt/tabr1_complete.flag && echo 'YES' || echo 'NO'" 2>/dev/null || echo "SSH_WAIT")
 
     if [[ "${COMPLETE}" == "YES" ]]; then
         echo ""
         echo "🎉 Evaluation is COMPLETE on VM!"
         echo "Downloading results package /opt/tabr1_results_completed.zip..."
-        gcloud compute scp "${VM_NAME}:/opt/tabr1_results_completed.zip" "${TARGET_DIR}/tabr1_cloud_foundation_results.zip" --zone="${ZONE}" --project="${PROJECT_ID}"
+        gcloud compute scp --tunnel-through-iap "${VM_NAME}:/opt/tabr1_results_completed.zip" "${TARGET_DIR}/tabr1_cloud_foundation_results.zip" --zone="${ZONE}" --project="${PROJECT_ID}"
         
         echo "Extracting results into ${TARGET_DIR}/cloud_foundation_models/..."
         mkdir -p "${TARGET_DIR}/cloud_foundation_models"
