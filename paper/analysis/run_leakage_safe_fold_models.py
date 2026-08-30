@@ -326,7 +326,8 @@ def main() -> int:
     if unknown:
         parser.error(f"Unknown models: {', '.join(unknown)}")
 
-    manifest = pd.read_csv(Path(args.fold_manifest).expanduser().resolve())
+    manifest_path = Path(args.fold_manifest).expanduser().resolve()
+    manifest = pd.read_csv(manifest_path)
     if args.smoke:
         if not args.models or args.models == ",".join(AVAILABLE_MODELS):
             models = ["logistic_regression", "random_forest"]
