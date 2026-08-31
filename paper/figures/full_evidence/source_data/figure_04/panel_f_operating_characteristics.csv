@@ -1,0 +1,31 @@
+endpoint,model_name,measure,value,label
+extreme_os,tabfm_default,sensitivity,0.8681318681318682,Extreme OS | TabFM
+extreme_os,tabpfn_v2,sensitivity,0.8681318681318682,Extreme OS | TabPFN v2
+extreme_os,tabpfn_v2_5,sensitivity,0.8681318681318682,Extreme OS | TabPFN v2.5
+extreme_os,tabpfn_v2_6,sensitivity,0.8681318681318682,Extreme OS | TabPFN v2.6
+extreme_os,tabpfn_v3,sensitivity,0.8681318681318682,Extreme OS | TabPFN v3
+os_3yr,tabfm_default,sensitivity,0.5848551979066685,3-year OS | TabFM
+os_3yr,tabpfn_v2,sensitivity,0.4814605329311212,3-year OS | TabPFN v2
+os_3yr,tabpfn_v2_5,sensitivity,0.4848070638511815,3-year OS | TabPFN v2.5
+os_3yr,tabpfn_v2_6,sensitivity,0.5781385689473925,3-year OS | TabPFN v2.6
+os_3yr,tabpfn_v3,sensitivity,0.5109330008227068,3-year OS | TabPFN v3
+os_5yr,tabfm_default,sensitivity,0.7743616396257965,5-year OS | TabFM
+os_5yr,tabpfn_v2,sensitivity,0.7669724770642202,5-year OS | TabPFN v2
+os_5yr,tabpfn_v2_5,sensitivity,0.7669724770642202,5-year OS | TabPFN v2.5
+os_5yr,tabpfn_v2_6,sensitivity,0.7603058103975535,5-year OS | TabPFN v2.6
+os_5yr,tabpfn_v3,sensitivity,0.7803058103975535,5-year OS | TabPFN v3
+extreme_os,tabfm_default,specificity,0.64,Extreme OS | TabFM
+extreme_os,tabpfn_v2,specificity,0.64,Extreme OS | TabPFN v2
+extreme_os,tabpfn_v2_5,specificity,0.64,Extreme OS | TabPFN v2.5
+extreme_os,tabpfn_v2_6,specificity,0.64,Extreme OS | TabPFN v2.6
+extreme_os,tabpfn_v3,specificity,0.64,Extreme OS | TabPFN v3
+os_3yr,tabfm_default,specificity,0.46454465075154733,3-year OS | TabFM
+os_3yr,tabpfn_v2,specificity,0.5203196707507052,3-year OS | TabPFN v2
+os_3yr,tabpfn_v2_5,specificity,0.547705886067955,3-year OS | TabPFN v2.5
+os_3yr,tabpfn_v2_6,specificity,0.47072123279019823,3-year OS | TabPFN v2.6
+os_3yr,tabpfn_v3,specificity,0.5177250431560776,3-year OS | TabPFN v3
+os_5yr,tabfm_default,specificity,0.3420844495471361,5-year OS | TabFM
+os_5yr,tabpfn_v2,specificity,0.3044776119402985,5-year OS | TabPFN v2
+os_5yr,tabpfn_v2_5,specificity,0.3044776119402985,5-year OS | TabPFN v2.5
+os_5yr,tabpfn_v2_6,specificity,0.3044776119402985,5-year OS | TabPFN v2.6
+os_5yr,tabpfn_v3,specificity,0.3044776119402985,5-year OS | TabPFN v3

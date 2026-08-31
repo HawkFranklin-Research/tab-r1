@@ -1,0 +1,79 @@
+endpoint,method,roc_auc,method_label
+os_3yr,tabpfn_v2,0.7216783216783217,TabPFN v2
+os_3yr,tabpfn_v2_5,0.641958041958042,TabPFN v2.5
+os_3yr,tabpfn_v2_6,0.641958041958042,TabPFN v2.6
+os_3yr,tabpfn_v3,0.5664335664335665,TabPFN v3
+os_5yr,tabpfn_v2,0.6035087719298246,TabPFN v2
+os_5yr,tabpfn_v2_5,0.5947368421052631,TabPFN v2.5
+os_5yr,tabpfn_v2_6,0.5464912280701755,TabPFN v2.6
+os_5yr,tabpfn_v3,0.5842105263157894,TabPFN v3
+os_3yr,tabpfn_v2,0.2333333333333333,TabPFN v2
+os_3yr,tabpfn_v2_5,0.2333333333333333,TabPFN v2.5
+os_3yr,tabpfn_v2_6,0.4,TabPFN v2.6
+os_3yr,tabpfn_v3,0.5333333333333333,TabPFN v3
+os_3yr,tabpfn_v2,0.4603365384615384,TabPFN v2
+os_3yr,tabpfn_v2_5,0.4513221153846153,TabPFN v2.5
+os_3yr,tabpfn_v2_6,0.5264423076923077,TabPFN v2.6
+os_3yr,tabpfn_v3,0.4639423076923077,TabPFN v3
+os_5yr,tabpfn_v2,0.6857142857142857,TabPFN v2
+os_5yr,tabpfn_v2_5,0.6285714285714286,TabPFN v2.5
+os_5yr,tabpfn_v2_6,0.65,TabPFN v2.6
+os_5yr,tabpfn_v3,0.625,TabPFN v3
+os_3yr,tabpfn_v2,0.4464285714285715,TabPFN v2
+os_3yr,tabpfn_v2_5,0.4711538461538461,TabPFN v2.5
+os_3yr,tabpfn_v2_6,0.467032967032967,TabPFN v2.6
+os_3yr,tabpfn_v3,0.478021978021978,TabPFN v3
+os_5yr,tabpfn_v2,0.5987179487179487,TabPFN v2
+os_5yr,tabpfn_v2_5,0.5858974358974359,TabPFN v2.5
+os_5yr,tabpfn_v2_6,0.5333333333333333,TabPFN v2.6
+os_5yr,tabpfn_v3,0.6282051282051282,TabPFN v3
+os_3yr,tabpfn_v2,0.5104166666666667,TabPFN v2
+os_3yr,tabpfn_v2_5,0.4713541666666667,TabPFN v2.5
+os_3yr,tabpfn_v2_6,0.4678819444444445,TabPFN v2.6
+os_3yr,tabpfn_v3,0.4583333333333333,TabPFN v3
+os_5yr,tabpfn_v2,0.4291187739463601,TabPFN v2
+os_5yr,tabpfn_v2_5,0.4674329501915709,TabPFN v2.5
+os_5yr,tabpfn_v2_6,0.4827586206896552,TabPFN v2.6
+os_5yr,tabpfn_v3,0.5402298850574713,TabPFN v3
+os_3yr,tabfm_default,0.5909090909090908,TabFM
+os_5yr,tabfm_default,0.5456140350877193,TabFM
+os_3yr,tabfm_default,0.5666666666666667,TabFM
+os_3yr,tabfm_default,0.4471153846153846,TabFM
+os_5yr,tabfm_default,0.5910714285714286,TabFM
+os_3yr,tabfm_default,0.4910714285714286,TabFM
+os_5yr,tabfm_default,0.641025641025641,TabFM
+os_3yr,tabfm_default,0.4522569444444444,TabFM
+os_5yr,tabfm_default,0.5134099616858238,TabFM
+os_3yr,tabpfn_v2,0.7283299526707235,TabPFN v2
+os_3yr,tabpfn_v2_5,0.7427315753887762,TabPFN v2.5
+os_3yr,tabpfn_v2_6,0.7357674104124408,TabPFN v2.6
+os_3yr,tabpfn_v3,0.730764029749831,TabPFN v3
+os_5yr,tabpfn_v2,0.713268519786389,TabPFN v2
+os_5yr,tabpfn_v2_5,0.6971792414076408,TabPFN v2.5
+os_5yr,tabpfn_v2_6,0.6951937559906888,TabPFN v2.6
+os_5yr,tabpfn_v3,0.7076543886074216,TabPFN v3
+os_3yr,tabfm_default,0.7334009465855308,TabFM
+os_5yr,tabfm_default,0.693755990688758,TabFM
+extreme_os,tabpfn_v2,0.7967032967032966,TabPFN v2
+extreme_os,tabpfn_v2_5,0.8305494505494506,TabPFN v2.5
+extreme_os,tabpfn_v2_6,0.8215384615384617,TabPFN v2.6
+extreme_os,tabpfn_v3,0.8162637362637363,TabPFN v3
+extreme_os,tabfm_default,0.8026373626373626,TabFM
+os_3yr,prevalence_only,0.5,Prevalence
+os_3yr,cancer_identity_only,0.7073022312373225,Cancer identity
+os_3yr,source_identity_only,0.4835023664638269,Source identity
+os_3yr,cancer_and_source_only,0.727079107505071,Cancer + source
+os_3yr,structural_zero_pattern,0.7449628127112913,Zero pattern
+os_3yr,linear_molecular,0.6604800540906017,Linear molecular
+os_5yr,prevalence_only,0.5,Prevalence
+os_5yr,cancer_identity_only,0.7027249075722306,Cancer identity
+os_5yr,source_identity_only,0.5171847186087909,Source identity
+os_5yr,cancer_and_source_only,0.7058742982336026,Cancer + source
+os_5yr,structural_zero_pattern,0.7038888128166506,Zero pattern
+os_5yr,linear_molecular,0.6681500753115158,Linear molecular
+extreme_os,prevalence_only,0.5,Prevalence
+extreme_os,cancer_identity_only,0.8094505494505495,Cancer identity
+extreme_os,source_identity_only,0.554945054945055,Source identity
+extreme_os,cancer_and_source_only,0.8213186813186812,Cancer + source
+extreme_os,structural_zero_pattern,0.8241758241758241,Zero pattern
+extreme_os,linear_molecular,0.6651648351648352,Linear molecular

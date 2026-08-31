@@ -1,0 +1,10 @@
+*
+!.dockerignore
+!cloud/Dockerfile
+!package/
+!package/**
+!tabfm/
+!tabfm/**
+!paper/
+!paper/analysis/
+!paper/analysis/*.py

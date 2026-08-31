@@ -1,0 +1,8 @@
+dataset,samples,features,classes,task
+ada_dataset,4147,48,2,binary
+australian_dataset,690,14,2,binary
+blood_transfusion_service_center,748,4,2,binary
+car,1728,6,4,multiclass
+chum,5000,20,2,binary
+cmc,1473,9,3,multiclass
+credit_g,1000,20,2,binary

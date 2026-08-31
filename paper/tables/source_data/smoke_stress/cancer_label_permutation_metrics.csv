@@ -1,0 +1,5 @@
+experiment,dataset,endpoint,permutation,iteration,n_train,n_test,roc_auc,pr_auc
+extreme,ALL_core_extreme_os_death_lt3yr_survival_ge5yr_top75_no_cancer_feature,extreme_os,global,0,655,141,0.5136263736263736,0.7031244047476224
+extreme,ALL_core_extreme_os_death_lt3yr_survival_ge5yr_top75_no_cancer_feature,extreme_os,within_cancer,0,655,141,0.6426373626373626,0.7316406800686162
+extreme,ALL_core_extreme_os_death_lt3yr_survival_ge5yr_top75_no_cancer_feature,extreme_os,global,1,655,141,0.4903296703296703,0.7012950994811346
+extreme,ALL_core_extreme_os_death_lt3yr_survival_ge5yr_top75_no_cancer_feature,extreme_os,within_cancer,1,655,141,0.6191208791208791,0.718951614187976

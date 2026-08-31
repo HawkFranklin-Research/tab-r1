@@ -1,0 +1,6 @@
+order,stage
+1,Raw tables
+2,Grouped folds
+3,Train-only selection
+4,Predictions
+5,Evidence

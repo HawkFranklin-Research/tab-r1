@@ -1,0 +1,4 @@
+endpoint,positive,negative
+os_3yr,death <=1095 d,known survival >1095 d
+os_5yr,death <=1825 d,known survival >1825 d
+extreme_os,death <1095 d,alive/censored >=1825 d

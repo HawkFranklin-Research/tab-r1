@@ -24,13 +24,24 @@ echo "======================================================================"
 
 echo "Checking VM status and waiting for evaluation completion..."
 
+NOT_FOUND_COUNT=0
 while true; do
     # Check if instance is running
-    STATUS=$(gcloud compute instances describe "${VM_NAME}" --zone="${ZONE}" --project="${PROJECT_ID}" --format="value(status)" 2>/dev/null || echo "NOT_FOUND")
-    if [[ "${STATUS}" == "NOT_FOUND" ]]; then
-        echo "VM ${VM_NAME} does not exist or has been deleted."
-        exit 0
+    STATUS=$(gcloud compute instances describe "${VM_NAME}" --zone="${ZONE}" --project="${PROJECT_ID}" --format="value(status)" 2>/dev/null || echo "NETWORK_ERROR")
+    if [[ "${STATUS}" == "NETWORK_ERROR" ]]; then
+        echo "[$(date +%T)] Network connection error checking VM. Retrying in 30s..."
+        sleep 30
+        continue
+    elif [[ "${STATUS}" == "NOT_FOUND" || -z "${STATUS}" ]]; then
+        NOT_FOUND_COUNT=$((NOT_FOUND_COUNT + 1))
+        if [[ ${NOT_FOUND_COUNT} -ge 5 ]]; then
+            echo "VM ${VM_NAME} does not exist or has been deleted."
+            exit 0
+        fi
+        sleep 30
+        continue
     fi
+    NOT_FOUND_COUNT=0
 
     # Check if completion flag exists on VM
     COMPLETE=$(gcloud compute ssh "${VM_NAME}" --zone="${ZONE}" --project="${PROJECT_ID}" --tunnel-through-iap --command="test -f /opt/tabr1_complete.flag && echo 'YES' || echo 'NO'" 2>/dev/null || echo "SSH_WAIT")

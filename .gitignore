@@ -57,6 +57,9 @@ results-satya/runs/
 Evaluate-TABPFN/outputs_phase2_test/
 Evaluate-TABPFN/tests/outputs*/
 Evaluate-TABPFN/pfn3-test/outputs*/
+catboost_info/
+**/catboost_info/
+gke-mcp
 
 # Local agent/editor state
 .agents/

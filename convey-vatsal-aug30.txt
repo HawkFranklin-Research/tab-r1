@@ -1,0 +1,260 @@
+for this whole plan, that we had initially,; what i want you to do focus right now, is that, you can run items only a sub sample size not full scale run due to other activies, one they are over you can execute all, so for now only write code, so this was your origianl plan "Scientific Assessment
+
+  The existing manuscript is a useful internal report, but it is not yet defensible as a research paper. The strongest publishable story is not simply “TabPFN and TabFM
+  predict survival.” It is:
+
+  > Tabular foundation models perform competitively on conventional small-data benchmarks, but apparent pan-cancer improvements can be driven by cohort identity, modality
+  > structure, and evaluation design. Rigorous cohort-aware validation is necessary before interpreting pooled multiomics performance as prognostic signal.
+
+  A suitable working title is:
+
+  > From Benchmark Gains to Biomedical Shortcuts: Stress-Testing Tabular Foundation Models in Cancer Multiomics
+
+  This is more scientifically interesting and defensible than claiming “clinical-grade risk stratification.”
+
+  ## Critical Audit Findings
+
+   Problem                                                Evidence                                                   Required action
+  ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━  ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━  ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+   Simulated figure data                                  paper/make_paper_plots.py:117 constructs mock ROC          Regenerate every panel from saved sample-level
+                                                          curves, and line 139 generates artificial boxplot          predictions
+                                                          distributions
+  ─────────────────────────────────────────────────────  ─────────────────────────────────────────────────────────  ─────────────────────────────────────────────────────────
+   Hard-coded metrics                                     paper/make_paper_plots.py:52 and paper/                    Figures and tables must read source CSV/NPZ artifacts
+                                                          make_survival_plots.py:90
+  ─────────────────────────────────────────────────────  ─────────────────────────────────────────────────────────  ─────────────────────────────────────────────────────────
+   Incorrect TabFM reference                              paper/references.bib:11 attributes arXiv:2605.13986 to     Cite the official Google blog, model card and software
+                                                          TabFM, but that identifier belongs to another report       release
+  ─────────────────────────────────────────────────────  ─────────────────────────────────────────────────────────  ─────────────────────────────────────────────────────────
+   Incorrect TabFM description                            Manuscript says TabFM was pretrained on real tables and    Official sources state that TabFM was trained on
+                                                          semantically tokenizes them                                synthetic SCM-generated datasets and uses row/column
+                                                                                                                     attention plus row compression
+  ─────────────────────────────────────────────────────  ─────────────────────────────────────────────────────────  ─────────────────────────────────────────────────────────
+   No uncertainty estimates                               Primary comparisons use one deterministic split            Add repeated paired evaluation, confidence intervals
+                                                                                                                     and effect sizes
+  ─────────────────────────────────────────────────────  ─────────────────────────────────────────────────────────  ─────────────────────────────────────────────────────────
+   Feature-selection leakage risk                         Top-variance features were selected using all eligible     Perform feature selection independently inside each
+                                                          samples before model splitting                             training fold
+  ─────────────────────────────────────────────────────  ─────────────────────────────────────────────────────────  ─────────────────────────────────────────────────────────
+   Implicit cancer identification                         Pooled feature unions are cancer-specific and absent       Use a common harmonized feature space and explicitly
+                                                          features are zero-filled                                   test missingness-only and cancer-only baselines
+  ─────────────────────────────────────────────────────  ─────────────────────────────────────────────────────────  ─────────────────────────────────────────────────────────
+   Pooled performance conflicts with subgroup behavior    Pooled AUC reaches approximately 0.74 to 0.83, while       Treat the pooled result as a potential shortcut until
+                                                          several cancer subgroups have balanced accuracy around     cohort-aware controls are completed
+                                                          0.50
+  ─────────────────────────────────────────────────────  ─────────────────────────────────────────────────────────  ─────────────────────────────────────────────────────────
+   Baselines are not fold-matched                         AutoGluon, CatBoost and other results came from            Rerun every comparator on identical folds and
+                                                          different historical runs                                  preprocessing
+  ─────────────────────────────────────────────────────  ─────────────────────────────────────────────────────────  ─────────────────────────────────────────────────────────
+   Clinical claims are too strong                         The current manuscript describes generalized or            Replace with bounded, exploratory claims unless
+                                                          clinical-grade risk signals                                externally validated
+  ─────────────────────────────────────────────────────  ─────────────────────────────────────────────────────────  ─────────────────────────────────────────────────────────
+   Methods mismatch                                       Manuscript states a 60/20/20 split, while the package      Generate Methods directly from the actual final
+                                                          defaults to 70/15/15                                       configuration
+  ─────────────────────────────────────────────────────  ─────────────────────────────────────────────────────────  ─────────────────────────────────────────────────────────
+   Invalid authorship placeholder                         “Antigravity AI” is listed as an author                    Replace with human authors; disclose AI assistance
+                                                                                                                     according to journal policy
+
+  The official TabFM repository also says that no technical report currently exists, so the manuscript must not present one. Use the Google Research release and official
+  GitHub repository as software sources.
+
+  ## Recommended Scientific Questions
+
+  The paper should answer four explicit questions:
+
+  1. Controlled benchmark: Under identical data splits and budgets, how do TabPFN generations, TabFM, AutoML and strong tree models compare in discrimination, probabilistic
+     accuracy and computation?
+
+  2. Within-cancer prediction: Can molecular features predict fixed-window overall-survival outcomes within individual cancer cohorts?
+  3. Pooling: Does pooling cancers reveal a shared prognostic signal, or does it allow models to exploit cancer/source identity?
+  4. Generalization: Does performance survive within-cancer stratification, cancer-held-out testing and independent-cohort validation?
+
+  ## Proposed Hypotheses
+
+  - H1: No single foundation model dominates every metric; TabFM, TabPFN and tuned tree models exhibit different discrimination, calibration and computational trade-offs.
+  - H2: Per-cancer multiomics prediction is unstable because the datasets are high-dimensional and sample-limited.
+  - H3: Randomly pooled cancer evaluation produces higher global AUC partly because molecular modality and missingness patterns identify cancer cohorts.
+  - H4: Performance will decline under leave-one-cancer-out and external-cohort validation if the apparent signal is dominated by cohort shortcuts.
+  - H5: Extreme-survival selection improves class separability but changes the target population and therefore cannot be interpreted as improvement on the original fixed-
+    window task.
+
+  H3 and H4 are currently hypotheses supported by diagnostic evidence, not yet final conclusions.
+
+  # Manuscript Structure
+
+  ## 1. Introduction
+
+  The introduction should progress incrementally through five paragraphs.
+
+  Paragraph 1: The tabular learning problem
+
+  Explain why structured data remain central in science and medicine, and why gradient-boosted trees remain strong. Cite XGBoost, LightGBM, CatBoost, AutoGluon and the study
+  showing that tree models remain difficult to beat on medium-sized tabular datasets.
+
+  Paragraph 2: Tabular foundation models
+
+  Introduce prior-fitted and in-context tabular learning. Explain TabPFN, TabICL and TabFM without marketing language. TabPFN’s established small-data performance is
+  described in the Nature paper, while TabArena shows why time budgets, validation procedures and ensembling materially affect rankings. TabICL provides the larger-data ICL
+  context.
+
+  Paragraph 3: Independent evaluation gap
+
+  Explain that vendor or developer benchmarks do not automatically establish performance under identical preprocessing, data caps, hardware, model versions and probabilistic
+  metrics. Introduce reproducibility, calibration and compute as separate dimensions.
+
+  Paragraph 4: Biomedical stress test
+
+  Introduce cancer multiomics as a difficult (p \gg n) setting with censoring, heterogeneous modalities, technical batch effects and cohort-specific molecular distributions.
+  Batch-label confounding can severely inflate cross-validation estimates, as demonstrated in this genomic classification study.
+
+  Paragraph 5: Study objective
+
+  State that this study independently evaluates tabular foundation models and then stress-tests their apparent performance in five cancer cohorts using increasingly
+  stringent validation.
+
+  ## 2. Results
+
+  The Results should follow the figures exactly:
+
+  1. Study design and datasets.
+  2. Controlled small-data benchmark.
+  3. Per-cancer survival prediction.
+  4. Apparent gain from pooling and extreme-phenotype selection.
+  5. Confounding and cohort-generalization stress tests.
+  6. Reproducibility and backend consistency.
+
+  ## 3. Discussion
+
+  The Discussion should emphasize:
+
+  - TFMs are promising, but there is no universal winner.
+  - Lower log loss is probabilistic performance, not automatically proof of calibration.
+  - Weak per-cancer performance is scientifically informative.
+  - Pooled AUC is not sufficient evidence of pan-cancer prognosis.
+  - Extreme-contrast evaluation changes the population and difficulty.
+  - Independent TCGA-to-CPTAC validation is necessary before translational interpretation.
+  - The evaluator and complete prediction artifacts are useful reproducibility contributions.
+
+  ## 4. Methods
+
+  Methods should contain:
+
+  - Dataset provenance and inclusion criteria.
+  - Patient/sample deduplication.
+  - Multiomics modality harmonization.
+  - Fixed-window label definitions and censoring exclusions.
+  - Train-only preprocessing and feature selection.
+  - Model versions, checkpoints, presets and licenses.
+  - Fold construction and random seeds.
+  - Context-row and feature limits for each foundation model.
+  - Comparator time budgets.
+  - Metrics and threshold-selection procedure.
+  - Confidence intervals and statistical comparisons.
+  - Hardware, runtimes and software versions.
+  - Data, code and artifact availability.
+  - TRIPOD+AI and PROBAST+AI compliance.
+
+  Clinical-prediction reporting should follow TRIPOD+AI, while risk of bias should be audited with PROBAST+AI.
+
+  # Main Figure Plan
+
+   Figure                                Panels                                                              Scientific purpose
+  ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━  ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━  ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+   Figure 1: Study design                A: model families; B: evaluator workflow; C: benchmark dataset      Establish what was evaluated and how
+                                         landscape; D: cancer cohort flow; E: 3/5-year and extreme-label
+                                         timeline
+  ────────────────────────────────────  ──────────────────────────────────────────────────────────────────  ─────────────────────────────────────────────────────────────────
+   Figure 2: Controlled benchmark        A: model rank/critical-difference plot; B: per-dataset AUC          Demonstrate performance trade-offs under identical splits
+                                         heatmap; C: paired delta from best baseline; D: log-loss and
+                                         Brier comparison; E: performance-runtime Pareto; F: sample-size
+                                         learning curves
+  ────────────────────────────────────  ──────────────────────────────────────────────────────────────────  ─────────────────────────────────────────────────────────────────
+   Figure 3: Cancer data landscape       A: sample inclusion flow; B: modality-by-cancer matrix; C: class    Show why the biomedical task is difficult and confounded
+                                         counts and exclusions; D: Kaplan-Meier curves with confidence
+                                         bands; E: feature-space overlap; F: source/cancer separability
+  ────────────────────────────────────  ──────────────────────────────────────────────────────────────────  ─────────────────────────────────────────────────────────────────
+   Figure 4: Survival prediction         A: per-cancer AUC forest plot with 95% CIs; B: PR AUC forest        Separate global performance from within-cancer behavior
+                                         plot; C: pooled ROC and PR curves; D: calibration curves; E:
+                                         sensitivity/specificity; F: subgroup performance
+  ────────────────────────────────────  ──────────────────────────────────────────────────────────────────  ─────────────────────────────────────────────────────────────────
+   Figure 5: Confounding stress tests    A: cancer-only baseline; B: source-only/missingness-only            Determine whether pooled gains represent prognosis or shortcuts
+                                         baseline; C: random versus within-cancer split; D: leave-one-
+                                         cancer-out results; E: within-cancer permutation distribution;
+                                         F: TCGA-to-CPTAC validation
+
+  All panels must be regenerated from stored predictions or cohort metadata. No simulated ROC curves, synthetic error bars or hand-entered arrays should remain.
+
+  # Mandatory Additional Analyses
+
+  1. Use identical folds for every model.
+  2. Run repeated stratified evaluation rather than one split.
+  3. Select high-variance features only from each training fold.
+  4. Harmonize a common molecular feature universe across cancers.
+  5. Compare molecular-only, clinical-only and combined inputs where clinical fields are sufficiently complete.
+  6. Add majority/prevalence, cancer-only, source-only and missingness-only controls.
+  7. Add within-cancer label permutation and global label permutation.
+  8. Add leave-one-cancer-out validation.
+  9. Add TCGA-to-CPTAC external validation where modalities can be aligned.
+  10. Add model-matched baselines: logistic regression, random forest, CatBoost, XGBoost, LightGBM and AutoGluon.
+  11. Report ROC AUC, PR AUC, balanced accuracy, sensitivity, specificity, F1, log loss and Brier score.
+  12. Derive classification thresholds using validation data only.
+  13. Report patient-level bootstrap 95% confidence intervals.
+  14. Report paired model differences with Holm correction rather than winner-only tables.
+  15. Audit feature stability and modality composition across resamples.
+
+  Feature selection outside resampling is a known source of optimistic bias; it should be placed inside the evaluation loop, as discussed in this leakage analysis. PR AUC
+  should be emphasized for imbalanced outcomes because ROC curves can appear optimistic under strong imbalance, following Saito and Rehmsmeier.
+
+  # Benchmark Scope Decision
+
+  Seven datasets are sufficient for an engineering validation but not for a broad state-of-the-art benchmark claim.
+
+  The recommended strategy is:
+
+  - Treat the seven-dataset experiment as evaluator validation or Extended Data.
+  - Make cancer multiomics robustness and confounding the primary manuscript contribution.
+  - If a broad TFM benchmark remains a headline claim, expand to a substantial TabArena subset with fixed compute budgets.
+
+  # Bibliography Plan
+
+  The current six-entry bibliography should become a curated 35 to 50 reference bibliography containing:
+
+  - TabPFN, TabPFN-3, TabICL, TabArena and TabFM software sources.
+  - XGBoost, LightGBM, CatBoost, AutoGluon and strong tabular benchmarks.
+  - TCGA Pan-Cancer Atlas and cancer-specific TCGA source publications.
+  - CPTAC pan-cancer and cancer-specific proteogenomic publications.
+  - Multiomics survival-prediction studies and systematic reviews.
+  - Fixed-window and discrete-time survival methodology.
+  - PR AUC and probabilistic calibration methodology.
+  - Data leakage and batch-confounding studies.
+  - TRIPOD+AI and PROBAST+AI.
+  - Repeated model-comparison and multiple-testing methodology.
+
+  TabFM should receive an @software or @misc citation with repository version, commit hash, model-card URL and access date, not a fabricated journal citation.
+
+  # File-Level Reconstruction Plan
+
+  - Rewrite paper/tabular_fm_paper.tex.
+  - Replace and expand paper/references.bib.
+  - Replace paper/make_paper_plots.py with scripts that consume raw experiment tables and predictions.
+  - Refactor paper/make_survival_plots.py so all counts are computed from metadata.
+  - Add paper/analysis/ for paper-specific statistical analysis.
+  - Add paper/tables/ for generated CSV and LaTeX tables.
+  - Add paper/figures/source_data/ containing one machine-readable table per figure.
+  - Add paper/supplement/ for granular results, robustness checks and reporting checklists.
+  - Add paper/PROVENANCE.md mapping every statement, table and panel to its source artifact.
+  - Preserve existing experimental outputs unchanged.
+
+  # Execution Order
+
+  1. Freeze the research questions and primary endpoints.
+  2. Correct the bibliography and technical model descriptions.
+  3. Build a provenance map from raw predictions to every reported number.
+  4. Repair preprocessing and fold construction.
+  5. Run matched baselines and repeated evaluations.
+  6. Run confounding, permutation and cohort-held-out controls.
+  7. Generate all figures and tables from source data.
+  8. Rewrite Results around those figures.
+  9. Rewrite Introduction and Discussion around the supported conclusions.
+  10. Complete TRIPOD+AI, PROBAST+AI and reproducibility checklists.
+  11. Compile and perform a claim-by-claim evidence audit.' , and now  I want you to continue with your plan 

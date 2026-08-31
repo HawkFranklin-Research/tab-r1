@@ -1,0 +1,5 @@
+family,models
+Prior-fitted,TabPFN v2-v3
+Tabular ICL,TabFM
+AutoML,AutoGluon
+Tree/linear,"CatBoost, XGBoost, LightGBM, RF, LR"
