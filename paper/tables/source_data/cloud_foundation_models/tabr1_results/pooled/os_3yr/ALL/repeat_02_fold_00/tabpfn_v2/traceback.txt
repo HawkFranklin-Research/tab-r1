@@ -1,0 +1,21 @@
+Traceback (most recent call last):
+  File "/opt/workspace/tab-r1/paper/analysis/run_leakage_safe_fold_models.py", line 258, in execute_model
+    estimator.fit(X_train, y_train)
+  File "/usr/lib/python3.11/contextlib.py", line 81, in inner
+    return func(*args, **kwds)
+           ^^^^^^^^^^^^^^^^^^^
+  File "/opt/tabr1-env/lib/python3.11/site-packages/tabpfn/classifier.py", line 843, in fit
+    ensemble_configs, X, y = self._initialize_dataset_preprocessing(
+                             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/tabr1-env/lib/python3.11/site-packages/tabpfn/classifier.py", line 719, in _initialize_dataset_preprocessing
+    X, y, feature_names, n_features, original_y_name = ensure_compatible_fit_inputs(
+                                                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/tabr1-env/lib/python3.11/site-packages/tabpfn/validation.py", line 82, in ensure_compatible_fit_inputs
+    validate_dataset_size(
+  File "/opt/tabr1-env/lib/python3.11/site-packages/tabpfn/validation.py", line 150, in validate_dataset_size
+    _validate_num_samples_for_cpu(
+  File "/opt/tabr1-env/lib/python3.11/site-packages/tabpfn/validation.py", line 304, in _validate_num_samples_for_cpu
+    raise RuntimeError(
+RuntimeError: Running on CPU with more than 1000 samples is not allowed by default due to slow performance.
+To override this behavior, set the environment variable TABPFN_ALLOW_CPU_LARGE_DATASET=1 or set ignore_pretraining_limits=True.
+Alternatively, consider using a GPU or the tabpfn-client API: https://github.com/PriorLabs/tabpfn-client
