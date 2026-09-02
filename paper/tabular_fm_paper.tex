@@ -1,422 +1,208 @@
 \documentclass[11pt, a4paper, onecolumn, confidential, copyright]{hawkfranklin}
 
-% ----- Essential Packages -----
 \usepackage[utf8]{inputenc}
 \usepackage[T1]{fontenc}
-\usepackage{graphicx}       % For images (\includegraphics)
-\usepackage{float}          % For precise float placement
-\usepackage{amsmath, amssymb} % Standard math packages
-\usepackage{url}            % For formatting URLs
-\usepackage{booktabs}       % For professional tables (\toprule, etc.)
-\usepackage{longtable}      % For tables spanning pages
-\usepackage{array}          % For advanced table column formatting
-\usepackage[numbers, super, sort&compress]{natbib} % Bibliography style
-\usepackage[dvipsnames]{xcolor} % For colors
-\usepackage{placeins}       % For float barriers
-\usepackage{hyperref}       % For hyperlinks (load late)
-
-\usepackage[most]{tcolorbox}
-\newtcolorbox{toolbox}[1][]{%
-  colback=gray!8, colframe=gray!40, fonttitle=\bfseries, sharp corners, boxrule=0.4pt,
-  enhanced, title=#1}
+\usepackage{graphicx}
+\usepackage{float}
+\usepackage{amsmath,amssymb}
+\usepackage{url}
+\usepackage{booktabs}
+\usepackage{longtable}
+\usepackage{array}
+\usepackage{enumitem}
+\usepackage[numbers,super,sort&compress]{natbib}
+\usepackage[dvipsnames]{xcolor}
+\usepackage{placeins}
+\usepackage{hyperref}
+\setlength{\emergencystretch}{3em}
 
 \captionsetup[figure]{font=footnotesize}
 \captionsetup[table]{font=footnotesize}
-
 \renewcommand{\absfont}{\normalfont\linespread{1.2}\fontsize{9}{11}\selectfont}
-
-% ----- Hyperlink Setup -----
-\hypersetup{
-    colorlinks=true,
-    linkcolor=Blue,      % Standard blue for links
-    citecolor=Green,     % Green for citations
-    urlcolor=NavyBlue,   % Dark blue for URLs
-}
-
-% ----- Bibliography Style -----
+\hypersetup{colorlinks=true,linkcolor=Blue,citecolor=Green,urlcolor=NavyBlue}
 \bibliographystyle{abbrvnat}
 
-% ----- Document Metadata -----
-\keywords{tabular learning; tabular foundation models; prior-fitted networks; clinical risk stratification; in-context learning; oncology genomics}
-\paperurl{https://github.com/HawkFranklin-Research/tab-r1} 
-\title{Evaluating Tabular Foundation Models: From AutoML Baselines to Clinical Risk Stratification}
-\correspondingauthor{evaluator@hawk-franklin-research.com} 
-\reportnumber{TR-2026-07-04} 
-\renewcommand{\today}{2026-07-04}
+\keywords{tabular foundation models; cancer multiomics; survival classification; cohort effects; missingness; evaluation design}
+\paperurl{https://github.com/HawkFranklin-Research/tab-r1}
+\title{From Predictive Gains to Cohort Shortcuts: Stress-Testing Tabular Foundation Models in Cancer Multiomics}
+\correspondingauthor{evaluator@hawk-franklin-research.com}
+\reportnumber{TR-2026-09-02}
+\renewcommand{\today}{2026-09-02}
 
-\author[1]{Antigravity AI\textsuperscript{*}}
-\author[1]{HawkFranklin Research Team}
-\affil[1]{Department of Tabular AI and Evaluation, HawkFranklin Research, India} 
-\affil[ ]{\textsuperscript{*}Corresponding author: \href{mailto:evaluator@hawk-franklin-research.com}{evaluator@hawk-franklin-research.com}} 
+\author[1]{Vatsal P. Patel\textsuperscript{*}}
+\affil[1]{HawkFranklin Research, India}
+\affil[ ]{\textsuperscript{*}Corresponding author: \href{mailto:evaluator@hawk-franklin-research.com}{evaluator@hawk-franklin-research.com}}
 
-% --- Abstract Environment ---
 \begin{abstract}
-\noindent\textbf{Background:} Traditional tabular machine learning relies heavily on gradient boosted decision trees (GBDTs), which demand intensive hyperparameter tuning and manual preprocessing for every new task. Tabular Foundation Models (TFMs) represent a paradigm shift by enabling instant, parameter-free, in-context prediction directly on raw tabular datasets.
+\noindent\textbf{Background:} Tabular foundation models offer in-context prediction without task-specific parameter fitting, but their behavior in high-dimensional biomedical data remains difficult to separate from cohort structure and evaluation design. Cancer multiomics provides a stringent test because molecular measurements, outcome prevalence, data source, and missingness patterns vary across disease cohorts.
 
-\noindent\textbf{Objective:} To establish a human-centered, standardized evaluation comparing the evolution of Prior-Fitted Networks (TabPFN v1 to v3) against Google's semantically pretrained TabFM (default and ensemble modes) on AutoML classification and clinical cancer survival tasks.
+\noindent\textbf{Methods:} We evaluated five classical learners, AutoGluon, TabFM, and four TabPFN generations on 400 frozen patient-grouped folds spanning breast, esophageal, head and neck, lung squamous, and lung adenocarcinoma cohorts. Outcomes were 3-year and 5-year overall-survival event classification and an exploratory extreme-survival contrast. Each task used five repeats of five-fold evaluation, validation-only threshold selection, and molecular feature selection confined to the training partition. We compared within-cancer and randomly pooled evaluation and examined cancer-identity, structural-zero, label-permutation, and cancer-held-out diagnostics.
 
-\noindent\textbf{Methods:} We leverage the modular \texttt{ev-tabpfn} validation engine to analyze seven standard classification tasks and ten TCGA cancer survival event classification tasks (Breast, Esophageal, Head \& Neck, and Lung cancers). We study clinical risk prediction across three difficulty tiers: (1) individual per-cancer modeling, (2) pooled cross-cancer modeling without cancer type indicators, and (3) extreme survival contrast (early death vs. long-term survival). To evaluate low-data regimes, we apply a stratified 1,024-row training cap.
+\noindent\textbf{Results:} Mean within-cancer ROC AUC for the foundation models ranged from 0.563 to 0.568, indicating modest and heterogeneous discrimination. Pooled ROC AUC increased to 0.714--0.721 for evaluated 3-year configurations, 0.751--0.754 for 5-year survival, and 0.778--0.786 for the extreme contrast. Cancer identity alone reached ROC AUC values of 0.707, 0.703, and 0.809 across the three endpoints, while structural-zero patterns reached 0.745, 0.704, and 0.824. A cancer-held-out linear molecular diagnostic remained near chance, with mean ROC AUC values of 0.479, 0.508, and 0.518.
 
-\noindent\textbf{Results:} On standard datasets, TabFM 1.0.0 JAX default achieves superior mean accuracy (0.845) and log-loss calibration (0.355), outperforming TabPFN v3 by +3.0\% accuracy. However, TabPFN v2.5 maintains a slight lead in patient ranking quality (ROC AUC: 0.871 vs. 0.866). On noisy TCGA molecular datasets, individual per-cancer survival modeling is highly sample-starved (mean ROC AUC $\approx$ 0.53 - 0.56). However, when pooling cohorts cross-cancer to expand sample size, the models extract a generalizable survival signal, boosting ROC AUC to 0.743 (TabPFN v2.5). Under extreme survival contrast (early death vs. long-term survival), clinical noise is minimized, pushing ROC AUC to 0.831.
-
-\noindent\textbf{Conclusion:} Tabular foundation models provide immediate in-context predictions. TabFM offers highly calibrated classification probabilities, while TabPFN yields rapid GPU forward-passes and robust generalization on high-dimensional clinical genomics.
+\noindent\textbf{Conclusions:} Foundation models were competitive with strong tree ensembles, but no architecture dominated consistently. The increase produced by random pan-cancer pooling cannot be interpreted as evidence of a shared prognostic molecular signature because cohort identity and harmonization structure carried comparable predictive information. Biomedical evaluations of tabular foundation models should report within-cohort results, explicit shortcut controls, and cohort-aware generalization tests alongside pooled scores.
 \end{abstract}
 
 \begin{document}
-
 \maketitle
-
-\medskip
-\hrule
-\medskip
 
 \section{Introduction}
 \label{sec:introduction}
 
-Structured tabular data represents the primary information medium in administrative databases, financial profiling, and clinical diagnostics.\citep{chen2016xgboost} For decades, gradient boosted decision trees (GBDTs)—specifically XGBoost,\citep{chen2016xgboost} CatBoost,\citep{prokhorenkova2018catboost} and LightGBM\citep{ke2017lightgbm}—have held an empirical monopoly on tabular tasks. However, this success comes at a cost: practitioners must dedicate substantial time and compute to hyperparameter optimization (HPO), data imputation, and feature engineering for every new dataset.\citep{erickson2020autogluon} In clinical settings, where rapid, robust decision support is paramount, this tuning latency is a significant blocker to deployment.
+Structured data remain central to biomedical research, yet predictive modeling on tables differs from modeling text or images. Feature scales, missingness mechanisms, sample sizes, and semantic relations between columns can change substantially from one dataset to another. Gradient-boosted trees and related ensembles remain difficult to displace under these conditions because they capture nonlinear interactions, tolerate mixed feature distributions, and can be tuned effectively within realistic compute budgets. XGBoost, LightGBM, CatBoost, random forests, and AutoGluon therefore provide necessary comparators for any claim that a foundation model has changed the practical state of tabular learning.\citep{breiman2001random,chen2016xgboost,ke2017lightgbm,prokhorenkova2018catboost,erickson2020autogluon,grinsztajn2022tree}
 
-Tabular Foundation Models (TFMs) aim to alleviate this practitioner's burden by executing zero-shot or in-context learning (ICL).\citep{hollmann2025accurate} By freezing the model's weights and passing a training "bag" (historical samples) along with a query point, TFMs generate instant predictions in a single forward pass. Two distinct philosophies have emerged to train these models:
-\begin{itemize}[noitemsep,leftmargin=*]
-  \item \textbf{Prior-Fitted Networks (PFNs)}: Exemplified by TabPFN,\citep{hollmann2025accurate} this architecture is pretrained entirely on millions of synthetically generated structural priors, learning to approximate Bayesian inference directly inside a transformer's attention layers.
-  \item \textbf{Semantic Pretraining}: Exemplified by Google's TabFM,\citep{google2024tabfm} this architecture treats tables as tokenized text sequences. By pretraining on a massive corpus of real-world tables, TabFM learns deep semantic representations of columns and cellular entries, mapping tabular structures to target variables.
-\end{itemize}
+Tabular foundation models approach the problem differently. Prior-fitted networks learn an inference procedure during pretraining and then condition on labeled examples at prediction time. TabPFN demonstrated that this strategy can provide strong small-data classification performance without conventional task-specific optimization.\citep{hollmann2025accurate} More recent TabPFN releases extend the supported data regime and inference system, while TabICL investigates in-context learning at larger scale.\citep{qu2025tabicl} TabFM is also an in-context tabular model, but it was trained on synthetic datasets sampled from structural causal models and uses alternating row and column attention with row compression.\citep{google2026tabfm,tabfmsoftware2026} These systems differ in architecture, training distribution, resource requirements, and supported input envelope. Comparisons based only on headline accuracy can therefore conceal consequential differences in probabilistic performance, runtime, and model coverage.
 
-Evaluating these foundation models against GBDTs and Auto-ML platforms like AutoGluon\citep{erickson2020autogluon} is essential to establish their translation value. We developed the \texttt{ev-tabpfn} evaluation package to benchmark these systems under seed-consistent, uniform splits. This study evaluates the evolution of TabPFN weights (v1 to v3), Google's TabFM default, and a custom light TabFM ensemble ($n=4$) across standard benchmarks and clinical cancer cohorts.
+Independent evaluation is especially important because tabular rankings are sensitive to data splits, preprocessing, validation budgets, ensembling, and hardware. TabArena has emphasized the effect of evaluation protocol and time budget on model comparisons, while broad empirical studies continue to find that tree ensembles are strong on medium-sized tabular datasets.\citep{erickson2025tabarena,grinsztajn2022tree} A fair comparison requires identical patient partitions, train-only preprocessing, preserved sample-level predictions, and metrics that assess both discrimination and probability quality. ROC AUC alone is insufficient when outcome prevalence differs across tasks. Precision-recall AUC should be interpreted relative to prevalence, and log loss or Brier score should not be described as evidence of calibration without examining calibration behavior directly.\citep{saito2015precision,van2019calibration,brier1950verification}
 
-\section{Dataset Curation \& Human Context}
-\label{sec:datasets}
+Cancer multiomics is a demanding setting for this evaluation. Molecular tables commonly have many more candidate variables than patients, survival outcomes are censored, and cohorts differ in tissue of origin, assay availability, source, and baseline prognosis. These differences are not merely nuisance variation. A pooled model may identify cancer type or data source through expression values, modality availability, or structural zeros and then exploit between-cohort outcome prevalence without learning a molecular mechanism that transfers to a new cohort. Batch-label confounding can produce strongly optimistic cross-validation estimates, and performance can fall sharply under cross-study validation.\citep{soneson2014batch,bernau2014crossstudy,ambroise2002selection} Consequently, higher pooled discrimination is an observation to be explained rather than direct evidence of a pan-cancer prognostic signature.
 
-Rather than treating benchmark datasets as abstract matrices, we anchor them in their real-world applications and operational environments.
+We used five cancer cohorts to ask four questions. First, under identical frozen folds, how do successive TabPFN models, TabFM, AutoGluon, and classical learners compare in within-cancer survival event classification? Second, how much does random pooling alter apparent discrimination? Third, can cancer identity and structural missingness account for part of that increase? Fourth, does the signal remain under cancer-held-out diagnostics? The study focuses on fixed-horizon event classification rather than full time-to-event modeling or clinical risk stratification. The extreme-survival analysis is treated as a separate exploratory estimand because excluding intermediate outcomes changes both the target population and the difficulty of the task.
 
-\subsection{AutoML Benchmark Profiles}
-The standard evaluation suite consists of seven datasets that represent real-world screening and decision-making problems:
-\begin{itemize}[noitemsep,leftmargin=*]
-  \item \textbf{ada}: A high-dimensional marketing dataset containing 4,147 samples and 48 features, representing customer response prediction.
-  \item \textbf{australian}: A credit-card application screening task containing 690 samples and 14 features.
-  \item \textbf{blood\_transfusion}: A compact clinical screening dataset (748 samples, 4 features) predicting donor recurrence at a blood transfusion center.
-  \item \textbf{car}: A decision-support classification task (1,728 samples, 6 features) mapping vehicle attributes to consumer acceptance.
-  \item \textbf{chum}: A customer retention dataset (5,000 samples, 20 features) predicting user churn.
-  \item \textbf{cmc}: A demographic task (1,473 samples, 9 features) predicting contraceptive method choices based on socio-economic variables.
-  \item \textbf{credit-g}: A credit-risk profiling dataset containing 1,000 samples and 20 features.
-\end{itemize}
-
-\subsection{Deployment Hazards in Data Formats}
-A critical finding from our data audits was that raw tabular target encodings are frequently inconsistent, presenting significant deployment hazards. For example:
-\begin{itemize}[noitemsep,leftmargin=*]
-  \item In the \textbf{blood\_transfusion} dataset, the binary target is encoded as $\{1, 2\}$ instead of $\{0, 1\}$.
-  \item In the \textbf{credit-g} dataset, the target is encoded as strings (\texttt{bad} and \texttt{good}).
-\end{itemize}
-If an algorithm is deployed in a clinical or financial system with these raw formats, standard evaluation and visualization functions (e.g., ROC/AUC curves) will either crash or, worse, invert the prediction matrices—treating high-risk events as low-risk and vice versa. Our pipeline implements a standardized target normalization layer that maps binary categories to $\{0, 1\}$ and aligns multiclass strings alphabetically, acting as a safety barrier for deployment.
-
-\subsection{The Low-Data Regime Simulation}
-To evaluate model robustness in small-sample scenarios (such as clinical trials for rare diseases where cohort recruitment is severely constrained), we impose a deterministic \textbf{1,024-row training cap} on all datasets. We partition each cohort case-wise into 60\% training (capped at 1,024), 20\% validation, and 20\% test splits using iterative multi-label stratification to preserve class distributions. Dataset characteristics are summarized in Table~\ref{tab:datasets} and Figure~\ref{fig:diversity}.
-
-\begin{table}[ht]
-\centering
-\caption{AutoML Benchmark Dataset Profiles}
-\label{tab:datasets}
-\begin{tabular}{llrrcc}
-\toprule
-Dataset Name & Task Type & Sample Size & Features & Target Classes & Imbalance Ratio \\
-\midrule
-ada & Binary & 4,147 & 48 & \{0, 1\} & 1.5 \\
-australian & Binary & 690 & 14 & \{0, 1\} & 1.2 \\
-blood\_transfusion & Binary & 748 & 4 & \{1, 2\} & 3.2 \\
-car & Multiclass & 1,728 & 6 & 4 classes & 2.5 \\
-chum & Binary & 5,000 & 20 & \{0, 1\} & 1.8 \\
-cmc & Multiclass & 1,473 & 9 & 3 classes & 1.4 \\
-credit-g & Binary & 1,000 & 20 & \{bad, good\} & 2.3 \\
-\bottomrule
-\end{tabular}
-\end{table}
-
-\begin{figure}[ht]
-\centering
-\includegraphics[width=\linewidth]{figures/dataset_diversity.png}
-\caption{\textbf{Dataset diversity and imbalance profile.} 
-\textbf{(A)} Bar chart comparing sample size (log scale) and feature counts. 
-\textbf{(B)} Distribution of tasks (Binary vs. Multiclass). 
-\textbf{(C)} Imbalance profile illustrating the majority-to-minority class ratio across the 7 sets.}
-\label{fig:diversity}
-\end{figure}
-
-\section{The ev-tabpfn Evaluation Engine}
-\label{sec:methodology}
-
-We developed the \texttt{ev-tabpfn} package to implement a reproducible, script-first evaluation stack. 
-
-\subsection{Pipeline Architecture}
-The framework is split into four distinct, automated phases:
-\begin{itemize}[noitemsep,leftmargin=*]
-  \item \textbf{Phase 1: Ingestion}: Loads local CSV files, auto-detects column delimiters, infers target columns, and performs stratified multi-label train-test splits.
-  \item \textbf{Phase 2: Execution}: Integrates model adapters (XGBoost, CatBoost, AutoGluon, TabPFN, TabFM). Predictions are preserved at the sample level to allow offline metric recalculation.
-  \item \textbf{Phase 3: Visualization}: Generates aggregate metrics, ROC curves, and radar charts.
-  \item \textbf{Phase 4: Orchestration}: Batch execution command that iterates over datasets using a JSON configuration, incorporating failure-recovery (resume-friendly runs).
-\end{itemize}
-
-Google's TabFM is integrated as an adapter backend. The default model uses a single estimator with a JAX backend. To probe performance limits, we also implement a custom `tabfm-ensemble` preset using a reduced ensemble size ($n=4$) for CPU feasibility.
-
-\section{AutoML Benchmarks: Performance \& Intuition}
+\section{Results}
 \label{sec:results}
 
-We report the mean performance metrics across the seven datasets in Table~\ref{tab:results}. A comprehensive dashboard visualizing the model behaviors is provided in Figure~\ref{fig:dashboard}.
+\subsection{Cohort construction exposes endpoint and modality heterogeneity}
+
+The analysis integrated breast invasive carcinoma (BRCA), esophageal carcinoma (ESCA), head and neck squamous cell carcinoma (HNSCC), lung squamous cell carcinoma (LSCC), and lung adenocarcinoma (LUAD) resources derived from TCGA and CPTAC data products (Figure~\ref{fig:cohort_design}).\citep{tcga2012brca,tcga2017esca,tcga2015hnsc,tcga2012lusc,tcga2014luad,liu2018clinical,li2023pancancer} Raw cohort sizes ranged from 182 patients for ESCA to 1,206 for BRCA. Applying fixed-horizon eligibility rules reduced the usable sample count because patients censored before a horizon could not be assigned a valid event label. The 3-year tasks retained 86 to 501 patients per cancer; 5-year and extreme-survival tasks were not formed for ESCA because the eligible cohort did not satisfy the prespecified requirements (Table~\ref{tab:cohorts}).
+
+The resulting study contained 16 cohort-endpoint tasks and 400 frozen folds. Per-cancer tasks contributed 325 folds, comprising five cancers at 3 years and four cancers each for 5-year and extreme survival. Three pooled endpoints contributed a further 75 folds. The pooled 3-year cohort contained 1,645 eligible patients, compared with 1,168 at 5 years and 937 in the extreme contrast. Multiomics feature composition also varied by cohort. This heterogeneity motivated the later shortcut analyses because the pattern of observed and structurally absent modalities could reveal cohort membership independently of survival biology.
+
+\begin{figure}[p]
+\centering
+\includegraphics[width=\linewidth]{figures/manuscript/figure_01_cohort_and_design.pdf}
+\caption{\textbf{Cohort construction and leakage-safe evaluation design.} \textbf{A}, Provenance and assembly of the five cancer cohorts. \textbf{B}, Raw and endpoint-eligible patient counts. \textbf{C}, Molecular modality composition by cohort. \textbf{D}, Definitions of the 3-year, 5-year, and exploratory extreme-survival targets. \textbf{E}, Class counts and prevalence among eligible patients. \textbf{F}, Five repeats of five-fold patient-grouped evaluation with feature selection fitted on training patients and decision thresholds selected using validation data.}
+\label{fig:cohort_design}
+\end{figure}
 
 \begin{table}[ht]
 \centering
-\caption{Mean Evaluation Metrics Across Seven AutoML Datasets}
-\label{tab:results}
-\begin{tabular}{lcccc}
-\toprule
-Model & Accuracy & F1-Score & ROC AUC & Log Loss \\
-\midrule
-TabPFN v1 & 0.805910 & 0.696481 & 0.862307 & 0.411912 \\
-TabPFN v2 & 0.816722 & 0.710256 & 0.869889 & 0.385327 \\
-TabPFN v2.5 & 0.813252 & 0.706739 & \textbf{0.870703} & 0.383252 \\
-TabPFN v2.6 & 0.813314 & 0.712431 & 0.864842 & 0.395881 \\
-TabPFN v3 & 0.815226 & 0.708799 & 0.868443 & 0.386510 \\
-\midrule
-TabFM 1.0.0 JAX & \textbf{0.845318} & \textbf{0.747908} & 0.866227 & \textbf{0.355005} \\
-TabFM Ensemble ($n=4$) & 0.843139 & 0.737915 & 0.867460 & 0.358155 \\
-\bottomrule
-\end{tabular}
+\caption{Cancer cohort size and endpoint eligibility. Extreme survival contrasts death within 3 years against survival beyond 5 years. NA indicates that an endpoint-specific cohort was not formed.}
+\label{tab:cohorts}
+\input{tables/generated/table_01_cohort_characteristics.tex}
+\end{table}
+
+\subsection{Within-cancer discrimination is modest and model rankings are heterogeneous}
+
+Across homogeneous cancer cohorts, the principal result was not a decisive foundation-model victory but a narrow band of modest discrimination (Figure~\ref{fig:within_cancer}). Foundation-model macro-average ROC AUC ranged from 0.563 for TabPFN v3 to 0.568 for TabPFN v2.5. TabFM reached 0.565. Random forest was the strongest classical model by this summary at 0.561, followed by CatBoost at 0.559, while AutoGluon reached 0.550. Differences of this magnitude were smaller than the variation across cancer-endpoint tasks. They therefore do not support designation of a universal winner.
+
+Model behavior also depended on the endpoint. For example, the foundation models generally performed better on the selected extreme-survival populations than on the fixed-horizon tasks, but the same pattern was visible for tree ensembles. Precision-recall performance varied with event prevalence, and several apparently high PR AUC values occurred in tasks with a high positive-class fraction. Figure~\ref{fig:within_cancer} therefore reports PR AUC above the prevalence reference rather than treating raw PR AUC as directly comparable across cohorts. Fold-matched differences from random forest were distributed around small positive and negative values, reinforcing that architecture alone did not determine performance.
+
+\begin{figure}[p]
+\centering
+\includegraphics[width=\linewidth]{figures/manuscript/figure_02_within_cancer_performance.pdf}
+\caption{\textbf{Matched model performance within cancer cohorts.} \textbf{A}, Evaluated model families and execution paradigms. \textbf{B}, Mean within-cancer ROC AUC with variation across frozen folds. \textbf{C}, ROC AUC by model and endpoint. \textbf{D}, Fold-matched ROC AUC difference relative to random forest. \textbf{E}, precision-recall AUC above endpoint prevalence. \textbf{F}, discrimination and median runtime tradeoff. The figure emphasizes heterogeneity rather than a winner-only ranking.}
+\label{fig:within_cancer}
+\end{figure}
+
+\subsection{Random pooling increases apparent discrimination across model families}
+
+Pooling cancers increased ROC AUC for nearly every nonlinear model (Figure~\ref{fig:pooling}). Random forest rose from a within-cancer macro-average of 0.561 to 0.716, 0.747, and 0.781 on pooled 3-year, 5-year, and extreme-survival tasks, respectively. TabFM rose from 0.565 to 0.721, 0.753, and 0.780. TabPFN v3 reached 0.714, 0.754, and 0.786. The concordant shift across foundation models, boosted trees, and AutoML indicates that the pooled gain was not specific to one pretrained architecture.
+
+The largest values occurred in the exploratory extreme-survival task. That result should not be interpreted as improvement on the fixed-window estimand. The extreme contrast excluded intermediate outcomes and compared more separated patient groups, reducing the sample from 1,645 eligible patients at 3 years to 937. Pooled performance also concealed variation when predictions were stratified back into constituent cancers. Together, these findings show that adding heterogeneous cohorts made the pooled classification problem easier in aggregate, but do not establish that the learned ranking represented a shared molecular survival mechanism.
+
+\begin{table}[ht]
+\centering
+\caption{Mean ROC AUC across frozen folds. Within-cancer is the macro-average over the three endpoint summaries. NA denotes a configuration outside the evaluated CPU execution envelope.}
+\label{tab:model_auc}
+\resizebox{\linewidth}{!}{\input{tables/generated/table_02_model_auc_summary.tex}}
 \end{table}
 
 \begin{figure}[p]
 \centering
-\includegraphics[width=0.95\linewidth]{figures/benchmark_dashboard.png}
-\caption{\textbf{Performance Dashboard.} 
-\textbf{(A)} ROC curves for the \texttt{credit-g} dataset. 
-\textbf{(B)} Accuracy distribution boxplots across datasets. 
-\textbf{(C)} Core metric bar comparisons. 
-\textbf{(D)} Score matrix heatmap. 
-\textbf{(E)} Accuracy vs. Log Loss trade-off (Top-Left represents the best performance quadrant). 
-\textbf{(F)} Mean fit and predict latencies (log scale).}
-\label{fig:dashboard}
+\includegraphics[width=\linewidth]{figures/manuscript/figure_03_pooling_effect.pdf}
+\caption{\textbf{Apparent gains from random pan-cancer pooling.} \textbf{A}, Connected within-cancer and pooled ROC AUC summaries. \textbf{B}, Pooled 3-year out-of-fold ROC curves for configurations with available predictions. \textbf{C}, Corresponding precision-recall curves with the prevalence reference. \textbf{D}, Pooled ROC AUC across endpoints; unavailable configurations are marked NA. \textbf{E}, Pooled predictions evaluated within constituent cancers. \textbf{F}, Relationship between task size and discrimination.}
+\label{fig:pooling}
 \end{figure}
 
-\subsection{TabPFN Generations Comparison}
-Comparing the TabPFN models shows clear generational gains:
-\begin{itemize}[noitemsep,leftmargin=*]
-  \item \textbf{v1} represents the weakest baseline, exhibiting the lowest accuracy (0.806) and the highest log loss (0.412).
-  \item \textbf{v2} yields a substantial accuracy gain (0.817) and reduces log loss to 0.385.
-  \item \textbf{v2.5} achieves the best class ranking, leading in ROC AUC (0.871) and log loss (0.383) among all TabPFN versions.
-  \item \textbf{v3} shows balanced performance (Accuracy 0.815, ROC AUC 0.868) but does not outperform v2.5 on this specific benchmark.
-\end{itemize}
+\subsection{Cancer identity and structural missingness account for substantial pooled separability}
 
-\subsection{TabFM vs. TabPFN Comparison}
-Google's TabFM 1.0.0 JAX demonstrates superior metric performance on tabular classification:
-\begin{itemize}[noitemsep,leftmargin=*]
-  \item \textbf{Accuracy Uplift}: TabFM achieves a mean accuracy of \textbf{0.845}, representing a +2.8\% improvement over the best TabPFN model (v2) and a +3.0\% improvement over TabPFN v3.
-  \item \textbf{Log Loss Calibration}: TabFM reduces log loss to \textbf{0.355} (a -0.028 reduction over TabPFN v2.5), suggesting that its predicted probabilities are highly calibrated.
-  \item \textbf{ROC AUC Ranking}: TabPFN v2.5 maintains a slight lead in ROC AUC (\textbf{0.871} vs. 0.866). This indicates that TabPFN has a slightly better sorting capability, even if TabFM fits classification thresholds more accurately.
-\end{itemize}
+Shortcut controls changed the interpretation of the pooled results (Figure~\ref{fig:shortcuts}). A model supplied only cancer identity achieved ROC AUC values of 0.707 for 3-year survival, 0.703 for 5-year survival, and 0.809 for the extreme contrast. A model based on structural-zero patterns reached 0.745, 0.704, and 0.824. For 3-year survival and the extreme contrast, the structural-zero control exceeded the best evaluated molecular model summary. Cancer identity was itself highly recoverable from harmonization structure: structural-zero patterns produced balanced accuracy of approximately 0.985 in cancer classification, whereas a molecular-value diagnostic reached approximately 0.480.
 
-\subsection{Ensemble vs. Single Estimator}
-Evaluating the light TabFM ensemble ($n=4$) reveals interesting behaviors:
-\begin{itemize}[noitemsep,leftmargin=*]
-  \item The ensemble achieves an ROC AUC of \textbf{0.867}, improving upon single-estimator TabFM (0.866) and approaching TabPFN v3.
-  \item However, F1-score (0.738) and Accuracy (0.843) are slightly lower than the default JAX run. This indicates that a smaller ensemble does not reproduce the full scale-up gains observed in massive clusters, while substantially increasing prediction latency.
-\end{itemize}
-
-\subsection{Inference Speed \& Computational Trade-offs}
-Figure~\ref{fig:dashboard}F shows the fit and predict times. TabPFN models execute inference in milliseconds (sub-second prediction on GPU forward-passes). In contrast, because CUDA-enabled \texttt{jaxlib} was not installed, TabFM fell back to CPU execution. Single estimator TabFM requires $\approx$48s to fit and $\approx$27s to predict, which scales to $\approx$192s fit and $\approx$110s predict for the ensemble ($n=4$). This highlights a severe speed-to-accuracy trade-off for CPU deployments.
-
-\section{Clinical Survival Event Classification Tasks}
-\label{sec:survival}
-
-To evaluate tabular foundation models on complex, noisy biomedical challenges, we benchmarked them on patient overall survival (OS) datasets from five TCGA cohorts: Breast Invasive Carcinoma (BRCA), Esophageal Carcinoma (ESCA), Head and Neck Squamous Cell Carcinoma (HNSCC), Lung Squamous Cell Carcinoma (LSCC), and Lung Adenocarcinoma (LUAD). 
-
-\subsection{Clinical Target Formulation \& Exclusions}
-In oncology clinical trials, identifying patients who are at risk of rapid disease progression is essential for early clinical intervention. We formulate this clinical question as a binary classification task under two fixed horizons: 3-year (1,095 days) and 5-year (1,825 days) overall survival events.
-
-Using the clinical fields \texttt{OS\_days} (days followed until death or last contact) and \texttt{OS\_event} (vital status, where 1 indicates observed death and 0 indicates censored/alive), we define target labels as:
-\begin{itemize}[noitemsep,leftmargin=*]
-  \item \textbf{Class 1 (Event Observed)}: The patient passed away within the horizon ($OS\_event = 1$ and $OS\_days \le Horizon$).
-  \item \textbf{Class 0 (Survived Window)}: The patient survived past the horizon ($OS\_days \ge Horizon$).
-  \item \textbf{Excluded (Ambiguous)}: Patients followed for less than the horizon and censored alive ($OS\_event = 0$ and $OS\_days < Horizon$) are mathematically ambiguous because their survival outcome at the horizon is unknown. Keeping them would introduce label corruption; thus, they are excluded from the cohorts.
-\end{itemize}
-
-To evaluate these models under three progressive levels of clinical difficulty and cohort scale, we design three experiments: (1) individual per-cancer modeling, (2) pooled cross-cancer modeling without cancer type indicators, and (3) extreme survival contrast (early death vs. long-term survival). For all experiments, we select the top non-clinical high-variance molecular features (RNA-seq and DNA methylation probes) as predictors. The cohort characteristics and survival curves are visualized in Figure~\ref{fig:lifelines}.
-
-\begin{figure}[ht]
-\centering
-\includegraphics[width=\linewidth]{figures/cancer_survival_lifelines.png}
-\caption{\textbf{TCGA overall survival and fixed-window event distribution.}
-\textbf{(A)} Kaplan-Meier survival probability curves for the five cancer cohorts.
-\textbf{(B)} 3-year OS classification horizon breakdown (Class 0, Class 1, and excluded ambiguous cases).
-\textbf{(C)} 5-year OS classification horizon breakdown.}
-\label{fig:lifelines}
-\end{figure}
-
-\subsection{Experimental Results \& Discussion}
-We report the model performance across the three experimental formulations in Table~\ref{tab:survival_summary}. Detailed granular metrics for all settings are provided in Appendix~\ref{sec:appendix}.
+The cancer-held-out linear molecular diagnostic provided a complementary stress test. Mean ROC AUC was 0.479 at 3 years, 0.508 at 5 years, and 0.518 for extreme survival, substantially below the random pooled values. Label-permutation distributions further showed how much performance could arise after disrupting the survival association globally or within cancer. These controls do not prove that every pooled prediction was a shortcut, nor do they quantify a unique causal contribution for each artifact. They do show that cohort-associated information was strong enough to reproduce much of the apparent pooled discrimination and that this signal did not transfer reliably when cancer identity was held out.
 
 \begin{table}[ht]
 \centering
-\caption{ROC AUC Comparison across Three Clinical Survival Formulations}
-\label{tab:survival_summary}
-\begin{tabular}{lcccc}
-\toprule
-Model & Exp 1: Per-Cancer Mean & Exp 2: Pooled (3-Yr / 5-Yr) & Exp 3: Extreme Contrast \\
-\midrule
-TabFM default & 0.5301 & 0.7334 / 0.6938 & 0.8026 \\
-TabPFN v3 & \textbf{0.5605} & 0.7308 / 0.7077 & 0.8163 \\
-TabPFN v2.6 & 0.5443 & 0.7358 / 0.6952 & 0.8215 \\
-TabPFN v2.5 & 0.4909 & \textbf{0.7427} / 0.6972 & \textbf{0.8305} \\
-TabPFN v2 & 0.4780 & 0.7283 / \textbf{0.7133} & 0.7967 \\
-\bottomrule
-\end{tabular}
+\caption{Pooled shortcut and cancer-held-out diagnostics. Values are ROC AUC. The best evaluated molecular model is selected separately for each endpoint.}
+\label{tab:shortcuts}
+\input{tables/generated/table_03_shortcut_summary.tex}
 \end{table}
 
-\subsection{Scientific Interpretations}
-Our hierarchical experimental structure reveals clear clinical insights:
-\begin{enumerate}[noitemsep,leftmargin=*]
-  \item \textbf{Experiment 1: The Sample-Starvation Limit}: When trained on individual cancer cohorts (e.g., $n=86$ for ESCA), the sample-to-feature ratio is extremely unfavorable. The models behave as weak classifiers, struggle to beat random guessing, and yield low mean ROC AUCs (TabPFN v2.5: 0.4909, TabFM: 0.5301). 
-  \item \textbf{Experiment 2: Cross-Cancer Generalization}: By pooling patient cohorts across all five cancer types (yielding $n=1,645$ for 3-year OS) and **removing cancer-type features**, we force the models to identify shared molecular survival patterns. This data-scaling results in a massive performance boost, pushing the ROC AUC to **0.7427** (TabPFN v2.5) and **0.7334** (TabFM default). This confirms that tabular foundation models can generalize across heterogeneous cancers if given sufficient sample sizes.
-  \item \textbf{Experiment 3: Extreme Phenotype Separation}: By filtering out intermediate patients and comparing only the extreme clinical phenotypes—patients who died quickly (within 3 years) versus those who survived long-term (beyond 5 years)—we minimize label noise. The classification task becomes substantially cleaner, and model ranking performance surges, reaching an ROC AUC of **0.8305** (TabPFN v2.5) and **0.8026** (TabFM default).
-\end{enumerate}
+\begin{figure}[p]
+\centering
+\includegraphics[width=\linewidth]{figures/manuscript/figure_04_shortcut_stress_tests.pdf}
+\caption{\textbf{Cohort and missingness shortcut diagnostics.} \textbf{A}, Cancer-identity-only discrimination. \textbf{B}, Structural-zero control performance. \textbf{C}, Cancer-cohort separability from molecular values and zero patterns. \textbf{D}, cancer-held-out linear molecular diagnostics. \textbf{E}, global and within-cancer label-permutation distributions. \textbf{F}, difference between each pooled model and the strongest shortcut control; unavailable configurations are marked NA.}
+\label{fig:shortcuts}
+\end{figure}
 
-These findings demonstrate that while individual cancer genomics studies are frequently sample-starved, tabular foundation models can extract powerful, generalizable pan-cancer survival signals when patient cohorts are pooled or clinical outcomes are formulated to contrast extreme phenotypes.
+\subsection{Probability quality and compute profiles prevent a single model ordering}
 
-\section{Discussion \& Conclusion}
-\label{sec:conclusion}
+Discrimination did not provide a complete ranking. Brier score and log loss varied by model and endpoint, while calibration curves showed deviations that were not apparent from ROC AUC alone (Figure~\ref{fig:probability_compute}). Operating characteristics also depended on thresholds selected from validation data. Sensitivity and specificity are consequently presented as secondary summaries rather than intrinsic properties of a model. Lower log loss or Brier score indicates better aggregate probabilistic accuracy in this evaluation, but neither metric alone establishes calibration across clinically relevant risk ranges.
 
-Our systematic study reveals that tabular foundation models are viable alternatives to traditional tree-based ensembles. 
+Runtime separated the model families more clearly than accuracy. Classical estimators and the in-context systems differed in fit and prediction cost, while AutoGluon used a fixed per-fold search budget. The complete cloud evaluation used CPU execution on a Google Cloud \texttt{c3-highcpu-22} Spot instance. TabFM used its PyTorch backend, and AutoGluon received 180 seconds per fold. These operational differences are part of the comparison because a small numerical gain may not justify a substantially different compute envelope. Complete fold-level metrics and sample-level predictions were retained to permit later recalculation without rerunning the models.
 
-By analyzing the results, we conclude:
-\begin{enumerate}[noitemsep,leftmargin=*]
-  \item \textbf{Domain Pretraining Advantage}: Google's TabFM, pretrained on massive corpora of real tables, achieves better accuracy and calibration (log loss) than TabPFN, which is pretrained on synthetic data.
-  \item \textbf{Prior-Fitted Efficiency}: TabPFN's architecture remains highly compute-efficient, providing sub-second in-context prediction on GPUs without requiring text-tokenization overhead.
-  \item \textbf{Label Sensitivities}: Evaluation pipelines must incorporate robust label normalization layers to prevent target inconsistencies from crashing visualizers or inverting prediction matrices.
-\end{enumerate}
+\begin{figure}[p]
+\centering
+\includegraphics[width=\linewidth]{figures/manuscript/figure_05_probabilistic_and_compute.pdf}
+\caption{\textbf{Probabilistic behavior, operating characteristics, feature composition, and compute.} \textbf{A}, Calibration curves for pooled 5-year predictions. \textbf{B}, pooled Brier score. \textbf{C}, pooled log loss. \textbf{D}, sensitivity and specificity at validation-selected thresholds. \textbf{E}, modality composition of features selected within training folds. \textbf{F}, median fit and prediction runtime by model. Unavailable configurations are shown as NA.}
+\label{fig:probability_compute}
+\end{figure}
 
-Future research will extend the \texttt{ev-tabpfn} framework to support single-target regression benchmarks and evaluate these foundation models on larger datasets without sample capping.
+\FloatBarrier
+\section{Discussion}
+\label{sec:discussion}
 
-% ----- References -----
+This study found that tabular foundation models were competitive in repeated cancer multiomics evaluation, but that the strongest visual performance gain arose from changing the evaluation population rather than from a clear architectural advantage. Within cancer cohorts, mean ROC AUC remained modest and model rankings varied across endpoints. Randomly pooling cancers produced substantially higher discrimination for foundation models, tree ensembles, and AutoML alike. The same pooled tasks, however, were predictable from cancer identity and from structural zeros introduced by cross-cohort harmonization. The central result is therefore not that foundation models recovered a general pan-cancer survival signature. It is that pooled biomedical evaluation can combine prognostic information with readily learnable cohort structure, creating scores that require cohort-aware controls before biological interpretation.
+
+The model comparison also argues against a universal winner. TabPFN generations and TabFM occupied the upper part of the within-cancer ranking, but their advantage over random forest and CatBoost was small relative to task-level variation. AutoGluon did not dominate under its fixed budget, and classical tree models remained competitive in pooled settings. These observations are consistent with broader tabular benchmarking, where validation protocol, compute budget, and ensembling can alter rankings. They also clarify what in-context prediction contributes: reduced task-specific fitting does not remove dependence on preprocessing, context size, data distribution, or inference resources. A foundation model should therefore be evaluated as an end-to-end system rather than as a checkpoint isolated from its execution constraints.
+
+The shortcut analyses explain why a pooled ROC AUC can rise without demonstrating shared prognostic biology. Cancer cohorts differ in baseline outcome prevalence, molecular distributions, assay coverage, and technical processing. If cancer identity can be inferred from observed values or missingness patterns, a model can partially rank survival by first locating a patient within this cohort structure. Removing an explicit cancer indicator is not sufficient because the molecular table can encode the same information indirectly. The near-perfect cancer separability obtained from structural zeros makes this mechanism especially plausible here. Cancer-held-out performance near chance further suggests that the pooled association was not robust to a shift in disease identity, although this diagnostic should not be treated as a substitute for prospective external validation.
+
+The extreme-survival analysis illustrates a separate but related design effect. Contrasting death within 3 years against survival beyond 5 years produced the highest pooled AUCs, yet it excluded patients with intermediate trajectories and altered both prevalence and case mix. Such extreme-phenotype sampling can be valuable for mechanistic exploration because it increases separation between outcome groups, but it does not estimate performance for the original fixed-horizon population. Reporting it as a superior version of 3-year or 5-year prediction would therefore be misleading. We treat it as an exploratory estimand and interpret its stronger shortcut baselines as additional evidence that cohort composition remains influential even when outcomes are more separated.
+
+Several limitations bound the conclusions. The analysis framed survival as fixed-horizon classification rather than modeling the full censored time-to-event distribution. Eligible sample sizes were small within several cancers, and modality availability was not uniform. The cancer-held-out and source-oriented analyses are stress tests, not a complete external validation of every model against an independently assembled clinical cohort. Probability quality was assessed through Brier score, log loss, and descriptive calibration curves, but no claim of clinical calibration or utility is made. Finally, model versions were evaluated within their available CPU execution envelopes, so cells without an evaluated configuration remain NA rather than being extrapolated or imputed.
+
+These results suggest a practical evaluation standard for tabular foundation models in biomedicine. Models should be compared on identical patient folds with feature selection and preprocessing confined to training data. Pooled analyses should be accompanied by within-cohort estimates, prevalence-aware precision-recall summaries, cancer-only and missingness-only controls, and a cohort-held-out test. Sample-level probabilities, thresholds, model versions, runtimes, and execution hardware should be preserved. Under this standard, a high pooled score becomes one component of evidence rather than a stand-alone claim of biological generalization.
+
+\section{Methods}
+\label{sec:methods}
+
+\subsection{Data sources and cohort definition}
+
+The study used harmonized molecular and clinical resources representing BRCA, ESCA, HNSCC, LSCC, and LUAD. TCGA disease studies and the TCGA clinical resource provided disease definitions and outcome fields; CPTAC-derived data products contributed available proteogenomic source information.\citep{tcga2012brca,tcga2017esca,tcga2015hnsc,tcga2012lusc,tcga2014luad,liu2018clinical,li2023pancancer} Patient identifiers were used as grouping units so that multiple records from the same patient could not cross training, validation, and test partitions. The frozen fold manifest records endpoint, cohort, sample counts, split membership, selected features, and source checksums.
+
+\subsection{Outcome definitions}
+
+For a horizon $h$, a patient was assigned event class 1 when death was observed on or before $h$, and class 0 when follow-up extended to or beyond $h$. Patients censored before $h$ had an unknown fixed-horizon status and were excluded. Horizons were 1,095 days for 3-year survival and 1,825 days for 5-year survival. The exploratory extreme-survival endpoint contrasted death within 3 years with survival beyond 5 years. It was analyzed separately because it excludes intermediate observations and targets a different population.
+
+\subsection{Repeated patient-grouped evaluation}
+
+Each eligible task used five repeats of five outer folds. Within each outer fold, approximately 20\% of patients formed the test partition. The remaining patients were divided into approximately 64\% training and 16\% validation overall. Split construction was patient-grouped and class-stratified where feasible. All models used the same frozen assignments. Feature ranking was fitted on training patients only, and the 100 highest-variance eligible molecular features were retained. Validation patients were used to choose a classification threshold; test patients were not used for preprocessing, feature selection, model choice, or threshold selection.
+
+\subsection{Models and execution}
+
+The comparison included logistic regression, random forest, CatBoost, XGBoost, LightGBM, AutoGluon, TabFM, and TabPFN v2, v2.5, v2.6, and v3.\citep{breiman2001random,chen2016xgboost,ke2017lightgbm,prokhorenkova2018catboost,erickson2020autogluon,hollmann2025accurate,google2026tabfm,tabfmsoftware2026} Classical models were evaluated locally against the frozen fold bundles. Foundation-model and AutoGluon evaluations used CPU execution on a GCP \texttt{c3-highcpu-22} Spot instance. TabFM used the PyTorch backend, and AutoGluon used a fixed 180-second time limit per fold. Pooled 3-year entries for TabPFN v2, v2.5, and v2.6 are reported as NA because those training sets were outside the evaluated CPU row envelope. No values were imputed for unavailable configurations.
+
+\subsection{Metrics and statistical summaries}
+
+We retained accuracy, balanced accuracy, sensitivity, specificity, F1 score, ROC AUC, precision-recall AUC, log loss, and Brier score for each model-fold configuration. ROC AUC, precision-recall AUC, log loss, and Brier score were primary threshold-independent summaries. Sensitivity, specificity, F1 score, balanced accuracy, and accuracy used the threshold selected on the validation partition. Precision-recall AUC was interpreted relative to event prevalence. Figures report descriptive variation across repeated folds and preserve NA cells. Patient-level predictions were retained for out-of-fold ROC, precision-recall, and calibration curves. Label-permutation analyses used 500 global and 500 within-cancer permutations per endpoint, and previously generated patient-level bootstrap artifacts used 2,000 resamples.
+
+\subsection{Shortcut and generalization diagnostics}
+
+Cancer-identity controls estimated how much pooled outcome ranking could be obtained from cohort membership alone. Structural-zero controls used the pattern of absent or zero-filled harmonized features without relying on measured molecular magnitudes. A separate cohort-identification analysis quantified the recoverability of cancer type from these representations. Cancer-held-out linear molecular diagnostics trained on the available cancers and evaluated the omitted cancer. These analyses were interpreted as sensitivity tests for cohort dependence, not as estimates of prospective clinical performance.
+
+\subsection{Reproducibility and reporting}
+
+All 400 fold bundles were frozen before local or cloud model execution. Fold-level metrics, sample-level predictions, selected-feature records, manifests, software metadata, and figure source tables are retained in the project repository. Figures 1--5 were generated directly from these artifacts by \texttt{paper/analysis/build\_manuscript\_assets.py}; no simulated ROC curves, synthetic uncertainty intervals, or manually entered plotting arrays were used. Reporting was structured with reference to TRIPOD+AI and risk-of-bias considerations from PROBAST+AI.\citep{tripodai2024,probastai2024}
+
+\section{Data and Code Availability}
+
+The analysis code and manuscript source are available through the project repository at \url{https://github.com/HawkFranklin-Research/tab-r1}. Frozen leakage-safe fold bundles are hosted in the private Hugging Face dataset named \texttt{TABR1-Cancer-OS-LeakageSafe-Folds} under the \texttt{HawkFranklin-Research} organization. Machine-readable source data for each figure are stored under \texttt{paper/figures/source\_data}, and generated manuscript tables are stored under \texttt{paper/tables/generated}. Access to controlled or source datasets remains subject to the terms of the originating resources.
+
+\section{Author Contributions and Disclosures}
+
+V.P.P. conceived the study, directed the evaluation, interpreted the results, and is responsible for the manuscript. Computational tools, including language-model assistance, were used for code development, editing, and reproducibility checks under human supervision. Such tools are not authors and did not assume responsibility for the scientific conclusions. The author declares no competing interests.
+
 \bibliography{references}
-
-\newpage
-\appendix
-\section{Appendix: Detailed Experimental Results}
-\label{sec:appendix}
-
-This appendix contains the granular evaluation tables for the three survival experiments.
-
-\subsection{Granular Results for Experiment 1: Per-Cancer OS Event Tasks}
-Table~\ref{tab:exp1_granular} reports the detailed performance metrics for each cancer cohort, horizon, and foundation model configuration.
-
-\begin{longtable}{lllccccccc}
-\caption{Detailed Metrics for Per-Cancer Survival Classification (Experiment 1)} \label{tab:exp1_granular} \\
-\toprule
-Cohort & Horizon & Model & Accuracy & F1-Score & ROC AUC & PR AUC & Sens. & Spec. & Log Loss \\
-\midrule
-\endfirsthead
-\caption[]{Detailed Metrics for Per-Cancer Survival Classification (Experiment 1) (Continued)} \\
-\toprule
-Cohort & Horizon & Model & Accuracy & F1-Score & ROC AUC & PR AUC & Sens. & Spec. & Log Loss \\
-\midrule
-\endhead
-\bottomrule
-\endfoot
-BRCA & 3-Year & TabPFN v2 & 0.8553 & 0.0000 & 0.7217 & 0.3507 & 0.0000 & 1.0000 & 0.3835 \\
-BRCA & 3-Year & TabPFN v2.5 & 0.8553 & 0.0000 & 0.6420 & 0.3829 & 0.0000 & 1.0000 & 0.3885 \\
-BRCA & 3-Year & TabPFN v2.6 & 0.8684 & 0.1667 & 0.6420 & 0.4254 & 0.0909 & 1.0000 & 0.3694 \\
-BRCA & 3-Year & TabPFN v3 & 0.8684 & 0.1667 & 0.5664 & 0.3083 & 0.0909 & 1.0000 & 0.3876 \\
-BRCA & 3-Year & TabFM default & 0.8684 & 0.1667 & 0.5909 & 0.3590 & 0.0909 & 1.0000 & 0.3820 \\
-\midrule
-BRCA & 5-Year & TabPFN v2 & 0.7170 & 0.0000 & 0.6035 & 0.5108 & 0.0000 & 1.0000 & 0.5805 \\
-BRCA & 5-Year & TabPFN v2.5 & 0.7170 & 0.0000 & 0.5947 & 0.4603 & 0.0000 & 1.0000 & 0.5763 \\
-BRCA & 5-Year & TabPFN v2.6 & 0.7358 & 0.1250 & 0.5465 & 0.3997 & 0.0667 & 1.0000 & 0.5829 \\
-BRCA & 5-Year & TabPFN v3 & 0.7358 & 0.1250 & 0.5842 & 0.4359 & 0.0667 & 1.0000 & 0.5719 \\
-BRCA & 5-Year & TabFM default & 0.7547 & 0.2353 & 0.5456 & 0.4103 & 0.1333 & 1.0000 & 0.5693 \\
-\midrule
-ESCA & 3-Year & TabPFN v2 & 0.7692 & 0.8696 & 0.2333 & 0.6677 & 1.0000 & 0.0000 & 0.5596 \\
-ESCA & 3-Year & TabPFN v2.5 & 0.7692 & 0.8696 & 0.2333 & 0.6761 & 1.0000 & 0.0000 & 0.5736 \\
-ESCA & 3-Year & TabPFN v2.6 & 0.7692 & 0.8696 & 0.4000 & 0.8077 & 1.0000 & 0.0000 & 0.5781 \\
-ESCA & 3-Year & TabPFN v3 & 0.7692 & 0.8696 & 0.5333 & 0.8072 & 1.0000 & 0.0000 & 0.5507 \\
-ESCA & 3-Year & TabFM default & 0.7692 & 0.8696 & 0.5667 & 0.8611 & 1.0000 & 0.0000 & 0.7137 \\
-\midrule
-HNSCC & 3-Year & TabPFN v2 & 0.5000 & 0.6588 & 0.4603 & 0.5169 & 0.8750 & 0.0385 & 0.7067 \\
-HNSCC & 3-Year & TabPFN v2.5 & 0.5172 & 0.6500 & 0.4513 & 0.5143 & 0.8125 & 0.1538 & 0.7071 \\
-HNSCC & 3-Year & TabPFN v2.6 & 0.5345 & 0.6582 & 0.5264 & 0.5792 & 0.8125 & 0.1923 & 0.6899 \\
-HNSCC & 3-Year & TabPFN v3 & 0.5690 & 0.6988 & 0.4639 & 0.5403 & 0.9062 & 0.1538 & 0.6936 \\
-HNSCC & 3-Year & TabFM default & 0.5000 & 0.6506 & 0.4471 & 0.5042 & 0.8438 & 0.0769 & 0.6997 \\
-\midrule
-HNSCC & 5-Year & TabPFN v2 & 0.8140 & 0.8974 & 0.6857 & 0.8910 & 1.0000 & 0.0000 & 0.4527 \\
-HNSCC & 5-Year & TabPFN v2.5 & 0.8140 & 0.8974 & 0.6286 & 0.8790 & 1.0000 & 0.0000 & 0.4653 \\
-HNSCC & 5-Year & TabPFN v2.6 & 0.8140 & 0.8974 & 0.6500 & 0.8864 & 1.0000 & 0.0000 & 0.4518 \\
-HNSCC & 5-Year & TabPFN v3 & 0.8140 & 0.8974 & 0.6250 & 0.8847 & 1.0000 & 0.0000 & 0.4609 \\
-HNSCC & 5-Year & TabFM default & 0.7907 & 0.8831 & 0.5911 & 0.8697 & 0.9714 & 0.0000 & 0.4757 \\
-\midrule
-LSCC & 3-Year & TabPFN v2 & 0.4259 & 0.4151 & 0.4464 & 0.4769 & 0.4231 & 0.4286 & 0.7104 \\
-LSCC & 3-Year & TabPFN v2.5 & 0.4630 & 0.4528 & 0.4712 & 0.5001 & 0.4615 & 0.4643 & 0.7113 \\
-LSCC & 3-Year & TabPFN v2.6 & 0.4815 & 0.5000 & 0.4670 & 0.4757 & 0.5385 & 0.4286 & 0.7140 \\
-LSCC & 3-Year & TabPFN v3 & 0.4259 & 0.3922 & 0.4780 & 0.4864 & 0.3846 & 0.4643 & 0.7040 \\
-LSCC & 3-Year & TabFM default & 0.5370 & 0.5455 & 0.4911 & 0.5279 & 0.5769 & 0.5000 & 0.7113 \\
-\midrule
-LSCC & 5-Year & TabPFN v2 & 0.6977 & 0.8219 & 0.5987 & 0.8212 & 1.0000 & 0.0000 & 0.5956 \\
-LSCC & 5-Year & TabPFN v2.5 & 0.6977 & 0.8219 & 0.5859 & 0.8210 & 1.0000 & 0.0000 & 0.5960 \\
-LSCC & 5-Year & TabPFN v2.6 & 0.6279 & 0.7714 & 0.5333 & 0.7835 & 0.9000 & 0.0000 & 0.6180 \\
-LSCC & 5-Year & TabPFN v3 & 0.6977 & 0.8219 & 0.6282 & 0.8518 & 1.0000 & 0.0000 & 0.5938 \\
-LSCC & 5-Year & TabFM default & 0.6977 & 0.8169 & 0.6410 & 0.8306 & 0.9667 & 0.0769 & 0.5900 \\
-\midrule
-LUAD & 3-Year & TabPFN v2 & 0.5000 & 0.0769 & 0.5104 & 0.5391 & 0.0417 & 0.9583 & 0.6920 \\
-LUAD & 3-Year & TabPFN v2.5 & 0.5000 & 0.2000 & 0.4714 & 0.5184 & 0.1250 & 0.8750 & 0.6935 \\
-LUAD & 3-Year & TabPFN v2.6 & 0.4792 & 0.4681 & 0.4679 & 0.5230 & 0.4583 & 0.5000 & 0.7007 \\
-LUAD & 3-Year & TabPFN v3 & 0.4583 & 0.1875 & 0.4583 & 0.5012 & 0.1250 & 0.7917 & 0.6935 \\
-LUAD & 3-Year & TabFM default & 0.4792 & 0.4681 & 0.4523 & 0.5010 & 0.4583 & 0.5000 & 0.7937 \\
-\midrule
-LUAD & 5-Year & TabPFN v2 & 0.7632 & 0.8657 & 0.4291 & 0.8003 & 1.0000 & 0.0000 & 0.5576 \\
-LUAD & 5-Year & TabPFN v2.5 & 0.7632 & 0.8657 & 0.4674 & 0.8326 & 1.0000 & 0.0000 & 0.5555 \\
-LUAD & 5-Year & TabPFN v2.6 & 0.7632 & 0.8657 & 0.4828 & 0.8332 & 1.0000 & 0.0000 & 0.5716 \\
-LUAD & 5-Year & TabPFN v3 & 0.7632 & 0.8657 & 0.5402 & 0.8525 & 1.0000 & 0.0000 & 0.5521 \\
-LUAD & 5-Year & TabFM default & 0.7632 & 0.8615 & 0.5134 & 0.7682 & 0.9655 & 0.1111 & 0.5445 \\
-\end{longtable}
-
-\subsection{Granular Results for Experiment 2: Pooled Cross-Cancer OS Tasks}
-Table~\ref{tab:exp2_granular} reports the detailed performance metrics for the pooled cancer survival experiments, where cancer type identity was withheld.
-
-\begin{table}[ht]
-\centering
-\caption{Detailed Metrics for Pooled Cross-Cancer OS Prediction (Experiment 2)}
-\label{tab:exp2_granular}
-\begin{tabular}{llccccccc}
-\toprule
-Horizon & Model & Accuracy & F1-Score & ROC AUC & PR AUC & Sens. & Spec. & Log Loss \\
-\midrule
-3-Year OS & TabPFN v2 & 0.6356 & 0.5545 & 0.7283 & 0.6316 & 0.5490 & 0.6966 & 0.5700 \\
-3-Year OS & TabPFN v2.5 & 0.6761 & 0.5652 & \textbf{0.7427} & 0.6523 & 0.5098 & 0.7931 & 0.5658 \\
-3-Year OS & TabPFN v2.6 & 0.6478 & 0.5714 & 0.7358 & 0.6480 & 0.5686 & 0.7034 & 0.5680 \\
-3-Year OS & TabPFN v3 & 0.6397 & 0.5616 & 0.7308 & 0.6352 & 0.5588 & 0.6966 & 0.5679 \\
-3-Year OS & TabFM default & 0.6397 & 0.5528 & 0.7334 & 0.6347 & 0.5392 & 0.7103 & 0.5689 \\
-\midrule
-5-Year OS & TabPFN v2 & 0.7159 & 0.7845 & \textbf{0.7133} & 0.7667 & 0.8349 & 0.5224 & 0.5997 \\
-5-Year OS & TabPFN v2.5 & 0.7159 & 0.7845 & 0.6972 & 0.7548 & 0.8349 & 0.5224 & 0.6012 \\
-5-Year OS & TabPFN v2.6 & 0.7159 & 0.7845 & 0.6952 & 0.7637 & 0.8349 & 0.5224 & 0.6003 \\
-5-Year OS & TabPFN v3 & 0.7159 & 0.7845 & 0.7077 & 0.7645 & 0.8349 & 0.5224 & 0.6017 \\
-5-Year OS & TabFM default & 0.7159 & 0.7845 & 0.6938 & 0.7524 & 0.8349 & 0.5224 & 0.6044 \\
-\bottomrule
-\end{tabular}
-\end{table}
-
-\subsection{Granular Results for Experiment 3: Extreme Survival Contrast Task}
-Table~\ref{tab:exp3_granular} reports the detailed performance metrics for the pooled extreme survival contrast task (comparing patients deceased within 3 years against those surviving beyond 5 years).
-
-\begin{table}[ht]
-\centering
-\caption{Detailed Metrics for Extreme Survival Contrast Prediction (Experiment 3)}
-\label{tab:exp3_granular}
-\begin{tabular}{lccccccc}
-\toprule
-Model & Accuracy & F1-Score & ROC AUC & PR AUC & Sens. & Spec. & Log Loss \\
-\midrule
-TabPFN v2 & 0.7872 & 0.8404 & 0.7967 & 0.8823 & 0.8681 & 0.6400 & 0.4953 \\
-TabPFN v2.5 & 0.7872 & 0.8404 & \textbf{0.8305} & 0.8938 & 0.8681 & 0.6400 & 0.4850 \\
-TabPFN v2.6 & 0.7872 & 0.8404 & 0.8215 & 0.8935 & 0.8681 & 0.6400 & 0.4874 \\
-TabPFN v3 & 0.7872 & 0.8404 & 0.8163 & 0.8953 & 0.8681 & 0.6400 & 0.4865 \\
-TabFM default & 0.7872 & 0.8404 & 0.8026 & 0.8821 & 0.8681 & 0.6400 & 0.4852 \\
-\bottomrule
-\end{tabular}
-\end{table}
 
 \end{document}
