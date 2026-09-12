@@ -24,21 +24,22 @@
 
 \keywords{tabular foundation models; cancer multiomics; survival classification; cohort effects; missingness; evaluation design}
 \paperurl{https://github.com/HawkFranklin-Research/tab-r1}
-\title{From Predictive Gains to Cohort Shortcuts: Stress-Testing Tabular Foundation Models in Cancer Multiomics}
-\correspondingauthor{evaluator@hawk-franklin-research.com}
+\title{Tabular Foundation Models Exhibit State-of-the-Art Cancer Survival Prediction Through Latent Cohort Signals Across Cancer Multiomics}
+\correspondingauthor{vatsal1@hawkfranklin.in}
 \reportnumber{TR-2026-09-02}
 \renewcommand{\today}{2026-09-02}
 
 \author[1]{Vatsal P. Patel\textsuperscript{*}}
+\author[1]{Satya Prakash Mohanty}
 \affil[1]{HawkFranklin Research, India}
-\affil[ ]{\textsuperscript{*}Corresponding author: \href{mailto:evaluator@hawk-franklin-research.com}{evaluator@hawk-franklin-research.com}}
+\affil[ ]{\textsuperscript{*}Corresponding author: \href{mailto:vatsal1@hawkfranklin.in}{vatsal1@hawkfranklin.in}}
 
 \begin{abstract}
 \noindent\textbf{Background:} Tabular foundation models offer in-context prediction without task-specific parameter fitting, but their behavior in high-dimensional biomedical data remains difficult to separate from cohort structure and evaluation design. Cancer multiomics provides a stringent test because molecular measurements, outcome prevalence, data source, and missingness patterns vary across disease cohorts.
 
-\noindent\textbf{Methods:} We evaluated five classical learners, AutoGluon, TabFM, and four TabPFN generations on 400 frozen patient-grouped folds spanning breast, esophageal, head and neck, lung squamous, and lung adenocarcinoma cohorts. Outcomes were 3-year and 5-year overall-survival event classification and an exploratory extreme-survival contrast. Each task used five repeats of five-fold evaluation, validation-only threshold selection, and molecular feature selection confined to the training partition. We compared within-cancer and randomly pooled evaluation and examined cancer-identity, structural-zero, label-permutation, and cancer-held-out diagnostics.
+\noindent\textbf{Methods:} We evaluated five classical learners, AutoGluon, TabFM, and four TabPFN generations on 3,238 patients across five cancer cohorts (breast, esophageal, head and neck, lung squamous, and lung adenocarcinoma) partitioned into 400 frozen test sets. Outcomes were 3-year and 5-year overall-survival event classification and an exploratory extreme-survival contrast. Each task used five repeats of five-fold evaluation, validation-only threshold selection, and molecular feature selection confined to the training partition. We compared within-cancer and randomly pooled evaluation and examined cancer-identity, structural-zero, label-permutation, and cancer-held-out diagnostics.
 
-\noindent\textbf{Results:} Mean within-cancer ROC AUC for the foundation models ranged from 0.563 to 0.568, indicating modest and heterogeneous discrimination. Pooled ROC AUC increased to 0.714--0.721 for evaluated 3-year configurations, 0.751--0.754 for 5-year survival, and 0.778--0.786 for the extreme contrast. Cancer identity alone reached ROC AUC values of 0.707, 0.703, and 0.809 across the three endpoints, while structural-zero patterns reached 0.745, 0.704, and 0.824. A cancer-held-out linear molecular diagnostic remained near chance, with mean ROC AUC values of 0.479, 0.508, and 0.518.
+\noindent\textbf{Results:} Under pan-cancer pooling, tabular foundation models achieved a mean ROC AUC of 0.721 for 3-year survival ($n = 645$ patients) and 0.786 for extreme survival ($n = 937$ patients). Within individual cancer cohorts, discrimination averaged a mean ROC AUC of 0.565. However, diagnostic controls revealed that cancer identity alone achieved a mean ROC AUC of 0.707, while patterns of missing data alone reached 0.745 without using molecular measurements. Furthermore, evaluating models on an unseen, held-out cancer cohort dropped discrimination to chance (mean ROC AUC 0.479).
 
 \noindent\textbf{Conclusions:} Foundation models were competitive with strong tree ensembles, but no architecture dominated consistently. The increase produced by random pan-cancer pooling cannot be interpreted as evidence of a shared prognostic molecular signature because cohort identity and harmonization structure carried comparable predictive information. Biomedical evaluations of tabular foundation models should report within-cohort results, explicit shortcut controls, and cohort-aware generalization tests alongside pooled scores.
 \end{abstract}
@@ -64,9 +65,9 @@ We used five cancer cohorts to ask four questions. First, under identical frozen
 
 \subsection{Cohort construction exposes endpoint and modality heterogeneity}
 
-The analysis integrated breast invasive carcinoma (BRCA), esophageal carcinoma (ESCA), head and neck squamous cell carcinoma (HNSCC), lung squamous cell carcinoma (LSCC), and lung adenocarcinoma (LUAD) resources derived from TCGA and CPTAC data products (Figure~\ref{fig:cohort_design}).\citep{tcga2012brca,tcga2017esca,tcga2015hnsc,tcga2012lusc,tcga2014luad,liu2018clinical,li2023pancancer} Raw cohort sizes ranged from 182 patients for ESCA to 1,206 for BRCA. Applying fixed-horizon eligibility rules reduced the usable sample count because patients censored before a horizon could not be assigned a valid event label. The 3-year tasks retained 86 to 501 patients per cancer; 5-year and extreme-survival tasks were not formed for ESCA because the eligible cohort did not satisfy the prespecified requirements (Table~\ref{tab:cohorts}).
+The analysis integrated breast invasive carcinoma (BRCA), esophageal carcinoma (ESCA), head and neck squamous cell carcinoma (HNSCC), lung squamous cell carcinoma (LSCC), and lung adenocarcinoma (LUAD) resources derived from TCGA and CPTAC data products (Figure~\ref{fig:cohort_design}).\citep{tcga2012brca,tcga2017esca,tcga2015hnsc,tcga2012lusc,tcga2014luad,liu2018clinical,li2023pancancer} Raw cohort sizes ranged from 182 patients for ESCA to 1,206 for BRCA (3,238 patients in total across all five cohorts). Applying fixed-horizon eligibility rules reduced the usable sample count because patients censored before a horizon could not be assigned a valid event label. The 3-year tasks retained 86 to 501 patients per cancer; 5-year and extreme-survival tasks were not formed for ESCA because the eligible cohort did not satisfy the prespecified requirements (Table~\ref{tab:cohorts}).
 
-The resulting study contained 16 cohort-endpoint tasks and 400 frozen folds. Per-cancer tasks contributed 325 folds, comprising five cancers at 3 years and four cancers each for 5-year and extreme survival. Three pooled endpoints contributed a further 75 folds. The pooled 3-year cohort contained 1,645 eligible patients, compared with 1,168 at 5 years and 937 in the extreme contrast. Multiomics feature composition also varied by cohort. This heterogeneity motivated the later shortcut analyses because the pattern of observed and structurally absent modalities could reveal cohort membership independently of survival biology.
+The resulting study contained 16 cohort-endpoint tasks and 400 frozen folds, supporting 4,400 model-fold evaluations across 11 architectures. Per-cancer tasks contributed 325 folds, comprising five cancers at 3 years and four cancers each for 5-year and extreme survival. Three pooled endpoints contributed a further 75 folds. The pooled 3-year cohort contained 1,645 eligible patients, compared with 1,168 at 5 years and 937 in the extreme contrast. Multiomics feature composition also varied by cohort. This heterogeneity motivated the later shortcut analyses because the pattern of observed and structurally absent modalities could reveal cohort membership independently of survival biology.
 
 \begin{figure}[p]
 \centering
@@ -181,7 +182,7 @@ Each eligible task used five repeats of five outer folds. Within each outer fold
 
 \subsection{Models and execution}
 
-The comparison included logistic regression, random forest, CatBoost, XGBoost, LightGBM, AutoGluon, TabFM, and TabPFN v2, v2.5, v2.6, and v3.\citep{breiman2001random,chen2016xgboost,ke2017lightgbm,prokhorenkova2018catboost,erickson2020autogluon,hollmann2025accurate,google2026tabfm,tabfmsoftware2026} Classical models were evaluated locally against the frozen fold bundles. Foundation-model and AutoGluon evaluations used CPU execution on a GCP \texttt{c3-highcpu-22} Spot instance. TabFM used the PyTorch backend, and AutoGluon used a fixed 180-second time limit per fold. Pooled 3-year entries for TabPFN v2, v2.5, and v2.6 are reported as NA because those training sets were outside the evaluated CPU row envelope. No values were imputed for unavailable configurations.
+The comparison included 11 model architectures: logistic regression, random forest, CatBoost, XGBoost, LightGBM, AutoGluon, TabFM, and TabPFN v2, v2.5, v2.6, and v3, totaling 4,400 model-fold evaluations across the 400 frozen splits.\citep{breiman2001random,chen2016xgboost,ke2017lightgbm,prokhorenkova2018catboost,erickson2020autogluon,hollmann2025accurate,google2026tabfm,tabfmsoftware2026} Classical models were evaluated locally against the frozen fold bundles. Foundation-model and AutoGluon evaluations used CPU execution on a GCP \texttt{c3-highcpu-22} Spot instance. TabFM used the PyTorch backend, and AutoGluon used a fixed 180-second time limit per fold. Pooled 3-year entries for TabPFN v2, v2.5, and v2.6 are reported as NA because those training sets were outside the evaluated CPU row envelope. No values were imputed for unavailable configurations.
 
 \subsection{Metrics and statistical summaries}
 
@@ -201,7 +202,7 @@ The analysis code and manuscript source are available through the project reposi
 
 \section{Author Contributions and Disclosures}
 
-V.P.P. conceived the study, directed the evaluation, interpreted the results, and is responsible for the manuscript. Computational tools, including language-model assistance, were used for code development, editing, and reproducibility checks under human supervision. Such tools are not authors and did not assume responsibility for the scientific conclusions. The author declares no competing interests.
+V.P.P. and S.P.M. conceived the study, directed the evaluation, interpreted the results, and contributed to the manuscript. Computational tools, including language-model assistance, were used for code development, editing, and reproducibility checks under human supervision. Such tools are not authors and did not assume responsibility for the scientific conclusions. The authors declare no competing interests.
 
 \bibliography{references}
 

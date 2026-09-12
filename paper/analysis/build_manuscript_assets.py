@@ -196,7 +196,7 @@ def draw_box(ax: plt.Axes, xy: tuple[float, float], width: float, height: float,
         xy,
         width,
         height,
-        boxstyle="round,pad=0.02,rounding_size=0.025",
+        boxstyle="round,pad=0.015,rounding_size=0.03",
         linewidth=1.2,
         edgecolor=color,
         facecolor=f"{color}18",
@@ -205,8 +205,76 @@ def draw_box(ax: plt.Axes, xy: tuple[float, float], width: float, height: float,
     ax.text(xy[0] + width / 2, xy[1] + height / 2, text, ha="center", va="center", fontsize=8, fontweight="bold")
 
 
-def draw_arrow(ax: plt.Axes, start: tuple[float, float], end: tuple[float, float], color: str = "#657786") -> None:
-    ax.add_patch(FancyArrowPatch(start, end, arrowstyle="-|>", mutation_scale=10, linewidth=1.1, color=color))
+def draw_card(
+    ax: plt.Axes,
+    xy: tuple[float, float],
+    width: float,
+    height: float,
+    title: str,
+    subtitle_lines: list[str] | None = None,
+    border_color: str = "#2563EB",
+    fill_color: str = "#F8FAFC",
+    title_color: str = "#0F172A",
+    body_color: str = "#334155",
+    title_size: float = 7.8,
+    body_size: float = 6.8,
+    linewidth: float = 1.2,
+    radius: float = 0.035,
+) -> None:
+    box = FancyBboxPatch(
+        xy,
+        width,
+        height,
+        boxstyle=f"round,pad=0.008,rounding_size={radius}",
+        linewidth=linewidth,
+        edgecolor=border_color,
+        facecolor=fill_color,
+        zorder=2,
+    )
+    ax.add_patch(box)
+
+    cx = xy[0] + width / 2.0
+    if subtitle_lines and len(subtitle_lines) > 0:
+        ty = xy[1] + height * 0.77
+        ax.text(cx, ty, title, ha="center", va="center", fontsize=title_size, fontweight="bold", color=title_color, zorder=4)
+
+        sep_y = xy[1] + height * 0.58
+        ax.plot(
+            [xy[0] + width * 0.10, xy[0] + width * 0.90],
+            [sep_y, sep_y],
+            color=border_color,
+            alpha=0.35,
+            linewidth=0.8,
+            zorder=3,
+        )
+
+        by = xy[1] + height * 0.30
+        body_str = "\n".join(subtitle_lines)
+        ax.text(cx, by, body_str, ha="center", va="center", fontsize=body_size, color=body_color, linespacing=1.20, zorder=4)
+    else:
+        cy = xy[1] + height / 2.0
+        ax.text(cx, cy, title, ha="center", va="center", fontsize=title_size, fontweight="bold", color=title_color, zorder=4)
+
+
+def draw_arrow(
+    ax: plt.Axes,
+    start: tuple[float, float],
+    end: tuple[float, float],
+    color: str = "#64748B",
+    mutation: float = 10,
+    linewidth: float = 1.1,
+) -> None:
+    ax.add_patch(
+        FancyArrowPatch(
+            start,
+            end,
+            arrowstyle="-|>",
+            mutation_scale=mutation,
+            linewidth=linewidth,
+            color=color,
+            zorder=5,
+        )
+    )
 
 
 def build_figure_1(manifest: pd.DataFrame) -> None:
@@ -252,19 +320,79 @@ def build_figure_1(manifest: pd.DataFrame) -> None:
     ax_a.set_xlim(0, 1)
     ax_a.set_ylim(0, 1)
     ax_a.axis("off")
-    draw_box(ax_a, (0.03, 0.68), 0.23, 0.17, "TCGA\nclinical + multiomics", "#426B8A")
-    draw_box(ax_a, (0.03, 0.30), 0.23, 0.17, "CPTAC\nclinical + multiomics", "#426B8A")
-    for idx, cancer in enumerate(CANCER_ORDER):
-        y = 0.83 - idx * 0.155
-        draw_box(ax_a, (0.42, y - 0.07), 0.20, 0.11, cancer, "#158F82")
-        draw_arrow(ax_a, (0.27, 0.765), (0.41, y - 0.01))
-        draw_arrow(ax_a, (0.27, 0.385), (0.41, y - 0.01))
-    draw_box(ax_a, (0.75, 0.68), 0.21, 0.12, "3-year OS", "#284B63")
-    draw_box(ax_a, (0.75, 0.45), 0.21, 0.12, "5-year OS", "#D08C3A")
-    draw_box(ax_a, (0.75, 0.22), 0.21, 0.12, "Extreme OS", "#B84A5A")
-    draw_arrow(ax_a, (0.63, 0.50), (0.74, 0.74))
-    draw_arrow(ax_a, (0.63, 0.50), (0.74, 0.51))
-    draw_arrow(ax_a, (0.63, 0.50), (0.74, 0.28))
+
+    draw_card(
+        ax_a,
+        (0.02, 0.57),
+        0.24,
+        0.36,
+        "TCGA Product",
+        ["Clinical records", "Multiomics profiles"],
+        border_color="#3B82F6",
+        fill_color="#EFF6FF",
+        title_color="#1D4ED8",
+        title_size=7.6,
+        body_size=6.6,
+    )
+    draw_card(
+        ax_a,
+        (0.02, 0.09),
+        0.24,
+        0.36,
+        "CPTAC Product",
+        ["Proteogenomics", "Matched histology"],
+        border_color="#3B82F6",
+        fill_color="#EFF6FF",
+        title_color="#1D4ED8",
+        title_size=7.6,
+        body_size=6.6,
+    )
+
+    draw_card(
+        ax_a,
+        (0.35, 0.25),
+        0.28,
+        0.51,
+        "Harmonization",
+        ["Patient-level linkage", "Clinical curation", "Strict eligibility check"],
+        border_color="#64748B",
+        fill_color="#F8FAFC",
+        title_color="#1E293B",
+        title_size=7.8,
+        body_size=6.6,
+    )
+
+    draw_card(
+        ax_a,
+        (0.71, 0.55),
+        0.27,
+        0.38,
+        "5 Disease Cohorts",
+        ["BRCA | ESCA | HNSCC", "LSCC | LUAD (N=182–1206)"],
+        border_color="#0D9488",
+        fill_color="#F0FDFA",
+        title_color="#0F766E",
+        title_size=7.6,
+        body_size=6.4,
+    )
+    draw_card(
+        ax_a,
+        (0.71, 0.09),
+        0.27,
+        0.38,
+        "Prognostic Targets",
+        ["3-year survival", "5-year survival", "Extreme survival\n(<3 vs ≥5 years)"],
+        border_color="#BE123C",
+        fill_color="#FFF1F2",
+        title_color="#9F1239",
+        title_size=7.6,
+        body_size=6.2,
+    )
+
+    draw_arrow(ax_a, (0.27, 0.75), (0.34, 0.58))
+    draw_arrow(ax_a, (0.27, 0.27), (0.34, 0.43))
+    draw_arrow(ax_a, (0.64, 0.56), (0.70, 0.70))
+    draw_arrow(ax_a, (0.845, 0.54), (0.845, 0.48))
     panel_label(ax_a, "A")
 
     ax_b.set_title("Eligibility after outcome definition")
@@ -336,19 +464,73 @@ def build_figure_1(manifest: pd.DataFrame) -> None:
     ax_f.set_xlim(0, 1)
     ax_f.set_ylim(0, 1)
     ax_f.axis("off")
-    steps = [
-        (0.02, "Grouped\npatients", "#426B8A"),
-        (0.21, "5 x 5\nfolds", "#158F82"),
-        (0.40, "64% train\n16% validation\n20% test", "#D08C3A"),
-        (0.61, "Train-only\nselection", "#B84A5A"),
-        (0.80, "Test\npredictions", "#7A6F80"),
-    ]
-    for xpos, text, color in steps:
-        draw_box(ax_f, (xpos, 0.54), 0.16, 0.23, text, color)
-    for left, right in zip(steps[:-1], steps[1:]):
-        draw_arrow(ax_f, (left[0] + 0.16, 0.655), (right[0] - 0.01, 0.655))
-    ax_f.text(0.5, 0.34, "100 molecular features selected independently in each training fold", ha="center")
-    ax_f.text(0.5, 0.20, "Thresholds selected on validation data; all metrics evaluated on held-out patients", ha="center")
+
+    draw_card(
+        ax_f,
+        (0.04, 0.74),
+        0.92,
+        0.20,
+        "Frozen Patient Groups: 5 Repeats × 5 Outer Folds (25 Splits per Task)",
+        ["Patient-grouped & class-stratified  •  Identical frozen partitions across all models"],
+        border_color="#2563EB",
+        fill_color="#EFF6FF",
+        title_color="#1E40AF",
+        title_size=7.8,
+        body_size=6.8,
+        radius=0.025,
+    )
+
+    draw_card(
+        ax_f,
+        (0.03, 0.35),
+        0.28,
+        0.28,
+        "TRAIN (64%)",
+        ["Select top 100 features", "Variance ranking on train", "Fit model parameters"],
+        border_color="#D97706",
+        fill_color="#FFFBEB",
+        title_color="#B45309",
+        title_size=7.6,
+        body_size=6.4,
+    )
+
+    draw_card(
+        ax_f,
+        (0.36, 0.35),
+        0.28,
+        0.28,
+        "VALIDATION (16%)",
+        ["Select decision threshold", "Model hyperparameter tuning", "Zero test feedback"],
+        border_color="#059669",
+        fill_color="#ECFDF5",
+        title_color="#047857",
+        title_size=7.6,
+        body_size=6.4,
+    )
+
+    draw_card(
+        ax_f,
+        (0.69, 0.35),
+        0.28,
+        0.28,
+        "TEST (20%)",
+        ["Predict held-out once", "Evaluate ROC & PR AUC", "Log loss & Brier score"],
+        border_color="#6366F1",
+        fill_color="#EEF2FF",
+        title_color="#4338CA",
+        title_size=7.6,
+        body_size=6.4,
+    )
+
+    draw_arrow(ax_f, (0.28, 0.73), (0.17, 0.64))
+    draw_arrow(ax_f, (0.50, 0.73), (0.50, 0.64))
+    draw_arrow(ax_f, (0.72, 0.73), (0.83, 0.64))
+
+    draw_arrow(ax_f, (0.32, 0.49), (0.35, 0.49))
+    draw_arrow(ax_f, (0.65, 0.49), (0.68, 0.49))
+
+    ax_f.text(0.5, 0.20, "Strict leakage-safe discipline across all 400 folds", ha="center", va="center", fontsize=8.0, fontweight="bold", color="#0F172A")
+    ax_f.text(0.5, 0.11, "Feature selection strictly confined to training data  •  Zero test contamination", ha="center", va="center", fontsize=7.0, color="#475569")
     panel_label(ax_f, "F")
 
     save_figure(fig, "figure_01_cohort_and_design")
