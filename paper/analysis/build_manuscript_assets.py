@@ -323,76 +323,76 @@ def build_figure_1(manifest: pd.DataFrame) -> None:
 
     draw_card(
         ax_a,
-        (0.02, 0.57),
-        0.24,
+        (0.01, 0.57),
+        0.25,
         0.36,
-        "TCGA Product",
+        "TCGA",
         ["Clinical records", "Multiomics profiles"],
         border_color="#3B82F6",
         fill_color="#EFF6FF",
         title_color="#1D4ED8",
-        title_size=7.6,
-        body_size=6.6,
+        title_size=9.2,
+        body_size=7.8,
     )
     draw_card(
         ax_a,
-        (0.02, 0.09),
-        0.24,
+        (0.01, 0.09),
+        0.25,
         0.36,
-        "CPTAC Product",
+        "CPTAC",
         ["Proteogenomics", "Matched histology"],
         border_color="#3B82F6",
         fill_color="#EFF6FF",
         title_color="#1D4ED8",
-        title_size=7.6,
-        body_size=6.6,
+        title_size=9.2,
+        body_size=7.8,
     )
 
     draw_card(
         ax_a,
-        (0.35, 0.25),
-        0.28,
-        0.51,
+        (0.34, 0.24),
+        0.29,
+        0.52,
         "Harmonization",
         ["Patient-level linkage", "Clinical curation", "Strict eligibility check"],
         border_color="#64748B",
         fill_color="#F8FAFC",
         title_color="#1E293B",
-        title_size=7.8,
-        body_size=6.6,
+        title_size=9.2,
+        body_size=7.6,
     )
 
     draw_card(
         ax_a,
-        (0.71, 0.55),
-        0.27,
+        (0.70, 0.55),
+        0.28,
         0.38,
         "5 Disease Cohorts",
         ["BRCA | ESCA | HNSCC", "LSCC | LUAD (N=182–1206)"],
         border_color="#0D9488",
         fill_color="#F0FDFA",
         title_color="#0F766E",
-        title_size=7.6,
-        body_size=6.4,
+        title_size=9.2,
+        body_size=7.6,
     )
     draw_card(
         ax_a,
-        (0.71, 0.09),
-        0.27,
+        (0.70, 0.09),
+        0.28,
         0.38,
         "Prognostic Targets",
         ["3-year survival", "5-year survival", "Extreme survival\n(<3 vs ≥5 years)"],
         border_color="#BE123C",
         fill_color="#FFF1F2",
         title_color="#9F1239",
-        title_size=7.6,
-        body_size=6.2,
+        title_size=9.2,
+        body_size=7.6,
     )
 
-    draw_arrow(ax_a, (0.27, 0.75), (0.34, 0.58))
-    draw_arrow(ax_a, (0.27, 0.27), (0.34, 0.43))
-    draw_arrow(ax_a, (0.64, 0.56), (0.70, 0.70))
-    draw_arrow(ax_a, (0.845, 0.54), (0.845, 0.48))
+    draw_arrow(ax_a, (0.26, 0.75), (0.33, 0.58))
+    draw_arrow(ax_a, (0.26, 0.27), (0.33, 0.43))
+    draw_arrow(ax_a, (0.63, 0.56), (0.69, 0.70))
+    draw_arrow(ax_a, (0.84, 0.54), (0.84, 0.48))
     panel_label(ax_a, "A")
 
     ax_b.set_title("Eligibility after outcome definition")
@@ -408,8 +408,10 @@ def build_figure_1(manifest: pd.DataFrame) -> None:
     for idx, (column, label, color) in enumerate(series):
         ax_b.bar(x + (idx - 1.5) * width, plot_counts[column], width, label=label, color=color)
     ax_b.set_xticks(x, plot_counts.index)
-    ax_b.set_ylabel("Patients")
-    ax_b.legend(frameon=False, ncol=2)
+    ax_b.tick_params(axis="x", labelsize=10.5)
+    ax_b.tick_params(axis="y", labelsize=9.0)
+    ax_b.set_ylabel("Patients", fontsize=10.0)
+    ax_b.legend(frameon=False, ncol=2, fontsize=8.8)
     panel_label(ax_b, "B")
 
     ax_c.set_title("Cohort-specific selected modalities")
@@ -428,14 +430,14 @@ def build_figure_1(manifest: pd.DataFrame) -> None:
     ax_d.set_xlim(0, 6.2)
     ax_d.set_ylim(0, 1)
     ax_d.axis("off")
-    ax_d.plot([0.35, 5.85], [0.53, 0.53], color="#4A5968", linewidth=2)
-    for xpos, label in [(0.45, "Diagnosis"), (3.0, "3 years"), (5.1, "5 years")]:
-        ax_d.plot([xpos, xpos], [0.43, 0.63], color="#284B63", linewidth=2)
-        ax_d.text(xpos, 0.68, label, ha="center", fontweight="bold")
-    ax_d.text(1.65, 0.28, "Class 1: death by horizon", color="#B84A5A", ha="center")
-    ax_d.text(4.35, 0.28, "Class 0: observed survival beyond horizon", color="#158F82", ha="center")
-    ax_d.text(3.0, 0.12, "Censored before the horizon: excluded", color="#6E7781", ha="center")
-    ax_d.text(3.0, 0.87, "Extreme OS: death <3 years versus survival >=5 years", color="#7A6F80", ha="center")
+    ax_d.plot([0.35, 5.85], [0.55, 0.55], color="#4A5968", linewidth=2.5)
+    for xpos, label in [(0.50, "Diagnosis"), (3.0, "3 years"), (5.1, "5 years")]:
+        ax_d.plot([xpos, xpos], [0.45, 0.65], color="#284B63", linewidth=2.5)
+        ax_d.text(xpos, 0.70, label, ha="center", fontweight="bold", fontsize=10.0, color="#0F172A")
+    ax_d.text(3.1, 0.89, "Extreme survival contrast: Death <3 years vs survival ≥5 years", color="#334155", ha="center", fontsize=9.2, fontweight="bold")
+    ax_d.text(3.1, 0.35, "Class 1 (Event): Death observed on or before horizon", color="#BE123C", ha="center", fontsize=9.2, fontweight="bold")
+    ax_d.text(3.1, 0.22, "Class 0 (Non-event): Follow-up observed beyond horizon", color="#0D9488", ha="center", fontsize=9.2, fontweight="bold")
+    ax_d.text(3.1, 0.08, "Censored before horizon: Excluded from fixed-horizon task", color="#64748B", ha="center", fontsize=8.8, fontstyle="italic")
     panel_label(ax_d, "D")
 
     ax_e.set_title("Outcome composition by cohort")
@@ -590,10 +592,10 @@ def build_figure_2(metrics: pd.DataFrame, manifest: pd.DataFrame) -> None:
     for idx, (family, models, role) in enumerate(family_rows):
         ypos = 0.84 - idx * 0.17
         color = FAMILY_COLOR[family]
-        ax_a.add_patch(Rectangle((0.04, ypos - 0.05), 0.04, 0.09, color=color))
-        ax_a.text(0.11, ypos + 0.02, family, fontweight="bold", color=color, va="center")
-        ax_a.text(0.11, ypos - 0.035, models, va="center")
-        ax_a.text(0.52, ypos - 0.01, role, color="#5C6770", va="center", fontsize=7.2)
+        ax_a.add_patch(Rectangle((0.04, ypos - 0.05), 0.035, 0.10, color=color))
+        ax_a.text(0.10, ypos + 0.030, family, fontweight="bold", color=color, va="center", fontsize=9.2)
+        ax_a.text(0.10, ypos + 0.005, role, color="#64748B", va="center", fontsize=8.0, fontstyle="italic")
+        ax_a.text(0.10, ypos - 0.028, models, color="#1E293B", va="center", fontsize=8.6)
     panel_label(ax_a, "A")
 
     ax_b.set_title("Mean ROC AUC across per-cancer folds")
@@ -779,9 +781,9 @@ def build_figure_3(metrics: pd.DataFrame, summary: pd.DataFrame, manifest: pd.Da
     ax_a.set_ylim(0.66, 0.82)
     ax_a.set_xlabel("Within-cancer mean ROC AUC")
     ax_a.set_ylabel("Pooled mean ROC AUC")
-    endpoint_handles = [Line2D([0], [0], marker="o", color="w", markerfacecolor=ENDPOINT_COLOR[e], label=ENDPOINT_LABEL[e], markersize=6) for e in ENDPOINT_ORDER]
-    model_handles = [Line2D([0], [0], marker=markers[m], color="#555555", linestyle="None", label=MODEL_LABEL[m], markersize=6) for m in complete_models]
-    ax_a.legend(handles=endpoint_handles + model_handles, frameon=False, fontsize=6.3, ncol=2, loc="lower right")
+    endpoint_handles = [Line2D([0], [0], marker="o", color="w", markerfacecolor=ENDPOINT_COLOR[e], label=ENDPOINT_LABEL[e], markersize=7) for e in ENDPOINT_ORDER]
+    model_handles = [Line2D([0], [0], marker=markers[m], color="#555555", linestyle="None", label=MODEL_LABEL[m], markersize=7) for m in complete_models]
+    ax_a.legend(handles=endpoint_handles + model_handles, frameon=False, fontsize=8.2, ncol=2, loc="lower right")
     panel_label(ax_a, "A")
 
     selected_endpoint = "os_3yr"
@@ -795,7 +797,7 @@ def build_figure_3(metrics: pd.DataFrame, summary: pd.DataFrame, manifest: pd.Da
     ax_b.plot([0, 1], [0, 1], linestyle="--", color="#7B8791", linewidth=1)
     ax_b.set_xlabel("False-positive rate")
     ax_b.set_ylabel("True-positive rate")
-    ax_b.legend(frameon=False, loc="lower right", fontsize=6.5)
+    ax_b.legend(frameon=False, loc="lower right", fontsize=8.5)
     panel_label(ax_b, "B")
 
     ax_c.set_title("Pooled 3-year precision-recall curves")
@@ -809,7 +811,7 @@ def build_figure_3(metrics: pd.DataFrame, summary: pd.DataFrame, manifest: pd.Da
     ax_c.axhline(prevalence, linestyle="--", color="#7B8791", linewidth=1, label=f"Prevalence ({prevalence:.2f})")
     ax_c.set_xlabel("Recall")
     ax_c.set_ylabel("Precision")
-    ax_c.legend(frameon=False, loc="lower left", fontsize=6.5)
+    ax_c.legend(frameon=False, loc="lower left", fontsize=8.5)
     panel_label(ax_c, "C")
 
     ax_d.set_title("Pooled ROC AUC by endpoint")
@@ -853,10 +855,10 @@ def build_figure_3(metrics: pd.DataFrame, summary: pd.DataFrame, manifest: pd.Da
     ax_f.set_xlabel("Eligible patients (log scale)")
     ax_f.set_ylabel("Mean ROC AUC across evaluated models")
     handles = endpoint_handles + [
-        Line2D([0], [0], marker="o", color="#555555", linestyle="None", label="Per-cancer"),
-        Line2D([0], [0], marker="s", color="#555555", linestyle="None", label="Pooled"),
+        Line2D([0], [0], marker="o", color="#555555", linestyle="None", label="Per-cancer", markersize=7),
+        Line2D([0], [0], marker="s", color="#555555", linestyle="None", label="Pooled", markersize=7),
     ]
-    ax_f.legend(handles=handles, frameon=False, fontsize=6.5, ncol=2)
+    ax_f.legend(handles=handles, frameon=False, fontsize=8.5, ncol=2)
     panel_label(ax_f, "F")
 
     save_figure(fig, "figure_03_pooling_effect")
@@ -909,7 +911,7 @@ def build_figure_4(summary: pd.DataFrame) -> None:
         ax.set_ylabel(label)
         ax.set_ylim(0.35, 0.92 if metric == "roc_auc" else 0.95)
         ax.set_title(f"Shortcut controls: {label}")
-        ax.legend(frameon=False, fontsize=6.4, ncol=2)
+        ax.legend(frameon=False, fontsize=8.4, ncol=2)
         panel_label(ax, letter)
 
     ax_c.set_title("Cancer-cohort identifiability")
@@ -921,7 +923,7 @@ def build_figure_4(summary: pd.DataFrame) -> None:
     ax_c.set_xticks(x, labels, rotation=12)
     ax_c.set_ylim(0, 1.05)
     ax_c.set_ylabel("Five-fold score")
-    ax_c.legend(frameon=False)
+    ax_c.legend(frameon=False, fontsize=8.5)
     for idx, value in enumerate(sep["balanced_accuracy"]):
         ax_c.text(idx + 0.18, value + 0.025, f"{value:.3f}", ha="center", fontweight="bold")
     panel_label(ax_c, "C")
@@ -942,7 +944,7 @@ def build_figure_4(summary: pd.DataFrame) -> None:
     ax_e.set_xlabel("")
     ax_e.set_ylabel("ROC AUC")
     handles, labels = ax_e.get_legend_handles_labels()
-    ax_e.legend(handles, [ENDPOINT_LABEL[e] for e in ENDPOINT_ORDER], frameon=False, fontsize=6.5)
+    ax_e.legend(handles, [ENDPOINT_LABEL[e] for e in ENDPOINT_ORDER], frameon=False, fontsize=8.5)
     panel_label(ax_e, "E")
 
     ax_f.set_title("Molecular models relative to shortcut baseline")
@@ -1022,7 +1024,7 @@ def build_figure_5(metrics: pd.DataFrame, summary: pd.DataFrame) -> None:
     ax_a.plot([0, 1], [0, 1], linestyle="--", color="#333333", linewidth=1)
     ax_a.set_xlabel("Mean predicted probability")
     ax_a.set_ylabel("Observed event fraction")
-    ax_a.legend(frameon=False, fontsize=6.4)
+    ax_a.legend(frameon=False, fontsize=8.5)
     panel_label(ax_a, "A")
 
     for ax, metric, title, letter, vmin, vmax in [
@@ -1044,13 +1046,13 @@ def build_figure_5(metrics: pd.DataFrame, summary: pd.DataFrame) -> None:
     ax_d.set_title("Validation-threshold operating characteristics")
     for endpoint in ENDPOINT_ORDER:
         data = pooled[pooled["endpoint"] == endpoint]
-        ax_d.scatter(data["specificity_mean"], data["sensitivity_mean"], color=ENDPOINT_COLOR[endpoint], label=ENDPOINT_LABEL[endpoint], s=38, alpha=0.85)
+        ax_d.scatter(data["specificity_mean"], data["sensitivity_mean"], color=ENDPOINT_COLOR[endpoint], label=ENDPOINT_LABEL[endpoint], s=42, alpha=0.85)
     ax_d.plot([0, 1], [1, 0], linestyle=":", color="#AAB2BB")
     ax_d.set_xlim(0.3, 0.9)
     ax_d.set_ylim(0.3, 0.95)
     ax_d.set_xlabel("Specificity")
     ax_d.set_ylabel("Sensitivity")
-    ax_d.legend(frameon=False)
+    ax_d.legend(frameon=False, fontsize=8.5)
     panel_label(ax_d, "D")
 
     ax_e.set_title("Selected modality composition across pooled folds")
@@ -1063,7 +1065,7 @@ def build_figure_5(metrics: pd.DataFrame, summary: pd.DataFrame) -> None:
         bottom += mod[modality].to_numpy()
     ax_e.set_xticks(np.arange(len(mod)), [ENDPOINT_LABEL[e] for e in mod.index])
     ax_e.set_ylabel("Mean share of 100 selected features (%)")
-    ax_e.legend(frameon=False, fontsize=6.4, ncol=2)
+    ax_e.legend(frameon=False, fontsize=8.5, ncol=2)
     panel_label(ax_e, "E")
 
     ax_f.set_title("Median computational time per fold")
@@ -1074,7 +1076,7 @@ def build_figure_5(metrics: pd.DataFrame, summary: pd.DataFrame) -> None:
     ax_f.set_yticks(ypos, [MODEL_LABEL[m] for m in run.index])
     ax_f.set_xscale("symlog", linthresh=0.01)
     ax_f.set_xlabel("Seconds per fold (symlog scale)")
-    ax_f.legend(frameon=False)
+    ax_f.legend(frameon=False, fontsize=8.5)
     panel_label(ax_f, "F")
 
     save_figure(fig, "figure_05_probabilistic_and_compute")
