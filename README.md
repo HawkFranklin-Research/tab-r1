@@ -1,247 +1,137 @@
-# GKE MCP Server and Gemini CLI Extension
+# tab-r1
 
-Enable MCP-compatible AI agents to interact with Google Kubernetes Engine.
+Can tabular foundation models (TabPFN v2 / v2.5 / v2.6 / v3, Google TabFM) predict cancer
+survival from multiomics better than classical learners, and is any gain real biology or
+cohort structure?
 
-<img src="https://raw.githubusercontent.com/GoogleCloudPlatform/gke-mcp/main/assets/gke-mcp-gemini-cli-demo.gif" alt="A demonstration of using the GKE MCP server with the Gemini CLI" width="600">
+This is a research workspace, not a library. It holds code, data products, results and the
+manuscript for one study, plus the earlier experiments that led to it.
 
-## Installation
+## The short version of the story
 
-Choose a way to install the MCP Server and then connect your AI to it.
+1. **Apr–May 2026: does TabPFN hold up on small tables?** We reproduced the TabPFN paper on
+   7 public classification datasets. TabPFN was marginally best (mean ROC AUC 0.877 vs
+   CatBoost 0.873). See `Evaluate-TABPFN/` and `results-s2/`.
+2. **May–Jul 2026: cancer multiomics, single splits.** Five cancers, 3,238 patients, from TCGA
+   and CPTAC. Within one cancer, survival is hard (ROC AUC ≈ 0.55). Pooling cancers lifted
+   AUC to 0.74–0.83, and a July draft read this as a "generalizable pan-cancer survival
+   signal". See `cancer-exp/` and `cancer-os-exp/`.
+3. **Aug 30, 2026: the audit.** We found feature-selection leakage and mock ROC curves. We also
+   found that cancer identity alone (AUC 0.707) or the pattern of missing data alone (0.745)
+   predicts pooled 3-year survival about as well as the models. The pan-cancer claim was
+   withdrawn. See `convey-vatsal-aug30.txt` and `convey-vatsal2-aug30.txt`.
+4. **Aug 31, 2026: leakage-safe rebuild.** We froze 400 patient-grouped test sets (16 tasks ×
+   5 repeats × 5 folds) and evaluated 11 models on identical splits: classical models
+   locally, foundation models and AutoGluon on GCP. See `paper/analysis/` and `cloud/`.
+5. **Sep 2026: manuscript.** The manuscript is `paper/tabular_fm_paper.tex`.
+6. **Next: true time-to-event survival.** The new work is pooled-context transfer, clinical
+   versus omics, and external validation. See `survival_v2/` once it exists.
 
-### Use as a Gemini CLI Extension
+## Where things are
 
-1. Install [Gemini CLI](https://github.com/google-gemini/gemini-cli?tab=readme-ov-file#-installation).
-
-2. Install the extension
-
-```sh
-gemini extensions install https://github.com/GoogleCloudPlatform/gke-mcp.git
+```
+tab-r1/
+├── paper/                         ← CURRENT STUDY: manuscript + everything that feeds it
+│   ├── tabular_fm_paper.tex       manuscript (class: hawkfranklin.cls, refs: references.bib)
+│   ├── analysis/                  all analysis code for the paper (see analysis/README.md)
+│   │   ├── prepare_leakage_safe_folds.py     builds the 400 frozen folds from c-5 data
+│   │   ├── run_leakage_safe_fold_models.py   runs any model on the frozen folds
+│   │   ├── run_cloud_evaluation.py           same, packaged for the GCP VM
+│   │   ├── run_cohort_stress_tests.py        leave-one-cancer/source-out, permutations
+│   │   ├── analyze_saved_cancer_results.py   bootstrap CIs + shortcut controls
+│   │   ├── build_manuscript_assets.py        ← regenerates Figures 1–5 and Tables 1–3
+│   │   ├── resource_limits.py                caps threads / memory (12 cores, 12 GB)
+│   │   └── generated_folds/                  the 400 frozen folds + fold_manifest.csv
+│   ├── figures/manuscript/        final Figure 1–5 (pdf/png/svg)
+│   ├── figures/source_data/       one CSV per figure panel; model_fold_metrics.csv (4,400 rows)
+│   ├── tables/generated/          Tables 1–3 (.tex + .csv)
+│   └── tables/source_data/        raw results: full_fold_models/ (classical, local),
+│                                  cloud_foundation_models/ (TabPFN, TabFM, AutoGluon, GCP)
+│
+├── cloud/                         Dockerfile + scripts used to run foundation models on GCP
+│   ├── scripts/                   launch VM, run, sync results back
+│   ├── hf-datasets/               frozen folds packaged as a Hugging Face dataset
+│   └── EXPERIMENT_METADATA_AND_COST_REPORT.md
+│
+├── cancer-exp/                    May–Jun: first cancer experiments (cancer type, source,
+│                                  OS event, mutation status). Mutation tasks are where
+│                                  TabPFN wins most clearly (not in the paper).
+├── cancer-os-exp/                 Jul: single-split survival experiments
+│   ├── exp01_per_cancer_fixed_window/
+│   ├── exp02_combined_fixed_window/        the pooled result that was later retracted
+│   └── exp03_combined_extreme_survival/
+├── experiments/                   mirror of cancer-exp/ and cancer-os-exp/ (+ AutoGluon
+│                                  model files) and cancer-survival-exp/ (first 3y/5y labels)
+│
+├── Evaluate-TABPFN/               [submodule] small-dataset TabPFN reproduction study
+├── package/                       ev_tabpfn: the evaluator from that study as a pip package
+├── results-satya/, results-s2/    Apr 30 re-runs of the small-dataset benchmark
+├── papers/, papers-info/,         TabPFN / TabPFN-3 / TabICL papers and section splits used
+│   paper-datasets/                as references; *.pdf at root are the same papers
+├── healthcare_tabpfn_usecases.csv 98 published TabPFN healthcare applications (lit. survey)
+│
+├── TabPFN/, tabpfn-client/,       [submodules] model code. tabpfn-extensions contains
+│   tabpfn-extensions/, tabpfn_3/  SurvivalTabPFN (unused so far). tabpfn_3 = v3 checkpoints
+├── tabfm/                         [submodule] google-research/tabfm
+├── Accurate_Prediction_on_...     [submodule] third-party TabPFN small-data study
+│
+└── convey-vatsal*-aug30.txt,      working notes: the Aug 30 audit, the shortcut finding,
+    results-agu30.txt              and the full local run summary
 ```
 
-### Use in MCP Clients / Other AIs
+Unrelated to the study (tooling that landed at the root): `gke-mcp`, `gke-mcp_Linux_x86_64.tar.gz`,
+`checksums.txt`, `LICENSE` (from gke-mcp), `catboost_info/`, `tabpfn_demo_local.py`,
+`last-gemini.txt`.
 
-#### Quick Install (Linux & macOS only)
+## Data: outside this folder
 
-```sh
-curl -sSL https://raw.githubusercontent.com/GoogleCloudPlatform/gke-mcp/main/install.sh | bash
+The cancer data lives in a sibling repo, **`../c-5`**:
+
+| Path | What |
+|---|---|
+| `c-5/tcga-5/` | cBioPortal PanCancer Atlas 2018 archives: BRCA, ESCA, HNSC, LUAD, LUSC |
+| `c-5/cptac-5/` | LinkedOmics CPTAC downloads (no CPTAC ESCA) |
+| `c-5/gpt/processed/train_ready/{CANCER}/core/` | `X.npz` (sparse), `missing_mask.npz`, `sample_index.csv` (OS/DSS/PFS/DFS days + events), `feature_index.csv` |
+| `c-5/gpt/processed/clinical/` | `patient_master.parquet` (age, sex, stage, …; TCGA and CPTAC use different column names) |
+| `c-5/EXTRA.data.txt` | candidate external cohorts (e.g. METABRIC for breast) |
+
+Cohorts (core view): BRCA 1,206 · ESCA 182 · HNSCC 631 · LSCC 595 · LUAD 624 = **3,238 patients**.
+Modalities: RNA-seq, CNV, methylation, mutation, clinical.
+
+Many scripts hard-code `/home/prime/Documents/g3/...` paths. Several scripts under
+`experiments/` and `cancer-os-exp/` also point at `g3/cancer-*` folders that have since moved
+inside this repo.
+
+## Key numbers (paper version)
+
+| | n | Best ROC AUC |
+|---|---|---|
+| Within one cancer (macro-average) | 13 tasks | ≈ 0.56–0.57 (all models close) |
+| Pooled 3-year OS | 1,645 (≈1,053 train / 329 test per split) | 0.721 TabFM, 0.716 random forest |
+| Pooled 5-year OS | 1,168 | 0.754 TabPFN v3 |
+| Pooled extreme (death < 3y vs alive > 5y) | 937 | 0.786 TabPFN v3 |
+| Cancer identity only (3y / 5y / extreme) | same | 0.707 / 0.703 / 0.809 |
+| Missing-data pattern only | same | 0.745 / 0.704 / 0.824 |
+| Pooled model scored *within* each cancer, 5y | per cancer | TabPFN v3 0.44–0.48, random forest 0.51–0.58 |
+
+## Reproducing the paper
+
+```bash
+python3 paper/analysis/build_manuscript_assets.py        # figures + tables from saved results
+cd paper && pdflatex tabular_fm_paper.tex && bibtex tabular_fm_paper \
+         && pdflatex tabular_fm_paper.tex && pdflatex tabular_fm_paper.tex
 ```
 
-#### Manual Install
+Model runs read the frozen folds, and full-scale runs require `--confirm-full-run`. See
+`paper/analysis/README.md`. Local work is capped at 12 CPU threads and 12 GB RAM.
 
-If you haven't already installed Go, follow [these instructions](https://go.dev/doc/install).
+## Known gaps
 
-Once Go is installed, run the following command to install gke-mcp:
-
-```sh
-go install github.com/GoogleCloudPlatform/gke-mcp@latest
-```
-
-The `gke-mcp` binary will be installed in the directory specified by the `GOBIN` environment variable. If `GOBIN` is not set, it defaults to `$GOPATH/bin` and, if `GOPATH` is also not set, it falls back to `$HOME/go/bin`.
-
-You can find the exact location by running `go env GOBIN`. If the command returns an empty value, run `go env GOPATH` to find the installation directory.
-
-For additional help, refer to the troubleshoot section: [gke-mcp: command not found](TROUBLESHOOTING.md#gke-mcp-command-not-found-on-macos-or-linux).
-
-### Add the MCP Server to your AI
-
-For detailed instructions on how to connect the GKE MCP Server to various AI clients, including Cursor, Visual Studio Code, Claude Desktop, and Claude Code, please refer to our dedicated [installation guide](docs/installation_guide/).
-
-### Configuring the Developer Knowledge API
-
-The manifest generation agent (`generate_manifest` tool) can retrieve official GKE documentation, required annotations, and best practices using the Developer Knowledge API.
-
-To enable this capability:
-
-1. **Enable the API:** Enable the **Developer Knowledge API** in your Google Cloud Project (refer to the [Developer Knowledge API documentation](https://developers.google.com/knowledge/api#enable_the_api) for details).
-2. **Generate an API Key:** Create an API key with permissions to call the Developer Knowledge API.
-3. **Configure the Environment Variable:** Set the `DK_API_KEY` environment variable when starting the MCP server:
-   - **Gemini CLI / Terminal:**
-     ```sh
-     export DK_API_KEY="your-api-key-here"
-     ```
-   - **Cursor / Claude Desktop / Visual Studio Code:** Add the environment variable to your client's MCP configuration. For example, in `claude_desktop_config.json`:
-     ```json
-     {
-       "mcpServers": {
-         "gke-mcp": {
-           "command": "gke-mcp",
-           "env": {
-             "DK_API_KEY": "your-api-key-here"
-           }
-         }
-       }
-     }
-     ```
-
-Optional configuration:
-
-- `DK_BASE_URL`: The base URL of the Developer Knowledge API (defaults to `https://knowledge.googleapis.com`).
-
-## MCP Tools
-
-- `cluster_toolkit_download`: Download the Cluster Toolkit Git repository.
-- `list_clusters`: List GKE clusters.
-- `get_cluster`: Get detailed information about a single GKE cluster.
-- `create_cluster`: Create a new GKE cluster (defaults to Autopilot).
-- `get_kubeconfig`: Configure kubeconfig for a GKE cluster.
-- `update_cluster`: Update a GKE cluster.
-- `get_node_sos_report`: Generate and download an SOS report from a GKE node.
-- `delete_cluster`: Delete a GKE cluster (if enabled).
-- `list_node_pools`: List node pools in a GKE cluster.
-- `get_node_pool`: Get details for a GKE node pool.
-- `create_node_pool`: Create a new node pool in a GKE cluster.
-- `update_node_pool`: Update a GKE node pool.
-- `delete_node_pool`: Delete a GKE node pool (if enabled).
-- `gke_deploy`: Deploy a workload to a GKE cluster using a configuration file.
-- `query_logs`: Query Google Cloud Platform logs using Logging Query Language (LQL).
-- `get_log_schema`: Get the schema for a specific GKE log type.
-- `list_monitored_resource_descriptors`: List monitored resource descriptors for GKE.
-- `list_recommendations`: List recommendations for GKE clusters.
-- `get_k8s_changelog`: Get Kubernetes changelog for upgrades.
-- `get_gke_release_notes`: Get GKE release notes.
-- `generate_manifest`: Generate a Kubernetes manifest using Vertex AI.
-- `get_k8s_resource`: Gets one or more Kubernetes resources from a cluster.
-- `list_k8s_events`: Retrieves events from a Kubernetes cluster.
-- `get_k8s_version`: Retrieves the Kubernetes server version for a given cluster.
-- `apply_k8s_manifest`: Applies a Kubernetes manifest to a cluster using server-side apply.
-- `get_k8s_logs`: Gets logs from a Kubernetes container in a pod.
-- `delete_k8s_resource`: Delete a Kubernetes resource from a cluster.
-
-## MCP Prompts
-
-Prompts provide guided workflows and expert knowledge templates.
-
-- `gke:cost`: Answer natural language questions about GKE-related costs.
-- `gke:deploy`: Deploys a workload to a GKE cluster using a configuration file.
-- `gke:upgrade-risk-report`: GKE control plane upgrade risk report, analyzing the potential risks of upgrading from its current version to the target version. Performs pre-upgrade checks, API deprecations scans, and more.
-- `gke:upgrades-best-practices-risk-report`: GKE control plane upgrade best practices, applied for the specified cluster. Helps making upgrades uneventful.
-
-## MCP Context
-
-In addition to the tools above, a lot of value is provided through the bundled context instructions.
-
-- **Cost**: The provided instructions allows the AI to answer many questions related to GKE costs, including queries related to clusters, namespaces, and Kubernetes workloads.
-
-- **GKE Known Issues**: The provided instructions allows the AI to fetch the latest GKE Known issues and check whether the cluster is affected by one of these known issues.
-
-## Supported MCP Transports
-
-By default, `gke-mcp` uses the [stdio](https://modelcontextprotocol.io/specification/2025-06-18/basic/transports#stdio) transport. Additionally, the [Streamable HTTP](https://modelcontextprotocol.io/specification/2025-06-18/basic/transports#streamable-http) transport is supported as well.
-
-You can set the transport mode using the following options:
-
-`--server-mode`: transport to use for the server: stdio (default) or http
-
-`--server-host`: server host to use when server-mode is http; defaults to `127.0.0.1`
-
-`--server-port`: server port to use when server-mode is http; defaults to 8080
-
-```sh
-gke-mcp --server-mode http --server-host 127.0.0.1 --server-port 8080
-```
-
-> [!WARNING]
-> By default, the HTTP server binds to `127.0.0.1`, which limits access to the local machine.
-> If you explicitly set `--server-host 0.0.0.0` or another non-loopback address, the server may become reachable from other machines on your network.
-> Please ensure you have a firewall and/or other security measures in place if the server is not intended to be private.
-
-### Connecting Gemini CLI to the HTTP Server
-
-To connect Gemini CLI to the `gke-mcp` HTTP server, you need to configure the CLI to point to the correct endpoint. You can do this by updating your `~/.gemini/settings.json` file. For a basic setup without authentication, the file should look like this:
-
-```json
-{
-  "mcpServers": {
-    "gke": {
-      "httpUrl": "http://127.0.0.1:8080/mcp"
-    }
-  }
-}
-```
-
-This configuration tells Gemini CLI how to reach the gke-mcp server running on your local machine at port 8080.
-
-## Skills
-
-Skills provide specialized capabilities and workflows to your AI agent.
-
-### Available Skills
-
-- `custom-golden-image-discovery`: Discover golden base images for GKE custom nodes.
-- `gke-ai-troubleshooting-skill-creation-guide`: Guide for building high-quality GKE troubleshooting skills.
-- `gke-ai-troubleshooting-tpu-connection-failure-vbar-oom`: Diagnose and prevent TPU connection failures and OOMs.
-- `gke-app-onboarding`: Workflows for containerizing and deploying applications to GKE.
-- `gke-backup-dr`: Configure Backup for GKE and disaster recovery.
-- `gke-cluster-creator`: Create GKE clusters using predefined templates.
-- `gke-cluster-lifecycle`: Manage lifecycle and upgrades of GKE clusters.
-- `gke-compute-class-creator`: Create GKE ComputeClass resources.
-- `gke-cost-analysis`: Answer questions about GKE-related costs.
-- `gke-cost-optimization`: Optimize costs for GKE clusters.
-- `gke-inference-quickstart`: Deploy optimized AI/ML inference workloads on GKE.
-- `gke-multi-tenancy`: Implement multi-tenancy and governance in GKE.
-- `gke-networking-edge`: Configure edge networking, ingress, and security on GKE.
-- `gke-observability`: Set up and audit observability on GKE.
-- `gke-productionize`: Prepare applications and clusters for production.
-- `gke-reliability`: Ensure high availability and reliability of GKE workloads.
-- `gke-storage`: Manage storage in GKE clusters.
-- `gke-workload-scaling`: Scale GKE workloads using HPA and VPA.
-- `gke-workload-security`: Audit and harden the security of GKE workloads.
-
-### Installing Skills
-
-There are several ways to install these skills:
-
-1. **Automatic Detection**: When you install the MCP server as a
-   [Gemini CLI Extension](#use-as-a-gemini-cli-extension), the CLI automatically
-   detects and enables all skills located in the `skills/` folder.
-
-2. **Standalone Individual Skill**: Install a specific skill without the full
-   MCP extension:
-
-   ```sh
-   gemini skills install https://github.com/GoogleCloudPlatform/gke-mcp --path skills/<skill-name>
-   ```
-
-   Replace `<skill-name>` with the name of a skill from the `skills/` directory
-   (e.g., `gke-cost-analysis`).
-
-3. **Standalone Bulk Link**: To enable all skills at once without installing
-   the full MCP extension:
-   ```sh
-   git clone https://github.com/GoogleCloudPlatform/gke-mcp.git
-   gemini skills link ./gke-mcp/skills
-   ```
-
-## Development
-
-To compile the binary and update the `gemini-cli` extension with your local changes, follow these steps:
-
-1. Remove the global gke-mcp configuration
-
-   ```sh
-   rm -rf ~/.gemini/extensions/gke-mcp
-   ```
-
-1. Build the binary from the root of the project:
-
-   ```sh
-   go build -o gke-mcp .
-   ```
-
-1. Run the installation command to update the extension manifest:
-
-   ```sh
-   ./gke-mcp install gemini-cli --developer
-   ```
-
-   This will make `gemini-cli` use your locally compiled binary.
-
-## Disclaimers
-
-- The Google Cloud Platform Terms of Service (available at [https://cloud.google.com/terms/](https://cloud.google.com/terms/)) and the Data Processing and Security Terms (available at [https://cloud.google.com/terms/data-processing-terms](https://cloud.google.com/terms/data-processing-terms)) do not apply to any component of the GKE MCP Server software.
-- This tool is provided for education and experimentation, and is not an officially supported Google product. It is maintained on a best-effort basis, and may change without notice.
-- This project interacts with Large Language Models and comes with inherent risks.
-  - **Use at Your Own Risk:** This software is experimental, non-deterministic, and provided "AS IS" with NO GUARANTEES or warranties.
-  - **NOT FOR PRODUCTION USE.**
-  - **Data Sensitivity:** Avoid using untrusted data. NEVER input secrets, API keys, or sensitive information.
-  - **Verify Outputs:** LLM responses can be unpredictable and may be inaccurate. Always verify results.
+- Survival is framed as fixed-horizon classification only. There is no C-index or censored
+  modelling yet.
+- Patients censored before the horizon are dropped. Only 1,645 of 3,238 patients are used at
+  3 years.
+- Clinical covariates (age, stage) were never used.
+- No foundation model was tested on a held-out cancer or an external cohort.
+- Pooled 3-year TabPFN v2/v2.5/v2.6 are missing because the runs hit the CPU >1,000-row
+  guard (`TABPFN_ALLOW_CPU_LARGE_DATASET=1` fixes this).

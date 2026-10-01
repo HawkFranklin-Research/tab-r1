@@ -761,7 +761,7 @@ def build_figure_3(metrics: pd.DataFrame, summary: pd.DataFrame, manifest: pd.Da
     fig = plt.figure(figsize=(16, 10.5), constrained_layout=True)
     gs = fig.add_gridspec(2, 3, width_ratios=[1.0, 1.08, 1.12])
     ax_a, ax_b, ax_c, ax_d, ax_e, ax_f = [fig.add_subplot(gs[i, j]) for i in range(2) for j in range(3)]
-    fig.suptitle("Pooling increases apparent discrimination across model families", fontweight="bold")
+    fig.suptitle("Pooling raises overall discrimination but not ranking within a cancer", fontweight="bold")
 
     ax_a.set_title("Within-cancer versus pooled ROC AUC")
     markers = {m: marker for m, marker in zip(complete_models, ["o", "s", "D", "^", "P"])}
@@ -835,13 +835,35 @@ def build_figure_3(metrics: pd.DataFrame, summary: pd.DataFrame, manifest: pd.Da
     ax_d.set_ylabel("")
     panel_label(ax_d, "D")
 
-    ax_e.set_title("Pooled models evaluated within cancer subgroups")
-    sub = subgroup[subgroup["model_name"].isin(["catboost", "tabfm_default", "tabpfn_v3"])].copy()
-    sub["row"] = sub["model_name"].map(MODEL_LABEL) + " | " + sub["endpoint"].map(ENDPOINT_LABEL)
-    sub_heat = sub.pivot(index="row", columns="cancer", values="roc_auc").reindex(columns=CANCER_ORDER)
-    sns.heatmap(sub_heat, annot=True, fmt=".2f", cmap="vlag", center=0.5, vmin=0.30, vmax=0.75, cbar_kws={"label": "ROC AUC"}, ax=ax_e)
-    ax_e.set_xlabel("")
-    ax_e.set_ylabel("")
+    # Paired within-cancer contrast; produced by within_cancer_pooling_contrast.py.
+    ax_e.set_title("Effect of pooled training on within-cancer ROC AUC")
+    contrast = pd.read_csv(SOURCE_ROOT / "figure_03_within_cancer_pooling_summary.csv")
+    models_e = [m for m in MODEL_ORDER if m in set(contrast["model_name"])]
+    offsets = {"os_3yr": -0.22, "os_5yr": 0.0, "extreme_os": 0.22}
+    for y, model_name in enumerate(models_e):
+        for endpoint in ENDPOINT_ORDER:
+            row = contrast[(contrast["model_name"] == model_name) & (contrast["endpoint"] == endpoint)]
+            if row.empty:
+                continue
+            row = row.iloc[0]
+            ypos = y + offsets[endpoint]
+            excludes_zero = row["mean_delta_ci_high"] < 0 or row["mean_delta_ci_low"] > 0
+            ax_e.plot([row["mean_delta_ci_low"], row["mean_delta_ci_high"]], [ypos, ypos], color=ENDPOINT_COLOR[endpoint], linewidth=1.4)
+            ax_e.scatter(
+                row["mean_delta"], ypos, color=ENDPOINT_COLOR[endpoint] if excludes_zero else "white",
+                edgecolor=ENDPOINT_COLOR[endpoint], linewidth=1.3, s=34, zorder=3,
+            )
+    ax_e.axvline(0, color="#7B8791", linestyle="--", linewidth=1)
+    ax_e.set_yticks(range(len(models_e)))
+    ax_e.set_yticklabels([MODEL_LABEL[m] for m in models_e])
+    ax_e.invert_yaxis()
+    ax_e.set_xlabel("Pooled minus cancer-specific ROC AUC (95% CI)")
+    ax_e.legend(
+        handles=[Line2D([0], [0], marker="o", color=ENDPOINT_COLOR[e], label=ENDPOINT_LABEL[e], markersize=6) for e in ENDPOINT_ORDER]
+        + [Line2D([0], [0], marker="o", color="#555555", markerfacecolor="white", linestyle="None", label="CI includes 0", markersize=6)],
+        frameon=False, fontsize=8.5, loc="lower right",
+    )
+    ax_e.set_xlim(-0.145, 0.215)
     panel_label(ax_e, "E")
 
     ax_f.set_title("Task size and discrimination")
@@ -1168,7 +1190,7 @@ def write_manifest() -> None:
     figure_sources = {
         "Figure 1": ["figure_01_cohort_flow.csv", "figure_01_class_counts.csv", "figure_01_modality_composition.csv"],
         "Figure 2": ["figure_02_within_cancer_model_summary.csv", "figure_02_within_cancer_auc_heatmap.csv", "figure_02_paired_auc_delta.csv", "figure_02_pr_auc_lift.csv", "figure_02_runtime_pareto.csv"],
-        "Figure 3": ["figure_03_patient_oof_predictions.csv", "figure_03_roc_curves.csv", "figure_03_pr_curves.csv", "figure_03_pooling_shift.csv", "figure_03_pooled_auc_heatmap.csv", "figure_03_pooled_subgroup_auc.csv", "figure_03_task_size_auc.csv"],
+        "Figure 3": ["figure_03_patient_oof_predictions.csv", "figure_03_roc_curves.csv", "figure_03_pr_curves.csv", "figure_03_pooling_shift.csv", "figure_03_pooled_auc_heatmap.csv", "figure_03_pooled_subgroup_auc.csv", "figure_03_within_cancer_pooling_contrast.csv", "figure_03_within_cancer_pooling_summary.csv", "figure_03_task_size_auc.csv"],
         "Figure 4": ["figure_04_shortcut_controls.csv", "figure_04_cohort_separability.csv", "figure_04_heldout_diagnostics.csv", "figure_04_permutation_distributions.csv", "figure_04_model_minus_shortcut.csv"],
         "Figure 5": ["figure_05_calibration_curves.csv", "figure_05_pooled_probabilistic_metrics.csv", "figure_05_feature_modalities_across_folds.csv", "figure_05_runtime.csv"],
     }

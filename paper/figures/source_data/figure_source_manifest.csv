@@ -13,6 +13,8 @@ Figure 3,paper/figures/source_data/figure_03_pr_curves.csv,paper/analysis/build_
 Figure 3,paper/figures/source_data/figure_03_pooling_shift.csv,paper/analysis/build_manuscript_assets.py
 Figure 3,paper/figures/source_data/figure_03_pooled_auc_heatmap.csv,paper/analysis/build_manuscript_assets.py
 Figure 3,paper/figures/source_data/figure_03_pooled_subgroup_auc.csv,paper/analysis/build_manuscript_assets.py
+Figure 3,paper/figures/source_data/figure_03_within_cancer_pooling_contrast.csv,paper/analysis/build_manuscript_assets.py
+Figure 3,paper/figures/source_data/figure_03_within_cancer_pooling_summary.csv,paper/analysis/build_manuscript_assets.py
 Figure 3,paper/figures/source_data/figure_03_task_size_auc.csv,paper/analysis/build_manuscript_assets.py
 Figure 4,paper/figures/source_data/figure_04_shortcut_controls.csv,paper/analysis/build_manuscript_assets.py
 Figure 4,paper/figures/source_data/figure_04_cohort_separability.csv,paper/analysis/build_manuscript_assets.py
