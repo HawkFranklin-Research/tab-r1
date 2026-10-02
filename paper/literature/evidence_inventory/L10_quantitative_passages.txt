@@ -1,0 +1,89 @@
+# Retrieval inventory, NOT completed visual/claim audit
+Source L10: Shortcut learning in deep neural networks; DOI 10.1038/s42256-020-00257-z
+Original text line numbers. Numbers may be citations, secondary reports,
+toy examples, or ambiguous table columns. Verify context before citing.
+
+L85: Figure 1. Deep neural networks often solve problems by taking shortcuts instead of learning the
+L102:     a large number of failure cases, some of which are visualised in Figure 1. DNNs achieve
+L122:     Figure 1). Together with the hospital’s pneumonia prevalence rate it was able to achieve a
+L132:       [16], anti-causal learning [17], dataset bias [18], the tank legend [19] and the Clever Hans
+L210:    in Section 6), what does shortcut learning in artificial neural networks look like? Figure 2
+L212:    a star from a moon).2 When testing the model on similar data (blue) the network does
+L224:    we here introduce a taxonomy of decision rules (visualised in Figure 3), starting from a
+L233: Figure 2. Toy example of shortcut learning in neural networks. When trained on a simple dataset
+L235: categorise novel similar exemplars (mathematically termed i.i.d. test set, defined later in Section 3).
+L246:     feature (the grey area in Figure 3) and does not reach good performance on the data it was
+L250:     (2) training solutions, including overfitting solutions
+L264:     features (the blue area in Figure 3).
+L270: Figure 3. Taxonomy of decision rules. Among the set of all possible rules, only some solve the
+L276:     (3) i.i.d. test solutions, including shortcuts
+L288:     network3 trained on this dataset, however, learns a location-based rule (see Figure 2). In
+L289:     this case, the network has used a shortcut feature (the blue area in Figure 3): a feature that
+L293:     Decision rules that use the intended features (the red area in Figure 3) work well not only
+L321: 4.1    Dataset: shortcut opportunities
+L337: predictions are much less affected when context is missing [28, 29, 30, 31]. In addition
+L343: hope that this is sufficient to sample the diverse world that we live in [34]). Systematic
+L360:                                 cation in standard datasets [36], and DNNs strongly rely on texture
+L391:        features that humans would rely on when classifying an image [41].
+L393:    5 In models of animal learning, the blocking effect is a related phenomenon. Once a predictive cue/feature (say,
+L403: Figure 4. Both human and machine vision generalise, but they generalise very differently. Left:
+L419:     general lack of o.o.d. generalisation (Figure 4) [45, 36, 46, 41]. DNNs recognise guitars
+L424:     or even look like airplanes, cats or food [8, 45, 41]. Figure 4 on the right, for example,
+L455: [9] or texture while keeping the shape intact [38] (see Figure 4 for examples). Some key
+L473: [55, 56, 57, 58]. Feature combination crucially depends on shortcut features like word
+L475: inability to generalise to more challenging test conditions [62, 63, 64, 65]. Attempts like
+L528: ImageNet dataset [75] was intended to measure the ability “object recognition”, but DNNs
+L578:        recognition with local features only [36], reasoning based on single cue words [59, 14]
+L586:        6.2     Detecting shortcuts: towards o.o.d. generalisation tests
+L614: learned setting [89, 90, 91]. If model performance is assessed only on i.i.d. test data, then
+L617: We, among many others [93, 78, 94, 95, 96], have explored a variety of o.o.d. tests and we
+L669: ImageNet-C applies 15 different image corruptions to standard test images, an approach we find
+L676: design by testing on a domain different from training data (e.g. cartoon images) [99].
+L710:       prior [106] that is so powerful for natural images that even untrained networks can be
+L717:     • Experience: training data. As discussed in Section 4.1, shortcut opportunities are present
+L726:       tended features from shortcut features [39, 111].
+L732:       orisation [116, 117]. The complex interactions between training method and architecture
+L778: show promising generalisation abilities [129, 130]. While adversarial attacks test model
+L800: connected to the identification of causal graphs [139] since learning causal features allows
+L846: (3) Testing o.o.d. generalisation
+L913:  [5] Devlin, J., Chang, M.-W., Lee, K. & Toutanova, K. Bert: Pre-training of deep
+L926: [12] Buolamwini, J. & Gebru, T. Gender shades: Intersectional accuracy disparities in
+L942: [18] Torralba, A. & Efros, A. A. Unbiased look at dataset bias. In Proceedings of the
+L961:      natural scenes: Critical features revisited. Journal of Vision 10, 6–6 (2010).
+L985: [33] Ilyas, A. et al. Adversarial examples are not bugs, they are features. arXiv preprint
+L993: [36] Brendel, W. & Bethge, M. Approximating CNNs with bag-of-local-features models
+L1004: [38] Geirhos, R. et al. ImageNet-trained CNNs are biased towards texture; increas-
+L1109:      mographics in repeated loss minimization. arXiv preprint arXiv:1806.08010 (2018).
+L1140:      x1UByHT60mQ&feature=youtu.be&t=37m44s.
+L1172:       features’. Distill (2019).
+L1173:  [98] Barbu, A. et al. ObjectNet: a large-scale bias-controlled dataset for pushing the
+L1215:       Perspective of loss landscapes. arXiv preprint arXiv:1706.10239 (2017).
+L1221: [115] Sun, K. & Nielsen, F. Lightlike neuromanifolds, Occam’s Razor and deep learning.
+L1226:       learning rate in training neural networks. arXiv preprint arXiv:1907.04595 (2019).
+L1288: [141] Higgins, I. et al. Beta-VAE: Learning basic visual concepts with a constrained vari-
+L1301: The code to reproduce our toy example (Figure 2) is available from https://github.com/rgeirhos/
+L1303: 200 × 200 dimensional 2D canvas. The training set is constructed out of 4000 images, where 2000
+L1306: bottom right quarters of the canvas. At test time the setup is nearly identical, 1000 images with a
+L1311: network. The classifiers are trained for five epochs with a batch size of 100 on the training set and
+L1315: two output units corresponding to the two target classes. It reaches 100% accuracy at training time
+L1316: and approximately chance-level accuracy at test time (51.0%). The convolutional network had three
+L1319: the logits. It reaches 100% accuracy on train and test set.
+L1323: Figure 1 consists of four images from different sources. The first image from the left was taken from
+L1328: and adapted by us from Figure 2B of the corresponding publication. The image on the right
+L1329: is Figure 1 from ref. [64]. It was released under CC BY 4.0 license as stated here: https:
+L1331:     The image from Section 4.1 was adapted from Figure 1 of ref. [9] with permission from the
+L1332: authors (image cropped from original figure by us). The image from Section 4.2 was adapted from
+L1333: Figure 1 of ref. [38] with permission from the authors (image cropped from original figure by us).
+L1334: The image from Section 4.3 was adapted from Figure 1 of ref. [45] with permission from the authors
+L1336:     Figure 4 consists of a number of images from different sources. The first author of the corre-
+L1337: sponding publication is mentioned in the figure for identification. The images from ref. [8] were
+L1339: adapted by us from Figure 5a of the corresponding publication (images cropped from original fig-
+L1340: ure by us). The images from ref. [50] were adapted from Figure 1 of the corresponding paper with
+L1341: permission from the authors (images cropped from original figure by us). The images from ref. [49]
+L1342: were adapted from Figure 1 of the corresponding paper with permission from the authors (images
+L1343: cropped from original figure by us). The images from ref. [38] were adapted from Figure 1 of
+L1345: us). The images from ref. [41] were adapted from Figure 1 of the corresponding paper with per-
+L1346: mission from the authors (images cropped from original figure by us). The images from ref. [36]
+L1347: were adapted from Figure 5 of the corresponding paper with permission from the authors (images
+L1348: cropped from original figure by us). The images from ref. [9] were adapted from Figure 1 of the
+L1354: The images from ref. [45] were adapted from Figure 1 and Figure 2 of the corresponding paper

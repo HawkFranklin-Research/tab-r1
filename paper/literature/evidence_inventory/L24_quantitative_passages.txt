@@ -1,0 +1,71 @@
+# Retrieval inventory, NOT completed visual/claim audit
+Source L24: LightGBM: A Highly Efficient Gradient Boosting Decision Tree; DOI NA
+Original text line numbers. Numbers may be citations, secondary reports,
+toy examples, or ambiguous table columns. Verify context before citing.
+
+L47:          training process of conventional GBDT by up to over 20 times while achieving
+L55: rank [4]. In recent years, with the emergence of big data (in terms of both the number of features
+L64: weights to speed up the training process of boosting [5, 6, 7], they cannot be directly applied to GBDT
+L73: with larger gradients1 (i.e., under-trained instances) will contribute more to the information gain.
+L90: public datasets show that LightGBM can accelerate the training process by up to over 20 times while
+L94: for LightGBM on public datasets are presented in Sec. 5. Finally, we conclude the paper in Sec. 6.
+L98: GBDT is an ensemble model of decision trees, which are trained in sequence [1]. In each iteration,
+L105: algorithm [10, 11, 12], as shown in Alg. 13 . Instead of finding the split points on the sorted feature
+L109: As shown in Alg. 1, the histogram-based algorithm finds the best split points based on the feature
+L125:      There are some other works speed up GBDT training via GPU [17, 18], or parallel training [19]. However,
+L135: [20] uses a random subset to train the weak learners in every iteration. In [6], the sampling ratio are
+L136: dynamically adjusted in the training progress. However, all these works except SGB [20] are based
+L140: Similarly, to reduce the number of features, it is natural to filter weak features [22, 23, 7, 24]. This
+L146: algorithm can reduce the training cost by ignoring the features with zero values [13]. However,
+L148: reason is that the histogram-based algorithm needs to retrieve feature bin values (refer to Alg. 1) for
+L165:              H ← new Histogram()                         g ← loss(I, preds), w ← {1,1,...}
+L198: gradients and selects the top a × 100% instances. Then it randomly samples b × 100% instances from
+L205: Suppose that we have a training set with n i.i.d. instances {x1 , · · · , xn }, where each xi is a vector
+L207: loss function with respect to the output of the model are denoted as {g1 , · · · , gn }. The decision tree
+L210: Definition 3.1 Let O be the training dataset on a fixed node of the decision tree. The variance gain
+L222: Vj (d∗j ). 5 Then, the data are split according feature j ∗ at point dj ∗ into the left and right child nodes.
+L224: of their gradients in the descending order; second, we keep the top-a × 100% instances with the larger
+L225: gradients and get an instance subset A; then, for the remaining set Ac consisting (1 − a) × 100%
+L247:             3.2 We denotePthe approximation error in GOSS as E(d) = |Ṽj (d) − Vj (d)| and ḡlj (d) =
+L303: 4    Exclusive Feature Bundling
+L306: Algorithm 3: Greedy Bundling                                Algorithm 4: Merge Exclusive Features
+L335: Theorem 4.1 The problem of partitioning features into a smallest number of exclusive bundles is
+L354: notice that there are usually quite a few features, although not 100% mutually exclusive, also rarely
+L358: accuracy by at most O([(1 − γ)n]−2/3 )(See Proposition 2.1 in the supplementary materials), where
+L366: O(#f eature2 ) and it is processed only once before training. This complexity is acceptable when the
+L378: takes value from [0, 10) and feature B takes value [0, 20). We then add an offset of 10 to the values of
+L379: feature B so that the refined feature takes values from [10, 30). After that, it is safe to merge features
+L380: A and B, and use a feature bundle with range [0, 30] to replace the original features A and B. The
+L394: in Table 1. Among them, the Microsoft Learning to Rank (LETOR) [26] dataset contains 30K web
+L396: Insurance Claim [27] and the Flight Delay [28] datasets both contain a lot of one-hot coding features.
+L397: And the last two datasets are from KDD CUP 2010 and KDD CUP 2012. We directly use the features
+L398: used by the winning solution from NTU [29, 30, 31], which contains both dense and sparse features,
+L413:                                         Table 1: Datasets used in the experiments.
+L415:                 Allstate          12 M        4228            Sparse                                         Binary classification       AUC
+L416:                 Flight Delay      10 M         700            Sparse                                         Binary classification       AUC
+L418:                 KDD10              19M        29M             Sparse                                         Binary classification       AUC
+L419:                 KDD12             119M        54M             Sparse                                         Binary classification       AUC
+L421: Table 2: Overall training time cost comparison. LightGBM is lgb_baseline with GOSS and EFB.
+L431: Table 3: Overall accuracy comparison on test datasets. Use AUC for classification task and
+L442: and accuracy. We set a = 0.05, b = 0.05 for Allstate, KDD10 and KDD12, and set a = 0.1, b = 0.1
+L444: we get the accuracy results from the iteration with the best score.6
+L475:      Figure 1: Time-AUC curve on Flight Delay.                                                           Figure 2: Time-NDCG curve on LETOR.
+L476: The training time and test accuracy are summarized in Table 2 and Table 3 respectively. From these
+L480: 14x and 13x respectively on the Allstate, Flight Delay, LETOR, KDD10 and KDD12 datasets. Since
+L481: xgb_his is quite memory consuming, it cannot run successfully on KDD10 and KDD12 datasets
+L482: due to out-of-memory. On the remaining datasets, LightGBM are all faster, up to 9x speed-up is
+L485: we also show the training curves based on wall clock time on Flight Delay and LETOR in the Fig. 1
+L492: Table 4: Accuracy comparison on LETOR dataset for GOSS and SGB under different sampling ratios.
+L500: and Fig. 2, respectively. To save space, we put the remaining training curves of the other datasets in
+L510: (LightGBM without GOSS) in Table 2, we can see that GOSS can bring nearly 2x speed-up by its
+L511: own with using 10% - 20% data. GOSS can learn trees by only using the sampled data. However, it
+L517: [20]. Without loss of generality, we use the LETOR dataset for the test. We tune the sampling ratio
+L519: these settings until convergence by using early stopping. The results are shown in Table 4. We can
+L525: results are shown in Table 2. Here we do not allow the confliction in the bundle finding process (i.e.,
+L526: γ = 0).7 We find that EFB can help achieve significant speed-up on those large-scale datasets.
+L569:  [7] Ron Appel, Thomas J Fuchs, Piotr Dollár, and Pietro Perona. Quickly boosting decision trees-pruning underachieving features early. In
+L578: [10] Sanjay Ranka and V Singh. Clouds: A decision tree classifier for large datasets. In Proceedings of the 4th Knowledge Discovery and
+L613: [23] Luis O Jimenez and David A Landgrebe. Hyperspectral data analysis and supervised feature reduction via projection pursuit. IEEE
+L620: [26] Tao Qin and Tie-Yan Liu. Introducing LETOR 4.0 datasets. CoRR, abs/1306.2597, 2013.
+L627:      Chang, Yin-Hsuan Wei, et al. Feature engineering and classifier ensemble for kdd cup 2010. In KDD Cup, 2010.
+L633: [31] Libsvm binary classification data, https://www.csie.ntu.edu.tw/~cjlin/libsvmtools/datasets/binary.html.

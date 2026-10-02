@@ -1,0 +1,646 @@
+SOURCE ID: L09
+TITLE: Characterizing and Avoiding Negative Transfer
+YEAR: 2019
+DOI: 10.1109/CVPR.2019.01155
+PDF: ../pdfs/L09.pdf
+PAGES: 10
+EXTRACTION: pdftotext -layout. Page breaks are form feeds. Check equations, tables, and figures against the PDF during visual audit.
+==============================================================================
+
+                           Characterizing and Avoiding Negative Transfer
+
+                           Zirui Wang, Zihang Dai, Barnabás Póczos, Jaime Carbonell
+                                          Cargenie Mellon University
+                                     {ziruiw,dzihang,bapoczos,jgc}@cs.cmu.edu
+
+
+
+                         Abstract                                    cations [39, 16, 17].
+                                                                        However, the success of transfer learning is not always
+    When labeled data is scarce for a specific target task,          guaranteed. If the source and target domains are not suffi-
+transfer learning often offers an effective solution by utiliz-      ciently similar, transferring from such weakly related source
+ing data from a related source task. However, when trans-            may hinder the performance in the target, a phenomenon
+ferring knowledge from a less related source, it may in-             known as negative transfer. The notion of negative trans-
+versely hurt the target performance, a phenomenon known              fer has been well recognized within the transfer learning
+as negative transfer. Despite its pervasiveness, negative            community [20, 35]. An early paper [24] has conducted
+transfer is usually described in an informal manner, lack-           empirical study on a simple binary classification problem to
+ing rigorous definition, careful analysis, or systematic treat-      demonstrate the existence of negative transfer. Some more
+ment. This paper proposes a formal definition of nega-               recent work [7, 10, 3] has also observed similar negative
+tive transfer and analyzes three important aspects thereof.          impact while performing transfer learning on more complex
+Stemming from this analysis, a novel technique is proposed           tasks under different settings.
+to circumvent negative transfer by filtering out unrelated
+                                                                        Despite these empirical observations, little research
+source data. Based on adversarial networks, the technique
+                                                                     work has been published to analyze or predict negative
+is highly generic and can be applied to a wide range of
+                                                                     transfer, and the following questions still remain open:
+transfer learning algorithms. The proposed approach is
+                                                                     First, while the notion being quite intuitive, it is not clear
+evaluated on six state-of-the-art deep transfer methods via
+                                                                     how negative transfer should be defined exactly. For exam-
+experiments on four benchmark datasets with varying lev-
+                                                                     ple, how should we measure it at test time? What type of
+els of difficulty. Empirically, the proposed method consis-
+                                                                     baseline should we compare with? Second, it is also un-
+tently improves the performance of all baseline methods and
+                                                                     known what factors cause negative transfer, and how to ex-
+largely avoids negative transfer, even when the source data
+                                                                     ploit them to determine that negative transfer may occur.
+is degenerate.
+                                                                     Although the divergence between the source and target do-
+                                                                     main is certainly crucial, we do know how large it must be
+1. Introduction                                                      for negative transfer to occur, nor if it is the only factor.
+    The development of deep neural networks (DNNs) has               Third and most importantly, given limited or no labeled tar-
+improved the state-of-the-art performance on a wide range            get data, how to detect and/or avoid negative transfer.
+of machine learning problems and applications. How-                     In this work, we take a step towards addressing these
+ever, DNNs often require a large amount of labeled data to           questions. We first derive a formal definition of nega-
+train well-generalized models and as more classical meth-            tive transfer that is general and tractable in practice. Here
+ods, DNNs rely on the assumption that training data and              tractable means we can explicitly measure its effect given
+test data are drawn from the same underlying distribution.           the testing data. This definition further reveals three under-
+In some cases, collecting large volumes of labeled train-            lying factors of negative transfer that give us insights on
+ing data is expensive or even prohibitive. Transfer learn-           when it could occur. Motivated by these theoretical ob-
+ing [20] addresses this challenge of data scarcity by utilizing      servations, we develop a novel and highly generic tech-
+previously-labeled data from one or more source tasks. The           nique based on adversarial networks to combat negative
+hope is that this source domain is related to the target do-         transfer. In our approach, a discriminator estimating both
+main and thus transferring knowledge from the source can             marginal and joint distributions is used as a gate to filter
+improve the performance within the target domain. This               potentially harmful source data by reducing the bias be-
+powerful paradigm has been studied under various settings            tween source and target risks, which corresponds to the
+[35] and has been proven effective in a wide range of appli-         idea of importance reweighting [5, 38]. Our experiments
+
+
+                                                                  111293
+involving eight transfer learning methods and four bench-            with ℓ being the specific task loss. To make the setting
+mark datasets reveal the three factors of negative trans-            meaningful, it is often assumed that ns ≫ nl .
+fer. In addition, we apply our method to six state-of-the-
+art deep methods and compare their performance, demon-               Negative Transfer. The notion of negative transfer lacks
+strating that our approach substantially improves the perfor-        a rigorous definition. A widely accepted description of neg-
+mance of all base methods under potential negative transfer          ative transfer [20, 35] is stated as “transferring knowledge
+conditions by largely avoiding negative transfer.                    from the source can have a negative impact on the target
+                                                                     learner”. While intuitive, this description conceals many
+2. Related Work                                                      critical factors underlying negative transfer, among which
+                                                                     we stress the following three points:
+   Transfer learning [20, 36] uses knowledge learned in the
+source domain to assist training in the target domain. Early         1. Negative transfer should be defined w.r.t. the algorithm.
+methods exploit conventional statistical techniques such                Specifically, the informal description above does not
+as instance weighting [14] and feature mapping [19, 32].                specify what the negative impact is compared with. For
+Compared to these earlier approaches, deep transfer net-                example, it will be misleading to only compare with the
+works achieve better results in discovering domain invariant            best possible algorithm only using the target data, i.e.,
+factors [37]. Some deep methods [16, 27] transfer via distri-           defining negative transfer as
+bution (mis)match measurements such as Maximum Mean
+                                                                                    RPT (A(S, T )) > min RPT (A′ (∅, T )),      (2)
+Discrepancy (MMD) [14]. More recent work[9, 29, 3, 26]                                                 ′    A
+exploit generative adversarial networks (GANs) [12] and                   because the increase in risk may not come from using
+add a subnetwork as a domain discriminator. These meth-                   the source-domain data, but the difference in algorithms.
+ods achieve state-of-the-art on computer vision tasks [26]                Therefore, to study negative transfer, one should focus
+and some natural language processing tasks [17]. However,                 on a specific algorithm at a time and compare its perfor-
+none of these techniques are specifically designed to tackle              mance with and without the source-domain data. Hence,
+the problem of negative transfer.                                         we define the negative transfer condition (NTC)1 for any
+   Negative transfer Early work that noted negative transfer              algorithm A as
+[24] was targeted at simple classifiers such as hierarchical
+                                                                                        RPT (A(S, T )) > RPT (A(∅, T )).        (3)
+Naive Bayes. Later, similar negative effects have also been
+observed in various settings including multi-source trans-                For convenience, we also define the negative transfer
+fer learning [7], imbalanced distributions [10] and partial               gap (NTG) as a quantifiable measure of negative trans-
+transfer learning [3]. While the importance of detecting                  fer:
+                                                                                     RPT (A(S, T )) − RPT (A(∅, T )),          (4)
+and avoiding negative transfer has raised increasing atten-
+                                                                          and we say that negative transfer occurs if the negative
+tion [35], the literature lacks in-depth analysis.
+                                                                          transfer gap is positive and vice versa.
+3. Rethink Negative Transfer                                         2. Divergence between the joint distributions is the root to
+                                                                        negative transfer. As negative transfer is algorithm spe-
+Notation. We will use PS (X, Y ) and PT (X, Y ), respec-
+                                                                        cific, it is natural to ask the question that whether there
+tively, to denote the the joint distribution in the source and
+                                                                        exists a transfer learning algorithm that can always im-
+the target domain, where X is the input random variable
+                                                                        prove the expected risk compared to its target-domain
+and Y the output. Following the convention, we assume
+                                                                        only baseline. It turned out this depends on the di-
+having access to labeled source set S = {(xis , ysi )}ni=1
+                                                        s
+                                                           sam-
+                                                                        vergence between PS (X, Y ) and PT (X, Y ) [11]. As
+pled from the source joint PS (X, Y ), a labeled target set
+                                                                        an extreme example, assume PS (X) = PT (X) and
+Tl = {(xjl , ylj )}nj=1
+                     l
+                        drawn from the target joint PT (X, Y ),
+                                                                        PS (Y | x) is uniform for any x. In the case, there is
+and an unlabeled target set Tu = {xku }nk=1 u
+                                               from the target          no meaningful knowledge in PS (X, Y ) at all. Hence,
+marginal PT (X). For convenience, we define T = (Tl , Tu ).             exploiting S ∼ PS (X, Y ) will almost surely harm the
+                                                                        estimation of PT (Y | X), unless PT (Y | X) is uniform.
+Transfer Learning. Under the notation, transfer learning                  In practice, we usually deal with the case where there ex-
+aims at designing an algorithm A, which takes both the                    ists some “systematic similarity” between PS (X, Y ) and
+source and target domain data S, T as input, and outputs a                PT (X, Y ). Then, an ideal transfer would figure out and
+better hypothesis (model) h = A(S, T ), compared to only                  take advantage of the similar part, leading to improved
+using the target-domain data . For model comparison, we                   performance. However, if an algorithm fails to discard
+will adapt the standard expected risk, which is defined as                the divergent part and instead rely on it, one can expect
+             RPT (h) := Ex,y∼PT [ℓ(h(x), y)] ,             (1)            1 More discussion in the supplementary.
+
+
+
+
+                                                                  11294
+   negative transfer to happen. Thus, regardless of the al-                       4.1. Domain Adversarial Network
+   gorithm choice, the distribution shift is the actual root to
+                                                                                     As a notable example, a recent line of work [16, 8, 30]
+   negative transfer.
+                                                                                  has successfully utilized a domain-invariant feature space
+3. Negative transfer largely depends on the size of the la-                       assumption to achieve knowledge transfer. Specifically, it
+   beled target data. While the previous discussion focuses                       is assumed that there exists a feature space that is both
+   on the distribution level, an overlooked factor of nega-                       shared by both source and target domains and discrimina-
+   tive transfer is the size of the labeled target data, which                    tive enough for predicting the output. By learning a feature
+   has a mixed effect.                                                            extractor F that can map both the source and target input to
+                                                                                  the same feature space, classifier learned on the source data
+   On one hand, for the same algorithm and distribution di-                       can transfer to the target domain.
+   vergence, NTC depends on how well the algorithm can                               To find such a feature extractor, a representative solution
+   do using target data alone, i.e. the RHS of Eq.(3). In                         is the Domain Adversarial Neural Network (DANN) [9],
+   zero-shot transfer learning2 [8, 21] where there is no la-                     which exploits a generative adversarial network (GAN)
+   beled target data (nl = 0), only using unlabeled target                        framework to train the feature extractor F such that the
+   data would result in a weak random model and thus NTC                          feature distributions P (F (XS )) and P (F (XT )) cannot be
+   is unlikely to be satisfied. When labeled target data is                       distinguished by the discriminator D. Based on the shared
+   available [24, 29, 17], a better target-only baseline can                      feature space, a simple classifier C is trained on both source
+   be obtained using semi-supervised learning methods and                         and target data. Formally, the objective can be written as:
+   so negative transfer is relatively more likely to occur. At
+   the other end of the spectrum, if there is an abundance of                       argmin argmax LCLF (F, C) − µLADV (F, D),                    (5)
+   labeled target data, then transferring from a even slightly                           F,C       D
+
+   different source domain could hurt the generalization.                                LCLF (F, C) = Exl ,yl ∼TL [ℓCLF (C(F (xl )), yl )]
+   Thus, this shows that negative transfer is relative.                                                + Exs ,ys ∼S [ℓCLF (C(F (xs )), ys )] ,   (6)
+   On the other hand, the amount of labeled target data                                  LADV (F, D) = Exu ∼PT (X) [log D(F (xu ))]
+   has a direct effect on the feasibility and reliability of                                         + Exs ∼PS (X) [log(1 − D(F (xs )))] . (7)
+   discovering shared regularity between the joint distri-
+   butions. As discussed above, the key component of a                            Intuitively, LCLF is the supervised classification loss on both
+   transfer learning algorithm is to discover the similarity                      the target and source labeled data, LADV is the standard
+   between the source joint PS (X, Y ) and the target joint                       GAN loss treating F (xu ) and F (xs ) as the true and fake
+   PT (X, Y ). When labeled target data is not available                          features respectively, and µ is a hyper-parameter balancing
+   (nl = 0), one has to resort to the similarity between                          the two terms. For more details and theoretical analysis, we
+   the marginals PS (X) and PT (X), which though has a                            refer readers to the original work [8].
+   theoretical limitation [2]. In contrast, if one has a con-                        Now, notice that the DANN objective implicitly makes
+   siderable number of samples (xl , yl ) ∼ PT (X, Y ) and                        the following assumption: For any xs ∈ Xs , there exists a
+   (xs , ys ) ∼ PS (X, Y ), the problem would be manage-                          xt ∈ Xt such that
+   able. Therefore, an ideal transfer learning algorithm may
+   be able to utilize labeled target data to mitigate the neg-                     PS (Y |xs ) = PT (Y |xt ) = P (Y |F (xs )) = P (Y |F (xt )).
+   ative impact of unrelated source information.
+                                                                                  In other words, it is assumed that every single source sam-
+   With these points in mind, we next turn to the problem                         ple can provide meaningful knowledge for transfer learning.
+of how to avoid negative transfer in a systematic way.                            However, as we have discussed in Section 3, some source
+                                                                                  samples may not be able to provide any knowledge at all.
+4. Proposed Method                                                                Consider the case where there is a source input xs ∈ Xs
+                                                                                  such that PS (Y | xs ) 6= PT (Y | xt ) for any xt . Since
+    As discussed in Section 3, the key to achieving success-                      P (F (Xs )) = P (F (Xt )) as a result of the GAN objective,
+ful transfer and avoiding negative effects is to discover and                     there exists a x′ ∈ Xt such that F (x′ ) = F (xs ) and hence
+exploit shared underlying structures between PS (X, Y ) and                       P (Y | F (x′ )) = P (Y | F (xs )). Then, if P (Y | F (xs )) is
+PT (X, Y ). In practice, there are many possible regulari-                        trained on the source data to match PS (Y | xs ), it follows
+ties one may take advantage of. To motivate our proposed
+method, we first review an important line of work and show                             P (Y |F (x′ )) = P (Y |F (xs )) = P (Y |xs ) 6= P (Y |x′ ).
+how the observation in section 3 helps us to identify the
+                                                                                  As a result, relying on such “unrelated” source samples can
+limitation.
+                                                                                  hurt the performance, leading to negative transfer. Moti-
+  2 It is often referred to as unsupervised domain adaptation in literature.      vated by this limitation, we next present a simple yet ef-
+
+
+                                                                               11295
+                                                                              where SG(·) denotes stop gradient and λ is another hyper-
+                                                                              parameter introduce to scale the density ratio. As the den-
+                                                                              sity ratio acts like a gating function, we will refer to mech-
+                                                                              anism as discriminator gate.
+                                                                                  On the other hand, we also augment the adversarial
+                                                                              learning objective (7) by incorporating terms for matching
+                                                                              the joint distributions:
+                                                                                   Laug
+                                                                                    ADV (F, D) = Exu ∼PT (X) [log D(F (xu ), nil)]
+                                                                                     + Exs ∼PS (X) [log(1 − D(F (xs ), nil))]
+                                                                                                                                       (10)
+                                                                                     + Exl ,yl ∼TL [log D(F (xl ), yl )]
+                                                                                     + Exs ,ys ∼S [log(1 − D(F (xs ), ys ))] ,
+Figure 1. The architecture of proposed discriminator gate, where
+f is the extracted feature layer, ŷ and ℓCLF are predicted class label       where nil denotes a dummy label which does not provide
+and its loss, dˆ is the predicted domain label, Lgate                         any label information and it is included to enable the dis-
+                                                    CLF is the classifi-
+cation loss, Laug
+               ADV   is the adversarial learning loss; GRL stands for         criminator D being used as both a marginal discriminator
+Gradient Reversal Layer and ⊙ is the Hadamard product.                        and a joint discriminator. As a benefit, the joint discrim-
+                                                                              inator can utilize unlabeled target data since labeled data
+fective method to deal with harmful source samples in a                       could be scarce. Similarly, under this objective, the feature
+systematic way.                                                               network F will receive gradient from both the marginal dis-
+                                                                              criminator and the joint discriminator. Theoretically speak-
+4.2. Discriminator Gate                                                       ing, the joint matching objective subsumes the the marginal
+   The limitation of DANN comes from the unnecessary                          matching objective, as matched joint distribution implied
+assumption that all source samples are equally useful. To                     matched marginals. However, in practice, the labeled target
+eliminate the weakness, a natural idea is to reweight each                    data TL is usually limited, making the joint matching objec-
+source sample in some proper manner. To derive an appro-                      tive itself insufficient. This particular design choice echos
+priate weight, notice that the standard supervised learning                   our discussion about how the size of labeled target data can
+objective can be rewritten as                                                 influence our algorithm design in Section 3.
+                                                                                  Combining the gated classification objective (9) and the
+ LSUP = Ex,y∼PT (X,Y ) [ℓCLF (C(F (x)), y)]
+                                                                              augmented adversarial learning objective (10), we arrive at
+                                                        (8)
+                                                     
+                         PT (x, y)                                            our proposed approach to transfer learning
+      = Ex,y∼PS (X,Y )             ℓCLF (C(F (x)), y)
+                         PS (x, y)
+                                                                                    argmin argmax Lgate           aug
+                                                                                                   CLF (F, C) − µLADV (F, D).          (11)
+                             (x,y)                                                    F,C       D
+where the density ratio PPTS (x,y) naturally acts as an impor-
+tance weight [5, 38] for the source data. Hence, the problem                  The overall architecture is illustrated in Figure 1. Finally,
+reduces to the classic problem of density ratio estimation.                   although the presentation of the proposed method is based
+    Here, we exploit a GAN discriminator to perform the                       on DANN, our method is highly general and can be applied
+density ratio estimation [31]. Specifically, the discriminator                directly to other adversarial transfer learning methods. In
+takes both x and the paired y as input, and try to classify                   fact, we can even extend non-adversarial methods to achieve
+whether the pair is from the source domain (fake) or the                      similar goals. In our experiments, we adapt six deep meth-
+target domain (true). At any point, the optimal discriminator                 ods [16, 27, 8, 30, 4, 26] of three different categories to
+                             PT (x,y)
+is given by D(x, y) = PT (x,y)+P           , which implies                    demonstrate the effectiveness of our method.
+                                   S (x,y)
+
+
+                    PT (x, y)     D(x, y)                                     5. Experiments
+                              =             .
+                    PS (x, y)   1 − D(x, y)                                      We conduct extensive experiments on four benchmark
+In our implementation, to save model parameters, we reuse                     datasets to (1) analyze negative transfer and its three under-
+the feature extractor to obtain the feature of x and instantiate              lying aspects, and (2) evaluate our proposed discriminator
+D(x, y) as D(F (x), y). With the weight ratio, we modify                      gate on six state-of-the-art methods.
+the classification objective (6) in DANN as
+                                                                              5.1. Datasets
+ Lgate
+  CLF (C, F ) = Exl ,yl ∼TL [ℓCLF (C(F (xl )), yl )]                             We use four standard datasets with different levels of dif-
+           +λExs ,ys ∼S [ω(xs , ys )ℓCLF (C(F (xs )), ys )] ,                 ficulties: (1) small domain shift: Digits dataset, (2) moder-
+                                                            (9)
+                         D(xs , ys )                                          ate domain shift: Office-31 dataset, and (3) large domain
+    ω(xs , ys ) = SG                                                          shift: Office-Home and VisDA datasets.
+                       1 − D(xs , ys )
+
+                                                                           11296
+    Digits contains three standard digit classification            cording to studies in [28, 1], such perturbation is enough to
+datasets: MNIST, USPS, SVHN. Each dataset contains                 cause misclassification for neural networks and therefore is
+large amount of images belonging to 10 classes (0-9).              sufficient for our purpose. In addition, we draw a second
+This dataset is relatively easy due to its simple data dis-        independent Bernoulli variable of probability ǫy and assign
+tribution and therefore we only consider a harder case:            a randomly picked label if it returns one.
+SVHN→MNIST. Specifically, SVHN [18] contains 73K
+images cropped from house numbers in Google Street View
+images while MNIST [15] consists of 70K handwritten dig-
+its captured under constrained conditions.
+    Office-31 [25] is the most widely used dataset for vi-
+sual transfer learning. It contains 4,652 images of 31 cate-
+gories from three domains: Amazon(A) which contains im-                        (a) Original              (b) Perturbed
+ages from amazon.com, Webcam(W) and DSLR(D) which                       Figure 2. Example images before & after perturbation
+consist of images taken by web camera and SLR camera.
+We evaluate all methods across three tasks: W→D, A→D,
+                                                                       Target factor: Similar to previous works, we use all la-
+and D→A. We select these three settings because the other
+                                                                   beled source data for training. For the target data, we first
+three possible cases yield similar results.
+                                                                   split 50% as training set and the rest 50% for testing. In ad-
+    Office-Home [33] is a more challenging dataset that
+                                                                   dition, we use all of target training data as unlabeled target
+consists of about 15,500 images of 65 categories that
+                                                                   data and use L% percent of them as labeled target data. A
+crawled through several search engines and online image
+                                                                   symmetric study of source data can be found in [34].
+directories. In particular, it contains four domains: Artis-
+                                                                       Algorithm factor: To provide a more comprehensive
+tic images(Ar), Clip Art(Cl), Product images(Pr) and Real-
+                                                                   study of negative transfer, we evaluate the performance of
+World images(Rw). We want to test on more interesting and
+                                                                   eight transfer learning methods of five categories: TCA
+practical transfer learning tasks involving adaptation from
+                                                                   [19], KMM [14], DAN [16], DCORAL [27], DANN
+synthetic to real-world and thus we consider three transfer
+                                                                   a.k.a RevGrad [8], ADDA [29], PADA [4], GTA [26].
+tasks: Ar→Rw, Cl→Rw, and Pr→Rw. In addition, we
+                                                                   Specifically, (1) TCA is a conventional method based on
+choose to use the first 25 categories in alphabetic order to
+                                                                   MMD-regularized PCA, (2) KMM is a conventional sam-
+make our results more comparable to previous studies [4].
+                                                                   ple reweighting method, (3) DAN and DCORAL are non-
+    VisDA [22] is another challenging synthetic to real
+                                                                   adversarial deep methods which use a distribution measure-
+dataset. We use the training set as the synthetic source and
+                                                                   ment as an extra loss, (4) DANN, ADDA and PADA use ad-
+the testing set as the real-world target (Synthetic→Real).
+                                                                   versarial learning and directly train a discriminator, (5) GTA
+Specifically, the training set contains 152K synthetic im-
+                                                                   is a GAN based method that includes a generator to gen-
+ages generated by rendering 3D models and the testing set
+                                                                   erate actual images in additional to the discriminator. We
+contains 72K real images from crops of Youtube Bounding
+                                                                   mainly follow the default settings and training procedures
+Box dataset [23], both contain 12 categories.
+                                                                   for model selection as explained in their respective papers.
+5.2. Experimental Setup                                            However, for fair comparison, we use the same feature ex-
+                                                                   tractor and classifier architecture for all deep methods. In
+    To better study negative transfer effect and evaluate our      particular, we use a modified LeNet as detailed in [26] for
+approach, we need to control the three factors discussed in        the Digits dataset. For other datasets, we fine-tune from the
+Section 3, namely algorithm factor, divergence factor and          ResNet-50 [13] pretrained on ImageNet with an added 256-
+target factor. In our experiments, we adopt the following          dimension bottleneck layer between the res5c and fc layers.
+mechanism to control each of them.                                 To compare the performance of our proposed approach, we
+    Divergence factor: Since existing benchmark datasets           adapt a gated version for each of the six deep methods (e.g
+usually contain domains that are similar to each other, we         DANNgate is the gated DANN). Specifically, we extend
+need to alter their distributions to better observe negative       DANN, ADDA and PADA straightforwardly as described
+transfer effect. In our experiments, we introduce two pertur-      in Section 4.2. For GTA, we extend the discriminator to
+bation rates ǫx and ǫy to respectively control the marginal        take in class labels and output domain label predictions as
+divergence and the conditional divergence between two do-          gates. For DAN and DCORAL, we add an extra discrimi-
+mains. Specifically, for each source domain data we inde-          nator network to be used as gates but the general network
+pendently draw a Bernoulli variable of probability ǫx , and        is not trained adversarially. For hyper-parameters, we set
+if it returns one, we add a series of random noises to the         λ = 1 and µ progressively increased from 0 to 1 in all our
+input image such as random rotation, random salt&pepper            experiments. For each transfer task, we compare the av-
+noise, random flipping, etc (examples shown Figure 2). Ac-         erage classification accuracy over five random repeats. To
+
+
+                                                                11297
+Table 1. Classification accuracy (%) of DANN and DANNgate on tasks W→D and A→D. Perturbation rates are set equal, i.e. ǫ = ǫx = ǫy . N T G1 and
+N T G2 are negative transfer gaps for DANN and DANNgate . ∆ is the performance gain of DANNgate compared to DANN.
+
+                                               W→D                                                           A→D
+                         ǫ =0.0      ǫ =0.3      ǫ =0.7       ǫ =0.9       Avg       ǫ =0.0      ǫ =0.3       ǫ =0.7       ǫ =0.9       Avg        L%
+            DANN         99.1±0.8   83.2±1.4    47.2±2.7     32.2±3.5       65.4    76.2±1.5    40.9±1.1     21.3±2.7      12.9±3.7      37.8
+            NTG1           -96.5      -80.3       -44.1        -28.3       -62.3      -73.7       -37.3        -17.2          -9.7      -34.5
+           DANNgate     98.9±0.6    83.3±2.1    48.4±2.5     32.1±3.1       65.7    76.0±1.2    41.0±1.6     21.5±3.1      13.2±2.4      37.9      0%
+            NTG2           -96.3      -80.4       -45.3        -28.2       -62.6      -73.5       -37.4        -17.4         -10.0      -34.6
+              ∆            ↓0.2       ↑0.1        ↑1.2         ↓0.1        ↑0.3       ↓0.2        ↑0.1         ↑0.2          ↑0.3       ↑0.1
+            DANN         99.5±0.4   86.8±2.8    73.1±3.3     48.8±4.3       77.0    78.6±2.7    54.8±3.1     49.6±2.1      32.3±2.6      53.8
+            NTG1           -48.7      -37.8       -23.6         1.6        -27.1      -28.4        -4.4          1.2         18.4        -3.3
+           DANNgate     99.2±0.3    85.4±2.6    79.4±2.9     50.4±3.2       78.6    85.1±1.7    60.2±2.1     58.3±2.0      49.1±2.5      63.2      10%
+            NTG2           -48.4      -36.4       -29.9         0.0        -28.7      -34.9        -9.8         -7.5           1.6      -12.7
+              ∆            ↓0.3       ↓1.4        ↑6.3         ↑1.6        ↑1.6       ↑6.5        ↑5.4         ↑8.7          ↑16.8      ↑9.4
+            DANN         99.6±0.2   89.7±1.6    78.4±2.5     70.5±4.3       84.6    80.2±2.0    73.3±2.2     70.2±3.3      51.3±4.3      68.8
+            NTG1           -18.5      -10.3         1.8         8.2         -4.7       -1.5         6.5          8.9         28.4       10.6
+           DANNgate     100.0±0.1   90.4±1.8    82.0±1.8     79.9±3.8       88.1    89.0±1.5    82.6±1.0     81.3±2.1      80.6±1.8      83.4      30%
+            NTG2           -18.9      -11.0        -1.8         -1.2        -8.2      -10.3        -2.8         -2.2          -0.9       -4.1
+              ∆            ↑0.4       ↑0.7        ↑3.6         ↑9.4        ↑2.6       ↑8.8        ↑9.3         ↑11.1         ↑29.3      ↑14.6
+            DANN        100.0±0.0   92.2±1.7    85.8±2.3     78.2±4.8       89.1    84.5±1.9    77.6±3.8     70.6±4.9      65.4±6.3      74.5
+            NTG1           -11.7       -3.2         3.8        10.4         -0.2       4.6         12.1         18.8          23.2       14.7
+           DANNgate     100.0±0.0   93.3±1.7    91.2±1.5     89.5±3.4       92.5    93.2±1.3    91.4±1.2     90.2±2.0      89.8±1.9      91.2      50%
+            NTG2           -11.7       -4.3        -1.6         -0.9        -4.6       -4.1        -1.7         -0.8          -1.2       -2.0
+              ∆            →0.0       ↑1.1        ↑5.4         ↑11.3       ↑4.5       ↑8.7        ↑13.8        ↑19.6         ↑24.4      ↑16.7
+
+
+
+
+                                                                                   change in the sign of NTG. For a more fine-grained study,
+                                                                                   we investigate a wider spectrum of distribution divergence
+                                                                                   by gradually increasing ǫ from 0.0 to 1.0 in Figure 3(a). Al-
+                                                                                   though DANN is better than DANNT when ǫ is small, its
+                                                                                   performance degrades quickly as ǫ increases and drops be-
+                                                                                   low DANNT , indicating the occurrence of negative transfer.
+                                                                                   On the other hand, by fixing ǫy = 0 and using two domains
+                                                                                   W and D that are known to be particularly similar, we study
+        (a) L% fixed at 20%                    (b) ǫ fixed at 0.2                  negative transfer under the assumption of covariate shift in
+Figure 3. Incremental performance on task Pr→Rw. ResS and ResT are                 Table 3, and observe that negative transfer does not occur
+ResNet-50 baselines trained using only source data and only target data.           even with high ǫx and descent L% . These experimental re-
+Perturbation rates are set equal, i.e. ǫ = ǫx = ǫy .                               sults confirms that the distribution divergence is an impor-
+                                                                                   tant factor of negative transfer.
+
+test whether negative transfer occurs, we measure the nega-                        Table 3. Classification accuracy (%) under the Covariate Shift assumption
+tive transfer gap (NTG) as the gap between the accuracy of                         on task W→D. ǫy is fixed at 0. Negative transfer gap is shown in brackets.
+target-only baseline and that of the original method. For
+instance, for DANN, the target-only baseline is DANNT                                          Method      ǫx =0.7 L% =10%      ǫx =1.0 L% =30%
+which treats labeled target data as “source” data and uses                                      DAN          81.2(-29.3)              85.8(-6.2)
+                                                                                               DANN          83.0(-30.8)              86.1(-6.5)
+unlabeled data as usual. A positive NTG indicates the oc-
+                                                                                                GTA          85.5(-33.5)              88.1(-8.0)
+currence of negative transfer and vice versa.
+                                                                                       Target factor. Fixing a specific ǫ, we observe that the
+5.3. Results and Analysis                                                          negative transfer gap increases as L% increases in Table 1.
+5.3.1     Study of Negative Transfer                                               In the extreme case of unsupervised adaptation (L% = 0%),
+                                                                                   NTG stays negative even if two domains are far apart (ǫ =
+To reveal the three dependent factors, we study the effect                         0.9). In Figure 3(b), we fix ǫ = 0.2 and plot the perfor-
+of negative transfer under different methods with varying                          mance curve as L% increases. We can see that while both
+perturbation rates (ǫx , ǫy ) and target labeled data (L% ).                       DANN and DANNT perform better with more labeled tar-
+   Divergence factor. The performance of DANN under                                get data, DANN is affected by the divergence factor and
+different settings of ǫ and L% on two tasks of Office-31 are                       outperformed by DANNT when L% becomes larger. This
+shown in Table 1. We observe an increasing negative trans-                         observation shows that negative transfer is relative and it
+fer gap as we increase the perturbation rate in all cases. In                      depends on target labeled data.
+some cases such as L% = 10%, we can even observe a                                     Algorithm factor. In Table 2, we compare the results
+
+
+                                                                             11298
+Table 2. Classification accuracy (%) of state-of-the-art methods on four benchmark datasets with negative transfer gap shown in brackets. Perturbation
+rates are fixed at ǫx = ǫy = 0.7. Target labeled ratio is set at L% = 10% and we further enforce each task to use at most 3 labeled target samples per class.
+
+                            Digits                      Office-31                               Office-Home                         VisDA
+          Method       SVHN→MNIST           W→D           A→D          D→A          Ar→Rw        Cl→Rw          Pr→Rw          Synthetic→Real       Avg
+          TCA[19]         58.7(18.2)       54.2(-4.2)   11.4(20.5)    13.1(18.4)       -             -              -                 -          34.4(13.2)
+          KMM[14]         70.9(6.0)        58.7(-8.5)   18.5(13.4)    17.7(13.8)       -             -              -                 -           41.5(6.2)
+          DAN[16]         78.5(-4.4)      76.3(-19.5)    55.0(-1.3)   39.2(4.9)    43.2(3.8)    30.2(5.8)      47.2(4.0)          28.4(7.2)       49.8(0.1)
+          DANgate         82.2(-8.1)      78.7(-21.9)    60.4(-6.7)   43.9(0.2)    46.8(0.2)    38.0(-2.0)     50.4(0.8)          36.2(-0.6)      54.6(-4.7)
+           ∆DAN              ↑3.7            ↑2.4          ↑5.4          ↑4.7        ↑3.6          ↑7.8           ↑3.2              ↑7.8            ↑4.8
+        DCORAL[27]        75.2(-1.2)      75.7(-18.9)    53.8(-0.4)   37.4(5.0)    44.0(3.7)     32.4(4.1)     48.0(2.2)          30.5(5.7)       49.6(0.0)
+        DCORALgate        81.0(-7.0)      78.2(-21.4)   59.0(-5.6)    43.2(-0.8)   48.5(-0.8)   40.0(-3.5)     51.6(-1.4)         35.8(0.4)       54.7(-5.1)
+         ∆DCORAL             ↑5.8            ↑2.5          ↑5.2          ↑5.8        ↑4.5          ↑7.6           ↑3.6              ↑5.3            ↑5.1
+          DANN[8]         68.3(7.7)       75.0(-19.2)    51.0(2.3)     38.2(5.6)   42.8(4.2)    28.5(7.7)      42.0(10.0)         29.9(6.0)       47.0(3.0)
+         DANNgate         78.1(-2.1)      80.2(-24.4)   61.8(-8.5)    48.3(-4.5)   51.2(-4.2)   43.8(-7.6)     55.2(-3.2)         40.5(-4.6)      57.4(-7.4)
+          ∆DANN              ↑9.8            ↑5.2          ↑10.8        ↑10.1        ↑9.4         ↑14.7          ↑13.2              ↑10.6           ↑10.4
+         ADDA[30]         63.2(12.2)      74.5(-18.1)    49.9(2.2)     38.3(5.1)   41.4(6.0)    25.2(13.5)     43.2(7.2)          28.0(7.3)       45.5(4.4)
+         ADDAgate         79.4(-4.0)      82.9(-26.5)   64.2(-12.1)   47.7(-4.3)   52.2(-4.8)   48.0(-9.3)     58.2(-7.8)         43.0(-7.7)      59.5(-9.6)
+          ∆ADDA             ↑16.2            ↑8.4          ↑14.3         ↑9.4        ↑10.8        ↑22.8          ↑15.0              ↑15.0           ↑14.0
+          PADA[4]          69.7(6.5)      75.5(-19.0)    50.2(1.9)     38.7(5.1)   43.2(3.8)     30.1(5.5)      43.4(6.6)         32.2(5.5)       47.9(2.0)
+         PADAgate         81.8(-5.6)      81.6(-25.1)   62.1(-10.0)   44.8(-1.0)   52.8(-5.8)   45.2(-9.6)     54.5(-4.5)         41.4(-5.7)      58.0(-8.1)
+          ∆PADA             ↑12.1            ↑5.9          ↑11.9         ↑6.1        ↑9.6         ↑15.1          ↑11.1              ↑11.2           ↑10.1
+          GTA[26]         81.2(-6.8)      78.9(-20.5)    58.4(-7.2)    42.2(2.8)   48.2(1.0)    33.1(5.1)      50.2(-0.1)         31.2(4.2)      52.9(-2.7)
+          GTAgate         83.3(-8.9)      85.8(-27.4)   66.7(-15.5)   48.5(-3.5)   55.0(-5.8)   44.9(-6.7)     58.0(-7.7)         43.8(-8.4)     60.8(-10.6)
+           ∆GTA              ↑2.1            ↑6.9          ↑8.3          ↑6.3        ↑6.8         ↑11.8           ↑7.8              ↑12.6           ↑7.9
+           ∆Avg              ↑8.3            ↑5.2          ↑8.1          ↑7.1        ↑7.5         ↑13.3           ↑8.9              ↑10.4
+
+
+                                                                                   Table 4. Ablation Study on task A→D. DANNgate-only applies
+of all methods under a more practically interesting scenario                       only the discriminator gate while DANNlabel-only only uses la-
+of moderately different distributions and limited amount of                        bel information without the gate. DANNjoint is a variant of
+labeled target data. We observe that some methods are                              DANNgate where the feature network only matches the joint dis-
+more vulnerable to negative transfer then the other even                           tribution (last two lines of Eq.10), DANNmarginal only matches
+using the same training data. For conventional methods,                            the marginal distribution, and DANNnone matches none of them.
+instance-reweighting method KMM achieves smaller NTG                               DANNoracle excludes perturbed source data via human oracle.
+compared to feature selection method TCA, possibly be-
+cause KMM can assign small weights to source instances                                                                      Setting (ǫ,L% )
+with dissimilar input features. For deep methods, we find                            Method             0.7, 30%      0.7, 10%       0.3, 30%   0.3, 10%       Avg
+GTA to be the most robust method against negative transfer                           DANN                    70.4       49.4           72.5       54.3         61.7
+                                                                                     DANNT                   79.5       50.7           80.3       50.1         65.2
+since it takes both label information and random noises as                           DANNoracle              81.6       58.5           89.1       85.4         78.7
+inputs to the generator network. More interestingly, we ob-                          DANNgate-only           76.3       53.8           78.0       55.7         66.0
+                                                                                     DANNlabel-only          74.4       52.5           77.5       55.0         64.9
+serve that methods based on distribution measurement such
+                                                                                     DANNjoint               82.3       57.6           83.1       59.4         70.6
+as MMD (e.g. DAN) achieve smaller NTG than methods                                   DANNmarginal            80.6       56.5           81.5       58.6         69.3
+based on adversarial networks (e.g. DANN), even though                               DANNnone                79.6       52.4           79.7       57.5         67.3
+                                                                                     DANNgate                82.5       58.7           82.7       60.7         71.2
+the later tends to perform better when distributions are sim-
+ilar. This is consistent with findings in previous works [3]
+and one possible explanation is that adversarial network’s                         avoid negative transfer (e.g. DANNgate achieves negative
+better capability of matching source and target domains                            average NTG while DANN gets positive NTG). Specifi-
+leads to more severe negative transfer. Similarly, ADDA                            cally, our method achieves larger accuracy gains on harder
+has better matching power by using two separate feature                            tasks such as synthetic to real-world tasks in Office-Home
+extractors, but it results in larger NTG compared to DANN.                         and VisDA. This is mainly because source domains in these
+                                                                                   tasks tend to contain more unrelated samples. This find-
+                                                                                   ing is also consistent with results in Table 1 and Figure 3(a)
+5.3.2     Evaluation of Discriminator Gate                                         where we can observe larger performance gains as pertur-
+                                                                                   bation rates increase. In the extreme case where the source
+We compare our gated models with their respective state-of-                        domain is degenerate (ǫ = 1.0 in Figure 3(a)), the gated
+the-art methods on the benchmarks in Table 2. Even using                           model achieves comparable results to those of DANNT . On
+limited amount of labeled target data, our proposed method                         the other hand, the results of DANN and DANNgate are
+consistently improves the performance for all deep meth-                           similar when source domain is closely related to the target
+ods on all tasks. More importantly, our method can largely                         (ǫ = 0.0 on task W→D in Table 1). This indicates that the
+eliminate the negative impact of less related source data and                      discriminator gate can control the trade-off between maxi-
+
+
+                                                                              11299
+           (a) DANN                        (b) DANNgate            (c) DANNgate (source data with           (d) Source Sample Weights
+                                                                   large weights)
+
+
+
+
+           (e) DANN                        (f) DANNgate            (g) DANNgate (source data with       (h) Left: DANN Right:DANNgate
+                                                                   large weights)
+Figure 4. Visualization on A→W, with ǫ = 0.7, L% = 30%. Left: The t-SNE visualization. First row shows domain info with red for
+source samples (yellow for weights > 0.4) and blue for target samples. Second tow shows corresponding class info. Right: Top shows the
+histogram of discriminator weights for source samples. Bottom shows average weights for perturbed and unperturbed samples.
+
+mal transfer and alleviating negative impact.                         weights to unrelated source data. For instance, we can see
+Ablation Study. We report the results of ablation study in            some source data from different classes mixed in the yel-
+Table 4 and analyze the effects of several components in              low cluster at the center right but they get assigned smaller
+our method subject to different settings of transfer tasks.           weights. The third column shows the embeddings after we
+First, both DANNgate-only and DANNlabel-only perform                  remove source data with small discriminator weights (<
+better than DANN but worse than DANNgate , showing                    0.4). We can observe that target data are much better clus-
+that the discriminator gate and estimating joint distribu-            tered compared to that of DANN. These in-depth results
+tions can both improve performance but their combina-                 demonstrate the efficacy of discriminator gate method.
+tion yields full performance benefit. Second, DANNjoint               Statistics of Instance Weights. We illustrate the discrim-
+                                                                                            P (xis ,ysi )
+obtains higher accuracy results than DANNmarginal and                 inator output ( PT (xi ,yTi )+P     i   i ) for each source data in
+                                                                                                      S (xs ,ys )
+                                                                                           s s
+DANNnone since matching joint distributions is the key                Figure 4(d). We can observe that DANN fails to discrimi-
+to avoid negative transfer when both marginal and con-                nate unrelated source data as all weights concentrate around
+ditional distributions shift. However, while DANNjoint                0.5 in the middle. On the other hand, DANNgate assigns
+achieves comparable results as DANNgate when L% =                     smaller weights to a large portion of source data (since per-
+30%, it performs worse than DANNgate when L% = 10%.                   turbation rate is high) and thus filters out unrelated infor-
+This shows that utilizing unlabeled target data to match              mation. Figure 4(h) further shows that DANN assign sim-
+marginal distributions can be beneficial when labeled tar-            ilar average weights for perturbed and unperturbed source
+get data is scarce. Lastly, it is inspiring to see DANNgate           data while DANNgate outputs much smaller values for per-
+outperforms DANNoracle when perturbation rate is high.                turbed data but higher ones for unperturbed data.
+This is because less unperturbed source data are used for
+DANNoracle but DANNgate can utilize perturbed source                  6. Conclusion
+data that contain related information. This further shows                In this work, we analyze the problem of negative transfer
+the effectiveness of our approach.                                    and propose a novel discriminator gate technique to avoid it.
+Feature Visualization. We visualize the t-SNE embed-                  We show that negative transfer directly relates to specific al-
+dings [6] of the bottleneck representations in Figure 4. The          gorithms, domain divergence and target data. Experiments
+first column shows that, when perturbation rate is high,              demonstrate these factors and the efficacy of our method.
+DANN cannot align the two domains well and it fails to dis-           Our method consistently improves the performance of base
+criminate both source and target classes as different classes         methods and largely avoids negative transfer. Understand-
+are mixed together. The second column illustrates the dis-            ing negative transfer in more complex transfer tasks and set-
+criminator gate can improve the alignment by assigning less           tings should be addressed in a future research.
+
+
+                                                                  11300
+References                                                                     ings of the 32nd International Conference on International
+                                                                               Conference on Machine Learning, 2015.
+ [1] A. Azulay and Y. Weiss. Why do deep convolutional net-
+                                                                          [17] S. Moon and J. Carbonell. Completely heterogeneous trans-
+     works generalize so poorly to small image transformations?
+                                                                               fer learning with attention-what and what not to transfer. In
+     arXiv preprint arXiv:1805.12177, 2018.
+                                                                               International Joint Conference on Artificial Intelligence (IJ-
+ [2] S. Ben-David, J. Blitzer, K. Crammer, and F. Pereira. Analy-              CAI), pages 2508–2514, 2017.
+     sis of representations for domain adaptation. In Advances in         [18] Y. Netzer, T. Wang, A. Coates, A. Bissacco, B. Wu, and A. Y.
+     Neural Information Processing Systems (NIPS), pages 137–                  Ng. Reading digits in natural images with unsupervised fea-
+     144, 2007.                                                                ture learning. volume 2011, page 5, 2011.
+ [3] Z. Cao, M. Long, J. Wang, and M. I. Jordan. Partial transfer         [19] S. J. Pan, I. W. Tsang, J. T. Kwok, and Q. Yang. Domain
+     learning with selective adversarial networks. 2018.                       adaptation via transfer component analysis. IEEE Transac-
+ [4] Z. Cao, L. Ma, M. Long, and J. Wang. Partial adversarial                  tions on Neural Networks, 22(2):199–210, 2011.
+     domain adaptation. 2018.                                             [20] S. J. Pan and Q. Yang. A survey on transfer learning.
+ [5] C. Cortes, Y. Mansour, and M. Mohri. Learning bounds for                  IEEE Transactions on knowledge and data engineering,
+     importance weighting. In Advances in neural information                   22(10):1345–1359, 2010.
+     processing systems, pages 442–450, 2010.                             [21] Z. Pei, Z. Cao, M. Long, and J. Wang. Multi-adversarial
+ [6] J. Donahue, Y. Jia, O. Vinyals, J. Hoffman, N. Zhang,                     domain adaptation. In AAAI Conference on Artificial Intelli-
+     E. Tzeng, and T. Darrell. Decaf: A deep convolutional acti-               gence, 2018.
+     vation feature for generic visual recognition. In International      [22] X. Peng, B. Usman, N. Kaushik, J. Hoffman, D. Wang, and
+     conference on machine learning, pages 647–655, 2014.                      K. Saenko. Visda: The visual domain adaptation challenge,
+ [7] L. Duan, D. Xu, and S.-F. Chang. Exploiting web images                    2017.
+     for event recognition in consumer videos: A multiple source          [23] E. Real, J. Shlens, S. Mazzocchi, X. Pan, and V. Van-
+     domain adaptation approach. In Computer Vision and Pat-                   houcke. Youtube-boundingboxes: A large high-precision
+     tern Recognition (CVPR), 2012 IEEE Conference on, pages                   human-annotated data set for object detection in video. In
+     1338–1345. IEEE, 2012.                                                    Computer Vision and Pattern Recognition (CVPR), 2017
+ [8] Y. Ganin and V. Lempitsky. Unsupervised domain adap-                      IEEE Conference on, pages 7464–7473. IEEE, 2017.
+     tation by backpropagation. In International Conference on            [24] M. T. Rosenstein, Z. Marx, L. P. Kaelbling, and T. G. Diet-
+     Machine Learning, pages 1180–1189, 2015.                                  terich. To transfer or not to transfer. In NIPS 2005 workshop
+ [9] Y. Ganin, E. Ustinova, H. Ajakan, P. Germain, H. Larochelle,              on transfer learning, volume 898, pages 1–4, 2005.
+     F. Laviolette, M. Marchand, and V. Lempitsky. Domain-                [25] K. Saenko, B. Kulis, M. Fritz, and T. Darrell. Adapting vi-
+     adversarial training of neural networks. The Journal of Ma-               sual category models to new domains. In European confer-
+     chine Learning Research, 17(1):2096–2030, 2016.                           ence on computer vision, pages 213–226. Springer, 2010.
+[10] L. Ge, J. Gao, H. Ngo, K. Li, and A. Zhang. On handling              [26] S. Sankaranarayanan, Y. Balaji, C. D. Castillo, and R. Chel-
+     negative transfer and imbalanced distributions in multiple                lappa. Generate to adapt: Aligning domains using generative
+     source transfer learning. Statistical Analysis and Data Min-              adversarial networks. Computer Vision and Pattern Recog-
+     ing: The ASA Data Science Journal, 7(4):254–271, 2014.                    nition (CVPR), 2018.
+[11] M. Gong, K. Zhang, T. Liu, D. Tao, C. Glymour, and                   [27] B. Sun and K. Saenko. Deep coral: Correlation alignment
+     B. Schölkopf. Domain adaptation with conditional transfer-               for deep domain adaptation. pages 443–450. Springer, 2016.
+     able components. In International conference on machine              [28] C. Szegedy, W. Zaremba, I. Sutskever, J. Bruna, D. Erhan,
+     learning, pages 2839–2848, 2016.                                          I. Goodfellow, and R. Fergus. Intriguing properties of neural
+[12] I. Goodfellow, J. Pouget-Abadie, M. Mirza, B. Xu,                         networks. ICLR, 2014.
+     D. Warde-Farley, S. Ozair, A. Courville, and Y. Bengio. Gen-         [29] E. Tzeng, J. Hoffman, T. Darrell, and K. Saenko. Simultane-
+     erative adversarial nets. In Advances in neural information               ous deep transfer across domains and tasks. In Proceedings
+     processing systems, pages 2672–2680, 2014.                                of the IEEE International Conference on Computer Vision
+[13] K. He, X. Zhang, S. Ren, and J. Sun. Deep residual learn-                 (ICCV), pages 4068–4076, 2015.
+     ing for image recognition. In Proceedings of the IEEE con-           [30] E. Tzeng, J. Hoffman, K. Saenko, and T. Darrell. Adversarial
+     ference on computer vision and pattern recognition, pages                 discriminative domain adaptation. In Computer Vision and
+     770–778, 2016.                                                            Pattern Recognition (CVPR), volume 1, page 4, 2017.
+[14] J. Huang, A. Gretton, K. M. Borgwardt, B. Schölkopf, and            [31] M. Uehara, I. Sato, M. Suzuki, K. Nakayama, and Y. Matsuo.
+     A. J. Smola. Correcting sample selection bias by unlabeled                Generative adversarial nets from a density ratio estimation
+     data. In Advances in Neural Information Processing Systems                perspective. arXiv preprint arXiv:1610.02920, 2016.
+     (NIPS), pages 601–608, 2007.                                         [32] S. Uguroglu and J. Carbonell. Feature selection for transfer
+[15] Y. LeCun, L. Bottou, Y. Bengio, and P. Haffner. Gradient-                 learning. In Joint European Conference on Machine Learn-
+     based learning applied to document recognition. Proceed-                  ing and Knowledge Discovery in Databases, pages 430–442.
+     ings of the IEEE, 86(11):2278–2324, 1998.                                 Springer, 2011.
+[16] M. Long, Y. Cao, J. Wang, and M. I. Jordan. Learning trans-          [33] H. Venkateswara, J. Eusebio, S. Chakraborty, and S. Pan-
+     ferable features with deep adaptation networks. In Proceed-               chanathan. Deep hashing network for unsupervised domain
+
+
+                                                                       11301
+     adaptation. In (IEEE) Conference on Computer Vision and
+     Pattern Recognition (CVPR), 2017.
+[34] Z. Wang and J. Carbonell. Towards more reliable transfer
+     learning. In Joint European Conference on Machine Learn-
+     ing and Knowledge Discovery in Databases, pages 794–810,
+     2018.
+[35] K. Weiss, T. M. Khoshgoftaar, and D. Wang. A survey of
+     transfer learning. Journal of Big Data, 3(1):9, 2016.
+[36] L. Yang, S. Hanneke, and J. Carbonell. A theory of trans-
+     fer learning with applications to active learning. Machine
+     learning, 90(2):161–189, 2013.
+[37] J. Yosinski, J. Clune, Y. Bengio, and H. Lipson. How trans-
+     ferable are features in deep neural networks? In Advances
+     in neural information processing systems, pages 3320–3328,
+     2014.
+[38] Y.-L. Yu and C. Szepesvári. Analysis of kernel mean match-
+     ing under covariate shift. In Proceedings of the 29th Interna-
+     tional Conference on Machine Learning, pages 1147–1154,
+     2012.
+[39] A. R. Zamir, A. Sax, W. Shen, L. Guibas, J. Malik, and
+     S. Savarese. Taskonomy: Disentangling task transfer learn-
+     ing. In Proceedings of the IEEE Conference on Computer
+     Vision and Pattern Recognition, pages 3712–3722, 2018.
+
+
+
+
+                                                                      11302
+
+==============================================================================
+VISUAL FIGURE VALUE AUDIT
+==============================================================================
+
+# L09: Figure and table review
+
+Source: pdfs/L09.pdf, *Characterizing and Avoiding Negative Transfer* (CVPR 2019), DOI 10.1109/CVPR.2019.01155.
+
+## Tables 1-2, PDF pages 6-7
+
+Tables report classification accuracy (percent) with negative-transfer gaps in parentheses. Table 1 includes W-to-D and A-to-D transfer tasks at perturbation levels epsilon = 0.0, 0.3, 0.7, 0.9 and target-label proportions 0%, 10%, 30%, 50%. Table 2 reports four benchmark datasets at epsilon = 0.7 and 10% labeled target data. Exact cells and uncertainty values are retained in txt/L09.txt; the rendered pages confirm that table reading order and row grouping need inspection before reusing individual cells. The paper is a computer-vision transfer study, used here only as analogy.
+
+## Figures 3-4, PDF pages 6-8
+
+Figure 3 plots accuracy versus perturbation rate and amount of labeled target data; point values are not printed. Figure 4 is a t-SNE/domain visualization. The paper's text states that performance degrades as perturbation increases and negative transfer depends on target labels and domain divergence. No point-wise values are inferred from pixels.
+

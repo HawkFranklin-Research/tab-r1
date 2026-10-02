@@ -1,0 +1,177 @@
+# Retrieval inventory, NOT completed visual/claim audit
+Source L33: Integrated genomic characterization of oesophageal carcinoma; DOI 10.1038/nature20805
+Original text line numbers. Numbers may be citations, secondary reports,
+toy examples, or ambiguous table columns. Verify context before citing.
+
+L35: Oesophageal cancers have 5-year survival rates of 12–20% in Western                                  Fresh-frozen tumour samples from patients who were not previ-
+L39: increased several fold in Western countries in recent decades5, occurs                            nonmalignant oesophageal mucosa. Genetic material was subjected
+L55: cular features and candidate pathways that define molecular subgroups                             and FOXA pathways, which regulate E-cadherin11. By contrast, ESCCs
+L63: (Fig. 1a, Supplementary Table 1, Supplementary Fig. 1.1). We iden-                                EAC using MutSig13 to search for genes with significantly recurring
+L75:                                                                                                                          1 2 JA N UA RY 2 0 1 7 | VO L 5 4 1 | N AT U R E | 1 6 9
+L83:          (164)                     90         1        7              (72)                                 (98)     we identified amplification or mutation of EGFR in 19% of tumours
+L86:                        (165)                                                                                        to activate the PI3K pathway, in 24% of tumours. EACs had a wider
+L89:                                                                                                                     ERBB2, which was altered in 32% of EACs, but in only 3% of ESCCs.
+L98:                                                                                                                     suggesting that more patients may benefit from ERBB2-directed ther-
+L104:                                                                                        Country/region               Fig. 3.1; Supplementary Table 3). Because this fusion transcript omits
+L116:                                                                                                   Male              in EAC than ESCC. We found that 6% of ESCCs (but no EACs) had
+L127:  Copy                                                                                                               also on chromosome 3p, were amplified in 48% of ESCCs. Moreover,
+L131:      Chr22                                                                               Loss
+L141:                                                                                          Low      Distal/GEJ        experimentally validated in EAC28.
+L143: Figure 1 | Major subdivisions of gastroesophageal cancer. a, 559                                                    enzymes (Supplementary Fig. 3.2). Alterations affecting SWI/SNF-
+L146: gastroesophageal junction; GS, genomically stable; MSI, microsatellite                                              tions in histone-modifying factors KDM6A (UTX), KMT2D (MLL2)
+L155: (Extended Data Fig. 4; Supplementary Table 2). Although EAC and                                                     Molecular subtypes of oesophageal SCC
+L160: CCNE1 (19q12), and deletion of SMAD4 (18q21.2). Recurring focal                                                     methylation (Fig. 3a, rightmost samples) and relatively unaltered SCNA
+L162: (5p15.33), FGFR1 (8p11.23), MDM2 (12q14.3), NKX2-1 (14q13.2) and                                                    features as subtype ESCC3, thus dividing ESCCs into three molecular
+L168: cation of CCND1 were present in 76% and 57% of squamous tumours,                                                    Alterations were seen in NFE2L2, in genes encoding proteins
+L169: respectively; and additional ESCCs had amplification of CDK6 or loss                                                that degrade NRF2 (KEAP1 and CUL3), and in ATG7, encoding an
+L171: CCND1 was amplified in only 15% of tumours, but we observed more                                                    frequency of SOX2 and/or TP63 amplification (Fig. 3c, Extended
+L172: common amplification of CCNE1. CDKN2A was inactivated in 76% of                                                     Data Fig. 5). ESCC1 gene expression resembled the classical subtype
+L177: 1 7 0 | N AT U R E | VO L 5 4 1 | 1 2 JA N UA RY 2 0 1 7
+L182:                           Pathway 59%             ESCC             76%            EAC        Pathway 38%                 ESCC                   51%            EAC
+L183:                           ERBB2 3%                                 32%                       MYC    23%                                         32%
+L184:                           VEG FA 3%                                28%                       SMAD4   8%                                         24%
+L185:                           EGFR 19%                                 15%                       SMAD2   2%                                          7%
+L186:                           KRAS    7%                               14%                       FBXW7   4%                                          6%
+L187:                           IGF1R   2%                               10%                       APC     1%                                          3%
+L188:                           PTEN    9%                                7%                       CTNNB1 0%                                           4%
+L189:                           PIK3R1 2%                                 3%                       PTCH1   6%                                          0%
+L190:                           MET     4%                                4%
+L191:                           PIK3CA 13%                                3%                            PTCH1           APC           FBXW7           ARID1 A     SMAD2/4
+L192:                           FGFR1 12%                                 4%                            6% 0%          1% 3%          4% 6%           1% 8%       8% 25%
+L193:                           FGFR2 0%                                  3%
+L197:                               3% 32%    19% 15%    4% 4%    2% 10%       12% 4%    0% 3%                              0% 4%                   23% 32%
+L201:                                          7% 14%                          13% 3%                                          Cell differentiation
+L202:                                                                                              Pathway   57%               ESCC                43%               EAC
+L203:                                                               PTEN                PIK3R1     GATA4      1%                                      19%
+L204:                            RTK/RAS/PI(3)K                    9% 7%                2% 3%      GATA6      3%                                      21%
+L205:                                                                                              TP63/SOX2 48%                                      11%
+L206:                                                                                              NOTCH1     7%                                       0%
+L207:                                                                                              ZNF750     7%                                       0%
+L210:                               76% 76%        4% 14%      57% 15%   16% 14%           9% 0%   Pathway 36%                ESCC             22%                   EAC
+L211:                                                                                              ARID1A   1%                                         8%
+L212:                           Pathway 90%             ESCC             86%            EAC        SMARCA4 7%                                         10%
+L213:                           CDKN2A 76%                               76%                       KDM6A 19%                                           4%
+L214:                           CCND1 57%                                15%                       KMT2D 14%                                           1%
+L215:                           CDK6    16%                              14%                               GENE              Amplification           Missense mutation
+L216:                           CCNE1    4%                              14%                                                                                                Activation
+L218:                           RB1      9%                               0%                        Inactivated Activated                                                   Inhibition
+L221: Figure 2 | Integrated molecular comparison of somatic alterations                              copies. Only missense mutations reported in the COSMIC repository are
+L231: (Extended Data Fig. 5), more frequent inactivating alterations of                              ESCC subgroups or clinical variables in our sample set. However, when
+L236: agents to facilitate apoptosis34. The gene with the lowest P value for the                     Wallis test) and enriched in patients from Ukraine and Russia (P = 0.01,
+L237: methylation difference between ESCC1 and ESCC2 was the immuno­                                 Wilcoxon rank-sum test). ESCC tumours lacked the predilection for
+L238: modulatory molecule BST2 (ref. 35) (P = 3 × 10−4, Fisher’s exact test;                         A>C transversions at AA dinucleotides seen in EAC (Supplementary
+L239: Supplementary Table 4), which showed less methylation and higher                               Table 5).
+L243: cell cycle and had TP53 mutations in only one of four samples. All                             data to TCGA HNSCC data found that ESCC HPV transcript levels
+L244: samples in ESCC3, however, sustained alterations predicted to activate                         resembled HPV-negative HNSCC tumours (Fig. 3e). These data do not
+L252: be ESCC1 (27 out of 41 = 66%; P = 0.09, Fisher’s exact test), and more                         sion, DNA methylation and SCNA data demonstrated that ESCC had
+L253: tumours derived from Eastern European and South American patients                              a stronger resemblance to HNSCC than to EAC (Fig. 4a). Similarly,
+L254: were ESCC2 (P = 0.118, Fisher’s exact test). All four ESCC3 tumours                            EACs more closely resembled gastric cancer than they did ESCC. In
+L255: were derived from patients from the USA and Canada (P = 0.001,                                 our previous TCGA study27, we classified gastric tumours into four
+L256: Fisher’s exact test). Tumours from Vietnamese patients were enriched                           subtypes on the basis of having (1) Epstein-Barr virus (EBV) infec-
+L257: in NFE2L2 mutations (Fig. 3c); 24% in the Vietnamese cohort (10 out                            tion, (2) microsatellite instability (MSI), (3) chromosomal instability
+L258: of 41) versus 6% in other patients (3 out of 49; P = 0.017, Fisher’s exact                     (CIN) and (4) genomic stability (GS), a group largely comprised of the
+L259: test). This association of NFE2L2 mutations with Vietnamese patients                           diffuse histologic type. When we evaluated EACs jointly with gastric
+L261: Patients from East Asia have common variants in alcohol-metabolism                             a group distinct from EBV, MSI or GS tumours (Extended Data Fig. 8).
+L264: as all Vietnamese patients had such variants (Supplementary Fig. 3.3).                         classified as CIN (Fig. 4b). No EACs were positive for MSI or EBV.
+L268:                                                                                                                                  1 2 JA N UA RY 2 0 1 7 | VO L 5 4 1 | N AT U R E | 1 7 1
+L277:                                                                  1                                                 2                              iCluster                            sion of DNA methylation features from proximal to distal GEA-CIN
+L281:                                                                                                                                                                                       tumours (Fig. 5a). Samples in cluster 1, those with the most frequent
+L292:                                                                                                                                                                                       cantly higher among EACs than among gastric CIN cancers (70% versus
+L296:                                                                                                                                                                                       30%, respectively; P = 1.0 × 10−8, Fisher’s exact test). By contrast,
+L309:                                                                               90 tumours                                                                                              CDKN2A, (Supplementary Table 6, Fig. 5c). Additional genes silenced
+L325:                                      10                                                                                                                                                  We evaluated the GEA-CIN tumours for somatic features that
+L340: Oxidative stress 54%
+L341:            NFE2L2 30%
+L342:                                                                                                                                     6%
+L343:                                                                                                                                     3%
+L344:                                                                                                                                                                         25%
+L345:                                                                                                                                                                          0%
+L347:             KEAP1 6%                                                                                                                3%                                   0%           underlying genomic instability between distal and proximal GEA-
+L348:              CUL3 10%
+L349:              ATG7 12%
+L350:                                                                                                                                     0%
+L351:                                                                                                                                     0%
+L352:                                                                                                                                                                          0%
+L353:                                                                                                                                                                         25%
+L355: Cell differentiation 64%                                                                                                        50%                                      0%           with VEGFA and MYC amplifications being more common in EACs.
+L356:        SOX2/TP63 60%
+L357:           NOTCH1 4%
+L358:                                                                                                                                 36%
+L359:                                                                                                                                 11%
+L360:                                                                                                                                                                          0%
+L361:                                                                                                                                                                          0%
+L363:            ZNF750 4%                                                                                                            11%                                      0%           of the progressive gradations of features from the distal stomach to
+L384:                                                        ESCC1          ESCC2         ESCC3                                                 ESCC         HNSC            HNSC           charac­teristics across all platforms tested. ESCC emerges as a disease
+L387: Figure 3 | Distinct molecular subtypes of oesophageal squamous                                                                                                                        resemblance to CIN gastric cancer. Our analyses therefore argue against
+L404: 288 CIN GEAs (GEA-CIN; Fig. 1a). We found clear similarity between                                                                                                                    the GEJ42,43. The notable molecular similarity between EACs and CIN
+L415: 1 7 2 | N AT U R E | VO L 5 4 1 | 1 2 JA N UA RY 2 0 1 7
+L430:                       methylation                                                                                                                                                           0%             25%                50%                 75%        100%
+L476: Figure 4 | Similarity of oesophageal adenocarcinoma and CIN variant                                                                   gastric molecular subtypes by anatomic location across gastroesophageal
+L484:  a         Purity                                                                                                                 b                                                     C1 C2 C3 C4                             Percentage (%)
+L532:             EAC/oesophageal GEJ                                     6%         4%        18%         10%         24%          48%                     81%                     80%                77%            3%             32%               31%        30%
+L536:                                 Indeterminate GEJ                  12%         8%         0%         8%          44%          38%                     70%                     58%                59%            4%             38%               29%        21%
+L537:                                                   Gastric GEJ      11%        11%         4%         2%          15%          26%                     52%                     39%                34%            6%             26%               19%        13%
+L541:                                                  Fundus/body       21%        14%         3%         2%          18%             5%                   24%                     28%                37%           12%             23%               23%        10%
+L542:                                             Antrum/pylorus         16%        14%         0%         5%          21%             6%                   38%                     48%                34%            7%             31%               22%        12%
+L544: Figure 5 | Molecular features of CIN gastroesophageal                                                                                 of tumours belonging to each methylation subgroup by anatomic location
+L550:                                                                                                                                                                                    1 2 JA N UA RY 2 0 1 7 | VO L 5 4 1 | N AT U R E | 1 7 3
+L590:                                                                                           26. Dulak, A. M. et al. Gastrointestinal adenocarcinomas of the esophagus,
+L591: Figure 6 | Gradations of molecular subclasses of gastroesophageal                             stomach, and colon exhibit distinct patterns of genome instability and
+L596: subtypes present within anatomic regions. Key features of subtypes are                        lineage-survival in esophageal adenocarcinoma. Proc. Natl Acad. Sci. USA 109,
+L614:                                                                                               as a stable XIAP-caspase-7 approximately 200-kDa complex. J. Biol. Chem.
+L663:     consequences, clinical applications and open questions. FEBS Lett. 586,               Acknowledgements We are grateful to all patients who contributed to this study,
+L665: 12. Barbieri, C. E., Tang, L. J., Brown, K. A. & Pietenpol, J. A. Loss of p63 leads to    I. Felau for administrative support. This work was supported by the Intramural
+L678: 1 7 4 | N AT U R E | VO L 5 4 1 | 1 2 JA N UA RY 2 0 1 7
+L709:                                                                                                               1 2 JA N UA RY 2 0 1 7 | VO L 5 4 1 | N AT U R E | 1 7 5
+L894: and 23 December 2013. Samples were obtained from patients who had received                according to criteria outlined in Supplementary Information S1.2. For downstream
+L898: geal tissue was also submitted for a subset of patients.                                  of DNA profiling of each tumour or germline sample on Affymetrix SNP 6.0 at
+L904: samples with ≥ 60% tumour nuclei and ≤ 20% necrosis were submitted for nucleic            and focal SCNAs was performed with the GISTIC 2.0 algorithm22 with clus-
+L910: representing a case were derived from the same patient. RNA was analysed through          sessed at least one arm-level loss (apart from that of 18p, 18q or 21, which were
+L912: only analytes with an integrity number ≥ 7.0 were included. Only cases yielding a         as SCNA-low. Chromosomal arms were considered altered if at least 80% of
+L915:     The BCR received tumour samples with germline controls from a total of 322            ber instability has 93% concordance with previously described copy-number
+L917: review and molecular characteristics. Distribution and quality control of cases is        DNA methylation. Genomic DNA (1 μg per sample) was bisulfite-modified, sub-
+L923: available for 58 cases. Samples with residual tumour tissue after extraction of           seq data. CDKN2A DNA methylation status was assessed in each sample
+L927: analysis. We compared these 171 oesophageal adenocarcinomas to 388 similarly              sample were made by evaluating a scatterplot showing an inverse association
+L933: loci (polyadenine tracts BAT25, BAT26, BAT40 and transforming growth factor               sequencing at the Broad Institute. Samples labelled as oesophageal cancers (that is,
+L934: receptor type II) and three dinucleotide repeat loci (CA repeats in D2S123, D5S346        ESCA) were sequenced at Washington University. Each centre was responsible for
+L935: and D17S250) as previously described27.                                                   generating BAM files from both tumour and normal DNA samples with additional
+L942: for this study and one additional high-quality formalin-fixed paraffin-embedded           from tumour and normal blood samples was performed as previously described32
+L949: logy review, including four cases where quality control identified inadequate             ContEst48 to avoid misannotation of tumour and germline DNA samples, or
+L950: material for analysis, two cases where only noninvasive neoplasm was observed,            cross-contamination between tumour samples. Only samples with less than 5%
+L957: tumour type (ESCC or EAC). T, N and M status and tumour grade (0, 1, 2 or 3)              2000 flow cells to achieve a minimum coverage of 20× across 80% of coding
+L967: GRCh37-lite_WUGSC_variant_2/).                                                          samples for each of these gene sets. These matrices were log2 transformed and
+L972: Methods S3.1).                                                                          expression data from the STAD, ESCA and HNSC cohorts. Samples were ordered
+L975: and removed. In addition, for the normal germline BAM, putative variants                We selected the top 25% most variable genes (by coefficient of variation) within the
+L976: with less than 8× coverage of the reference allele or greater than one somatic          oesophageal carcinoma sample set with mean expression greater than 1,000 RSEM-
+L977: variant-supporting read or 1% somatic variant allele fraction were removed.             normalized counts. We transformed each row of the matrix by log10(RSEM+1),
+L978: For the tumour BAM, two supporting reads and a variant allele fraction of 5%            then used pheatmap to scale and cluster the rows.
+L981: attributed to these sequencing artefacts. Further filtering removed candidate           our various cohorts, we used hierarchical clustering with pheatmap v1.0.2 in R. The
+L982: mutations that had been identified through sequencing of cohorts of non-                input in each case was a reads-per-million (RPM) data matrix for the 303 miRBase
+L983: neoplastic DNA samples to remove alternative artefacts or unfiltered germline           v16 5p or 3p mature strands that had the largest variances across each cohort. We
+L988: Mutation annotation and significance analysis. Functional annotation of muta-           the top 25% (~300) most variable 5p or 3p mature strand microRNAs54 within
+L993: Bayesian non-negative matrix factorization algorithm for mutation signature             reverse-phase protein arrays with 187 validated primary antibodies by methods
+L996: Genomic DNA (500–700 ng per sample) was sheared into 250-bp fragments using             Pathogen analysis. We used two tools to examine whole-exome and RNA sequence
+L1000: a HiSeq2000 using one sample per lane, with a paired-end 2 × 51-bp read length.         (supplementary S9.2 in ref. 27).
+L1011: this analysis are shown in Supplementary Table 3 with more detailed listing of          Integrative clustering. To discover which tumour samples shared molecular sig-
+L1012: structural alterations in Supplementary Table 7.)                                       natures across platforms, the following four integrative clustering approaches were
+L1017: nocarcinoma and oesophageal cancer data with their MapSplice/RSEM pipeline32.           algorithm with the use of kernels that encode the similarity between the samples,
+L1020: (http://www.bcgsc.ca/platform/bioinfo/software/trans-abyss/releases/1.4.8).             description of each sample, but they differ in details, such as the metric used to
+L1024: 25% most variable genes with mean greater than 10 RPKM. We transformed each             weighting method that takes into account the granularity of the divisions within
+L1049: 48. Cibulskis, K. et al. ContEst: estimating cross-contamination of human samples            cell types. Clin. Cancer Res. 16, 4864–4875 (2010).
+L1058:     patterns of chromosomal gain and loss of canonical cancer genes. PLoS One 8,             cancer genomic data. Proc. Natl Acad. Sci. USA 110, 4245–4250
+L1071: Extended Data Figure 1 | Platform-specific unsupervised clustering                 protein array data (e) revealed strong separation between EAC and ESCC
+L1086: Extended Data Figure 2 | Pathways with significant expression                        pathway, normalized to unit range. b, TP63ΔN transcript levels were
+L1088: expression differs significantly between EAC and ESCC (Ps < 10−3, where              gene expression values of genes in the NCI-PID pathway ‘Validated
+L1090: listed. The colour scale shows the median (log2) expression value of                 point represents one sample, and the value is the median expression value
+L1103: Extended Data Figure 3 | MutSig analyses of significantly mutated                    mutation labelled by box colour, with legend at upper right. The top plot
+L1120: Extended Data Figure 4 | GISTIC analysis of foci of recurrent                        at bottom) or deletion (right, blue with scale at top). Candidate targets
+L1138: Extended Data Figure 5 | Comparison of somatic alterations in ESCC                change of more than half of the baseline gene copies. Missense mutations
+L1155: Extended Data Figure 6 | Distinct clusters of ESCC. Columns indicate              that were developed for lung squamous cell carcinoma (LUSC, top) and
+L1157: tumours with the centroids of the mRNA expression profiling subtypes              analyses. Samples are in ESCC cluster order as in Fig. 3a.
+L1169: Extended Data Figure 7 | Characterization of ESCC subtypes. a, We                   expression for BST2 and SH3TC1. b, A detailed analysis of BST2 DNA
+L1171: compared the number of samples where each gene was silenced in ESCC1                (c) estimated leukocyte fraction and (d) levels of cleaved caspase-7 protein
+L1173: of silenced samples and ESCC subtypes are shown in the table (P < 0.01,             and top bounds of the box), and the highest and lowest values within 1.5
+L1187: Extended Data Figure 8 | EACs are more similar to CIN-type gastric adenocarcinomas than to other gastric subtypes. a, b, Integrative clustering of
+L1201: Extended Data Figure 9 | Platform-specific unsupervised clustering analyses of GEA-CIN tumours. a–d, Shown are heat map representations of gene
+L1214: Extended Data Figure 10 | Integrative clustering of GEA-CIN samples.                 microRNA expression, DNA methylation and somatic copy number
+L1218: the 267 samples for which complete platform-specific cluster information             iCluster and SuperCluster was performed as described in Methods.

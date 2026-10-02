@@ -1,0 +1,156 @@
+# Retrieval inventory, NOT completed visual/claim audit
+Source L32: Comprehensive molecular portraits of human breast tumours; DOI 10.1038/nature11412
+Original text line numbers. Numbers may be citations, secondary reports,
+toy examples, or ambiguous table columns. Verify context before citing.
+
+L25:    heterogeneity. Somatic mutations in only three genes (TP53, PIK3CA and GATA3) occurred at .10% incidence across all
+L37: Breast cancer is one of the most common cancers with greater than                              466 tumours from 463 patients had data available on five platforms
+L41: numerous and diverse, with several genomic tests to assist in predict-                         (n 5 697), and whole-exome sequencing (n 5 507); in addition, 348 of
+L42: ing outcomes for ER1 patients receiving endocrine therapy1,2. The                              the 466 samples also had reverse-phase protein array (RPPA) data
+L46: Triple-negative breast cancers (TNBCs, lacking expression of ER,                               clinical characteristics are presented in Supplementary Table 1.
+L49: have an increased incidence in patients with germline BRCA1 muta-                              Overall, 510 tumours from 507 patients were subjected to whole-
+L63: platforms. Individual platform and integrated pathway analyses iden-                           covery rate (FDR) ,5% (Supplementary Table 2).
+L65: identify therapeutically tractable genomic aberrations and other events                        breast cancer (PIK3CA, PTEN, AKT1, TP53, GATA3, CDH1, RB1,
+L68: Samples and clinical data                                                                      PIK3R1, PTPN22, PTPRD, NF1, SF3B1 and CCND3. TBX3, which is
+L69: Tumour and germline DNA samples were obtained from 825                                         mutated in ulnar-mammary syndrome and involved in mammary
+L70: patients. Different subsets of patients were assayed on each platform:                         gland development17, harboured 13 mutations (8 frame-shift indels,
+L74:                                                                                                                      4 O C TO B E R 2 0 1 2 | VO L 4 9 0 | N AT U R E | 6 1
+L79: 1 in-frame deletion, 1 nonsense, and 3 missense), suggesting a loss of                                                                       steps in the p38–JNK1 stress kinase pathway24. Luminal B cancers
+L81: tion in TBX5, which are genes involved in Holt–Oram syndrome18.                                                                              PIK3CA (29% each) being the most frequent. The luminal tumour
+L83: significance harbouring 13 and 8 mutations, respectively. RUNX1 and                                                                          mutations occurred in 80% of cases and the majority of the luminal
+L84: CBFB, both rearranged in acute myeloid leukaemia and interfering                                                                             significantly mutated gene repertoire, except PIK3CA (9%), were
+L86: respectively. PIK3R1 contained 14 mutations, most of which clustered                                                                         HER2 amplification (80%), had a hybrid pattern with a high frequency
+L87: in the PIK3CA interaction domain similar to previously identified                                                                            of TP53 (72%) and PIK3CA (39%) mutations and a much lower fre-
+L88: mutations in glioma19 and endometrial cancer20. We also observed a                                                                           quency of other significantly mutated genes including PIK3R1 (4%).
+L103: clinical-subtype-specific patterns of mutation (Supplementary Table 2).                                                                      lower CDH1 mRNA (Supplementary Fig. 4) and protein expression.
+L108: like and HER2E subtypes. The luminal A subtype harboured the most                                                                            variants. These analyses identified 47 out of 507 patients with
+L110: (45%), followed by MAP3K1, GATA3, TP53, CDH1 and MAP2K4.                                                                                     (ATM, BRCA1, BRCA2, BRIP1, CHEK2, NBN, PTEN, RAD51C and
+L111: Twelve per cent of luminal A tumours contained likely inactivating                                                                           TP53; Supplementary Table 3), supporting the hypothesis that ,10%
+L157:        All     36% 37% 8% 4% 11% 7% 7% 3% 3% 2% 4% 2%                                                          3%     3%      3%      2% 2%           1% 2% 3%               3% 1% 2%                                         Amplification   Deletion
+L158:  Luminal A     45% 12% 13% 7% 14% 8% 9% 4% 0.4% 4% 5% 2%                                                       3%     5%      4%      2% 3%           1% 0.4% 1%             2% 0.4% 2%
+L159:  Luminal B     29% 29% 5% 2% 15% 6% 5% 4% 2% 2% 2% 2%                                                          4%     2%      2%      2% 0%           1% 3% 2%               4% 2% 4%
+L160: HER2-enriched 39% 72% 4% 2% 2% 7% 5% 2% 4% 2% 4% 2%                                                            0%     0%      2%      2% 4%           2% 0% 5%               0% 5% 4%
+L161:   Basal-like    9% 80% 0% 0% 2% 5% 0% 1% 0% 0% 0% 0%                                                           1%     2%      1%      0% 1%           0% 4% 4%               2% 0% 1%
+L164: Figure 1 | Significantly mutated genes and correlations with genomic and                                                                     N, node status; T, tumour size. The right panel shows significantly mutated
+L168: significantly mutated genes. The middle panel shows clinical features: dark                                                                  expression subtype is indicated. Hypermutated: mutation rates .3 s.d. above
+L171: 6 2 | N AT U R E | VO L 4 9 0 | 4 O C T O B E R 2 0 1 2
+L177: germline BRCA1 mutations and basal-like breast cancers7,8.                  (Supplementary Table 5). These analyses confirmed all previously
+L184: SigClust analysis identified 12 classes (5 classes with .9 samples per      with mRNA subtype including characteristic loss of 5q and gain of
+L185: class). We performed a semi-supervised hierarchical cluster analysis        10p in basal-like cancers5,29 and gain of 1q and/or 16q loss in luminal
+L187: classes (9 classes with .9 samples per class) (Supplementary Fig. 6).       number clusters/groups that correlated with mRNA subtypes, ER, PR
+L188: We also classified each sample using the 50-gene PAM50 model14              and HER2 clinical status, and TP53 mutation status (Supplementary
+L189: (Supplementary Fig. 5). High concordance was observed between               Fig. 10). In addition, this aCGH subtype classification was highly
+L198: using an abundance matrix containing the 25% most variable                  (Supplementary Fig. 12). These protein subtypes were highly
+L199: miRNAs (306 transcripts/genes or MIMATs (miRNA IDs)). These                 concordant with the mRNA subtypes, particularly with basal-like
+L202: showed high overlap with the basal-like mRNA subtype and con-               sion of HER2 and EGFR with a strong concordance with phosphorylated
+L206: the exception of TP53—which showed a strong positive correlation—           phospho-proteins, the concordance of phosphorylation of HER2 and
+L232: in group 3 tumours (Supplementary Table 4). A DAVID (database for           (C-of-C) approach illustrated that basal-like cancers had the most
+L236: methylated samples showed fewer PIK3CA and MAP3K1 mutations,                mRNA subtypes (driven, in part, by the fact that the four intrinsic
+L242:                                                                                                   4 O C T O B E R 2 0 1 2 | VO L 4 9 0 | N AT U R E | 6 3
+L249:                                                                                        PIK3CA mutation, PTEN loss, INPP4B loss and multiple gene
+L264:                                                                   Positive/mut         strongly with INPP4B and PTEN loss, and to a degree with PIK3CA
+L290:                                                                                        to be inactivating, with MAP2K4 also a target of focal DNA loss in
+L308:                                                               PIK3CA P<0.001           loss was more common in basal-like tumours. Almost all MAP3K1and
+L314: Figure 2 | Coordinated analysis of breast cancer subtypes defined from five
+L316: the subtypes identifies four major groups (samples, n 5 348). The blue and             (12%) and a higher frequency in luminal B (29%) cancers (Fig. 1). In
+L317: white heat map displays sample consensus. b, Heat-map display of the subtypes          addition to TP53 itself, a number of other pathway-inactivating events
+L318: defined independently by miRNAs, DNA methylation, copy number (CN),                    occurred including ATM loss and MDM2 amplification (Figs 3b and
+L321: features. P values were calculated using a chi-squared test.                           functional TP53 (GADD45A and CDKN1A), and TP53 activity42,43
+L335: copy number changes (Supplementary Fig. 9) and patient outcomes1,14.                   (also called p18) was at its lowest levels in luminal A cancers, con-
+L336: One of the most dominant features is high mRNA and protein expres-                     sistent with observations in mouse models45. Finally, RB1 activity
+L341: exclusive fashion, whereas ESR1 and XBP1 were typically highly                         targets. We compiled a drug target table in which we defined a target
+L344: signalling in luminal tumours, as RUNX1 functions as an ER ‘DNA                        pathway (Supplementary Table 6). In luminal/ER1 cancers, the high
+L351: 6 4 | N AT U R E | VO L 4 9 0 | 4 O C TO B E R 2 0 1 2
+L376:                                                                                                              pEGFR, HER2 and pHER2 was observed. However, only ,50% of
+L395:    TP53 mutation                                                                                    †        (q-value 5 0%) (Supplementary Fig. 18 and Supplementary Table 7).
+L425:                                                                                                *‡            36 differentially expressed proteins (q-value ,5%) (Supplementary
+L429:                                                                                                †‡            Fig. 18G and Supplementary Table 8). The EGFR/pEGFR/HER2/
+L451: Figure 3 | Integrated analysis of the PI(3)K, TP53 and RB1 pathways. Breast                                  amplicon genes by mRNA expression, and RPPA EGFR/pEGFR/
+L453: corresponding effects on pathway activity. a–c, For PI(3)K (a), TP53 (b) and                                 subtypes within clinically HER21 tumours (Table 1). These signatures
+L456: (details in Supplementary Methods; PI(3)K:Saal, PTEN loss in human breast
+L461: vitro; TROESTER, TP53 knockdown in vitro; RB: CHICAS, RB1 mouse                                              high frequency of PIK3CA mutations (39%), a lower frequency of
+L462: knockout versus wild type; LARA, RB1 knockdown in vitro;                                                     PTEN and PIK3R1 mutations (Supplementary Table 6), and genomic
+L463: HERSCHKOWITZ, RB1 loss of heterozygosity (LOH) in human breast                                               losses of PTEN and INPP4B. Other possible druggable mutations
+L472: were identified including amplifications of fibroblast growth factor                                         mutation rate (Table 1), and DNA amplification of other potential
+L475: subtypes is presented in Table 1.                                                                            Basal-like summary analysis
+L480:                                                                                                                                   4 O C T O B E R 2 0 1 2 | VO L 4 9 0 | N AT U R E | 6 5
+L485:                             a PI(3)K/Akt - signalling (77%, 357 samples)
+L490:                                             17% 4%                5% 15%                     10% 0%                8% 0%
+L494:                                              5% 2%            43% 7%   3% 1%           3% 0%      8% 28%                     apoptosis
+L498:                                              3% 7%                                                                          Proliferation
+L499:                                                                        10% 3%                8% 7%                 20% 2%
+L515:                             b p53 - signalling (49%, 227 samples)                                                                     P = 0.002
+L517:                                   5% 3%               3% 0%                MDM2       AKT1
+L518:                                                                        5% 1%           ATM
+L521:                                   1% 1%              27% 84%               MDM4      MDM4
+L522:                                                                        7% 1%          TP53
+L524:                             c Cell cycle checkpoints - Basal tumours only (57%, 46 samples)                                 P = 0.001, P* < 0.01
+L529:                                                        9%            20%                                   BRCA1
+L531:                                       3%                                           Cell-cycle arrest         ATM
+L534:                                                         30%       6%              S/G2/M checkpoints       BRCA1
+L547: Figure 4 | Mutual exclusivity modules in cancer (MEMo) analysis. Mutual                        signalling pathways and whose core was the top-scoring module. b, MEMo
+L555: However, ,75% of TNBCs are basal-like with the other 25% com-                                     Expression features of basal-like tumours include a characteristic
+L562:    Basal-like tumours showed a high frequency of TP53 mutations                                a/ARNT network hubs as key regulatory features of basal-like
+L563: (80%)9, which when combined with inferred TP53 pathway activity                                cancers. Even though chromosome 8q24 is amplified across all
+L564: suggests that loss of TP53 function occurs within most, if not all,                            subtypes (Supplementary Fig. 9), high MYC activation seems to be
+L565: basal-like cancers (Fig. 3b). In addition to loss of TP53, a MEMo                              a basal-like characteristic51.
+L566: analysis reconfirmed that loss of RB1 and BRCA1 are basal-like                                    Given the striking contrasts between basal-like and luminal/
+L567: features (Fig. 4c)47,50. PIK3CA was the next most commonly mutated                             HER2E subtypes, we performed a MEMo analysis on basal-like
+L568: gene (,9%); however, inferred PI(3)K pathway activity, whether                                 tumours alone. The top-scoring module included ATM mutations,
+L569: from gene37–39, protein36, or high PI(3)K/AKT pathway activities,                              BRCA1 and BRCA2 inactivation, RB1 loss and cyclin E1 amplification
+L572: loss of PTEN and INPP4B and/or amplification of PIK3CA. A recent                               mutation spectrum was reminiscent of the spectrum seen in serous
+L573: paper12 performed exome sequencing of 102 TNBCs. Five of the top                               ovarian cancers52 with only one gene (that is, TP53) at .10% muta-
+L577: TNBCs (Supplementary Table 2).                                                                 breast basal-like, and breast basal-like versus breast luminal cancers
+L578: 6 6 | N AT U R E | VO L 4 9 0 | 4 O C TO B E R 2 0 1 2
+L583: Table 1 | Highlights of genomic, clinical and proteomic features of subtypes
+L586: ER1/HER22 (%)                                87                                     82                                     10                                    20
+L587: HER21 (%)                                    7                                      15                                     2                                     68
+L588: TNBCs (%)                                    2                                      1                                      80                                    9
+L589: TP53 pathway                                 TP53 mut (12%); gain of MDM2           TP53 mut (32%); gain of MDM2           TP53 mut (84%); gain of MDM2          TP53 mut (75%); gain of
+L590:                                              (14%)                                  (31%)                                  (14%)                                 MDM2 (30%)
+L591: PIK3CA/PTEN pathway                          PIK3CA mut (49%); PTEN                 PIK3CA mut (32%) PTEN mut/loss         PIK3CA mut (7%); PTEN mut/loss        PIK3CA mut (42%); PTEN
+L592:                                              mut/loss (13%); INPP4B loss (9%)       (24%) INPP4B loss (16%)                (35%); INPP4B loss (30%)              mut/loss (19%); INPP4B
+L593:                                                                                                                                                                  loss (30%)
+L594: RB1 pathway                                  Cyclin D1 amp (29%); CDK4 gain         Cyclin D1 amp (58%); CDK4 gain         RB1 mut/loss (20%); cyclin E1         Cyclin D1 amp (38%);
+L595:                                              (14%); low expression of               (25%)                                  amp (9%); high expression of          CDK4 gain (24%)
+L601:                                              16q loss; 11q13.3 amp (24%)            loss; 11q13.3 amp (51%);               loss; MYC focal gain (40%)            gain; 8p loss; 17q12 focal
+L602:                                                                                     8p11.23 amp (28%)                                                            ERRB2 amp (71%)
+L603: DNA mutations                                PIK3CA (49%); TP53 (12%);              TP53 (32%); PIK3CA (32%);              TP53 (84%); PIK3CA (7%)               TP53 (75%); PIK3CA
+L604:                                              GATA3 (14%); MAP3K1 (14%)              MAP3K1 (5%)                                                                  (42%); PIK3R1 (8%)
+L608:                                              MYB; RPPA reactive subtypes            FOXM1 and MYC; RPPA reactive           proteins, PTEN and INPP4B loss        protein expression of EGFR
+L615: widespread genomic instability and common gains of 1q, 3q, 8q and                                                We systematically looked for other common features between
+L616: 12p, and loss of 4q, 5q and 8p (Supplementary Fig. 20A). Using a                                             serous ovarian and basal-like tumours when each was compared to
+L617: more global copy number comparison, we examined the overall                                                  luminal. We identified: (1) BRCA1 inactivation; (2) RB1 loss and
+L622:                                                               2% 31% 20%          19% 84% 95%                Omnibus accession GSE2109) was performed where each TCGA
+L626:         2% 30% 23%                                             survival
+L628:                                        <1% 9% 18%
+L632:                                                              10% 31% 28%         Hyper-methylation
+L633:        3% 6% 11%                              RB1                                                            that calculates whether a gene or pathway feature is both differentially
+L635:                                        2% 20% 7%                                 High-level amplification    activated in basal-like versus luminal cancers and has higher overall
+L644:                          Cell-cycle arrest               Luminal Basal Ovarian cancer                        BRCA1 loss, with MYC amplification, strongly suggest that these are
+L657:                                                                                                              target aside from BRCA1 and BRCA2. Here we note that ,20% of
+L663:                     Lung (129)                                                                               patients might benefit from PARP inhibitors and/or platinum com-
+L668:                                                                                                              therapeutic targets (Supplementary Table 6). Potential targets include
+L669: Figure 5 | Comparison of breast and serous ovarian carcinomas.
+L670:                                                                                                              losses of PTEN and INPP4B, both of which have been shown to
+L676: various tissues of origin (rows; external ‘TGEN expO’ data set, GSE2109)                                     including PIK3CA (49%), KRAS (32%), BRAF (30%) and EGFR
+L677: including ovarian cancers.                                                                                   (23%). Other RTKs that are plausible drug targets and amplified in
+L678:                                                                                                                                     4 O C T O B E R 2 0 1 2 | VO L 4 9 0 | N AT U R E | 6 7
+L696: common breast cancer subtypes (Table 1). Our novel observation that                              7669–7678 (2004).
+L704: within defined breast cancer subtypes.                                                       29. Weigman, V. J. et al. Basal-like breast cancer DNA copy number losses identify
+L707: Specimens were obtained from patients with appropriate consent from institutional            30. Curtis, C. et al. The genomic and transcriptomic architecture of 2,000 breast
+L711: 800 patients were assayed on at least one platform. Different numbers of patients                arrays for the study of the functional proteome in non-microdissected human
+L712: were used for each platform using the largest number of patients available at the                breast cancers. Clin. Proteomics 6, 129–151 (2010).
+L713: time of data freeze; 466 samples (463 patients) were in common across 5 out of 6             32. Daub, H. et al. Kinase-selective enrichment enables quantitative
+L714: platforms (excluding RPPA) and 348 patients were in common on 6 out of 6                         phosphoproteomics of the kinome across the cell cycle. Mol. Cell 31, 438–448
+L716:                                                                                              33. Vaske, C. J. et al. Inference of patient-specific pathway activities from multi-
+L738:     associated with different clinicopathological features and gene-expression               42. Kannan, K. et al. DNA microarrays identification of primary and secondary target
+L742: 7. Sorlie, T. et al. Repeated observation of breast tumor subtypes in independent            44. Deisenroth, C., Thorner, A. R., Enomoto, T., Perou, C. M. & Zhang, Y. Mitochondrial
+L746: 9. Carey, L. A. et al. Race, breast cancer subtypes, and survival in the Carolina Breast         restrains mammary luminal progenitor cell proliferation and tumorigenesis.
+L750: 11. Shah, S. P. et al. Mutational evolution in a lobular breast tumour profiled at single    47. Herschkowitz, J. I., He, X., Fan, C. & Perou, C. M. The functional loss of the
+L765: 18. Li, Q. Y. et al. Holt-Oram syndrome is caused by mutations in TBX5, a member of          53. Audeh, M. W. et al. Oral poly(ADP-ribose) polymerase inhibitor olaparib in patients
+L771: 6 8 | N AT U R E | VO L 4 9 0 | 4 O C TO B E R 2 0 1 2
+L812: analysis coordinator, C.M.P., K.A.H.; DNA sequence analysis, D.C.K., L.D.; mRNA                Harper47, Kristen M. Leraas47, Lisa J. Wise47, Teresa R. Tabler47, Cynthia McAllister47,
+L821: Data Coordinating Center (http://cancergenome.nih.gov/). Sample lists, data matrices           Paweł Murawa56, Jacek J. Brzeziński56, Hanna Perz56, Radosław Łaźniak56, Marek
+L878:                                                                                                                          4 O C T O B E R 2 0 1 2 | VO L 4 9 0 | N AT U R E | 6 9
+L948: 7 0 | N AT U R E | VO L 4 9 0 | 4 O C T O B E R 2 0 1 2

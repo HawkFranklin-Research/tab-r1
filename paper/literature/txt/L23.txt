@@ -1,0 +1,1150 @@
+SOURCE ID: L23
+TITLE: XGBoost: A Scalable Tree Boosting System
+YEAR: 2016
+DOI: 10.1145/2939672.2939785
+PDF: ../pdfs/L23.pdf
+PAGES: 13
+EXTRACTION: pdftotext -layout. Page breaks are form feeds. Check equations, tables, and figures against the PDF during visual audit.
+==============================================================================
+
+                                                                 XGBoost: A Scalable Tree Boosting System
+
+                                                                                Tianqi Chen                                                           Carlos Guestrin
+                                                                        University of Washington                                                   University of Washington
+                                                                 tqchen@cs.washington.edu                                                    guestrin@cs.washington.edu
+
+
+
+
+                                         ABSTRACT                                                                                    problems. Besides being used as a stand-alone predictor, it
+
+
+
+
+arXiv:1603.02754v3 [cs.LG] 10 Jun 2016
+                                         Tree boosting is a highly effective and widely used machine                                 is also incorporated into real-world production pipelines for
+                                         learning method. In this paper, we describe a scalable end-                                 ad click through rate prediction [15]. Finally, it is the de-
+                                         to-end tree boosting system called XGBoost, which is used                                   facto choice of ensemble method and is used in challenges
+                                         widely by data scientists to achieve state-of-the-art results                               such as the Netflix prize [3].
+                                         on many machine learning challenges. We propose a novel                                        In this paper, we describe XGBoost, a scalable machine
+                                         sparsity-aware algorithm for sparse data and weighted quan-                                 learning system for tree boosting. The system is available as
+                                         tile sketch for approximate tree learning. More importantly,                                an open source package2 . The impact of the system has been
+                                         we provide insights on cache access patterns, data compres-                                 widely recognized in a number of machine learning and data
+                                         sion and sharding to build a scalable tree boosting system.                                 mining challenges. Take the challenges hosted by the ma-
+                                         By combining these insights, XGBoost scales beyond billions                                 chine learning competition site Kaggle for example. Among
+                                         of examples using far fewer resources than existing systems.                                the 29 challenge winning solutions 3 published at Kaggle’s
+                                                                                                                                     blog during 2015, 17 solutions used XGBoost. Among these
+                                                                                                                                     solutions, eight solely used XGBoost to train the model,
+                                         Keywords                                                                                    while most others combined XGBoost with neural nets in en-
+                                         Large-scale Machine Learning                                                                sembles. For comparison, the second most popular method,
+                                                                                                                                     deep neural nets, was used in 11 solutions. The success
+                                                                                                                                     of the system was also witnessed in KDDCup 2015, where
+                                         1.     INTRODUCTION                                                                         XGBoost was used by every winning team in the top-10.
+                                            Machine learning and data-driven approaches are becom-                                   Moreover, the winning teams reported that ensemble meth-
+                                         ing very important in many areas. Smart spam classifiers                                    ods outperform a well-configured XGBoost by only a small
+                                         protect our email by learning from massive amounts of spam                                  amount [1].
+                                         data and user feedback; advertising systems learn to match                                     These results demonstrate that our system gives state-of-
+                                         the right ads with the right context; fraud detection systems                               the-art results on a wide range of problems. Examples of
+                                         protect banks from malicious attackers; anomaly event de-                                   the problems in these winning solutions include: store sales
+                                         tection systems help experimental physicists to find events                                 prediction; high energy physics event classification; web text
+                                         that lead to new physics. There are two important factors                                   classification; customer behavior prediction; motion detec-
+                                         that drive these successful applications: usage of effective                                tion; ad click through rate prediction; malware classification;
+                                         (statistical) models that capture the complex data depen-                                   product categorization; hazard risk prediction; massive on-
+                                         dencies and scalable learning systems that learn the model                                  line course dropout rate prediction. While domain depen-
+                                         of interest from large datasets.                                                            dent data analysis and feature engineering play an important
+                                            Among the machine learning methods used in practice,                                     role in these solutions, the fact that XGBoost is the consen-
+                                         gradient tree boosting [10]1 is one technique that shines                                   sus choice of learner shows the impact and importance of
+                                         in many applications. Tree boosting has been shown to                                       our system and tree boosting.
+                                         give state-of-the-art results on many standard classification                                  The most important factor behind the success of XGBoost
+                                         benchmarks [16]. LambdaMART [5], a variant of tree boost-                                   is its scalability in all scenarios. The system runs more than
+                                         ing for ranking, achieves state-of-the-art result for ranking                               ten times faster than existing popular solutions on a single
+                                         1
+                                           Gradient tree boosting is also known as gradient boosting                                 machine and scales to billions of examples in distributed or
+                                         machine (GBM) or gradient boosted regression tree (GBRT)                                    memory-limited settings. The scalability of XGBoost is due
+                                                                                                                                     to several important systems and algorithmic optimizations.
+                                                                                                                                     These innovations include: a novel tree learning algorithm
+                                         Permission to make digital or hard copies of part or all of this work for personal or       is for handling sparse data; a theoretically justified weighted
+                                         classroom use is granted without fee provided that copies are not made or distributed
+                                         for profit or commercial advantage and that copies bear this notice and the full citation
+                                                                                                                                     quantile sketch procedure enables handling instance weights
+                                         on the first page. Copyrights for third-party components of this work must be honored.      in approximate tree learning. Parallel and distributed com-
+                                         For all other uses, contact the owner/author(s).                                            puting makes learning faster which enables quicker model ex-
+                                         KDD ’16, August 13-17, 2016, San Francisco, CA, USA                                         ploration. More importantly, XGBoost exploits out-of-core
+                                         c 2016 Copyright held by the owner/author(s).
+                                                                                                                                     2
+                                         ACM ISBN .                                                                                      https://github.com/dmlc/xgboost
+                                                                                                                                     3
+                                         DOI:                                                                                            Solutions come from of top-3 teams of each competitions.
+computation and enables data scientists to process hundred
+millions of examples on a desktop. Finally, it is even more
+exciting to combine these techniques to make an end-to-end
+system that scales to even larger data with the least amount
+of cluster resources. The major contributions of this paper
+is listed as follows:
+
+     • We design and build a highly scalable end-to-end tree
+       boosting system.
+
+     • We propose a theoretically justified weighted quantile       Figure 1: Tree Ensemble Model. The final predic-
+       sketch for efficient proposal calculation.                   tion for a given example is the sum of predictions
+                                                                    from each tree.
+     • We introduce a novel sparsity-aware algorithm for par-
+       allel tree learning.                                         it into the leaves and calculate the final prediction by sum-
+                                                                    ming up the score in the corresponding leaves (given by w).
+     • We propose an effective cache-aware block structure          To learn the set of functions used in the model, we minimize
+       for out-of-core tree learning.                               the following regularized objective.
+   While there are some existing works on parallel tree boost-                      L(φ) =
+                                                                                           X
+                                                                                               l(ŷi , yi ) +
+                                                                                                              X
+                                                                                                                Ω(fk )
+ing [22, 23, 19], the directions such as out-of-core compu-                                          i                 k
+tation, cache-aware and sparsity-aware learning have not                                                                                          (2)
+                                                                                                           1
+been explored. More importantly, an end-to-end system                                    where Ω(f ) = γT + λkwk2
+that combines all of these aspects gives a novel solution for                                              2
+real-world use-cases. This enables data scientists as well as       Here l is a differentiable convex loss function that measures
+researchers to build powerful variants of tree boosting al-         the difference between the prediction ŷi and the target yi .
+gorithms [7, 8]. Besides these major contributions, we also         The second term Ω penalizes the complexity of the model
+make additional improvements in proposing a regularized             (i.e., the regression tree functions). The additional regular-
+learning objective, which we will include for completeness.         ization term helps to smooth the final learnt weights to avoid
+   The remainder of the paper is organized as follows. We           over-fitting. Intuitively, the regularized objective will tend
+will first review tree boosting and introduce a regularized         to select a model employing simple and predictive functions.
+objective in Sec. 2. We then describe the split finding meth-       A similar regularization technique has been used in Regu-
+ods in Sec. 3 as well as the system design in Sec. 4, including     larized greedy forest (RGF) [25] model. Our objective and
+experimental results when relevant to provide quantitative          the corresponding learning algorithm is simpler than RGF
+support for each optimization we describe. Related work             and easier to parallelize. When the regularization parame-
+is discussed in Sec. 5. Detailed end-to-end evaluations are         ter is set to zero, the objective falls back to the traditional
+included in Sec. 6. Finally we conclude the paper in Sec. 7.        gradient tree boosting.
+
+2.    TREE BOOSTING IN A NUTSHELL                                   2.2     Gradient Tree Boosting
+   We review gradient tree boosting algorithms in this sec-            The tree ensemble model in Eq. (2) includes functions as
+tion. The derivation follows from the same idea in existing         parameters and cannot be optimized using traditional opti-
+literatures in gradient boosting. Specicially the second order      mization methods in Euclidean space. Instead, the model
+                                                                                                                        (t)
+method is originated from Friedman et al. [12]. We make mi-         is trained in an additive manner. Formally, let ŷi be the
+nor improvements in the reguralized objective, which were           prediction of the i-th instance at the t-th iteration, we will
+found helpful in practice.                                          need to add ft to minimize the following objective.
+                                                                                           n
+2.1     Regularized Learning Objective                                          L(t) =
+                                                                                           X
+                                                                                                  l(yi , yˆi (t−1) + ft (xi )) + Ω(ft )
+  For a given data set with n examples and m features                                       i=1
+D = {(xi , yi )} (|D| = n, xi ∈ Rm , yi ∈ R), a tree ensem-
+ble model (shown in Fig. 1) uses K additive functions to            This means we greedily add the ft that most improves our
+predict the output.                                                 model according to Eq. (2). Second-order approximation
+                                                                    can be used to quickly optimize the objective in the general
+                               K
+                               X                                    setting [12].
+              ŷi = φ(xi ) =         fk (xi ), fk ∈ F ,       (1)
+                                                                                n
+                               k=1                                              X                                          1
+                                                                       L(t) ≃         [l(yi , ŷ (t−1) ) + gi ft (xi ) +     hi ft2 (xi )] + Ω(ft )
+                                          m
+where F = {f (x) = wq(x) }(q : R → T, w ∈ R ) is the      T
+                                                                                i=1
+                                                                                                                           2
+space of regression trees (also known as CART). Here q rep-
+resents the structure of each tree that maps an example to          where gi = ∂ŷ(t−1) l(yi , ŷ (t−1) ) and hi = ∂ŷ2(t−1) l(yi , ŷ (t−1) )
+the corresponding leaf index. T is the number of leaves in the      are first and second order gradient statistics on the loss func-
+tree. Each fk corresponds to an independent tree structure          tion. We can remove the constant terms to obtain the fol-
+q and leaf weights w. Unlike decision trees, each regression        lowing simplified objective at step t.
+tree contains a continuous score on each of the leaf, we use                                n
+wi to represent score on i-th leaf. For a given example, we
+                                                                                           X                 1
+                                                                                L̃(t) =        [gi ft (xi ) + hi ft2 (xi )] + Ω(ft )              (3)
+will use the decision rules in the trees (given by q) to classify                          i=1
+                                                                                                             2
+                                                                               Algorithm 1: Exact Greedy Algorithm for Split Finding
+                                                                                Input: I, instance set of current node
+                                                                                Input: d, feature dimension
+                                                                                gain ←
+                                                                                     P0             P
+                                                                                G ← i∈I gi , H ← i∈I hi
+                                                                                for k = 1 to m do
+                                                                                   GL ← 0, HL ← 0
+                                                                                   for j in sorted(I, by xjk ) do
+                                                                                       GL ← GL + gj , HL ← HL + hj
+Figure 2: Structure Score Calculation. We only
+                                                                                       GR ← G − GL , HR ← H − HL
+need to sum up the gradient and second order gra-                                                             G2     G2    G2
+dient statistics on each leaf, then apply the scoring                                  score ← max(score, HLL+λ + HRR+λ − H+λ  )
+formula to get the quality score.                                                  end
+                                                                                end
+  Define Ij = {i|q(xi ) = j} as the instance set of leaf j. We                  Output: Split with max score
+can rewrite Eq (3) by expanding Ω as follows
+             n                                               T
+             X                      1                     1 X 2                Algorithm 2: Approximate Algorithm for Split Finding
+   L̃(t) =         [gi ft (xi ) +     hi ft2 (xi )] + γT + λ    wj
+             i=1
+                                    2                     2 j=1                 for k = 1 to m do
+                                                                     (4)            Propose Sk = {sk1 , sk2 , · · · skl } by percentiles on feature k.
+              T
+             X     X         1 X                                                    Proposal can be done per tree (global), or per split(local).
+        =       [(   gi )wj + (     hi + λ)wj2 ] + γT                           end
+             j=1 i∈I
+                             2  i∈I
+                        j                  j
+                                                                                for k = 1 to P
+                                                                                             m do
+                                                                                    Gkv ←= j∈{j|sk,v ≥xjk >sk,v−1 } gj
+  For a fixed structure q(x), we can compute the optimal                                     P
+weight wj∗ of leaf j by                                                             Hkv ←= j∈{j|sk,v ≥xjk >sk,v−1 } hj
+                             P                                                  end
+                               i∈Ij gi                                          Follow same step as in previous section to find max
+                    wj∗ = − P            ,           (5)
+                             i∈Ij hi + λ
+                                                                                score only among proposed splits.
+
+and calculate the corresponding optimal value by
+                          T
+                              P       2                                    13], It is implemented in a commercial software TreeNet 4
+             (t)       1 X ( i∈Ij gi )                                     for gradient boosting, but is not implemented in existing
+           L̃ (q) = −       P            + γT.                       (6)
+                       2 j=1 i∈Ij hi + λ                                   opensource packages. According to user feedback, using col-
+                                                                           umn sub-sampling prevents over-fitting even more so than
+   Eq (6) can be used as a scoring function to measure the                 the traditional row sub-sampling (which is also supported).
+quality of a tree structure q. This score is like the impurity             The usage of column sub-samples also speeds up computa-
+score for evaluating decision trees, except that it is derived             tions of the parallel algorithm described later.
+for a wider range of objective functions. Fig. 2 illustrates
+how this score can be calculated.
+   Normally it is impossible to enumerate all the possible
+                                                                           3.      SPLIT FINDING ALGORITHMS
+tree structures q. A greedy algorithm that starts from a
+single leaf and iteratively adds branches to the tree is used
+                                                                           3.1       Basic Exact Greedy Algorithm
+instead. Assume that IL and IR are the instance sets of left                  One of the key problems in tree learning is to find the
+and right nodes after the split. Lettting I = IL ∪ IR , then               best split as indicated by Eq (7). In order to do so, a split
+the loss reduction after the split is given by                             finding algorithm enumerates over all the possible splits on
+            " P                                               #            all the features. We call this the exact greedy algorithm.
+                         2
+                               ( i∈IR gi )2      ( i∈I gi )2
+                                P
+                                                                           Most existing single machine tree boosting implementations,
+                                                  P
+          1 ( i∈IL gi )
+Lsplit =     P              +  P              − P               −γ         such as scikit-learn [20], R’s gbm [21] as well as the single
+          2     i∈IL hi + λ      i∈IR hi + λ       i∈I hi + λ
+                                                                           machine version of XGBoost support the exact greedy algo-
+                                                            (7)
+                                                                           rithm. The exact greedy algorithm is shown in Alg. 1. It
+This formula is usually used in practice for evaluating the
+                                                                           is computationally demanding to enumerate all the possible
+split candidates.
+                                                                           splits for continuous features. In order to do so efficiently,
+                                                                           the algorithm must first sort the data according to feature
+2.3    Shrinkage and Column Subsampling                                    values and visit the data in sorted order to accumulate the
+   Besides the regularized objective mentioned in Sec. 2.1,                gradient statistics for the structure score in Eq (7).
+two additional techniques are used to further prevent over-
+fitting. The first technique is shrinkage introduced by Fried-             3.2       Approximate Algorithm
+man [11]. Shrinkage scales newly added weights by a factor                    The exact greedy algorithm is very powerful since it enu-
+η after each step of tree boosting. Similar to a learning rate             merates over all possible splitting points greedily. However,
+in tochastic optimization, shrinkage reduces the influence of              it is impossible to efficiently do so when the data does not fit
+each individual tree and leaves space for future trees to im-              entirely into memory. Same problem also arises in the dis-
+prove the model. The second technique is column (feature)
+                                                                           4
+subsampling. This technique is used in RandomForest [4,                        https://www.salford-systems.com/products/treenet
+                    0.83
+
+                    0.82
+
+                    0.81
+
+                    0.80
+
+
+         Test AUC
+                    0.79
+
+                    0.78
+                                                         exact greedy
+                    0.77                                 global eps=0.3         Figure 4: Tree structure with default directions. An
+                                                         local eps=0.3          example will be classified into the default direction
+                    0.76
+                                                         global eps=0.05
+                                                                                when the feature needed for the split is missing.
+                    0.75
+                        0   10   20   30   40      50     60   70   80     90
+                                       Number of Iterations
+
+Figure 3: Comparison of test AUC convergence on                                 ture are used to make candidates distribute evenly on the
+Higgs 10M dataset. The eps parameter corresponds                                data. Formally, let multi-set Dk = {(x1k , h1 ), (x2k , h2 ) · · · (xnk , hn )}
+to the accuracy of the approximate sketch. This                                 represent the k-th feature values and second order gradient
+roughly translates to 1 / eps buckets in the proposal.                          statistics of each training instances. We can define a rank
+We find that local proposals require fewer buckets,                             functions rk : R → [0, +∞) as
+because it refine split candidates.
+                                                                                                            1          X
+                                                                                             rk (z) = P                           h,              (8)
+                                                                                                        (x,h)∈Dk h     (x,h)∈Dk ,x<z
+tributed setting. To support effective gradient tree boosting
+                                                                                which represents the proportion of instances whose feature
+in these two settings, an approximate algorithm is needed.
+                                                                                value k is smaller than z. The goal is to find candidate split
+   We summarize an approximate framework, which resem-
+                                                                                points {sk1 , sk2 , · · · skl }, such that
+bles the ideas proposed in past literatures [17, 2, 22], in
+Alg. 2. To summarize, the algorithm first proposes can-                          |rk (sk,j ) − rk (sk,j+1 )| < , sk1 = min xik , skl = max xik .
+                                                                                                                           i                i
+didate splitting points according to percentiles of feature
+                                                                                                                                           (9)
+distribution (a specific criteria will be given in Sec. 3.3).
+                                                                                 Here  is an approximation factor. Intuitively, this means
+The algorithm then maps the continuous features into buck-
+                                                                                that there is roughly 1/ candidate points. Here each data
+ets split by these candidate points, aggregates the statistics
+                                                                                point is weighted by hi . To see why hi represents the weight,
+and finds the best solution among proposals based on the
+                                                                                we can rewrite Eq (3) as
+aggregated statistics.
+   There are two variants of the algorithm, depending on                                n
+                                                                                        X   1
+when the proposal is given. The global variant proposes all                                   hi (ft (xi ) − gi /hi )2 + Ω(ft ) + constant,
+                                                                                            2
+the candidate splits during the initial phase of tree construc-                         i=1
+
+tion, and uses the same proposals for split finding at all lev-                 which is exactly weighted squared loss with labels gi /hi
+els. The local variant re-proposes after each split. The global                 and weights hi . For large datasets, it is non-trivial to find
+method requires less proposal steps than the local method.                      candidate splits that satisfy the criteria. When every in-
+However, usually more candidate points are needed for the                       stance has equal weights, an existing algorithm called quan-
+global proposal because candidates are not refined after each                   tile sketch [14, 24] solves the problem. However, there is no
+split. The local proposal refines the candidates after splits,                  existing quantile sketch for the weighted datasets. There-
+and can potentially be more appropriate for deeper trees. A                     fore, most existing approximate algorithms either resorted
+comparison of different algorithms on a Higgs boson dataset                     to sorting on a random subset of data which have a chance of
+is given by Fig. 3. We find that the local proposal indeed                      failure or heuristics that do not have theoretical guarantee.
+requires fewer candidates. The global proposal can be as                           To solve this problem, we introduced a novel distributed
+accurate as the local one given enough candidates.                              weighted quantile sketch algorithm that can handle weighted
+   Most existing approximate algorithms for distributed tree                    data with a provable theoretical guarantee. The general idea
+learning also follow this framework. Notably, it is also possi-                 is to propose a data structure that supports merge and prune
+ble to directly construct approximate histograms of gradient                    operations, with each operation proven to maintain a certain
+statistics [22]. It is also possible to use other variants of bin-              accuracy level. A detailed description of the algorithm as
+ning strategies instead of quantile [17]. Quantile strategy                     well as proofs are given in the appendix.
+benefit from being distributable and recomputable, which
+we will detail in next subsection. From Fig. 3, we also find                    3.4    Sparsity-aware Split Finding
+that the quantile strategy can get the same accuracy as exact                      In many real-world problems, it is quite common for the
+greedy given reasonable approximation level.                                    input x to be sparse. There are multiple possible causes
+   Our system efficiently supports exact greedy for the single                  for sparsity: 1) presence of missing values in the data; 2)
+machine setting, as well as approximate algorithm with both                     frequent zero entries in the statistics; and, 3) artifacts of
+local and global proposal methods for all settings. Users can                   feature engineering such as one-hot encoding. It is impor-
+freely choose between the methods according to their needs.                     tant to make the algorithm aware of the sparsity pattern in
+                                                                                the data. In order to do so, we propose to add a default
+3.3    Weighted Quantile Sketch                                                 direction in each tree node, which is shown in Fig. 4. When
+  One important step in the approximate algorithm is to                         a value is missing in the sparse matrix x, the instance is
+propose candidate split points. Usually percentiles of a fea-                   classified into the default direction. There are two choices
+Figure 6: Block structure for parallel learning. Each column in a block is sorted by the corresponding feature
+value. A linear scan over one column in the block is sufficient to enumerate all the split points.
+
+                                                                                                     32
+ Algorithm 3: Sparsity-aware Split Finding
+                                                                                                     16                    Basic algorithm
+  Input: I, instance set of current node
+                                                                                                      8
+  Input: Ik = {i ∈ I|xik 6= missing}                                                                  4
+
+
+
+
+                                                                            Time per Tree(sec)
+  Input: d, feature dimension                                                                         2
+  Also applies to the approximate setting, only collect                                               1
+  statistics of non-missing entries into buckets                                                     0.5
+  gain ←P0             P                                                                            0.25
+                                                                                                                       Sparsity aware algorithm
+
+  G ← i∈I , gi ,H ← i∈I hi                                                                         0.125
+  for k = 1 to m do                                                                               0.0625
+      // enumerate missing value goto right                                                      0.03125
+                                                                                                                                     8
+                                                                                                           1   2          4                   16
+      GL ← 0, HL ← 0                                                                                               Number of Threads
+
+      for j in sorted(Ik , ascent order by xjk ) do              Figure 5: Impact of the sparsity aware algorithm
+          GL ← GL + gj , HL ← HL + hj
+                                                                 on Allstate-10K. The dataset is sparse mainly due
+          GR ← G − GL , HR ← H − HL
+                                 G2       G2       G2
+                                                                 to one-hot encoding. The sparsity aware algorithm
+          score ← max(score, HLL+λ + HRR+λ − H+λ      )          is more than 50 times faster than the naive version
+      end                                                        that does not take sparsity into consideration.
+      // enumerate missing value goto left
+      GR ← 0, HR ← 0                                             4.    SYSTEM DESIGN
+      for j in sorted(Ik , descent order by xjk ) do
+          GR ← GR + gj , HR ← HR + hj                            4.1   Column Block for Parallel Learning
+          GL ← G − GR , HL ← H − HR
+                                 G2       G2       G2
+                                                                    The most time consuming part of tree learning is to get
+          score ← max(score, HLL+λ + HRR+λ − H+λ      )          the data into sorted order. In order to reduce the cost of
+      end                                                        sorting, we propose to store the data in in-memory units,
+  end                                                            which we called block. Data in each block is stored in the
+  Output: Split and default directions with max gain             compressed column (CSC) format, with each column sorted
+                                                                 by the corresponding feature value. This input data layout
+                                                                 only needs to be computed once before training, and can be
+                                                                 reused in later iterations.
+                                                                    In the exact greedy algorithm, we store the entire dataset
+of default direction in each branch. The optimal default di-     in a single block and run the split search algorithm by lin-
+rections are learnt from the data. The algorithm is shown in     early scanning over the pre-sorted entries. We do the split
+Alg. 3. The key improvement is to only visit the non-missing     finding of all leaves collectively, so one scan over the block
+entries Ik . The presented algorithm treats the non-presence     will collect the statistics of the split candidates in all leaf
+as a missing value and learns the best direction to handle       branches. Fig. 6 shows how we transform a dataset into the
+missing values. The same algorithm can also be applied           format and find the optimal split using the block structure.
+when the non-presence corresponds to a user specified value         The block structure also helps when using the approxi-
+by limiting the enumeration only to consistent solutions.        mate algorithms. Multiple blocks can be used in this case,
+   To the best of our knowledge, most existing tree learn-       with each block corresponding to subset of rows in the dataset.
+ing algorithms are either only optimized for dense data, or      Different blocks can be distributed across machines, or stored
+need specific procedures to handle limited cases such as cat-    on disk in the out-of-core setting. Using the sorted struc-
+egorical encoding. XGBoost handles all sparsity patterns in      ture, the quantile finding step becomes a linear scan over
+a unified way. More importantly, our method exploits the         the sorted columns. This is especially valuable for local pro-
+sparsity to make computation complexity linear to number         posal algorithms, where candidates are generated frequently
+of non-missing entries in the input. Fig. 5 shows the com-       at each branch. The binary search in histogram aggregation
+parison of sparsity aware and a naive implementation on an       also becomes a linear time merge style algorithm.
+Allstate-10K dataset (description of dataset given in Sec. 6).      Collecting statistics for each column can be parallelized,
+We find that the sparsity aware algorithm runs 50 times          giving us a parallel algorithm for split finding. Importantly,
+faster than the naive version. This confirms the importance      the column block structure also supports column subsam-
+of the sparsity aware algorithm.                                 pling, as it is easy to select a subset of columns in a block.
+                       128                                                           256                                                                8                                                                                          8
+                                        Basic algorithm                                                  Basic algorithm                                                    Basic algorithm                                                                              Basic algorithm
+                                        Cache-aware algorithm                        128                 Cache-aware algorithm                          4                   Cache-aware algorithm                                                  4                     Cache-aware algorithm
+                       64
+
+
+
+
+  Time per Tree(sec)                                            Time per Tree(sec)                                               Time per Tree(sec)                                                                         Time per Tree(sec)
+                                                                                      64                                                                2                                                                                          2
+                       32
+                                                                                      32                                                                1                                                                                          1
+
+                       16
+                                                                                      16                                                               0.5                                                                                        0.5
+
+
+                        8                                                             8                                                               0.25                                                                                       0.25
+                             1   2          4          8   16                              1      2          4          8   16                               1       2          4          8                     16                                     1         2          4          8   16
+                                     Number of Threads                                                Number of Threads                                                  Number of Threads                                                                            Number of Threads
+
+
+                             (a) Allstate 10M                                                  (b) Higgs 10M                                                     (c) Allstate 1M                                                                             (d) Higgs 1M
+Figure 7: Impact of cache-aware prefetching in exact greedy algorithm. We find that the cache-miss effect
+impacts the performance on the large datasets (10 million instances). Using cache aware prefetching improves
+the performance by factor of two when the dataset is large.
+
+                                                                                                                                                                                                     128
+                                                                                                                                                                                                                                                            block size=2^12
+                                                                                                                                                                                                                                                            block size=2^16
+                                                                                                                                                                                                      64
+                                                                                                                                                                                                                                                            block size=2^20
+                                                                                                                                                                                                                                                            block size=2^24
+
+
+
+
+                                                                                                                                                                               Time per Tree(sec)
+                                                                                                                                                                                                      32
+
+
+
+
+                                                                                                                                                                                                      16
+
+Figure 8:   Short range data dependency pattern
+that can cause stall due to cache miss.                                                                                                                                                                8
+
+
+
+
+Time Complexity Analysis Let d be the maximum depth                                                                                                                                                    4
+                                                                                                                                                                                                           1      2          4                                8            16
+                                                                                                                                                                                                                      Number of Threads
+of the tree and K be total number of trees. For the ex-
+act greedy algorithm, the time complexity of original spase                                                                                                                                                    (a) Allstate 10M
+aware algorithm is O(Kdkxk0 log n). Here we use kxk0 to
+denote number of non-missing entries in the training data.                                                                                                                                           512
+                                                                                                                                                                                                                                                            block size=2^12
+On the other hand, tree boosting on the block structure only                                                                                                                                         256                                                    block size=2^16
+cost O(Kdkxk0 + kxk0 log n). Here O(kxk0 log n) is the one                                                                                                                                                                                                  block size=2^20
+time preprocessing cost that can be amortized. This analysis                                                                                                                                         128
+                                                                                                                                                                                                                                                            block size=2^24
+
+
+
+
+                                                                                                                                                                                Time per Tree(sec)
+shows that the block structure helps to save an additional                                                                                                                                            64
+log n factor, which is significant when n is large. For the
+approximate algorithm, the time complexity of original al-                                                                                                                                            32
+
+
+gorithm with binary search is O(Kdkxk0 log q). Here q is                                                                                                                                              16
+
+the number of proposal candidates in the dataset. While q
+                                                                                                                                                                                                       8
+is usually between 32 and 100, the log factor still introduces
+overhead. Using the block structure, we can reduce the time                                                                                                                                            4
+                                                                                                                                                                                                           1      2          4                                8            16
+to O(Kdkxk0 + kxk0 log B), where B is the maximum num-                                                                                                                                                                Number of Threads
+
+
+ber of rows in each block. Again we can save the additional                                                                                                                                                     (b) Higgs 10M
+log q factor in computation.
+                                                                                                                                          Figure 9: The impact of block size in the approxi-
+                                                                                                                                          mate algorithm. We find that overly small blocks re-
+4.2                          Cache-aware Access                                                                                           sults in inefficient parallelization, while overly large
+   While the proposed block structure helps optimize the                                                                                  blocks also slows down training due to cache misses.
+computation complexity of split finding, the new algorithm
+requires indirect fetches of gradient statistics by row index,
+since these values are accessed in order of feature. This is                                                                              non cache-aware algorithm on the the Higgs and the All-
+a non-continuous memory access. A naive implementation                                                                                    state dataset. We find that cache-aware implementation of
+of split enumeration introduces immediate read/write de-                                                                                  the exact greedy algorithm runs twice as fast as the naive
+pendency between the accumulation and the non-continuous                                                                                  version when the dataset is large.
+memory fetch operation (see Fig. 8). This slows down split                                                                                  For approximate algorithms, we solve the problem by choos-
+finding when the gradient statistics do not fit into CPU cache                                                                            ing a correct block size. We define the block size to be max-
+and cache miss occur.                                                                                                                     imum number of examples in contained in a block, as this
+   For the exact greedy algorithm, we can alleviate the prob-                                                                             reflects the cache storage cost of gradient statistics. Choos-
+lem by a cache-aware prefetching algorithm. Specifically,                                                                                 ing an overly small block size results in small workload for
+we allocate an internal buffer in each thread, fetch the gra-                                                                             each thread and leads to inefficient parallelization. On the
+dient statistics into it, and then perform accumulation in                                                                                other hand, overly large blocks result in cache misses, as the
+a mini-batch manner. This prefetching changes the direct                                                                                  gradient statistics do not fit into the CPU cache. A good
+read/write dependency to a longer dependency and helps to                                                                                 choice of block size balances these two factors. We compared
+reduce the runtime overhead when number of rows in the                                                                                    various choices of block size on two data sets. The results
+is large. Figure 7 gives the comparison of cache-aware vs.                                                                                are given in Fig. 9. This result validates our discussion and
+                                 Table 1: Comparison of major tree boosting systems.
+                                exact   approximate approximate              sparsity
+              System                                            out-of-core                            parallel
+                                greedy global       local                    aware
+              XGBoost           yes     yes         yes         yes          yes                       yes
+              pGBRT             no      no          yes         no           no                        yes
+              Spark MLLib       no      yes         no          no           partially                 yes
+              H2O               no      yes         no          no           partially                 yes
+              scikit-learn      yes     no          no          no           no                        no
+              R GBM             yes     no          no          no           partially                 no
+
+
+shows that choosing 216 examples per block balances the               There are several existing works on parallelizing tree learn-
+cache property and parallelization.                                ing [22, 19]. Most of these algorithms fall into the ap-
+                                                                   proximate framework described in this paper. Notably, it
+4.3    Blocks for Out-of-core Computation                          is also possible to partition data by columns [23] and ap-
+  One goal of our system is to fully utilize a machine’s re-       ply the exact greedy algorithm. This is also supported in
+sources to achieve scalable learning. Besides processors and       our framework, and the techniques such as cache-aware pre-
+memory, it is important to utilize disk space to handle data       fecthing can be used to benefit this type of algorithm. While
+that does not fit into main memory. To enable out-of-core          most existing works focus on the algorithmic aspect of par-
+computation, we divide the data into multiple blocks and           allelization, our work improves in two unexplored system di-
+store each block on disk. During computation, it is impor-         rections: out-of-core computation and cache-aware learning.
+tant to use an independent thread to pre-fetch the block into      This gives us insights on how the system and the algorithm
+a main memory buffer, so computation can happen in con-            can be jointly optimized and provides an end-to-end system
+currence with disk reading. However, this does not entirely        that can handle large scale problems with very limited com-
+solve the problem since the disk reading takes most of the         puting resources. We also summarize the comparison be-
+computation time. It is important to reduce the overhead           tween our system and existing opensource implementations
+and increase the throughput of disk IO. We mainly use two          in Table 1.
+techniques to improve the out-of-core computation.                    Quantile summary (without weights) is a classical prob-
+Block Compression The first technique we use is block              lem in the database community [14, 24]. However, the ap-
+compression. The block is compressed by columns, and de-           proximate tree boosting algorithm reveals a more general
+compressed on the fly by an independent thread when load-          problem – finding quantiles on weighted data. To the best
+ing into main memory. This helps to trade some of the              of our knowledge, the weighted quantile sketch proposed in
+computation in decompression with the disk reading cost.           this paper is the first method to solve this problem. The
+We use a general purpose compression algorithm for com-            weighted quantile summary is also not specific to the tree
+pressing the features values. For the row index, we substract      learning and can benefit other applications in data science
+the row index by the begining index of the block and use a         and machine learning in the future.
+16bit integer to store each offset. This requires 216 examples
+per block, which is confirmed to be a good setting. In most
+of the dataset we tested, we achieve roughly a 26% to 29%          6.    END TO END EVALUATIONS
+compression ratio.
+Block Sharding The second technique is to shard the data           6.1    System Implementation
+onto multiple disks in an alternative manner. A pre-fetcher           We implemented XGBoost as an open source package5 .
+thread is assigned to each disk and fetches the data into an       The package is portable and reusable. It supports various
+in-memory buffer. The training thread then alternatively           weighted classification and rank objective functions, as well
+reads the data from each buffer. This helps to increase the        as user defined objective function. It is available in popular
+throughput of disk reading when multiple disks are available.      languages such as python, R, Julia and integrates naturally
+                                                                   with language native data science pipelines such as scikit-
+5.    RELATED WORKS                                                learn. The distributed version is built on top of the rabit
+   Our system implements gradient boosting [10], which per-        library6 for allreduce. The portability of XGBoost makes it
+forms additive optimization in functional space. Gradient          available in many ecosystems, instead of only being tied to
+tree boosting has been successfully used in classification [12],   a specific platform. The distributed XGBoost runs natively
+learning to rank [5], structured prediction [8] as well as other   on Hadoop, MPI Sun Grid engine. Recently, we also enable
+fields. XGBoost incorporates a regularized model to prevent        distributed XGBoost on jvm bigdata stacks such as Flink
+overfitting. This this resembles previous work on regularized      and Spark. The distributed version has also been integrated
+greedy forest [25], but simplifies the objective and algorithm     into cloud platform Tianchi7 of Alibaba. We believe that
+for parallelization. Column sampling is a simple but effective     there will be more integrations in the future.
+technique borrowed from RandomForest [4]. While sparsity-
+aware learning is essential in other types of models such as       6.2    Dataset and Setup
+linear models [9], few works on tree learning have considered
+                                                                   5
+this topic in a principled way. The algorithm proposed in            https://github.com/dmlc/xgboost
+                                                                   6
+this paper is the first unified approach to handle all kinds of      https://github.com/dmlc/rabit
+                                                                   7
+sparsity patterns.                                                   https://tianchi.aliyun.com
+        Table 2: Dataset used in the Experiments.                  Table 3: Comparison of Exact Greedy Methods with
+    Dataset         n      m    Task                               500 trees on Higgs-1M data.
+    Allstate      10 M 4227 Insurance claim classification          Method                  Time per Tree (sec) Test AUC
+    Higgs Boson   10 M     28   Event classification                XGBoost                       0.6841         0.8304
+    Yahoo LTRC 473K       700   Learning to Rank                    XGBoost (colsample=0.5)       0.6401         0.8245
+    Criteo        1.7 B    67   Click through rate prediction       scikit-learn                   28.51         0.8302
+                                                                    R.gbm                          1.032         0.6224
+
+   We used four datasets in our experiments. A summary of                                         32
+these datasets is given in Table 2. In some of the experi-
+ments, we use a randomly selected subset of the data either                                       16
+due to slow baselines or to demonstrate the performance of
+
+
+
+                                                                             Time per Tree(sec)
+the algorithm with varying dataset size. We use a suffix to                                        8                              pGBRT
+
+denote the size in these cases. For example Allstate-10K
+                                                                                                   4
+means a subset of the Allstate dataset with 10K instances.
+   The first dataset we use is the Allstate insurance claim                                                                       XGBoost
+                                                                                                   2
+dataset8 . The task is to predict the likelihood and cost of
+an insurance claim given different risk factors. In the exper-                                     1
+iment, we simplified the task to only predict the likelihood
+of an insurance claim. This dataset is used to evaluate the                                       0.5
+                                                                                                        1   2          4          8         16
+impact of sparsity-aware algorithm in Sec. 3.4. Most of the                                                     Number of Threads
+sparse features in this data come from one-hot encoding. We
+                                                                   Figure 10: Comparison between XGBoost and pG-
+randomly select 10M instances as training set and use the
+                                                                   BRT on Yahoo LTRC dataset.
+rest as evaluation set.
+   The second dataset is the Higgs boson dataset9 from high        Table 4: Comparison of Learning to Rank with 500
+energy physics. The data was produced using Monte Carlo            trees on Yahoo! LTRC Dataset
+simulations of physics events. It contains 21 kinematic prop-       Method                  Time per Tree (sec) NDCG@10
+erties measured by the particle detectors in the accelerator.       XGBoost                       0.826          0.7892
+It also contains seven additional derived physics quantities        XGBoost (colsample=0.5)       0.506          0.7913
+of the particles. The task is to classify whether an event          pGBRT [22]                    2.576          0.7915
+corresponds to the Higgs boson. We randomly select 10M
+instances as training set and use the rest as evaluation set.
+   The third dataset is the Yahoo! learning to rank challenge      able cores in the machine. The machine settings of the dis-
+dataset [6], which is one of the most commonly used bench-         tributed and the out-of-core experiments will be described in
+marks in learning to rank algorithms. The dataset contains         the corresponding section. In all the experiments, we boost
+20K web search queries, with each query corresponding to a         trees with a common setting of maximum depth equals 8,
+list of around 22 documents. The task is to rank the docu-         shrinkage equals 0.1 and no column subsampling unless ex-
+ments according to relevance of the query. We use the official     plicitly specified. We can find similar results when we use
+train test split in our experiment.                                other settings of maximum depth.
+   The last dataset is the criteo terabyte click log dataset10 .
+We use this dataset to evaluate the scaling property of the        6.3   Classification
+system in the out-of-core and the distributed settings. The
+                                                                      In this section, we evaluate the performance of XGBoost
+data contains 13 integer features and 26 ID features of user,
+                                                                   on a single machine using the exact greedy algorithm on
+item and advertiser information. Since a tree based model
+                                                                   Higgs-1M data, by comparing it against two other commonly
+is better at handling continuous features, we preprocess the
+                                                                   used exact greedy tree boosting implementations. Since
+data by calculating the statistics of average CTR and count
+                                                                   scikit-learn only handles non-sparse input, we choose the
+of ID features on the first ten days, replacing the ID fea-
+                                                                   dense Higgs dataset for a fair comparison. We use the 1M
+tures by the corresponding count statistics during the next
+                                                                   subset to make scikit-learn finish running in reasonable time.
+ten days for training. The training set after preprocessing
+                                                                   Among the methods in comparison, R’s GBM uses a greedy
+contains 1.7 billion instances with 67 features (13 integer, 26
+                                                                   approach that only expands one branch of a tree, which
+average CTR statistics and 26 counts). The entire dataset
+                                                                   makes it faster but can result in lower accuracy, while both
+is more than one terabyte in LibSVM format.
+                                                                   scikit-learn and XGBoost learn a full tree. The results are
+   We use the first three datasets for the single machine par-
+                                                                   shown in Table 3. Both XGBoost and scikit-learn give better
+allel setting, and the last dataset for the distributed and
+                                                                   performance than R’s GBM, while XGBoost runs more than
+out-of-core settings. All the single machine experiments are
+                                                                   10x faster than scikit-learn. In this experiment, we also find
+conducted on a Dell PowerEdge R420 with two eight-core
+                                                                   column subsamples gives slightly worse performance than
+Intel Xeon (E5-2470) (2.3GHz) and 64GB of memory. If
+                                                                   using all the features. This could due to the fact that there
+not specified, all the experiments are run using all the avail-
+                                                                   are few important features in this dataset and we can benefit
+8
+   https://www.kaggle.com/c/ClaimPredictionChallenge               from greedily select from all the features.
+9
+   https://archive.ics.uci.edu/ml/datasets/HIGGS
+10
+   http://labs.criteo.com/downloads/download-terabyte-             6.4   Learning to Rank
+ click-logs/                                                         We next evaluate the performance of XGBoost on the
+                               4096                                                                                      32768
+
+                                        Block compression                                                                16384      H2O
+
+                               2048                                                                                        8192
+
+
+
+
+                                                                                              Total Running Time (sec)
+                                      Basic algorithm
+
+
+
+          Time per Tree(sec)
+                                                                                                                           4096
+                               1024
+                                                                                                                           2048                     Spark MLLib
+
+                                                              Compression+shard
+                                                                                                                           1024
+                                512
+                                                        Out of system file cache
+                                                        start from this point                                               512
+                                                                                                                                                                      XGBoost
+
+                                256                                                                                         256
+
+                                                                                                                            128
+                                                                                                                              128          256             512          1024      2048
+                                                                                                                                          Number of Training Examples (million)
+                                128
+                                  128        256          512       1024        2048
+                                          Number of Training Examples (million)              (a) End-to-end time cost include data loading
+Figure 11: Comparison of out-of-core methods on
+different subsets of criteo data. The missing data                                                                         4096
+points are due to out of disk space. We can find
+                                                                                                                           2048
+that basic algorithm can only handle 200M exam-
+ples. Adding compression gives 3x speedup, and                                                                             1024
+sharding into two disks gives another 2x speedup.
+
+
+
+                                                                                                Time per Iteration (sec)
+                                                                                                                            512
+The system runs out of file cache start from 400M
+examples. The algorithm really has to rely on disk                                                                          256
+                                                                                                                                                   Spark MLLib
+after this point. The compression+shard method                                                                              128
+has a less dramatic slowdown when running out of
+                                                                                                                             64
+file cache, and exhibits a linear trend afterwards.                                                                                  H2O
+
+                                                                                                                             32
+learning to rank problem. We compare against pGBRT [22],                                                                                                             XGBoost
+                                                                                                                             16
+the best previously pubished system on this task. XGBoost
+runs exact greedy algorithm, while pGBRT only support an                                                                     8
+                                                                                                                             128        256            512         1024           2048
+approximate algorithm. The results are shown in Table 4                                                                               Number of Training Examples (million)
+and Fig. 10. We find that XGBoost runs faster. Interest-
+ingly, subsampling columns not only reduces running time,                                               (b) Per iteration cost exclude data loading
+and but also gives a bit higher performance for this prob-                             Figure 12: Comparison of different distributed sys-
+lem. This could due to the fact that the subsampling helps                             tems on 32 EC2 nodes for 10 iterations on different
+prevent overfitting, which is observed by many of the users.                           subset of criteo data. XGBoost runs more 10x than
+                                                                                       spark per iteration and 2.2x as H2O’s optimized ver-
+6.5      Out-of-core Experiment                                                        sion (However, H2O is slow in loading the data, get-
+   We also evaluate our system in the out-of-core setting on                           ting worse end-to-end time). Note that spark suffers
+the criteo data. We conducted the experiment on one AWS                                from drastic slow down when running out of mem-
+c3.8xlarge machine (32 vcores, two 320 GB SSD, 60 GB                                   ory. XGBoost runs faster and scales smoothly to
+RAM). The results are shown in Figure 11. We can find                                  the full 1.7 billion examples with given resources by
+that compression helps to speed up computation by factor of                            utilizing out-of-core computation.
+three, and sharding into two disks further gives 2x speedup.
+For this type of experiment, it is important to use a very                             32 m3.2xlarge machines and test the performance of the sys-
+large dataset to drain the system file cache for a real out-                           tems with various input size. Both of the baseline systems
+of-core setting. This is indeed our setup. We can observe a                            are in-memory analytics frameworks that need to store the
+transition point when the system runs out of file cache. Note                          data in RAM, while XGBoost can switch to out-of-core set-
+that the transition in the final method is less dramatic. This                         ting when it runs out of memory. The results are shown
+is due to larger disk throughput and better utilization of                             in Fig. 12. We can find that XGBoost runs faster than the
+computation resources. Our final method is able to process                             baseline systems. More importantly, it is able to take ad-
+1.7 billion examples on a single machine.                                              vantage of out-of-core computing and smoothly scale to all
+                                                                                       1.7 billion examples with the given limited computing re-
+6.6      Distributed Experiment                                                        sources. The baseline systems are only able to handle sub-
+  Finally, we evaluate the system in the distributed setting.                          set of the data with the given resources. This experiment
+We set up a YARN cluster on EC2 with m3.2xlarge ma-                                    shows the advantage to bring all the system improvement
+chines, which is a very common choice for clusters. Each                               together and solve a real-world scale problem. We also eval-
+machine contains 8 virtual cores, 30GB of RAM and two                                  uate the scaling property of XGBoost by varying the number
+80GB SSD local disks. The dataset is stored on AWS S3                                  of machines. The results are shown in Fig. 13. We can find
+instead of HDFS to avoid purchasing persistent storage.                                XGBoost’s performance scales linearly as we add more ma-
+  We first compare our system against two production-level                             chines. Importantly, XGBoost is able to handle the entire
+distributed systems: Spark MLLib [18] and H2O 11 . We use                              1.7 billion data with only four machines. This shows the
+11                                                                                     system’s potential to handle even larger data.
+     www.h2o.ai
+                                    2048                                      of 30th International Conference on Machine Learning
+                                                                              (ICML’13), volume 1, pages 436–444, 2013.
+                                                                          [8] T. Chen, S. Singh, B. Taskar, and C. Guestrin. Efficient
+                                                                              second-order gradient boosting for conditional random
+                                    1024
+                                                                              fields. In Proceeding of 18th Artificial Intelligence and
+
+
+
+
+         Time per Iteration (sec)
+                                                                              Statistics Conference (AISTATS’15), volume 1, 2015.
+                                                                          [9] R.-E. Fan, K.-W. Chang, C.-J. Hsieh, X.-R. Wang, and
+                                     512                                      C.-J. Lin. LIBLINEAR: A library for large linear
+                                                                              classification. Journal of Machine Learning Research,
+                                                                              9:1871–1874, 2008.
+                                                                         [10] J. Friedman. Greedy function approximation: a gradient
+                                     256
+                                                                              boosting machine. Annals of Statistics, 29(5):1189–1232,
+                                                                              2001.
+                                                                         [11] J. Friedman. Stochastic gradient boosting. Computational
+                                     128                                      Statistics & Data Analysis, 38(4):367–378, 2002.
+                                           4    8             16    32
+                                               Number of Machines        [12] J. Friedman, T. Hastie, and R. Tibshirani. Additive logistic
+                                                                              regression: a statistical view of boosting. Annals of
+Figure 13: Scaling of XGBoost with different num-                             Statistics, 28(2):337–407, 2000.
+ber of machines on criteo full 1.7 billion dataset.                      [13] J. H. Friedman and B. E. Popescu. Importance sampled
+Using more machines results in more file cache and                            learning ensembles, 2003.
+makes the system run faster, causing the trend                           [14] M. Greenwald and S. Khanna. Space-efficient online
+to be slightly super linear. XGBoost can process                              computation of quantile summaries. In Proceedings of the
+the entire dataset using as little as four machines,                          2001 ACM SIGMOD International Conference on
+and scales smoothly by utilizing more available re-                           Management of Data, pages 58–66, 2001.
+sources.                                                                 [15] X. He, J. Pan, O. Jin, T. Xu, B. Liu, T. Xu, Y. Shi,
+                                                                              A. Atallah, R. Herbrich, S. Bowers, and J. Q. n. Candela.
+                                                                              Practical lessons from predicting clicks on ads at facebook.
+7.   CONCLUSION                                                               In Proceedings of the Eighth International Workshop on
+  In this paper, we described the lessons we learnt when                      Data Mining for Online Advertising, ADKDD’14, 2014.
+building XGBoost, a scalable tree boosting system that is                [16] P. Li. Robust Logitboost and adaptive base class (ABC)
+widely used by data scientists and provides state-of-the-art                  Logitboost. In Proceedings of the Twenty-Sixth Conference
+results on many problems. We proposed a novel sparsity                        Annual Conference on Uncertainty in Artificial Intelligence
+                                                                              (UAI’10), pages 302–311, 2010.
+aware algorithm for handling sparse data and a theoretically
+                                                                         [17] P. Li, Q. Wu, and C. J. Burges. Mcrank: Learning to rank
+justified weighted quantile sketch for approximate learning.                  using multiple classification and gradient boosting. In
+Our experience shows that cache access patterns, data com-                    Advances in Neural Information Processing Systems 20,
+pression and sharding are essential elements for building a                   pages 897–904. 2008.
+scalable end-to-end system for tree boosting. These lessons              [18] X. Meng, J. Bradley, B. Yavuz, E. Sparks,
+can be applied to other machine learning systems as well.                     S. Venkataraman, D. Liu, J. Freeman, D. Tsai, M. Amde,
+By combining these insights, XGBoost is able to solve real-                   S. Owen, D. Xin, R. Xin, M. J. Franklin, R. Zadeh,
+world scale problems using a minimal amount of resources.                     M. Zaharia, and A. Talwalkar. MLlib: Machine learning in
+                                                                              apache spark. Journal of Machine Learning Research,
+                                                                              17(34):1–7, 2016.
+Acknowledgments                                                          [19] B. Panda, J. S. Herbach, S. Basu, and R. J. Bayardo.
+We would like to thank Tyler B. Johnson, Marco Tulio Ribeiro,                 Planet: Massively parallel learning of tree ensembles with
+Sameer Singh, Arvind Krishnamurthy for their valuable feedback.               mapreduce. Proceeding of VLDB Endowment,
+We also sincerely thank Tong He, Bing Xu, Michael Benesty, Yuan               2(2):1426–1437, Aug. 2009.
+Tang, Hongliang Liu, Qiang Kou, Nan Zhu and all other con-               [20] F. Pedregosa, G. Varoquaux, A. Gramfort, V. Michel,
+tributors in the XGBoost community. This work was supported                   B. Thirion, O. Grisel, M. Blondel, P. Prettenhofer,
+in part by ONR (PECASE) N000141010672, NSF IIS 1258741                        R. Weiss, V. Dubourg, J. Vanderplas, A. Passos,
+and the TerraSwarm Research Center sponsored by MARCO and                     D. Cournapeau, M. Brucher, M. Perrot, and E. Duchesnay.
+DARPA.                                                                        Scikit-learn: Machine learning in Python. Journal of
+                                                                              Machine Learning Research, 12:2825–2830, 2011.
+                                                                         [21] G. Ridgeway. Generalized Boosted Models: A guide to the
+8.   REFERENCES                                                               gbm package.
+ [1] R. Bekkerman. The present and the future of the kdd cup             [22] S. Tyree, K. Weinberger, K. Agrawal, and J. Paykin.
+     competition: an outsider’s perspective.                                  Parallel boosted regression trees for web search ranking. In
+ [2] R. Bekkerman, M. Bilenko, and J. Langford. Scaling Up                    Proceedings of the 20th international conference on World
+     Machine Learning: Parallel and Distributed Approaches.                   wide web, pages 387–396. ACM, 2011.
+     Cambridge University Press, New York, NY, USA, 2011.                [23] J. Ye, J.-H. Chow, J. Chen, and Z. Zheng. Stochastic
+ [3] J. Bennett and S. Lanning. The netflix prize. In                         gradient boosted distributed decision trees. In Proceedings
+     Proceedings of the KDD Cup Workshop 2007, pages 3–6,                     of the 18th ACM Conference on Information and
+     New York, Aug. 2007.                                                     Knowledge Management, CIKM ’09.
+ [4] L. Breiman. Random forests. Maching Learning,                       [24] Q. Zhang and W. Wang. A fast algorithm for approximate
+     45(1):5–32, Oct. 2001.                                                   quantiles in high speed data streams. In Proceedings of the
+ [5] C. Burges. From ranknet to lambdarank to lambdamart:                     19th International Conference on Scientific and Statistical
+     An overview. Learning, 11:23–581, 2010.                                  Database Management, 2007.
+ [6] O. Chapelle and Y. Chang. Yahoo! Learning to Rank                   [25] T. Zhang and R. Johnson. Learning nonlinear functions
+     Challenge Overview. Journal of Machine Learning                          using regularized greedy forest. IEEE Transactions on
+     Research - W & CP, 14:1–24, 2011.                                        Pattern Analysis and Machine Intelligence, 36(5), 2014.
+ [7] T. Chen, H. Li, Q. Yang, and Y. Yu. General functional
+     matrix factorization using gradient boosting. In Proceeding
+APPENDIX                                                                             +
+                                                                                2) r̃D     −
+                                                                                       , r̃D and ω̃D are functions in S → [0, +∞), that satisfies
+
+A.     WEIGHTED QUANTILE SKETCH                                                     −
+                                                                                  r̃D          −
+                                                                                      (xi ) ≤ rD          +
+                                                                                                 (xi ), r̃D          +
+                                                                                                            (xi ) ≥ rD (xi ), ω̃D (xi ) ≤ ωD (xi ),    (14)
+   In this section, we introduce the weighted quantile sketch algo-
+                                                                                                                                                    −
+rithm. Approximate answer of quantile queries is for many real-                 the equality sign holds for maximum and minimum point ( r̃D           (xi ) =
+world applications. One classical approach to this problem is GK                 −          +          +
+                                                                                rD (xi ), r̃D (xi ) = rD (xi ) and ω̃D (xi ) = ωD (xi ) for i ∈ {1, k}).
+algorithm [14] and extensions based on the GK framework [24].                   Finally, the function value must also satisfy the following con-
+The main component of these algorithms is a data structure called               straints
+quantile summary, that is able to answer quantile queries with
+                                                                                   −                       −            +           +
+relative accuracy of . Two operations are defined for a quantile                r̃D (xi ) + ω̃D (xi ) ≤ r̃D (xi+1 ), r̃D (xi ) ≤ r̃D (xi+1 ) − ω̃D (xi+1 )
+summary:                                                                                                                                               (15)
+   • A merge operation that combines two summaries with ap-                        Since these functions are only defined on S, it is suffice to use 4k
+     proximation error 1 and 2 together and create a merged                   record to store the summary. Specifically, we need to remember
+     summary with approximation error max(1 , 2 ).                            each xi and the corresponding function values of each xi .
+   • A prune operation that reduces the number of elements in
+     the summary to b + 1 and changes approximation error from                     Definition A.2. Extension of Function Domains
+                                                                                                                            + −
+      to  + 1b .                                                              Given a quantile summary Q(D) = (S, r̃D       , r̃D , ω̃D ) defined in
+                                                                                                                +     −
+                                                                                Definition A.1, the domain of r̃D , r̃D and ω̃D were defined only
+A quantile summary with merge and prune operations forms basic                  in S. We extend the definition of these functions to X → [0, +∞)
+building blocks of the distributed and streaming quantile comput-               as follows
+ing algorithms [24].                                                            When y < x1 :
+   In order to use quantile computation for approximate tree boost-
+ing, we need to find quantiles on weighted data. This more gen-                                    −            +
+                                                                                                 r̃D (y) = 0, r̃D (y) = 0, ω̃D (y) = 0                 (16)
+eral problem is not supported by any of the existing algorithm. In
+this section, we describe a non-trivial weighted quantile summary               When y > xk :
+structure to solve this problem. Importantly, the new algorithm                             −         +          +         +
+contains merge and prune operations with the same guarantee as                            r̃D (y) = r̃D (xk ), r̃D (y) = r̃D (xk ), ω̃D (y) = 0        (17)
+GK summary. This allows our summary to be plugged into all                      When y ∈ (xi , xi+1 ) for some i:
+the frameworks used GK summary as building block and answer
+quantile queries over weighted data efficiently.                                                     −
+                                                                                                   r̃D         −
+                                                                                                       (y) = r̃D (xi ) + ω̃D (xi ),
+                                                                                                     +         +                                       (18)
+A.1      Formalization and Definitions                                                             r̃D (y) = r̃D (xi+1 ) − ω̃D (xi+1 ),
+   Given an input multi-set D = {(x1 , w1 ), (x2 , w2 ) · · · (xn , wn )}                          ω̃D (y) = 0
+such that wi ∈ [0, +∞), xi ∈ X . Each xi corresponds to a po-
+sition of the point and wi is the weight of the point. Assume                     Lemma A.1. Extended Constraint
+                                                                                                             −     +
+we have a total order < defined on X . Let us define two rank                   The extended definition of r̃D , r̃D , ω̃D satisfies the following
+            − +
+functions rD , rD : X → [0, +∞)                                                 constraints
+                                                                                        −        −        +        +
+                        −
+                                      X                                               r̃D (y) ≤ rD (y), r̃D (y) ≥ rD (y), ω̃D (y) ≤ ωD (y)             (19)
+                       rD (y) =                  w                  (10)
+                                                                                  −                   −          +         +
+                                  (x,w)∈D,x<y                                   r̃D (y) + ω̃D (y) ≤ r̃D (x),   r̃D (y) ≤ r̃D (x) − ω̃D (x),   for all y < x
+                                      X                                                                                                                 (20)
+                        +
+                       rD (y) =                  w                  (11)           Proof. The only non-trivial part is to prove the case when
+                                  (x,w)∈D,x≤y                                   y ∈ (xi , xi+1 ):
+We should note that since D is defined to be a multiset of the                          −         −                      −                     −
+points. It can contain multiple record with exactly same position                     r̃D (y) = r̃D (xi ) + ω̃D (xi ) ≤ rD (xi ) + ωD (xi ) ≤ rD (y)
+x and weight w. We also define another weight function ωD :                       +         +                          +                         +
+X → [0, +∞) as                                                                  r̃D (y) = r̃D (xi+1 ) − ω̃D (xi+1 ) ≥ rD (xi+1 ) − ωD (xi+1 ) ≥ rD (y)
+                                                                                This proves Eq. (19). Furthermore, we can verify that
+                                −
+                                                 X
+                       +
+             ωD (y) = rD (y) − rD (y) =                  w.         (12)                  +           +                           +
+                                                                                        r̃D (xi ) ≤ r̃D (xi+1 ) − ω̃D (xi+1 ) = r̃D (y) − ω̃D (y)
+                                           (x,w)∈D,x=y
+                                                                                          −                   −                           −
+                                                                                        r̃D (y) + ω̃D (y) = r̃D (xi ) + ω̃D (xi ) + 0 ≤ r̃D (xi+1 )
+Finally, we also define the weight of multi-set D to be the sum of
+                                                                                                     +         +
+weights of all the points in the set                                                               r̃D (y) = r̃D (xi+1 ) − ω̃D (xi+1 )
+                                      X                                         Using these facts and transitivity of < relation, we can prove
+                          ω(D) =             w                      (13)        Eq. (20)
+                                   (x,w)∈D
+                                                                                We should note that the extension is based on the ground case
+Our task is given a series of input D, to estimate r+ (y) and r− (y)            defined in S, and we do not require extra space to store the sum-
+for y ∈ X as well as finding points with specific rank. Given these             mary in order to use the extended definition. We are now ready
+notations, we define quantile summary of weighted examples as                   to introduce the definition of -approximate quantile summary.
+follows:
+                                                                                   Definition A.3. -Approximate Quantile Summary
+                                                                                                                      + −
+                                                                                Given a quantile summary Q(D) = (S, r̃D , r̃D , ω̃D ), we call it is
+   Definition A.1. Quantile Summary of Weighted Data                            -approximate summary if for any y ∈ X
+                                                                  + −
+A quantile summary for D is defined to be tuple Q(D) = (S, r̃D      , r̃D , ω̃D ),
+where S = {x1 , x2 , · · · , xk } is selected from the points in D (i.e.                              +         −
+                                                                                                    r̃D (y) − r̃D (y) − ω̃D (y) ≤ ω(D)              (21)
+xi ∈ {x|(x, w) ∈ D}) with the following properties:
+                                                                                                                                   −         −     +
+   1) xi < xi+1 for all i, and x1 and xk are minimum and max-                      We use this definition since we know that r (y) ∈ [r̃D (y), r̃D (y)−
+imum point in D:                                                                                            −
+                                                                                   ω̃D (y)] and r+ (y) ∈ [r̃D                  +
+                                                                                                              (y) + ω̃D (y), r̃D (y)]. Eq. (21) means the
+                                                                                   we can get estimation of r (y) and r− (y) by error of at most
+                                                                                                                  +
+                x1 = min x, xk = max x
+                          (x,w)∈D             (x,w)∈D                              ω(D).
+                                                      + −
+   Lemma A.2. Quantile summary Q(D) = (S, r̃D           , r̃D , ω̃D ) is an      Algorithm 4: Query Function g(Q, d)
+-approximate summary if and only if the following two condition
+holds                                                                             Input: d: 0 ≤ d ≤ ω(D)
+                +           −                                                                                +      −
+              r̃D (xi ) − r̃D (xi ) − ω̃D (xi ) ≤ ω(D)                (22)       Input: Q(D) = (S, r̃D         , r̃D , ω̃D ) where
+        +
+      r̃D             −
+          (xi+1 ) − r̃D (xi ) − ω̃D (xi+1 ) − ω̃D (xi ) ≤ ω(D)         (23)                S = x1 , x2 , · · · , xk
+                                                                                               −           +
+                                                                                  if d < 12 [r̃D (x1 ) + r̃D (x1 )] then return x1 ;
+                                                                                          1 −              +
+                                                                                  if d ≥ 2 [r̃D (xk ) + r̃D   (xk )] then return xk ;
+   Proof. The key is again consider y ∈ (xi , xi+1 )                              Find i such that
+                                                                                  1 −             +                       −              +
+  +
+r̃D       −
+    (y)−r̃D                  +
+            (y)−ω̃D (y) = [r̃D                         +
+                               (xi+1 )−ω̃D (xi+1 )]−[r̃D (xi )+ω̃D (xi )]−0         [r̃ (xi ) + r̃D
+                                                                                  2 D
+                                                                                                    (xi )] ≤ d < 12 [r̃D     (xi+1 ) + r̃D (xi+1 )]
+                                                                                              −                          +
+                                                                                  if 2d < r̃D (xi ) + ω̃D (xi ) + r̃D (xi+1 ) − ω̃D (xi+1 ) then
+This means the condition in Eq. (23) plus Eq.(22) can give us                          return xi
+Eq. (21)                                                                          else
+Property of Extended Function In this section, we have in-                             return xi+1
+troduced the extension of function r̃D+ −
+                                       , r̃D , ω̃D to X → [0, +∞).                end
+The key theme discussed in this section is the relation of con-
+straints on the original function and constraints on the extended
+function. Lemma A.1 and A.2 show that the constraints on the
+original function can lead to in more general constraints on the                This can be obtained by straight-forward application of Defini-
+extended function. This is a very useful property which will be                 tion A.2.
+used in the proofs in later sections.
+                                                                                   Theorem A.1. If Q(D1 ) is 1 -approximate summary, and Q(D2 )
+A.2      Construction of Initial Summary                                        is 2 -approximate summary. Then the merged summary Q(D) is
+                                                                                max(1 , 2 )-approximate summary.
+   Given a small multi-set D = {(x1 , w1 ), (x2 , w2 ), · · · , (xn , wn )},
+                                                   + −
+we can construct initial summary Q(D) = {S, r̃D     , r̃D , ω̃D }, with S         Proof. For any y ∈ X , we have
+                                                                 + −
+to the set of all values in D (S = {x|(x, w) ∈ D}), and r̃D       , r̃D , ω̃D        +         −
+defined to be                                                                      r̃D (y) − r̃D (y) − ω̃D (y)
+                                                                                     +           +             −           −
+    +        +        −        −                                                 =[r̃D   (y) + r̃D   (y)] − [r̃D   (y) + r̃D   (y)] − [ω̃D1 (y) + ω̃D2 (y)]
+  r̃D (x) = rD (x), r̃D (x) = rD (x), ω̃D (x) = ωD (x) for x ∈ S                       1           2             1           2
+                                                               (24)              ≤1 ω(D1 ) + 2 ω(D2 ) ≤ max(1 , 2 )ω(D1 ∪ D2 )
+The constructed summary is 0-approximate summary, since it can
+answer all the queries accurately. The constructed summary can                  Here the first inequality is due to Lemma A.3.
+be feed into future operations described in the latter sections.
+                                                                                A.4     Prune Operation
+A.3      Merge Operation                                                           Before we start discussing the prune operation, we first in-
+  In this section, we define how we can merge the two summaries                 troduce a query function g(Q, d). The definition of function is
+                                              +       −
+together. Assume we have Q(D1 ) = (S1 , r̃D     1
+                                                  , r̃D1
+                                                         , ω̃D1 ) and           shown in Algorithm 4. For a given rank d, the function returns
+                  +       −                                                     a x whose rank is close to d. This property is formally described
+Q(D2 ) = (S2 , r̃D  1
+                      , r̃D2
+                             , ω̃D2 ) quantile summary of two dataset
+D1 and D2 . Let D = D1 ∪ D2 , and define the merged summary                     in the following Lemma.
+             + −
+Q(D) = (S, r̃D , r̃D , ω̃D ) as follows.
+                                                                                   Lemma A.4. For a given -approximate summary Q(D) =
+                                                                                      + −
+              S = {x1 , x2 · · · , xk }, xi ∈ S1 or xi ∈ S2             (25)    (S, r̃D , r̃D , ω̃D ), x∗ = g(Q, d) satisfies the following property
+The points in S are combination of points in S1 and S2 . And the                                         + ∗                 
+           + −                                                                                     d ≥ r̃D (x ) − ω̃D (x∗ ) −  ω(D)
+function r̃D , r̃D , ω̃D are defined to be                                                                                   2
+                                                                                                                                                       (33)
+                                                                                                         − ∗
+                       −
+                     r̃D           −
+                         (xi ) = r̃D             −
+                                       (xi ) + r̃D   (xi )              (26)                       d ≤ r̃D (x ) + ω̃D (x∗ ) + ω(D)
+                                     1             2                                                                         2
+                       +
+                     r̃D           +
+                         (xi ) = r̃D             +
+                                       (xi ) + r̃D   (xi )              (27)      Proof. We need to discuss four possible cases
+                                     1             2                                           −           +
+                                                                                   • d < 12 [r̃D (x1 ) + r̃D (x1 )] and x∗ = x1 . Note that the rank
+                  ω̃D (xi ) = ω̃D1 (xi ) + ω̃D2 (xi )        (28)                                                                    +
+                                                                                     information for x1 is accurate (ω̃D (x1 ) = r̃D   (x1 ) = ω(x1 ),
+Here we use functions defined on S → [0, +∞) on the left sides of                      −
+equalities and use the extended function definitions on the right                    r̃D (x1 ) = 0), we have
+sides.                                                                                                                                 
+                                                                                                                   +
+   Due to additive nature of r+ , r− and ω, which can be formally                            d≥0−         ω(D) = r̃D (x1 ) − ω̃D (x1 ) − ω(D)
+written as                                                                                              2                               2
+                                                                                                   1 −             +
+                        −
+                       rD       −
+                          (y) =rD          −
+                                    (y) + rD   (y),                                          d<     [r̃ (x1 ) + r̃D  (x1 )]
+                                  1          2                                                     2 D
+                        +       +          +                                                        −           +
+                       rD (y) =rD   (y) + rD   (y),                     (29)                    ≤ r̃D (x1 ) + r̃D (x1 )
+                                  1          2
+                                                                                                    −           +
+                      ωD (y) =ωD1 (y) + ωD2 (y),                                                = r̃D (x1 ) + ω̃D (x1 )
+and the extended constraint property in Lemma A.1, we can verify                               −           +
+                                                                                   • d ≥ 12 [r̃D (xk ) + r̃D (xk )] and x∗ = xk , then
+that Q(D) satisfies all the constraints in Definition A.1. Therefore
+it is a valid quantile summary.                                                                 1 −            +
+                                                                                           d≥    [r̃ (xk ) + r̃D (xk )]
+   Lemma A.3. The combined quantile summary satisfies                                           2 D
+                         −         −          −                                                  +         1 +             −
+                       r̃D (y) = r̃D  (y) + r̃D  (y)                    (30)                 = r̃D (xk ) − [r̃D  (xk ) − r̃D (xk )]
+                                    1          2                                                           2
+                         +         +          +                                                  +         1
+                       r̃D (y) = r̃D1
+                                      (y) + r̃D2
+                                                 (y)                    (31)                 = r̃D (xk ) − ω̃D (xk )
+                                                                                                           2
+                      ω̃D (y) = ω̃D1 (y) + ω̃D2 (y)                     (32)                                         −                    
+                                                                                           d < ω(D) + ω(D) = r̃D        (xk ) + ω̃D (xk ) + ω(D)
+for all y ∈ X                                                                                            2                                 2
+   • x∗ = xi in the general case, then
+             −                       +
+      2d < r̃D (xi ) + ω̃D (xi ) + r̃D (xi+1 ) − ω̃D (xi+1 )
+                −                         +                           −
+          = 2[r̃D (xi ) + ω̃D (xi )] + [r̃D (xi+1 ) − ω̃D (xi+1 ) − r̃D (xi ) − ω̃D (xi )]
+                −
+          ≤ 2[r̃D (xi ) + ω̃D (xi )] + ω(D)
+             −           +
+      2d ≥ r̃D (xi ) + r̃D (xi )
+                +                         +                       −
+          = 2[r̃D (xi ) − ω̃D (xi )] − [r̃D (xi ) − ω̃D (xi ) − r̃D (xi )] + ω̃D (xi )
+                +
+          ≥ 2[r̃D (xi ) − ω̃D (xi )] − ω(D) + 0
+
+   • x∗ = xi+1 in the general case
+                −                       +
+         2d ≥ r̃D (xi ) + ω̃D (xi ) + r̃D (xi+1 ) − ω̃D (xi+1 )
+                  +
+            = 2[r̃D (xi+1 ) − ω̃D (xi+1 )]
+                     +                           −
+                − [r̃D (xi+1 ) − ω̃D (xi+1 ) − r̃D (xi ) − ω̃D (xi )]
+                  +
+            ≥ 2[r̃D (xi+1 ) + ω̃D (xi+1 )] − ω(D)
+                −             +
+         2d ≤ r̃D (xi+1 ) + r̃D (xi+1 )
+                  −
+            = 2[r̃D (xi+1 ) + ω̃D (xi+1 )]
+                     +                           −
+                + [r̃D (xi+1 ) − ω̃D (xi+1 ) − r̃D (xi+1 )] − ω̃D (xi+1 )
+                  −
+            ≤ 2[r̃D (xi+1 ) + ω̃D (xi+1 )] + ω(D) − 0
+
+
+
+Now we are ready to introduce the prune operation. Given a
+                                + −
+quantile summary Q(D) = (S, r̃D   , r̃D , ω̃D ) with S = {x1 , x2 , · · · , xk }
+elements, and a memory budget b. The prune operation creates
+                                  + −
+another summary Q0 (D) = (S 0 , r̃D , r̃D , ω̃D ) with S 0 = {x01 , x02 , · · · , x0b+1 },
+where x0i are selected by query the original summary such that
+                                              
+                                 i−1
+                     x0i = g Q,         ω(D) .
+                                   b
+                    + −
+The definition of r̃D , r̃D , ω̃D in Q0 is copied from original sum-
+mary Q, by restricting input domain from S to S 0 . There could
+be duplicated entries in the S 0 . These duplicated entries can be
+safely removed to further reduce the memory cost. Since all the
+elements in Q0 comes from Q, we can verify that Q0 satisfies all
+the constraints in Definition A.1 and is a valid quantile summary.
+
+   Theorem A.2. Let Q0 (D) be the summary pruned from an
+-approximate quantile summary Q(D) with b memory budget.
+Then Q0 (D) is a ( + 1b )-approximate summary.
+  Proof. We only need to prove the property in Eq. (23) for Q0 .
+Using Lemma A.4, we have
+               i−1                + 0
+                   ω(D) + ω(D) ≥ r̃D (xi ) − ω̃D (x0i )
+                b        2
+               i−1                − 0
+                   ω(D) − ω(D) ≤ r̃D (xi ) + ω̃D (x0i )
+                b        2
+Combining these inequalities gives
+       + 0                          − 0
+     r̃D (xi+1 ) − ω̃D (x0i+1 ) − r̃D (xi ) − ω̃D (x0i )
+     i                i−1                1
+   ≤[ ω(D) + ω(D)] − [     ω(D) − ω(D)] = ( + )ω(D)
+     b      2           b        2         b
+
+==============================================================================
+VISUAL FIGURE VALUE AUDIT
+==============================================================================
+
+# Visual figure audit: L23
+
+Source: `pdfs/L23.pdf`; viewed rendered pages 2-3.
+
+- Figure 1 (p. 2): tree-ensemble prediction schematic; explanatory only, no empirical values.
+- Figure 2 (p. 3): gradient/Hessian aggregation and split-score illustration; explanatory only. Equations and split-score definitions are retained in the extracted text.
+- Algorithm 1 and Algorithm 2 on p. 3 are pseudocode, not plots. Their exact mathematical expressions should be taken from `txt/L23.txt` and checked in the PDF for symbol fidelity.
+
+No numeric figure results are reported on the inspected pages. This audit does not substitute for checking later empirical-result pages.

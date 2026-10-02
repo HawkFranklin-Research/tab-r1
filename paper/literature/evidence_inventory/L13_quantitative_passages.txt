@@ -1,0 +1,84 @@
+# Retrieval inventory, NOT completed visual/claim audit
+Source L13: Batch Effect Confounding Leads to Strong Bias in Performance Estimates Obtained by Cross-Validation; DOI 10.1371/journal.pone.0100335
+Original text line numbers. Numbers may be citations, secondary reports,
+toy examples, or ambiguous table columns. Verify context before citing.
+
+L31:      for our simulation. Random samples from this expression matrix are selected and assigned to group 1 (e.g., ‘control’) or
+L32:      group 2 (e.g., ‘treated’). We introduce batch effects and select some features to be differentially expressed between the two
+L42:   Citation: Soneson C, Gerster S, Delorenzi M (2014) Batch Effect Confounding Leads to Strong Bias in Performance Estimates Obtained by Cross-Validation. PLoS
+L75: PLOS ONE | www.plosone.org                                                      1                                June 2014 | Volume 9 | Issue 6 | e100335
+L87: normalization methods [7,8]. Microarray experiments (just like                data set consisting of only patients. In such a situation, the fact that
+L94: stage variable [7]. The confounding can be strong, as in the                  cross-validation compared to the actual performance of the
+L102: minimized with careful experimental design (see e.g. [9]).                    researchers typically want to use as many samples as possible to
+L133:                                                                               the means of nested cross-validation [12,18–20] as well as on
+L139: [12,14–20].                                                                   cross-validation, the addressed issue is more general. We expect
+L160: PLOS ONE | www.plosone.org                                                2                             June 2014 | Volume 9 | Issue 6 | e100335
+L170: matrix (688 patients|61528 features, E-MTAB-990) from the                      Methods
+L172: and 600 samples to generate training and validation data sets,                 Data preprocessing
+L173: respectively. The samples were split into two groups (g1 and g2).                 To eliminate the effect of the confounding factor on the training
+L174: This split was balanced (50% g1 and 50% g2). For the training data             data set, we use ComBat [23], which employs an empirical Bayes
+L178: levels of confounding: none (50% g1 samples in b1, 50% in b2;                  location and scale adjustment means that both additive and
+L179: same for g2 samples), intermediate (75% g1 samples in b1, 25% in               multiplicative batch effects can be eliminated, and the built in
+L180: b2; vice versa for g2 samples), strong (95% g1 samples in b1, 5% in            empirical Bayes step improves the performance for small sample
+L181: b2; vice versa for g2 samples) and full (100% g1 samples in b1,                sizes by pooling information across the genes. Previous studies
+L182: 100% of g2 samples in b2). Figure 1 illustrates the four                       have shown that ComBat is able to eliminate batch effects in
+L184:    We simulated null data sets where none of the features were                 batch effect removal methods [25]. We apply ComBat with the
+L186: where approximately 1% of the features underwent a change in                   labels as a covariate. In case the batch factor is completely
+L192: effect, we simulated 50% of the features to be affected by it. This is         before splitting the data in the cross-validation step).
+L193: in line with the results of [7], who found between 32.1% and
+L194: 99.5% of the variables in the data sets they studied to be associated          Cross-validation
+L213: Figure 1. The four confounding levels considered in this study. The two bars for each confounding level correspond to the two batches. The
+L220: PLOS ONE | www.plosone.org                                                 3                              June 2014 | Volume 9 | Issue 6 | e100335
+L241: and the remaining K{1 parts as the training set. This procedure                  performances are averaged across the inner test sets. The
+L273: smaller folds [30].
+L280: the data set used to build the classifier (and thus used as the basis            data set. This workflow is depicted in the lower panel of Figure 2.
+L288: illustrated in the top panel of Figure 2. The purpose of the outer               evaluate a classifier is outlined in Figure 3.
+L301: samples, and the corresponding outer test set consists of the                    tion S1.
+L304: PLOS ONE | www.plosone.org                                                   4                             June 2014 | Volume 9 | Issue 6 | e100335
+L311: Figure 2. The cross-validation scheme employed in the study. The upper panel illustrates the combination of the inner cross-validation loop,
+L334: forest classifiers using the rfCMA function in the CMA package [32]            this hyperparameter is selected in the inner cross-validation loop
+L335: for R [29]. This implicitly calls functions from the randomForest              (see Figure 2). We built SVMs using the svmCMA function in the
+L338: PLOS ONE | www.plosone.org                                                 5                             June 2014 | Volume 9 | Issue 6 | e100335
+L345: Figure 3. Step-by-step description of the flowchart illustrated in Figure 2. The code used to produce the results presented in this
+L351: package [35].                                                                  As described above, in the inner cross-validation loop, we
+L356: of neighbors), which we select in the inner cross-validation loop.          from f5,10,30,100g. In the second approach, we apply lasso
+L366: value of l from f10{4 ,10{3 ,10{2 ,0:1,1,10g. We fit the logistic           the training data that will be used to build the classifier. The test
+L370: similar scales [37]. For this reason, we z-transform all variable           apply the variable selection to each training set independently,
+L385: PLOS ONE | www.plosone.org                                              6                             June 2014 | Volume 9 | Issue 6 | e100335
+L393: with drug A (i.e., sample group 1) come from one data set, and                performance estimate obtained by the cross-validation is in fact far
+L394: most of the samples treated with drug B (sample group 2) come                 from the performance we can expect if we apply the classifier to an
+L398: such a way that we observe a difference between the two sample                confounding levels, is shown in Figure 4(b). In Supporting
+L399: groups in the training data, which are not truly related to the               Information S1, we show also the distribution of the number of
+L410:    Figure 4(a) shows the estimated misclassification rate obtained            batch effect (as illustrated in Figure 4(a)).
+L414: We are interested in knowing whether the internal measure is an               we apply ComBat [23] to the entire training data set (that is,
+L418: similarly. In Supporting Information S1 we show figures where the             performance estimates are shown in Figure 5(a). We note that in
+L424: to eliminate it at this stage. The four columns of Figure 4(a)                value). This is likely attributable to the confounding between the
+L429: Figure 1). In practice, this would correspond e.g. to a situation             group factor. If the batch effect and the group factor are partly
+L439: applied to the external validation set is not better than chance,             related’’, and the other half are ‘‘non-batch-related’’ (Figure 5(b)).
+L440: with an average misclassification rate close to 50%. However, the                An interesting effect is seen in the right-most panel of the figure.
+L452: dure estimates the misclassification rate to 0 (that is, all samples          set this means that if we, in the classifier construction, find a gene
+L453: can be correctly classified). This is not surprising since in the case        that is higher in group 2 than in group 1 in an outer training set, it
+L456: PLOS ONE | www.plosone.org                                                7                             June 2014 | Volume 9 | Issue 6 | e100335
+L463: Figure 4. Evaluation of classifiers built on data without truly differentially expressed genes between the classes, but with a batch
+L481:   Here, we consider the case where, in contrast to the example                     Figure 6(a) shows the performance for varying degree of
+L488: PLOS ONE | www.plosone.org                                                  8                              June 2014 | Volume 9 | Issue 6 | e100335
+L495: Figure 5. Evaluation of classifiers built on data without truly differentially expressed genes between the classes, but with a batch
+L504: lower than in Figure 4(a), both for the training and the validation             data but that does not generalize well, especially for the Wilcoxon
+L507: also in Figure 6(b), which shows the fraction of the selected genes             batch effect using ComBat (Figure 7). Comparing to Figure 6, we
+L513: classifiers perform worse (Figure 6(a)).                                        is negligible.
+L520: PLOS ONE | www.plosone.org                                                  9                              June 2014 | Volume 9 | Issue 6 | e100335
+L527: Figure 6. Evaluation of classifiers built on data containing truly differentially expressed genes between the classes, as well as a
+L537: results can be compared to those given in Figure 8, which shows
+L552: PLOS ONE | www.plosone.org                                                  10                             June 2014 | Volume 9 | Issue 6 | e100335
+L559: Figure 7. Evaluation of classifiers built on data containing truly differentially expressed genes between the classes, as well as a
+L584: PLOS ONE | www.plosone.org                                                 11                              June 2014 | Volume 9 | Issue 6 | e100335
+L591: Figure 8. Evaluation of classifiers built on data containing truly differentially expressed genes between the classes, but no batch
+L612: conditions. The presence of a batch effect that was completely                     the final selection [41]. The Wilcoxon test, on the other hand, is
+L619: beneficial. However, the bias in the cross-validation performance                  general, the bias of these methods can be quite different [42].
+L639: PLOS ONE | www.plosone.org                                                    12                              June 2014 | Volume 9 | Issue 6 | e100335
+L657:  3. Lukk M, Kapushesky M, Nikkila J, Parkinson H, Goncalves A, et al. (2010) A                  gene expression datasets – improving meta-analysis and prediction of prognosis.
+L688:     development and validation of microarray-based predictive models. Nat                       Functions of the Department of Statistics (e1071), TU Wien. Available: http://
+L705: 18. Varma S, Simon R (2006) Bias in error estimation when using cross-validation                responses to therapy. Nature Medicine 19: 619–625.
+L711: 21. Alter O, Brown PO, Botstein D (2000) Singular value decomposition for                   42. Kim JH (2009) Estimating classification error rate: Repeated cross-validation,
+L712:     genome-wide expression data processing and modeling. Proceedings of the                     repeated hold-out and bootstrap. Comput Stat Data Anal 53: 3735–3745.
+L718: PLOS ONE | www.plosone.org                                                             13                                   June 2014 | Volume 9 | Issue 6 | e100335

@@ -1,0 +1,123 @@
+# Retrieval inventory, NOT completed visual/claim audit
+Source L35: Comprehensive genomic characterization of squamous cell lung cancers; DOI 10.1038/nature11404
+Original text line numbers. Numbers may be citations, secondary reports,
+toy examples, or ambiguous table columns. Verify context before citing.
+
+L29:     included NFE2L2 and KEAP1 in 34%, squamous differentiation genes in 44%, phosphatidylinositol-3-OH kinase pathway
+L30:     genes in 47%, and CDKN2A and RB1 in 72% of tumours. We identified a potential therapeutic target in most tumours,
+L35: leading to an estimated 1.4 million deaths in 2010 (ref. 1). The discovery                    (n 5 137) or from peripheral blood (n 5 41). All patients provided
+L38: has led to a marked change in the treatment of patients with lung                             tics are described in Supplementary Table 1.2. The median follow-up
+L39: adenocarcinoma, the most common type of lung cancer2–5. More recent                           for the cohort was 15.8 months, and 60% of patients were alive at the
+L41: and PIK3CA and fusions that involve ROS1 and RET may also be suc-                             per cent of the patients had a history of tobacco use, similar to previous
+L42: cessful6,7. Unfortunately, activating mutations in EGFR and ALK fusions                       reports for North American patients with lung SQCC16. DNA and
+L67: reviewed lung SQCCs, in addition to whole genome sequencing                                   cell carcinoma (156 segments) (P , 1 3 10215 by Fisher’s exact test).
+L68: (WGS) of 19 samples and microRNA sequencing of 159 samples                                    These segments gave rise to regions of both focal and broad somatic
+L69: (Supplementary Table 1.1). Demographic and clinical data and results                          copy number alterations (SCNAs), with a mean of 47 focal and 23
+L70: of the genomic analyses can be downloaded from the TCGA data                                  broad events per tumour (broad events defined as $50% of the length
+L71: portal (https://tcga-data.nci.nih.gov/docs/publications/lusc_2012/).                          of the chromosome arm). There was strong concordance between the
+L73: Samples and clinical data                                                                     (Supplementary Figs 2.1–2.4).
+L74: Tumour samples were obtained from 178 patients with previously                                   At the level of whole chromosome arm SCNAs, lung SQCCs exhibit
+L80:                                                                                                               2 7 S E P T E M B E R 2 0 1 2 | VO L 4 8 9 | N AT U R E | 5 1 9
+L85: TCGA (Supplementary Fig. 2.1a). The most notable difference                      This yielded 12 other genes with FDR , 0.1: FAM123B (also known as
+L87: in lung SQCC, as has been reported9,19. Using the SNP 6.0 array                  BRAF, TNFAIP3 and CREBBP (Supplementary Table 3.1). Both the
+L94: Supplementary Data 2.1 and 2.2). Other peaks defined regions of SCNA             all samples. A total of 1,289 mutations were assayed, and we achieved
+L96: segments containing NFE2L2, MYC, CDK6, MDM2, BCL2L1 and EYS                      validated 1,235 mutations (96.2%) (Supplementary Fig. 3.1 and Sup-
+L100: coverage across targeted bases was 1213, with 83% of target bases above             WGS was performed for 19 tumour/normal pairs with a mean
+L106: aemia (0.56 per Mb), breast carcinoma (1.0 per Mb), ovarian cancer17             inframe coding fusions detected in WGS were validated by RNA
+L117:    Significantly mutated genes were identified using a modified version          34% of cases (Fig. 2). NFE2L2 and KEAP1 code for proteins that bind
+L120: (Supplementary Table 3.1): TP53, CDKN2A, PTEN, PIK3CA, KEAP1,                    a variety of cancer types28,29. We found mutations in NFE2L2 almost
+L122: robust evidence of gene expression as defined by reads per kilobase of           Mutations in KEAP1 and CUL3 showed a pattern consistent with loss-
+L124: mutation was observed in 81% of samples by automated analysis; visual            (Figs 1c and 2). PARADIGM SHIFT30 analysis predicts that muta-
+L125: review of sequencing reads identified a further 9% of samples with               tions in NFE2L2 and KEAP1 exert a considerable functional effect (Sup-
+L126: potential mutations in regions of sub-optimal coverage or in samples             plementary Fig. 7.C.1, 7.C.2 and Supplementary Methods, section 7).
+L128: were truncating alterations, suggesting loss-of-function, as has recently        cell differentiation in 44% of samples, including overexpression and
+L129: been reported for head and neck SQCCs22,24. Mutations in HLA-A were              amplification of SOX2 and TP63, loss-of-function mutations in
+L135:                             100                                                                                 Figure 1 | Significantly mutated genes in lung
+L146:  155                         81%                                                         TP53
+L148:                              15%                                                      CDKN2A
+L149:                               8%                                                         PTEN                   displayed as columns, with the overall number of
+L150:                              16%                                                       PIK3CA                   mutations plotted at the top, and samples are
+L151:                              12%                                                        KEAP1                   arranged to emphasize mutual exclusivity among
+L152:                              20%                                                         MLL2                   mutations. Syn., synonymous.
+L153:                               3%                                                        HLA-A
+L154:                              15%                                                       NFE2L2
+L155:                               8%                                                      NOTCH1
+L156:                               7%                                                          RB1
+L161: 5 2 0 | N AT U R E | VO L 4 8 9 | 2 7 S E P T E M B E R 2 0 1 2
+L166:                 Oxidative stress response                                         Squamous differentiation                                                              Figure 2 | Somatically altered
+L167:            34% altered (62% in classical subtype)                                      44% altered                                                                      pathways in squamous cell lung
+L170:                    KEAP1                   CUL3                                                                   21%              16%
+L172:                     12%                      7%
+L176:                                 19%
+L177:                                                                                                    8%               5%             3%             4%                    alteration are expressed as a
+L201:                                                                                                                         cifically with NFE2L2 or KEAP1 mutated samples. Although CDKN2A
+L204: sequencing for the entire cohort and by microarrays for a 121-sample                                                       Independent clustering of miRNA and methylation data indicated
+L208: subtype signatures34 were applied to both of the expression platforms,                                                  6.1 and 6.2 and Supplementary Table 5.1). Integrative clustering
+L209: yielding four subtypes designated as classical (36%), basal (25%),                                                      (iCluster)37 of mRNA, miRNA, methylation, SCNA and mutation
+L210: secretory (24%) and primitive (15%). The concordance of subtypes                                                        data demonstrated concordance with the mRNA expression subtypes
+L211: between the two platforms was high (94% agreement) (Supplemen-                                                          and associated alterations (Fig. 3, Supplementary Fig. 7.A.1 and
+L214: and methylation (Fig. 3). The classical subtype was characterized by                                                    signatures revealed notable subtype associations with alterations in
+L218: subtype, which also showed the greatest overexpression of three known                                                   Analysis of the CDKN2A locus
+L220: suggested that high expression levels of TP63, in samples with and                                                      tumour suppressor gene in lung SQCC38 that encodes the p16INK4A
+L221: without amplification of TP63, were associated with dominant expres-                                                    and p14ARF proteins, is inactivated in 72% of cases of lung SQCC
+L223: terminal transactivation domain, compared with the longer isoform,                                                      methylation (21%), inactivating mutation (18%), exon 1b skipping
+L224: called tap63 (89% of tumours overexpressed deltaN compared with                                                         (4%) and homozygous deletion (29%).
+L225:                                                                             Primitive                                                                     Figure 3 | Gene expression subtypes integrated
+L230:         PIK3CA expr.                                                                                                                                      Subtypes were compared by Kruskal–Wallis tests for
+L231: 3q26      TP63 expr.                                                                                                                                      continuous features and by Fisher’s exact tests for
+L233:           SOX2 expr.                                                                                                                                      categorical features. Displayed features showed
+L256:                     DNA copy number, CIN, deltaN %:     –0.3 –0.1     0.1   0.3                                                                           gene expression and deltaN values were standardized
+L260:                                                                                                                                               2 7 S E P T E M B E R 2 0 1 2 | VO L 4 8 9 | N AT U R E | 5 2 1
+L265: a CDKN2A locus                                                                                        b                                                   p16INK4a mutated    p16INK4a methylated     RB1 altered   Figure 4 | Multi-faceted
+L266: p16INK4a alteration rate: 72%
+L274:                                                     Exon 2 skipping: 4%                                                                                                                                             CDKN2A loss. a, Schematic view of
+L275:           Epigenetic silencing: 21%                                       Mutation: 17%                                                                                                                             the exon structure of CDKN2A
+L282:                                                      Homozygous deletion: 30%                                                                                                                                       denoted by black and green circles.
+L286: c                              KIAA1797                              p16INK4                                                                                                                                        axis). Samples are represented by
+L297:                                                                                                                                                            Homoz. del.         Het. loss             Diploid        reading frame. d, CDKN2A
+L313: and ARF (33%); expression of high levels of both p16INK4 and ARF                                                                                        regulatory subunits, nuclear hormone receptors, G-protein-coupled
+L314: (31%); high expression of ARF and absence of p16INK4 (31%); or                                                                                          receptors, proteases and tyrosine phosphatases (Supplementary
+L315: expression of a transcript that represents a splicing of exon 1b from                                                                                   Fig. 7.D.1a and Supplementary Data 7.2 and 7.3). From 50 to 77%
+L317: mature stop codon (4%) (Supplementary Fig. 4.4). Almost all of the                                                                                      effect as determined by the mutation assessor score40 (Supplementary
+L318: cases completely lacking p16INK4 and ARF expression showed homo-                                                                                        Fig. 7.D.1a), and 39% of tyrosine and 42% of serine/threonine kinase
+L321: strated an intergenic fusion event that resulted in detectable transcrip-                                                                               COSMIC database (Supplementary Data 7.3).
+L322: tion between exon 1a p16INK4 and exon 18 of KIAA1797 (Fig. 4b, c).                                                                                         We selected potential therapeutic targets based on several features,
+L328: events in CDKN2A (Fig. 4b and Supplementary Data 7.1). These                                                                                            alteration of a potentially targetable gene (64%) (Supplementary
+L329: account for 45% of the 56 cases with high p16INK4 and ARF expres-                                                                                       Fig. 7.D.1b and Supplementary Data 7.4). Among these, we identified
+L331: many other cases of CDKN2A inactivation (70% of lung SQCCs with                                                                                         oncogene homologues (ERBBs), fibroblast growth factor receptors
+L332: ARF expression in the absence of detectable p16INK4). Seven other                                                                                       (FGFRs) and Janus kinases (JAKs), all of which were found to be
+L335: nonsense-mediated decay as a mechanism. Of the 28% of tumours                                                                                           lung adenocarcinoma (Supplementary Fig. 7.D.2)42.
+L340: Molecularly targeted agents are now commonly used in patients with                                                                                      in at least one of those pathways in 69% of samples after restriction of
+L345: sample had a KRAS codon 61 mutation, and there were no exon 19                                                                                          tions, amplifications and overexpression of the genes depicted in
+L346: deletions or Leu858Arg mutations in EGFR. However, amplifications                                                                                       Fig. 5. (A summary of all samples and their significant mutations
+L347: of EGFR were found in 7% of cases, as were two instances of the                                                                                         and copy number alterations, including alterations in Fig. 5, is shown
+L349: and gefitinib39.                                                                                                                                        PI(3)K/AKT pathway was altered in 47% of tumours and RTK sig-
+L351: was suggested by the observation that 96% (171 out of 178) of tumours                                                                                   mutation or FGFR amplification or mutation in 26% of tumours
+L352: 5 2 2 | N AT U R E | VO L 4 8 9 | 2 7 S E P T E M B E R 2 0 1 2
+L358: 69% altered                                                                                    this deadly disease.
+L360:           PTEN         PIK3CA        9%       4%        2%         7%       3%         2%
+L361:           15%           16%
+L365:                                                  KRAS HRAS NRAS                        4%      relevant Institutional Review Board. DNA and RNA were collected from samples
+L367:                  <1%     4%      16%               3%         3%     <1%                       using the Allprep kit (Qiagen). We used commercial technology for capture and
+L368:      2%                                                                            NF1
+L369:                                                                                    11%         sequencing of exomes from tumour DNA and normal DNA and whole-genome
+L373:                   3%     3%
+L374:                                                               4%                               lesions. GISTIC23,24 analysis of the circular-binary-segmented Affymetrix SNP 6.0
+L382: RTK 26%                                                                                        Published online 9 September 2012.
+L383: RAS 24%
+L384: PI(3)K 47%                                                                                     1.  World Health Organization. Cancer, fact sheet no. 297 Æhttp://www.who.int/
+L386: Figure 5 | Alterations in targetable oncogenic pathways in lung SQCCs.                         2. Soda, M. et al. Identification of the transforming EML4–ALK fusion gene in non-
+L387: Pathway diagram showing the percentage of samples with alterations in the                          small-cell lung cancer. Nature 448, 561–566 (2007).
+L418: immune destruction44 is suggested by the presence of inactivating muta-                            therapeutically tractable FGFR1 dependency in squamous cell lung cancer. Sci.
+L419: tions in the HLA-A gene. Somatic loss-of-function alterations of HLA-A                             Transl. Med. 2, 62ra93 (2010).
+L426: sible role for genotypic selection of patients for immunotherapies.                                ovarian carcinoma. Nature 474, 609–615 (2011).
+L443:    The current study has identified a potentially targetable gene or                           25. Bass, A. J. et al. Genomic sequencing of colorectal adenocarcinomas identifies a
+L444: pathway alteration in most lung SQCC samples studied. The data                                     recurrent VTI1A-TCF7L2 fusion. Nature Genet. 43, 964–968 (2011).
+L448: tions to select patients for appropriately targeted clinical trials. These                         breast cancer genomes. Nature 462, 1005–1010 (2009).
+L450:                                                                                                                     2 7 S E P T E M B E R 2 0 1 2 | VO L 4 8 9 | N AT U R E | 5 2 3
+L462: 30. Vaske, C. J. et al. Inference of patient-specific pathway activities from multi-
+L471: 32. Wang, N. J. et al. Loss-of-function mutations in Notch receptors in cutaneous and           Andrew J. Mungall7, Erin Pleasance7, A. Gordon Robertson7, Payal Sipahimalani7,
+L475:     therapeutic target for lung cancers with neuroendocrine features. Cancer Res. 65,           Richard A. Moore7, Karen Mungall7, Ka Ming Nip7, Adam Olshen8, Jacqueline E.
+L548: 5 2 4 | N AT U R E | VO L 4 8 9 | 2 7 S E P T E M B E R 2 0 1 2
+L663:                                                                                                                 2 7 S E P T E M B E R 2 0 1 2 | VO L 4 8 9 | N AT U R E | 5 2 5
+L682: 2 8 8 | N AT U R E | VO L 4 9 1 | 8 NO V E M B E R 2 0 1 2

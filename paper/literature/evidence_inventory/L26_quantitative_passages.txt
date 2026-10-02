@@ -1,0 +1,225 @@
+# Retrieval inventory, NOT completed visual/claim audit
+Source L26: AutoGluon-Tabular: Robust and Accurate AutoML for Structured Data; DOI 10.48550/arXiv.2003.06505
+Original text line numbers. Numbers may be citations, secondary reports,
+toy examples, or ambiguous table columns. Verify context before citing.
+
+L53:                                                      Kaggle competitions, AutoGluon beat 99% of the          frameworks can transform raw data to appropriate numeric
+L85: various ways with careful tracking of out-of-fold examples.      1   from autogluon import TabularPrediction as task
+L86:                                                                  2   predictor = task.fit("train.csv", label="class")
+L87: This paper demonstrates that these admittedly less glam-         3   predictions = predictor.predict("test.csv")
+L100: 50 curated datasets that are particularly representative of              hyperparameters of the individual models.
+L115: 2. AutoGluon-Tabular                                                 range of features including hyperparameter turning, neural
+L137: indicate a regression problem. This simple feature is just                      2XWSXW
+L146: puts to all models, and model-specific preprocessing that is                    'HQVH                'HQVHEORFN     %DWFK1RUP
+L151: ing each feature numeric, categorical, text, or date/time. Un-                (PEHGGLQJ          'HQVH 5H/8
+L153: of non-numeric, non-repeating fields with presumably little                   &DWHJRULFDO             1XPHULFDO
+L156: be columns of mostly unique strings, which on average con-         Figure 1. Architecture of AutoGluon’s neural network for tabular
+L157: tain more than 3 non-adjacent whitespace characters. The           data composed of numerical and categorical features. Layers with
+L168: categories at test-time. Note that often observations are not      unit activation values. Nonetheless, Mendoza et al. (2016)
+L178:                                                                    in Figure 1, and additional details are in Appendix A. It
+L231: shallow stack ensembling. Here a collection of individual        Figure 2. AutoGluon’s multi-layer stacking strategy, shown here
+L240: stacker models as inputs to additional higher layer stacker      2.6. Repeated k-fold Bagging
+L243: (Koren, 2009; Titericz & Semenov, 2016). However, it is          utilizing all of the available data for both training and vali-
+L246: novel form of multi-layer stack ensembling, depicted in Fig-     (Parmanto et al., 1996), k-fold bagging is a simple ensemble
+L274: et al., 2004) to aggregate the stacker models’ predictions in    mains susceptible to a subtle form of over-fitting. The train-
+L282: Algorithm 1 AutoGluon-Tabular Training Strategy                 Many AutoML frameworks train multiple models in par-
+L285:  1: Preprocess data to extract features                         datasets without careful tuning. AutoGluon-Tabular instead
+L286:  2: for l “ 1 to L do {Stacking}                                trains models sequentially and relies on their individual im-
+L287:  3:    for i “ 1 to n do {n-repeated}                           plementations to efficiently leverage multiple cores. This
+L288:  4:       Randomly split data into k chunks tX j , Y j ukj“1    allows us to train where other frameworks fail.
+L289:  5:       for j “ 1 to k do {k-fold bagging}
+L291:  7:            Train a type-m model on X ´j , Y ´j
+L298: 12:    Average OOF predictions Ŷm “ t n1 i Ŷm,i   uj“1        used AutoML frameworks, summarized in Table 1.
+L333: 2.7. Training Strategy
+L336: Our overall training strategy is summarized in Algorithm 1,
+L340: In Step 7, AutoGluon first estimates the required training
+L354: mediate iterations of sequentially trained models like neural   predictions for test data, H2O employs one layer of en-
+L362: Table 1. Popular AutoML frameworks for classification and regression with tabular data. We indicate whether a table of R AW data with
+L381:                                                                       training/test splits for each dataset, making 390 prediction
+L393:                                                                       train for both 1h as well as 4h, and loss on each test set is
+L395:                                                                       calculated as 1 ´ AUC or log-loss for binary or multi-class
+L399: mum of 92 instances in parallel when training ($19.32/hour            Kaggle Benchmark. 11 tabular datasets chosen from re-
+L400: with a minimum of 1 hour regardless of dataset size).                 cent Kaggle competitions to reflect real modern-day ML
+L401:                                                                       applications (full list in Table S1). The competitions in
+L429: selection of 50 more curated datasets, spanning binary/mul-           default settings except where the package authors suggested
+L432: OpenML AutoML Benchmark. 39 datasets curated by                   1   task.fit(train_data, label, eval_metric,
+L448: Table 2. Comparing each AutoML framework against AutoGluon on the 39 AutoML Benchmark datasets (with 4h training time). Listed
+L450: system failure during training (Failures), or more accurate predictions than all of the other 5 frameworks (Champion). The latter 3 columns
+L451: show the average: rank of the framework (among the 6 AutoML frameworks applied to each dataset), (rescaled) loss on the test data, and
+L453: over datasets remains meaningful, we rescale the loss values for each dataset such that they span r0, 1s among our AutoML frameworks.
+L459:         GCP-Tables          5        20         14             4           3.7500             0.3336                    195
+L463: Table 3. Comparing each AutoML framework against AutoGluon on the 11 Kaggle competitions (under 4h time limit). Columns are
+L464: defined as in Table 2. Instead of loss, we report the percentile rank, i.e. the proportion of teams beaten by AutoML on the competition
+L469:           GCP-Tables            3       7            1             3         2.2857           0.6281                222
+L477:                                                                        Table 4. Performance of AutoML frameworks after 1h training vs.
+L479:                                                                        4h training on each of the 39 AutoML Benchmark datasets. We
+L480: accuracy AutoML is achievable entirely without CASH.                   count how many times the 1h variant performs better (ą), worse
+L483: Tables, which uses 92 Google Cloud servers by default. As                        System                 ą 4h      ă 4h    “ 4h
+L485: limits, we report actual training times as well.                                 GCP-Tables (1h)           8       16          1
+L491: Tables 2-3 provide pairwise comparisons showing how each
+L493: ter 4 hours of training), indicating how often one framework            than all of the other frameworks combined. AutoGluon is
+L494: is better than another. Figure 3 depicts the performance                additionally more robust (with far less failures) and better
+L495: of each framework across the many datasets in our bench-                at adhering to the specified training time limits (Table 2-3,
+L496: marks, indicating how much better each framework is than                Figures S2-S4). Beyond the benchmark-specific metrics for
+L498: other time limits (1 hour and 8 hours) can be found in the              raw accuracy among AutoML frameworks when directly
+L499: Appendix (Tables S4, S9, S11-S14 and Figures S1 and S3).                predicting class labels rather than probabilities (Table S8).
+L502: works. For every benchmark and every time limit, Auto-                  frameworks which may start over-fitting (Table 4). When
+L503: Gluon is the only framework to rank better than 2nd on                  allowed to train for 24h on the otto-group-product
+L505: tently. On over half of the datasets in each benchmark (23/39           marks), AutoGluon was able to produce even more accurate
+L509:                                                         auto−sklearn   TPOT           Auto−WEKA      H2O AutoML           GCP−Tables       AutoGluon
+L555: Figure 3. (A) Performance of AutoML frameworks relative to AutoGluon on the AutoML Benchmark (with 1h training time). (B)
+L556: Proportion of teams in each Kaggle competition whose scores were beat by each AutoML framework (with 4h training time). Failed
+L561: predictions that achieved a rank of 23rd place (out of 3505                                       Table 5. Ablation study of AutoGluon on the AutoML Benchmark
+L562: teams) on the official leaderboard for this Kaggle compe-                                         (4h training time). Columns are defined as in Table 2.
+L565: AutoGluon managed to outperform 99.3% of the participat-
+L566: ing data scientists. Even just the 4h training used in our                                           AutoGluon                       1.9324                     0.1660
+L567: benchmark sufficed for AutoGluon to perform very well                                                NoRepeat                        2.1216                     0.2199
+L596: Table 5 shows that overall predictive performance dropped                                         works that focus on combined algorithm selection and hy-
+L601: form the full version of AutoGluon trained for only 1h.
+L723: batch normalization, Adam with a weight decay penalty (Kingma & Ba, 2015), and early stopping based on validation
+L727: of the numeric embedding layer ranges between 32 - 2056 and is determined based on the number of numeric features and
+L728: the proportion of numeric vs. categorical features. Inspired by Howard & Gugger (2020), a discrete feature with k unique
+L729: categories observed in the training data is processed by an embedding layer of size: 1.6 ˆ k 0.56 (up to threshold of size 100).
+L730: To ensure stable gradients in regression we rescale targets and use the L1 loss (even for mean-squared-error objectives).
+L738: high-cardinality features with ą 100 possible levels, where all rare categories were reassigned to “Other”. We only applied
+L739: our embedding layers to categorical features with at least 4 discrete levels (others were simply one-hot encoded and then
+L746: Table S1 describes the datasets that comprised our Kaggle benchmark. Data for each competition can be ob-
+L749: (2019); Rishi (2019) previously demonstrated that GCP-Tables could produce strong results (indicating these are
+L752: ieee-fraud-detection.           We decided not to include the other three datasets from Lu (2019) in our
+L765: Table S1. Summary of the 11 Kaggle competitions used in our benchmark, including: the date of each competition, around how many
+L775:      bnp-paribas-cardif-claims-management                  binary         log-loss     2016       2900       1.1E+5      132
+L776:      santander-customer-transaction-prediction             binary         AUC          2019       8800       2.2E+5      201
+L777:      santander-customer-satisfaction                       binary         AUC          2016       5100       7.6E+4      370
+L779:      ieee-fraud-detection                                  binary         AUC          2019       6400       5.9E+5      432
+L780:      walmart-recruiting-trip-type-classification           multi-class    log-loss     2016       1000       6.5E+5      7
+L781:      otto-group-product-classification-challenge           multi-class    log-loss     2015       3500       6.2E+4      94
+L791: frameworks perform on raw data. For posterity, Table S2 lists additional competitions that appear to fit our selection criteria,
+L812: Table S2. Other prominent tabular datasets from Kaggle that are not suited for existing AutoML tools (not included in our benchmark).
+L820:  restaurant-revenue-prediction                                                                    minute sample size (n “ 137)
+L838: Only H2O and GCP-Tables could robustly handle training with CSV files of raw data in our experiments (each utilizing their
+L845: features are restricted to only their top 100 categories, then one-hot encoded into a vector representation with additional
+L849: in the original AutoML benchmark (Table S3), this time without requiring that the feature types have been manually specified
+L857: GCP-Tables on all 390 prediction problems of the AutoML benchmark was economically infeasible (4h runs would total
+L858: over $30k), we only ran this AutoML tool on the first fold of each of the 39 datasets. All pairwise comparisons between
+L859: GCP-Tables and AutoGluon only consider the AutoGluon performance over this same fold, rather than all 10.
+L867: We followed the protocol of the original AutoML Benchmark and trained frameworks with 1h and 4h time limits. The Kaggle
+L870: datasets (4h and 8h time limits), and used more powerful AWS m5.24xlarge EC2 instances (384 GiB memory, 96 vCPU
+L874: the test data that have been rescaled. We rescale the loss values for each dataset such that they span r0, 1s among our
+L875: AutoML frameworks. The rescaled loss for a dataset is set = 0 for the champion framework and = 1 for the worst-performing
+L880: Table S3. Comparing our usage of AutoML systems against the results from the original AutoML Benchmark (Gijsbers et al., 2019). Out
+L881: of the 39 datasets, we count how often our implementation exceeded the original performance (ą), or fell below the original performance
+L907: the raw accuracy comparison in Table S8.
+L917: Table S4. Comparing each AutoML framework against AutoGluon on the 39 AutoML Benchmark datasets (with 1h training time). Listed
+L919: a system failure during training (Failures), or more accurate predictions than all of the other 5 frameworks (Champion). The latter 3
+L920: columns show the average: rank of the framework (among the 6 AutoML tools applied to each dataset), (rescaled) loss on the test data,
+L922: on each test set is evaluated as 1 - AUC or log-loss for binary or multi-class classification tasks, respectively (lower = better). To ensure
+L923: averaging over different datasets remains meaningful, we rescale the loss values for each dataset such that they span r0, 1s among our
+L924: AutoML frameworks. The rescaled loss for a dataset is set = 0 for the champion framework and = 1 for the worst-performing framework.
+L929:         GCP-Tables          6           20                  13                     5               2.8182                   0.2010                 90
+L937:                                  auto−sklearn         TPOT                  Auto−WEKA             H2O AutoML        GCP−Tables   AutoGluon
+L982: Figure S1. Performance of AutoML frameworks relative to AutoGluon on each dataset from the AutoML Benchmark (under 4h training
+L984: 1 ´ AUC for binary classification datasets (black text), or log-loss for multi-class classification datasets (purple text), and is divided by
+L989:                                            auto−sklearn       TPOT            Auto−WEKA      H2O AutoML                GCP−Tables   AutoGluon
+L1034: Figure S2. Actual training times of each framework in the AutoML Benchmark, which varied despite the fact that we instructed each
+L1041: Table S5. Ablation analysis of AutoGluon trained without various components on the AutoML Benchmark under 1h and 4h time limits.
+L1042: The ablated variants of AutoGluon are defined in §4.3, columns are defined as in Table 2 (averaged columns are relative to this table and
+L1043: should not be compared across tables). Even after 4h, the NoMultiStack variant cannot outperform the full AutoGluon trained for only 1h.
+L1047:           NoRepeat (4h)                   17             20              11           3.3919                              0.2106                      114
+L1050:           NoRepeat (1h)                    5             32               2           4.9595                              0.3600                       43
+L1058: Table S6. Comparing the open-source AutoML frameworks over all 10 train/test splits of the AutoML Benchmark (with 4h training time
+L1059: limit). These results are based on the average performance across all 10 folds. A framework failure on any of the 10 folds is considered an
+L1060: overall failure for the dataset. Columns are defined as in Table 2, where averaged columns are relative to the particular table and should
+L1061: not be compared across tables. AutoGluon outperforms all other frameworks in 27 of the 38 datasets (Dionis dataset is excluded from
+L1062: this table because all frameworks failed on this massive dataset). When comparing with all 10 folds, we note AutoGluon has an even
+L1063: better rank and rescaled loss than when evaluating on only the first fold (Table 2). Evaluating over 10 folds reduces variance and thus
+L1078: Table S7. Comparing open-source AutoML frameworks on all 10 folds of the AutoML Benchmark (with 4h training time limit). We
+L1080: across all 10 folds. A framework failure on any of the 10 folds is considered an overall failure for the dataset. Columns are defined as in
+L1081: Table 2, where the averaged columns are relative to the particular table and should not be compared across tables. AutoGluon outperforms
+L1082: all other frameworks in 24 of the 39 datasets. Even without access to the original feature type information which was provided in the
+L1102: Table S8. Comparison of the AutoML frameworks on the AutoML Benchmark, evaluating the accuracy metric (with 1h training time
+L1103: limit). Columns are defined as in Table 2. Rescaled misclassification rate is calculated in the same manner as rescaled loss, but applied
+L1105: §C.1. All frameworks were optimized on AUC except for AutoPilot, which was optimized on accuracy. This demonstrates that while
+L1111:  GCP-Tables           6        15           13           5           2.9211                      0.1973                             83
+L1123: Table S9. Comparing each AutoML framework against AutoGluon on the 11 Kaggle competitions (under 8h time limit). Listed are the
+L1125: failure during training (Failures), or more accurate predictions than all of the other 5 frameworks (Champion). The latter 3 columns show
+L1126: the average: rank of the framework (among the 6 AutoML tools applied to each dataset), percentile rank achieved in on the competition
+L1127: leaderboard (higher = better), and actual training time. Averages are computed over only the subset of 8 competitions where all methods
+L1132:           GCP-Tables         4         6          1             3           2.5000           0.5861                426
+L1141: Table S10. Performance of AutoML frameworks after 4h training vs. 8h training on the 11 datasets of the Kaggle Benchmark. We count
+L1146:                                                GCP-Tables           6       4        0
+L1157:                                                auto−sklearn          TPOT               Auto−WEKA       H2O AutoML         GCP−Tables             AutoGluon
+L1210: Figure S3. (A)-(B): Difference in leaderboard ranks achieved by each AutoML framework vs. AutoGluon in the Kaggle competitions
+L1213: competition (under listed training time limit). Loss is a competition-specific metric (e.g. RMSLE, 1 ´ Gini, etc.). In both plots, points
+L1214: ą 0 indicate worse performance than AutoGluon and failed runs are not shown. The color of each dataset name indicates the task: binary
+L1221:                                                       auto−sklearn         TPOT           Auto−WEKA       H2O AutoML           GCP−Tables   AutoGluon
+L1248: Figure S4. Actual training times of each framework in the Kaggle Benchmark, which varied despite the fact that we instructed each
+L1290: Figure S5. Predictive performance of open-source AutoML frameworks under different training time limits (Auto-WEKA not shown as it
+L1302: Table S11. Loss on test data produced by AutoML frameworks in our AutoML Benchmark (after training with 1h time limit). The best
+L1305:         Dataset                 Auto-WEKA       auto-sklearn    TPOT      H2O AutoML       GCP-Tables     AutoGluon
+L1349: Table S12. Loss on test data produced by AutoML frameworks in our AutoML Benchmark (after training with 4h time limit). The best
+L1352:          Dataset                  Auto-WEKA        auto-sklearn     TPOT      H2O AutoML        GCP-Tables      AutoGluon
+L1393: Table S13. Percentile ranks on each competition leaderboard achieved by various AutoML frameworks in our Kaggle Benchmark (training
+L1396:               Dataset        Auto-WEKA        auto-sklearn     TPOT      H2O AutoML        GCP-Tables       AutoGluon
+L1412: Table S14. Percentile ranks on each competition leaderboard achieved by various AutoML frameworks in our Kaggle Benchmark (training
+L1415:               Dataset        Auto-WEKA        auto-sklearn     TPOT      H2O AutoML        GCP-Tables      AutoGluon
+L1456: AutoGluon failed on 1 of the 39 datasets in the 4h runs (0 failures in the 1h runs). This dataset is Dionis. Dionis is a large
+L1457: dataset of 416,188 rows, 61 features, and 355 classes. We note that no framework succeeded on all 10 folds of Dionis except
+L1458: for AutoGluon with 1h time limit. Both of the commercial AutoML services we tried, GCP-Tables and AutoPilot, also
+L1460: Due to AutoGluon’s multi-layer stacking, it generates 355 features per successful base model to use as input to the stackers.
+L1463: succeed or fail a fold depending on how much memory the neural network ended up using. AutoGluon 4h succeeded on
+L1464: folds 0 and 1, but failed on fold 2 with an out-of-memory error that prevented the sequential completion of further folds.
+L1465: Because not all 10 folds were ran, we report a total failure for AutoGluon on this dataset.
+L1469: E.1.2. GCP-Tables Failures
+L1471: GCP-Tables failed on 14 of the 39 datasets.
+L1473:  1. ValueError:           GCP AutoML tables can only be trained on datasets with >= 1000
+L1475:      GCP-Tables has a limitation of requiring at least 1000 rows of training data. This caused failures on 5 datasets:
+L1479:      GCP-Tables has a limitation of requiring no more than 1000 features. This caused failures on 5 datasets: christine,
+L1484:      GCP-Tables appears to only return 40 classes’ prediction probabilities on multi-class classification problems with
+L1485:      greater than 40 classes, despite being directly given log-loss as the evaluation metric to optimize for. Because not all
+L1487:      failures on 2 datasets: Helena, Dionis.
+L1489:  4. GoogleAPICallError: None Missing label(s) in test split: target column
+L1492:      GCP-Tables failed on 1 dataset with this error: Shuttle. We suspect this is due to Shuttle having its least frequent class
+L1493:      appear only 9 times in the training set, and GCP-Tables attempted to use 10% of the training data as test data which
+L1497:      GCP-Tables cryptically failed on 1 dataset, KDDCup09 appetency, despite training for the full 4h duration.
+L1502: H2O AutoML failed on 9 of the 39 datasets. Note that the errors listed here only account for the 4 hour runs.
+L1506:      represents a large variety of potential root causes. This error occurred on 7 datasets: Albert, guiellermo, higgs, Jannis,
+L1510:      This error occurred on 1 dataset: Dionis.
+L1512:  3. H2O trains far longer than requested
+L1513:      This error occurred on 1 dataset: Helena. On 5 of the 10 folds, H2O trained for approximately 90,000 seconds (25
+L1514:      hours), compared to the requested 4 hours. It is unknown why H2O only appears to have acted this way on one dataset
+L1515:      and only on half of the folds, nor why it stopped training rather sharply at 90,000 seconds.
+L1520: auto-sklearn failed on 7 of the 39 datasets. Note that the errors listed here only account for the 4 hour runs.
+L1525:      This error occurred on 5 datasets: Airlines, Albert, blood-transfusion, Covertype, and kc1. While Airlines, Albert, and
+L1527:      dataset in the benchmark, and is therefore an odd dataset to fail on for this reason. Furthermore, all 5 of these datasets
+L1529:      auto-sklearn ran out of memory or ran out of disk space (750 GB disk allocated per run) by training too many or too
+L1530:      large of models. This would explain the failure on blood-transfusion, given that auto-sklearn trains between 7,000 and
+L1533:      This error indicates that auto-sklearn did not finish training any models. This error occurred on 1 dataset: Dionis.
+L1536:      bounds. This error occurred on 1 dataset: phoneme. This interestingly only occurred on a single fold of phoneme, with
+L1542: TPOT failed on 9 of the 39 datasets. Note that the errors listed here only account for the 4 hour runs.
+L1544:  1. TPOT never finishes training
+L1548:      stopping. This error occurred on 4 datasets: Helena, KDDCup09 appetency, kr-vs-kp, and vehicle.
+L1551:      This error occurs when TPOT has not finished training any models in the allocated time. This error occurred on 2
+L1559:      seemingly at random. This error occurred on 3 datasets: credit-g, numerai28.6, and riccardo.
+L1564: Auto-WEKA failed on 7 of the 39 datasets. Note that the errors listed here only account for the 4 hour runs.
+L1568:      of the exact exception message. This error occurred on 6 datasets: adult, Airlines, Dionis, guiellermo, riccardo, and
+L1572:      This memory error occurred on 1 dataset: Covertype.
+L1577:      This memory error occurred on 1 dataset: Covertype. Note that Covertype had different errors depending on the fold,
+L1578:      with 5 of the 10 folds succeeding.
+L1583: AutoPilot failed on 12 of the 39 datasets.
+L1588:      minimum of 1000 rows of training data, and the datasets that failed in this manner all have less than 1000 training rows.
+L1589:      This error occurred on 5 datasets: Australian, blood-transfusion, cnae-9, credit-g, and vehicle.
+L1590:   2. AssertionError:            AutoPilot did not finish training any models
+L1591:      AutoPilot failed to finish training any models in the allocated time. This error occurred on 5 datasets: Covertype,
+L1597:      datasets. Because the values were given as ’true’ and ’false’, but returned as ’1’ and ’0’, automatically processing these
+L1599:      occurred on 1 dataset: kc1.
+L1602:      This cryptic error was thrown less than 15 minutes into the run and likely indicates that the dataset was too large for the
+L1603:      data processing functionality to handle without encountering errors. This error occurred on 1 dataset: Dionis.
+L1614:      non-categorical column ’dist1’ which is categorical in the training data
+L1620:      Even increasing the allowed training time to 32 hours did not solve this issue.
+L1633:  5. Despite being given evaluation metrics that require probabilistic predictions (e.g. AUC, Log-Loss) for certain datasets,
+L1638:  6. GCP-Tables could not produce models for the santander-value-prediction-challenge competition
+L1639:     because this data contains 4992 columns and GCP-Tables refuses to handle data with over 1000 columns.
+L1640:  7. In some competitions, GCP-Tables occasionally failed to return predictions for every single test data point (presumably
+L1645:  8. GCP-Tables (8h) failed initially on the santander-customer-satisfaction data with error:
+L1650:     java.lang.IllegalArgumentException: A nominal attribute (feature2) cannot
+L1656: 10. Auto-WEKA often performed poorly under the log-loss evaluation metric because it occasionally produced predicted

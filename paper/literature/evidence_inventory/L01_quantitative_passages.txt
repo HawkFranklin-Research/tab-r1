@@ -1,0 +1,84 @@
+# Retrieval inventory, NOT completed visual/claim audit
+Source L01: Established machine learning matches tabular foundation models in clinical predictions; DOI 10.1186/s12911-026-03654-3
+Original text line numbers. Numbers may be citations, secondary reports,
+toy examples, or ambiguous table columns. Verify context before citing.
+
+L28:   clinical tasks. Cohorts spanned 788 − 139,528 patients across diverse outcomes, including survival, metastasis, and
+L31:   only 16.7% of tasks, with most area under the receiver operating characteristic (AUROC) differences within ± 0.02.
+L42:   have led to the development of large-scale, pre-trained                                                       ticularly in domains such as pathology [3], radiological
+L44:   trained through a self-supervised-learning method [1],                                                        digital pathology workflows has accelerated research [6]
+L110: approximately 0.13–0.19 in per-dataset normalized area
+L116: outperform established ML models remains untested. If                et al. [34], and the Surveillance, Epidemiology, and End
+L119: replacing established tabular ML pipelines.                          sistent variable representations across datasets (Fig. 1a).
+L120:   Previous studies comparing TabPFN with various ML                    Across tasks, cohort sizes ranged from 788 to 139,528
+L121: models have reported mixed results. Karabacak et al.                 patients, feature dimensionality varied from 15 to 1,877
+L123: clinical datasets, in which ML models outperformed Tab-              from rare outcomes (2.5%; esophageal cancer) to com-
+L124: PFN in five cases [9–13], while TabPFN performed best                mon events (72.0%; 1-year survival) (Fig. 1b). The bench-
+L128: neous outcomes, with four favoring TabPFN [21–24],                     All datasets were evaluated using a unified benchmark-
+L130: specific performance [27–29]. However, many of these                 model training across multiple ML families, and repeated
+L132: ation pipelines, including differences in feature handling,          rics (Fig. 1c). This design enables direct comparison
+L141: Fig. 1 Overview of the TabPFN Benchmark Evaluation Pipeline and Data Sources. (a.) Example excerpt from the FOSP dataset, showing patient-level clini-
+L142: cal data including diagnosis date, ICD-O-3 code, morphology, sex, and survival outcome. Consistent structured data formats were used across all datasets
+L148: 100 bootstrap iterations using metrics such as AUROC, 95% confidence intervals, and runtime per model iteration
+L155: Across the twelve clinical prediction tasks, TabPFN                             highest AUROC for that task, as listed in Table 1 and
+L168: baseline, with small task-dependent differences. (b.) Error bars indicate the 95% CI for ΔAUROC derived from the corresponding 95% AUROC CIs. Posi-
+L177: Table 1 Best-performing ML models per target                                best-performing ML model. In contrast, boosting and
+L206: remaining 10 tasks when considering 95% confidence                          (RBO) values around ~ 0.55–0.65 and consistent over-
+L207: intervals, with no cases of overlapping intervals. How-                     lap among the top-20 features (typically ~ 7–10 shared
+L208: ever, the magnitude of these differences was small. Across                  features; Fig. 4b). Overall predictive performance was
+L234: the performance-efficiency plane.                                           clinical validation [36]. Their relative simplicity also sup-
+L239: PFN had a median runtime 5.53-fold higher than the                          TabPFN may reflect differences between the data regimes
+L248: boosting, bagging, classic, and multilayer perceptron, all with 95% confidence intervals shown as error bars. Circles denote individual predictions across
+L260: elty [37].                                                                     life science datasets, and the binary clinical classification
+L276: Fig. 4 Explainability agreement between TabPFN and classical baselines. (a.) Global TabPFN feature-importance curve computed from permutation
+L277: SHAP. Points show features sorted by decreasing mean absolute SHAP value; the dashed vertical line marks the cutoff k = 20 illustrating the rapid drop-off
+L280: by Jaccard similarity on the top-20 features, and absolute agreement by the top-20 overlap count (right y-axis; maximum 20)
+L299: Datasets                                                             using TabPFN v2.5 and tabpfn-extensions v0.1.2, which
+L301: sification tasks using eight publicly available datasets             diction task, TabPFN’s HPO function was allowed 50
+L321: dosis risk [40], hereditary hearing loss inheritance [41],             Missing values in numerical columns were imputed
+L325: (SEER) program [44], we reproduced three previously                  date “1900-01-01”, and missing categorical values labeled
+L326: published ML tasks: hepatocellular carcinoma (HCC)                   as “Missing”. Columns with more than 95% missing val-
+L334: Submission, 2000–2022”; Primary Site C40.0–C41.9),                   get variables and derived outcome-related features, such
+L336: recode ICD‑O‑3/WHO 2008 = Kidney and Renal Pelvis).                  steps prior to model training to prevent data leakage. A
+L358: criteria as described in the Datasets section. HCC data              A100 40GB GPU. AUROC and runtime metrics were
+L364: 2008 = Kidney and Renal Pelvis.                                      bootstrap iterations. Runtimes were measured using sys-
+L367: For each of the twelve clinical prediction tasks, data                  Mean AUROCs with 95% confidence intervals were
+L370: within the input constraints of TabPFN v2.5, and no                  on a per-task basis. To assess performance–efficiency
+L372: into training and testing sets using a 70/30 split. In the           ized to LogisticRegression, enabling direct comparison
+L373: same fashion, any datasets with more than 100,000 sam-               of model quality versus runtime. No class rebalancing or
+L374: ples were randomly sampled down to 100,000 samples to                oversampling was applied, preserving the real-world label
+L375: allow for use within TabPFN 2.5’s input constraints.                 imbalance of each dataset.
+L378: while the inner loop applied 100 bootstrap resamplings               using the Youden index. Additional metrics, including
+L380: set remained fixed. After 100 train/test cycles per model            mental Table 2.
+L385: out test set. Hyperparameters were selected once per                 random sample of up to 20 test instances with a back-
+L386: task using 50 random search hyper parameter setting                  ground reference set of up to 1877 features. Global fea-
+L389: are listed in Table 2.                                               We quantified agreement between TabPFN and each
+L394: fixed across bootstrap resamplings. All models were                  settings (Supplemental Fig. 6).
+L401: Table 2 Machine learning models and hyperparameter settings
+L406:                                                                                          max_samples: [0.5, 0.7, 0.85, 1.0]
+L407:                                                                                          max_features: [0.5, 0.75, 1.0]
+L413:                                                                                          min_samples_split: [2, 5, 10, 20]
+L414:                                                                                          min_samples_leaf: [1, 2, 4, 8]
+L417:                                                                                          min_samples_split: [2, 5, 10]
+L418:                                                                                          min_samples_leaf: [1, 2, 4]
+L419:                                                                                          max_features: [sqrt, log2, None, 0.5]
+L423:                                                                                          subsample: [0.6, 0.8, 1.0]
+L431:                                                                                          min_child_samples: [5, 10, 20, 50]
+L432:                                                                                          subsample: [0.6, 0.8, 1.0]
+L433:                                                                                          colsample_bytree: [0.6, 0.8, 1.0]
+L438:                                                                                          min_samples_split: [2, 5, 10, 20]
+L439:                                                                                          min_samples_leaf: [1, 2, 4, 8]
+L440:                                                                                          max_features: [“sqrt”, “log2”, None, 0.5]
+L500: 2025, 533056198), the German Academic Exchange Service DAAD (SECAI,                                                5. Rasmy L, Xiang Y, Xie Z, Tao C, Zhi D. Med-BERT: pretrained contextualized
+L515: No new datasets were generated for this study. All datasets analyzed are                                           10. Karabacak M, Carr MT, Schupper AJ, Bhimani AD, Steinberger J, Margetis K.
+L518: datasets curated by Arasteh et al. for cardiac amyloidosis, esophageal cancer,                                     11. Karabacak M, Jagtiani P, Panov F, Margetis K. Predicting 30-day non-seizure
+L521: (SEER) Program (https://seer.cancer.gov/). Dataset-specific links and identifiers                                  12. Karabacak M, Jagtiani P, Shrivastava RK, Margetis K. Personalized prognosis
+L522: are provided in Supplementary Table 1, including the amyloidosis source                                                with machine learning models for predicting in-hospital outcomes following
+L523: article, the esophageal cancer GitHub repository, the hereditary hearing loss                                          intracranial meningioma resections. World Neurosurg. 2024;182:e210–30.
+L529: specifically for this study.                                                                                           interpretable machine learning models. J Neurooncol. 2023;164:671–81.
+L534: All datasets used in this study were publicly available and fully de-identified                                    16. Karabacak M, Margetis K. Machine learning-driven prognostication in trau-
+L553:     K. Development and internal validation of machine learning models for                     2021;12:3008.
+L554:     personalized survival predictions in spinal cord glioma patients. Spine J.            37. Shwartz-Ziv R, Armon A. Tabular data: Deep learning is not all you need. Inf
+L565:     Machine learning and radiomics for ventricular tachyarrhythmia prediction                 genetic diagnosis models for hereditary hearing loss by the GJB2, SLC26A4
+L570:     SLAS Technol. 2024;29:100203.                                                             nationwide, multicohort, prospective study. Lancet Gastroenterol Hepatol.
+L574: 26. Duwe G, Mercier D, Kauth V, Moench K, Rajashekar V, Junker M, et al.                      machine learning modelling study using data from a cross-sectional cohort.

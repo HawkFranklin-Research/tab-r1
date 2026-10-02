@@ -1,0 +1,404 @@
+source_id	pdf_page	caption_line
+L01	3	Fig. 1  Overview of the TabPFN Benchmark Evaluation Pipeline and Data Sources. (a.) Example excerpt from the FOSP dataset, showing patient-level clini­
+L01	4	Fig. 2  Radar Plot of comparative TabPFN, Machine Learning, and Literature AUROC performance. (a.) AUROC across multiple clinical prediction tasks for
+L01	5	Table 1  Best-performing ML models per target
+L01	6	Fig. 3  Runtime vs. AUROC normalized to LogisticRegression. Model performance by runtime (x-axis, log scale) and AUROC (y-axis), both normalized to
+L01	7	Fig. 4  Explainability agreement between TabPFN and classical baselines. (a.) Global TabPFN feature-importance curve computed from permutation
+L01	10	Table 2  Machine learning models and hyperparameter settings
+L03	3	Table 1  Overview of the considered datasets. The third to the eighth column show the numbers of features in the respective feature
+L03	4	Table 2 provides an overview of the five methods used
+L03	4	Table 2  Overview of the survival prediction methods used in
+L03	6	Figure 1 shows, for each prediction method, the rank­
+L03	7	Fig. 1  Dataset-specific ranks of each block combination (ibrier). The ranks of each combination among all 31 combinations are shown. The purple
+L03	8	Fig.  2 reveals that the remaining blocks were not over­
+L03	8	Fig. 2  Dataset-specific ranks of each combination of prediction method and blocks (ibrier). The ranks of each combination among all 155 combinations
+L03	9	Table 3  The best-performing combinations of prediction
+L06	11	Figure 2 highlights the predictor distributions in the first repetition for three scenarios where the distribution of one of the
+L08	5	Figure 1: Proposed architecture of NeuMISE compared to the standard NeuMiss architecture.
+L08	7	Figure 2: Change in MSE in the target environment with 25% missingness relative to the analytical
+L08	9	Figure 3: Change in MSE in simulated data compared
+L08	9	Figure 4: MSE in the semi-simulated
+L08	17	Figure 5: MSE in the target environment (25% missingness) compared to the performance of the
+L08	18	Figure 6: MSE in complete data compared to the performance of the complete data predictor. Esti-
+L08	18	Figure 7: MSE in a target environment with more missingness (50% missingness), compared to the
+L08	20	Figure 8: Candidate outcome functions (reproduced from Le Morvan et al. (2021)). We chose the
+L08	21	Table 1: Description of the 50 variables extracted from the Linked Birth and Infant Death Data
+L08	23	Table 2: Parameter choices governing missingness in source and target environments. Parameters
+L08	26	Table 3: Hyperparameter range considered for grid search.
+L08	27	Table 4: Final hyperparameters chosen via grid search, by experiment.
+L09	4	Figure 1. The architecture of proposed discriminator gate, where
+L09	5	Figure 2. Example images before & after perturbation
+L09	6	Table 1. Classiﬁcation accuracy (%) of DANN and DANNgate on tasks W→D and A→D. Perturbation rates are set equal, i.e. ǫ = ǫx = ǫy. NTG1 and
+L09	6	Figure 3. Incremental performance on task Pr→Rw. ResS and ResT are
+L09	6	Table 3. Classiﬁcation accuracy (%) under the Covariate Shift assumption
+L09	7	Table 2. Classiﬁcation accuracy (%) of state-of-the-art methods on four benchmark datasets with negative transfer gap shown in brackets. Perturbation
+L09	7	Table 4. Ablation Study on task A→D. DANNgate-only applies
+L09	8	Figure 4. Visualization on A→W, with ǫ = 0.7, L% = 30%. Left: The t-SNE visualization. First row shows domain info with red for
+L09	8	Table 4 and analyze the effects of several components in
+L10	2	Figure 1. Deep neural networks often solve problems by taking shortcuts instead of learning the
+L10	5	Figure 2. Toy example of shortcut learning in neural networks. When trained on a simple dataset
+L10	6	Figure 3. Taxonomy of decision rules. Among the set of all possible rules, only some solve the
+L10	9	Figure 4. Both human and machine vision generalise, but they generalise very differently. Left:
+L10	28	Figure 1 consists of four images from different sources. The first image from the left was taken from
+L10	28	Figure 1 of ref. [38] with permission from the authors (image cropped from original figure by us).
+L10	28	Figure 4 consists of a number of images from different sources. The first author of the corre-
+L13	3	Figure 1. The four confounding levels considered in this study. The two bars for each confounding level correspond to the two batches. The
+L13	5	Figure 2. The cross-validation scheme employed in the study. The upper panel illustrates the combination of the inner cross-validation loop,
+L13	6	Figure 3. Step-by-step description of the flowchart illustrated in Figure 2. The code used to produce the results presented in this
+L13	8	Figure 4. Evaluation of classifiers built on data without truly differentially expressed genes between the classes, but with a batch
+L13	9	Figure 5. Evaluation of classifiers built on data without truly differentially expressed genes between the classes, but with a batch
+L13	10	Figure 6. Evaluation of classifiers built on data containing truly differentially expressed genes between the classes, as well as a
+L13	11	Figure 7. Evaluation of classifiers built on data containing truly differentially expressed genes between the classes, as well as a
+L13	12	Figure 8. Evaluation of classifiers built on data containing truly differentially expressed genes between the classes, but no batch
+L16	1	Figure 1: TabPFN-2.5 performance on the standard TabArena-lite benchmark [1], TabPFNv2 classification
+L16	4	Figure 11 in the appendix provides a minimal workflow to help users pick the right components for their
+L16	5	Table 1: Summary of TabPFN model variants. Max
+L16	5	Figure 2: TabPFN-2.5 clearly outper-
+L16	6	Figure 3 shows results for TabPFN-2.5
+L16	6	Figure 4 shows a similar experiment on all the TabArena datasets, with
+L16	6	Figure 5 and
+L16	6	Figure 6 show results on our internal benchmark for classification and regression datasets with up to
+L16	7	Figure 3: TabArena-Lite results on classification (left) and regression (right), restricted to datasets
+L16	7	Figure 8 shows how TabPFN-2.5 classification speed scales with training set size, when using one or four
+L16	8	Figure 4: TabArena-Lite results on classification (left) and regression (right), evaluated on all
+L16	8	Figure 5: Results from our internal benchmark on classification datasets with up to 50,000 data
+L16	8	Figure 6: Results from our internal benchmark on regression datasets with up to 50,000 data
+L16	9	Figure 7: TabPFN-as-MLP and TabPFN-as-TreeEns still outperform tree-based models while
+L16	9	Figure 8: Time taken, in seconds, to fit TabPFN-2.5 classification models on various training set sizes, and
+L16	10	Figure 9: PFN-based CATE estimators dominate
+L16	10	Figure 10: Improvements in base model predictive
+L16	10	Figure 18 in the appendix shows the inference latency you can expect for three common models of
+L16	29	Figure 11 provides a minimal user workflow through components in the TabPFN–Extensions ecosystem.
+L16	30	Table 3: Description of causal inference datasets in the RealCause benchmark.
+L16	30	Figure 11: A minimal user workflow through components in the TabPFN–Extensions ecosystem.
+L16	31	Figure 12: TabPFN-2.5 default performs well up to 2,000 features. In our internal benchmark on
+L16	31	Figure 13: TabArena-Lite pairwise win rates on classification (left) and regression (right), restricted
+L16	32	Figure 14: TabArena-Lite pairwise win rates on classification (left) and regression (right), evaluated
+L16	32	Figure 15: Comparison with TabICL [27]. In this plot, we show the performance of TabPFN-2.5
+L16	33	Figure 16: Comparison with LimiX [29]. In this plot, we show the performance of TabPFN-2.5 and
+L16	33	Figure 17: F1-score sometimes improves substantially by decision threshold tuning. The plot
+L16	33	Figure 18 shows the inference latency you can expect for three common models of GPUs. Figure 19 shows
+L16	34	Figure 18: Time taken, in seconds, to train TabPFN-2.5 models on various training set sizes, and then
+L16	34	Figure 19: The time taken by TabPFN-2.5 to train and predict scales linearly in the test set size, shown
+L16	35	Figure 20: TabPFN-2.5 is significantly faster than TabPFNv2. Comparison of the time taken
+L17	1	Figure 1. Performance on the TabArena benchmark [1], largest data subset (10k-100k samples).
+L17	3	Figure 2. TabPFN-3 dominates the Pareto
+L17	3	Figure 3. Pairwise win rates on
+L17	4	Figure 4. Evolution and performance of the TabPFN model family. The row and feature counts in the
+L17	6	Figure 5. Architecture of TabPFN-3, adapted from the TabICLv2 architecture. Changes include
+L17	8	Figure 6. Chunking flattens the peak-memory without impacting the time-per-call. Model forward
+L17	8	Figure 6 highlights the different memory–compute trade-offs of TabPFN-3 and TabPFN-2.5. Without
+L17	9	Figure 7. KV-cache on H100 for a single estimator without preprocessing: OOM frontier with chunking and
+L17	10	Figure 8. TabPFN-3’s KV-cached predict allows for one to three orders of magnitude speedup. We
+L17	11	Figure 9. Schematic visualization of our SCM prior. (i) We first sample high-level hyperparameters for
+L17	13	Figure 10. TabPFN-3 performance on the standard TabArena benchmark [1], including all 51 datasets
+L17	13	Figure 11. Pareto frontier on TabArena:
+L17	13	Figure 12. Pairwise win rates on TabArena for
+L17	13	Figure 10 shows the performance of TabPFN-3
+L17	14	Figure 13. Average rank on the TALENT benchmark, using the TabICLv2 evaluation protocol
+L17	15	Figure 14. Performance over the TabSTAR Text-Tabular Collection. TabPFN-3-Plus (Thinking) and
+L17	16	Figure 15. TabPFN-3 achieves state-of-the-art performance on the large-rows benchmark (up to
+L17	16	Figure 16. TabPFN-3 tops the normalized scaling curves for ROC-AUC OvR classification and
+L17	17	Figure 17. On the synthetic many-class benchmark TabPFN-3 achieves a normalized ROC-AUC
+L17	17	Figure 18 shows that TabPFN-3 performs strongly on this challenging slice, reaching the best normalized
+L17	18	Figure 18. TabPFN scales well to
+L17	18	Figure 19. TabPFN-3 exhibits strong
+L17	19	Table 1. Forecasting performance on fev-bench (100 tasks), sorted by skill score. TabPFN-TS-3 ranks 2nd
+L17	19	Figure 20. Qualitative forecast comparison on a fev-bench task (rohlik_order_1D). Each model
+L17	20	Figure 21. TabPFN-3 tops performance on RelBenchV1 among foundation models. Following
+L17	22	Figure 22. TabPFN-3 extracts semantically-meaningful row embeddings. The upper plots show 2D
+L17	22	Figure 22 shows that this approach continues to work well for TabPFN-3, with the generated embeddings
+L17	47	Table 2. Stage 1 — Feature embedding.
+L17	48	Table 3. Stage 2 — Feature aggregation.
+L17	48	Table 4. Stage 3 — ICL transformer.
+L17	48	Table 5. Many class output decoder — classifier.
+L17	48	Table 6. MLP output decoder — regressor (2-layer MLP).
+L17	48	Table 7. Shared settings (both classifier and regressor).
+L17	49	Figure 23. Visualization of directed acyclic graphs underlying our SCM prior, produced by our new
+L17	49	Figure 24. Visualization of functional relationships generated by the new combiner mechanisms in
+L17	50	Figure 25. Example classification dataset generated from the prior. There are
+L17	50	Figure 26. Example demonstrating the extrapolation capabilities of TabPFN-3 (using our
+L17	51	Figure 27. TabPFN-3 as a T/X/S-Learner. TabPFN-3 when used as a T/S-Learner achieves strong
+L17	52	Figure 2 and Figure 11 show TabArena Pareto frontiers of models across Improvability and the median
+L17	53	Table 8. TabArena leaderboard using all 51 datasets with 816 total tasks.
+L17	54	Table 9. TabArena-medium leaderboard on the 15 largest datasets in TabArena, with 10k–100k
+L17	55	Table 10. TabArena-small leaderboard on the 36 smallest datasets in TabArena, with 500–10k
+L17	56	Table 11. TabArena-classification leaderboard on the 38 classification datasets in TabArena.
+L17	57	Table 12. TabArena-regression leaderboard on the 13 regression datasets in TabArena.
+L17	58	Figure 28. Average rank on the TALENT benchmark broken down by task type (regression,
+L17	59	Figure 29. Average rank on the many-classes TALENT slice (4 datasets, all 100 classes). Three are
+L17	59	Table 13. Datasets in the large-rows TALENT slice.
+L17	59	Figure 30. Average rank on the large-rows
+L17	60	Figure 31. Performance on the classification tasks of the TabSTAR text-tabular collection.
+L17	60	Figure 32. Performance on the regression tasks of the TabSTAR text-tabular collection.
+L17	60	Table 14 and Table 15, respectively.
+L17	61	Table 14. RelBenchV1 entity classification: per-task ROC AUC×100. Bold = best per task / column,
+L17	61	Table 15. RelBenchV1 entity regression: per-task MAE. Bold = best per task / column (ties bolded
+L17	62	Figure 33. Critical difference diagram for ROC-AUC on the large-scale classification benchmark
+L17	63	Figure 34. Critical difference diagram for RMSE on the large-scale regression benchmark
+L17	63	Table 16. The resulting benchmark retains a large number of classes for most datasets (median K = 95),
+L17	63	Table 16. Synthetic many-class benchmark datasets derived from continuous regression targets. N
+L17	64	Figure 35. Critical difference diagram for pinball loss on our quantile regression benchmark. The
+L17	64	Figure 36. Critical difference diagram for ROC AUC on the synthetic many-class benchmark (up
+L17	65	Figure 37. Forward-pass inference speed-ups on the TabPFN-3 architecture. Top: torch.compile
+L17	66	Figure 38. Efficiency gains for SHAP-value computation with KV-cache across training table
+L17	67	Table 17. Full marginal forecasting performance on fev-bench (100 tasks), all 19 baselines, sorted by skill score.
+L17	67	Figure 39. solar_with_weather_15T — 15-minute solar generation with weather covariates.
+L17	67	Figure 40. rossmann_1W — weekly Rossmann store sales (series 1).
+L17	68	Figure 41. rohlik_orders_1D — daily online-grocery orders.
+L17	68	Figure 42. LOOP_SEATTLE_1H — hourly Seattle freeway loop-detector counts.
+L17	69	Figure 43. ETT_1H — hourly Electricity Transformer Temperature.
+L17	69	Figure 44. entsoe_1H — hourly ENTSO-E European electricity load.
+L17	70	Figure 45. Pairwise skill-score comparison on fev-bench (100 tasks) under SQL (left) and MASE (right). Cell
+L17	70	Table 18. Per-task SQL on fev-bench (100 tasks). Lower is better; values are after leakage and failure
+L18	2	Fig. 1 | Overview of the proposed method. a, The high-level overview of TabPFN
+L18	3	Fig. 2 | Overview of the TabPFN prior. a, For each dataset, we first sample
+L18	4	Fig. 3 | The behaviour of TabPFN and a set of baselines on simple functions.
+L18	5	Fig. 4 | Comparison of TabPFN on our test benchmarks, containing datasets
+L18	6	Fig. 5 | Robustness across datasets and performance comparison with
+L18	7	Fig. 6 | Showcase of the application of TabPFN as tabular foundation model.
+L19	3	Figure 1. Architecture Overview of TabICL. First, column-wise embedding transforms each cell of the input table into an embedding
+L19	5	Figure 2. The distribution-aware column-wise embedding block in TabICL. The overall structure (right) relies on the induced self-
+L19	5	Figure 3. Learned column-wise embeddings encode statistical
+L19	5	Figure 4. An example of learning collapse without RoPE for the
+L19	7	Figure 6 shows that TabICL
+L19	8	Figure 5. Accuracy and training/inference times on the TAL-
+L19	8	Figure 6. Speedup of TabICL vs. TabPFNv2 on datasets with
+L19	8	Figure 7. Model rankings as a function of sample size. Each
+L19	9	Figure 8. Normalized accuracy across the 12 datasets with more
+L19	9	Figure 9. Relative improvements of TabICL pretrained on
+L19	9	Figure 10. Relative accuracy improvements over Stage 1 across
+L19	14	Figure B.1. Training+inference times of TabICL and TabPFNv2. Each point represents the time on one dataset on an A100 GPU. We
+L19	14	Figure B.2 shows the scaling with the number of classes. The performance of TabICL deteriorates on datasets with three
+L19	14	Figure B.3 shows the scaling with the number of features. These plots show that TabICL behaves well for large numbers of
+L19	14	Figure B.4 shows the dependence on the ratio of categorical to numerical variables. In general, the performance of TabICL
+L19	15	Figure B.2. Dependency of the benchmark rank on the number of classes. Each point is the rank of one method on one dataset. Lower
+L19	15	Figure B.3. Dependency of the benchmark rank on the number of features. Each point is the rank of one method on one dataset.
+L19	16	Figure B.4. Dependency of the benchmark rank on the ratio of categorical to overall features. Each point is the rank of one method
+L19	16	Figure C.1 visualizes the used activation functions. Figure C.2 shows datasets from the resulting prior.
+L19	17	Figure C.1. Activation functions from the SCM prior. Left: Non-random activation functions from the SCM prior without standard-
+L19	17	Figure C.2. Randomly generated 2D datasets from the SCM prior. The color corresponds to the class label.
+L19	18	Figure C.3. Randomly generated 2D datasets from the tree-based SCM prior. The color corresponds to the class label.
+L19	18	Figure C.3 shows datasets from the tree SCM prior.
+L19	20	Figure E.1. Learning rate schedules for 3 pretraining stages.
+L19	20	Table E.1. Notions of batch size and sequence length for different transformers
+L19	21	Figure E.2. Critical difference diagrams for different stages of curriculum learning
+L19	22	Figure E.3. CPU and GPU memory consumption during inference for a dataset with 100K samples and 500 features. During
+L19	22	Figure E.4 shows the CPU and GPU memory consumption for a larger dataset containing 500K samples and 500 features
+L19	23	Figure E.4. CPU and GPU memory consumption during inference for a dataset with 500K samples and 500 features. The relatively
+L19	24	Table F.1. Performance on 15 development datasets of TabPFNv2
+L19	25	Figure G.1. Critical difference diagram (based on accuracy) on 53 large datasets with more than 10K samples. For TabICL-RF and
+L19	26	Figure H.1. Effect of ensemble size on TabPFNv2 and TabICL. The figures show the relative accuracy improvements of different
+L19	27	Figure I.1. Critical difference diagram for all 171 classification datasets (≤10 classes).
+L19	28	Figure I.2. Critical difference diagram for 112 binary classification datasets.
+L19	29	Figure I.3. Critical difference diagram for 59 multi-class classification datasets (≤10 classes).
+L19	30	Figure I.4. Critical difference diagram for 116 small classification datasets (≤10K samples).
+L19	31	Figure I.5. Critical difference diagram for 53 large classification datasets (> 10K samples).
+L20	1	Figure 1: TabArena-v0.1 Leaderboard. We evaluate models under default parameters, tuning, and
+L20	3	Table 1: TabArena-v0.1 Models. We show all models included in our initialization of TabArena,
+L20	4	Table 2: Comparison of Tabular Benchmarks. We systematically compare prior tabular benchmark
+L20	5	Figure 2: Data Curation Results. The figure shows why and how many datasets we filter based on
+L20	5	Figure 3: Characteristics of Datasets in TabArena. On the left, we show the number of datasets per
+L20	5	Figure 3 summarizes dataset characteristics; we share per-dataset details and domain coverage in
+L20	7	Figure 4: Leaderboard for TabPFNv2-compatible (left) and TabICL-compatible (right) datasets.
+L20	7	Figure 1 shows our main results, the leaderboard of TabArena-v0.1, which includes the performance
+L20	8	Figure 5: (Left) Pareto front of improvability and inference time. We report the median inference
+L20	8	Figure 6: (Left) Model Efficiency. Median training times with cross-validation across TabPFNv2-
+L20	9	Figure 7: (Left) TabArena Ensemble. Simulated performance of an ensemble using all models
+L20	27	Figure A.1 presents a leaderboard including all models. We impute the results for models
+L20	28	Figure A.1: TabArena-v0.1 leaderboard with imputation for TabPFNv2 and TabICL, Elo (left)
+L20	28	Figure A.2: Benchmark results on binary classification with Elo (left) and normalized scores
+L20	28	Figure A.3: Benchmark results on multiclass classification with Elo (left) and normalized scores
+L20	29	Figure A.4: Benchmark results on regression with Elo (left) and normalized scores (right). For
+L20	29	Figure A.5: Pairwise win rate comparison for all datasets. Higher numbers correspond to a better
+L20	30	Figure A.6: Benchmark results on TabPFNv2-compatible datasets with imputed results for
+L20	30	Figure A.7: Benchmark results on TabICL-compatible datasets with imputed results for
+L20	30	Figure A.8: Benchmark results on TabPFNv2- and TabICL-compatible datasets using Elo (left)
+L20	31	Table A.1: TabArena-v0.1 Leaderboard. We show default (D), tuned (T), and tuned + ensembled
+L20	32	Figure A.9: Training Runtime Analysis, Runtime Distribution (left) and Cumulative Total
+L20	32	Figure A.10: Runtime Analysis of RealMLP, TabM, and ModernNCA on CPU vs. GPU. We
+L20	33	Figure A.11: Benchmark results on TabArena-Lite using Elo (left) and normalized scores
+L20	34	Figure A.12: Critical Difference Diagram for tuned+ensembled methods on the full benchmark.
+L20	34	Figure A.13: Critical Difference Diagram for tuned+ensembled methods on TabPFNv2-
+L20	34	Figure A.14: Critical Difference Diagram for tuned+ensembled methods on TabICL-compatible
+L20	35	Figure A.15: The tuning trajectories of model ensembles for (Left) Elo when evaluated on the test
+L20	36	Figure A.16: The validation overfitting tuning trajectories of model ensembles for Elo when eval-
+L20	36	Figure A.15. A value of 800 on the y-axis means that the configuration has 800 higher elo based on
+L20	36	Figure 2 represents the first reason for exclusion that we noticed in a dataset.
+L20	38	Table B.1 presents the domain coverage of all datasets included in TabArena-v0.1.
+L20	38	Table B.2 presents a detailed overview for all datasets included in TabArena-v0.1. We further share
+L20	39	Table B.1: Domain Coverage of TabArena-v0.1. We present the domain name, along with the
+L20	40	Table B.2: Datasets included in TabArena-v0.1. ’Dataset (Task) ID’ represents the OpenML dataset
+L20	43	Table C.1: Hyperparameter search space for CatBoost.
+L20	43	Table C.2: Hyperparameter search space for LightGBM.
+L20	44	Table C.3: Hyperparameter search space for XGBoost.
+L20	44	Table C.4: Hyperparameter search space for Random Forest.
+L20	44	Table C.5: Hyperparameter search space for ExtraTrees.
+L20	44	Table C.6: Hyperparameter search space for EBM.
+L20	45	Table C.7: Hyperparameter search space for RealMLP. With probability 0.5, either the “Default” or
+L20	45	Table C.8: Hyperparameter search space for TabM.
+L20	46	Table C.9: Hyperparameter search space for ModernNCA.
+L20	46	Table C.10: Hyperparameter search space for FastaiMLP.
+L20	46	Table C.11: Hyperparameter search space for TorchMLP.
+L20	46	Table C.12: Hyperparameter search space for LinearModel.
+L20	46	Table C.13: Hyperparameter search space for KNN.
+L20	58	Table F.1: Performance Per Dataset. We show the average predictive performance per dataset
+L21	5	Figure 1: Benchmark on medium-sized datasets, with only numerical features. Dotted lines
+L21	5	Figure 2: Benchmark on medium-sized datasets, with both numerical and categorical features.
+L21	5	Fig. 1 and 2 give benchmark results for different types of datasets (appendix A.2 gives results as a
+L21	6	Figure 3: Normalized test accuracy of
+L21	8	Figure 4:
+L21	8	Figure 5: Test accuracy changes when removing (a) or adding (b) uninformative features. Fea-
+L21	9	Figure 6: Normalized test accuracy of different models when randomly rotating our datasets.
+L21	15	Figure 7: Time benchmark on medium-sized datasets, with only numerical features. The ﬁrst
+L21	15	Figure 8: Time benchmark on medium-sized datasets, with both numerical and categorical
+L21	17	Figure 9: Comparison of accuracies on 4 classiﬁcation tasks for different train set sizes, with
+L21	17	Figure 10: Comparison of R2 scores on 3 regression tasks for different train set sizes, with only
+L21	18	Figure 11: Comparison of accuracies on 2 classiﬁcation tasks for different train set sizes, with
+L21	18	Figure 12: Comparison of R2 scores on 5 regression tasks for different train set sizes, with both
+L21	19	Table 1: FT Transformer hyperparameters space
+L21	20	Table 2: Resnet hyperparameters space
+L21	20	Table 3: MLP hyperparameters space
+L21	20	Table 4: SAINT hyperparameters space
+L21	20	Table 5: XGBoost hyperparameters space
+L21	20	Table 6: RandomForest hyperparameters space
+L21	21	Table 7: GradientBoosting hyperparameters space
+L21	21	Table 8: HistGradientBoosting hyperparameters space
+L21	22	Figure 13: Unormalized benchmark results for classiﬁcation tasks on numerical features only.
+L21	23	Figure 14: Unormalized benchmark results for regression tasks on numerical features only.
+L21	23	Figure 15: Unormalized benchmark results for classiﬁcation tasks on both categorical and
+L21	24	Figure 16: Unormalized benchmark results for regression tasks on both categorical and numer-
+L21	25	Figure 17: Unormalized benchmark results for large scale datasets, for numerical features only.
+L21	25	Figure 18: Unormalized benchmark results for large-scale datasets, for both numerical and
+L21	26	Figure 20 shows the decision boundaries of a default MLP and a
+L21	27	Figure 19: Test accuracy of different models for varying smoothing of the target function on
+L21	27	Figure 20: Decision boundaries of a default MLP and RandomForest for the 2 most important features
+L21	28	Figure 21: Test accuracy of a GBT for varying proportions of removed features. Features are
+L21	29	Figure 22: Test accuracy changes when adding uninformative features. Added features are
+L21	29	Figure 23: Test accuracy changes when removing uninformative features. Features are removed
+L21	30	Figure 24: Test accuracy of different models when randomly rotating our datasets. All features
+L21	30	Figure 25: Test accuracy of different models when randomly rotating our datasets, with 50%
+L22	9	Table 1 Data Set Summary
+L22	10	Table 2 Test Set Errors (%)
+L22	12	Table 3 Test Set Errors (%)
+L22	14	Figure 2 has plots for similar runs on the breast data set where features
+L22	16	Table 4 Increases in Error Rates Due to Noise (%)
+L22	22	Table 5  Data Set Summary
+L22	23	Table 6 gives the test set mean-squared error for bagging, adaptive
+L22	23	Table 6  Mean-Squared Test Set Error
+L22	24	Table 7 gives the test set errors, the out-of-bag error estimates, and the OB
+L22	24	Table 7.  Error and OB Estimates
+L22	25	Table 8  Mean-Squared Test Set Error
+L23	2	Figure 1: Tree Ensemble Model. The ﬁnal predic-
+L23	3	Figure 2:
+L23	4	Figure 3: Comparison of test AUC convergence on
+L23	4	Figure 4: Tree structure with default directions. An
+L23	5	Figure 6: Block structure for parallel learning. Each column in a block is sorted by the corresponding feature
+L23	5	Figure 5:
+L23	6	Figure 7: Impact of cache-aware prefetching in exact greedy algorithm. We ﬁnd that the cache-miss eﬀect
+L23	6	Figure 8:
+L23	6	Figure 9:
+L23	7	Table 1: Comparison of major tree boosting systems.
+L23	8	Table 2: Dataset used in the Experiments.
+L23	8	Table 3: Comparison of Exact Greedy Methods with
+L23	8	Figure 10: Comparison between XGBoost and pG-
+L23	8	Table 4: Comparison of Learning to Rank with 500
+L23	9	Figure 11: Comparison of out-of-core methods on
+L23	9	Figure 12:
+L23	10	Figure 13:
+L24	7	Table 1: Datasets used in the experiments.
+L24	7	Table 2: Overall training time cost comparison. LightGBM is lgb_baseline with GOSS and EFB.
+L24	7	Table 3: Overall accuracy comparison on test datasets.
+L24	7	Figure 1: Time-AUC curve on Flight Delay.
+L24	7	Figure 2: Time-NDCG curve on LETOR.
+L24	8	Table 4: Accuracy comparison on LETOR dataset for GOSS and SGB under different sampling ratios.
+L25	6	Figure 1: Ordered boosting principle,
+L25	7	Table 1: Computational complexity.
+L25	8	Table 2: Comparison with baselines: logloss /
+L25	8	Table 3: Plain boosting mode: logloss, zero-
+L25	9	Table 4: Comparison of target statistics, relative
+L25	9	Figure 2: Relative error of Plain boosting mode
+L26	3	Figure 1. Architecture of AutoGluon’s neural network for tabular
+L26	4	Figure 2. AutoGluon’s multi-layer stacking strategy, shown here
+L26	6	Table 1. Popular AutoML frameworks for classiﬁcation and regression with tabular data. We indicate whether a table of RAW data with
+L26	7	Table 2. Comparing each AutoML framework against AutoGluon on the 39 AutoML Benchmark datasets (with 4h training time). Listed
+L26	7	Table 3. Comparing each AutoML framework against AutoGluon on the 11 Kaggle competitions (under 4h time limit). Columns are
+L26	7	Table 4. Performance of AutoML frameworks after 1h training vs.
+L26	8	Figure 3. (A) Performance of AutoML frameworks relative to AutoGluon on the AutoML Benchmark (with 1h training time). (B)
+L26	8	Table 5 shows that overall predictive performance dropped
+L26	8	Table 5. Ablation study of AutoGluon on the AutoML Benchmark
+L26	11	Table S1 describes the datasets that comprised our Kaggle benchmark.
+L26	12	Table S1. Summary of the 11 Kaggle competitions used in our benchmark, including: the date of each competition, around how many
+L26	13	Table S2. Other prominent tabular datasets from Kaggle that are not suited for existing AutoML tools (not included in our benchmark).
+L26	14	Table S3. Comparing our usage of AutoML systems against the results from the original AutoML Benchmark (Gijsbers et al., 2019). Out
+L26	15	Table S4. Comparing each AutoML framework against AutoGluon on the 39 AutoML Benchmark datasets (with 1h training time). Listed
+L26	15	Figure S1. Performance of AutoML frameworks relative to AutoGluon on each dataset from the AutoML Benchmark (under 4h training
+L26	16	Figure S2. Actual training times of each framework in the AutoML Benchmark, which varied despite the fact that we instructed each
+L26	16	Table S5. Ablation analysis of AutoGluon trained without various components on the AutoML Benchmark under 1h and 4h time limits.
+L26	16	Table S6. Comparing the open-source AutoML frameworks over all 10 train/test splits of the AutoML Benchmark (with 4h training time
+L26	17	Table S7. Comparing open-source AutoML frameworks on all 10 folds of the AutoML Benchmark (with 4h training time limit). We
+L26	17	Table S8. Comparison of the AutoML frameworks on the AutoML Benchmark, evaluating the accuracy metric (with 1h training time
+L26	18	Table S9. Comparing each AutoML framework against AutoGluon on the 11 Kaggle competitions (under 8h time limit). Listed are the
+L26	18	Table S10. Performance of AutoML frameworks after 4h training vs. 8h training on the 11 datasets of the Kaggle Benchmark. We count
+L26	19	Figure S3. (A)-(B): Difference in leaderboard ranks achieved by each AutoML framework vs. AutoGluon in the Kaggle competitions
+L26	20	Figure S4. Actual training times of each framework in the Kaggle Benchmark, which varied despite the fact that we instructed each
+L26	20	Figure S5. Predictive performance of open-source AutoML frameworks under different training time limits (Auto-WEKA not shown as it
+L26	21	Table S11. Loss on test data produced by AutoML frameworks in our AutoML Benchmark (after training with 1h time limit). The best
+L26	22	Table S12. Loss on test data produced by AutoML frameworks in our AutoML Benchmark (after training with 4h time limit). The best
+L26	22	Table S13. Percentile ranks on each competition leaderboard achieved by various AutoML frameworks in our Kaggle Benchmark (training
+L26	23	Table S14. Percentile ranks on each competition leaderboard achieved by various AutoML frameworks in our Kaggle Benchmark (training
+L29	3	Fig 1. Actual and predicted labels generate four outcomes of the confusion matrix. (A) The left oval
+L29	4	Table 1 lists basic measures for the evaluation of classifier performance. All of these measures
+L29	4	Table 1. Basic evaluation measures from the confusion matrix.
+L29	6	Fig 2. PRC curves have one-to-one relationships with ROC curves. (A) The ROC space contains one
+L29	7	Table 2. Example of basic evaluation measures on a balanced and on an imbalanced dataset.
+L29	9	Table 3. Score distributions of positives and negatives for the performance simulations.
+L29	10	Fig 3. Combinations of positive and negative score distributions generate five different levels for the
+L29	11	Fig 4. Simple scheme diagrams on the generation of datasets T1 and T2. T1 contains miRNA genes
+L29	13	Fig 5. PRC is changed but the other plots are unchanged between balanced and imbalanced data. Each panel contains two plots with balanced (left)
+L29	15	Fig 6. Two PubMed search results show the annual number of papers found between 2002 and 2012.
+L29	15	Table 4. Literature analysis summarized by three main categories and six subcategories.
+L29	17	Fig 7. A re-analysis of the MiRFinder study reveals that PRC is stronger than ROC on imbalanced
+L29	17	Table 5. AUC scores of ROC and PRC for T1 and T2.
+L29	18	Fig. A: A-D in S1 File). When compared to the ROC plots, the CROC plots (Fig. A: A-B in S1
+L30	3	Fig. 1 Illustrations of different types of miscalibration. Illustrations are based on an outcome with a 25% event rate and a model with an area
+L30	5	Fig. 2 (See legend on next page.)
+L30	6	Table 1. Poorly calibrated predictive algorithms can be
+L30	6	Table 1 Summary points on calibration
+L30	6	Fig. 2 Calibration curves when validating a model for obstructive coronary artery disease before and after updating. a Calibration curve before
+L32	2	Figure 1 | Significantly mutated genes and correlations with genomic and
+L32	4	Figure 2 | Coordinated analysis of breast cancer subtypes defined from five
+L32	5	Figure 3 | Integrated analysis of the PI(3)K, TP53 andRB1pathways. Breast
+L32	6	Figure 4 | Mutual exclusivity modules in cancer (MEMo) analysis. Mutual
+L32	7	Table 1 | Highlights of genomic, clinical and proteomic features of subtypes
+L32	7	Figure 5 | Comparison of breast and serous ovarian carcinomas.
+L33	2	Fig. 3.1; Supplementary Table 3). Because this fusion transcript omits
+L33	2	Figure 1 | Major subdivisions of gastroesophageal cancer. a, 559
+L33	3	Figure 2 | Integrated molecular comparison of somatic alterations
+L33	4	Fig. 7.1).
+L33	4	Figure 3 | Distinct molecular subtypes of oesophageal squamous
+L33	5	Figure 5 | Molecular features of CIN gastroesophageal
+L33	5	Figure 4 | Similarity of oesophageal adenocarcinoma and CIN variant
+L33	6	Figure 6 | Gradations of molecular subclasses of gastroesophageal
+L34	2	Figure 1 | DNA copy number alterations. a, Copy number alterations by
+L34	3	Figure 2 | Significantly mutated genes in
+L34	4	Table 1.1) and larynx sub-site co-occurred in most classical subtype tu-
+L34	4	Figure 3 | Candidate therapeutic targets and driver oncogenic events. Alteration events for key genes are displayed by sample (n 5 279). TSG, tumour
+L34	4	Figure 4 | Integrated analysis of genomic
+L34	5	Figure 5 | Deregulation of
+L34	5	Fig. 7.15. Pathway alterations
+L35	2	Figure 1 | Significantly mutated genes in lung
+L35	3	Fig. 7.B.1 and Supplementary Methods, section 7).
+L35	3	Figure 2 | Somatically altered
+L35	3	Figure 3 | Gene expression subtypes integrated
+L35	4	Fig. 7.D.1a and Supplementary Data 7.2 and 7.3). From 50 to 77%
+L35	4	Fig. 7.D.1a), and 39% of tyrosine and 42% of serine/threonine kinase
+L35	4	Fig. 7.D.1b and Supplementary Data 7.4). Among these, we identified
+L35	4	Fig. 5. (A summary of all samples and their significant mutations
+L35	4	Figure 4 | Multi-faceted
+L35	5	Figure 5 | Alterations in targetable oncogenic pathways in lung SQCCs.
+L36	1	Figure 1 | Somatic mutations in lung
+L36	2	Figure 2 | Aberrant RNA transcripts in lung adenocarcinoma associated
+L36	3	Figure 3 | Identification of novel candidate driver genes. a, GISTIC analysis
+L36	4	Figure 4 | Pathway alterations in lung adenocarcinoma. a, Somatic
+L36	5	Figure 5 | Integrative analysis. a–c, Integrating unsupervised analyses of 230

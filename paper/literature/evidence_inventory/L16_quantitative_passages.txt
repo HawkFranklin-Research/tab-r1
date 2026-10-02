@@ -1,0 +1,196 @@
+# Retrieval inventory, NOT completed visual/claim audit
+Source L16: TabPFN-2.5: Advancing the State of the Art in Tabular Foundation Models; DOI 10.48550/arXiv.2511.08667
+Original text line numbers. Numbers may be citations, secondary reports,
+toy examples, or ambiguous table columns. Verify context before citing.
+
+L20:                                               datasets with up to 50,000 data points and 2,000 features, a 20× increase in data cells compared
+L27:                                               TabArena (which contains datasets with up to 100,000 training data points), substantially
+L28:                                               outperforming tuned tree-based models and matching the accuracy of AutoGluon 1.4, a complex
+L30:                                               TabPFN-2.5 has a 100% win rate against default XGBoost on small to medium-sized classification
+L31:                                               datasets (≤10,000 data points, 500 features) and a 87% win rate on larger datasets up to 100K
+L32:                                               samples and 2K features (85% for regression).
+L62:                                         Figure 1: TabPFN-2.5 performance on the standard TabArena-lite benchmark [1], TabPFNv2 classification
+L85: Bayesian-like inference algorithm, though it was limited to small (up to 1k samples), clean, numerical-
+L86: only data. Our successor, TabPFNv2 [7], scaled this idea into a practical model for datasets up to
+L87: 10,000 samples. TabPFNv2 handles the messy and heterogeneous data seen in the real world—including
+L91:       XGBoost and CatBoost) and matches the accuracy of AutoGluon 1.4 tuned for 4 hours—a complex
+L93:     • Improved Scalability: We scale the power of in-context learning to datasets of up to 50,000
+L94:       samples (5x increase over TabPFNv2) and 2,000 features (4x increase), making TFMs viable for a
+L117: TabPFN from a research model into a stable product. With feedback from our community of nearly 1,500
+L121:    1 In exploratory runs, classification datasets up to ∼160k rows × 500 features and regression datasets up to ∼85k × 500
+L123: features fit into memory on an NVIDIA H100 (80 GB) using FP16 and FlashAttention-3. These configurations are outside
+L179:   • Causal Inference: Do-PFN [15], CausalPFN [16], and CausalFM [17] pre-train PFNs to predict
+L196: Figure 11 in the appendix provides a minimal workflow to help users pick the right components for their
+L206: original TabPFNv2, TabPFN-2.5 is trained purely on synthetically generated data. We also release a
+L207: version that is fine-tuned on real data following Real-TabPFN [18]. It is trained on a curated corpus of
+L208: 43 real-world tabular datasets sourced from OpenML and Kaggle, deduplicated against all internal
+L210: improvement in Figures 3 and 4. See Appendix C for details on training and deduplication.
+L217:       which allows for faster training and inference. We use a group size of 3 for TabPFN-2.5, compared
+L221:     • Finally, we add 64 additional “thinking” rows to the input dataset of TabPFN-2.5, which are learned
+L222:       during pretraining. Inspired by results from the LLM literature [19, 20], these rows give additional
+L225: Other core components from TabPFNv2—feature/sample dual attention, caching separation of train-
+L233: and sensitivity across features. Following TabPFNv2, we also include singular value decomposition (SVD)
+L245:     We first trained ≈ 100 models on a broad but sparse grid of hyperparameter configurations drawn from
+L250: TabPFNv2 model—as a surrogate to predict validation performance over a denser grid of 10,000 configu-
+L256: threshold, enabling direct optimization of metrics beyond accuracy—such as the F1-score—by adjusting
+L264: and 2.3x faster thanks to optimized preprocessing and larger feature groups, as shown in Figure 20. This
+L265: allows TabPFN-2.5 to scales inference to datasets with up to 50,000 rows and 2,000 features. Furthermore,
+L270: distillation engine that, given a training data set, outputs a multi-layer perceptron (TabPFN-2.5-as-MLP)
+L272: on this dataset (see Figure 7). In contrast to TabPFN, this resulting MLP or tree ensemble classifier is
+L296: Table 1: Summary of TabPFN model variants. Max                                                      TabPFN-2.5 (default)
+L298: The models also fit larger datasets but are not built and        Figure 2: TabPFN-2.5 clearly outper-
+L317: TabArena [1] is the most curated tabular benchmark, based on the largest number of candidate datasets
+L319: the NeurIPS 2025 Datasets & Benchmarks track and is thus most up-to-date. In particular, it compares a
+L324: representative version of the full benchmark using only one test fold. The benchmark contains a set of 51
+L325: datasets selected from 1053 to be representative of real-world tabular data. See Erickson et al. [1] for the
+L328: Pushing the limit on small to medium-sized datasets. Figure 3 shows results for TabPFN-2.5
+L329: on TabArena-Lite with up to 10,000 data points and 500 features, demonstrating that TabPFN-2.5, in
+L337: Scaling to larger datasets. Figure 4 shows a similar experiment on all the TabArena datasets, with
+L338: up to 100,000 data points and 2,000 features, clearly ranking TabPFN-2.5 as the best default model, and
+L339: outperforming (for regression datasets) or approaching (for classification datasets) AutoGluon 1.4 (tuned
+L344: and TabPFNv2, we see a big leap in performance in Figure 3. In addition, looking at performance on
+L345: each dataset in TabArena (TabPFNv2 compatible subset) in Figure 2, we see that TabPFN-2.5 clearly
+L346: outperforms TabPFNv2 on almost all datasets, and is never much worse. In Appendix G, we detail
+L361: TabPFN-2.5 shows strong results up to 50,000 samples and 2,000 features. Figure 5 and
+L362: Figure 6 show results on our internal benchmark for classification and regression datasets with up to
+L363: 50,000 data points and 500 features. We can see on these figures that TabPFN outperforms in one forward
+L392: Figure 3: TabArena-Lite results on classification (left) and regression (right), restricted to datasets
+L393: with less than 10K training samples and 500 features. Note that tuning for TabPFN-2.5 is only
+L398: pass all our tuned baselines. In Section F, we also show strong results on datasets with 500 to 2,000
+L401: 4.3     Measuring TabPFN-2.5 Training and Inference Speed
+L402: Figure 8 shows how TabPFN-2.5 classification speed scales with training set size, when using one or four
+L405: “prediction” time on test rows. We can observe the expected scaling in O(r2 min(c, 500) + r min(c, 500)2 ),
+L407: per-estimator feature subsampling at 500 features. Section 5 contains results for regression, performance
+L415: internal open source datasets with less than 10k data points. Figure 7 illustrates representative test-split
+L416: performance. Empirically, TabPFN-2.5-as-MLP and TabPFN-2.5-as-TreeEns offer competitive accuracy
+L425: squared error between predicted and RealCause’s ground-truth CATE values4 . In Figure 9, we show that
+L428:   3 Descriptions of the ACIC-2016, IHDP, and Lalonde-PSID and Lalonde-CPS datasets are provided in Appendix Table 3.
+L458: Figure 4: TabArena-Lite results on classification (left) and regression (right), evaluated on all
+L459: datasets, going up to 100K training rows and 2K features. Note that tuning for TabPFN-2.5 is
+L461: option from our tuning search space for the 4 largest datasets in the benchmark to reduce the tuning
+L492: Figure 5: Results from our internal benchmark on classification datasets with up to 50,000 data
+L495: performance of TabPFN-2.5 and CatBoost (either default or tuned for 1 hour) on this dataset.
+L532: Figure 6: Results from our internal benchmark on regression datasets with up to 50,000 data
+L535: performance of TabPFN-2.5 and CatBoost (either default or tuned for 1 hour) on this dataset
+L557: Figure 7: TabPFN-as-MLP and TabPFN-as-TreeEns still outperform tree-based models while
+L581: Figure 8: Time taken, in seconds, to fit TabPFN-2.5 classification models on various training set sizes, and
+L582: then make predictions on 500 test rows. Figure 18 in Section 5 reports results for regression, alongside
+L587: tree- and deep-learning-based methods [33]. We also observe in Figure 10 that for each of our three
+L615: Figure 9: PFN-based CATE estimators dominate              Figure 10: Improvements in base model predictive
+L633:       KB of GPU memory and 48.8 KB of CPU memory per cell in the training dataset (regression
+L634:       models about 25% less), thus it is currently only suitable for small training datasets. For larger
+L639:    Figure 18 in the appendix shows the inference latency you can expect for three common models of
+L672: Built for datasets up to 50,000 rows and 2,000 features, TabPFN-2.5 matches the performance of complex
+L675: datasets with up to 100,000 training data points).
+L702:     [5] Random forests. 45(1):5–32, 2001. URL http://dx.doi.org/10.1023/A%3A1010933404324.
+L781:      Accurate, scalable, and interpretable feature learning models for tabular data, 2025. URL https:
+L832:      with immunotherapy response characteristics in patients with cancer. Cancer Cell, 42(5):759–779.e12,
+L844:      tabular dataset using hybrid lightgbm–tabpfn and shap. Digital Health, 10:20552076241272585,
+L857:      learning model: A multi-centre validation study. Intensive Care Medicine, 51(8):1542–1544,
+L861:      disease based on interpretable transformer model. PLOS ONE, 20(7):e0327564, 2025. doi: 10.
+L868: [48] Yunhua Li et al. Mri delta-radiomics and morphological feature-driven tabpfn model for preoperative
+L921:      features and omics-derived genetic scores. medRxiv preprint, 2025. URL https://www.medrxiv.
+L923: [62] Chaochao Pan et al. Sense-of-agency as clinically accessible features for schizophrenia prediction:
+L976: [75] H. Xu et al. Vision-language ai model for detecting pet/ct-occult nodal disease in patients with
+L980: [76] Asmaa A. Mahdi. Diagnosing patient stroke status using modern ai after dataset balancing:
+L999:      radiomics and deep learning features based on b-mode and pdi images. Gland Surgery, 14(8):
+L1028:      training for extreme feature counts. arXiv preprint arXiv:2510.06162, 2025. doi: 10.48550/arXiv.
+L1030: [86] Gahao Chen and Ziwei Yang. Risk prediction for gastrointestinal bleeding in pediatric henoch–
+L1031:      schönlein purpura using an interpretable transformer model. Frontiers in Physiology, 16:
+L1035: [87] Boosting pre-trained model with silica nanoparticles cellular toxicity prediction. Research Square,
+L1138:       International Test Conference (ITC), 2025. doi: 10.1109/ITC58126.2025.00067. URL https:
+L1155:       iot network attack recognition using lasso-rfe feature selection. IEEE Access, 13:151452–151465,
+L1183:       5616984, 2025. URL https://ssrn.com/abstract=5616984. Integrates image features with a
+L1214: [124] Nasser Alkhulaifi and Nicholas Bowler. Autoenergy: An automated feature engineering algorithm
+L1238:       nition: Auditable signals across c, c#, java, and python. Authorea Preprints, 2025. doi: 10.22541/
+L1240:       1346750-metrics-first-language-aware-clone-type-recognition-auditable-signals-across-c-c-java-
+L1324:     1. TabPFN was applied to distinguish cancer patients from healthy individuals using immune system
+L1328:        of minimal change disease in patients with nephrotic syndrome, utilizing clinical biomarkers [38].
+L1336:        TabPFN to assess patient demographics and surgical parameters [41]. Link
+L1338:        disease patients, handling small datasets and missing values effectively [42]. Link
+L1340:        in stroke patients with distal vessel occlusions using CT perfusion imaging [43]. Link
+L1343:     9. TabPFN facilitated the prediction of non-invasive ventilation outcomes in patients with acute
+L1346:  10. An interpretable Transformer-based model leveraging TabPFN was created to predict intravenous
+L1347:      immunoglobulin resistance in pediatric patients with Kawasaki disease [46]. Link
+L1354:     clinical biomarkers and symptom data into formats suitable for analysis [47]. Link
+L1355: 12. TabPFN was used to combine clinical, MR morphological, and delta-radiomics features to predict
+L1356:     lymphovascular invasion in invasive breast cancer patients [48]. Link
+L1360: 14. TabPFN contributed to cardiovascular disease risk stratification using clinical features from a large
+L1361:     patient cohort, incorporating interpretability techniques [50]. Link
+L1364:     injury in hospitalized patients, demonstrating generalizability across datasets [51]. Link
+L1371:     mellitus patients, focusing on neuropathy and retinopathy [54]. Link
+L1373:     disease progression on neuroimaging datasets [55]. Link
+L1376: 21. TabPFN was applied to predict tumor response to chemotherapy in cholangiocarcinoma patients
+L1386:     scores from early pregnancy blood samples [61]. Link
+L1388: 26. TabPFN was used for predicting schizophrenia based on sense of agency features, emphasizing
+L1396: 30. TabPFN facilitated prediction of coronary heart disease risk in patients with cardiovascular-kidney-
+L1397:     metabolic syndrome, optimizing evaluation in small samples [66]. Link
+L1400: 32. TabPFN contributed to predicting manual strength using anthropometric data, focusing on accuracy
+L1417:      patients post-surgery [74]. Link
+L1418:  39. TabPFN supported prediction of occult lymph node metastasis in non-small cell lung cancer patients
+L1420:  40. TabPFN was used in stroke diagnosis, addressing dataset imbalance and model interpretability for
+L1425:      continuous glucose monitoring data, facilitating improved patient management [78]. Link
+L1427:      ultrasound features [79]. Link
+L1428:  44. TabPFN was integrated with radiomics and clinical features to predict endovascular treatment
+L1431:      diagnostic accuracy in ophthalmology [81]. Link
+L1433:      features, advancing passive sleep monitoring [82]. Link
+L1438:  49. TabPFN was extended to very high-dimensional feature spaces to enable robust analysis of biomedical
+L1440:  50. TabPFN predicted gastrointestinal bleeding risk in pediatric Henoch–Schönlein purpura patients,
+L1442:  51. TabPFN was used as the pre-trained backbone (embeddings + in-context learning) for silica
+L1547:   5. TabPFN showed the strongest performance on 31 predictive soil modeling datasets containing 30 to
+L1548:      460 samples [122]. Link
+L1550:   7. TabPFN supported automated feature engineering for energy consumption forecasting in domain-
+L1555:      automated feature engineering [126]. Link
+L1570:  14. TabPFN informed the development of TabImpute, enabling efficient zero-shot imputation for missing
+L1575:  16. TabPFN supported continual learning for tabular data streams in resource-constrained environments
+L1582:      and climate features [136]. Link
+L1588: Real-TabPFN [18], the process was extended to deduplicate the training datasets against all internal
+L1589: benchmarks, our curated in-house validation suite, and the public TabArena benchmark [1]. Our
+L1595: C.1     Training Datasets
+L1657: and the outcome [137]. While recent studies have begun to challenge the validity and verifiability of this
+L1664: and an outcome given an individual’s features. Parallel studies [15, 142] have shown that TabPFN is an
+L1670: Figure 11 provides a minimal user workflow through components in the TabPFN–Extensions ecosystem.
+L1677:             Table 3: Description of causal inference datasets in the RealCause benchmark.
+L1681:              Samples                4,802         747          16,177             2,675
+L1682:              Features                58            25            8                  8
+L1687:     Figure 11: A minimal user workflow through components in the TabPFN–Extensions ecosystem.
+L1694: linearly scale scores between 0 (worse model on this dataset) and 1 (best model). For each model, the
+L1699: F.2    Additional results on many features
+L1700: In Figure 12, we show results on an internal set of datasets containing from 500 to 2,000 features showing
+L1706: TabArena in Figure 13 (for TabPFNv2 compatible datasets with less than 10k rows and 500 features)
+L1707: and Figure 14 (all datasets up to 100k training rows and 2k features).
+L1708:     We also compare our TabPFN-2.5 model to other foundation models in more detail below. In Figure
+L1709: 15, we show that TabPFN-2.5 outperforms TabICL when we restrict TabArena to only datasets for which
+L1710: TabICL is designed, and in Figure 16, we show much better performance when compared to LimiX’s
+L1711: results on datasets with less than 50,000 samples and 2,000 features, which corresponds to the datasets
+L1717: metrics. Figure 17 quantifies the performance gains that this procedure can yield, illustrating substantial
+L1718: improvement in F1-score for several imbalanced datasets when tuning the threshold.
+L1750: Figure 12: TabPFN-2.5 default performs well up to 2,000 features. In our internal benchmark on
+L1751: datasets from 500 features to 2,000 features, we can see that for both classification (left) and regression
+L1862: Figure 13: TabArena-Lite pairwise win rates on classification (left) and regression (right), restricted
+L1863: to TabPFNv2 compatible datasets (less than 10K training samples and 500 features). Note that
+L1986: Figure 14: TabArena-Lite pairwise win rates on classification (left) and regression (right), evaluated
+L1987: on all datasets (up to 100k training samples and 2K features). Note that tuning for TabPFN-2.5
+L2006: Figure 15: Comparison with TabICL [27]. In this plot, we show the performance of TabPFN-2.5
+L2008: with less than 500 features. On this subset for which TabICL is designed, we see that TabPFN-2.5
+L2028: Figure 16: Comparison with LimiX [29]. In this plot, we show the performance of TabPFN-2.5 and
+L2029: LimiX on datasets from TabArena-Lite with less than 50,000 training samples and less than 2,000
+L2061: Figure 17: F1-score sometimes improves substantially by decision threshold tuning. The plot
+L2068: Figure 18 shows the inference latency you can expect for three common models of GPUs. Figure 19 shows
+L2069: that the time scales linearly with the number of test rows. Figure 20 compares the fit + training time of
+L2071: 2.3x speedup depending on the dataset size.
+L2134: Figure 18: Time taken, in seconds, to train TabPFN-2.5 models on various training set sizes, and then
+L2135: make predictions on 500 test rows, using three common models of NVIDIA GPU: T4 15GB, A100 SXM
+L2136: 40GB, H100 SXM 80GB. Performance is shown for 100, 300, and 500 features. Datasets with more than
+L2137: 500 features have the same performance as datasets with 500, as each estimator will subsample to 500
+L2160: Figure 19: The time taken by TabPFN-2.5 to train and predict scales linearly in the test set size, shown
+L2161: here for a classification model trained on datasets of 500 rows × 10 features, 5,000 rows × 100 features,
+L2162: and 20,000 rows × 500 features. Measured on one H100 GPU.
+L2178:                  100                     50 features                                            50 features
+L2179:                                          150 features
+L2180:                                                                           100                   150 features
+L2181:                                          250 features                                           250 features
+L2187:  Figure 20: TabPFN-2.5 is significantly faster than TabPFNv2. Comparison of the time taken
+L2188:  to fit + predict TabPFN-2.5 vs TabPFNv2 on different number of rows and features. Measured for 100
+L2189:  test points on 1 H100, using the same number of estimators (8). Note that this is measured using the
+L2190:  v2 and v2.5 versions available on the latest release of the TabPFN package, and thus is on top of the

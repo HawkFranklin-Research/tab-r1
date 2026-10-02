@@ -1,0 +1,104 @@
+# Retrieval inventory, NOT completed visual/claim audit
+Source L03: Does combining numerous data types in multi-omics data improve or hinder performance in survival prediction? Insights from a large-scale benchmark study; DOI 10.1186/s12911-024-02642-9
+Original text line numbers. Numbers may be citations, secondary reports,
+toy examples, or ambiguous table columns. Verify context before citing.
+
+L35:   using 14 cancer datasets with right-censored survival outcomes, publicly available from the TCGA database. We
+L74: morbidity and mortality rates [1]. It is associated with                small sample sizes are likely to be less reliable, especially
+L86: are often referred to as “blocks”. Omics data have been                 few datasets [13, 14] or a single prediction method [16].
+L92: therapy in cancer patients [7]. With the increasing avail-              tive value of methylation [16], miRNA [14], copy-number
+L103: the multi-omics literature, is that incorporating as many               across 14 cancer datasets with survival outcome, using
+L132: across all datasets. This step provides insight into which                        In Additional file 1, we provide detailed information on
+L135: these combinations individually for each dataset. This                              The 14 datasets are a subset of originally 26 avail-
+L137: types require specific block combinations to achieve                              excluded and those where less than 5% of patients had
+L155:                                                                                   the training datasets within (5-fold) cross-validation.
+L156: Datasets                                                                          Here, we selected the 2,500 features with the largest
+L157: The 14 included multi-omics datasets from TCGA were                               variable importance measure values from each of these
+L158: the same as those studied in [2], except that we included                         blocks, where Harrell’s concordance index was used as
+L161: groups of features. An overview of these 14 datasets is                           carry information in the ultra-high-dimensional blocks.
+L162: given in Table 1. We used the same clinical covariates as                         Because of the large numbers of features, for some blocks
+L164: Table 1 Overview of the considered datasets. The third to the eighth column show the numbers of features in the respective feature
+L191: per random survival forest instead of the 500 trees that                          more features, which might give these models an advan-
+L198: occurs even when many features are selected [24], as in                           prediction using multi-omics data [2, 3, 13–16]. These
+L199: our study. The choice of 2,500 selected features was not                          five approaches include both prediction methods specifi-
+L202: cross-validation-based tuning. Instead, this number was                           some earlier studies [15–17], we excluded deep learn-
+L210: features available to the prediction models increases. This                       vival outcomes, refer to Wiegrebe et al. [25]. Bayesian
+L221: Table 2 Overview of the survival prediction methods used in                          Table 2 provides an overview of the five methods used
+L226: forests (rsf )        (0.13.1)         values of the bootstrap ensemble           Random survival forests
+L228:                                        He∗ (t| xi) calculated at all unique       Random forests [28] are ensemble classifiers that use ran-
+L239:                                        For integrated Brier score: Sur-           survival forests (rsf ) [27], a variant of random forests or
+L249: IPF-LASSO             ipflasso (1.1)   See lasso above.                           down square root of the number of features. This use of
+L252: (prioritylasso)       (0.2.5)                                                     datasets that the performance of random forests is only
+L266: data. This algorithm has a weight parameter for each                    using 10-fold cross-validation with the function “cv.glm-
+L275: an L1 penalty to shrink coefficients of features without                information [36, 37] because there are typically many
+L286: parameter was tuned using 10-fold cross-validation with                 cal block always had the highest priority and, as in the
+L289:                                                                           For each dataset, we considered all 25 – 1 = 31 possible
+L295: a variant of the IPF-LASSO, which performs an efficient                   The integrated Brier score (ibrier) [38] and Harrell’s
+L296: two-step procedure to optimize the penalty parameter                    concordance index (cindex) [39] were used to evaluate
+L297: values (ipflasso) [34].                                                 the predictive performance. The ibrier is a calibration
+L321: risk of death. As shown in Table 2, we use this measure                 ferent methods, comparing these values across different
+L331: (version 1.44.1) for estimating the ibrier and cindex,                  to lead to worse results. For rsf and bf, we see that mRNA
+L333:    As an evaluation scheme, we used 5-fold cross-vali-                  ing block combinations all included mRNA. Apart from
+L339: performance measure values. The benchmark experi-                       are shown in Figure S5 in Additional file 1. Interestingly,
+L360: obtained for the ibrier with rsf [27], bf [3], and the ipf-             many blocks might outperform combinations with fewer
+L361: lasso [33, 34]. The results obtained for the ibrier with the            blocks for large datasets. If so, a trend should be observ-
+L363: obtained for the cindex are shown in Additional file 1.                 for larger datasets than for smaller datasets. Conversely, a
+L364:   Figure 1 shows, for each prediction method, the rank-                 trend should be observed where combinations with fewer
+L365: ings achieved by each block combination among all 31                    blocks rank worse for larger datasets than for smaller
+L366: possible block combinations for all datasets. Figures S1                ones. We investigated this using the available datasets
+L371: and prediction method are detailed in Tables S2 and                     included in our benchmark experiment is comparably
+L379: Fig. 1 Dataset-specific ranks of each block combination (ibrier). The ranks of each combination among all 31 combinations are shown. The purple
+L381: all 14 datasets, where the blue diamonds represent the means of the ranks. The upper (a), middle (b), and lower (c) panels show the results obtained for
+L386: for the block combinations are associated with consider-                      uncertainty we performed bootstrap analysis [42, 43]
+L387: able variability. This was already indicated by the large                     at the level of the 14 included datasets. This analysis
+L388: variances observed in the boxplots showing the results                        was used to construct 95% confidence intervals for the
+L403: quite similar, where the confidence intervals for the cin-                     test procedure can be found in Additional file 1.
+L408: methods for all block combinations                                             of combinations that feature a particular block is 15.5,
+L411: judge which combinations of prediction methods and                             DNAseq was featured only in eight of the top 30 com-
+L412: blocks tend to deliver the best prediction results. Figure 2                   binations. Nevertheless, there is again a large variability
+L414: diction method-block combination among all 155 predic-                         Interestingly, for the cindex (Figure S12 in Additional file
+L415: tion method-block combinations. For clarity, only the 30                       1), lasso was featured by far the most frequently in the
+L427: Fig. 2 Dataset-specific ranks of each combination of prediction method and blocks (ibrier). The ranks of each combination among all 155 combinations
+L429: shown by the boxplots are the ranks achieved across all 14 datasets, where the blue diamonds represent the means of the ranks. Smaller ranks indicate
+L440: lasso, seen in Fig. 2 and Figure S12 (Additional file 1), is                Additional file 1.
+L442: ods. The majority of the 30 best combinations featured                      of the block combinations across the datasets, and, for
+L446: Figures S13 and S14 in Additional file 1 present versions                   the previous subsections that there is large variability in
+L447: of Fig. 2 and S12, displaying the raw cross-validated ibrier                the ranks of the block combinations across datasets. For
+L457: most successful for which datasets. Table 3 shows, for                      the best-performing combinations tended to use few
+L465: ues of 0.022 for ibrier and 3.9 × 10−5 for cindex. For a                      Regarding the prediction methods, we do not see a
+L467: Table 3 The best-performing combinations of prediction                      diction method was used at least for one dataset.
+L483:                                                              mut            ited number of cases (14, the number of datasets), which
+L487:                               met, cnv                                        In Table 3, we observed that the block combinations
+L507: dataset, presented in detail in Additional file 1. Here                 for prediction, integrating many blocks in multi-omics
+L510: nation of both) ranked in the top 30% for all datasets and                 As described in the ”Background” section, other studies
+L512: tionally including the methylation data for the datasets                respect to their predictive performance [2, 3, 13–17]. Our
+L513: COAD, LGG, LIHC, LUSC, and SARC, top 10% rankings                       results are consistent with these studies despite the dif-
+L530: datasets, in our analysis, predictive models incorporat-                   As depicted in Figs. 1 and 2, the rankings of distinct
+L533: only a subset of omics blocks. This challenges the prevail-             Table 3, varying cancer types called for distinct optimal
+L539: omics blocks are equal in their predictive capabilities.                preting the results in Table 3, it should also be noted that
+L542: data blocks, mRNA data emerged as the most informa-                     not shown). This suggests that the findings in Table 3 may
+L555: the challenge that the data to which the prediction mod-                benchmark studies that only few (e.g., 5 to 7) datasets are
+L570: els (Fig. 2) also included many prediction methods that                 clinical covariates and the omics features is overlapping, it
+L594: distribution [51]. Pencina et al. [54] demonstrated notable             formance of such models in our benchmark study would
+L601:    In contrast, the ibrier assesses both discrimination and             by Herrmann et al. [2] demonstrated that such models can
+L605: Therefore, the ibrier should be considered as the primary               additive predictive value over clinical variables alone [37,
+L606: measure of predictive accuracy.                                         55]. Therefore, it is crucial to also evaluate the predictive
+L628: al. [17], which included several methods not used in our                sions of TCGA data can feature error-prone survival infor-
+L659: While this result can be expected to be subject to some                 the number of features selected. The choice of 2,500 fea-
+L667: TCGA, which offers the currently largest collection of                  Wissel et al. [15] did not perform feature selection and
+L670: datasets generally beyond TCGA. In particular, when per-                Similarly, Vale-Silva et al. [16] and Osipov et al. [17], who
+L732: ibrier	Integrated Brier Score                                                            pathways in cancer. BMC Syst Biol. 2010;4:1–14.
+L737: org/10.1186/s12911-024-02642-9.                                                       8. Yong Z, Dun-wei G, Wan-qiu Z. Feature selection of unreliable data
+L765: 15. Wissel D, Rowson D, Boeva V. Systematic comparison of multi-omics survival          42. Efron B. Bootstrap methods: another look at the Jackknife. Ann Stat.
+L767:     (2023).                                                                             43. Stine R. An introduction to bootstrap methods: examples and ideas. Sociol
+L773:     pancreatic adenocarcinoma patients. Nat Cancer. 2024;5:299–314.                     45. Hornung R, Ludwigs F, Hagenberg J, Boulesteix A-L. Prediction approaches
+L774: 18. Picard M, Scott-Boyer M-P, Bodein A, Périn O, Droit A. Integration strategies of        for partly missing multi-omics covariate data: a literature review and an
+L782: 21. Li Y, Mansmann U, Du S, Hornung R. Benchmark study of feature selection                 2021;44:433.
+L784: 22. Simon R, Radmacher MD, Dobbin K, McShane LM. Pitfalls in the use of DNA                 hypothesis testing in real data comparison studies. Am Stat. 2015;69:201–12.
+L788:     model validation with recommendations for evolutionary computation. Evol                Discov. 2022;12:e1441.
+L789:     Comput. 2012;20:249–75.                                                             50. Blanche P, Kattan MW, Gerds TA. The c-index is not proper for the evaluation
+L797:     with applications to omics data. Bioinformatics. 2024;40:btae132.                       of performance measures for survival prediction models in external valida-
+L807: 32. Cox DR. Regression models and life-tables. J R Stat Soc Ser B.                          biomarkers with Stabl. Nat Biotechnol (2024) 1–13.
+L817:     multi-omics data. BMC Bioinformatics. 2018;19:1–14.                                     alive? Pitfall of survival analysis with TCGA datasets. Cancer Biol \& Ther.
+L819:     molecular data to clinical data and its validation. Brief Bioinform.                60. Broglio KR, Berry DA. Detecting an overall survival benefit that is derived from
+L828:     cal tests. JAMA. 1982;247:2543–6.                                                   Springer Nature remains neutral with regard to jurisdictional claims in

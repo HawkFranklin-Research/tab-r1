@@ -1,0 +1,117 @@
+# Retrieval inventory, NOT completed visual/claim audit
+Source L25: CatBoost: unbiased boosting with categorical features; DOI NA
+Original text line numbers. Numbers may be citations, secondary reports,
+toy examples, or ambiguous table columns. Verify context before citing.
+
+L52: categorical features. One of the most effective ways [6, 25] to use them in gradient boosting is
+L57: leakage (Section 4), and a new algorithm for processing categorical features (Section 3). Their
+L69: Assume we observe a dataset of examples D = {(xk , yk )}k=1..n , where xk = (x1k , . . . , xm k ) is a
+L94: predictors. A decision tree [4, 10, 27] is a model built by a recursive partition of the feature space
+L97: that is, a = 1{xk >t} , where xk is either numerical or binary feature, in the latter case t = 0.5.2 Each
+L109: 3     Categorical features
+L110: 3.1   Related work on categorical features
+L114: encoding [7, 25], i.e., for each category, adding a new binary feature indicating it. However, in the
+L124: target statistics in each of them). According to [4], the tree complexity has a crucial effect on the accuracy of the
+L135: can be found among thresholds for the numerical TS feature [4, Section 4.2.2] [11, Section 9.2.4].
+L136: In LightGBM [20], categorical features are converted to gradient statistics at each step of gradient
+L140: categorical feature. To overcome this issue, LightGBM groups tail categories into one cluster [21] and
+L142: features with high cardinality to numerical features [19]. Note that TS features require calculating
+L146: task (click-through rates) [1, 15, 18, 22], where such categorical features as user, region, ad, publisher
+L153: As discussed in Section 3.1, an effective and efficient way to deal with a categorical feature i is
+L159: over the training examples with the same category xik [25]. This estimate is noisy for low-frequency
+L169: where a > 0 is a parameter. A common setting for p is the average target value in the dataset [25].
+L171: xk . This leads to a conditional shift [30]: the distribution of x̂i |y differs for training and test examples.
+L174: category A, we have P(y = 1 | xi = A) = 0.5 for a classification task. Then, in the training dataset,
+L179: model predicts 0 for all of them if p < t and predicts 1 otherwise, thus having accuracy 0.5 in both
+L181:       P1 E(x̂i | y = v) = E(x̂ik | yk = v), where (xk , yk ) is the k-th training example.
+L182: In our example above, E(x̂ik | yk ) = yk1+a
+L196: Holdout TS One way is to partition the training dataset into two parts D = D̂0 t D̂1 and use
+L197: Dk = D̂0 for calculating the TS according to (5) and D̂1 for training (e.g., applied in [8] for Criteo
+L198: dataset). Though such holdout TS satisfies P1, this approach significantly reduces the amount of data
+L200:       P2 Effective usage of all training data for calculating TS features and for learning a model.
+L206: for training examples xk and Dk = D for test ones [31]. Surprisingly, it does not prevent target
+L210: number of examples with y = 1, then x̂ik = n n−1+a      and one can perfectly classify the training
+L213: dataset by making a split with threshold t = n n−1+a    .
+L220: “history” to compute its TS, i.e., take Dk = {xj : σ(j) < σ(k)} in Equation (5) for a training
+L221: example and Dk = D for a test one. The obtained ordered TS satisfies the requirement P1 and allows
+L222: to use all training data for learning the model (P2). Note that, if we use only one random permutation,
+L233: in (2) is unknown and is usually approximated using the same dataset D:
+L240:             1. the conditional distribution of the gradient g t (xk , yk ) | xk (accounting for randomness of
+L243:             3. this, finally, affects the generalization ability of the trained model F t .
+L246: However, the conditional distribution F t−1 (xk ) | xk for a training example xk is shifted, in general,
+L247: from the distribution F t−1 (x) | x for a test example x. We call this a prediction shift.
+L260: of a regression task with the quadratic loss function L(y, ŷ) = (y − ŷ)2 .4 In this case, the negative
+L262: yk − F t−1 (xk ).5 Assume we have m = 2 features x1 , x2 that are i.i.d. Bernoulli random variables
+L273: W.l.o.g., we assume that h1 is based on x1 and h2 is based on x2 , what is typical for |c1 | > |c2 | (here
+L275: Theorem 1 1. If two independent samples D1 and D2 of size n are used to estimate h1 and h2 ,
+L277: 2. If the same dataset D = D1 = D2 is used in Equation (6) for both h1 and h2 , then ED F 2 (x) =
+L283: when we use independent datasets at each gradient step.6 On the other hand, if we use the same
+L285: dataset at each step, we suffer from a bias − n−1    c2 (x2 − 12 ), which is inversely proportional to
+L292:                                              +ξs1 . Its expectation E(h (x)) on a test example x equals
+L294: c1 x1 + 22 . At the same time, the expectation E(h1 (xk )) on a training example xk is different and
+L298:                                                                                    ) + O(2−n ) on a test
+L309: described in Section 4.1. Assuming access to an unlimited amount of training data, we can easily
+L313: rI−1 (xk , yk ) unshifted, we need to have F I−1 trained without the example xk . Since we need
+L314: unbiased residuals for all training examples, no examples may be used for training F I−1 , which at
+L319: permutation σ of the training examples and maintain n different supporting models M1 , . . . , Mn
+L321: order to obtain the residual for j-th sample, we use the model Mj−1 (see Figure 1). The resulting
+L328: Ordered boosting with categorical features In Sections 3.2 and 4.2 we proposed to use random
+L358: Figure 1: Ordered boosting principle,                        T ← empty tree;
+L372:     for i ← 1 to n do                                                loss(Tc ) ← cos(∆, G)
+L373:         ri ← yi − Mσ(i)−1 (xi );                                 T ← arg minTc (loss(Tc ))
+L385: At the start, CatBoost generates s + 1 independent random permutations of the training dataset. The
+L395: tables [23]. Term oblivious means that the same splitting criterion is used across an entire level of the
+L401: {σ1 , . . . , σs } and construct a tree Tt on the basis of it. First, for categorical features, all TS are
+L407:                                    Table 1: Computational complexity.
+L442: In Table 1, we present the computational complexity of different components of both CatBoost modes
+L465: to the Bayesian bootstrap procedure (see [28, Section 2]). These weights are used as multipliers for
+L474: beginning of the permutation, when we calculate loss(Tc ) in Algorithm 2. Particularly, we eliminate
+L483: be reproduced.7 For all learning algorithms, we preprocess categorical features using the ordered
+L484: TS method described in Section 3.2. The parameter tuning and training were performed on 4/5
+L485: of the data and the testing was performed on the remaining 1/5.8 The results measured by logloss
+L486: and zero-one loss are presented in Table 2 (the absolute values for the baselines can be found in
+L488: experiment.9 One can see that CatBoost outperforms other algorithms on all the considered datasets.
+L489: We also measured statistical significance of improvements presented in Table 2: except three datasets
+L499: Table 2: Comparison with baselines: logloss /                    Table 3: Plain boosting mode: logloss, zero-
+L504:     Adult       0.270 / 0.127   +2.4% / +1.9%   +2.2% / +1.0%        Adult       0.272 (+1.1%)     0.127 (-0.1%)
+L505:     Amazon      0.139 / 0.044   +17% / +21%      +17% / +21%         Amazon       0.139 (-0.6%)    0.044 (-1.5%)
+L506:     Click       0.392 / 0.156   +1.2% / +1.2%   +1.2% / +1.2%        Click       0.392 (-0.05%)   0.156 (+0.19%)
+L507:     Epsilon     0.265 / 0.109   +1.5% / +4.1%    +11% / +12%         Epsilon     0.266 (+0.6%)    0.110 (+0.9%)
+L508:     Appetency   0.072 / 0.018   +0.4% / +0.2%   +0.4% / +0.7%        Appetency   0.072 (+0.5%)    0.018 (+1.5%)
+L509:     Churn       0.232 / 0.072   +0.1% / +0.6%   +0.5% / +1.6%        Churn       0.232 (-0.06%)   0.072 (-0.17%)
+L510:     Internet    0.209 / 0.094   +6.8% / +8.6%   +7.9% / +8.0%        Internet    0.217 (+3.9%)     0.099 (+5.4%)
+L511:     Upselling   0.166 / 0.049   +0.3% / +0.1%   +0.04% / +0.3%       Upselling   0.166 (+0.1%)    0.049 (+0.4%)
+L512:     Kick        0.286 / 0.095   +3.5% / +4.4%   +3.2% / +4.1%        Kick         0.285 (-0.2%)    0.095 (-0.1%)
+L521: are presented in Table 3. It can be clearly seen that Ordered mode is particularly useful on small
+L523: are relatively small (less than 40K training examples), which supports our hypothesis that a higher
+L525: Section 4.1, bias is expected to be larger for smaller datasets (however, it can also depend on other
+L533:      The numbers for CatBoost in Table 2 may slightly differ from the corresponding numbers in our GitHub
+L540: modes on randomly filtered datasets and compare the obtained losses, see Figure 2. As we expected,
+L548: Table 4: Comparison of target statistics, relative                                                 20
+L567:     Adult       +1.1% / +0.8%   +2.1% / +2.0%    +5.5% / +3.7%                                      0
+L568:     Amazon      +40% / +32%     +8.3% / +8.3%    +4.5% / +5.6%
+L569:     Click       +13% / +6.7%    +1.5% / +0.5%    +2.7% / +0.9%                                     -5
+L571:     Appetency   +24% / +0.7%     +1.6% / -0.5%   +8.5% / +0.7%
+L573:     Churn       +12% / +2.1%    +0.9% / +1.3%    +1.6% / +1.8%
+L574:     Internet    +33% / +22%     +2.6% / +1.8%    +27% / +19%
+L575:     Upselling   +57% / +50%     +1.6% / +0.9%    +3.9% / +2.9%
+L576:                                                                  Figure 2: Relative error of Plain boosting mode
+L577:     Kick        +22% / +28%     +1.3% / +0.32%   +3.7% / +3.3%   compared to Ordered boosting mode depending
+L583: be found in Table 4. Here, to save space, we present only relative increase in loss functions for
+L586: for most of the datasets since it does not suffer from conditional shift discussed in Section 3.2 (P1);
+L587: still, it is worse than CatBoost due to less effective usage of training data (P2). Leave-one-out is
+L591: Finally, let us note that in Table 4 we combine Ordered mode of CatBoost with different TSs. To
+L597: Feature combinations The effect of feature combinations discussed in Section 5 is demonstrated
+L598: in Figure 1 of the supplementary material. In average, changing the number cmax of features allowed
+L599: to be combined from 1 to 2 provides an outstanding improvement of logloss by 1.86% (reaching
+L600: 11.3%), changing from 1 to 3 yields 2.04%, and further increase of cmax does not influence the
+L605: CatBoost is presented in Figure 2 of the supplementary material. In average, increasing s slightly
+L606: decreases logloss, e.g., by 0.19% for s = 3 and by 0.38% for s = 9 compared to s = 1.
+L670: [19] LightGBM. Categorical feature support. http://lightgbm.readthedocs.io/en/latest/
+L671:      Advanced-Topics.html#categorical-feature-support, 2017.
+L672: [20] LightGBM. Optimal split for categorical features. http://lightgbm.readthedocs.io/en/
+L673:      latest/Features.html#optimal-split-for-categorical-features, 2017.
+L674: [21] LightGBM. feature_histogram.cpp. https://github.com/Microsoft/LightGBM/blob/
+L675:      master/src/treelearner/feature_histogram.hpp, 2018.
+L680: [23] Y. Lou and M. Obukhov. Bdt: Gradient boosted decision tables for high accuracy and scoring
+L694: [28] D. B. Rubin. The bayesian bootstrap. The annals of statistics, pages 130–134, 1981.

@@ -1,0 +1,38 @@
+source_id	title	status	bytes	resolved_url
+L01	Established machine learning matches tabular foundation models in clinical predictions	already_present	3561909	https://link.springer.com/content/pdf/10.1186/s12911-026-03654-3.pdf
+L02	Large-scale benchmark study of survival prediction methods using multi-omics data	unavailable:HTTPError	0	https://academic.oup.com/bib/article-pdf/22/3/bbaa167/38657332/bbaa167.pdf
+L03	Does combining numerous data types in multi-omics data improve or hinder performance in survival prediction? Insights from a large-scale benchmark study	already_present	2529058	https://link.springer.com/content/pdf/10.1186/s12911-024-02642-9.pdf
+L04	Systematic comparison of multi-omics survival models reveals a widespread lack of noise resistance	not_pdf	21413	https://pmc.ncbi.nlm.nih.gov/articles/PMC10162996/pdf/main.pdf
+L05	External Validity of Risk Models: Use of Benchmark Values to Disentangle a Case-Mix Effect From Incorrect Coefficients	unavailable:HTTPError	0	https://academic.oup.com/aje/article-pdf/172/8/971/770544/kwq223.pdf
+L06	Propensity-based standardization to enhance the validation and interpretation of prediction model discrimination for a target population	downloaded_from_Utrecht_repository	2156349	https://dspace.library.uu.nl/bitstream/handle/1874/449595/Statistics_in_Medicine_-_2023_-_Jong_-_Propensity_based_standardization_to_enhance_the_validation_and_interpretation_of.pdf?sequence=1
+L07	Informative presence and observation in routine health data: A review of methodology for clinical risk prediction	unavailable:HTTPError	0	https://academic.oup.com/jamia/article-pdf/28/1/155/35885573/ocaa242.pdf
+L08	Robust prediction under missingness shifts	already_present	792369	https://arxiv.org/pdf/2406.16484
+L09	Characterizing and Avoiding Negative Transfer	already_present	2384934	https://openaccess.thecvf.com/content_CVPR_2019/papers/Wang_Characterizing_and_Avoiding_Negative_Transfer_CVPR_2019_paper.pdf
+L10	Shortcut learning in deep neural networks	already_present	4158487	https://arxiv.org/pdf/2004.07780
+L11	Cell-of-Origin Patterns Dominate the Molecular Classification of 10,000 Tumors from 33 Types of Cancer	unavailable:HTTPError	0	https://www.cell.com/cell/pdf/S0092-8674(18)30302-7.pdf
+L12	External validation of clinical prediction models using big datasets from e-health records or IPD meta-analysis: opportunities and challenges	unavailable:HTTPError	0	https://www.bmj.com/content/bmj/353/bmj.i3140.full.pdf
+L13	Batch Effect Confounding Leads to Strong Bias in Performance Estimates Obtained by Cross-Validation	already_present	1483852	https://journals.plos.org/plosone/article/file?id=10.1371/journal.pone.0100335&type=printable
+L14	Cross-study validation for the assessment of prediction algorithms	unavailable:HTTPError	0	https://academic.oup.com/bioinformatics/article-pdf/30/12/i105/48926888/bioinformatics_30_12_i105.pdf
+L16	TabPFN-2.5: Advancing the State of the Art in Tabular Foundation Models	already_present	3964623	https://arxiv.org/pdf/2511.08667
+L17	TabPFN-3: Technical Report	already_present	6826374	https://arxiv.org/pdf/2605.13986
+L18	Accurate predictions on small data with a tabular foundation model	already_present	16957699	https://www.nature.com/articles/s41586-024-08328-6.pdf
+L19	TabICL: A Tabular Foundation Model for In-Context Learning on Large Data	already_present	2636850	https://raw.githubusercontent.com/mlresearch/v267/main/assets/qu25d/qu25d.pdf
+L20	TabArena: A Living Benchmark for Machine Learning on Tabular Data	already_present	1964941	https://arxiv.org/pdf/2506.16791
+L21	Why do tree-based models still outperform deep learning on typical tabular data?	already_present	26436552	https://arxiv.org/pdf/2207.08815
+L22	Random Forests	already_present	123819	https://www.stat.berkeley.edu/~breiman/randomforest2001.pdf
+L23	XGBoost: A Scalable Tree Boosting System	already_present	944793	https://arxiv.org/pdf/1603.02754
+L24	LightGBM: A Highly Efficient Gradient Boosting Decision Tree	already_present	366352	https://proceedings.neurips.cc/paper_files/paper/2017/file/6449f44a102fde848669bdd9eb6b76fa-Paper.pdf
+L25	CatBoost: unbiased boosting with categorical features	already_present	553040	https://proceedings.neurips.cc/paper_files/paper/2018/file/14491b756b3a51daac41c24863285549-Paper.pdf
+L26	AutoGluon-Tabular: Robust and Accurate AutoML for Structured Data	already_present	603498	https://arxiv.org/pdf/2003.06505
+L29	The Precision-Recall Plot Is More Informative than the ROC Plot When Evaluating Binary Classifiers on Imbalanced Datasets	already_present	1233476	https://journals.plos.org/plosone/article/file?id=10.1371/journal.pone.0118432&type=printable
+L30	Calibration: the Achilles heel of predictive analytics	already_present	634444	https://bmcmedicine.biomedcentral.com/counter/pdf/10.1186/s12916-019-1466-7.pdf
+L31	Verification of forecasts expressed in terms of probability	source_mismatch: resolved PDF is unrelated HEP paper; correct DOI PDF inaccessible (403), NOAA mirror DNS failure	0	https://www.osti.gov/servlets/purl/1886020
+L32	Comprehensive molecular portraits of human breast tumours	already_present	1301518	https://www.nature.com/articles/nature11412.pdf
+L33	Integrated genomic characterization of oesophageal carcinoma	already_present	11230970	https://www.nature.com/articles/nature20805.pdf
+L34	Comprehensive genomic characterization of head and neck squamous cell carcinomas	already_present	1401156	https://www.nature.com/articles/nature14129.pdf
+L35	Comprehensive genomic characterization of squamous cell lung cancers	already_present	607931	https://www.nature.com/articles/nature11404.pdf
+L36	Comprehensive molecular profiling of lung adenocarcinoma	already_present	1682615	https://www.nature.com/articles/nature13385.pdf
+L37	An Integrated TCGA Pan-Cancer Clinical Data Resource to Drive High-Quality Survival Outcome Analytics	unavailable:HTTPError	0	https://www.cell.com/cell/pdf/S0092-8674(18)30229-0.pdf
+L38	Pan-cancer proteogenomics connects oncogenic drivers to functional states	unavailable:HTTPError	0	https://www.cell.com/cell/pdf/S0092-8674(23)00780-8.pdf
+L39	TRIPOD+AI statement: updated guidance for reporting clinical prediction models that use regression or machine learning methods	unavailable:HTTPError	0	https://www.bmj.com/content/bmj/385/bmj-2023-078378.full.pdf
+L40	PROBAST+AI: an updated quality, risk of bias, and applicability assessment tool for prediction models using regression or artificial intelligence methods	unavailable:HTTPError	0	https://www.bmj.com/content/bmj/388/bmj-2024-082505.full.pdf

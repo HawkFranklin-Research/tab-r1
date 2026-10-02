@@ -1,0 +1,6 @@
+# Retrieval inventory, NOT completed visual/claim audit
+Source L15: Selection bias in gene extraction on the basis of microarray gene-expression data; DOI 10.1073/pnas.102102699
+Original text line numbers. Numbers may be citations, secondary reports,
+toy examples, or ambiguous table columns. Verify context before citing.
+
+Correct full text unavailable; no empirical values verified.

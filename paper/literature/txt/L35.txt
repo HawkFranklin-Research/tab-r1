@@ -1,0 +1,690 @@
+SOURCE ID: L35
+TITLE: Comprehensive genomic characterization of squamous cell lung cancers
+YEAR: 2012
+DOI: 10.1038/nature11404
+PDF: ../pdfs/L35.pdf
+PAGES: 8
+EXTRACTION: pdftotext -layout. Page breaks are form feeds. Check equations, tables, and figures against the PDF during visual audit.
+==============================================================================
+
+ARTICLE                                                                                                                                         doi:10.1038/nature11404
+
+
+
+
+Comprehensive genomic characterization
+of squamous cell lung cancers
+The Cancer Genome Atlas Research Network*
+
+
+
+    Lung squamous cell carcinoma is a common type of lung cancer, causing approximately 400,000 deaths per year
+    worldwide. Genomic alterations in squamous cell lung cancers have not been comprehensively characterized, and no
+    molecularly targeted agents have been specifically developed for its treatment. As part of The Cancer Genome Atlas, here
+    we profile 178 lung squamous cell carcinomas to provide a comprehensive landscape of genomic and epigenomic
+    alterations. We show that the tumour type is characterized by complex genomic alterations, with a mean of 360 exonic
+    mutations, 165 genomic rearrangements, and 323 segments of copy number alteration per tumour. We find statistically
+    recurrent mutations in 11 genes, including mutation of TP53 in nearly all specimens. Previously unreported
+    loss-of-function mutations are seen in the HLA-A class I major histocompatibility gene. Significantly altered pathways
+    included NFE2L2 and KEAP1 in 34%, squamous differentiation genes in 44%, phosphatidylinositol-3-OH kinase pathway
+    genes in 47%, and CDKN2A and RB1 in 72% of tumours. We identified a potential therapeutic target in most tumours,
+    offering new avenues of investigation for the treatment of squamous cell lung cancers.
+
+
+Lung cancer is the leading cause of cancer-related mortality worldwide,                       adjacent, histologically normal tissues resected at the time of surgery
+leading to an estimated 1.4 million deaths in 2010 (ref. 1). The discovery                    (n 5 137) or from peripheral blood (n 5 41). All patients provided
+of recurrent mutations in the epidermal growth factor receptor (EGFR)                         written informed consent to conduct genomic studies in accordance
+kinase, as well as fusions involving anaplastic lymphoma kinase (ALK),                        with local Institutional Review Boards. The demographic characteris-
+has led to a marked change in the treatment of patients with lung                             tics are described in Supplementary Table 1.2. The median follow-up
+adenocarcinoma, the most common type of lung cancer2–5. More recent                           for the cohort was 15.8 months, and 60% of patients were alive at the
+data have suggested that targeting mutations in BRAF, AKT1, ERBB2                             time of the last follow-up (data updated in November 2011). Ninety-six
+and PIK3CA and fusions that involve ROS1 and RET may also be suc-                             per cent of the patients had a history of tobacco use, similar to previous
+cessful6,7. Unfortunately, activating mutations in EGFR and ALK fusions                       reports for North American patients with lung SQCC16. DNA and
+are typically not present in the second most common type of lung cancer,                      RNA were extracted from patient specimens and measured by several
+lung squamous cell carcinoma (SQCC)8, and targeted agents developed                           genomic assays, which included standard quality-control assessments
+for lung adenocarcinoma are largely ineffective against lung SQCC.                            (Supplementary Methods, sections 2–8). A committee of experts in
+   Although no comprehensive genomic analysis of lung SQCCs has                               lung cancer pathology performed a further review of all samples to
+been reported, single-platform studies have identified regions of                             confirm the histological subtype (Supplementary Fig. 1.1 and
+somatic copy number alterations in lung SQCCs, including amplifica-                           Supplementary Methods, section 1).
+tion of SOX2, PDGFRA and FGFR1 and/or WHSC1L1 and deletion of
+CDKN2A9,10. DNA sequencing studies of lung SQCCs have reported                                Somatic DNA alterations
+recurrent mutations in several genes, including TP53, NFE2L2,                                 The lung SQCCs analysed in this study display a large number and variety
+KEAP1, BAI3, FBXW7, GRM8, MUC16, RUNX1T1, STK11 and                                           of DNA alterations, with a mean of 360 exonic mutations, 323 altered
+ERBB4 (refs 11, 12). DDR2 mutations and FGFR1 amplification have                              copy number segments and 165 genomic rearrangements per tumour.
+been nominated as therapeutic targets13–15.
+                                                                                                 Copy number alterations were analysed using several platforms.
+   We have conducted a comprehensive study of lung SQCCs from a
+                                                                                              Analysis of single nucleotide polymorphism (SNP) 6.0 array data
+large cohort of patients as part of The Cancer Genome Atlas (TCGA)
+                                                                                              across the set of 178 lung SQCCs identified a high rate of copy number
+project. The twin aims are to characterize the genomic and epigenomic
+                                                                                              alteration (mean of 323 segments) when compared with other TCGA
+landscape of lung SQCC and to identify potential opportunities for
+                                                                                              projects (as of 1 February 2012), including ovarian cancer (477
+therapy. We report an integrated analysis based on DNA copy number,
+somatic exonic mutations, messenger RNA sequencing, mRNA                                      segments)17, glioblastoma multiforme (282 segments)18, colorectal
+expression and promoter methylation for 178 histopathologically                               carcinoma (213 segments), breast carcinoma (282 segments) and renal
+reviewed lung SQCCs, in addition to whole genome sequencing                                   cell carcinoma (156 segments) (P , 1 3 10215 by Fisher’s exact test).
+(WGS) of 19 samples and microRNA sequencing of 159 samples                                    These segments gave rise to regions of both focal and broad somatic
+(Supplementary Table 1.1). Demographic and clinical data and results                          copy number alterations (SCNAs), with a mean of 47 focal and 23
+of the genomic analyses can be downloaded from the TCGA data                                  broad events per tumour (broad events defined as $50% of the length
+portal (https://tcga-data.nci.nih.gov/docs/publications/lusc_2012/).                          of the chromosome arm). There was strong concordance between the
+                                                                                              three independent copy number assays for all regions of SCNA
+Samples and clinical data                                                                     (Supplementary Figs 2.1–2.4).
+Tumour samples were obtained from 178 patients with previously                                   At the level of whole chromosome arm SCNAs, lung SQCCs exhibit
+untreated stage I–IV lung SQCC. Germline DNA was obtained from                                many similarities to 205 cases of lung adenocarcinoma analysed by
+*
+Lists of participants and their affiliations appear at the end of the paper.
+
+
+                                                                                                              2 7 S E P T E M B E R 2 0 1 2 | VO L 4 8 9 | N AT U R E | 5 1 9
+                                                              ©2012 Macmillan Publishers Limited. All rights reserved
+ RESEARCH ARTICLE
+
+TCGA (Supplementary Fig. 2.1a). The most notable difference                      This yielded 12 other genes with FDR , 0.1: FAM123B (also known as
+between these cancers is selective amplification of chromosome 3q                WTX), HRAS, FBXW7, SMARCA4, NF1, SMAD4, EGFR, APC, TSC1,
+in lung SQCC, as has been reported9,19. Using the SNP 6.0 array                  BRAF, TNFAIP3 and CREBBP (Supplementary Table 3.1). Both the
+platform and GISTIC 2.0 (refs 20, 21), we identified regions of sig-             spectrum and the frequency of EGFR mutations differed from those
+nificant copy number alteration (Supplementary Methods, section 2).              seen in lung adenocarcinomas. The two most common alterations in
+There were 50 peaks of significant amplification or deletion                     lung adenocarcinoma, Leu858Arg and inframe deletions in exon 19,
+(Q , 0.05), several of which included SCNAs previously seen in lung              were absent, whereas two Leu861Gln mutations were detected in EGFR.
+SQCCs including SOX2, PDGFRA and/or KIT, EGFR, FGFR1 and/or                         As described in Supplementary Fig. 3.1, we verified somatic muta-
+WHSC1L1, CCND1 and CDKN2A9,10,19 (Supplementary Fig. 2.1b and                    tions by performing an independent hybrid-recapture of 76 genes in
+Supplementary Data 2.1 and 2.2). Other peaks defined regions of SCNA             all samples. A total of 1,289 mutations were assayed, and we achieved
+reported for the first time, including amplifications of chromosomal             satisfactory coverage to have power to verify at 1,283 positions. We
+segments containing NFE2L2, MYC, CDK6, MDM2, BCL2L1 and EYS                      validated 1,235 mutations (96.2%) (Supplementary Fig. 3.1 and Sup-
+and deletions of FOXP1, PTEN and NF1 (Supplementary Fig. 2.1b).                  plementary Methods, section 3). We also verified mutation calls using
+   Whole exome sequencing of 178 lung SQCCs and matched germline                 WGS and RNA sequencing data with similar results (Supplementary
+DNA targeted 193,094 exons from 18,863 genes. The mean sequencing                Figs 3.1, 4.3 and Supplementary Methods, sections 3 and 4).
+coverage across targeted bases was 1213, with 83% of target bases above             WGS was performed for 19 tumour/normal pairs with a mean
+303 coverage. We identified a total of 48,690 non-silent mutations with          computed coverage of 543. A mean of 165 somatic rearrangements
+a mean of 228 non-silent and 360 total exonic mutations per tumour,              was found per lung SQCC tumour pair (Supplementary Fig. 3.2), a
+corresponding to a mean somatic mutation rate of 8.1 mutations per               value in excess of that reported for WGS studies of other tumour types
+megabase (Mb) and median of 8.4 per Mb. That rate is higher than rates           including colorectal carcinoma (75)25, prostate carcinoma (108)26,
+observed in other TCGA projects including acute myelogenous leuk-                multiple myeloma (21)23 and breast cancer (90)27. Although most
+aemia (0.56 per Mb), breast carcinoma (1.0 per Mb), ovarian cancer17             inframe coding fusions detected in WGS were validated by RNA
+(2.1 per Mb), glioblastoma multiforme18 (2.3 per Mb) and colorectal              sequencing, no recurrent rearrangements predicted to generate fusion
+carcinoma (3.2 per Mb) (data as of 1 February 2012, P , 2.2 3 10216 by           proteins were identified (Supplementary Data 3.1 and 4.1).
+t-test or Wilcoxon’s rank sum test for lung SQCC versus all others). In
+lung SQCC, CpG transitions and transversions were the most com-                  Somatically altered pathways
+monly observed mutation types, with mean rates of 9.9 and 10.7 per               Many of the somatic alterations we have identified in lung SQCCs
+sequenced megabase of CpG context, respectively, for a total mutation            seem to be drivers of pathways important to the initiation or progres-
+rate of 20.6 per Mb. At non-CpG sites, transversions at C:G sites were           sion of the cancer. Specifically, genes involved in the oxidative stress
+more common than transitions (7.3 versus 2.9 per Mb; total 5 10.2 per            response and squamous differentiation were frequently altered by
+Mb) and more common than transversions or transitions at A:T sites               mutation or SCNA. We observed mutations and copy number altera-
+(1.5 versus 1.3 per Mb; total 5 2.8 per Mb).                                     tions of NFE2L2 and KEAP1 and/or deletion or mutation of CUL3 in
+   Significantly mutated genes were identified using a modified version          34% of cases (Fig. 2). NFE2L2 and KEAP1 code for proteins that bind
+of the MutSig algorithm (Supplementary Methods, section 3)22,23. We              to each other, have been shown to regulate the cell response to oxid-
+identified 10 genes with a false discovery rate (FDR) Q value , 0.1              ative damage, chemo- and radiotherapy, and are somatically altered in
+(Supplementary Table 3.1): TP53, CDKN2A, PTEN, PIK3CA, KEAP1,                    a variety of cancer types28,29. We found mutations in NFE2L2 almost
+MLL2, HLA-A, NFE2L2, NOTCH1 and RB1, all of which demonstrated                   exclusively in one of two KEAP1 interaction motifs, DLG or ETGE.
+robust evidence of gene expression as defined by reads per kilobase of           Mutations in KEAP1 and CUL3 showed a pattern consistent with loss-
+exon model per million mapped reads (RPKM) . 1 (Fig. 1). TP53                    of-function and were mutually exclusive with mutations in NFE2L2
+mutation was observed in 81% of samples by automated analysis; visual            (Figs 1c and 2). PARADIGM SHIFT30 analysis predicts that muta-
+review of sequencing reads identified a further 9% of samples with               tions in NFE2L2 and KEAP1 exert a considerable functional effect (Sup-
+potential mutations in regions of sub-optimal coverage or in samples             plementary Fig. 7.C.1, 7.C.2 and Supplementary Methods, section 7).
+with low purity. Most observed mutations in NOTCH1 (8 out of 17)                    We also found alterations in genes with known roles in squamous
+were truncating alterations, suggesting loss-of-function, as has recently        cell differentiation in 44% of samples, including overexpression and
+been reported for head and neck SQCCs22,24. Mutations in HLA-A were              amplification of SOX2 and TP63, loss-of-function mutations in
+also almost exclusively nonsense or splice site events (7 out of 8).             NOTCH1, NOTCH2 and ASCL4 and focal deletions in FOXP1
+   To increase our statistical power to detect mutated genes in the              (Fig. 2). Although NOTCH1 has been well characterized as an onco-
+setting of the observed high background mutation rate, we performed              gene in haematological cancers31, NOTCH1 and NOTCH2 truncating
+a secondary MutSig analysis only considering genes previously                    mutations have been reported in cutaneous SQCCs and lung SQCCs32.
+observed to be mutated in cancer according to the COSMIC database.               Truncating mutations in ASCL4 are the first to be reported in human
+                            100                                                                                 Figure 1 | Significantly mutated genes in lung
+                                           132                                   Syn.          Frame shift
+                Mutations
+                             80                                                  Missense      Inframe indel    SQCC. Significantly mutated genes
+     Syn.                    60                                                  Splice site   Other non syn.
+                             40                                                                                 (Q value , 0.1) identified by exome sequencing are
+                 per Mb
+     Non syn.                                                                    Nonsense
+                             20                                                                                 listed vertically by Q value. The percentage of lung
+                              0
+                                                                                                                SQCC samples with a mutation detected by
+ 155                         81%                                                         TP53
+                                                                                                                automated calling is noted at the left. Samples
+                             15%                                                      CDKN2A
+                              8%                                                         PTEN                   displayed as columns, with the overall number of
+                             16%                                                       PIK3CA                   mutations plotted at the top, and samples are
+                             12%                                                        KEAP1                   arranged to emphasize mutual exclusivity among
+                             20%                                                         MLL2                   mutations. Syn., synonymous.
+                              3%                                                        HLA-A
+                             15%                                                       NFE2L2
+                              8%                                                      NOTCH1
+                              7%                                                          RB1
+70     50   30      10                                                                          0.5 2.0 3.5
+ Individuals with                                                                                 –log10
+     mutation                                                                                    (Q value)
+
+5 2 0 | N AT U R E | VO L 4 8 9 | 2 7 S E P T E M B E R 2 0 1 2
+                                                   ©2012 Macmillan Publishers Limited. All rights reserved
+                                                                                                                                                                                   ARTICLE RESEARCH
+
+                Oxidative stress response                                         Squamous differentiation                                                              Figure 2 | Somatically altered
+           34% altered (62% in classical subtype)                                      44% altered                                                                      pathways in squamous cell lung
+                                                                                                                 SOX2              TP63
+                                                                                                                                                                        cancer. Left, alterations in oxidative
+                   KEAP1                   CUL3                                                                   21%              16%
+                                                                                                                                                                        stress response pathway genes as
+                    12%                      7%
+                                                                                                                                                                        defined by somatic mutation, copy
+                                                                                                                                                                        number alteration or up- or
+                               NFE2L2                                                          NOTCH1           NOTCH2          ASCL4           FOXP1                   downregulation. Frequencies of
+                                19%
+                                                                                                   8%               5%             3%             4%                    alteration are expressed as a
+                                                                                                                                                                        percentage of all cases, with
+                                                                                        78 cases with at least one alteration                                           background in red for activated genes
+                    Oxidative stress response                                     SOX2                                                                                  and blue for inactivated genes. Right,
+                                                                                  TP63
+      60 cases with at least one alteration
+                                                                                  NOTCH1
+                                                                                                                                                                        alterations in genes that regulate
+   NFE2L2                                                                         NOTCH2                                                                                squamous differentiation, as defined
+   KEAP1                                                                          ASCL4                                                                                 in the left panel.
+   CUL3                                                                           FOXP1
+
+          Cases (%)
+                                                                       Homozygous                                                        Truncating      Missense
+  50           0        50        Activation        Inhibition                                Amplification       Overexpression
+ Inactivated       Activated                                           deletion                                                          mutation        mutation
+
+
+cancer and may have a lineage role given the requirement for ASCL1                                                      tap63; P , 2.2 3 10216). The short deltaN isoform is thought to func-
+for survival of small-cell lung cancer cells33. Alterations in NOTCH1,                                                  tion as an oncogene35,36, and its expression was most enriched in the
+NOTCH2 and ASCL4 were mutually exclusive and exhibited minimal                                                          classical subtype. By contrast, the primitive expression subtype more
+overlap with amplification of TP63 and/or SOX2 (Fig. 2), suggesting                                                     commonly exhibited RB1 and PTEN alterations, and the basal express-
+that aberrations in those modulators of squamous cell differentiation                                                   ion subtype showed NF1 alterations (Fig. 3). Amplification of FGFR1
+have overlapping functional consequences.                                                                               and WHSC1L1 was anticorrelated with the classical subtype and spe-
+                                                                                                                        cifically with NFE2L2 or KEAP1 mutated samples. Although CDKN2A
+mRNA expression profiling and subtype classification                                                                    alterations are common in lung SQCCs, they are not associated with any
+Whole-transcriptome expression profiles were generated by RNA                                                           particular expression subtype (Fig. 3).
+sequencing for the entire cohort and by microarrays for a 121-sample                                                       Independent clustering of miRNA and methylation data indicated
+subset. Of 20,502 genes analysed, the mean RNA coverage indices were                                                    association with expression subtypes. The highest overall methylation
+193 and 6,420 RPKM (Supplementary Fig. 4.1 and Supplementary                                                            was seen in the classical subtype (Fig. 3, Supplementary Figs 5.1 and
+Methods, section 4). Previously reported lung SQCC gene expression-                                                     6.1, Supplementary Methods, sections 5 and 6, Supplementary Data
+subtype signatures34 were applied to both of the expression platforms,                                                  6.1 and 6.2 and Supplementary Table 5.1). Integrative clustering
+yielding four subtypes designated as classical (36%), basal (25%),                                                      (iCluster)37 of mRNA, miRNA, methylation, SCNA and mutation
+secretory (24%) and primitive (15%). The concordance of subtypes                                                        data demonstrated concordance with the mRNA expression subtypes
+between the two platforms was high (94% agreement) (Supplemen-                                                          and associated alterations (Fig. 3, Supplementary Fig. 7.A.1 and
+tary Fig. 4.2). Considerable correlations were found between the                                                        Supplementary Methods, section 7). Independent correlation of
+expression subtypes and genomic alterations in copy number, mutation                                                    somatic mutations, copy number alterations and gene expression
+and methylation (Fig. 3). The classical subtype was characterized by                                                    signatures revealed notable subtype associations with alterations in
+alterations in KEAP1, NFE2L2 and PTEN, as well as pronounced hyper-                                                     the TP53, PI3K, RB1 and NFE2L2/KEAP1 pathways (Supplementary
+methylation and chromosomal instability. The 3q26 amplicon was pre-                                                     Fig. 7.B.1 and Supplementary Methods, section 7).
+sent in all of the subtypes, but it was most characteristic of the classical
+subtype, which also showed the greatest overexpression of three known                                                   Analysis of the CDKN2A locus
+oncogenes on 3q: SOX2, TP63 and PIK3CA. RNA sequencing data                                                             Integrated multiplatform analyses showed that CDKN2A, a known
+suggested that high expression levels of TP63, in samples with and                                                      tumour suppressor gene in lung SQCC38 that encodes the p16INK4A
+without amplification of TP63, were associated with dominant expres-                                                    and p14ARF proteins, is inactivated in 72% of cases of lung SQCC
+sion of the deltaN isoform (also called p40), which lacks the amino-                                                    (Fig. 4a and Supplementary Data 7.1)—by epigenetic silencing by
+terminal transactivation domain, compared with the longer isoform,                                                      methylation (21%), inactivating mutation (18%), exon 1b skipping
+called tap63 (89% of tumours overexpressed deltaN compared with                                                         (4%) and homozygous deletion (29%).
+                                                                            Primitive                                                                     Figure 3 | Gene expression subtypes integrated
+                               Classical expression subtype            expression subtype      Basal expression subtype   Secretory expression subtype
+                                                                                                                                                          with genomic alterations. Tumours are displayed
+                                                                                                                                                          as columns, grouped by gene expression subtype.
+                 CN
+        PIK3CA expr.                                                                                                                                      Subtypes were compared by Kruskal–Wallis tests for
+3q26      TP63 expr.                                                                                                                                      continuous features and by Fisher’s exact tests for
+           deltaN %
+          SOX2 expr.                                                                                                                                      categorical features. Displayed features showed
+                Mut.
+KEAP1
+               Expr.                                                                                                                                      significant association with gene expression subtype
+                Mut.                                                                                                                                      (P , 0.05), except for CDKN2A alterations. deltaN
+NFE2L2           CN
+               Expr.                                                                                                                                      percentage represents transcript isoform usage
+PTEN
+                 CN                                                                                                                                       between the TP63 isoforms, deltaN and tap63, as
+               Expr.
+RB1             Mut.                                                                                                                                      determined by RNA sequencing. Chromosomal
+NF1
+                 CN                                                                                                                                       instability (CIN) is defined by the mean of the
+               Expr.
+CIN                                                                                                                                                       absolute values of chromosome arm copy numbers
+Hypermethylation                                                                                                                                          (CN) from the GISTIC23,24 output. Absolute values
+                Mut.                                                                                                                                      are used so that amplification and deletion alterations
+CDKN2A           CN
+               Expr.                                                                                                                                      are counted equally. Hypermethylation scores and
+iCluster
+                                                                                                                                                          iCluster assignments are described in Supplementary
+                                    Gene sequence:               WT          Mut.
+                                                                                                                                                          Figs 6.1 and 7.A1, respectively. CIN, methylation,
+                    DNA copy number, CIN, deltaN %:     –0.3 –0.1     0.1   0.3                                                                           gene expression and deltaN values were standardized
+                         Expression and methylation:    –0.75 –0.25 0.25 0.75                                                                             for display using z-score transformation. Expr.,
+                                                                                                                                                          expression; mut., mutation; WT, wild type.
+
+                                                                                                                                              2 7 S E P T E M B E R 2 0 1 2 | VO L 4 8 9 | N AT U R E | 5 2 1
+                                                                       ©2012 Macmillan Publishers Limited. All rights reserved
+ RESEARCH ARTICLE
+
+a CDKN2A locus                                                                                        b                                                   p16INK4a mutated    p16INK4a methylated     RB1 altered   Figure 4 | Multi-faceted
+p16INK4a alteration rate: 72%
+                                                                                                                                                          p16INK4a fusion (TCGA-21-1078)                            characterization of mechanisms of
+
+
+
+
+                                                                                                    p16INK4a mRNA expression (exon 1α log2 RPKM)
+                                                                                                                                                    4
+                                                    Exon 2 skipping: 4%                                                                                                                                             CDKN2A loss. a, Schematic view of
+          Epigenetic silencing: 21%                                       Mutation: 17%                                                                                                                             the exon structure of CDKN2A
+                                                                          Missense     Truncating
+p16INK4: exons 1, 2 and 3                                                                                                                           2                                                               demonstrating the types of
+                                                                              Exon 3
+              Exon 1β                     Exon 1α        Exon 2                                                                                                                                                     alterations identified in the study.
+ ARF: exons 1β, 2 and 3
+                                                                                                                                                    0                                                               The locations of point mutation are
+                                                     Homozygous deletion: 30%                                                                                                                                       denoted by black and green circles.
+                                                                                                                                                                                                                    b, CDKN2A expression (y axis)
+                                                                                                                                                   –2
+                                                                                                                                                                                                                    versus CDKN2A copy number (x
+c                              KIAA1797                              p16INK4                                                                                                                                        axis). Samples are represented by
+                                                                                                                                                   –4                                                               circles and colour-coded by specific
+                     Exon 17           Exon 18                       Exon 1α
+                                                                                                                                                                                                                    type of CDKN2A alteration. Del.,
+                                      Chr9: 20863778         Chr9: 21972267
+       ORF                                                                                                                                         –6                                                               deletion; het., heterozygous; homoz.,
+                                                                                                                                                                                                                    homozygous. c, Diagram of the
+                                                                                                                                                                                                                    KIAA1797-p16INK4 fusion
+                                                                                                                                                   –8
+                                 KIAA1797 exons 1–18         p16INK4 exon 1α                                                                                                                                        identified by WGS. ORF, open
+      mRNA
+                                                                                                                                                           Homoz. del.         Het. loss             Diploid        reading frame. d, CDKN2A
+                                                                                                                                                                                                    p16INK4a low    alterations and expression levels
+d                                                                                                                                                                                                   expression      (binary) in each sample.
+p16INK4
+RB1
+CDK6
+
+CCND1
+                Homozygous                                                             Missense                                                    Truncating                                         Skipped
+                                      Amplification           Downregulation                                                                                               Methylation
+                deletion                                                               mutation                                                    mutation                                           exon
+
+
+
+   Analysis of mRNA expression across the CDKN2A locus revealed                                                                                         contain one or more mutations in tyrosine kinases, serine/threonine
+four distinct patterns of expression: complete absence of both p16INK4                                                                                  kinases, phosphatidylinositol-3-OH kinase (PI(3)K) catalytic and
+and ARF (33%); expression of high levels of both p16INK4 and ARF                                                                                        regulatory subunits, nuclear hormone receptors, G-protein-coupled
+(31%); high expression of ARF and absence of p16INK4 (31%); or                                                                                          receptors, proteases and tyrosine phosphatases (Supplementary
+expression of a transcript that represents a splicing of exon 1b from                                                                                   Fig. 7.D.1a and Supplementary Data 7.2 and 7.3). From 50 to 77%
+ARF with the shared exon 3 of ARF and p16INK4, generating a pre-                                                                                        of the mutations were predicted to have a medium or high functional
+mature stop codon (4%) (Supplementary Fig. 4.4). Almost all of the                                                                                      effect as determined by the mutation assessor score40 (Supplementary
+cases completely lacking p16INK4 and ARF expression showed homo-                                                                                        Fig. 7.D.1a), and 39% of tyrosine and 42% of serine/threonine kinase
+zygous deletion (Fig. 4b and Supplementary Data 7.1). In one case,                                                                                      mutations were located in the kinase domain. Many of the alterations
+p16INK4 expression was detected but analysis of WGS data demon-                                                                                         were in known oncogenes and tumour suppressors, as defined in the
+strated an intergenic fusion event that resulted in detectable transcrip-                                                                               COSMIC database (Supplementary Data 7.3).
+tion between exon 1a p16INK4 and exon 18 of KIAA1797 (Fig. 4b, c).                                                                                         We selected potential therapeutic targets based on several features,
+Interestingly, combined analysis of WGS and RNA sequencing data                                                                                         including (1) availability of a US Food and Drug Administration
+identified tumour suppressor gene inactivation by intra- or interchro-                                                                                  (FDA)-approved targeted therapeutic agent or one under study in
+mosomal rearrangement in PTEN, NOTCH1, ARID1A, CTNNA2, VHL                                                                                              current clinical trials (Supplementary Data 7.2); (2) confirmation of
+and NF1, in eight further cases (Supplementary Data 3.1 and 4.1).                                                                                       the altered allele in RNA sequencing; and (3) the mutation assessor
+   In addition to homozygous deletion, there are frequent mutational                                                                                    score40. Using those criteria, we identified 114 cases with somatic
+events in CDKN2A (Fig. 4b and Supplementary Data 7.1). These                                                                                            alteration of a potentially targetable gene (64%) (Supplementary
+account for 45% of the 56 cases with high p16INK4 and ARF expres-                                                                                       Fig. 7.D.1b and Supplementary Data 7.4). Among these, we identified
+sion. Furthermore, methylation of the exon 1a promoter accounts for                                                                                     three families of tyrosine kinases, the erythroblastic leukaemia viral
+many other cases of CDKN2A inactivation (70% of lung SQCCs with                                                                                         oncogene homologues (ERBBs), fibroblast growth factor receptors
+ARF expression in the absence of detectable p16INK4). Seven other                                                                                       (FGFRs) and Janus kinases (JAKs), all of which were found to be
+tumours in the high-ARF/low-INK4A group had documented                                                                                                  mutated and/or amplified41. As discussed for EGFR, the mutational
+mutations of INK4A, primarily nonsense mutations, suggesting                                                                                            spectra in these potential therapeutic targets differed from those in
+nonsense-mediated decay as a mechanism. Of the 28% of tumours                                                                                           lung adenocarcinoma (Supplementary Fig. 7.D.2)42.
+without CDKN2A alterations, RB1 mutations were identified in eight                                                                                         To complement a gene-centred search for potential therapeutic
+cases and CDK6 amplification in one case (Fig. 4d).                                                                                                     targets, we analysed core cellular pathways known to represent poten-
+                                                                                                                                                        tial therapeutic vulnerabilities: PI(3)K/AKT, receptor tyrosine kinase
+Therapeutic targets                                                                                                                                     (RTK) and RAS. Analysis of the 178 lung SQCCs revealed alteration
+Molecularly targeted agents are now commonly used in patients with                                                                                      in at least one of those pathways in 69% of samples after restriction of
+adenocarcinoma of the lung, whereas no effective targeted agents have                                                                                   the analysis to mutations confirmed by RNA sequencing and to
+been developed specifically for lung SQCCs13. We analysed our genomic                                                                                   amplifications associated with overexpression of the target gene
+data for evidence of the two common genomic alterations in adeno-                                                                                       (Fig. 5). Mutational events that have been curated in COSMIC are
+carcinomas of the lung: EGFR and KRAS mutations. Only one                                                                                               also shown in Supplementary Fig. 7D.2, as is the distribution of muta-
+sample had a KRAS codon 61 mutation, and there were no exon 19                                                                                          tions, amplifications and overexpression of the genes depicted in
+deletions or Leu858Arg mutations in EGFR. However, amplifications                                                                                       Fig. 5. (A summary of all samples and their significant mutations
+of EGFR were found in 7% of cases, as were two instances of the                                                                                         and copy number alterations, including alterations in Fig. 5, is shown
+Leu861Gln EGFR mutation, which confers sensitivity to erlotinib                                                                                         in Supplementary Data 7.5.) Specifically, one of the components of the
+and gefitinib39.                                                                                                                                        PI(3)K/AKT pathway was altered in 47% of tumours and RTK sig-
+   The presence of new potential therapeutic targets in lung SQCC                                                                                       nalling probably affected by events such as EGFR amplification, BRAF
+was suggested by the observation that 96% (171 out of 178) of tumours                                                                                   mutation or FGFR amplification or mutation in 26% of tumours
+5 2 2 | N AT U R E | VO L 4 8 9 | 2 7 S E P T E M B E R 2 0 1 2
+                                                                  ©2012 Macmillan Publishers Limited. All rights reserved
+                                                                                                                                                            ARTICLE RESEARCH
+
+PI(3)K/RTK/RAS signalling                                                                      data could thereby help to facilitate effective personalized therapy for
+69% altered                                                                                    this deadly disease.
+                                   EGFR ERBB2 ERBB3 FGFR1 FGFR2 FGFR3
+          PTEN         PIK3CA        9%       4%        2%         7%       3%         2%
+          15%           16%
+                                                                                               METHODS SUMMARY
+                                                                                 RASA1
+                                                                                               All specimens were obtained from patients with appropriate consent from the
+                                                 KRAS HRAS NRAS                        4%      relevant Institutional Review Board. DNA and RNA were collected from samples
+  STK11          AKT1 AKT2 AKT3
+                 <1%     4%      16%               3%         3%     <1%                       using the Allprep kit (Qiagen). We used commercial technology for capture and
+     2%                                                                            NF1
+                                                                                   11%         sequencing of exomes from tumour DNA and normal DNA and whole-genome
+                                                                                               shotgun sequencing. Significantly mutated genes were identified by comparing them
+                 TSC1 TSC2
+   AMPK                                                   BRAF                                 with expectation models based on the exact measured rates of specific sequence
+                  3%     3%
+                                                              4%                               lesions. GISTIC23,24 analysis of the circular-binary-segmented Affymetrix SNP 6.0
+                                                                                               copy number data was used to identify recurrent amplification and deletion peaks.
+             MTOR                                                          Cases (%)           Consensus clustering approaches were used to analyse mRNA, miRNA and methy-
+                                                                     50        0      50       lation subtypes using previous approaches20,21,34,38,41,44.
+                                                                   Inactivated   Activated
+                  Proliferation, cell survival, translation          Activation   Inhibition
+                                                                                               Received 9 March; accepted 9 July 2012.
+Alteration pattern
+RTK 26%                                                                                        Published online 9 September 2012.
+RAS 24%
+PI(3)K 47%                                                                                     1.  World Health Organization. Cancer, fact sheet no. 297 Æhttp://www.who.int/
+                                                                                                   mediacentre/factsheets/fs297/en/æ (accessed February 2012).
+Figure 5 | Alterations in targetable oncogenic pathways in lung SQCCs.                         2. Soda, M. et al. Identification of the transforming EML4–ALK fusion gene in non-
+Pathway diagram showing the percentage of samples with alterations in the                          small-cell lung cancer. Nature 448, 561–566 (2007).
+PI(3)K/RTK/RAS pathways. Alterations are defined by somatic mutations,                         3. Paez, J. G. et al. EGFR mutations in lung cancer: correlation with clinical response to
+homozygous deletions, high-level, focal amplifications, and, in some cases, by                     gefitinib therapy. Science 304, 1497–1500 (2004).
+significant up- or downregulation of gene expression (AKT3, FGFR1, PTEN).                      4. Lynch, T. J. et al. Activating mutations in the epidermal growth factor receptor
+                                                                                                   underlying responsiveness of non-small-cell lung cancer to gefitinib. N. Engl. J.
+(Fig. 5 and Supplementary Fig. 7.D.3). Alterations in the PI(3)K/AKT                               Med. 350, 2129–2139 (2004).
+                                                                                               5. Pao, W. et al. EGF receptor gene mutations are common in lung cancers from
+pathway genes were mutually exclusive with EGFR alterations as                                     ‘‘never smokers’’ and are associated with sensitivity of tumors to gefitinib and
+identified by MEMo43 (Supplementary Fig. 7.D.4.). Although the                                     erlotinib. Proc. Natl Acad. Sci. USA 101, 13306–13311 (2004).
+dependence of lung SQCC on many of these individual alterations                                6. Felip, E., Gridelli, C., Baas, P., Rosell, R. & Stahel, R. Metastatic non-small-cell lung
+                                                                                                   cancer: consensus on pathology and molecular tests, first-line, second-line, and
+remains to be defined functionally, this analysis suggests new areas for                           third-line therapy. Ann. Oncol. 22, 1507–1519 (2011).
+potential therapeutic development in this cancer.                                              7. Ju, Y. S. et al. A transforming KIF5B and RET gene fusion in lung adenocarcinoma
+                                                                                                   revealed from whole-genome and transcriptome sequencing. Genome Res. 22,
+                                                                                                   436–445 (2012).
+Discussion                                                                                     8. Rekhtman, N. et al. Clarifying the spectrum of driver oncogene mutations in
+Lung SQCCs are characterized by a high overall mutation rate of 8.1                                biomarker-verified squamous carcinoma of lung: lack of EGFR/KRAS and
+mutations per megabase and marked genomic complexity. Similar to                                   presence of PIK3CA/AKT1 mutations. Clin. Cancer. Res. 18, 1167–1176 (2012).
+                                                                                               9. Bass, A. J. et al. SOX2 is an amplified lineage-survival oncogene in lung and
+high-grade serous ovarian carcinoma17, almost all lung SQCCs                                       esophageal squamous cell carcinomas. Nature Genet. 41, 1238–1242 (2009).
+display somatic mutation of TP53. There were also frequent altera-                             10. Ramos, A. H. et al. Amplification of chromosomal segment 4q12 in non-small cell
+tions in the following pathways: CDKN2A/RB1, NFE2L2/KEAP1/                                         lung cancer. Cancer Biol. Ther. 8, 2042–2050 (2009).
+                                                                                               11. Shibata, T. et al. Cancer related mutations in NRF2 impair its recognition by Keap1-
+CUL3, PI3K/AKT and SOX2/TP63/NOTCH1 pathways, providing                                            Cul3 E3 ligase and promote malignancy. Proc. Natl Acad. Sci. USA 105,
+evidence of common dysfunction in cell cycle control, response to                                  13568–13573 (2008).
+oxidative stress, apoptotic signalling and/or squamous cell differenti-                        12. Kan, Z. et al. Diverse somatic mutation patterns and pathway alterations in human
+                                                                                                   cancers. Nature 466, 869–873 (2010).
+ation. Pathway alterations clustered according to expression-subtype                           13. Hammerman, P. S., Sos, M. L., Ramos, A. & Xu, C. Mutations in the DDR2 kinase
+in many cases, suggesting that those subtypes have a biological basis.                             gene identify a novel therapeutic target in squamous cell lung cancer. Cancer
+   A role for somatic mutation in the cancer hallmark of avoiding                                  Discovery 1, 78 (2011).
+                                                                                               14. Weiss, J. et al. Frequent and focal FGFR1 amplification associates with
+immune destruction44 is suggested by the presence of inactivating muta-                            therapeutically tractable FGFR1 dependency in squamous cell lung cancer. Sci.
+tions in the HLA-A gene. Somatic loss-of-function alterations of HLA-A                             Transl. Med. 2, 62ra93 (2010).
+have not been reported previously in genomic studies of lung cancer.                           15. Dutt, A. et al. Inhibitor-sensitive FGFR1 amplification in human non-small cell lung
+                                                                                                   cancer. PLoS One 6, e20351 (2011).
+Given the recently reported efficacy of anti-programmed death 1                                16. Kenfield, S. A., Wei, E. K., Stampfer, M. J., Rosner, B. A. & Colditz, G. A. Comparison of
+(PD1)45 and anti-cytotoxic T-lymphocyte antigen 4 (CTLA4) antibodies                               aspects of smoking among the four histological types of lung cancer. Tob. Control
+in non-small-cell lung cancer46, these HLA-A mutations suggest a pos-                              17, 198–204 (2008).
+                                                                                               17. The Cancer Genome Atlas Research Network. Integrated genomic analyses of
+sible role for genotypic selection of patients for immunotherapies.                                ovarian carcinoma. Nature 474, 609–615 (2011).
+   Targeted kinase inhibitors have been successfully used for the treat-                       18. The Cancer Genome Atlas Research Network. Comprehensive genomic
+ment of lung adenocarcinoma but minimally so in lung SQCC. The                                     characterization defines human glioblastoma genes and core pathways. Nature
+                                                                                                   455, 1061–1068 (2008).
+observations reported here suggest that a detailed understanding of                            19. Tonon, G. et al. High-resolution genomic profiles of human lung cancer. Proc. Natl
+the possible targets in lung SQCCs may identify targeted therapeutic                               Acad. Sci. USA 102, 9625–9630 (2005).
+approaches. Whereas EGFR and KRAS mutations, the two most com-                                 20. Beroukhim, R. et al. The landscape of somatic copy-number alteration across
+                                                                                                   human cancers. Nature 463, 899–905 (2010).
+mon oncogenic aberrations in lung adenocarcinoma, are extremely                                21. Mermel, C. H. et al. GISTIC2.0 facilitates sensitive and confident localization of the
+rare in lung SQCC, alterations in the FGFR kinase family are                                       targets of focal somatic copy-number alteration in human cancers. Genome Biol.
+common. Lung SQCCs also share many alterations in common with                                      12, R41 (2011).
+head and neck squamous cell carcinomas without evidence of human                               22. Stransky, N. et al. The mutational landscape of head and neck squamous cell
+                                                                                                   carcinoma. Science 333, 1157–1160 (2011).
+papilloma virus infection, including mutation in PIK3CA, PTEN,                                 23. Chapman, M. A. et al. Initial genome sequencing and analysis of multiple myeloma.
+TP53, CDKN2A, NOTCH1 and HRAS22,24, suggesting that the biology                                    Nature 471, 467–472 (2011).
+of these two diseases may be similar.                                                          24. Agrawal, N. et al. Exome sequencing of head and neck squamous cell carcinoma
+                                                                                                   reveals inactivating mutations in NOTCH1. Science 333, 1154–1157 (2011).
+   The current study has identified a potentially targetable gene or                           25. Bass, A. J. et al. Genomic sequencing of colorectal adenocarcinomas identifies a
+pathway alteration in most lung SQCC samples studied. The data                                     recurrent VTI1A-TCF7L2 fusion. Nature Genet. 43, 964–968 (2011).
+presented here can help to organize efforts to analyse lung SQCC                               26. Berger, M. F. et al. The genomic complexity of primary human prostate cancer.
+                                                                                                   Nature 470, 214–220 (2011).
+clinical tumour specimens for a panel of specific, actionable muta-                            27. Stephens, P. J. et al. Complex landscapes of somatic rearrangement in human
+tions to select patients for appropriately targeted clinical trials. These                         breast cancer genomes. Nature 462, 1005–1010 (2009).
+
+                                                                                                                    2 7 S E P T E M B E R 2 0 1 2 | VO L 4 8 9 | N AT U R E | 5 2 3
+                                                        ©2012 Macmillan Publishers Limited. All rights reserved
+ RESEARCH ARTICLE
+
+28. Singh, A. et al. Dysfunctional KEAP1–NRF2 interaction in non-small-cell lung                The Cancer Genome Atlas Research Network (Participants are arranged by area of
+    cancer. PLoS Med. 3, e420 (2006).                                                           contribution and then by institution.)
+29. Singh, A., Bodas, M., Wakabayashi, N., Bunz, F. & Biswal, S. Gain of Nrf2 function in
+    non-small-cell lung cancer cells confers radioresistance. Antioxid. Redox Signal. 13,
+                                                                                                Genome sequencing centres: Broad Institute Peter S. Hammerman1,2, Michael S.
+    1627–1637 (2010).
+                                                                                                Lawrence1, Douglas Voet1, Rui Jing1, Kristian Cibulskis1, Andrey Sivachenko1, Petar
+30. Vaske, C. J. et al. Inference of patient-specific pathway activities from multi-
+                                                                                                Stojanov1, Aaron McKenna1, Eric S. Lander1,3,4, Stacey Gabriel5, Gad Getz1,5, Carrie
+    dimensional cancer genomics data using PARADIGM. Bioinformatics 26,
+                                                                                                Sougnez5, Marcin Imielinski1,6, Elena Helman1, Bryan Hernandez1, Nam H. Pho1,
+    i237–i245 (2010).
+                                                                                                Matthew Meyerson1,2,6
+31. Aster, J. C., Blacklow, S. C. & Pear, W. S. Notch signalling in T-cell lymphoblastic
+    leukaemia/lymphoma and other haematological malignancies. J. Pathol. 223,
+    263–274 (2011).                                                                             Genome characterization centres: BC Cancer Agency Andy Chu7, Hye-Jung E. Chun7,
+32. Wang, N. J. et al. Loss-of-function mutations in Notch receptors in cutaneous and           Andrew J. Mungall7, Erin Pleasance7, A. Gordon Robertson7, Payal Sipahimalani7,
+    lung squamous cell carcinoma. Proc. Natl Acad. Sci. USA 108, 17761–17766                    Dominik Stoll7, Miruna Balasundaram7, Inanc Birol7, Yaron S. N. Butterfield7, Eric
+    (2011).                                                                                     Chuah7, Robin J. N. Coope7, Richard Corbett7, Noreen Dhalla7, Ranabir Guin7, An He7,
+33. Osada, H., Tatematsu, Y., Yatabe, Y., Horio, Y. & Takahashi, T. ASH1 gene is a specific     Carrie Hirst7, Martin Hirst7, Robert A. Holt7, Darlene Lee7, Haiyan I. Li7, Michael Mayo7,
+    therapeutic target for lung cancers with neuroendocrine features. Cancer Res. 65,           Richard A. Moore7, Karen Mungall7, Ka Ming Nip7, Adam Olshen8, Jacqueline E.
+    10680–10685 (2005).                                                                         Schein7, Jared R. Slobodan7, Angela Tam7, Nina Thiessen7, Richard Varhol7, Thomas
+34. Wilkerson, M. D. et al. Lung squamous cell carcinoma mRNA expression subtypes               Zeng7, Yongjun Zhao7, Steven J. M. Jones7, Marco A. Marra7; Broad Institute Gordon
+    are reproducible, clinically important, and correspond to normal cell types. Clin.          Saksena1, Andrew D. Cherniack1,Stephen E. Schumacher1,2, Barbara Tabak1,2, Scott L.
+    Cancer Res. 16, 4864–4875 (2010).                                                           Carter1, Nam H. Pho1, Huy Nguyen1, Robert C. Onofrio5, Andrew Crenshaw1, Kristin
+35. Bishop, J. A. et al. p40 (DNp63) is superior to p63 for the diagnosis of pulmonary          Ardlie5, Rameen Beroukhim1,2, Wendy Winckler1,5, Peter S. Hammerman1,2, Gad
+    squamous cell carcinoma. Mod. Pathol. 25, 405–415 (2011).                                   Getz1,5, Matthew Meyerson1,2,6; Brigham & Women’s Hospital/Harvard Medical
+36. Massion, P. P. et al. Significance of p63 amplification and overexpression in lung          School Alexei Protopopov9,10, Jianhua Zhang9,10, Angela Hadjipanayis11,12, Semin
+    cancer development and prognosis. Cancer Res. 63, 7113–7121 (2003).                         Lee13, Ruibin Xi13, Lixing Yang13, Xiaojia Ren9,11,12, Hailei Zhang1,9, Sachet Shukla1,9,
+37. Shen, R., Olshen, A. B. & Ladanyi, M. Integrative clustering of multiple genomic data       Peng-Chieh Chen11,12, Psalm Haseley12,13, Eunjung Lee12,13, Lynda Chin1,2,9,10,14,
+    types using a joint latent variable model with application to breast and lung cancer        Peter J. Park12,13,15, Raju Kucherlapati11,12; Memorial Sloan-Kettering Cancer Center
+    subtype analysis. Bioinformatics 25, 2906–2912 (2009).                                      (TCGA pilot phase only) Nicholas D. Socci16, Yupu Liang16, Nikolaus Schultz16, Laetitia
+38. Wikman, H. & Kettunen, E. Regulation of the G1/S phase of the cell cycle and                Borsu16, Alex E. Lash16, Agnes Viale16, Chris Sander16, Marc Ladanyi17,18; University of
+    alterations in the RB pathway in human lung cancer. Expert Rev. Anticancer Ther. 6,         North Carolina at Chapel Hill J. Todd Auman19,20, Katherine A. Hoadley21,22,23,
+    515–530 (2006).                                                                             Matthew D. Wilkerson23, Yan Shi23, Christina Liquori23, Shaowu Meng23, Ling Li23, Yidi
+39. Kancha, R. K., Peschel, C. & Duyster, J. The epidermal growth factor receptor-              J. Turman23, Michael D. Topal22,23, Donghui Tan24, Scot Waring23, Elizabeth Buda23,
+    L861Q mutation increases kinase activity without leading to enhanced sensitivity            Jesse Walsh23, Corbin D. Jones25, Piotr A. Mieczkowski21, Darshan Singh23, Junyuan
+    toward epidermal growth factor receptor kinase inhibitors. J. Thorac. Oncol. 6,             Wu23, Anisha Gulabani23, Peter Dolina23, Tom Bodenheimer23, Alan P. Hoyle23, Janae
+    387–392 (2011).                                                                             V. Simons23, Matthew G. Soloway23, Lisle E. Mose22, Stuart R. Jefferys22, Saianand
+40. Reva, B., Antipin, Y. & Sander, C. Predicting the functional impact of protein              Balu23, Brian D. O’Connor23, Jan F. Prins26, Jinze Liu27, Derek Y. Chiang21,23, D. Neil
+    mutations: application to cancer genomics. Nucleic Acids Res. 39, e118 (2011).              Hayes23,28, Charles M. Perou21,22,23; University of Southern California/Johns Hopkins
+41. Govindan, R. Summary of the proceedings from the 10th annual meeting of                     Leslie Cope29, Ludmila Danilova29, Daniel J. Weisenberger30, Dennis T. Maglinte30, Fei
+    molecularly targeted therapy in non-small cell lung cancer. J. Thorac. Oncol. 5,            Pan30, David J. Van Den Berg30, Timothy Triche Jr30, James G. Herman29, Stephen B.
+    S433 (2010).                                                                                Baylin29, Peter W. Laird30
+42. Ding, L. et al. Somatic mutations affect key pathways in lung adenocarcinoma.
+    Nature 455, 1069–1075 (2008).                                                               Genome data analysis centres: Broad Institute Gad Getz1,5, Michael Noble1, Doug
+43. Ciriello, G., Cerami, E., Sander, C. & Schultz, N. Mutual exclusivity analysis identifies   Voet1, Gordon Saksena1, Nils Gehlenborg1,13, Daniel DiCara1, Jinhua Zhang9,10, Hailei
+    oncogenic network modules. Genome Res. 22, 398–406 (2012).                                  Zhang1, Chang-Jiun Wu2,10, Spring Yingchun Liu1, Michael S. Lawrence1, Lihua Zou1,
+44. Hanahan, D. & Weinberg, R. A. Hallmarks of cancer: the next generation. Cell 144,           Andrey Sivachenko1, Pei Lin1, Petar Stojanov1, Rui Jing1, Juok Cho1, Marc-Danie
+    646–674 (2011).                                                                             Nazaire1, Jim Robinson1, Helga Thorvaldsdottir1, Jill Mesirov1, Peter J. Park12,13,15,
+45. Brahmer, J. R. et al. Phase I study of single-agent anti-programmed death-1 (MDX-           Lynda Chin1,2,9,10,14; Memorial Sloan-Kettering Cancer Center Nikolaus Schultz16,
+    1106) in refractory solid tumors: safety, clinical activity, pharmacodynamics, and          Rileen Sinha16, Giovanni Ciriello16, Ethan Cerami16, Benjamin Gross16, Anders
+    immunologic correlates. J. Clin. Oncol. 28, 3167–3175 (2010).                               Jacobsen16, Jianjiong Gao16, B. Arman Aksoy16, Nils Weinhold16, Ricardo Ramirez16,
+46. Lynch, T. J. et al. Phase II trial of ipilimumab (IPI) and paclitaxel/carboplatin (P/C)     Barry S. Taylor16, Yevgeniy Antipin16, Boris Reva16, Ronglai Shen31, Qianxing Mo31,
+    in first-line stage IIIb/IV non-small cell lung cancer (NSCLC). J. Clin. Oncol. 28, 7531    Venkatraman Seshan31, Paul K. Paik32, Marc Ladanyi17, 18, Chris Sander16; The
+    (2010).                                                                                     University of Texas MD Anderson Cancer Center Rehan Akbani33, Nianxiang Zhang33,
+Supplementary Information is available in the online version of the paper.                      Bradley M. Broom33, Tod Casasent33, Anna Unruh33, Chris Wakefield33, R. Craig
+                                                                                                Cason34, Keith A. Baggerly33, John N. Weinstein33,35; University of California Santa
+Acknowledgements This study was supported by NIH grants U24 CA126561, U24                       Cruz/Buck Institute David Haussler36,37, Christopher C. Benz38, Joshua M. Stuart36,
+CA126551, U24 CA126554, U24 CA126543, U24 CA126546, U24 CA126563, U24                           Jingchun Zhu36, Christopher Szeto36, Gary K. Scott38, Christina Yau38, Sam Ng36, Ted
+CA126544, U24 CA143845, U24 CA143858, U24 CA144025, U24 CA143882, U24                           Goldstein36, Peter Waltman36, Artem Sokolov36, Kyle Ellrott36, Eric A. Collisson39,
+CA143866, U24 CA143867, U24 CA143848, U24 CA143840, U24 CA143835, U24                           Daniel Zerbino36, Christopher Wilks36, Singer Ma36, Brian Craft36; University of North
+CA143799, U24 CA143883, U24 CA143843, U54 HG003067, U54 HG003079 and                            Carolina at Chapel Hill Matthew D. Wilkerson23, J. Todd Auman19,20, Katherine A.
+U54 HG003273.                                                                                   Hoadley21,22,23, Ying Du23, Christopher Cabanski23, Vonn Walter23, Darshan Singh23,
+                                                                                                Junyuan Wu23, Anisha Gulabani23, Tom Bodenheimer23, Alan P. Hoyle23, Janae V.
+Author Contributions The TCGA research network contributed collectively to this                 Simons23, Matthew G. Soloway23, Lisle E. Mose22, Stuart R. Jefferys22, Saianand Balu23,
+study. Biospecimens were provided by the tissue source sites and processed by the               J. S. Marron40, Yufeng Liu24, Kai Wang27, Jinze Liu27, Jan F. Prins23, D. Neil Hayes23,28,
+biospecimen core resource. Data generation and analyses were performed by the                   Charles M. Perou21,22,23; Baylor College of Medicine Chad J. Creighton41, Yiqun
+genome sequencing centres, cancer genome characterization centres and genome                    Zhang41
+data analysis centres. All data were released through the data coordinating centre.
+Project activities were coordinated by the National Cancer Institute and National
+Human Genome Research Institute project teams. We also acknowledge the following                Pathology committee William D. Travis42, Natasha Rekhtman42, Joanne Yi43, Marie C.
+TCGA investigators who made substantial contributions to the project: P.S.H. and                Aubry43, Richard Cheney44, Sanja Dacic45, Douglas Flieder46, William Funkhouser47,
+D.N.H. (manuscript coordinators); M.D.W. (data coordinator); P.S.H. and N.S. (analysis          Peter Illei48, Jerome Myers49, Ming-Sound Tsao50
+coordinators); P.S.H., M.S.L., A. Sivachecnko, B.H. and G.G. (DNA sequence analysis);
+M.D.W., J.L. and D.N.H. (mRNA sequence analysis); L. Cope, J.G.H. and L. Danilova (DNA          Biospecimen core resources: International Genomics Consortium Robert Penny51,
+methylation analysis); A.C., G.S., N.H.P., R.K. and M.L. (copy number analysis); N.S., R.       David Mallery51, Troy Shelton51, Martha Hatfield51, Scott Morris51, Peggy Yena51,
+Bose, C.J.C., R. Sinha, C.M., S.N., E.A.C., R. Shen, J.N.W. and C. Sander (pathway analysis);   Candace Shelton51, Mark Sherman51, Joseph Paulauskis51
+A.C. and G.R. (miRNA sequence analysis); W.D.T., B.E.J., D.A.W. and M.-S.T. (pathology
+and clinical expertise); S.B.B., R. Govindan and M. Meyerson (project chairs).
+                                                                                                Disease working group Matthew Meyerson1,2,6, Stephen B. Baylin29, Ramaswamy
+Author Information The primary and processed data used to generate the analyses                 Govindan52, Rehan Akbani33, Ijeoma Azodo53, David Beer54, Ron Bose52, Lauren A.
+presented here can be downloaded by registered users from The Cancer Genome Atlas               Byers55, David Carbone56, Li-Wei Chang52, Derek Chiang21,23, Andy Chu7, Elizabeth
+(https://tcga-data.nci.nih.gov/tcga/tcgaDownload.jsp, https://cghub.ucsc.edu/ and               Chun7, Eric Collisson39, Leslie Cope29, Chad J. Creighton41, Ludmila Danilova29, Li
+https://tcga-data.nci.nih.gov/docs/publications/lusc_2012/). Reprints and                       Ding52, Gad Getz1,5, Peter S. Hammerman1,2, D. Neil Hayes23,28, Bryan Hernandez1,
+permissions information is available at www.nature.com/reprints. This paper is                  James G. Herman29, John Heymach55, Cristiane Ida43, Marcin Imielinski1,6, Bruce
+distributed under the terms of the Creative Commons                                             Johnson2, Igor Jurisica57, Jacob Kaufman56, Farhad Kosari53, Raju Kucherlapati11,12,
+Attribution-Non-Commercial-Share Alike licence, and the online version of the paper is          David Kwiatkowski2, Marc Ladanyi17,18, Michael S. Lawrence1, Christopher A. Maher52,
+freely available to all readers. The authors declare no competing financial interests.          Andy Mungall7, Sam Ng36, William Pao56, Martin Peifer58,59, Robert Penny51, Gordon
+Readers are welcome to comment on the online version of the paper. Correspondence               Robertson7, Valerie Rusch60, Chris Sander16, Nikolaus Schultz16, Ronglai Shen31, Jill
+and requests for materials should be addressed to M. Meyerson                                   Siegfried61, Rileen Sinha16, Andrey Sivachenko1, Carrie Sougnez4, Dominik Stoll7,
+(matthew_meyerson@dfci.harvard.edu).                                                            Joshua Stuart36, Roman K. Thomas58,59,62, Sandra Tomaszek53, Ming-Sound Tsao50,
+
+5 2 4 | N AT U R E | VO L 4 8 9 | 2 7 S E P T E M B E R 2 0 1 2
+                                                           ©2012 Macmillan Publishers Limited. All rights reserved
+                                                                                                                                                      ARTICLE RESEARCH
+
+William D. Travis42, Charles Vaske36, John N. Weinstein33,35, Daniel Weisenberger30,        Kentucky, Lexington, Kentucky 40506, USA. 28Department of Internal Medicine, Division
+David Wheeler63, Dennis A. Wigle53, Matthew D. Wilkerson23, Christopher Wilks30, Ping       of Medical Oncology, University of North Carolina at Chapel Hill, Chapel Hill, North
+Yang53, Jianjua John Zhang9,10                                                              Carolina 27599, USA. 29Cancer Biology Division, The Sidney Kimmel Comprehensive
+                                                                                            Cancer Center at Johns Hopkins University, Baltimore, Maryland 21231, USA.
+                                                                                            30
+Data coordination centre Mark A. Jensen64, Robert Sfeir64, Ari B. Kahn64, Anna L.             University of Southern California Epigenome Center, University of Southern California,
+Chu64, Prachi Kothiyal64, Zhining Wang64, Eric E. Snyder64, Joan Pontius64, Todd D.         Los Angeles, California 90033, USA. 31Department of Epidemiology and Biostatistics,
+Pihl64, Brenda Ayala64, Mark Backus64, Jessica Walton64, Julien Baboud64, Dominique         Memorial Sloan-Kettering Cancer Center, New York, New York 10065, USA. 32Department
+L. Berton64, Matthew C. Nicholls64, Deepak Srinivasan64, Rohini Raman64, Stanley            of Medicine, Memorial Sloan-Kettering Cancer Center, New York, New York 10065, USA.
+                                                                                            33
+Girshik64, Peter A. Kigonya64, Shelley Alonso64, Rashmi N. Sanbhadti64, Sean P.               Department of Bioinformatics and Computational Biology, The University of Texas MD
+Barletta64, John M. Greene64, David A. Pot64                                                Anderson Cancer Center, Houston, Texas 77030, USA. 34Division of Pathology and
+                                                                                            Laboratory Medicine, The University of Texas MD Anderson Cancer Center, Houston,
+                                                                                            Texas 77030, USA. 35Department of Systems Biology, The University of Texas MD
+Tissue source sites Ming-Sound Tsao50, Bizhan Bandarchi-Chamkhaleh50, Jeff Boyd46,          Anderson Cancer Center, Houston, Texas 77030, USA. 36Department of Biomolecular
+JoEllen Weaver46, Dennis A. Wigle53, Ijeoma A. Azodo53, Sandra C. Tomaszek53, Marie         Engineering and Center for Biomolecular Science and Engineering, University of
+Christine Aubry65, Christiane M. Ida65, Ping Yang66, Farhad Kosari53, Malcolm V. Brock67,   California Santa Cruz, Santa Cruz, California 95064, USA. 37Howard Hughes Medical
+Kristen Rodgers67, Marian Rutledge68, Travis Brown67, Beverly Lee68, James Shin69,
+                                                                                            Institute, University of California Santa Cruz, Santa Cruz, California 95064, USA. 38Buck
+Dante Trusty69, Rajiv Dhir70, Jill M. Siegfried61, Olga Potapova71, Konstantin V.
+                                                                                            Institute for Age Research, Novato, California 94945, USA. 39Division of Hematology/
+Fedosenko72, Elena Nemirovich-Danchenko71, Valerie Rusch60, Maureen Zakowski73,
+                                                                                            Oncology, University of California San Francisco, San Francisco, California 94143, USA
+Mary V. Iacocca74, Jennifer Brown74, Brenda Rabeno74, Christine Czerwinski74, Nicholas      40
+                                                                                              Department of Statistics and Operations Research, University of North Carolina Medical
+Petrelli74, Zhen Fan75, Nicole Todaro75, John Eckman49, Jerome Myers49, W. Kimryn
+                                                                                            Center, Chapel Hill, North Carolina 27599, USA. 41Human Genome Sequencing Center
+Rathmell23, Leigh B. Thorne76, Mei Huang76, Lori Boice76, Ashley Hill23, Robert Penny51,
+                                                                                            and Dan L. Duncan Cancer Center Division of Biostatistics, Baylor College of Medicine,
+David Mallery51, Erin Curley51, Candace Shelton51, Peggy Yena51, Carl Morrison44,
+                                                                                            Houston, Texas 77030, USA. 42Department of Pathology, Memorial Sloan Kettering
+Carmelo Gaudioso44, John M. S. Bartlett77, Sugy Kodeeswaran77, Brent Zanke77, Harman
+                                                                                            Cancer Center, New York, New York 10065 USA. 43Department of Pathology, Mayo Clinic,
+Sekhon78, Kerstin David79, Hartmut Juhl80, Xuan Van Le81, Bernard Kohl81, Richard
+                                                                                            Rochester, Minnesota 55905, USA. 44Department of Pathology, Roswell Park Cancer
+Thorp81, Nguyen Viet Tien82, Nguyen Van Bang83, Howard Sussman84, Bui Duc Phu83,
+                                                                                            Institute, Buffalo, New York 14263, USA. 45Department of Pathology, University of
+Richard Hajek85, Nguyen Phi Hung86, Khurram Z. Khan87, Thomas Muley88
+                                                                                            Pittsburgh Cancer Center, Pittsburgh, Pennsylvania 15213, USA. 46Department of
+                                                                                            Pathology, Fox Chase Cancer Center, Philadelphia, Pennsylvania 19111, USA.
+Project team: National Cancer Institute Kenna R. Mills Shaw89, Margi Sheth89, Liming        47
+                                                                                              Department of Pathology, University of North Carolina Medical Center, Chapel Hill,
+Yang89, Ken Buetow90, Tanja Davidsen90, John A. Demchok89, Greg Eley90, Martin              North Carolina 27599, USA. 48Department of Pathology, Johns Hopkins University School
+Ferguson91, Laura A. L. Dillon89, Carl Schaefer90; National Human Genome Research           of Medicine, Baltimore, Maryland 21287, USA. 49Department of Pathology, Penrose-St.
+Institute Mark S. Guyer92, Bradley A. Ozenberger92, Jacqueline D. Palchik92, Jane           Francis Health System, Colorado Springs, Colorado 80907, USA. 50Department of
+Peterson92, Heidi J. Sofia92, Elizabeth Thomson92                                           Pathology and Medical Biophysics, Ontario Cancer Institute and Princess Margaret
+                                                                                            Hospital, Toronto, Ontario M5G 2MY, Canada. 51International Genomics Consortium,
+Writing committee Peter S. Hammerman1,2, D. Neil Hayes23,28, Matthew D.                     Phoenix, Arizona 85004, USA. 52Division of Oncology, Department of Medicine and The
+Wilkerson23, Nikolaus Schultz16, Ron Bose52, Andy Chu7, Eric A. Collisson39, Leslie         Genome Institute, Washington University School of Medicine, St. Louis, Missouri 63110,
+Cope29, Chad J. Creighton41, Gad Getz1,5, James G. Herman29, Bruce E. Johnson2, Raju        USA. 53Center for Individualized Medicine, Mayo Clinic, Rochester, Minnesota 55905,
+Kucherlapati11,12, Marc Ladanyi17,18, Christopher A. Maher52, Gordon Robertson7,            USA. 54Department of Surgery, University of Michigan, Ann Arbor, Michigan 48109, USA.
+                                                                                            55
+Chris Sander16, Ronglai Shen16, Rileen Sinha16, Andrey Sivachenko1, Roman K.                  The University of Texas MD Anderson Cancer Center, Houston, Texas 77030, USA.
+                                                                                            56
+Thomas58,59,62, William D. Travis42, Ming-Sound Tsao50, John N. Weinstein33,35, Dennis        Departments of Hematology/Oncology and Cancer Biology, Vanderbilt University
+A. Wigle53, Stephen B. Baylin29, Ramaswamy Govindan52, Matthew Meyerson1,2,6                School of Medicine, Nashville, Tennessee 37232, USA. 57Ontario Cancer Institute, IBM Life
+                                                                                            Sciences Discovery Centre, Toronto, Ontario M5G 1L7, Canada. 58Department of
+1
+ The Eli and Edythe L. Broad Institute of Massachusetts Institute of Technology and         Translational Genomics, University of Cologne, Cologne D-50931, Germany. 59Max
+Harvard University Cambridge, Massachusetts 02142, USA. 2Department of Medical              Planck Institute for Neurological Research, Cologne D-50866, Germany. 60Department of
+Oncology, Dana-Farber Cancer Institute, Boston, Massachusetts 02215, USA.                   Surgery, Memorial Sloan Kettering Cancer Center, New York, New York 10065, USA.
+                                                                                            61
+3
+ Department of Biology, Massachusetts Institute of Technology, Cambridge,                     Department of Pharmacology and Chemical Biology, University of Pittsburgh Medical
+Massachusetts 02142, USA. 4Department of Systems Biology, Harvard University,               Center, Pittsburgh, Pennsylvania 15232, USA. 62Department of Translational Cancer
+Boston, Massachusetts 02115, USA. 5Genetic Analysis Platform, The Eli and Edythe L.         Genomics, Center of Integrated Oncology, University of Cologne, Cologne D-50924,
+Broad Institute of Massachusetts Institute of Technology and Harvard University,            Germany. 63Human Genome Sequencing Center, Baylor College of Medcine, Houston,
+Cambridge, Massachusetts 02142, USA. 6Department of Pathology, Harvard Medical              Texas 77030, USA. 64SRA International, Fairfax, Virginia 22033, USA. 65Department of
+School, Boston, Massachusetts 02115, USA. 7Canada’s Michael Smith Genome Sciences           Laboratory Medicine and Pathology, Mayo Clinic, Rochester, Minnesota 55905, USA.
+                                                                                            66
+Centre, BC Cancer Agency, Vancouver, British Columbia V5Z, Canada. 8Department of             Department of Health Sciences Research, Mayo Clinic, Rochester, Minnesota 55905,
+Epidemiology and Biostatistics, University of California, San Francisco, San Francisco,     USA. 67Department of Surgery, Johns Hopkins School of Medicine, 600 North Wolfe
+California 94143, USA. 9Belfer Institute for Applied Cancer Science, Department of          Street, Baltimore, Maryland 21287, USA. 68Department of Oncology, Johns Hopkins
+Medical Oncology, Dana-Farber Cancer Institute, Boston, Massachusetts 02115, USA.           School of Medicine, 600 North Wolfe Street, Baltimore, Maryland 21287, USA.
+                                                                                            69
+10
+  Institute for Applied Cancer Science, Department of Genomic Medicine, The University        Department of Pathology, Johns Hopkins School of Medicine, 600 North Wolfe Street,
+of Texas MD Anderson Cancer Center, Houston, Texas 77030, USA. 11Department of              Baltimore, Maryland 21287, USA. 70Department of Pathology, University of Pittsburgh,
+Genetics, Harvard Medical School, Boston, Massachusetts 02115, USA. 12Division of           Pittsburgh, Pennsylvania 15213, USA. 71Cureline, South San Francisco, California 94080,
+Genetics, Brigham and Women’s Hospital, Boston, Massachusetts 02115, USA. 13The             USA. 72City Clinical Oncology Dispensary, St Petersburg 197022, Russia. 73Department
+Center for Biomedical Informatics, Harvard Medical School, Boston, Massachusetts            of Pathology, Memorial Sloan Kettering Cancer Center, New York, New York 10065, USA.
+                                                                                            74
+02115, USA. 14Department of Dermatology, Harvard Medical School, Boston,                      Helen F. Graham Cancer Center, Newark, Delaware 19713, USA. 75St Joseph Medical
+Massachusetts 02115, USA. 15Informatics Program, Children’s Hospital, Boston,               Center, Towson, Maryland 21204, USA. 76UNC Tissue Procurement Facility, Department
+Massachusetts 02115, USA. 16Computational Biology Center, Memorial Sloan-Kettering          of Pathology, UNC Lineberger Cancer Center, Chapel Hill, North Carolina 27599, USA.
+                                                                                            77
+Cancer Center, New York, New York 10065, USA. 17Department of Molecular Oncology,             Ontario Tumour Bank, Ontario Institute for Cancer Research, Toronto, Ontario M5G 0A3,
+Memorial Sloan-Kettering Cancer Center, New York, New York 10065, USA. 18Department         Canada. 78Ontario Tumour Bank – Ottawa site, The Ottawa Hospital, Ottawa, Ontario K1H
+of Pathology and Human Oncology & Pathogenesis Program, Memorial Sloan-Kettering            8L6, Canada. 79Indivumed GmbH, Hamburg, Falkenried 88, Haus D D-20251, Germany.
+                                                                                            80
+Cancer Center, New York, New York 10065, USA. 19Eshelman School of Pharmacy,                  Indivumed Inc, Kensington, Maryland 20895, USA. 81ILSBio, LLC, Chestertown,
+University of North Carolina at Chapel Hill, Chapel Hill, North Carolina 27599, USA.        Maryland 21620, USA. 82Ministry of Health, 138A Giang Vo Street, Hanoi, Vietnam. 83Hue
+20
+  Institute for Pharmacogenetics and Individualized Therapy, University of North Carolina   Central Hospital, Hue City, 16 Le Loi, Hue, Vietnam. 84Stanford University Medical Center,
+at Chapel Hill, Chapel Hill, North Carolina 27599, USA. 21Department of Genetics,           Stanford, California 94305, USA. 85Center for Minority Health Research, University of
+University of North Carolina at Chapel Hill, Chapel Hill, North Carolina 27599, USA.        Texas, M.D. Anderson Cancer Center, Houston, Texas 77030, USA. 86National Cancer
+22
+  Department of Pathology and Laboratory Medicine, University of North Carolina at          Institute, 43 Quan Su Street, Hanoi, Vietnam. 87ILSBio LLC, Chestertown, Maryland
+Chapel Hill, Chapel Hill, Chapel Hill, North Carolina 27599, USA. 23Lineberger              21620, USA. 88ThoraxKlinik, Heidelberg University Hospital, Heidelberg 69126,
+Comprehensive Cancer Center, University of North Carolina at Chapel Hill, Chapel Hill,      Germany. 89The Cancer Genome Atlas Program Office, National Cancer Institute, National
+North Carolina 27599, USA. 24Carolina Center for Genome Sciences, University of North       Institutes of Health, Bethesda, Maryland 20892, USA. 90Center for Biomedical Informatics
+Carolina at Chapel Hill, Chapel Hill, North Carolina 27599, USA. 25Department of Biology,   and Information Technology (CBIIT), National Cancer Institute, National Institutes of
+University of North Carolina at Chapel Hill, Chapel Hill, North Carolina 27599, USA.        Health, Rockville, Maryland 20852, USA. 91MLF Consulting, Arlington, Maryland 02474,
+26
+  Department of Computer Science, University of North Carolina at Chapel Hill, Chapel       USA. 92National Human Genome Research Institute, National Institutes of Health,
+Hill, North Carolina 27599, USA. 27Department of Computer Science, University of            Bethesda, Maryland 20892, USA.
+
+
+
+
+                                                                                                                2 7 S E P T E M B E R 2 0 1 2 | VO L 4 8 9 | N AT U R E | 5 2 5
+                                                      ©2012 Macmillan Publishers Limited. All rights reserved
+CORRECTIONS & AMENDMENTS
+CORRIGENDUM
+doi:10.1038/nature11666
+
+Corrigendum: Comprehensive
+genomic characterization of
+squamous cell lung cancers
+The Cancer Genome Atlas Research Network
+
+Nature 489, 519–525 (2012); doi:10.1038/nature11404
+In this Article, author Kristen Rodgers was spelt incorrectly. This
+error has been corrected in the HTML and PDF of the original paper.
+
+
+
+
+2 8 8 | N AT U R E | VO L 4 9 1 | 8 NO V E M B E R 2 0 1 2
+                                                 ©2012 Macmillan Publishers Limited. All rights reserved
+
+==============================================================================
+VISUAL FIGURE VALUE AUDIT
+==============================================================================
+
+# Visual figure audit: L35
+
+Source: `pdfs/L35.pdf`; viewed rendered pages 5-6 (journal pagination).
+
+- Figure 1 (p. 5): mutation landscape in lung squamous cell carcinoma. Caption describes 178 tumors; panel summarizes per-sample mutation counts and recurrently altered genes. Prominent printed mutation percentages include TP53 81%, CDKN2A 15%, PTEN 8%, PIK3CA 12%, KEAP1 21%, MLL2 12%, HLA-A 3%, NF1 5%, NFE2L2 8%, NOTCH1 15%, and RB1 7% (read from the figure labels; verify exact mapping in the caption/text before reuse).
+- Figure 2 (p. 6): pathway diagrams for oxidative-stress response and squamous differentiation. Captions show 32% with at least one oxidative-stress pathway alteration and 44% with at least one squamous-differentiation pathway alteration. Gene-level percentages are shown in the schematic.
+- Figure 3 (p. 6): integrated gene-expression subtype heatmap, a descriptive visualization without a single performance metric.
+
+No model discrimination estimates are shown. Figure percentages describe this source cohort and should not be conflated with the project's LSCC analytic cohort counts.

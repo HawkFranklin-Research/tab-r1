@@ -1,0 +1,53 @@
+# Retrieval inventory, NOT completed visual/claim audit
+Source L30: Calibration: the Achilles heel of predictive analytics; DOI 10.1186/s12916-019-1466-7
+Original text line numbers. Numbers may be citations, secondary reports,
+toy examples, or ambiguous table columns. Verify context before citing.
+
+L21: On behalf of Topic Group ‘Evaluating diagnostic tests and prediction models’ of the STRATOS initiative6
+L97: or the absence thereof, that were in fact misguided.       differences between settings [19]. Patient popula-
+L114: a lower AUC but is well calibrated [8]. As an ex-          neural network) [24]. Overfitted predictions capture too
+L116: mingham models to predict the 10-year risk of              validated on new data, an overfitted algorithm is expected
+L118: these models in 2 million patients from the United         risks that are too extreme – patients at high risk of the
+L120: brated and had an AUC of 0.771, whereas NICE Fra-          patients at low risk of the event tend to get underesti-
+L123: of 20% to identify high-risk patients for intervention,    ample, biomarker expressions vary with assay kits and
+L127: per 1000 men) because a predicted risk of 20% based        ments of a predictor are systemically more biased upward
+L136:  Fig. 1 Illustrations of different types of miscalibration. Illustrations are based on an outcome with a 25% event rate and a model with an area
+L137:  under the ROC curve (AUC or c-statistic) of 0.71. Calibration intercept and slope are indicated for each illustrative curve. a General over- or
+L144: Additional file 1, with the validation of the Risk of Ovar-                    According to four increasingly stringent levels of cali-
+L167: the estimated risks and has a target value of 1. A              datasets, procedures that aim to prevent overfitting
+L170: and too low for patients who are at low risk. A                 [32] or using simpler models. Simpler models can
+L178: risks correspond to observed proportions, e.g., among           tainty in small datasets [33]. Therefore, in small
+L179: patients with an estimated risk of 10%, 10 in 100               datasets, it is reasonable for a model not to be de-
+L190: to 1 do not guarantee that the flexible calibration             provide more accurate predictions for new patients
+L191: curve is close to the diagonal (see Additional file 1           from the validation setting [1, 20]. Updating of
+L193: a sufficiently large sample size is required; a mini-           the intercept to correct calibration-in-the-large [34].
+L194: mum of 200 patients with and 200 patients without               Full refitting of the algorithm, as in the case study
+L195: the event has been suggested [4], although further re-          below, will improve calibration if the validation sam-
+L198: sample size [12]. In small datasets, it is defendable to        Additional file 1. Continuous updating strategies are
+L221:  Fig. 2 Calibration curves when validating a model for obstructive coronary artery disease before and after updating. a Calibration curve before
+L223:  area) was based on local regression (loess). At the bottom of the graphs, histograms of the predicted risks are shown for patients with (1) and
+L224:  patients without (0) coronary artery disease. Figure adapted from Edlinger et al. [38], which was published under the Creative Commons
+L229: from 5677 patients recruited at 18 European and                                stand how the algorithm performs in a particular setting,
+L230: American centers, of whom 31% had oCAD. The al-                                where predictions may go wrong, and whether the algo-
+L231: gorithm was externally validated on data from 4888                             rithm can benefit from updating. Due to local healthcare
+L232: patients in Innsbruck, Austria, of whom 44% had                                systems and referral patterns, population differences be-
+L233: oCAD [38]. The algorithm had an AUC of 0.69.                                   tween centers and regions are expected; it is likely that
+L242: Table 1. Poorly calibrated predictive algorithms can be                        decision-making and patient counseling.
+L246: to the available sample size. When validating algorithms                       1186/s12916-019-1466-7.
+L250: Table 1 Summary points on calibration
+L280:                       - At internal validation, focus on the calibration       This study did not use data. Figure 2 was adapted from Edlinger et al. [38],
+L301: Author details                                                                            21. Thai TN, Ebell MH. Prospective validation of the good outcome following
+L307: Sciences and Nutrition, University of Aberdeen, Aberdeen, UK. 4Department                     fertilization: an external validation study. Hum Reprod. 2018;33:1684–95.
+L325:     empirical data. J Clin Epidemiol. 2016;74:167–76.                                         utilizing HE4 and CA125 for the prediction of ovarian cancer in patients
+L326: 5. Collins GS, de Groot JA, Dutton S, et al. External validation of multivariable             with a pelvic mass. Gynecol Oncol. 2009;112:40–6.
+L331:                                                                                           30. van Smeden M, Moons KGM, de Groot JA, et al. Sample size for binary
+L337:                                                                                           31. Riley RD, Snell KIE, Ensor J, et al. Minimum sample size for developing a
+L359:     recalibrating expectations. JAMA. 2018;320:27–8.                                          Habbema JDF. Validation and updating of predictive logistic regression
+L360: 12. Moons KG, Altman DG, Reitsma JB, et al. Transparent Reporting of a                        models: a study on sample size and shrinkage. Stat Med. 2004;23:2567–86.
+L367:     for women undergoing IVF: a novel pretreatment counselling tool. Hum                      existing cohorts. BMJ. 2012;344:e3485.
+L369: 15. Collins GS, Altman DG. Predicting the 10 year risk of cardiovascular disease              External validation and extension of a diagnostic model for obstructive
+L370:     in the United Kingdom: independent and external validation of an updated                  coronary artery disease: a cross-sectional predictive evaluation in 4888
+L371:     version of QRISK2. BMJ. 2012;344:e4181.                                                   patients of the Austrian Coronary Artery disease Risk Determination In
+L372: 16. Bray F, Ferlay J, Soerjomataram I, Siegel RL, Torre LA, Jemal A. Global cancer            Innsbruck by diaGnostic ANgiography (CARDIIGAN) cohort. BMJ Open. 2017;
+L375: 17. Testa A, Kaijser J, Wynants L, et al. Strategies to diagnose ovarian cancer:
+L378: 18. Riley RD, Ensor J, Snell KI, et al. External validation of clinical prediction        published maps and institutional affiliations.

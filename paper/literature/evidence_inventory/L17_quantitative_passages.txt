@@ -1,0 +1,644 @@
+# Retrieval inventory, NOT completed visual/claim audit
+Source L17: TabPFN-3: Technical Report; DOI 10.48550/arXiv.2605.13986
+Original text line numbers. Numbers may be citations, secondary reports,
+toy examples, or ambiguous table columns. Verify context before citing.
+
+L15:                                                users, TabPFN-3 builds on this foundation to scale state-of-the-art performance to datasets with
+L16:                                                1M training rows and substantially reduce training and inference time. Pretrained exclusively on
+L27:                                                to more diverse datasets: it ranks first on datasets with many classes, and beats 8-hour-tuned
+L28:                                                gradient-boosted-tree baselines on datasets up to 1M training rows and 200 features.
+L29:                                                Thinking mode. TabPFN-3 introduces test-time compute scaling to tabular foundation
+L35:                                                prediction on many-class datasets, relational data (new SOTA foundation model on RelBenchV1)
+L36:                                                and tabular-text datasets (SOTA on TabSTAR via TabPFN-3-Plus). It also directly improves
+L61:                                          Figure 1. Performance on the TabArena benchmark [1], largest data subset (10k-100k samples).
+L113:                                                            RealMLP                                                                                                             100%
+L123:                                                            TabDPT                                      AutoGluon 1.5 18 36        53 73 71 90 95 73 96 88 97                   80%
+L126:                                                         Datasets 15
+L132:                                                                                                                                                                                60%
+L136:                      2    al                                                                          CatBoost (T+E) 7 25 5 33 37 40 49                  53 52 50 70           40%
+L141:                     Total time per 1K samples (s) (median)                                            LightGBM (T+E) 1 24 4 30 27 37 39 48 50                     53 69        20%
+L144:  Figure 2. TabPFN-3 dominates the Pareto                                                                                                                                       0%
+L146:  (10k–100k rows). N1, N2, and N4 are model versions                               Figure 3. Pairwise win rates on
+L163:   the strong performance to 100,000 rows and 2,000 features and matched four-hour-tuned ensembles
+L171:   in a single forward pass. Furthermore, we carefully designed the TabPFN-3 model and training process
+L213: maximal numbers of rows and features that they yielded         against TabPFN-2.5. We report the per-datasets scores
+L215: counts. TabPFN-v1 supports classification datasets only.       in Section F.1.
+L217: Figure 4. Evolution and performance of the TabPFN model family. The row and feature counts in the
+L221: TabPFN-3 is benchmarked along a cell-budget frontier: up to 1M rows at 200 features, 100k rows at 2,000
+L222: features, or 1k rows at 20,000 features. The right panel shows per-dataset scores across TabArena; points below
+L223: the diagonal indicate stronger TabPFN-3 performance, with a Wilcoxon test confirming that the improvement is
+L231: for pre-training (Section 2.5). We also introduce the API and enterprise features TabPFN-3-Plus which
+L232: handles text in tables natively and TabPFN-3-Plus (Thinking) which applies test-time-compute for
+L237: An overview of TabPFN-3’s full architecture is shown in Figure 5. TabPFN-3 introduces a substantially
+L243: dataset size grows. TabPFN-3 returns to TabPFN v1’s ICL for embeddings of entire rows. It builds on
+L247: Before entering the two compression stages, we group features, similar to TabPFN-2.x, while adopting
+L248: TabICLv2’s[30] group assignment, which creates triplets by grouping each feature with two cyclically
+L258:    • Stage 1: Feature distribution embedding (column-wise). Each feature column is embedded
+L263:    • Stage 2: Feature aggregation (row-wise). For each data point, a set of learned cls tokens
+L269:    • Stage 3: In-context learning. The row embeddings for the training and test sets are jointly
+L304:    • Native missing-value handling. For each cell that is NaN, TabPFN-3 computes a binary indicator
+L312: 2.6 (and earlier versions) with an attention-based retrieval decoder over the in-context training set, which
+L337:                          Feature Grouping circular shifts (0, 1, 3)
+L377:                                1              htrain
+L378:                                                2                htrain
+L379:                                                                  3                  htrain
+L384:                                                    1                htest
+L409: Figure 5. Architecture of TabPFN-3, adapted from the TabICLv2 architecture. Changes include
+L417: [33]: the final-layer train embeddings {htrain
+L422: yn ∈ {0, 1}C as values, and test embeddings htestm as queries. After the usual learned linear projections
+L446: TabPFN-3 still fixes a hard ceiling Cmax = 160 at pre-training time via three checkpoint-bound tensors:
+L458: TabPFN-2.5, a subset of estimators augments the feature matrix with singular value decomposition (SVD)
+L460: TabPFN-3 introduces two further improvements to this pipeline. First, features are subsampled in a round-
+L462: excluded from the ensemble. For datasets exceeding 100,000 rows, random feature subsampling is replaced
+L478: TabPFN-3’s pre-ICL stages—cell embedding, feature distribution embedding, and feature aggregation—
+L481: in TabICLv2 [30]. This however requires a large amount of CPU memory (250GB for a 1M × 500 table in
+L485: set into a fixed-size1 set of inducing points via cross-attention over all training rows, and splitting that
+L492: in phase (ii) but avoids the disk-bandwidth bottleneck. We enable chunking when ntrain + ntest > 2048.
+L493:   1We use 128 inducing points, much smaller than the dataset sizes of interest, which often exceed 100,000 rows.
+L500:                                           nfeatures = 10                       nfeatures = 100                          nfeatures = 500
+L531: Figure 6. Chunking flattens the peak-memory without impacting the time-per-call. Model forward
+L532: pass without preprocessing, measured on a H100, for nfeatures ∈ {10, 100, 500}. Top row: peak GPU memory
+L533: (GiB) versus number of training rows; bottom row: time per call (ms). Three series per panel: TabPFN-3 without
+L535: Note that TabPFN-3 is much faster than TabPFN-2.5, especially at large feature counts.
+L538:  Figure 6 highlights the different memory–compute trade-offs of TabPFN-3 and TabPFN-2.5. Without
+L539:  chunking, the peak memory of TabPFN-3 grows steeply with ntrain and nfeatures . This is because the
+L543:  grouped into nfeatures /3 tokens, and therefore never materialises a tensor wider than this. This explains
+L545:  flattens peak memory with respect to nfeatures and yields an approximately ∼5× reduction at the largest
+L547:  ntrain ≈ 104 that becomes amortised at larger scales once the n2train ICL row-attention dominates. At the
+L548:  same time, the feature-collapsed row representation gives TabPFN-3 a substantial runtime advantage
+L549:  at large ntrain or nfeatures since its ICL row-attention scales as n2train independently of nfeatures , whereas
+L550:  TabPFN-2.5’s row attention retains linear dependence on nfeatures and scales with nfeatures · n2train .
+L555:  Being an in-context-learning model, TabPFN-3 combines training (fit) and inference (predict) in one
+L559:  larger datasets. TabPFN-3 solves this in two ways:
+L561:             • Compared to TabPFN-2.5, which needs to store an embedding for each cell of the table, TabPFN-3
+L589:                                                               nfeatures = 10                                                             nfeatures = 50                                                          nfeatures = 200
+L591:      Maximum ntrain that fits on one 80 GiB H100 for nfeatures ∈ {10, 50, 200}. Bars: TabPFN-2.5, TabPFN-3, TabPFN-3
+L594:                                                                          nfeatures = 10                                                                                                        nfeatures = 100
+L625:       pass without preprocessing on H100 at ntrain = 50,000, ntest = 100, nfeatures ∈ {10, 100}. Bars: TabPFN-2.5 cold
+L628:         Figure 7. KV-cache on H100 for a single estimator without preprocessing: OOM frontier with chunking and
+L632:        This achieves a KV-cache size of 7GiB per estimator for 1M rows datasets, making TabPFN-3’s default 8
+L633:        estimators usable on common GPUs even for the largest datasets we support. As can be seen in Figure 7a,
+L634:        peak memory of (chunked) cache-predict is basically flat across feature sizes. On an H100, cached-predict
+L636:        cold “fit+predict” path (Figure 7b), achieving between 0.1 and 3 ms/test point for batches of 100 test
+L638:        including ntrain = 106 where both complete in ∼107 s (Figure 8).
+L644:        requirements that mandate familiar model classes, TabPFN-3 also supports distillation into dataset-
+L647:        TabPFN-3’s predictive performance on the dataset it was distilled for.
+L652:        TabPFN-3 ships with two opt-in performance features that target different bottlenecks: torch.compile,
+L655:        on the non-chunked forward pass; on H100, FA3 reaches 1.5–1.7× at ntrain = 106 over the SDPA fallback.
+L661:                                                                    nfeatures = 10                             nfeatures = 100
+L681: Figure 8. TabPFN-3’s KV-cached predict allows for one to three orders of magnitude speedup. We
+L682: report results for a single estimator without preprocessing on an H100, for nfeatures ∈ {10, 100} and ntest = 100.
+L685: train-side work is identical, the cache is just retained), and TabPFN-3 cached predict (yellow). The KV-Cache is
+L686: built under the deployed multi-query test-side configuration (nkv,test = 1).
+L697: library [36], enabling efficient approximation of any-order Shapley interactions. Figure 38 in the Appendix
+L699: KV caching provides more than 120× efficiency gains, reducing the runtime per test row to 1.08 seconds
+L700: even for a training table with 200k rows and 500 features.
+L704: Following previous TabPFN model variants [16–18], TabPFN-3 is trained on synthetically generated data
+L706: prior works is shown in Figure 9.
+L710: it generates: our final TabPFN-3 model was trained on more than 8 trillion tokens.
+L717:    Step 1: Sample Hyper-parameters                             Step 2: Sample DAG
+L720:                         Sample       num_rows:     N                                                          3
+L745:    Step 4: Extract Dataset                                     Step 5: Post-processing
+L747:                 4                       Features (X)
+L753:                     5                                          Raw data         Post-processing   Synthetic Dataset
+L756: Figure 9. Schematic visualization of our SCM prior. (i) We first sample high-level hyperparameters for
+L767:       sampling algorithms, enabling richer structural diversity. Sample graphs are shown in Figure 23.
+L770:       simple two-dimensional case in Figure 24. Increasing the variety of functional forms by which child
+L779:    5. Spatial prior. Many tabular datasets have underlying spatial structure (e.g. datasets containing
+L791:     7. Temporal prior. Many tabular datasets have temporal structure: rows are collected over intervals
+L795:     8. Out-of-distribution prior. We add out-of-distribution prediction tasks, allowing models trained
+L798:        to perform extrapolation is shown in Figure 26 - a capability that is notably absent from most
+L809: Native text-feature support. TabPFN-3-Plus accepts string-valued columns directly, without re-
+L817: TabPFN-3-Plus to push prediction quality further. Thinking mode composes with native text-feature
+L839: TabArena [1] (NeurIPS 2025 Datasets & Benchmarks) is a recent and heavily curated tabular benchmark,
+L857:  Figure 10. TabPFN-3 performance on the standard TabArena benchmark [1], including all 51 datasets
+L872:                     18                                                 AutoGluon 1.5                                                                                                        100%
+L882:                                                                        TabDPT                                    TabPFN-3 (default) 30 56      62 64 66 77 76 83 82 82 85                   80%
+L890:                     12                                                                                                                                                                      60%
+L892:                                                                     Datasets 51
+L895:                                                                                                                      TabDPT (T+E) 16 25 24 26 31 34 50                57 59 60 61           40%
+L899:                          tim                                                                                       LightGBM (T+E) 7 10 18 24 21 23 32 41 43                    53 71        20%
+L903:                     Total time per 1K samples (s) (median)                                                          XGBoost (T+E) 4    8 15 22 17 19 23 39 36 29 37
+L904:                                                                                                                                                                                             0%
+L906: Figure 11. Pareto frontier on TabArena:                                                        Figure 12. Pairwise win rates on TabArena for
+L912: dataset, see Appendix E.2.1.
+L918:   TabSTAR [39], LimiX [47], Mitra [48] or TabPFN v2 [17]. The benchmark contains a set of 51 datasets
+L920:   datasets and Section E.2.1 for definitions of TabArena’s Elo and Improvability metrics.
+L923:   Pushing the performance frontier on TabArena. Figure 10 shows the performance of TabPFN-3
+L926:   our previous Real-TabPFN-2.5 tuned and ensembled. TabPFN-3-Plus (Thinking), leveraging test-time
+L930:   while being 10x faster. Looking at the win rate matrix in Figure 12, we can see that TabPFN-3-Plus
+L931:   with Thinking mode (respectively TabPFN-3) has over 93% (respectively 80%) win rate against tuned
+L936:                                           TALENT benchmark (274 datasets)
+L952:                                           Tab Ta lTabP (4% (4% (4%          M
+L961: Figure 13. Average rank on the TALENT benchmark, using the TabICLv2 evaluation protocol
+L962: from Qu et al. [30] (274 datasets). The original 300-dataset TALENT [38] minus the 26 development
+L963: datasets used for TabPFN-2 / TabICLv2 development removed in the TabICLv2 paper), spanning regression,
+L964: binary and multiclass classification. Bars show mean rank (lower is better); error bars are 95% bootstrap
+L965: confidence intervals over datasets (see appendix E.3). Methods tagged (N imputed, X%) failed on some datasets
+L969: and ensembled CatBoost, LightGBM and XGBoost, and a 69% (respectively 56%) win rate against
+L974: while being much faster to train than the baselines. On Figure 11, we can see that our model family,
+L979: Scaling to larger datasets. TabPFN-3 was built to scale to large datasets, and TabPFN-3-Plus
+L980: (Thinking) benefits from this scalability. While TabArena only contains datasets up to 100k rows, we can
+L981: still observe very strong performance on the 15 largest datasets in TabArena with between 10k and 100k
+L982: rows, as shown in Figure 1. In particular, on this subset TabPFN-3 outperforms any other model by 100
+L985: Elo points. Looking at the win rate matrix in Figure 3, TabPFN-3-Plus (Thinking) has over 99% win
+L986: rate against tuned and ensembled LightGBM and XGBoost, 98% win rate against CatBoost tuned and
+L987: ensembled, and 82% win rate against AutoGluon 1.5 extreme tuned for 4 hours. In Section 3.2.1, we
+L988: study the performance of our model beyond 100K rows, going up to 1M training rows.
+L994: of a smaller curated list of datasets, this benchmark uses a large number of diverse datasets (300) from a
+L996: performance. Indeed, TabPFN-3 ranks first on the TALENT benchmark in aggregate, as shown in Figure
+L997: 13, as well as for each task type (regression, binary and multiclass classification) in Figure 28.
+L1002: The TabSTAR study [39] assembled 50 text-tabular datasets, gathered from previous work [49–51]. These
+L1005: numerical and categorical variables, TabPFN-3-Plus also offers native support for text features. We
+L1010:                                                                         Text-Tabular Benchmark (50 Datasets)
+L1033: Figure 14. Performance over the TabSTAR Text-Tabular Collection. TabPFN-3-Plus (Thinking) and
+L1038: compare TabPFN API models with both text-aware models and numerical-only baselines. Figure 14 shows
+L1041: features due to lack of native support, TabPFN-3 remains the top performer. Appendix E.4 provides
+L1048: evaluations. These benchmarks test whether TabPFN-3 pushes the frontier of tabular foundation models
+L1061: samples [38]. Our large-data benchmarking effort focuses on datasets with 100,000 to 1 million training
+L1062: rows and up to 200 features.
+L1064: Section 2.1, TabPFN-3 first compresses feature information into fixed-dimensional row representations
+L1111: Figure 15. TabPFN-3 achieves state-of-the-art performance on the large-rows benchmark (up to
+L1112: 1M training rows and 200 features, 13 datasets), outperforming both default and 8-hour-tuned
+L1113: gradient-boosted tree baselines as well as TabICLv2 in a single forward pass. (a) Classification (9 datasets). (b)
+L1114: Regression (4 datasets) use temporal splits. Normalized scores are higher-is-better; see Section F.1 for the
+L1117:                                                                                           Large Data Scaling (1M datasets, 1 classification, 3 regression)
+L1142: Figure 16. TabPFN-3 tops the normalized scaling curves for ROC-AUC OvR classification and
+L1144: reach at least 1M training rows (one classification, three regression). For each dataset we subsample the training
+L1145: set to 100k, 250k, 500k and 1M rows with 3 random repeats. Shaded bands are 95% bootstrap confidence
+L1146: intervals across the four datasets and 3 repeats. .
+L1153: default and 8-hour-tuned gradient-boosted tree baselines in a single forward pass, as shown in Figure
+L1155: TabPFN-3 performance further for classification datasets (as TabPFN-3-Plus with Thinking mode does
+L1157: benchmark). To better understand how TabPFN-3 performance scales with training size, we report
+L1159: datasets with 1M training samples) in Figure 16. Across the 100k–1M range, TabPFN-3 scales smoothly
+L1164: 14 available datasets in the TALENT benchmark with more than 100K and less than 1M training samples
+L1197: Figure 17. On the synthetic many-class benchmark TabPFN-3 achieves a normalized ROC-AUC
+L1199: classes, 9 datasets that are derived from TabArena regression tasks via Dirichlet-jittered quantile binning with
+L1201: corresponding Critical Difference diagram can be seen in Figure 36.
+L1205: provided by the TALENT benchmark, as shown in Figure 30.
+L1210: TabPFN-3 introduces a many-class decoder (Section 2.2) that we trained to support up to 160 classes,
+L1214: strong performance of TabPFN-3 on the 4 datasets from the TALENT benchmark that have more than
+L1220: details are given in Appendix F.3. Figure 17 shows the ROC-AUC (OvR) and accuracy. TabPFN-3
+L1221: achieves the highest normalized ROC-AUC of 1.00, ranking first overall and outperforming all baselines
+L1222: by a large margin. On ROC-AUC (OvR), the next best model is TabICLv2 at 0.89 using its many-class
+L1228: 3.2.3                       Many Features
+L1231: setting studied in Section 3.2.1. Whereas large-row benchmarks primarily test scalability to many training
+L1235: 100–320 samples, 1,100–22,200 features, and 2–4 classes, mostly from biomedical or gene-expression-style
+L1238: Figure 18 shows that TabPFN-3 performs strongly on this challenging slice, reaching the best normalized
+L1239: ROC-AUC with 32 estimators. Earlier TabPFN variants, in particular Real-TabPFN-2.5 and TabPFN v2,
+L1249: As described in Section 2.3, each TabPFN-3 estimator is restricted to at most 200 input features per
+L1251: subsets rather than compressing the full feature set. At the same estimator budget, Real-TabPFN-2.5
+L1253: uses up to 500 features per estimator, providing broader feature-space coverage on some datasets, and
+L1255: TabPFN-3, increasing the number of estimators improves coverage of the raw feature space and raises
+L1263:                                             Many features (1k 25k features)                                                                                                                           TabArena quantile regression
+L1305: Figure 18. TabPFN scales well to                                                                                                                     Figure 19. TabPFN-3 exhibits strong
+L1308: benchmark slice, consisting of 6 classification datasets                                                                                             regression benchmark, constructed from TabArena
+L1309: with 102–322 samples and 1,117–22,215 features. This                                                                                                 regression datasets and averaged across 10 quantile
+L1310: high-dimensional, low-sample regime is particularly                                                                                                  levels q ∈ {0.1, 0.2, . . . , 0.9} [52]. Normalized scores
+L1324: TabArena regression datasets and evaluating all models on pinball loss [52], averaged across 10 quantile
+L1328: round, scaling training cost roughly linearly in the number of levels; quantile random forests [53], which
+L1330: training cost; and TabICL-v2, a tabular foundation model with a quantile head.
+L1331: TabPFN-3 achieves a normalized pinball loss score very close to 1.00, ranking first overall and outperforming
+L1334: normalized Pinball loss is shown in Figure 19, while the corresponding Critical Difference plot can be
+L1335: found in the Appendix in Figure 35.
+L1345:  rates and skill scores relative to the Seasonal Naive baseline in Table 1 (full version in Appendix Table
+L1348:  Table 1. Forecasting performance on fev-bench (100 tasks), sorted by skill score. TabPFN-TS-3 ranks 2nd
+L1395:  Figure 20. Qualitative forecast comparison on a fev-bench task (rohlik_order_1D). Each model
+L1397:  band indicating the 10th-90th quantile. The leftmost panel shows the full training history. MASE and CRPS
+L1402:     2The fev-bench authors report 28.8 MASE skill for the original TabPFN-TS [54]; our re-run in Table 17 yields 27.6 — we
+L1411: cohort it ranks 2nd on mean SQL skill scores (ahead of TiRex and TimesFM-2.5) and 2nd on MASE
+L1412: (ahead of TimesFM-2.5, which has 10% flagged train/test leakage, and TiRex), in both cases behind only
+L1415: The strong performance of TabPFN-TS-3 is particularly noteworthy seeing that it is trained purely on
+L1417: [57] are trained on real-world data. This property of our model prevents many issues from real-data
+L1419: flags 10% leakage in TimesFM-2.5 and 28% in Moirai-2.0; see Table 1), forecasting the future from
+L1423: We also show qualitative examples in Figure 20 to give a better intuition of our model forecasts. Appendix
+L1424: H complements this section with the full leaderboards (Table 17), pairwise comparisons (Figure 45),
+L1454: Figure 21. TabPFN-3 tops performance on RelBenchV1 among foundation models. Following
+L1455: Hudovernik et al. [58], we report the mean ROC AUC for entity classification and MAE scores for entity
+L1485: due to model deprecation or missing checkpoints (as is the case for KumoRFMv1 and RTzero ); we note
+L1489: and a context size of 5000 samples. We compare three different versions of RDBLearn: Vanilla RDBLearn
+L1495: of the different RFMs and fully-supervised baselines in Figure 21 both for entity classification and entity
+L1496: regression on RelBenchV1, as well as per-dataset results in subsection E.5. TabPFN-REL achieves
+L1513: in TabPFN-REL [58, 62, 65]. This is both because training a single supervised model takes significantly
+L1525: and S-Learners (Figure 27). In contrast, we observe slightly worse performance compared to TabPFN-2.5
+L1532: approach developed by Ye et al. [27] for TabPFN v2: we partition the dataset into cross-validation folds,
+L1535:    3The reported results were produced with early checkpoints that did not undergo the full training pipeline and separate
+L1551: Figure 22. TabPFN-3 extracts semantically-meaningful row embeddings. The upper plots show 2D
+L1557: Figure 22 shows that this approach continues to work well for TabPFN-3, with the generated embeddings
+L1579: randomization tests. TabPFN-3’s reduced KV cache and inference improvements (Section 2) directly
+L1600: TabPFN reduced root-mean-square error by approximately 40% compared to their existing baseline [72].
+L1603: constraints [73]. Oxford Cancer Analytics applies TabPFN to proteomic liquid-biopsy data for early
+L1782:      ization via data embedding for tabpfn. In NeurIPS 2024 Third Table Representation Learning
+L1801:      Conference on Neural Information Processing Systems Datasets and Benchmarks Track, 2024. URL
+L1836:      Accurate, scalable, and interpretable feature learning models for tabular data, 2025. URL https:
+L1866: [51] Myung Jun Kim, Léo Grinsztajn, and Gaël Varoquaux. Carte: pretraining and transfer for tabular
+L1870:      00129682, 14680262. URL http://www.jstor.org/stable/1913643.
+L1929:      //www.uplift-modeling.com/en/latest/user_guide/index.html, 2020.
+L1951: [78] Maksim A. Terpilowski. scikit-posthocs: Pairwise multiple comparison tests in python. Journal
+L1976: [83] Huixia Zhang, Jiajun Tong, Minmin Chen, and Xichuan Cao. Boosting pre-trained model with
+L2018:       pretable and responsible ai framework. Scientific Reports, 2026. doi: 10.1038/s41598-026-35451-3.
+L2050:  [99] Smallriver2024. GitHub - Smallriver2024/STBNet: TabPFN-Based Interpretable Deep Learning
+L2085:       electronic health records under real-world constraints. Preprint at Research Square, 2026. URL
+L2105:       for cardiopulmonary exercise testing performance prediction. npj Digital Medicine, 9, 2026. doi:
+L2224:       tabular dataset using hybrid lightgbm–tabpfn and shap. Digital Health, 10:20552076241272585,
+L2238:       learning model: A multi-centre validation study. Intensive Care Medicine, 51(8):1542–1544,
+L2242:       disease based on interpretable transformer model. PLOS ONE, 20(7):e0327564, 2025. doi: 10.
+L2314:       integrated cell-free dna features and omics-derived genetic scores. medRxiv preprint, 2025. URL
+L2316: [157] Chaochao Pan, Caimei Yang, and Jun Mao. Sense-of-agency as clinically accessible features
+L2371: [170] Asmaa A. Mahdi. Diagnosing patient stroke status using modern ai after dataset balancing:
+L2377:       hemodialysis in patients with diabetes based on continuous glucose monitoring. medRxiv, 2025.
+L2382:       radiomics and deep learning features based on b-mode and pdi images. Gland Surgery, 14(8):
+L2419: [179] Gahao Chen and Ziwei Yang. Risk prediction for gastrointestinal bleeding in pediatric henoch–
+L2420:       schönlein purpura using an interpretable transformer model. Frontiers in Physiology, 16:
+L2433: [183] Nicolas Leyh. Can automl handle the constraints of finance? a domain-specific benchmark of
+L2470:       features and shear strength parameters. Rock Mechanics Bulletin, page 100326, 2026. doi: 10.1016/
+L2560:       of overburden fracturing: a pfc2d-tabpfn-shap workflow for accurate, interpretable wcfz height
+L2592: [218] Qinyang Li, Rongzhi Dong, Nicholas Miklaucic, Jeffrey Hu, Sadman Sadeed Omee, Lai Wei, Sourin
+L2594:       prediction with small datasets, 2025. URL https://arxiv.org/abs/2601.00133.
+L2613:       interpretable machine learning models. Fuel, 423:139297, 2026. doi: 10.1016/j.fuel.2026.139297.
+L2623: [227] Liang Qin, Tong Liu, Qianhui Sun, and Mingxin Tang. An interpretable pretrained tabular modeling
+L2640: [230] Taiga Saito, Yu Otake, Daijiro Mizutani, and Stephen Wu. Tabpfn extensions for interpretable
+L2646: [232] Lin Deng, Linghui Xie, Sijia Zhu, Zhi Li, and Fangzhou Lin. Enhancing the prediction accuracy
+L2662:       International Test Conference (ITC), 2025. doi: 10.1109/ITC58126.2025.00067. URL https:
+L2678:       iot network attack recognition using lasso-rfe feature selection. IEEE Access, 13:151452–151465,
+L2702:       5616984, 2025. URL https://ssrn.com/abstract=5616984. Integrates image features with a
+L2711: [247] Mohamed Salem. Valid feature-level inference for tabular foundation models via the conditional
+L2712:       randomization test, 2026. URL https://arxiv.org/abs/2603.06609.
+L2724: [252] Kenyon Ng, Edwin Fong, David T. Frazier, Jeremias Knoblauch, and Susan Wei. Tabmgp:
+L2734:       an interpretable stacking algorithm. Remote Sensing, 18:671, 2026. doi: 10.3390/rs18050671. URL
+L2741:       free zero-shot feature importance estimations, 2026. URL https://arxiv.org/abs/2601.23068.
+L2772: [265] Melina Garza and Dhwani Sreenivas. ML & Climate | Final Paper. Course project report, GitHub
+L2807:       1346750-metrics-first-language-aware-clone-type-recognition-auditable-signals-across-c-c-java-
+L2845:     E.5 Per-dataset results on RelBenchV1 . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 60
+L2896: The tables below list the architectural hyperparameters of the released TabPFN-3 classifier and regressor
+L2900: Table 2. Stage 1 — Feature embedding.
+L2904:     feature_group_size                         3   Features per circular-shift group
+L2914: Table 3. Stage 2 — Feature aggregation.
+L2924: Table 4. Stage 3 — ICL transformer.
+L2930:             icl_num_kv_heads                 8    KV heads for train rows (standard MHA)
+L2931:             icl_num_kv_heads_test            1    KV heads for test rows
+L2935: Table 5. Many class output decoder — classifier.
+L2944: Table 6. MLP output decoder — regressor (2-layer MLP).
+L2952: Table 7. Shared settings (both classifier and regressor).
+L2961: We provide a number of illustrative visualizations for the improvements to our prior. Figure 23 shows
+L2962: directed acyclic graphs sampled by our new graph-sampling algorithms; Figure 24 visualizes the functional
+L2963: relationships generated by the new combiner mechanisms; Figure 25 gives an example classification
+L2964: dataset generated from the prior; and Figure 26 demonstrates TabPFN-3’s extrapolation capabilities,
+L2972: Figure 23. Visualization of directed acyclic graphs underlying our SCM prior, produced by our new
+L2978: Figure 24. Visualization of functional relationships generated by the new combiner mechanisms in
+L3000:                   Figure 25. Example classification dataset generated from the prior. There are
+L3016:                   Train                                                                                      1
+L3030: Figure 26. Example demonstrating the extrapolation capabilities of TabPFN-3 (using our
+L3046: on larger datasets with up to 50k samples in the scikit-uplift library [68]. We describe the details of
+L3051: Figure 27. TabPFN-3 as a T/X/S-Learner. TabPFN-3 when used as a T/S-Learner achieves strong
+L3072: the T/X/S meta-learners using TabPFN-2.5 and 3 (Figure 27). TabPFN-3 used as an S and T-Learner
+L3074: RealCause benchmark [69], which is characterized by smaller sample sizes.
+L3080: We re-use the official TabArena [1] evaluation metrics and code for generating TabArena plots and tables.
+L3083: others, with a 400-point Elo gap corresponding to a 10 to 1 (91%) expected win rate. We calibrate
+L3084: 1000 Elo to the performance of the default TabArena random forest configuration across all figures,
+L3085: and perform 200 rounds of bootstrapping to obtain 95% confidence intervals, similar to what is done
+L3086: in ChatBot Arena [77]. In our TabArena results, Elo scores are computed using ROC AUC for binary
+L3092:                                Improvability :=                    · 100% .
+L3094: Improvability is always between 0% and 100%.
+L3104: fit time procedure of fitting an 8-fold bagged ensemble to generate a cross-validation score followed by
+L3112: total of 816 tasks across 51 datasets. In all cases we report results for all splits of each dataset.
+L3117: Figure 2 and Figure 11 show TabArena Pareto frontiers of models across Improvability and the median
+L3118: combined train + inference time per 1000 samples. The connected points for a given model type indicate
+L3120: of random configurations (1, 2, 5, 10, 25, 50, 100, 150, 201). The trajectories are sampled 20 times from
+L3125: E.2.4   TabArena Leaderboard Tables
+L3138: Table 8. TabArena leaderboard using all 51 datasets with 816 total tasks.
+L3142:  TabPFN-3-Thinking             1800−72,+105     13.2         4.7%             37.69           3.26
+L3143:  AutoGluon 1.5 (extreme, 4h)   1695−68,+83       5.8         5.7%            289.07           4.03
+L3144:  TabPFN-3 (D)                  1677−62,+86       6.3         6.9%              2.31           0.74
+L3145:  TabPFN-2.6 (D)                1623−56,+78       1.3          8.7%             5.48           0.55
+L3146:  RealTabPFN-2.5 (T+E)          1602−62,+79       2.1          8.3%          2040.22           8.92
+L3147:  TabICLv2 (D)                  1599−64,+77       5.3          7.7%             4.02           0.38
+L3148:  RealTabPFN-2.5 (T)            1559−56,+69       1.4          9.1%          2040.22           1.22
+L3149:  RealTabPFN-2.5 (D)            1526−48,+66       0.9          9.5%             5.81           0.64
+L3150:  RealMLP (T+E)                 1514−45,+58       0.5         11.2%          2950.72          11.99
+L3151:  TabDPT (T+E)                  1461−54,+63       2.0         11.7%          4907.64         286.65
+L3152:  TabM (T+E)                    1449−44,+56       1.0         12.6%          3285.87           1.47
+L3153:  LightGBM (T+E)                1438−31,+36       0.1         13.6%           416.98           2.64
+L3154:  RealMLP (T)                   1433−47,+48       0.4         12.5%          2950.72           0.66
+L3155:  CatBoost (T+E)                1420−42,+41       0.1         13.2%          1658.41           0.65
+L3156:  CatBoost (T)                  1410−45,+41       0.5         13.4%          1658.41           0.08
+L3157:  TabDPT (T)                    1405−56,+60       0.7         12.9%          4907.64          39.96
+L3158:  TabM (T)                      1392−43,+54       0.3         13.5%          3285.87           0.17
+L3159:  LightGBM (T)                  1390−29,+33       0.0         14.3%           416.98           0.33
+L3160:  XGBoost (T+E)                 1379−35,+34       0.1         14.4%           693.49           1.69
+L3161:  CatBoost (D)                  1371−44,+40       0.2         14.2%             6.83           0.08
+L3162:  XGBoost (T)                   1354−35,+33       0.0         14.7%           693.49           0.31
+L3163:  TabDPT (D)                    1326−56,+68       0.3         15.3%            47.62          43.74
+L3164:  TabM (D)                      1299−44,+49       0.2         15.7%            10.49           0.13
+L3165:  RealMLP (D)                   1234−37,+38       0.1         17.1%            10.06           1.69
+L3166:  XGBoost (D)                   1215−38,+39       0.0         17.5%             1.94           0.12
+L3167:  LightGBM (D)                  1189−29,+34       0.0         18.0%             1.96           0.14
+L3174: Table 9. TabArena-medium leaderboard on the 15 largest datasets in TabArena, with 10k–100k
+L3175: training samples, evaluated on the full 135 tasks with 9 splits per dataset.
+L3179:  TabPFN-3-Thinking             2146−87,+121         6.2      1.3%            15.10             2.15
+L3180:  AutoGluon 1.5 (extreme, 4h)   1907−50,+92          1.4      3.4%           191.18             2.21
+L3181:  TabPFN-3 (D)                  1835−137,+224        3.3      4.1%             0.83             0.27
+L3182:  TabPFN-2.6 (D)                1741−72,+121         0.0       6.4%            2.76             0.70
+L3183:  TabICLv2 (D)                  1712−108,+208        1.9      5.3%             0.76             0.14
+L3184:  RealTabPFN-2.5 (T+E)          1663−111,+149        0.0       7.2%          735.58            11.74
+L3185:  RealMLP (T+E)                 1645−94,+91          0.0       7.4%         1719.82             1.67
+L3186:  CatBoost (T+E)                1625−64,+86          0.0       7.4%          777.59             0.25
+L3187:  CatBoost (T)                  1616−67,+95          0.3       7.6%          777.59             0.05
+L3188:  RealTabPFN-2.5 (T)            1612−103,+130        0.1       7.9%          735.58             1.39
+L3189:  LightGBM (T+E)                1604−56,+70          0.0       9.2%          131.56             2.64
+L3190:  CatBoost (D)                  1576−106,+105        0.1       7.8%            3.24             0.03
+L3191:  XGBoost (T+E)                 1565−61,+90          0.1       9.3%          282.13             0.56
+L3192:  RealMLP (T)                   1554−85,+106         0.0       8.7%         1719.82             0.08
+L3193:  TabM (T+E)                    1538−90,+157         0.7       9.1%         1993.14             0.62
+L3194:  RealTabPFN-2.5 (D)            1536−90,+141         0.0       8.7%            1.88             0.64
+L3195:  TabDPT (T+E)                  1533−124,+142        0.8       8.8%         4786.55           444.54
+L3196:  LightGBM (T)                  1515−59,+80          0.0      10.3%          131.56             0.13
+L3197:  XGBoost (T)                   1514−56,+69          0.0       9.8%          282.13             0.07
+L3198:  TabM (T)                      1489−90,+158         0.0       9.9%         1993.14             0.06
+L3199:  TabDPT (T)                    1411−125,+121        0.0      11.3%         4786.55            42.64
+L3200:  XGBoost (D)                   1375−115,+101        0.0      11.7%            0.49             0.05
+L3201:  TabDPT (D)                    1336−144,+131        0.0      14.0%           46.62            43.74
+L3202:  TabM (D)                      1330−101,+123        0.0      12.6%            5.16             0.07
+L3203:  RealMLP (D)                   1280−71,+79          0.0      13.7%            6.75             0.23
+L3204:  LightGBM (D)                  1263−63,+55          0.0      13.5%            0.29             0.04
+L3211: Table 10. TabArena-small leaderboard on the 36 smallest datasets in TabArena, with 500–10k
+L3212: training samples, evaluated on the full 681 tasks.
+L3216:  TabPFN-3-Thinking             1723−60,+100         7.0     6.1%            52.78              3.40
+L3217:  AutoGluon 1.5 (extreme, 4h)   1641−57,+79          4.4     6.6%           346.57              6.56
+L3218:  TabPFN-3 (D)                  1638−58,+85          2.9     8.1%             4.84              1.54
+L3219:  RealTabPFN-2.5 (T+E)          1598−64,+97          2.1      8.7%         2289.05              8.05
+L3220:  TabPFN-2.6 (D)                1596−49,+74          1.3      9.7%            7.03              0.55
+L3221:  TabICLv2 (D)                  1574−83,+105         3.4     8.7%             7.06              0.67
+L3222:  RealTabPFN-2.5 (T)            1556−58,+75          1.2      9.5%         2289.05              1.14
+L3223:  RealTabPFN-2.5 (D)            1542−52,+83          0.9      9.9%            6.76              0.64
+L3224:  RealMLP (T+E)                 1482−47,+63          0.5     12.7%         3770.75             21.90
+L3225:  TabDPT (T+E)                  1448−59,+76          1.2     12.9%         5119.36            218.71
+L3226:  TabM (T+E)                    1430−52,+57          0.4     14.0%         3553.12              1.74
+L3227:  TabDPT (T)                    1414−60,+72          0.7     13.6%         5119.36             28.35
+L3228:  RealMLP (T)                   1402−42,+55          0.4     14.2%         3770.75              1.78
+L3229:  LightGBM (T+E)                1392−34,+37          0.1     15.5%          892.41              2.57
+L3230:  TabM (T)                      1368−53,+56          0.3     15.0%         3553.12              0.24
+L3231:  CatBoost (T+E)                1362−43,+46          0.1     15.6%         2476.51              0.81
+L3232:  LightGBM (T)                  1357−30,+36          0.0     15.9%          892.41              0.35
+L3233:  CatBoost (T)                  1351−35,+48          0.1     15.8%         2476.51              0.10
+L3234:  TabDPT (D)                    1331−67,+74          0.3     15.9%           50.32             43.71
+L3235:  XGBoost (T+E)                 1326−37,+34          0.0     16.5%          884.18              2.37
+L3236:  CatBoost (D)                  1312−35,+35          0.1     16.9%            9.64              0.13
+L3237:  XGBoost (T)                   1309−39,+32          0.0     16.7%          884.18              0.39
+L3238:  TabM (D)                      1296−47,+54          0.2     17.0%           13.18              0.17
+L3239:  RealMLP (D)                   1224−42,+37          0.1     18.5%           15.69              4.69
+L3240:  LightGBM (D)                  1169−40,+42          0.0     19.9%            3.61              0.17
+L3241:  XGBoost (D)                   1165−38,+30          0.0     19.9%            3.29              0.25
+L3248: Table 11. TabArena-classification leaderboard on the 38 classification datasets in TabArena.
+L3252:  TabPFN-3-Thinking             1782−72,+109      10.0        6.0%             35.70              3.00
+L3253:  AutoGluon 1.5 (extreme, 4h)   1689−82,+96        4.8        6.5%            267.31              3.98
+L3254:  TabPFN-3 (D)                  1660−75,+91        3.7        8.7%              2.43              0.75
+L3255:  TabPFN-2.6 (D)                1604−69,+69        0.5        10.6%             5.17              0.54
+L3256:  TabICLv2 (D)                  1593−75,+94        4.1        9.3%              4.15              0.41
+L3257:  RealTabPFN-2.5 (T+E)          1578−75,+76        1.7        10.2%          2046.25              8.98
+L3258:  RealTabPFN-2.5 (T)            1554−66,+72        1.2        11.0%          2046.25              1.33
+L3259:  RealTabPFN-2.5 (D)            1539−63,+69        0.9        11.2%             5.76              0.79
+L3260:  RealMLP (T+E)                 1492−45,+63        0.3        13.5%          2879.46             12.49
+L3261:  TabM (T+E)                    1464−48,+75        1.0        14.8%          2466.21              1.50
+L3262:  LightGBM (T+E)                1436−37,+48        0.1        15.7%           382.05              1.49
+L3263:  RealMLP (T)                   1413−47,+55        0.4        15.0%          2879.46              0.60
+L3264:  CatBoost (T+E)                1412−47,+55        0.1        15.2%          1372.94              0.56
+L3265:  TabM (T)                      1411−58,+71        0.3        15.6%          2466.21              0.18
+L3266:  TabDPT (T+E)                  1411−56,+80        0.5        14.5%          4940.61            307.75
+L3267:  CatBoost (T)                  1404−45,+54        0.4        15.4%          1372.94              0.07
+L3268:  LightGBM (T)                  1392−33,+43        0.0        16.4%           382.05              0.25
+L3269:  XGBoost (T+E)                 1382−48,+50        0.1        16.5%           685.87              1.45
+L3270:  CatBoost (D)                  1381−46,+46        0.2        16.0%             5.72              0.08
+L3271:  XGBoost (T)                   1356−40,+45        0.0        16.8%           685.87              0.21
+L3272:  TabDPT (T)                    1351−58,+66        0.6        16.0%          4940.61             41.61
+L3273:  TabM (D)                      1315−48,+56        0.2        18.0%            10.21              0.14
+L3274:  TabDPT (D)                    1270−57,+62        0.3        18.9%            49.21             43.82
+L3275:  RealMLP (D)                   1244−34,+39        0.1        19.6%            10.47              1.71
+L3276:  XGBoost (D)                   1231−50,+47        0.0        19.6%             1.77              0.12
+L3277:  LightGBM (D)                  1192−40,+49        0.0        20.6%             1.79              0.12
+L3284: Table 12. TabArena-regression leaderboard on the 13 regression datasets in TabArena.
+L3288:  TabPFN-3-Thinking               1959−150,+211          3.2        0.9%              43.00             3.26
+L3289:  TabPFN-3 (D)                    1827−142,+255          2.5        1.6%               1.69             0.57
+L3290:  AutoGluon 1.5 (extreme, 4h)     1804−97,+133           1.1         3.2%            335.03             4.33
+L3291:  TabPFN-2.6 (D)                  1776−71,+131           0.8         3.3%              8.52             0.70
+L3292:  RealTabPFN-2.5 (T+E)            1774−107,+174          0.5        2.6%            1709.05             8.12
+L3293:  TabDPT (T+E)                    1748−92,+171           1.5        3.5%            4786.55           239.54
+L3294:  TabICLv2 (D)                    1700−159,+293          1.2         3.2%              2.10             0.25
+L3295:  TabDPT (T)                      1696−79,+134           0.1         3.9%           4786.55            38.50
+L3296:  RealMLP (T+E)                   1677−68,+126           0.2         4.3%           3995.01            10.05
+L3297:  RealTabPFN-2.5 (T)              1654−113,+165          0.2         3.4%           1709.05             0.81
+L3298:  TabDPT (D)                      1604−72,+153           0.0         4.9%             46.62            39.21
+L3299:  RealMLP (T)                     1574−84,+114           0.0         5.3%           3995.01             0.84
+L3300:  RealTabPFN-2.5 (D)              1558−110,+159          0.0         4.9%              7.04             0.51
+L3301:  CatBoost (T+E)                  1513−73,+113           0.0         7.3%           3552.96             0.97
+L3302:  LightGBM (T+E)                  1509−90,+107           0.0         7.7%            700.15             9.32
+L3303:  CatBoost (T)                    1489−78,+119           0.1         7.4%           3552.96             0.10
+L3304:  TabM (T+E)                      1463−96,+147           0.0         6.2%           4158.29             1.41
+L3305:  LightGBM (T)                    1440−77,+119           0.0         8.3%            700.15             0.97
+L3306:  XGBoost (T+E)                   1424−52,+72            0.0         8.2%            834.93             2.61
+L3307:  XGBoost (T)                     1403−60,+85            0.0         8.4%            834.93             0.39
+L3308:  CatBoost (D)                    1389−92,+107           0.0         8.9%             10.89             0.09
+L3309:  TabM (T)                        1381−101,+147          0.0         7.1%           4158.29             0.17
+L3310:  TabM (D)                        1284−118,+126          0.0         8.8%             13.32             0.13
+L3311:  RealMLP (D)                     1235−81,+105           0.0         9.8%              8.90             1.64
+L3312:  LightGBM (D)                    1210−35,+40            0.0        10.7%              2.11             0.27
+L3313:  XGBoost (D)                     1190−78,+99            0.0        11.3%              2.24             0.24
+L3320: TALENT [38] base contains 300 datasets (120 binary, 80 multiclass, 100 regression). Each dataset is split
+L3321: into 64% training, 16% validation, and 20% test sets.
+L3329: Metrics. Following the TALENT paper and [30], we use accuracy for classification and rmse for
+L3333: Datasets. Following [30], we exclude the 26 development datasets used for TabPFN-2 / TabICLv2
+L3369: Figure 28. Average rank on the TALENT benchmark broken down by task type (regression,
+L3371: et al. [30]. Bars show mean rank (lower is better); error bars are 95% bootstrap confidence intervals over
+L3372: datasets. Hatched bars mark methods with KNN-imputed scores. TabPFN-2.5, LimiX, and TabPFNv2 share a
+L3373: 10-class cap, so their scores on the 12 multiclass datasets with >10 classes are KNN-imputed.
+L3378: We report results on the subset of TALENT [38] datasets with more than 50 classes, which yields 4
+L3379: datasets with 100 classes, including 3 from the same family. While limited in number, these complement
+L3380: the results on synthetic data from Section 3.2.2. Results are shown in Figure 29.
+L3387:                                                                                                                   Many-classes (4 datasets)
+L3393:                                                                                ModernNCA (1 imputed, 25%)
+L3404: Figure 29. Average rank on the many-classes TALENT slice (4 datasets, all 100 classes). Three are
+L3405: the one-hundred-plants variants (margin / shape / texture, ≈1.6 k samples each) and one is helena (65 k
+L3411: We report here the list of datasets in the large-rows subset of TALENT we use in Section 3.2.1. The
+L3412: datasets are filtered for >100k samples and ≤1M training samples from the TALENT base and large
+L3413: extension. We report the model ranking in Figure 30.
+L3415:  Dataset                                           Samples   Feat.    Task                                             Large rows (14 datasets)
+L3421:  Smoking_and_Drinking_Dataset_with_body_signal     991,346     23     Binary          FT-Transformer (1 imputed, 7%)
+L3425:  CDC_Diabetes_Health_Indicators                    253,680     21     Binary           ModernNCA (2 imputed, 14%)
+L3426:  accelerometer                                     153,004      4     Multi.                  TabR (8 imputed, 57%)
+L3427:  walking-activity                                  149,332      4     Multi.             TabPFNv2 (5 imputed, 36%)
+L3429:                                                                                        RandomForest (1 imputed, 7%)
+L3444: Table 13. Datasets in the large-rows TALENT slice.                               Figure 30. Average rank on the large-rows
+L3450: Per-dataset ranking. For each (dataset, split) we rank all methods by their score (best = 1; ties get
+L3455: Bootstrap confidence intervals. 95% confidence intervals are non-parametric bootstrap over datasets:
+L3456: for each of B = 2,000 replicates we resample the (dataset, split) pairs with replacement and recompute
+L3468: datasets, the final benchmark contains 50 datasets: 15 classification and 35 regression tasks.10 Each
+L3469: model is run 5 times, with per-task metrics AUROC (binary classification), log-loss (multiclass), and
+L3471: paper [39], we limit each run to up to 100,000 examples. Figure 31 shows the results for classification,
+L3473: significantly outperforms it. Figure 32 shows the equivalent regression performance.
+L3475:                                                                 Text-Tabular Benchmark      Classification (15 Datasets)
+L3498: Figure 31. Performance on the classification tasks of the TabSTAR text-tabular collection.
+L3504:                                                                  Text-Tabular Benchmark      Regression (35 Datasets)
+L3527: Figure 32. Performance on the regression tasks of the TabSTAR text-tabular collection.
+L3532: E.5     Per-dataset results on RelBenchV1
+L3534: Table 14 and Table 15, respectively.
+L3535:  10The TabSTAR paper reports 14 classification tasks, having mistakenly treated Spotify Genres as a regression dataset.
+L3542: Table 14. RelBenchV1 entity classification: per-task ROC AUC×100. Bold = best per task / column,
+L3549:                     dnf         top3    click     visit   repeat   ignore           out    user       item           eng   badge    churn
+L3565: Table 15. RelBenchV1 entity regression: per-task MAE. Bold = best per task / column (ties bolded
+L3605: [0, 1] scale for each (dataset, fold) combination. We treat the tuned and default versions of a model as
+L3629: have between 100K and 1M training rows, and fewer than 200 features, which is the regime TabPFN-3
+L3631: Figures 33 and 34 show critical difference diagrams for ROC-AUC and RMSE respectively, based on
+L3634:                     ROC AUC Large Classification benchmark (100k 1M)
+L3646: Figure 33. Critical difference diagram for ROC-AUC on the large-scale classification benchmark
+L3647: (100k–1M training rows). TabPFN-3 ranks first (avg. rank 2.11). Its rank differences to the 8-hour-tuned
+L3650: α = 0.05 under a Conover-Friedman post-hoc test [78]..
+L3668: Figure 34. Critical difference diagram for RMSE on the large-scale regression benchmark
+L3669: (100k–1M rows, 4 datasets, temporal splits). Methods are ranked per (dataset, split); lower rank is better.
+L3673: post-hoc test [78].
+L3680: fewer than 10 samples are merged with their nearest neighbour to guarantee sufficient representation for
+L3685: (222, discrete prices), and QSAR-TID-11 (concentrated point masses). Dataset statistics are reported in
+L3686: Table 16. The resulting benchmark retains a large number of classes for most datasets (median K = 95),
+L3690: Table 16. Synthetic many-class benchmark datasets derived from continuous regression targets. N
+L3691: is the number of samples before binning. Targets are first partitioned into 100 quantile-based bins with
+L3692: randomized Dirichlet-spaced bin widths, after which bins with fewer than 10 samples are merged into their
+L3732: Figure 35. Critical difference diagram for pinball loss on our quantile regression benchmark. The
+L3733: quantile regression benchmark is constructed from TabArena regression datasets and evaluated across 10 quantile
+L3736: differences are not statistically significant at α = 0.05 under a Conover-Friedman post-hoc test [78].
+L3741:                ROC AUC Synthetic Many Class benchmark (up to 100 classes)
+L3762: Figure 36. Critical difference diagram for ROC AUC on the synthetic many-class benchmark (up
+L3763: to 100 classes). TabPFN-3 is top-ranked on every (dataset, split) pair and ranks significantly ahead of all
+L3765: Conover-Friedman post-hoc test [78].
+L3772: TabPFN-3 is shipped with two opt-in performance features that target different bottlenecks: torch.compile
+L3783:                                                      nfeatures = 10                                        nfeatures = 100                                       nfeatures
+L3811: (a) MI-250x – speed-up of torch.compile over eager of TabPFN-3 forward pass, for nfeatures ∈ {10, 100, 500}. Values
+L3814:                                                   nfeatures = 10                98.4 s                   nfeatures = 100                                        nfeatures = 500
+L3838: backend on the TabPFN-3 architecture forward pass, for nfeatures ∈ {10, 100, 500}. Values above 1 indicate FA3 wins.
+L3840:   Figure 37. Forward-pass inference speed-ups on the TabPFN-3 architecture. Top: torch.compile
+L3850: Figure 37a shows the wall-clock impact on MI-250x. The y-axis is Teager /Tcompile , so a value above 1
+L3854: climbs from 1.04–1.15× at nfeatures = 10 to 1.10–1.46× at nfeatures = 100 and 1.40–1.58× at nfeatures = 500.
+L3857: (1.21–1.43× at ntrain = 103 ) and large nfeatures and converges toward parity (0.95–1.06×) at ntrain ≥ 105
+L3867:   self-attention – which carries the bulk of the attention cost at large ntrain – is routed through FA3, while
+L3874: Figure 37b shows the H100 SDPA-versus-auto comparison in ratio form. The y-axis is Tsdpa /Tauto , so
+L3877: profile. At small training sets (ntrain ≤ 1000) the FA3 dispatch and kernel-launch overhead exceeds the
+L3878: per-call attention work, and SDPA is 10–15% faster (Tsdpa /Tauto ≈ 0.84–0.91 across feature counts). The
+L3879: cross-over arrives sooner the smaller nfeatures : by ntrain = 104 FA3 wins at nfeatures = 10 (1.21×), is
+L3880: roughly even at nfeatures = 100 (1.07×), and at parity at nfeatures = 500 (1.02×). At the inference shapes
+L3881: we care about (ntrain ≥ 105 ) FA3 is the clear win across all feature counts, with the speed-up climbing
+L3882: to 1.49–1.73× at ntrain = 106 . Chunking does not interact with the FA3-versus-SDPA comparison: the
+L3890: reuse the same fit on many different forward passes. Figure 38 shows the efficiency gains users can
+L3906: features                                                                               10                            features
+L3936: Figure 38. Efficiency gains for SHAP-value computation with KV-cache across training table
+L3944: This appendix complements the body Time-Series subsection (Table 1, Figure 20) with the full leaderboards
+L3945: (Table 17), pairwise comparisons (Figure 45), additional qualitative forecasts (Section H and per-task
+L3955: Table 17. Full marginal forecasting performance on fev-bench (100 tasks), all 19 baselines, sorted by skill score.
+L3956: The body table (Table 1) shows the foundation-model + Stat. Ensemble + Seasonal Naive subset. † TabICL-v2
+L4038: Figure 39. solar_with_weather_15T — 15-minute solar generation with weather covariates.
+L4075: Figure 40. rossmann_1W — weekly Rossmann store sales (series 1).
+L4139: Figure 41. rohlik_orders_1D — daily online-grocery orders.
+L4155: Figure 42. LOOP_SEATTLE_1H — hourly Seattle freeway loop-detector counts.
+L4249: Figure 43. ETT_1H — hourly Electricity Transformer Temperature.
+L4285: Figure 44. entsoe_1H — hourly ENTSO-E European electricity load.
+L4294:                                                                                                           Pairwise Skill Score (SQL) with 95% CIs                                                                                                                                                                                                                                                                                                              Pairwise Skill Score (MASE) with 95% CIs
+L4355: Figure 45. Pairwise skill-score comparison on fev-bench (100 tasks) under SQL (left) and MASE (right). Cell
+L4356: (i, j) is the skill score of model i relative to model j, with 95% confidence intervals from bootstrapped resampling;
+L4363: Table 18. Per-task SQL on fev-bench (100 tasks). Lower is better; values are after leakage and failure
+L4520:         improving classification accuracy and supporting psychiatric diagnosis [81]. Link
+L4536:         feature–return relationships [87]. Link
+L4550:      4. TabPFN was combined with BulkFormer to improve prediction accuracy of post-transplant kidney
+L4563:     screening by maintaining robust performance despite missing modalities [93]. Link
+L4566: 10. TabPFN demonstrated high accuracy and specificity in matching cell line transcriptomes to reference
+L4569: 11. TabPFN was used to enhance prediction accuracy of protein coupling based on structural features,
+L4574:     feature-combination performance and classification accuracy [98]. Link
+L4576: 14. TabPFN enhances model interpretability and accuracy in differentiating complex spinal infections,
+L4584:     accuracy in estimating pollutant concentrations in human blood [102]. Link
+L4586: 18. TabPFN enables better generalization and accuracy in modeling complex drug formulation data,
+L4588: 19. TabPFN enables state-of-the-art real-time stress detection by enhancing accuracy and interpretability
+L4595:     robust modeling under real-world constraints, improving prognosis accuracy and reliability [106].
+L4603:     multidimensional clinical data into accurate and interpretable screening models [109]. Link
+L4605:     heart failure patients [110]. Link
+L4614: 27. TabPFN was integrated into the FocalTab framework to improve classification accuracy, handle
+L4616: 28. TabPFN demonstrated strong robustness in cross-cohort microbiome disease prediction under
+L4617:     domain shift, maintaining competitive performance across datasets [112]. Link
+L4619:     complex interactions and enhance early coronary artery disease prediction accuracy [113]. Link
+L4620: 30. TabPFN enables Bayesian inference via in-context learning without per-dataset training, improving
+L4621:     accuracy, calibration, and inference speed in scientific disease modeling tasks [114]. Link
+L4627:     improving classification accuracy and supporting psychiatric diagnosis [81]. Link
+L4631:     accuracy and efficiency [118]. Link
+L4634: 37. TabPFN was used in a hybrid model combining radiomics and deep learning features to improve
+L4638: 39. TabPFN improved intra-European ancestry prediction accuracy when combined with ML-based
+L4640: 40. TabPFN improves renal tumor classification accuracy in CT radiomics by effectively handling small,
+L4641:     high-dimensional datasets without extensive tuning [123]. Link
+L4644: 42. TabPFN improves empathy detection accuracy and cross-subject generalization in human-centered
+L4645:     video datasets [125]. Link
+L4650: 45. TabPFN improves multimodal skin cancer diagnosis by combining structured lesion features with
+L4651:     clinical data for more accurate and interpretable predictions [127]. Link
+L4654: 47. TabPFN improves EEG seizure classification across subjects, achieving high accuracy and strong
+L4660: 48. TabPFN improves kelp origin prediction using stable isotope data, providing robust and interpretable
+L4662: 49. TabPFN predicts CO2 frosting temperatures in natural gas mixtures with high accuracy and
+L4665: 50. TabPFN improves ADMET modeling by increasing prediction accuracy, simplifying deployment,
+L4670: 52. TabPFN was applied to distinguish cancer patients from healthy individuals using immune system
+L4673:     of minimal change disease in patients with nephrotic syndrome, utilizing clinical biomarkers [134].
+L4682:     TabPFN to assess patient demographics and surgical parameters [137]. Link
+L4684:     disease patients, handling small datasets and missing values effectively [138]. Link
+L4687:     in stroke patients with distal vessel occlusions using CT perfusion imaging [139]. Link
+L4688: 59. TabPFN facilitated the prediction of non-invasive ventilation outcomes in patients with acute
+L4691: 60. An interpretable Transformer-based model leveraging TabPFN was created to predict intravenous
+L4692:     immunoglobulin resistance in pediatric patients with Kawasaki disease [141]. Link
+L4694:     clinical biomarkers and symptom data into formats suitable for analysis [142]. Link
+L4695: 62. TabPFN was used to combine clinical, MR morphological, and delta-radiomics features to predict
+L4696:     lymphovascular invasion in invasive breast cancer patients [143]. Link
+L4699: 64. TabPFN contributed to cardiovascular disease risk stratification using clinical features from a large
+L4700:     patient cohort, incorporating interpretability techniques [145]. Link
+L4702:     injury in hospitalized patients, demonstrating generalizability across datasets [146]. Link
+L4709:     mellitus patients, focusing on neuropathy and retinopathy [149]. Link
+L4716:     disease progression on neuroimaging datasets [150]. Link
+L4720: 71. TabPFN was applied to predict tumor response to chemotherapy in cholangiocarcinoma patients
+L4731:     scores from early pregnancy blood samples [156]. Link
+L4732: 76. TabPFN was used for predicting schizophrenia based on sense of agency features, emphasizing
+L4740: 80. TabPFN facilitated prediction of coronary heart disease risk in patients with cardiovascular-kidney-
+L4741:     metabolic syndrome, optimizing evaluation in small samples [161]. Link
+L4745: 82. TabPFN contributed to predicting manual strength using anthropometric data, focusing on accuracy
+L4757:     patients post-surgery [168]. Link
+L4758: 88. TabPFN supported prediction of occult lymph node metastasis in non-small cell lung cancer patients
+L4760: 89. TabPFN was used in stroke diagnosis, addressing dataset imbalance and model interpretability for
+L4763:     continuous glucose monitoring data, facilitating improved patient management [171]. Link
+L4769:      ultrasound features [172]. Link
+L4770:  92. TabPFN was integrated with radiomics and clinical features to predict endovascular treatment
+L4773:      diagnostic accuracy in ophthalmology [174]. Link
+L4775:      features, advancing passive sleep monitoring [175]. Link
+L4780:  97. TabPFN was extended to very high-dimensional feature spaces to enable robust analysis of biomedical
+L4782:  98. TabPFN predicted gastrointestinal bleeding risk in pediatric Henoch–Schönlein purpura patients,
+L4799:      the adjusted Sharpe ratio to enhance financial forecasting accuracy [182]. Link
+L4802:      feature–return relationships [87]. Link
+L4823:  3. TabPFN was used to improve the robustness and accuracy of photovoltaic power forecasting models
+L4826:  4. TabPFN enables effective learning and prediction with very limited data by leveraging pretrained
+L4836:  7. TabPFN was used for slope stability assessment, providing superior accuracy and robustness with
+L4837:     limited sample sizes and enhancing regional scale evaluation efficiency [191]. Link
+L4894:   3. TabPFN leveraged prior-data pretraining to predict WCFZ height from only 76 field samples without
+L4898:   4. TabPFN’s multitask-aware prior adaptation improves predictive accuracy and computational
+L4901:   5. TabPFN’s pre-trained foundation model enables strong small-data regression and well-calibrated
+L4908:   8. TabPFN 2.5’s dataset-level embedding identified ’engineering-like’ synthetic datasets to enable
+L4910:      baseline models and AutoGluon on engineering regression datasets [215]. Link
+L4911:   9. TabPFN achieved the highest prediction accuracy in predicting concrete fracture properties and,
+L4939:     improving model accuracy [224]. Link
+L4952: 22. TabPFN’s improved spatiotemporal architecture enhances robustness and accuracy in geological
+L4957: 24. TabPFN enhances prediction accuracy and reliability with small sample sizes and missing features
+L4959: 25. TabPFN enabled interpretable and uncertainty-aware parameter inference, improving predictions
+L4960:     and revealing geotechnical relationships without model retraining for data-scarce applications [230].
+L4965: 27. TabPFN was used to improve prediction accuracy in concrete property estimation by integrating
+L4966:     knowledge-constrained data augmentation [232]. Link
+L4970: 29. TabPFN enables robust mapping between operating boundary conditions and latent features to
+L5011:   2. TabPFN enables efficient and valid hypothesis testing for feature relevance in tabular data, allowing
+L5015:   4. TabPFN enables effective node classification by leveraging engineered tabular features from graph
+L5028:      tuning and reduced feature engineering requirements [253]. Link
+L5035:     highly imbalanced datasets [254]. Link
+L5036: 10. TabPFN was used as a base learner in a stacking ensemble model, improving prediction accuracy
+L5039:     values for feature importance without access to the predictive model or reference explanations [256].
+L5046:     baseline and transfer learning models to enhance prediction accuracy for early interventions [259].
+L5050: 16. TabPFN enhances accuracy and efficiency in predicting grapevine diseases by processing com-
+L5060: 21. TabPFN showed the strongest performance on 31 predictive soil modeling datasets containing 30 to
+L5061:     460 samples [266]. Link
+L5063: 23. TabPFN supported automated feature engineering for energy consumption forecasting in domain-
+L5068:     automated feature engineering [270]. Link
+L5073: 28. TabPFN informed the development of TabImpute, enabling efficient zero-shot imputation for missing
+L5083:     and climate features [276]. Link

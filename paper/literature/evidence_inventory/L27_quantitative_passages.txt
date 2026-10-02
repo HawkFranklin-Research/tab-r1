@@ -1,0 +1,7 @@
+# Retrieval inventory, NOT completed visual/claim audit
+Source L27: Introducing TabFM: A zero-shot foundation model for tabular data; DOI NA
+Original text line numbers. Numbers may be citations, secondary reports,
+toy examples, or ambiguous table columns. Verify context before citing.
+
+L147: To rigorously test TabFM against existing state-of-the-art methods, we evaluated it onTabArena, a living benchmark system that calculatesElo scoresbased on head-to-head win rates. This comprehensive evaluation spans 38 classification datasets and 13 regression datasets ranging in size from 700 to 150,000 samples.
+L150: TabFM-Ensemble: This configuration pushes performance further by incorporating cross features andSVD(Singular Value Decomposition) features. We compute the optimal weights for a 32-way ensemble using a non-negative least squares solver. For classification tasks, this variant also incorporatesPlatt scalingas an additional calibration step.

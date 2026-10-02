@@ -1,0 +1,841 @@
+SOURCE ID: L36
+TITLE: Comprehensive molecular profiling of lung adenocarcinoma
+YEAR: 2014
+DOI: 10.1038/nature13385
+PDF: ../pdfs/L36.pdf
+PAGES: 10
+EXTRACTION: pdftotext -layout. Page breaks are form feeds. Check equations, tables, and figures against the PDF during visual audit.
+==============================================================================
+
+ARTICLE                                                                                                                                                                                                            OPEN
+                                                                                                                                                                                                   doi:10.1038/nature13385
+
+
+
+
+Comprehensive molecular profiling of
+lung adenocarcinoma
+The Cancer Genome Atlas Research Network*
+
+
+
+    Adenocarcinoma of the lung is the leading cause of cancer death worldwide. Here we report molecular profiling of 230
+    resected lung adenocarcinomas using messenger RNA, microRNA and DNA sequencing integrated with copy number,
+    methylation and proteomic analyses. High rates of somatic mutation were seen (mean 8.9 mutations per megabase). Eighteen
+    genes were statistically significantly mutated, including RIT1 activating mutations and newly described loss-of-function
+    MGA mutations which are mutually exclusive with focal MYC amplification. EGFR mutations were more frequent in female
+    patients, whereas mutations in RBM10 were more common in males. Aberrations in NF1, MET, ERBB2 and RIT1 occurred
+    in 13% of cases and were enriched in samples otherwise lacking an activated oncogene, suggesting a driver role for these
+    events in certain tumours. DNA and mRNA sequence from the same tumour highlighted splicing alterations driven by
+    somatic genomic changes, including exon 14 skipping in MET mRNA in 4% of cases. MAPK and PI(3)K pathway activity,
+    when measured at the protein level, was explained by known mutations in only a fraction of cases, suggesting additional,
+    unexplained mechanisms of pathway activation. These data establish a foundation for classification and further investi-
+    gations of lung adenocarcinoma molecular pathogenesis.
+
+
+Lung cancer is the most common cause of global cancer-related mor-                                                                      of passenger events per tumour genome11–13. Our efforts focused on com-
+tality, leading to over a million deaths each year and adenocarcinoma is                                                                prehensive, multiplatform analysis of lung adenocarcinoma, with atten-
+its most common histological type. Smoking is the major cause of lung                                                                   tion towards pathobiology and clinically actionable events.
+adenocarcinoma but, as smoking rates decrease, proportionally more
+cases occur in never-smokers (defined as less than 100 cigarettes in a life-                                                            Clinical samples and histopathologic data
+time). Recently, molecularly targeted therapies have dramatically improved                                                              We analysed tumour and matched normal material from 230 previously
+treatment for patients whose tumours harbour somatically activated onco-                                                                untreated lung adenocarcinoma patients who provided informed con-
+genes such as mutant EGFR1 or translocated ALK, RET, or ROS1 (refs 2–4).                                                                sent (Supplementary Table 1). All major histologic types of lung ade-
+Mutant BRAF and ERBB2 (ref. 5) are also investigational targets. How-                                                                   nocarcinoma were represented: 5% lepidic, 33% acinar, 9% papillary,
+ever, most lung adenocarcinomas either lack an identifiable driver onco-                                                                14% micropapillary, 25% solid, 4% invasive mucinous, 0.4% colloid and
+gene, or harbour mutations in KRAS and are therefore still treated with                                                                 8% unclassifiable adenocarcinoma (Supplementary Fig. 1)14. Median
+conventional chemotherapy. Tumour suppressor gene abnormalities,                                                                        follow-up was 19 months, and 163 patients were alive at the time of last
+such as those in TP53 (ref. 6), STK11 (ref. 7), CDKN2A8, KEAP1 (ref. 9),                                                                follow-up. Eighty-one percent of patients reported past or present smok-
+and SMARCA4 (ref. 10) are also common but are not currently clinically                                                                  ing. Supplementary Table 2 summarizes demographics. DNA, RNA and
+actionable. Finally, lung adenocarcinoma shows high rates of somatic                                                                    protein were extracted from specimens and quality-control assessments
+mutation and genomic rearrangement, challenging identification of all                                                                   were performed as described previously15. Supplementary Table 3 sum-
+but the most frequent driver gene alterations because of a large burden                                                                 marizes molecular estimates of tumour cellularity16.
+
+a                                                                                                          b  Transversion high                       Transversion low     Figure 1 | Somatic mutations in lung
+      Gender                                                                                                 Number of mutations                     Number of mutations
+Smoking status                                                                                            150    100     50      0                     0 20 40 60
+                                                                                                                                                                           adenocarcinoma. a, Co-mutation plot from whole
+                           Male   Female                     NA    Ever-smoker   Never-smoker
+                                                                                                                                                 TP53                      exome sequencing of 230 lung adenocarcinomas.
+        TP53                                                                                    46                                               KRAS
+        KRAS                                                                                    33                                               EGFR                      Data from TCGA samples were combined with
+       KEAP1                                                                                    17                                              STK11
+       STK11                                                                                    17                                              KEAP1                      previously published data12 for statistical analysis.
+        EGFR                                                                                    14                                                NF1
+         NF1                                                                                    11                                             SMARCA4                     Co-mutation plot for all samples used in the
+        BRAF                                                                                                                                    RBM10
+
+
+
+                                                                                                     Frequency (%)
+       SETD2
+                                                                                                10
+                                                                                                9                                               PIK3CA                     statistical analysis (n 5 412) can be found in
+                                                                                                                                                  RB1
+      RBM10                                                                                     8                                               U2AF1                      Supplementary Fig. 2. Significant genes with a
+         MGA                                                                                    8                                               ERBB2
+         MET                                                                                    7                                                                          corrected P value less than 0.025 were identified
+      ARID1A                                                                                    7
+      PIK3CA                                                                                    7                                                                          using the MutSig2CV algorithm and are ranked
+    SMARCA4                                                                                     6                    c        Males                      Females
+         RB1                                                                                    4                        Number of mutations         Number of mutations   in order of decreasing prevalence. b, c, The
+     CDKN2A                                                                                     4
+       U2AF1                                                                                    3
+                                                                                                                          60 40 20 0                  0   20 40 60         differential patterns of mutation between samples
+         RIT1                                                                                   2                                                EGFR
+                           Missense        Splice site      Frameshift                                                                          STK11                      classified as transversion high and transversion low
+                           Nonsense        In-frame indel                                                                                      SMARCA4                     samples (b) or male and female patients (c) are
+                     100                                                                                                                        RBM10
+                                                                                                                                                                           shown for all samples used in the statistical analysis
+        Percentage
+                      80
+                      60
+                                                                                                                                                                           (n 5 412). Stars indicate statistical significance
+                      40                                                                                                 Q < 0.05   Missense      Frameshift
+                      20                                                                                                 P < 0.05   Splice site   In-frame indel           using the Fisher’s exact test (black stars: q , 0.05,
+                       0                                                                                                            Nonsense      Other non-synonymous
+                           Transversions     Transitions    Indels, other                                                                                                  grey stars: P , 0.05) and are adjacent to the sample
+                                                                                                                                                                           set with the higher percentage of mutated samples.
+
+*A list of authors and affiliations appears at the end of the paper.
+
+
+                                                                                                                                                                           3 1 J U LY 2 0 1 4 | V O L 5 1 1 | N AT U R E | 5 4 3
+                                                                            ©2014 Macmillan Publishers Limited. All rights reserved
+ RESEARCH ARTICLE
+
+Somatically acquired DNA alterations                                             MDM2, KRAS, EGFR, MET, CCNE1, CCND1, TERC and MECOM (Sup-
+We performed whole-exome sequencing (WES) on tumour and germ-                    plementary Table 6), as previously described24, 8q24 near MYC, and a
+line DNA, with a mean coverage of 97.63 and 95.83, respectively, as per-         novel peak containing CCND3 (Supplementary Table 6). The CDKN2A
+formed previously17. The mean somatic mutation rate across the TCGA              locus was the most significant deletion (Supplementary Table 6). Sup-
+cohort was 8.87 mutations per megabase (Mb) of DNA (range: 0.5–48,               plementary Table 7 summarizes molecular and clinical characteristics
+median: 5.78). The non-synonymous mutation rate was 6.86 per Mb.                 by sample. Low-pass whole-genome sequencing on a subset (n 5 93) of
+MutSig2CV18 identified significantly mutated genes among our 230                 the samples revealed an average of 36 gene–gene and gene–inter-gene
+cases along with 182 similarly-sequenced, previously reported lung
+adenocarcinomas12. Analysis of these 412 tumour/normal pairs high-
+lighted 18 statistically significant mutated genes (Fig. 1a shows co-mutation    a                     Exon                                                                Exon
+                                                                                                         13                                                                  20
+plot of TCGA samples (n 5 230), Supplementary Fig. 2 shows co-mutation
+                                                                                                                                                                                        EML4–ALK
+plot of all samples used in the statistical analysis (n 5 412) and Sup-
+                                                                                                   6                                                                         20
+plementary Table 4 contains complete MutSig2CV results, which also                                                                                                                      EML4–ALK
+appear on the TCGA Data Portal along with many associated data files                               6                                                                         20
+(https://tcga-data.nci.nih.gov/docs/publications/luad_2014/). TP53 was                                                                                                                  EML4–ALK
+commonly mutated (46%). Mutations in KRAS (33%) were mutually                                             11                                                         12
+exclusive with those in EGFR (14%). BRAF was also commonly mutated                                                                                                                      TRIM33–RET
+
+(10%), as were PIK3CA (7%), MET (7%) and the small GTPase gene, RIT1                           1                                                                     12
+                                                                                                                                                                                        CCDC6–RET
+(2%). Mutations in tumour suppressor genes including STK11 (17%),
+                                                                                         10                                                                                  34
+KEAP1 (17%), NF1 (11%), RB1 (4%) and CDKN2A (4%) were observed.
+                                                                                                                                                                                        EZR–ROS1
+Mutations in chromatin modifying genes SETD2 (9%), ARID1A (7%) and                   6                                                                                       34
+SMARCA4 (6%) and the RNA splicing genes RBM10 (8%) and U2AF1                                                                                                                            CD74–ROS1
+(3%) were also common. Recurrent mutations in the MGA gene (which                                                31                                                          35
+encodes a Max-interacting protein on the MYC pathway19) occurred in                                                                                                                     CLTC–ROS1
+8% of samples. Loss-of-function (frameshift and nonsense) mutations                           14                                                                           32–34
+in MGA were mutually exclusive with focal MYC amplification (Fisher’s                                                                                                                   SLC34A2–ROS1
+
+exact test P 5 0.04), suggesting a hitherto unappreciated potential mech-
+                                                                                                        Portion of original transcripts not in fusion transcript:
+anism of MYC pathway activation. Coding single nucleotide variants and
+                                                                                                                           Normalized, exonic mRNA expression: Low                                                               High
+indel variants were verified by resequencing at a rate of 99% and 100%,
+respectively (Supplementary Fig. 3a, Supplementary Table 5). Tumour              b
+                                                                                     Exon 14 skipping          Number of samples                             TCGA-99-7458
+
+
+
+
+                                                                                                                                                                                                   Normalized RNA-seq read coverage
+                                                                                                                                                                                              29
+purity was not associated with the presence of false negatives identified                   None
+in the validation data (P 5 0.31; Supplementary Fig. 3b).                                (0% skipping)         199    0        0          0
+   Past or present smoking associated with cytosine to adenine (C .A)                                                                                                                         0
+nucleotide transversions as previously described both in individual genes                                                                                    TCGA-75-6205                     11
+                                                                                        Intermediate
+and genome-wide12,13. C . A nucleotide transversion fraction showed                  (60–80% skipping)          0     1        1          1
+two peaks; this fraction correlated with total mutation count (R2 5 0.30)                                                                                                                     0
+and inversely correlated with cytosine to thymine (C . T) transition fre-                                                                                    TCGA-44-6775                     27
+quency (R2 5 0.75) (Supplementary Fig. 4). We classified each sample                        Full
+                                                                                     (90–100% skipping)         0     5        1          0
+(Supplementary Methods) into one of two groups named transversion-
+                                                                                                                                                                                              0
+high (TH, n 5 269), and transversion-low (TL, n 5 144). The transversion-
+                                                                                                                      ss mut             Y1003*
+                                                                                                                               ss del
+                                                                                                                WT                                                   Y1003
+high group was strongly associated with past or present smoking (P ,
+                                                                                                                                                        13            14           15     MET mutations
+2.2 3 10216), consistent with previous reports13. The transversion-high
+and transversion-low patient cohorts harboured different gene mutations.         c
+                                                                                 Observed splicing across all tumours
+Whereas KRAS mutations were significantly enriched in the transversion-          (total events = 29,867)
+high cohort (P 5 2.13 10213), EGFR mutations were significantly enriched                                                                                                                                                              *
+                                                                                 Associated with U2AF1 S34F mutation
+in the transversion-low group (P 5 3.3 3 1026). PIK3CA and RB1 muta-             (total events = 129; q value < 0.05 )
+tions were likewise enriched in transversion-low tumours (P , 0.05).                                                               0.0            0.2          0.4           0.6        0.8                            1.0
+Additionally, the transversion-low tumours were specifically enriched                                                                                            Proportion
+for in-frame insertions in EGFR and ERBB2 (ref. 5) and for frameshift            Cassette exon          Coordinate cassette exons                 Mutually exclusive exon                     *P < 0.001
+indels in RB1 (Fig. 1b). RB1 is commonly mutated in small-cell lung
+carcinoma (SCLC). We found RB1 mutations in transversion-low ade-                Alternative 5′ splice site Alternative 3′ splice site Alternative first exon Alternative last exon
+nocarcinomas were enriched for frameshift indels versus single nucleotide
+substitutions compared to SCLC (P , 0.05)20,21 suggesting a mutational           Figure 2 | Aberrant RNA transcripts in lung adenocarcinoma associated
+mechanism in transversion-low adenocarcinoma that is probably dis-               with somatic DNA translocation or mutation. a, Normalized exon level RNA
+tinct from smoking in SCLC.                                                      expression across fusion gene partners. Grey boxes around genes mark the
+   Gender is correlated with mutation patterns in lung adenocarcinoma22.         regions that are removed as a consequence of the fusion. Junction points of the
+Only a fraction of significantly mutated genes from the complete set reported    fusion events are also listed in Supplementary Table 9. Exon numbers refer
+in this study (Fig. 1a) were enriched in men or women (Fig. 1c). EGFR            to reference transcripts listed in Supplementary Table 9. b, MET exon 14
+mutations were enriched in tumours from the female cohort (P 5 0.03)             skipping observed in the presence of exon 14 splice site mutation (ss mut),
+whereas loss-of-function mutations within RBM10, an RNA-binding pro-             splice site deletion (ss del) or a Y1003* mutation. A total of 22 samples had
+                                                                                 insufficient coverage around exon 14 for quantification. The percentage
+tein located on the X chromosome23 were enriched in tumours from men
+                                                                                 skipping is (total expression minus exon 14 expression)/total expression.
+(P 5 0.002). When examining the transversion-high group, 16 out of 21            c, Significant differences in the frequency of 129 alternative splicing events in
+RBM10 mutations were observed in males (P 5 0.003, Fisher’s exact test).         mRNA from tumours with U2AF1 S34F tumours compared to U2AF1 WT
+   Somatic copy number alterations were very similar to those previ-             tumours (q value ,0.05). Consistent with the function of U2AF1 in 39 splice
+ously reported for lung adenocarcinoma24 (Supplementary Fig. 5, Sup-             site recognition, most splicing differences involved cassette exon and
+plementary Table 6). Significant amplifications included NKX2-1, TERT,           alternative 39 splice site events (chi-squared test, P , 0.001).
+
+5 4 4 | N AT U R E | V O L 5 1 1 | 3 1 J U LY 2 0 1 4
+                                                   ©2014 Macmillan Publishers Limited. All rights reserved
+                                                                                                                                                                                                                                 ARTICLE RESEARCH
+
+rearrangements per tumour. Chromothripsis25 occurred in six of the                                                          Candidate driver genes
+93 samples (6%) (Supplementary Fig. 6, Supplementary Table 8). Low-                                                         The receptor tyrosine kinase (RTK)/RAS/RAF pathway is frequently
+pass whole genome sequencing-detected rearrangements appear in                                                              mutated in lung adenocarcinoma. Striking therapeutic responses are
+Supplementary Table 9.                                                                                                      often achieved when mutant pathway components are successfully inhib-
+                                                                                                                            ited. Sixty-two per cent (143/230) of tumours harboured known activating
+Description of aberrant RNA transcripts                                                                                     mutations in known driver oncogenes, as defined by others30. Cancer-
+Gene fusions, splice site mutations or mutations in genes encoding splic-                                                   associated mutations in KRAS (32%, n 5 74), EGFR (11%, n 5 26) and
+ing factors promote or sustain the malignant phenotype by generating                                                        BRAF (7%, n 5 16) were common. Additional, previously uncharac-
+aberrant RNA transcripts. Combining DNA with mRNA sequencing                                                                terized KRAS, EGFR and BRAF mutations were observed, but were not
+enabled us to catalogue aberrant RNA transcripts and, in many cases,                                                        classified as driver oncogenes for the purposes of our analyses (see Sup-
+to identify the DNA-encoded mechanism for the aberration. Seventy-                                                          plementary Fig. 9a for depiction of all mutations of known and unknown
+five per cent of somatic mutations identified by WES were present in the                                                    significance); explaining the differing mutation frequencies in each gene
+RNA transcriptome when the locus in question was expressed (minimum                                                         between this analysis and the overall mutational analysis described above.
+53) (Supplementary Fig. 7a) similar to prior analyses15. Previously iden-                                                   We also identified known activating ERBB2 in-frame insertion and point
+tified fusions involving ALK (3/230 cases), ROS1 (4/230) and RET                                                            mutations (n 5 5)6, as well as mutations in MAP2K1 (n 5 2), NRAS and
+(2/230) (Fig. 2a, Supplementary Table 10), all occurred in transversion-                                                    HRAS (n 5 1 each). RNA sequencing revealed the aforementioned MET
+low tumours (P 5 1.85 3 1024, Fisher’s exact test).                                                                         exon 14 skipping (n 5 10) and fusions involving ROS1 (n 5 4), ALK
+    MET activation can occur by exon 14 skipping, which results in a                                                        (n 5 3) and RET (n 5 2). We considered these tumours collectively as
+stabilized protein26. Ten tumours had somatic MET DNA alterations                                                           oncogene-positive, as they harboured a known activating RTK/RAS/
+with MET exon 14 skipping in RNA. In nine of these samples, a 59 or                                                         RAF pathway somatic event. DNA amplification events were not con-
+39 splice site mutation or deletion was identified27. MET exon 14 skip-                                                     sidered to be driver events before the comparisons described below.
+ping was also found in the setting of a MET Y1003* stop codon muta-                                                            We sought to nominate previously unrecognized genomic events that
+tion (Fig. 2b, Supplementary Fig. 8a). The codon affected by the Y1003*                                                     might activate this critical pathway in the 38% of samples without a
+mutation is predicted to disrupt multiple splicing enhancer sequences,                                                      RTK/RAS/RAF oncogene mutation. Tumour cellularity did not differ
+but the mechanism of skipping remains unknown in this case.                                                                 between oncogene-negative and oncogene-positive samples (Supplemen-
+    S34F mutations in U2AF1 have recently been reported in lung ade-                                                        tary Fig. 9b). Analysis of copy number alterations using GISTIC31 identified
+nocarcinoma12 but their contribution to oncogenesis remains unknown.                                                        unique focal ERBB2 and MET amplifications in the oncogene-negative
+Eight samples harboured U2AF1S34F. We identified 129 splicing events                                                        subset (Fig. 3a, Supplementary Table 6); amplifications in other wild-type
+strongly associated with U2AF1S34F mutation, consistent with the role of                                                    proto-oncogenes, including KRAS and EGFR, were not significantly
+U2AF1 in 39-splice site selection28. Cassette exons and alternative 39 splice                                               different between the two groups.
+sites were most commonly affected (Fig. 2c, Supplementary Table 11)29.                                                         We next analysed WES data independently in the oncogene-negative
+Among these events, alternative splicing of the CTNNB1 proto-oncogene                                                       and oncogene-positive subsets. We found that TP53, KEAP1, NF1 and
+was strongly associated with U2AF1 mutations (Supplementary Fig. 8b).                                                       RIT1 mutations were significantly enriched in oncogene-negative tumours
+Thus, concurrent analysis of DNA and RNA enabled delineation of                                                             (P , 0.01; Fig. 3b, Supplementary Table 12). NF1 mutations have previ-
+both cis and trans mechanisms governing RNA processing in lung                                                              ously been reported in lung adenocarcinoma11, but this is the first study,
+adenocarcinoma.                                                                                                             to our knowledge, capable of identifying all classes of loss-of-function
+
+                a                                                                                                                                          b
+                        10–16                                                                                                                                                                  0.6
+                                              Oncogene-positive                                                                                                                                                           Oncogene-positive
+                                                                                                                                                                                               0.5                        Oncogene-negative
+                                              Oncogene-negative
+                            10–8
+
+
+
+
+                                                                                                                                                                           Per cent mutated
+                                                                                                                                                                                               0.4
+
+                                                                                       MET                                      ERBB2
+                    FDR q
+                            10–4                                                                                                                                                               0.3
+
+                                                                                                                                                                                               0.2
+
+                            10–2
+                                                                                                                                                                                               0.1
+
+                                                                                                                                                                                               0.0
+                             0.1                                                                                                                                                                       TP53   KEAP1      NF1       RIT1
+                                          1        2       3      4     5       6      7     8    9     10   11   12   13
+                                                                                                                            14
+                                                                                                                            15
+                                                                                                                            16
+                                                                                                                                                                                                                          HRAS (0.4%)
+                                                                                                                            17
+                                                                                                                            18
+                                                                                                                            19
+                                                                                                                            20
+                                                                                                                            21
+                                                                                                                            22
+                                                                                                                             X
+                                                                                                                                                                                                                          NRAS (0.4%)
+                c                                                                       Chromosome
+                                                                                                                                     Previously
+                                                                                                                                                                                              d                           RET fusion (0.9%)
+                                                                                                                                                                                                                          MAP2K1 (0.9%)
+                                          Oncogene-positive                                                                          oncogene-negative                                                                    ALK fusion (1.3%)
+                                          (62%, n = 143)                                                                             (13%, n = 31)                                                   RIT1 (2.2%)          ROS1 fusion (1.7%)
+                               KRAS                                                                                                                   32                                             ERBB2 amp (0.9%)     ERBB2 (1.7%)
+                                                                                                                                                                                                     MET amp (2.2%)       MET ex14 (4.3%)
+                               EGFR                                                                                                                  11
+                                                                                                                                                                                                                NF1
+                               BRAF                                                                                                                  7                                                         (8.3%)
+
+
+
+                                                                                                                                                           Frequency (%)
+                ROS1/ALK/RET                                                                                                                         4
+                    MAP2K1 /                                                                                                                                                                                                     BRAF
+                 HRAS / NRAS                                                                                                                         2                                                                          (7.0%)
+                         MET                                                                                                                         7
+                                                                                                                                                                                                           None                  EGFR
+                             ERBB2                                                                                                                   3                                                    (24.4%)               (11.3%)
+                                   RIT1                                                                                                              2
+                                                                                                                                                                                                                       KRAS
+                                   NF1                                                                                                               11
+                                                                                                                                                                                                                      (32.2%)
+                                           Amplification       Fusion               Missense mutation
+                                           Exon skipping       In-frame indel       Nonsense mutation / frameshift indel / splice-site mutation
+
+Figure 3 | Identification of novel candidate driver genes. a, GISTIC analysis                                               adenocarcinoma. Not shown are the 63 tumours lacking an identifiable driver
+of focal amplifications in oncogene-negative (n 5 87) and oncogene-positive                                                 lesion. Only canonical driver events, as defined in Supplementary Fig. 9, and
+(n 5 143) TCGA samples identifies focal gains of MET and ERBB2 that are                                                     proposed driver events, are shown; hence not every alteration found is
+specific to the oncogene-negative set (purple). b, TP53, KEAP1, NF1 and RIT1                                                displayed. d, New candidate driver oncogenes (blue: 13% of cases) and known
+mutations are significantly enriched in samples otherwise lacking oncogene                                                  somatically activated drivers events (red: 63%) that activate the RTK/RAS/RAF
+mutations (adjusted P , 0.05 by Fisher’s exact test). c, Co-mutation plot of                                                pathway can be found in the majority of the 230 lung adenocarcinomas.
+variants of known significance within the RTK/RAS/RAF pathway in lung
+
+                                                                                                                                                                                              3 1 J U LY 2 0 1 4 | V O L 5 1 1 | N AT U R E | 5 4 5
+                                                                      ©2014 Macmillan Publishers Limited. All rights reserved
+ RESEARCH ARTICLE
+
+NF1 defects and to statistically demonstrate that NF1 mutations, as well                                                                                            Recurrent alterations in key pathways
+as KEAP1 and TP53 mutations are enriched in the oncogene-negative                                                                                                   Recurrent aberrations in multiple key pathways and processes charac-
+subset of lung adenocarcinomas (Fig. 3c). All RIT1 mutations occurred                                                                                               terize lung adenocarcinoma (Fig. 4a). Among these were RTK/RAS/
+in the oncogene-negative subset and clustered around residue Q79 (homol-                                                                                            RAF pathway activation (76% of cases), PI(3)K-mTOR pathway activa-
+ogous to Q61 in the switch II region of RAS genes). These mutations                                                                                                 tion (25%), p53 pathway alteration (63%), alteration of cell cycle regu-
+transform NIH3T3 cells and activate MAPK and PI(3)K signalling32,                                                                                                   lators (64%, Supplementary Fig. 10), alteration of oxidative stress pathways
+supporting a driver role for mutant RIT1 in 2% of lung adenocarcinomas.                                                                                             (22%, Supplementary Fig. 11), and mutation of various chromatin and
+This analysis increases the rate at which putative somatic lung adeno-                                                                                              RNA splicing factors (49%).
+carcinoma driver events can be identified within the RTK/RAS/RAF                                                                                                       We then examined the phenotypic sequelae of some key genomic
+pathway to 76% (Fig. 3d).                                                                                                                                           events in the tumours in which they occurred. Reverse-phase protein
+                                                                                                                                                                    arrays provided proteomic and phosphoproteomic phenotypic evidence
+a
+                                                                                                                                                                    of pathway activity. Antibodies on this platform are listed in Supplemen-
+                   EGFR      ERBB2        MET         ALK      RET      ROS1
+                   11%        3%          7%          1%       <1%       2%                                                                                         tary Table 13. This analysis suggested that DNA sequencing did not
+                                                                                                                                                                    identify all samples with phosphoprotein evidence of activation of a
+      PTEN
+       3%
+                      PIK3CA
+                                                                                                                                                                    given signalling pathway. For example, whereas KRAS-mutant lung ade-
+                                         KRAS        NRAS
+      PIK3R1            4%               32%         <1%                                                                                                            nocarcinomas had higher levels of phosphorylated MAPK than KRAS
+                                                                    NF1
+       <1%
+                                         HRAS         RIT1          11%                                                                                             wild-type tumours had on average, many KRAS wild-type tumours dis-
+      STK11            AKT1              <1%          2%                                                                                                            played significant MAPK pathway activation (Fig. 4b, Supplementary
+       17%              1%
+                                                                                                                                                                    Fig. 10). The multiple mechanisms by which lung adenocarcinomas
+                                               BRAF                     Per cent of cases (%)                                                                       achieve MAPK activation suggest additional, still undetected RTK/RAS/
+      AMPK                                      7%
+                      TSC1/2
+                                                                        50                              0                      100
+                                                                                                                                                                    RAF pathway alterations. Similarly, we found significant activation of
+                                                                     Inactivated                                             Activated                              mTOR and its effectors (p70S6kinase, S6, 4E-BP1) in a substantial frac-
+                                             MAP2K1                                                                                                                 tion of the tumours (Fig. 4c). Analysis of mutations in PIK3CA and
+                                              <1%                         Activation                                         Inhibition
+                       MTOR
+                                                                                                                                                                    STK11, STK11 protein levels, and AMPK and AKT phosphorylation33
+                                                                                                                                                                    led to the identification of three major mTOR patterns in lung adeno-
+                                                                    CDKN2A
+                Proliferation, cell survival, translation            43%
+                                                                                                                                                                    carcinoma: (1) tumours with minimal or basal mTOR pathway activa-
+                                                                                                                                                                    tion, (2) tumours showing higher mTOR activity accompanied by either
+     KEAP1          CUL3         MDM2         ATM           CCND1    CDK4              CCNE1                                                                        STK11-inactivating mutation or combined low STK11 expression and
+      19%           <1%           8%          9%             4%       7%                3%
+                                                                                                                                                                    low AMPK activation and (3) tumours showing high mTOR activity
+                                                                                                                                                                    accompanied by either phosphorylated AKT activation, PIK3CA muta-
+           NFE2L2                       TP53                         RB1
+             3%                         46%                          7%                                                                                             tion, or both. As with MAPK, many tumours lack an obvious underlying
+                                                                                                                                                                    genomic alteration to explain their apparent mTOR activation.
+           Oxidative                Proliferation,                 Cell cycle
+       stress response              cell survival                 progression                                                                                       Molecular subtypes of lung adenocarcinoma
+      ARID1A      ARID1B                                                                                                                                            Broad transcriptional and epigenetic profiling can reveal downstream
+       7%          6%
+                                                                                                                                                                    consequences of driver mutations, provide clinically relevant classifica-
+      ARID2      SMARCA4               SETD2                   U2AF1      RBM10                                                                                     tion and offer insight into tumours lacking clear drivers. Prior unsuper-
+       7%            6%                 9%                      4%         9%
+                                                                                                                                                                    vised analyses of lung adenocarcinoma gene expression have used varying
+        Nucleosome                   Histone                    RNA splicing /
+                                                                                                                                                                    nomenclature for transcriptional subtypes of the disease34–37. To coor-
+        remodelling                 methylation                  processing                                                                                         dinate naming of the transcriptional subtypes with the histopathological38,
+b   MAPK pathway
+                                                                                                                                                                    anatomic and mutational classifications of lung adenocarcinoma, we
+    KRAS mut        n = 53                  n = 128
+                                                                                                                                                                    propose an updated nomenclature: the terminal respiratory unit (TRU,
+
+
+
+                                                                                                                                               MAPK pathway score
+                                                                                                                                          10
+        p-JNK                                                                                                                                                       formerly bronchioid), the proximal-inflammatory (PI, formerly squa-
+      p-MAPK                                                                                                                              5                         moid), and the proximal-proliferative (PP, formerly magnoid)39 transcrip-
+      p-MEK1
+        p-p38
+                                                                                                                                          0                         tional subtypes (Fig. 5a). Previously reported associations of expression
+    p-p90RSK                                                                                                                              –5                        signatures with pathways and clinical outcomes34,36,39 were observed (Sup-
+        p-Shc
+       p-c-Raf                                                                    P < 0.01                                                –10                       plementary Fig. 7b) and integration with multi-analyte data revealed
+      Subtype                                                                                                                                                       statistically significant genomic alterations associated with these tran-
+      Pathway                                                              KRAS                                 KRAS
+         score                                                              mut                                  wt                                                 scriptional subtypes. The PP subtype was enriched for mutation of KRAS,
+c   PI(3)K pathway
+                                                                                                                                                                    along with inactivation of the STK11 tumour suppressor gene by chro-
+         PIK3CA STK11        High     Low                                                                                                                           mosomal loss, inactivating mutation, and reduced gene expression. In
+            mut     mut     p-AKT p-AMPK              Unaligned                                                                    **                               contrast, the PI subtype was characterized by solid histopathology and
+          (n = 9) (n = 42) (n = 35) (n = 21)           (n = 74)
+                                                                                                                                   *
+                                                                                                                                   **
+                                                                                                                                   * 3
+ PIK3CA mut
+
+
+
+
+                                                                                                                                               mTOR pathway score
+  STK 11 mut                                                                                                                              2
+                                                                                                                                                                    Figure 4 | Pathway alterations in lung adenocarcinoma. a, Somatic
+   PTEN loss                                                                                                                                                        alterations involving key pathway components for RTK signalling, mTOR
+                                                                                                                                          1
+ STK 11/LKB1                                                                                                                                                        signalling, oxidative stress response, proliferation and cell cycle progression,
+     p-AMPK                                                                                                                               0                         nucleosome remodelling, histone methylation, and RNA splicing/processing.
+       p-AKT
+    p-mTOR                                                                                                                                –1                        b, c, Proteomic analysis by RPPA (n 5 181) P values by two-sided t-test.
+   p-4E-BP1                                                                                                                                                         Box plots represent 5%, 25%, 75%, median, and 95%. PP, proximal
+   p-p70S6K                                                                                                                               –2
+                                                                                                                                                                    proliferative; TRU, terminal respiratory unit; PI, proximal inflammatory.
+
+                                                                                       High p-AKT               Low p-AMPK
+                                                                                                                              Unaligned
+                                                                          PIK3CA mut                STK11 mut
+         p-S6
+     Subtype                                                                                                                                                        c, mTOR signalling may be activated, by either Akt (for example, via PI(3)K) or
+     Pathway                                                                                                                                                        inactivation of AMPK (for example, via STK11 loss). Tumours were separated
+        score
+                                                                                                                                                                    into three main groups: those with PI(3)K-AKT activation, through either
+          PI3K-Akt branch active           LKB1-AMPK inactive                                                                                                       PIK3CA activating mutation or unknown mechanism (high p-AKT); those
+                                                                                                                                                                    with LKB1-AMPK inactivation, through either STK11 mutation or unknown
+    Protein expression         Expression subtype             Pathway signature                                  *P < 0.01                                          mechanism with low levels of LKB1 and p-AMPK; and those showing none
+       Low        High           PP       TRU         PI          Low         High                              **P < 0.001                                         of the above features.
+
+5 4 6 | N AT U R E | V O L 5 1 1 | 3 1 J U LY 2 0 1 4
+                                                                  ©2014 Macmillan Publishers Limited. All rights reserved
+                                                                                                                                                                                                          ARTICLE RESEARCH
+
+a Expression subtypes                                                                                    c Integrated subtypes
+                                                                                                                                                        1            2            3                   4     5                   6
+                                                                                                              Expression subtype
+                        Proximal proliferative   Proximal inflammatory     Terminal respiratory unit
+                                                                                                         DNA methylation subtype
+      mut
+STK11 CN del                                                                                                      p16 methylation
+      under expr.                                                                                                                Ploidy
+KEAP1 mut
+KRAS mut                                                                                                  Non-silent mutation rate
+                                                                                                                                    Purity
+TP53    mut
+NF1     mut                                                                                                                                      1
+p16     methylation                                                                                                                              2
+                                                                                                                                                 3
+                                                                                                                                                 4
+Fusions
+                                                                                                                                                 5
+EGFR mut
+                                                                                                                                                 6
+TTF-1 over expr.
+
+
+
+
+                                                                                                                              DNA copy number
+                                                                                                                                                 7
+
+Mutation total                                                                                                                                   8
+Ploidy
+                                                                                                                                                 9
+Purity                                                                                                                                          10
+CpG       T%                                                                                                                                    11
+                                                                                                                                                12
+Never-smoker
+                                                                                                                                                13
+Female                                                                                                                                          14
+                                                                                                                                                15
+                                                                                                                                                16
+Histology                                                                                                                                       17
+                                                                                                                                                18
+                                                                                                                                                19
+                                                                                                                                                20
+                                                                                                                                                21
+b DNA methylation subtypes                                                                                                                      22
+
+                                                                                                             DNA methylation subtype                                     Expression subtype                     Expression, ploidy,
+                 CIMP-high          CIMP-intermediate                    CIMP-low               Normal                                                                                                          purity, mutation rates
+                                                                                                                     CIMP-high                                               Proximal proliferative
+                                                                                                                     CIMP-intermediate                                       Proximal inflammatory
+   GATA4
+                                                                                                                     CIMP-low                                                Terminal respiratory unit             Low              High
+                                                                                                                                                                             (TRU)
+   SFRP1
+   GATA5                                                                                                     Integrated subtype                                          Fusion                                 Histology
+                                                                                                               1 iClust1                         4 iClust4                   ALK                                     Solid
+     WIF1
+                                                                                                               2 iClust2                         5 iClust5                   ROS1                                    Acinar
+   GATA2                                                                                                       3 iClust3                         6 iClust6                   RET                                     Lepidic
+                                                                                                                                                                                                                     Papillary/Micropapillary
+                                                                                                             DNA copy number                                             DNA methylation
+ CDKN2A                                                                                                                                                                                                              Mucinous
+ RASSF1                                                                                                                                                                                                              Other
+  SOX17                                                                                                       –1.0       0                      1.0                         0              1.0
+  HOXD1
+                                                                                                             Mutation                           Smoking status                  Gender
+
+   HOXA9                                                                                                             Mutant                           Never-smoker                    Female                    Concurrent p16 methylation
+    HIC1                                                                                                                                                                                                        and SETD2 mutation
+
+
+Figure 5 | Integrative analysis. a–c, Integrating unsupervised analyses of 230                                       iCluster analysis (c). All displayed features are significantly associated with
+lung adenocarcinomas reveals significant interactions between molecular                                              subtypes depicted. The CIMP phenotype is defined by the most variable CpG
+subtypes. Tumours are displayed as columns, grouped by mRNA expression                                               island and promoter probes.
+subtypes (a), DNA methylation subtypes (b), and integrated subtypes by
+
+co-mutation of NF1 and TP53. Finally, the TRU subtype harboured the                                                  and CDKN2A methylation. Tumours with low CDKN2A expression
+majority of the EGFR-mutated tumours as well as the kinase fusion express-                                           due to methylation (rather than due to mutation or deletion) had lower
+ing tumours. TRU subtype membership was prognostically favourable,                                                   ploidy, fewer overall mutations (Fig. 5c) and were significantly enriched
+as seen previously34 (Supplementary Fig. 7c). Finally, the subtypes exhib-                                           for SETD2 mutation, suggesting an important role for this chromatin-
+ited different mutation rates, transition frequencies, genomic ploidy pro-                                           modifying gene in the development of certain tumours.
+files, patterns of large-scale aberration, and differed in their association                                            Integrative clustering41 of copy number, DNA methylation and mRNA
+with smoking history (Fig. 5a). Unsupervised clustering of miRNA                                                     expression data found six clusters (Fig. 5c). Tumour ploidy and mutation
+sequencing-derived or reverse phase protein array (RPPA)-derived data                                                rate are higher in clusters 1–3 than in clusters 4–6. Clusters 1–3 frequently
+also revealed significant heterogeneity, partially overlapping with the                                              harbour TP53 mutations and are enriched for the two proximal tran-
+mRNA-based subtypes, as demonstrated in Supplementary Figs 12 and 13.                                                scriptional subtypes. Fisher’s combined probability tests revealed signi-
+    Mutations in chromatin-modifying genes (for example, SMARCA4,                                                    ficant copy number associated gene expression changes on 3q in cluster
+ARID1A and SETD2) suggest a major role for chromatin maintenance                                                     one, 8q in cluster two, and chromosome 7 and 15q in cluster three (Sup-
+in lung adenocarcinoma. To examine chromatin states in an unbiased                                                   plementary Fig. 15). The low ploidy and low mutation rate clusters four
+manner, we selected the most variable DNA methylation-specific probes                                                and five contain many TRU samples, whereas tumours in cluster 6 have
+in CpG island promoter regions and clustered them by methylation inten-                                              comparatively lower tumour cellularity, and few other distinguishing
+sity (Supplementary Table 14). This analysis divided samples into two                                                molecular features. Significant copy number-associated gene expres-
+distinct subsets: a significantly altered CpG island methylator phenotype-                                           sion changes are observed on 6q in cluster four and 19p in cluster five.
+high (CIMP-H(igh)) cluster and a more normal-like CIMP-L(ow) group,                                                  The CIMP-H tumours divided into a high ploidy, high mutation rate,
+with a third set of samples occupying an intermediate level of methy-                                                proximal-inflammatory CIMP-H group (cluster 3) and a low ploidy, low
+lation at CIMP sites (Fig. 5b). Our results confirm a prior report40 and                                             mutation rate, TRU-associated CIMP-H group (cluster 4), suggesting that
+provide additional insights into this epigenetic program. CIMP-H tumours                                             the CIMP phenotype in lung adenocarcinoma can occur in markedly
+often showed DNA hypermethylation of several key genes: CDKN2A,                                                      different genomic and transcriptional contexts. Furthermore, cluster
+GATA2, GATA4, GATA5, HIC1, HOXA9, HOXD13, RASSF1, SFRP1,                                                             four is enriched for CDKN2A methylation and SETD2 mutations, sug-
+SOX17 and WIF1 among others (Supplementary Fig. 14). WNT pathway                                                     gesting an interaction between somatic mutation of SETD2 and deregulated
+genes are significantly over-represented in this list (P value 5 0.0015)                                             chromatin maintenance in this subtype. Finally, cluster membership
+suggesting that this is a key pathway with an important driving role                                                 was significantly associated with mutations in TP53, EGFR and STK11
+within this subtype. MYC overexpression was significantly associated                                                 (Supplementary Fig. 15, Supplementary Table 6).
+with the CIMP-H phenotype as well (P 5 0.003).
+    Although we did not find significant correlations between global DNA                                             Conclusions
+methylation patterns and individual mutations in chromatin remodel-                                                  We assessed the mutation profiles, structural rearrangements, copy number
+ling genes, there was an intriguing association between SETD2 mutation                                               alterations, DNA methylation, mRNA, miRNA and protein expression
+                                                                                                                                                                         3 1 J U LY 2 0 1 4 | V O L 5 1 1 | N AT U R E | 5 4 7
+                                                                     ©2014 Macmillan Publishers Limited. All rights reserved
+ RESEARCH ARTICLE
+
+of 230 lung adenocarcinomas. In recent years, the treatment of lung                           13. Govindan, R. et al. Genomic landscape of non-small cell lung cancer in smokers
+                                                                                                  and never-smokers. Cell 150, 1121–1134 (2012).
+adenocarcinoma has been advanced by the development of multiple                               14. Travis, W. D., Brambilla, E. & Riely, G. J. New pathologic classification of lung
+therapies targeted against alterations in the RTK/RAS/RAF pathway. We                             cancer: relevance for clinical practice and clinical trials. J. Clin. Oncol. 31,
+nominate amplifications in MET and ERBB2 as well as mutations of                                  992–1001 (2013).
+                                                                                              15. The Cancer Genome Atlas Research Network Comprehensive genomic
+NF1 and RIT1 as driver events specifically in otherwise oncogene-negative                         characterization of squamous cell lung cancers. Nature 489, 519–525
+lung adenocarcinomas. This analysis increases the fraction of lung ade-                           (2012).
+nocarcinoma cases with somatic evidence of RTK/RAS/RAF activation                             16. Carter, S. L. et al. Absolute quantification of somatic DNA alterations in human
+from 62% to 76%. While all lung adenocarcinomas may activate this                                 cancer. Nature Biotechnol. 30, 413–421 (2012).
+                                                                                              17. Cibulskis, K. et al. Sensitive detection of somatic point mutations in impure and
+pathway by some mechanism, only a subset show tonic pathway acti-                                 heterogeneous cancer samples. Nature Biotechnol. 31, 213–219 (2013).
+vation at the protein level, suggesting both diversity between tumours                        18. Lawrence, M. S. et al. Discovery and saturation analysis of cancer genes across 21
+with seemingly similar activating events and as yet undescribed mech-                             tumour types. Nature 505, 495–501 (2014).
+anisms of pathway activation. Therefore, the current study expands the                        19. Hurlin, P. J., Steingrimsson, E., Copeland, N. G., Jenkins, N. A. & Eisenman, R. N.
+                                                                                                  Mga, a dual-specificity transcription factor that interacts with Max and contains a
+range of possible targetable alterations within the RTK/RAS/RAF path-                             T-domain DNA-binding motif. EMBO J. 18, 7019–7028 (1999).
+way in general and suggests increased implementation of MET and                               20. Peifer, M. et al. Integrative genome analyses identify key somatic driver mutations
+ERBB2/HER2 inhibitors in particular. Our discovery of inactivating                                of small-cell lung cancer. Nature Genet. 44, 1104–1110 (2012).
+                                                                                              21. Rudin, C. M. et al. Comprehensive genomic analysis identifies SOX2 as a
+mutations of MGA further underscores the importance of the MYC                                    frequently amplified gene in small-cell lung cancer. Nature Genet. 44, 1111–1116
+pathway in lung adenocarcinoma.                                                                   (2012).
+   This study further implicates both chromatin modifications and splic-                      22. Tokumo, M. et al. The relationship between epidermal growth factor receptor
+                                                                                                  mutations and clinicopathologic features in non-small cell lung cancers.
+ing alterations in lung adenocarcinoma through the integration of DNA,                            Clin. Cancer Res. 11, 1167–1173 (2005).
+transcriptome and methylome analysis. We identified alternative splic-                        23. Coleman, M. P. et al. A novel gene, DXS8237E, lies within 20 kb upstream of UBE1
+ing due to both splicing factor mutations in trans and mutation of splice                         in Xp11.23 and has a different X inactivation status. Genomics 31, 135–138
+sites in cis, the latter leading to activation of the MET gene by exon 14                         (1996).
+                                                                                              24. Weir, B. A. et al. Characterizing the cancer genome in lung adenocarcinoma.
+skipping. Cluster analysis separated tumours based on single-gene driver                          Nature 450, 893–898 (2007).
+events as well as large-scale aberrations, emphasizing lung adenocarci-                       25. Stephens, P. J. et al. Massive genomic rearrangement acquired in a single
+noma’s molecular heterogeneity and combinatorial alterations, includ-                             catastrophic event during cancer development. Cell 144, 27–40 (2011).
+                                                                                              26. Kong-Beltran, M. et al. Somatic mutations lead to an oncogenic deletion of Met in
+ing the identification of coincident SETD2 mutations and CDKN2A                                   lung cancer. Cancer Res. 66, 283–289 (2006).
+methylation in a subset of CIMP-H tumours, providing evidence of a                            27. Seo, J. S. et al. The transcriptional landscape and mutational profile of lung
+somatic event associated with a genome-wide methylation phenotype.                                adenocarcinoma. Genome Res. 22, 2109–2119 (2012).
+These studies provide new knowledge by illuminating modes of geno-                            28. Wu, S., Romfo, C. M., Nilsen, T. W. & Green, M. R. Functional recognition of
+                                                                                                  the 39 splice site AG by the splicing factor U2AF35. Nature 402, 832–835
+mic alteration, highlighting previously unappreciated altered genes, and                          (1999).
+enabling further refinement in sub-classification for the improved per-                       29. Brooks, A. N. et al. A pan-cancer analysis of transcriptome changes associated with
+sonalization of treatment for this deadly disease.                                                somatic mutations in U2AF1 reveals commonly altered splicing events. PLoS ONE
+                                                                                                  9, e87361 (2014).
+                                                                                              30. Pao, W. & Hutchinson, K. E. Chipping away at the lung cancer genome. Nature Med.
+METHODS SUMMARY                                                                                   18, 349–351 (2012).
+All specimens were obtained from patients with appropriate consent from the rele-             31. Beroukhim, R. et al. Assessing the significance of chromosomal aberrations in
+vant institutional review board. DNA and RNA were collected from samples using                    cancer: methodology and application to glioma. Proc. Natl Acad. Sci. USA 104,
+the Allprep kit (Qiagen). We used standard approaches for capture and sequencing of               20007–20012 (2007).
+                                                                                              32. Berger, A. H. et al. Oncogenic RIT1 mutations in lung adenocarcinoma. Oncogene
+exomes from tumour DNA and normal DNA15 and whole-genome shotgun sequenc-                         http://dx.doi.org/10.1038/onc.2013.581 (2014).
+ing. Significantly mutated genes were identified by comparing them with expectation           33. Creighton, C. J. et al. Proteomic and transcriptomic profiling reveals a link between
+models based on the exact measured rates of specific sequence lesions42. GISTIC                   the PI3K pathway and lower estrogen-receptor (ER) levels and activity in ER1
+analysis of the circular-binary-segmented Affymetrix SNP 6.0 copy number data was                 breast cancer. Breast Cancer Res. 12, R40 (2010).
+used to identify recurrent amplification and deletion peaks31. Consensus clustering           34. Wilkerson, M. D. et al. Differential pathogenesis of lung adenocarcinoma subtypes
+approaches were used to analyse mRNA, miRNA and methylation subtypes using                        involving sequence mutations, copy number, chromosomal instability, and
+                                                                                                  methylation. PLoS ONE 7, e36530 (2012).
+previous approaches15. The publication web page is (https://tcga-data.nci.nih.gov/
+                                                                                              35. Beer, D. G. et al. Gene-expression profiles predict survival of patients with lung
+docs/publications/luad_2014/). Sequence files are in CGHub (https://cghub.ucsc.edu/).             adenocarcinoma. Nature Med. 8, 816–824 (2002).
+                                                                                              36. Hayes, D. N. et al. Gene expression profiling reveals reproducible human lung
+Received 11 June 2013; accepted 22 April 2014.                                                    adenocarcinoma subtypes in multiple independent patient cohorts. J. Clin. Oncol.
+Published online 9 July 2014.                                                                     24, 5079–5090 (2006).
+                                                                                              37. Bhattacharjee, A. et al. Classification of human lung carcinomas by mRNA
+1.  Paez, J. G. et al. EGFR mutations in lung cancer: correlation with clinical response to       expression profiling reveals distinct adenocarcinoma subclasses. Proc. Natl Acad.
+    gefitinib therapy. Science 304, 1497–1500 (2004).                                             Sci. USA 98, 13790–13795 (2001).
+2. Kwak, E. L. et al. Anaplastic lymphoma kinase inhibition in non-small-cell lung            38. Travis, W. D. et al. International association for the study of lung cancer/American
+    cancer. N. Engl. J. Med. 363, 1693–1703 (2010).                                               Thoracic Society/European Respiratory Society international multidisciplinary
+3. Bergethon, K. et al. ROS1 rearrangements define a unique molecular class of lung               classification of lung adenocarcinoma. J. Thoracic Oncol. 6, 244–285 (2011).
+    cancers. J. Clin Oncol. 30, 863–870 (2012).                                               39. Yatabe, Y., Mitsudomi, T. & Takahashi, T. TTF-1 expression in pulmonary
+4. Drilon, A. et al. Response to cabozantinib in patients with RET fusion-positive lung           adenocarcinomas. Am. J. Surg. Pathol. 26, 767–773 (2002).
+    adenocarcinomas. Cancer Discov. 3, 630–635 (2013).                                        40. Shinjo, K. et al. Integrated analysis of genetic and epigenetic alterations
+5. Stephens, P. et al. Lung cancer: intragenic ERBB2 kinase mutations in tumours.                 reveals CpG island methylator phenotype associated with distinct clinical
+    Nature 431, 525–526 (2004).                                                                   characters of lung adenocarcinoma. Carcinogenesis 33, 1277–1285
+6. Takahashi, T. et al. p53: a frequent target for genetic abnormalities in lung cancer.          (2012).
+    Science 246, 491–494 (1989).                                                              41. Mo, Q. et al. Pattern discovery and cancer gene identification in integrated cancer
+7. Sanchez-Cespedes, M. et al. Inactivation of LKB1/STK11 is a common event in                    genomic data. Proc. Natl Acad. Sci. USA 110, 4245–4250 (2013).
+    adenocarcinomas of the lung. Cancer Res. 62, 3659–3662 (2002).                            42. Lawrence, M. S. et al. Mutational heterogeneity in cancer and the search for new
+8. Shapiro, G. I. et al. Reciprocal Rb inactivation and p16INK4 expression in primary             cancer-associated genes. Nature 499, 214–218 (2013).
+    lung cancers and cell lines. Cancer Res. 55, 505–509 (1995).                              Supplementary Information is available in the online version of the paper.
+9. Singh, A. et al. Dysfunctional KEAP1–NRF2 interaction in non-small-cell lung
+    cancer. PLoS Med. 3, e420 (2006).                                                         Acknowledgements This study was supported by NIH grants: U24 CA126561,
+10. Medina, P. P. et al. Frequent BRG1/SMARCA4-inactivating mutations in human                U24 CA126551, U24 CA126554, U24 CA126543, U24 CA126546, U24
+    lung cancer cell lines. Hum. Mutat. 29, 617–622 (2008).                                   CA137153, U24 CA126563, U24 CA126544, U24 CA143845, U24 CA143858, U24
+11. Ding, L. et al. Somatic mutations affect key pathways in lung adenocarcinoma.             CA144025, U24 CA143882, U24 CA143866, U24 CA143867, U24 CA143848,
+    Nature 455, 1069–1075 (2008).                                                             U24 CA143840, U24 CA143835, U24 CA143799, U24 CA143883, U24 CA143843,
+12. Imielinski, M. et al. Mapping the hallmarks of lung adenocarcinoma with massively         U54 HG003067, U54 HG003079 and U54 HG003273. We thank K. Guebert and
+    parallel sequencing. Cell 150, 1107–1120 (2012).                                          L. Gaffney for assistance and C. Gunter for review.
+
+5 4 8 | N AT U R E | V O L 5 1 1 | 3 1 J U LY 2 0 1 4
+                                                         ©2014 Macmillan Publishers Limited. All rights reserved
+                                                                                                                                                            ARTICLE RESEARCH
+
+Author Contributions The Cancer Genome Atlas Research Network contributed                        Prins11, J.S. Marron11, Joel S. Parker11, D. Neil Hayes11, Charles M. Perou11; University
+collectively to this study. Biospecimens were provided by the tissue source sites and            of Kentucky Jinze Liu20; The USC/JHU Epigenome Characterization Center Leslie
+processed by the biospecimen core resource. Data generation and analyses were                    Cope6, Ludmila Danilova6, Daniel J. Weisenberger17, Dennis T. Maglinte17, Philip H.
+performed by the genome sequencing centres, cancer genome characterization                       Lai17, Moiz S. Bootwalla17, David J. Van Den Berg17, Timothy Triche Jr17, Stephen B.
+centres and genome data analysis centres. All data were released through the data                Baylin6, Peter W. Laird17
+coordinating centre. The National Cancer Institute and National Human Genome
+Research Institute project teams coordinated project activities. We also acknowledge
+                                                                                                 Genome data analysis centres: The Eli & Edythe L. Broad Institute Mara Rosenberg2,
+the following TCGA investigators who made substantial contributions to the project:
+                                                                                                 Lynda Chin12, Jianhua Zhang12, Juok Cho2, Daniel DiCara2, David Heiman2, Pei Lin2,
+E. A. Collisson (manuscript coordinator); J. D. Campbell, J. Chmielecki, (analysis
+                                                                                                 William Mallard2, Douglas Voet2, Hailei Zhang2, Lihua Zou2, Michael S. Noble2,
+coordinators); C. Sougnez (data coordinator); J. D. Campbell, M. Rosenberg, W. Lee,
+                                                                                                 Michael S. Lawrence2, Gordon Saksena2, Nils Gehlenborg2, Helga Thorvaldsdottir2,
+J. Chmielecki, M. Ladanyi, and G. Getz (DNA sequence analysis); M. D. Wilkerson,
+A. N. Brooks, and D. N. Hayes (mRNA sequence analysis); L. Danilova and L. Cope (DNA             Jill Mesirov2, Marc-Danie Nazaire2, Jim Robinson2, Gad Getz2,9,10; Memorial
+methylation analysis); A. D. Cherniack (copy number analysis); M. D. Wilkerson and               Sloan-Kettering Cancer Center William Lee4, B. Arman Aksoy4, Giovanni Ciriello4,
+A. Hadjipanayis (translocations); N. Schultz, W. Lee, E. A. Collisson, A. H. Berger,             Barry S. Taylor1, Gideon Dresdner4, Jianjiong Gao4, Benjamin Gross4, Venkatraman E.
+J. Chmielecki, C. J. Creighton, L. A. Byers and M. Ladanyi (pathway analysis); A. Chu and        Seshan4, Marc Ladanyi4, Boris Reva4, Rileen Sinha4, S. Onur Sumer4, Nils Weinhold4,
+A. G. Robertson (miRNA sequence analysis); W. Travis and D. A. Wigle (pathology and              Nikolaus Schultz4, Ronglai Shen4, Chris Sander4; University of California, Santa Cruz/
+clinical expertise); L. A. Byers and G. B. Mills (reverse phase protein arrays); S. B. Baylin,   Buck Institute Sam Ng18, Singer Ma18, Jingchun Zhu18, Amie Radenbaugh18, Joshua
+R. Govindan and M. Meyerson (project chairs).                                                    M. Stuart18, Christopher C. Benz21, Christina Yau21 & David Haussler18,22; Oregon
+                                                                                                 Health & Sciences University Paul T. Spellman23; University of North Carolina,
+Author Information The primary and processed data used to generate the analyses                  Chapel Hill Matthew D. Wilkerson11, Joel S. Parker11, Katherine A. Hoadley11, Patrick K.
+presented here can be downloaded by registered users from The Cancer Genome Atlas                Kimes11, D. Neil Hayes11, Charles M. Perou11; The University of Texas MD Anderson
+at (https://tcga-data.nci.nih.gov/tcga/tcgaDownload.jsp). All of the primary sequence            Cancer Center Bradley M. Broom12, Jing Wang12, Yiling Lu12, Patrick Kwok Shing Ng12,
+files are deposited in cgHub and all other data are deposited at the Data Coordinating           Lixia Diao12, Lauren Averett Byers12, Wenbin Liu12, John V. Heymach12,
+Center (DCC) for public access (http://cancergenome.nih.gov/), (https://                         Christopher I. Amos12, John N. Weinstein12, Rehan Akbani12, Gordon B. Mills12
+cghub.ucsc.edu/) and (https://tcga-data.nci.nih.gov/docs/publications/luad_2014/).
+Reprints and permissions information is available at www.nature.com/reprints. The
+                                                                                                 Biospecimen core resource: International Genomics Consortium Erin Curley24,
+authors declare no competing financial interests. Readers are welcome to comment on
+the online version of the paper. Correspondence and requests for materials should be             Joseph Paulauskis24, Kevin Lau24, Scott Morris24, Troy Shelton24, David Mallery24,
+addressed to M.M. (matthew_meyerson@dfci.harvard.edu).                                           Johanna Gardner24, Robert Penny24
+
+
+              This work is licensed under a Creative Commons Attribution-                        Tissue source sites: Analytical Biological Service, Inc. Charles Saller25, Katherine
+              NonCommercial-ShareAlike 3.0 Unported licence. The images or other                 Tarvin25; Brigham & Women’s Hospital William G. Richards14; University of Alabama
+third party material in this article are included in the article’s Creative Commons licence,     at Birmingham Robert Cerfolio26, Ayesha Bryant26; Cleveland Clinic:
+unless indicated otherwise in the credit line; if the material is not included under the         Daniel P. Raymond27, Nathan A. Pennell27, Carol Farver27; Christiana Care
+Creative Commons licence, users will need to obtain permission from the licence holder           Christine Czerwinski28, Lori Huelsenbeck-Dill28, Mary Iacocca28, Nicholas Petrelli28,
+to reproduce the material. To view a copy of this licence, visit http://creativecommons.         Brenda Rabeno28, Jennifer Brown28, Thomas Bauer28; Cureline Oleg Dolzhanskiy29,
+org/licenses/by-nc-sa/3.0                                                                        Olga Potapova29, Daniil Rotin29, Olga Voronina29, Elena Nemirovich-Danchenko29,
+                                                                                                 Konstantin V. Fedosenko29; Emory University Anthony Gal30, Madhusmita Behera30,
+                                                                                                 Suresh S. Ramalingam30, Gabriel Sica30; Fox Chase Cancer Center Douglas Flieder31,
+                                                                                                 Jeff Boyd31, JoEllen Weaver31; ILSbio Bernard Kohl32, Dang Huy Quoc Thinh32;
+                                                                                                 Indiana University George Sandusky33; Indivumed Hartmut Juhl34; John Flynn
+The Cancer Genome Atlas Research Network                                                         Hospital Edwina Duhig35,36; Johns Hopkins University Peter Illei6, Edward
+                                                                                                 Gabrielson6, James Shin6, Beverly Lee6, Kristen Rodgers6, Dante Trusty6, Malcolm V.
+Disease analysis working group Eric A. Collisson1, Joshua D. Campbell2, Angela N.                Brock6; Lahey Hospital & Medical Center Christina Williamson37, Eric Burks37,
+Brooks2,3, Alice H. Berger2, William Lee4, Juliann Chmielecki2, David G. Beer5, Leslie           Kimberly Rieger-Christ37, Antonia Holway37, Travis Sullivan37; Mayo Clinic Dennis A.
+Cope6, Chad J. Creighton7, Ludmila Danilova6, Li Ding8, Gad Getz2,9,10, Peter S.                 Wigle16, Michael K. Asiedu16, Farhad Kosari16; Memorial Sloan-Kettering Cancer
+Hammerman2, D. Neil Hayes11, Bryan Hernandez2, James G. Herman6, John V.                         Center William D. Travis4, Natasha Rekhtman4, Maureen Zakowski4, Valerie W. Rusch4;
+Heymach12, Igor Jurisica13, Raju Kucherlapati9, David Kwiatkowski14, Marc Ladanyi4,              NYU Langone Medical Center Paul Zippile38, James Suh38, Harvey Pass38, Chandra
+Gordon Robertson15, Nikolaus Schultz4, Ronglai Shen4, Rileen Sinha12,                            Goparaju38, Yvonne Owusu-Sarpong38; Ontario Tumour Bank John M. S. Bartlett39,
+Carrie Sougnez2, Ming-Sound Tsao13, William D. Travis4, John N. Weinstein12,                     Sugy Kodeeswaran39, Jeremy Parfitt39, Harmanjatinder Sekhon39, Monique Albert39;
+Dennis A. Wigle16, Matthew D. Wilkerson11, Andy Chu15, Andrew D. Cherniack2,                     Penrose St. Francis Health Services John Eckman40, Jerome B. Myers40; Roswell Park
+Angela Hadjipanayis9, Mara Rosenberg2, Daniel J. Weisenberger17, Peter W. Laird17,               Cancer Institute Richard Cheney41, Carl Morrison41, Carmelo Gaudioso41; Rush
+Amie Radenbaugh18, Singer Ma18, Joshua M. Stuart18, Lauren Averett Byers12,                      University Medical Center Jeffrey A. Borgia42, Philip Bonomi42, Mark Pool42, Michael J.
+Stephen B. Baylin6, Ramaswamy Govindan8, Matthew Meyerson2,3                                     Liptay42; St. Petersburg Academic University Fedor Moiseenko43, Irina Zaytseva43;
+                                                                                                 Thoraxklinik am Universitätsklinikum Heidelberg, Member of Biomaterial Bank
+Genome sequencing centres: The Eli & Edythe L. Broad Institute Mara Rosenberg2,                  Heidelberg (BMBH) & Biobank Platform of the German Centre for Lung Research
+Stacey B. Gabriel2, Kristian Cibulskis2, Carrie Sougnez2, Jaegil Kim2, Chip Stewart2,            (DZL) Hendrik Dienemann44, Michael Meister44, Philipp A. Schnabel45, Thomas R.
+Lee Lichtenstein2, Eric S. Lander2,19 , Michael S. Lawrence2, Getz2,9,10; Washington             Muley44; University of Cologne Martin Peifer46; University of Miami Carmen
+University in St. Louis Cyriac Kandoth8, Robert Fulton8, Lucinda L. Fulton8, Michael D.          Gomez-Fernandez47, Lynn Herbert47, Sophie Egea47; University of North Carolina
+McLellan8, Richard K. Wilson8, Kai Ye8, Catrina C. Fronick8, Christopher A. Maher8,              Mei Huang11, Leigh B. Thorne11, Lori Boice11, Ashley Hill Salazar11, William K.
+Christopher A. Miller8, Michael C. Wendl8, Christopher Cabanski8, Li Ding8, Elaine               Funkhouser11, W. Kimryn Rathmell11; University of Pittsburgh Rajiv Dhir48, Samuel A.
+                                                                                                 Yousem48, Sanja Dacic48, Frank Schneider48, Jill M. Siegfried48; The University of
+Mardis8, Ramaswamy Govindan8; Baylor College of Medicine Chad J. Creighton7,
+                                                                                                 Texas MD Anderson Cancer Center Richard Hajek12; Washington University School of
+David Wheeler7
+                                                                                                 Medicine Mark A. Watson8, Sandra McDonald8, Bryan Meyers8; Queensland Thoracic
+                                                                                                 Research Center Belinda Clarke35, Ian A. Yang35, Kwun M. Fong35, Lindy Hunter35,
+Genome characterization centres: Canada’s Michael Smith Genome Sciences                          Morgan Windsor35, Rayleen V. Bowman35; Center Hospitalier Universitaire Vaudois
+Centre, British Columbia Cancer Agency Miruna Balasundaram15, Yaron S. N.                        Solange Peters49, Igor Letovanec49; Ziauddin University Hospital Khurram Z. Khan50
+Butterfield15, Rebecca Carlsen15, Andy Chu15, Eric Chuah15, Noreen Dhalla15, Ranabir
+Guin15, Carrie Hirst15, Darlene Lee15, Haiyan I. Li15, Michael Mayo15, Richard A.
+Moore15, Andrew J. Mungall15, Jacqueline E. Schein15, Payal Sipahimalani15, Angela               Data Coordination Centre Mark A. Jensen51, Eric E. Snyder51, Deepak Srinivasan51,
+Tam15, Richard Varhol15, A. Gordon Robertson15, Natasja Wye15, Nina Thiessen15,                  Ari B. Kahn51, Julien Baboud51, David A. Pot51
+Robert A. Holt12, Steven J. M. Jones15, Marco A. Marra15; The Eli & Edythe L. Broad
+Institute Joshua D. Campbell2, Angela N. Brooks2,3, Juliann Chmielecki2,                         Project team: National Cancer Institute Kenna R. Mills Shaw52, Margi Sheth52, Tanja
+Marcin Imielinski2,9,10, Robert C. Onofrio2, Eran Hodis9, Travis Zack2, Carrie Sougnez2,         Davidsen52, John A. Demchok52, Liming Yang52, Zhining Wang52, Roy Tarnuzzer52,
+Elena Helman2, Chandra Sekhar Pedamallu2, Jill Mesirov2, Andrew D. Cherniack2,                   Jean Claude Zenklusen52; National Human Genome Research Institute Bradley A.
+Gordon Saksena2, Steven E. Schumacher2, Scott L. Carter2, Bryan Hernandez2, Levi                 Ozenberger53, Heidi J. Sofia53
+Garraway2,3,9, Rameen Beroukhim2,3,9, Stacey B. Gabriel2, Gad Getz2,9,10, Matthew
+Meyerson2,3,9; Harvard Medical School/Brigham & Women’s Hospital/MD Anderson
+                                                                                                 Expert pathology panel William D. Travis4, Richard Cheney41, Belinda Clarke35,
+Cancer Center Angela Hadjipanayis9,14, Semin Lee9,14, Harshad S. Mahadeshwar12,
+                                                                                                 Sanja Dacic48, Edwina Duhig36,35, William K. Funkhouser11, Peter Illei6, Carol Farver27,
+Angeliki Pantazi9,14, Alexei Protopopov12, Xiaojia Ren9, Sahil Seth12, Xingzhi Song12,
+                                                                                                 Natasha Rekhtman4, Gabriel Sica30, James Suh38 & Ming-Sound Tsao13
+Jiabin Tang12, Lixing Yang9, Jianhua Zhang12, Peng-Chieh Chen9, Michael Parfenov9,14,
+Andrew Wei Xu9,14, Netty Santoso9,14, Lynda Chin12, Peter J. Park9,14 & Raju
+                                                                                                 1
+Kucherlapati9,14; University of North Carolina, Chapel Hill Katherine A. Hoadley11,               University of California San Francisco, San Francisco, California 94158, USA. 2The Eli and
+J. Todd Auman11, Shaowu Meng11, Yan Shi11, Elizabeth Buda11, Scot Waring11,                      Edythe L. Broad Institute, Cambridge, Massachusetts 02142, USA. 3Dana Farber Cancer
+Umadevi Veluvolu11, Donghui Tan11, Piotr A. Mieczkowski11, Corbin D. Jones11, Janae              Institute, Boston, Massachusetts 02115, USA. 4Memorial Sloan-Kettering Cancer Center,
+V. Simons11, Matthew G. Soloway11, Tom Bodenheimer11, Stuart R. Jefferys11, Jeffrey              New York, New York 10065, USA. 5University of Michigan, Ann Arbor, Michigan 48109,
+Roach11, Alan P. Hoyle11, Junyuan Wu11, Saianand Balu11, Darshan Singh11, Jan F.                 USA. 6Johns Hopkins University, Baltimore, Maryland 21287, USA. 7Baylor College of
+
+                                                                                                                                3 1 J U LY 2 0 1 4 | V O L 5 1 1 | N AT U R E | 5 4 9
+                                                         ©2014 Macmillan Publishers Limited. All rights reserved
+ RESEARCH ARTICLE
+
+Medicine, Houston, Texas 77030, USA. 8Washington University, St. Louis, Missouri 63108,      21620, USA. 33Indiana University School of Medicine, Indianapolis, Indiana 46202, USA.
+USA. 9Harvard Medical School, Boston, Massachusetts 02115, USA. 10Massachusetts              34
+                                                                                               Individumed, Silver Spring, Maryland 20910, USA. 35The Prince Charles Hospital and
+General Hospital, Boston, Massachusetts 02114, USA. 11University of North Carolina at        the University of Queensland Thoracic Research Center, Brisbane, 4032, Australia.
+Chapel Hill, Chapel Hill, North Carolina 27599, USA. 12University of Texas MD Anderson       36
+                                                                                               Sullivan Nicolaides Pathology & John Flynn Hospital, Tugun 4680, Australia. 37Lahey
+Cancer Center, Houston, Texas 77054, USA. 13Princess Margaret Cancer Centre, Toronto,        Hospital and Medical Center, Burlington, Massachusetts 01805, USA. 38NYU Langone
+Ontario M5G 2M9, Canada. 14Brigham and Women’s Hospital Boston, Massachusetts                Medical Center, New York, New York 10016, USA. 39Ontario Tumour Bank, Ontario
+02115, USA. 15BC Cancer Agency, Vancouver, British Columbia V5Z 4S6, Canada. 16Mayo          Institute for Cancer Research, Toronto, Ontario M5G 0A3, Canada. 40Penrose St. Francis
+Clinic, Rochester, Minnesota 55905, USA. 17University of Southern California, Los            Health Services, Colorado Springs, Colorado 80907, USA. 41Roswell Park Cancer
+Angeles, California 90033, USA. 18University of California Santa Cruz, Santa Cruz,           Center, Buffalo, New York 14263, USA. 42Rush University Medical Center, Chicago, Illinois
+California 95064, USA. 19Massachusetts Institute of Technology, Cambridge,                   60612, USA. 43St. Petersburg Academic University, St Petersburg 199034, Russia.
+Massachusetts 02142, USA. 20University of Kentucky, Lexington, Kentucky 40515, USA.          44
+                                                                                               Thoraxklinik am Universitätsklinikum Heidelberg, 69126 Heidelberg, Germany.
+21
+  Buck Institute for Age Research, Novato, California 94945, USA. 22Howard Hughes            45
+                                                                                               University Heidelberg, 69120 Heidelberg, Germany. 46University of Cologne, 50931
+Medical Institute, University of California Santa Cruz, Santa Cruz, California 95064, USA.   Cologne, Germany. 47University of Miami, Sylvester Comprehensive Cancer Center,
+23
+  Oregon Health and Science University, Portland, Oregon 97239, USA. 24International         Miami, Florida 33136, USA. 48University of Pittsburgh, Pittsburgh, Pennsylvania 15213,
+Genomics Consortium, Phoenix, Arizona 85004, USA. 25Analytical Biological Services,          USA. 49Center Hospitalier Universitaire Vaudois, Lausanne and European Thoracic
+Inc., Wilmington, Delaware 19801, USA. 26University of Alabama at Birmingham,                Oncology Platform, CH-1011 Lausanne, Switzerland. 50Ziauddin University Hospital,
+Birmingham, Alabama 35294, USA. 27Cleveland Clinic, Cleveland, Ohio 44195, USA.              Karachi, 75300, Pakistan. 51SRA International, Inc., Fairfax, Virginia 22033, USA.
+28
+  Christiana Care, Newark, Delaware 19713, USA. 29Cureline, Inc., South San Francisco,       52
+                                                                                               National Cancer Institute, National Institutes of Health, Bethesda, Maryland 20892,
+California 94080, USA. 30Emory University, Atlanta, Georgia 30322, USA. 31Fox Chase          USA. 53National Human Genome Research Institute, National Institutes of Health,
+Cancer Center, Philadelphia, Philadelphia 19111, USA. 32ILSbio, Chestertown, Maryland        Bethesda, Maryland 20892, USA.
+
+
+
+
+5 5 0 | N AT U R E | V O L 5 1 1 | 3 1 J U LY 2 0 1 4
+                                                         ©2014 Macmillan Publishers Limited. All rights reserved
+CORRECTIONS & AMENDMENTS
+CORRIGENDUM
+doi:10.1038/nature13879
+
+Corrigendum: Comprehensive
+molecular profiling of lung
+adenocarcinoma
+The Cancer Genome Atlas Research Network
+
+Nature 511, 543–550 (2014); doi:10.1038/nature13385
+In this Article, the surname of author Kristen Rodgers was incorrectly
+spelled Rogers. This error has been corrected in the HTML and PDF of
+the original paper.
+
+
+
+
+2 6 2 | N AT U R E | VO L 5 1 4 | 9 O C T O B E R 2 0 1 4
+                                                  ©2014 Macmillan Publishers Limited. All rights reserved
+CORRECTIONS & AMENDMENTS
+Correction
+https://doi.org/10.1038/s41586-018-0228-6
+
+Author Correction: Comprehensive
+molecular profiling of lung
+adenocarcinoma
+The Cancer Genome Atlas Research Network
+
+Correction to: Nature https://doi.org/10.1038/nature13385,
+published online 9 July 2014; corrected online 8 October 2014.
+In this Article, the Supplementary Table 7 iCLUSTER output column
+included incorrect cluster labels for the integrated subtypes presented
+in Fig. 5c. These changes affect only the iCLUSTER output column and
+do not affect the analysis or the conclusions of the work. The authors
+apologise for the error. Supplementary Table 7 has been corrected
+online, and the original incorrect table is provided as Supplementary
+Information to this Amendment for transparency.
+Supplementary Information is available in the online version of this Amendment.
+
+
+
+
+                                                                                                                                 N A T U R E | www.nature.com/nature
+                                            © 2018 Macmillan Publishers Limited, part of Springer Nature. All rights reserved.
+
+==============================================================================
+VISUAL FIGURE VALUE AUDIT
+==============================================================================
+
+# Visual figure audit: L36
+
+Source: `pdfs/L36.pdf`; viewed rendered pages 1-2 (journal pagination).
+
+- Figure 1 (p. 1): mutation landscape for 230 lung adenocarcinoma resections, with statistical comparison data drawn from 412 TCGA cases. Caption identifies panels for co-mutation plot, mutation-type landscape, and sex-associated mutation patterns. The figure is descriptive; no prediction performance metric.
+- Figure 2 (p. 2): aberrant RNA transcripts associated with DNA rearrangement or mutation. Caption reports 22 samples with insufficient coverage around exon 14 for MET splice quantification; among quantifiable cases the figure compares MET exon-14 skipping by mutation group. The plotted bars are proportions, with no single cohort-level prediction metric.
+- Abstract/text visible on p. 1 reports a mean of 8.9 somatic mutations per megabase in the resections and 18 significantly mutated genes. The text on p. 2 reports 412 tumor/normal pairs for the TCGA comparison; KRAS mutations 33%, EGFR 14%, BRAF 10%, PIK3CA 7%, MET 7%, and STK11 17%.
+
+These are molecular-provenance findings, not comparable survival-classification scores.

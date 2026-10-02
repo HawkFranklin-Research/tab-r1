@@ -1,0 +1,107 @@
+# Retrieval inventory, NOT completed visual/claim audit
+Source L22: Random Forests; DOI 10.1023/A:1010933404324
+Original text line numbers. Numbers may be citations, secondary reports,
+toy examples, or ambiguous table columns. Verify context before citing.
+
+L64: on the examples in the training set. Ho [1998] has written a number of papers on
+L75: Θ1, ... ,Θ k −1 but with the same distribution; and a tree is grown using the training
+L100: Amit and Geman [1997] analysis to show that the accuracy of a random forest
+L104: Section 3 introduces forests using the random selection of features at each node
+L130: features can produce improved accuracy. In Section 9 we experiment on a
+L131: simulated data set with 1,000 input variables, 1,000 examples in the training set
+L132: and a 4,000 example test set. Accuracy comparable to the Bayes rate is achieved.
+L144: 2 Characterizing the Accuracy of Random Forests
+L150: Given an ensemble of classifiers h1 (x),h2 (x), ... ,hK (x) , and with the training set
+L312: 3. Using Random Features
+L319: work by adaptive reweighting (arcing) of the training set (see Breiman [1998b],
+L403: sets separated into training and test sets and 4 synthetic data sets. The first 10 sets
+L404: were selected because I had used them in past research. Table 1 gives a brief
+L410:                      Table 1 Data Set Summary
+L442: random 10% of the data was set aside. On the remaining data, random forest
+L444: time with F=int(log2M+1). The set aside 10% was then put down each forest to
+L446: lower value of the out-of-bag estimate in the two runs. This was repeated 100
+L461: in Schapire et al [1997]. There were 50 runs. In each run, a new training set of
+L462: size 300 and test set of size 3000 were generated. In random forests 100 trees
+L464: in Table 2.
+L474:                        Table 2 Test Set Errors (%)
+L508: and the higher value of F is less than 1%. The difference is most pronounced on
+L547: from the training set. The test set results are given in Table 3 where the third
+L549: individual trees computed as for Table 2.
+L554:       ``                   Table 3 Test Set Errors (%)
+L585: In Tables 2 and 3 there are some entries for which the selected entry is less than
+L599: forests respectively. On the satellite data, the error dropped to 8.5%, on the
+L600: letters data to 3.0%, but the zip-code test set error did not decrease. Acting on an
+L601: informed hunch, I tried Forest-RI with F=25. The zip-code test set error dropped
+L602: to 5.8%. These are the lowest test set errors so far achieved on these three data
+L623: examples in the training set and 1,186 in the test set, using Forest-RI with F=20
+L624: gave a test set error rate of 3.6% (4.2% for Adaboost). The soybean data has 685
+L626: with F=12 gives a test set error of 5.3% (5.8% for Adaboost). Using Forest-RC
+L627: with combinations of 3 and F=8 gives an error of 5.5%.
+L650: from 1 to 50 inputs. In each iteration, 10% of the data was split off as a test set.
+L654: iterations were done, each time removing a random 10% of the data for use as a
+L655: test set, and all results averaged over the 80 repetitions. Altogether, 400,000
+L658: The top graph of Figure 1, plots the values of strength and correlation vs. F. The
+L667:                            (Figure 1 about here)
+L669: Figure 2 has plots for similar runs on the breast data set where features
+L671: these features was varied from 1 to 25. Again, the correlation shows a slow rise,
+L677:                            (Figure 2 about here)
+L682: each, 100 classifiers were combined. The results are shown in Figure 3. The
+L688:                            (Figure 3 about here)
+L724: This was repeated 100 times on a few data sets, each time leaving out 10% as a
+L728: 2.91% error and the random forest produced 2.94%.
+L763: Dietterich [1998] showed that when a fraction of the output labels in the training
+L768: which changed about one in twenty class labels (injecting 5% noise).
+L770: For each data set in the experiment, 10% at random is split off as a test set. Two
+L773: is gotten by changing, at random, 5% of the class labels into an alternate class
+L776: This is repeated 50 times using Adaboost (deterministic version), Forest-RI and
+L777: Forest-RC. The test set results are averaged over the 50 repetitions and the
+L779: the number of features giving the lowest test set error in the Section 5 and 6
+L781: used. Table 4 gives the increases in error rates due to the noise.
+L783:              Table 4 Increases in Error Rates Due to Noise (%)
+L800: Adaboost deteriorates markedly with 5% noise, while the random forest
+L852: For the training set, N=1,000. A 4,000 example test set was also constructed
+L857: is 1.0%.
+L861: error rate of 6.2%. This is not an endorsement of Naive Bayes, since it would be
+L868: 10.7%. The strength was .069 and the correlation .012 with a c/s2 ratio of 2.5.
+L874: were encouraging. It converged after 2,000 iterations. The test set error was
+L875: 3.0%. The strength was .22, the correlation .045 and c/s2=.91. Going with the
+L876: trend, Forest-RI was run with F=25 and stopped after 2,000 iterations. The test
+L877: set error was 2.8%. Strength was .28, correlation .065 and c/s2 = .83.
+L881: rate is 80%; for F=10, it is 65%; and for F=25, it is 60%. Forests seem to have the
+L900: each xn that is out of bag is saved. This is repeated for m=1,2, ... , M. At the end
+L907: single run of a forest with 1,000 trees and no test set. The procedure is illustrated
+L911: to the noising of variables is given in Figure 4
+L913:                                                Figure 4
+L939: 2 and leaving out 10% each time to measure test set error gave an error of 29.7%,
+L940: compared with 23.1% using all variables. But when variable 8 is added, the error
+L941: falls only to 29.4%. When variable 6 is added to variable 2, the error falls to
+L942: 26.4%.
+L959:                                          Figure 5
+L998:                                              Figure 6
+L1026: set using only variable 4. The test set error is 4.3%, about the same as if all
+L1100:                      Table 5 Data Set Summary
+L1105:        Boston Housing              12           506            10%
+L1106:        Ozone                        8           330            10%
+L1107:        Servo                        4           167            10%
+L1108:        Abalone                      8          4177            25%
+L1123: estimated by leaving out a random 10% of the instances, running on the
+L1124: remaining 90% and using the left-out 10% as a test set. This was repeated 100
+L1125: times and the test set errors averaged. The abalone data set is larger with 4,177
+L1126: instances and 8 input variables. It originally came with 25% of the instances set
+L1127: aside as a test set. We ran this data set leaving out a randomly selected 25% of
+L1128: the instances to use as a test set, repeated this 10 times and averaged.
+L1130: Table 6 gives the test set mean-squared error for bagging, adaptive
+L1131: bagging and the random forest. These were all run using 25 features, each
+L1140:                        Table 6 Mean-Squared Test Set Error
+L1160: The results shown in Table 6 are mixed. Random forest-random features is
+L1173: Table 7 gives the test set errors, the out-of-bag error estimates, and the OB
+L1176:                      Table 7. Error and OB Estimates
+L1197: construction was done using 25 features, each a random linear combination of
+L1203:                      Table 8 Mean-Squared Test Set Error
+L1256: as 5.1% on the zip-code data, 2.2% on the letters data and 7.9% on the satellite
+L1285: Breiman. L. [1998b] Randomizing Outputs To Increase Prediction Accuracy.
+L1406:  ĵ(x,y) for every example in the training set. Then, let p1 be the average over all
+L1416:                                              FIGURE 1
+L1456:            1 0                                                  test set error
+L1471:                                                       FIGURE 2
+L1533:                                               FIGURE 3

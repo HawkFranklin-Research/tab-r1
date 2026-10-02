@@ -1,0 +1,133 @@
+# Retrieval inventory, NOT completed visual/claim audit
+Source L06: Propensity-based standardization to enhance the validation and interpretation of prediction model discrimination for a target population; DOI 10.1002/sim.9817
+Original text line numbers. Numbers may be citations, secondary reports,
+toy examples, or ambiguous table columns. Verify context before citing.
+
+L30:                        T P A 2023, 'Propensity-based standardization to enhance the validation and
+L91:                                                      bosis in 12 external validation data sets and assess our methods in a simulation
+L135: prediction models perform worse when tested (ie, validated) in or applied to new individuals.2-5 Common reasons for
+L137: handling of missing data in the development or validation data and, in particular, overfitting of the developed model.6-9
+L141: affecting prediction model performance across validation samples.10-13
+L143: tions are sufficiently accurate across different validation samples from the target population.14-16 The model’s predictive
+L146: collect individual participant data (IPD) from two or more settings, institutes or even predesigned (validation) studies.16
+L162: homogeneous than the development sample, even if the model generalizes well:21 it is simply more difficult to discrimi-
+L166: the external validation data at hand.10,11 The interpretation of prediction model performance becomes particularly chal-
+L171: has been recommended to quantify the relatedness between the development and validation samples.3 This allows for the
+L205:      We have recently suggested to use propensity scores to assist external validation of clinical prediction models.28,29 This
+L208: ity that are adjusted for case-mix variation, and to test statistical properties of this methodology. In Section 2, we present
+L210: validation measures, in Section 3 we describe a motivating example with illustrative data from multiple studies on the
+L221: ing the development and validation of prediction models,33,34 we propose a different use of propensity score methods. In
+L236: study sample j, j = 1, … , J:
+L238:                                                     mSi (j) = Pr(Si = j|Xi ),                                               (1)
+L240: where Si is a random variable denoting the study sample of individual i, and Xi = (X1 , … , XR ) denotes a vector that con-
+L241: tains the individual’s values for predictor r, r = 1, … , R. In an analysis of J study samples, we have Si ∈ (1, 2, … , J).
+L251: cases, by definition, j mSi (j) = 1, for each i. As a result, taking sample J as the reference sample, the propensity score
+L264: study samples, that is, J = 2, Equation (2) reduces to the binary logistic regression model.
+L270: necessary.35 As the true differences between the validation sample and the target population can be highly nonlinear, we
+L333: 2.2       Validation of prediction models in standardized samples
+L361: 2.2.1       Standardized concordance statistic
+L363: a randomly selected patient i+ , i+ ∈ (1, … , N+ ), with the outcome and a randomly selected patient i− , i− ∈ (1, … , N− ),
+L402: are then sampled with replacement with probability equal to their respective weights (rescaled to range from 0 to 1)
+L405: respectively, similar to the percentile method for the bootstrap estimation of the unstandardized confidence interval.42
+L413: DVT increases a patient’s risk of post-thrombotic syndrome and pulmonary embolism, which can be fatal.43 In DVT
+L414: suspected patients, often no DVT is present on advanced reference testing.44 We here consider for illustrative purposes
+L416: that are suspected of having DVT and use the IPD of 10 002 patients, of whom 1864 had DVT, from thirteen different
+L418: a sample from the intended target population, as is generally recommended.14 Conversely, samples used for external
+L421: characteristics on average (Table 1). For instance, in the development data 22% of the participants had DVT, whereas 18%
+L425: T A B L E 1 Clinical characteristics of development and validation data for a model for diagnosing DVT.
+L429:     DVT                                     1006                         289 (22%)            7132                   1575 (18%)             5%             39%
+L430:     D-dimer abnormal                        398                          897 (69%)            3629                   5078 (58%)             39%            82%
+L431:     Calf difference > = 3 cm                739                          556 (43%)            6248                   2459 (28%)             15%            43%
+L432:     Oral contraceptive (OC)                 1167                         128 (10%)            8166                   541 (6%)               0%             23%
+L433:     Male                                    828                          467 (36%)            5327                   3380(39%)              33%            48%
+L434:     Absence of leg trauma                   197                          1098 (85%)           1587                   7120 (82%)             67%            95%
+L435:     Vein distension                         1038                         257 (20%)            7748                   959 (11%)              0%             20%
+L436:     Presence of malignancy                  1214                         81 (6%)              7954                   753 (9%)               4%             18%
+L437:     Recent surgery or bedridden             1114                         181 (14%)            7777                   930 (11%)              5%             18%
+L458: Note: Empty cells indicate the coefficient for the respective predictor is assumed zero. For predictor definitions see Table 1.
+L463: data sets: in one study only 5% had DVT and in another as many as 39% did. Similarly, somewhat more participants in the
+L464: development data (69%) had an abnormal D-dimer value than in the pooled validation data (58%), but in the individual
+L465: validation data sets this ranged from 39% to 82%. Clearly, some of the validation data sets are not representative of the
+L476: from the published literature, and used the 12 remaining data sets to externally validate them. This was used to mimic
+L478: Coefficients for eight prespecified predictors were estimated: positive d-dimer test, calf difference >3 cm (not available
+L480: recent surgery (Table 2). Prediction model 1 consisted of only the first predictor and prediction model 2 consisted of the
+L484:     We externally validated the discriminative ability of the 8 prediction models in each of the 12 external validation
+L491:     To summarize these models’ estimated discrimination across the 12 validation studies and to investigate their
+L499: parameter of mean logit discrimination and 𝜏 2 the heterogeneity of true logit concordance values across validation sam-
+L507: effects meta-analysis, as recommended.48 The meta-analyses were estimated with REML and 95% confidence intervals
+L508: were estimated by the Hartung-Knapp-Sidik-Jonkman method.49,50 Approximate 95% prediction intervals for the dis-
+L510: degrees of freedom.51 The confidence intervals for the propensity-weighted c-statistic were obtained with 5000 resamples
+L518: D-dimer as predictor was 0.70 (95% CI from 0.66 to 0.74), whereas the prediction model with 8 predictors yielded a
+L519: pooled c-statistic of 0.82 (95% CI from 0.80 to 0.84). Further, we found that summary estimates for the c-statistic that were
+L521: (Table S1 in the online Supporting Information, Figure 1). This similarity in the estimated center of the distribution of
+L525: tial between-study heterogeneity. The approximate 95% prediction interval for the pooled c-statistic for model 1 ranged
+L527: standardizing the validation studies, the heterogeneity estimate 𝜏̂ for model 1 decreased from 0.29 to 0.08 and the 95% pre-
+L528: diction interval became much more narrow (0.64-0.72). These additional results reveal that between-study heterogeneity
+L534: found 𝜏̂ = 0.28 for the standardized c-statistic. Hence, in the unstandardized validation samples the heterogeneity of the
+L564: F I G U R E 1 Summary (95% CI and 95% approximate PI), and heterogeneity estimates (95% CI) of the concordance in 12 external
+L597: 1. Draw a development sample from the target population and develop one prediction model on this sample.
+L598: 2. Draw a validation sample and develop the propensity models on both samples combined.
+L599: 3. Estimate the propensity-weighted and unweighted concordances in the validation sample.
+L600: 4. Draw a reference sample from the target population and estimate concordance for the prediction model on this sample.
+L607: where g(z) = 1∕(1 + e−z )). For the development and reference samples we fixed the following parameters: 𝜋 = 0.2, 𝜇 =
+L608: 0, 𝜎 = 1, 𝛽b = 1, and 𝛽c = 1. This reference sample could thus be used to estimate the out-of-sample concordance in the
+L615: 1. No difference; the development and validation samples were sampled from the same distribution.
+L623: 9. The continuous predictor in the validation data still followed Equation (10), but now the continuous predictor in the
+L624:    development sample was truncated at [1, 1].
+L637: was repeated for 2000 iterations, for two sample sizes of the development sample: n = 500 and n = 2000. The validation
+L638: sample always contained 2000 observations and the reference sample 10 000.
+L682: Figure 2 highlights the predictor distributions in the first repetition for three scenarios where the distribution of one of the
+L684: in the validation data did not match the target distribution. In scenario #4 (top), where the prevalence of the binary
+L687: in scenario #6 (middle), where the mean of the continuous predictor was increased in the validation data, both propensity
+L750: increased in the validation data. Middle: Scenario #6, where the mean of the continuous predictor was increased in the validation data.
+L751: Bottom: Scenario #2, where the standard deviation of the continuous predictor was increased in the validation data. The development sample
+L763: Bias was either positive, negative or (near-)zero, depending on the scenario and method (Figure 3). In scenario 0, where
+L764: the validation sample originated from the target population, all methods had near-zero bias. But in scenario’s 1 and 2,
+L800: F I G U R E 3 Bias and 95% CI of the estimated concordance before and after weighting. Concordance was estimated in the (weighted)
+L801: external validation data for all methods. Bias was subsequently estimated by subtracting the estimate in the reference sample. 95% confidence
+L802: intervals (CI) were estimated as 2.5% and 97.5% percentiles of 5000 bootstrap samples.
+L811:     In scenario 7, where continuous predictor was truncated in the validation sample, all methods showed negative bias,
+L814: development sample size was 500. Sample size had a minimal impact on the results; only in scenario 8 we see a notable
+L825: In scenario 0, where the validation sample originated from the target population, all methods had low RMSE (Figure 4).
+L829: in scenario 4 the unweighted method had slightly lower RMSE when the sample size was small. In scenario 5, where the
+L831: scenario 6, where the standard deviation of the continuous predictor was higher in the validation sample, the unweighted
+L833:     In scenario 7, where the continuous predictor was truncated in the validation sample, all methods had much higher
+L835: In scenario 8, where the continuous predictor was truncated in the development sample, the propensity method with
+L872: F I G U R E 4 Root mean square error and 95% CI of the estimated concordance before and after weighting. Concordance is estimated in
+L873: the (weighted) external validation data for all methods. RMSE was subsequently estimated using the estimate in the reference sample. 95%
+L874: confidence intervals (CI) were estimated as 2.5% and 97.5% percentiles of 5000 bootstrap samples.
+L889: In scenario 9 to 12 and 14, where an additional covariate was present in the samples from the target population and
+L892: (Figure 5). Only in scenario 13, where the predictor Xc was causally affected by the covariate W and 𝛽W was nonzero,
+L932: F I G U R E 5 Bias and 95% CI of the estimated concordance before and after weighting possibly using an additional variable.
+L934: estimate in the reference sample. 95% confidence intervals (CI) were estimated as 2.5% and 97.5% percentiles of 5000 bootstrap samples.
+L947: In scenario 9 to 12 and 14, where an additional covariate was present in the samples from the target population and
+L949: additional covariate was included in the propensity score model (Figure 6). Only in scenario 13, where the predictor
+L990: F I G U R E 6 Root mean square error and 95% CI of the estimated concordance before and after weighting possibly using an additional
+L992: estimate in the reference sample. 95% confidence intervals (CI) were estimated as 2.5% and 97.5% percentiles of 5000 bootstrap samples.
+L1040: covariate distributions across patient settings under different “exposures”.37,38 Transposing this framework to clinical pre-
+L1043: from RCTs52 and to use a larger sample size by including propensity weighted external data to assess the intervention
+L1080: ple (scenario 7). There, neither propensity method could fully correct the concordance estimates for the reduction
+L1097: measures of prediction model discriminative ability in the motivating example of 12 external validation studies, the abso-
+L1122: of the difference in discriminative ability resulting from differences in case-mix between the two samples.23
+L1194:  2. Siontis GCM, Tzoulaki I, Castaldi PJ, Ioannidis JPA. External validation of new risk prediction models is infrequent and reveals worse
+L1197:     external validation studies of clinical prediction models. J Clin Epidemiol. 2015;68(3):279-289.
+L1198:  4. Vergouwe Y, Moons KGM, Steyerberg EW. External validity of risk models: use of benchmark values to disentangle a case-mix effect from
+L1204:  7. van Smeden M, Moons KGM, de Groot JAH, et al. Sample size for binary logistic prediction models: beyond events per variable criteria.
+L1206:  8. Riley RD, Snell KI, Ensor J, et al. Minimum sample size for developing a multivariable prediction model: PART II-binary and time-to-event
+L1208:  9. de Jong VMT, Eijkemans MJC, van Calster B, et al. Sample size considerations and predictive performance of multinomial logistic
+L1210: 10. Altman DG, Royston P. What do we mean by validating a prognostic model? Stat Med. 2000;19(4):453-473.
+L1215: 13. Charlson ME, Ales KL, Simon R, MacKenzie CR. Why predictive indexes perform less well in validation studies: is it magic or methods?
+L1223: 17. Altman DG, Vergouwe Y, Royston P, Moons KGM. Prognosis and prognostic research: validating a prognostic model. BMJ. 2009;
+L1225: 18. Steyerberg EW. Clinical Prediction Models: A Practical Approach to Development, Validation, and Updating. New York: Springer Science &
+L1229: 20. Moons KGM, Kengne AP, Grobbee DE, et al. Risk prediction models: II. External validation, model updating, and impact assessment.
+L1231: 21. Austin PC, Steyerberg EW. Interpreting the concordance statistic of a logistic regression model: relation to the variance and odds ratio of
+L1239: 22. van Klaveren D, Gönen M, Steyerberg EW, Vergouwe Y. A new concordance measure for risk prediction models in external validation
+L1241: 23. van Klaveren D, Steyerberg EW, Gönen M, Vergouwe Y. The calibrated model-based concordance improved assessment of discriminative
+L1242:     ability in patient clusters of limited sample size. Diagn Progn Res. 2019;3(1):11.
+L1246: 26. Riley RD, Ensor J, Snell KIE, et al. External validation of clinical prediction models using big datasets from e-health records or IPD
+L1263: 34. Pajouheshnia R, Peelen LM, Moons KGM, Reitsma JB, Groenwold RHH. Accounting for treatment use when validating a prognostic
+L1272:     validate prognostic models. BMJ. 2019;365:l2154.
+L1273: 40. Wu S, Flach P. A scored AUC metric for classifier evaluation and selection. Proceedings of the ICML 2005 Workshop on ROC Analysis in
+L1277: 42. Carpenter J, Bithell J. Bootstrap confidence intervals: when, which, what? A practical guide for medical statisticians. Stat Med.
+L1283:     individual patient data meta-analysis. BMJ. 2014;348:g1340.
+L1291: 49. Knapp G, Hartung J. Improved tests for a random effects meta-regression with a single covariate. Stat Med. 2003;22(17):

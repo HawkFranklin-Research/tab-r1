@@ -1,0 +1,850 @@
+SOURCE ID: L03
+TITLE: Does combining numerous data types in multi-omics data improve or hinder performance in survival prediction? Insights from a large-scale benchmark study
+YEAR: 2024
+DOI: 10.1186/s12911-024-02642-9
+PDF: ../pdfs/L03.pdf
+PAGES: 14
+EXTRACTION: pdftotext -layout. Page breaks are form feeds. Check equations, tables, and figures against the PDF during visual audit.
+==============================================================================
+
+Li et al. BMC Medical Informatics and Decision Making                   (2024) 24:244                                                         BMC Medical Informatics
+https://doi.org/10.1186/s12911-024-02642-9
+                                                                                                                                                and Decision Making
+
+
+ RESEARCH                                                                                                                                                            Open Access
+
+
+Does combining numerous data types
+in multi-omics data improve or hinder
+performance in survival prediction? Insights
+from a large-scale benchmark study
+Yingxia Li1* , Tobias Herold2 , Ulrich Mansmann1                                     and Roman Hornung1,3
+
+
+  Abstract
+  Background Predictive modeling based on multi-omics data, which incorporates several types of omics data for the
+  same patients, has shown potential to outperform single-omics predictive modeling. Most research in this domain
+  focuses on incorporating numerous data types, despite the complexity and cost of acquiring them. The prevailing
+  assumption is that increasing the number of data types necessarily improves predictive performance. However,
+  the integration of less informative or redundant data types could potentially hinder this performance. Therefore,
+  identifying the most effective combinations of omics data types that enhance predictive performance is critical for
+  cost-effective and accurate predictions.
+  Methods In this study, we systematically evaluated the predictive performance of all 31 possible combinations
+  including at least one of five genomic data types (mRNA, miRNA, methylation, DNAseq, and copy number variation)
+  using 14 cancer datasets with right-censored survival outcomes, publicly available from the TCGA database. We
+  employed various prediction methods and up-weighted clinical data in every model to leverage their predictive
+  importance. Harrell’s C-index and the integrated Brier Score were used as performance measures. To assess the
+  robustness of our findings, we performed a bootstrap analysis at the level of the included datasets. Statistical testing
+  was conducted for key results, limiting the number of tests to ensure a low risk of false positives.
+  Results Contrary to expectations, we found that using only mRNA data or a combination of mRNA and miRNA
+  data was sufficient for most cancer types. For some cancer types, the additional inclusion of methylation data led
+  to improved prediction results. Far from enhancing performance, the introduction of more data types most often
+  resulted in a decline in performance, which varied between the two performance measures.
+  Conclusions Our findings challenge the prevailing notion that combining multiple omics data types in multi-omics
+  survival prediction improves predictive performance. Thus, the widespread approach in multi-omics prediction of
+  incorporating as many data types as possible should be reconsidered to avoid suboptimal prediction results and
+  unnecessary expenditure.
+
+
+
+*Correspondence:
+Yingxia Li
+liyingxia1991@hotmail.com
+Full list of author information is available at the end of the article
+
+
+                                             © The Author(s) 2024. Open Access This article is licensed under a Creative Commons Attribution 4.0 International License, which permits use,
+                                             sharing, adaptation, distribution and reproduction in any medium or format, as long as you give appropriate credit to the original author(s) and
+                                             the source, provide a link to the Creative Commons licence, and indicate if changes were made. The images or other third party material in this
+                                             article are included in the article’s Creative Commons licence, unless indicated otherwise in a credit line to the material. If material is not included
+                                             in the article’s Creative Commons licence and your intended use is not permitted by statutory regulation or exceeds the permitted use, you will
+                                             need to obtain permission directly from the copyright holder. To view a copy of this licence, visit http://creativecommons.org/licenses/by/4.0/.
+Li et al. BMC Medical Informatics and Decision Making   (2024) 24:244                                                     Page 2 of 14
+
+
+
+
+ Keywords Multi-omics data, Prediction, TCGA, Benchmark, Cancer, Survival analysis
+
+
+Background                                                              same time the sample sizes associated with these data can
+Cancer is a global public health problem due to its high                be expected to be small. Prediction models derived from
+morbidity and mortality rates [1]. It is associated with                small sample sizes are likely to be less reliable, especially
+alterations in genes that control normal cell growth and                when dealing with a large number of features.
+differentiation. Thus, understanding and exploiting the                    Several studies have compared the predictive per-
+molecular basis of cancer has many benefits, including                  formance of different block combinations [2, 3, 13–17];
+the possibility of building prediction models [2, 3], dis-              however [11], these studies tend to be limited in scope
+covering biomarkers [4], identifying abnormal pathways                  and yielded partially inconsistent results. They have
+[5], and determining optimal treatment options.                         almost exclusively either considered very few [2, 3,
+   Today, various types of omics data exist. These include              15] or a limited number of block combinations [13, 14,
+genomic, epigenomic, transcriptomic, proteomic, and                     16]. Only one study [17] followed the comprehensive
+metabolomic data. Many of these data types are pub-                     approach used in this paper, evaluating all possible com-
+licly available on The Cancer Genome Atlas (TCGA) [6].                  binations of the considered omics blocks, but it relied on
+In the following, the different types of molecular data                 a single dataset of limited size. Some studies used only a
+are often referred to as “blocks”. Omics data have been                 few datasets [13, 14] or a single prediction method [16].
+used to develop predictive models for more than 20                      In general, in these studies, the predictive performance
+years. These models traditionally used only one block,                  tended to be better when using subsets of the available
+the mRNA block being likely the most commonly used.                     blocks compared to the entire set. All of these studies
+As a well-known example, mRNA data have often been                      found mRNA data to be particularly effective for predic-
+found to be useful for predicting survival or response to               tion, with individual studies also highlighting the predic-
+therapy in cancer patients [7]. With the increasing avail-              tive value of methylation [16], miRNA [14], copy-number
+ability of other types of blocks, the focus has shifted                 variation (CNV) [14], and plasma protein data [17]. For
+towards constructing predictive models based on multi-                  a more detailed overview of these studies, we direct the
+omics data, that is, several block types available for the              interested reader to Additional file 1.
+same patients. Several analyses allow the interpretation                   In the present study, we conducted a large-scale bench-
+that multi-omics data outperform single-omics data in                   mark experiment using TCGA data to explore which
+predictive modeling [8–11]. For example, Li et al. [12]                 combinations of blocks tend to provide the most accu-
+found that using multi-omics data delivered notably bet-                rate survival prediction results for various cancer types.
+ter results than using single-omics data in the prediction              We compared the predictive performance of all possible
+of the stage of lung adenocarcinoma.                                    31 combinations that contain at least one of five blocks
+   The prevailing assumption in the field, as evidenced by              (mRNA, miRNA, methylation, DNAseq, and CNV)
+the multi-omics literature, is that incorporating as many               across 14 cancer datasets with survival outcome, using
+blocks as feasible optimizes predictive performance.                    five prediction methods, specifically machine learning
+However, recent findings have suggested that this strat-                and statistical approaches for survival outcomes. Clinical
+egy may inadvertently lead to suboptimal results if less                covariates were included in each combination and priori-
+informative or redundant blocks are included (see next                  tized for four of the five prediction methods (see “Experi-
+paragraph for details). To our knowledge, a thorough                    mental settings” section for details).
+examination of which blocks consistently improve the                       In this work, we focus on the direct, sample-wise con-
+predictive performance and which blocks can and should,                 catenation of the different omics data types, rather than
+in general, be left out has not been conducted. Omitting                integration through data transformations. As described
+certain data blocks could not only potentially enhance                  by Picard et al. [18], there are a variety of integration
+predictive performance but also lead to cost savings. In                strategies applicable to multi-omics data beyond direct
+fact, it is quite costly and laborious to obtain different              concatenation. These include classical matrix factoriza-
+blocks for the same patient. The huge data volume of                    tion methods as well as more recent techniques using
+multi-omics data can also lead to long computation times                graph-based approaches or deep learning. Notably,
+and large consumptions of computational memory. Thus,                   recent developments tailored to multi-omics data include
+ideally, the number of blocks should be small to reduce                 UNMF [19], which is based on nonnegative matrix fac-
+the costs and complexities involved in the clinical imple-              torization, and TransPro [20], which applies deep learn-
+mentation and acquisition of patients’ molecular data.                  ing for the hierarchical integration of omics data types in
+Moreover, given the costs and efforts needed to obtain                  accordance with the central dogma of molecular biology.
+multi-omics data, when including multiple blocks at the
+Li et al. BMC Medical Informatics and Decision Making            (2024) 24:244                                                              Page 3 of 14
+
+
+
+
+  In the interest of developing general guidelines for                            in [2], where covariates most commonly available across
+omitting non-essential blocks, our initial analysis focuses                       datasets were selected, as well as cancer-specific covari-
+on the average performance of the block combinations                              ates identified through an informal literature review.
+across all datasets. This step provides insight into which                        In Additional file 1, we provide detailed information on
+combinations are generally effective for most cancer                              which clinical covariates were used for which datasets.
+types. Subsequently, we examine the performance of                                As outcome we used overall survival.
+these combinations individually for each dataset. This                              The 14 datasets are a subset of originally 26 avail-
+detailed analysis aims to determine if specific cancer                            able datasets. Datasets with missing omics blocks were
+types require specific block combinations to achieve                              excluded and those where less than 5% of patients had
+strong predictive performance. It is also important to                            observed events, that is, uncensored survival times.
+clarify that our aim is not to make biological interpreta-                        Moreover, each dataset was subset to include no missing
+tions. The sole objective of our study is to provide guid-                        values in the clinical covariates. For further preprocess-
+ance for designing (multi-)omics experiments to enhance                           ing details, refer to [2].
+predictive performance and reduce costs in the field by
+identifying which blocks can typically be excluded from                           Feature selection
+multi-omics data-based prediction. In contrast, many                              The permutation-based variable importance measure
+studies primarily seek to disentangle the complexity                              of random survival forests (RF-VI) can be used to rank
+of disease processes. In such cases, where the focus is                           features in terms of their importance to prediction. It
+on interpretation, the inclusion of multiple blocks is                            can be used in feature selection by retaining the best-
+undoubtedly advantageous.                                                         ranking variables. In a previous work, we conducted a
+                                                                                  benchmark study of feature selection strategies for multi-
+Methods                                                                           omics data with binary outcomes, where we found that
+Aim of the benchmark study                                                        RF-VI is quite robust with respect to the number of fea-
+The aim of this study is to determine the combinations                            tures selected and is relatively fast [21]. Thus, for blocks
+of blocks that are most effective in survival prediction for                      with more than 2,500 variables, we used the RF-VI fea-
+different types of cancer.                                                        ture selection method to perform feature selection on
+                                                                                  the training datasets within (5-fold) cross-validation.
+Datasets                                                                          Here, we selected the 2,500 features with the largest
+The 14 included multi-omics datasets from TCGA were                               variable importance measure values from each of these
+the same as those studied in [2], except that we included                         blocks, where Harrell’s concordance index was used as
+methylation data in addition. For each cancer type, there                         performance measure in RF-VI. This was done for com-
+are five omics blocks and clinical covariates, that is, six                       putational efficiency and because most variables do not
+groups of features. An overview of these 14 datasets is                           carry information in the ultra-high-dimensional blocks.
+given in Table 1. We used the same clinical covariates as                         Because of the large numbers of features, for some blocks
+
+Table 1 Overview of the considered datasets. The third to the eighth column show the numbers of features in the respective feature
+blocks (clin: clinical covariates, cnv: CNV, mirna: miRNA, mut: DNAseq, met: methylation, rna: mRNA). The last four columns show, in this
+order, the total number of features (f ), the numbers of observations (n), the numbers of observed events (n_e), and the proportions of
+observed events (r_e)
+Dataset      Cancer                            clin     cnv          mirna       mut          met           rna            f         n     n_e    r_e
+BLCA         Bladder urothelial                5        57,964       825         18,577       382,711       23,081         483,166   382   103    0.27
+BRCA         Breast invasive C.                8        57,964       835         17,975       21,919        22,694         121,398   735   72     0.10
+COAD         Colon AC.                         7        57,964       802         18,538       22,418        22,210         121,942   191   17     0.09
+ESCA         Esophageal C.                     6        57,964       763         12,628       383,295       25,494         480,153   106   37     0.35
+HNSC         Head–neck squamous CC.            11       57,964       793         17,248       376,058       21,520         473,597   443   152    0.34
+LGG          Low grade glioma                  10       57,964       645         9235         373,499       22,297         463,653   419   77     0.18
+LIHC         Liver hepatocellular C.           11       57,964       776         11,821       378,427       20,994         469,996   159   35     0.22
+LUAD         Lung AC.                          9        57,964       799         18,388       22,486        23,681         123,330   426   101    0.24
+LUSC         Lung squamous CC.                 9        57,964       895         18,500       21,364        23,524         122,259   418   132    0.32
+PAAD         Pancreatic AC.                    10       57,964       612         12,392       375,464       22,348         468,793   124   52     0.42
+SARC         Sarcoma                           11       57,964       778         10,001       378,139       22,842         469,738   126   38     0.30
+SKCM         Skin cutaneous M.                 9        57,964       1002        18,593       377,193       22,248         477,012   249   62     0.21
+STAD         Stomach AC.                       7        57,964       787         18,581       22,557        26,027         125,926   295   62     0.21
+UCEC         Uterine corpus EC.                11       57,447       866         21,053       22,517        23,978         125,875   405   38     0.09
+Abbreviations C. indicates carcinoma; AC., adenocarcinoma; CC., cell carcinoma; M., melanoma; EC., endometrial carcinoma
+Li et al. BMC Medical Informatics and Decision Making             (2024) 24:244                                                    Page 4 of 14
+
+
+
+
+(particularly the methylation block), we used 10,000 trees                        scenarios with larger numbers of blocks, the models use
+per random survival forest instead of the 500 trees that                          more features, which might give these models an advan-
+are default in the R package ranger (version 0.14) used.                          tage over those with fewer blocks, mirroring the real-
+Note that it is crucial to perform feature selection within                       world scenario.
+cross-validation on the training datasets. Conducting
+feature selection on the entire dataset before cross-vali-                        Survival prediction methods
+dation typically results in a substantial overestimation of                       We employed five distinct prediction methods that were
+the predictive performance [22, 23]. This overestimation                          most commonly used in previous benchmark studies on
+occurs even when many features are selected [24], as in                           prediction using multi-omics data [2, 3, 13–16]. These
+our study. The choice of 2,500 selected features was not                          five approaches include both prediction methods specifi-
+based on any specific statistical criteria, such as predic-                       cally designed for multi-omics data, as well as methods
+tive performance, which could be optimized through                                appropriate for high-dimensional data broadly. Unlike
+cross-validation-based tuning. Instead, this number was                           some earlier studies [15–17], we excluded deep learn-
+chosen to be sufficiently large to likely include most fea-                       ing approaches because they typically require Python,
+tures of notable influence, while balancing the compu-                            whereas our study was restricted to methods imple-
+tational demands. The objective was not to exhaustively                           mented in R. Additionally, Wissel et al. [15] reported that
+identify every influential feature while discarding all non-                      deep learning methods generally exhibit poorer calibra-
+influential ones, which is the reason behind the absence                          tion when applied to (multi-)omics data compared to
+of statistical testing in our feature selection process.                          statistical or classical machine learning methods. For
+  When more blocks are included, the total number of                              an extensive review of deep learning methods for sur-
+features available to the prediction models increases. This                       vival outcomes, refer to Wiegrebe et al. [25]. Bayesian
+could potentially benefit combinations that include many                          approaches were also excluded. As noted by Zhao et al.
+blocks. To counter this effect, the same total number of                          [26], while Bayesian methods can readily quantify uncer-
+selected features could be used for each model, irrespec-                         tainty in parameters and predictive outcomes and offer
+tive of the number of blocks. However, this would be                              flexible modeling, they are computationally intensive for
+counterproductive, since in practice there are also more                          high-dimensional data; in their overview paper, Zhao
+features are available in total when more blocks are used.                        et al. provide a detailed discussion of these methods,
+As our aim is to provide recommendations that align                               focused on Cox-based ones. Compared to the multitude
+with practical applications, our benchmark study mirrors                          of survival prediction methods available for omics data,
+the procedures typically followed in practice. Thus, in                           those specifically tailored to multi-omics data are rela-
+                                                                                  tively limited.
+Table 2 Overview of the survival prediction methods used in                          Table 2 provides an overview of the five methods used
+the benchmark study                                                               in our study, including the R packages that implement
+Method                R package        Prediction types                           them and the types of prediction outcomes used to mea-
+                      (version)                                                   sure their performance.
+Random survival       ranger           For C-index calculation: Sum of the
+forests (rsf )        (0.13.1)         values of the bootstrap ensemble           Random survival forests
+                                       cumulative hazard function [27]
+                                       He∗ (t| xi) calculated at all unique       Random forests [28] are ensemble classifiers that use ran-
+                                       death times.                               domly selected training samples as well as repeatedly and
+                                       For integrated Brier score: Sur-           randomly selected subsets of variables to produce mul-
+                                       vival function estimated using             tiple, heterogeneous decision trees. They have become
+                                       exp(−H ∗e (t| xi ))                        popular due to their ability to capture complex patterns
+Block forests (bf )   blockForest      See rsf above.
+                                                                                  of dependencies between the outcome and the input fea-
+                      (0.2.4)
+                                                                                  tures. However, they are not designed to take the multi-
+Lasso (lasso)         glmnet           For C-index calculation: Linear
+                      (4.1-3)          predictor xTi β                           omics group structure into account. We used random
+                                       For integrated Brier score: Sur-           survival forests (rsf ) [27], a variant of random forests or
+                                                               as follows:
+                                       vival function estimated                  survival outcomes. No hyperparameter tuning was per-
+                                       exp(−Λ 0 (t) exp xTi β ) ,               formed for this method, and the default values available
+                                       where Λ  0 (t) is an estimate of the
+                                                                                  in the R package “ranger” (version 0.13.1) were used.
+                                       baseline cumulative hazard function
+                                       obtained using the Efron estimator         For example, the parameter mtry was set to the rounded
+IPF-LASSO             ipflasso (1.1)   See lasso above.                           down square root of the number of features. This use of
+(ipflasso)                                                                        default hyperparameter values is supported by Probst
+Priority-Lasso        prioritylasso    See lasso above.                           et al. [29], who demonstrated in a study involving many
+(prioritylasso)       (0.2.5)                                                     datasets that the performance of random forests is only
+Li et al. BMC Medical Informatics and Decision Making   (2024) 24:244                                                     Page 5 of 14
+
+
+
+
+slightly affected by the choice of the hyperparameter                   a surrogate for knowledge-based prioritization, that is,
+values.                                                                 the block with the smallest penalty factor was given the
+                                                                        highest priority, the block with the second smallest pen-
+Block forests                                                           alty factor was given the second highest priority, and so
+The block forests (bf ) algorithm [3] is a variant of ran-              on. In the case of survival outcomes, the priority-Lasso
+dom forests that modifies the split selection of random                 is based on Cox-Lasso models. The penalty parameters
+forests to incorporate the block structure of multi-omics               of the successively fitted Lasso models were optimized
+data. This algorithm has a weight parameter for each                    using 10-fold cross-validation with the function “cv.glm-
+block. These hyperparameters were tuned using an opti-                  net” from the R package “glmnet” (version 4.1.3).
+mization procedure described in [3], which is performed
+by default in the R package “blockForest” (version 0.2.4),              Experimental settings
+which implements the bf algorithm.                                      Clinical covariates carry important predictive informa-
+                                                                        tion and several studies have demonstrated that their
+Lasso                                                                   inclusion improves predictive performance [2, 3]. It is
+The least absolute shrinkage and selection operator                     important to up-weight or “prioritize” the clinical covari-
+(Lasso) [30] is a penalized regression method that applies              ates over the omics blocks to exploit their predictive
+an L1 penalty to shrink coefficients of features without                information [36, 37] because there are typically many
+strong impact on the predictions to zero. When using                    more omics features than clinical covariates. Therefore,
+multi-omics data to predict clinical outcomes, Lasso                    except for in the case of ipflasso, where this was not pos-
+regression penalizes each feature equally across all blocks             sible, we prioritized the clinical covariates for all predic-
+by using a single penalization parameter for the entire                 tion methods. For rsf, this was achieved by adding all
+dataset. That is, like rsf, the method does not take the                clinical covariates to the randomly sampled covariates for
+multi-omics group structure into account. As the Lasso                  each split in the trees constituting the rsf. For bf, simi-
+was originally introduced only for predicting continu-                  larly, the clinical block was always included in the blocks
+ous outcomes, we used a version (lasso) for predicting                  considered for splitting. For lasso, the coefficients of the
+survival prediction [31] based on the Cox model [32],                   clinical covariates were exempt from the L1 penaliza-
+referred to as Cox-Lasso in the following. The penalty                  tion-based shrinkage. Finally, for prioritylasso, the clini-
+parameter was tuned using 10-fold cross-validation with                 cal block always had the highest priority and, as in the
+the function “cv.glmnet” from the R package “glmnet”                    case of lasso, no shrinkage was performed for the clinical
+(version 4.1.3).                                                        covariates.
+                                                                          For each dataset, we considered all 25 – 1 = 31 possible
+IPF-LASSO                                                               combinations containing at least one of the omics blocks
+The IPF-LASSO [33] is an extension of the Lasso that                    (the clinical covariates were always included) and com-
+takes the group structure into account by using different               pared the predictive performance achieved with the dif-
+penalty parameter values for each block. Its version for                ferent combinations. We repeated the analysis for each of
+survival outcomes is based on the Cox-Lasso. We used                    the five prediction methods considered.
+a variant of the IPF-LASSO, which performs an efficient                   The integrated Brier score (ibrier) [38] and Harrell’s
+two-step procedure to optimize the penalty parameter                    concordance index (cindex) [39] were used to evaluate
+values (ipflasso) [34].                                                 the predictive performance. The ibrier is a calibration
+                                                                        measure that assesses how accurate the predicted sur-
+Priority-Lasso                                                          vival functions are. It also measures discrimination and is
+The priority-Lasso (prioritylasso) [35], like the IPF-                  a commonly used scoring rule.
+LASSO, is an extension of the Lasso. It is based on the                   In contrast, the cindex is a discrimination measure
+principle of defining a priority order on the blocks of                 only. It assesses how well the prediction model can rank
+variables. Subsequently, prioritylasso successively fits                different patients according to their risk. Specifically,
+Lasso regression models to the blocks in the order of                   it estimates the probability that, when choosing two
+their priority, where at each step, the resulting linear pre-           patients at random, the model assigns a higher risk to
+dictor is used as an offset for the Lasso model fit to the              the patient with the shorter survival time. This measure
+next block.                                                             depends on the type of risk measure used. Sonabend et
+  For the current study, however, we did not have any                   al. [40] elaborate that an appropriate risk measure for
+substantial domain knowledge needed for assigning                       the cindex is “expected mortality”, which is calculated by
+the priority order to the blocks for the different cancer               summing the predicted cumulative hazard function over
+types. Therefore, we used the ranking of the penalty fac-               all observed death times [27]. This approach does not
+tor values determined in the first step of the ipflasso as              necessitate assumptions about the model or the survival
+Li et al. BMC Medical Informatics and Decision Making   (2024) 24:244                                                    Page 6 of 14
+
+
+
+
+distribution beyond the observed time frame and offers                  measure values provide direct insights into the absolute
+clear interpretability: a higher value indicates a greater              performance of the various block combinations for dif-
+risk of death. As shown in Table 2, we use this measure                 ferent methods, comparing these values across different
+for the random forest variants rsf and bf. For the Lasso                datasets is challenging due to the widely varying signal
+variants, we use the linear predictor in the calculation of             strengths among the datasets. For this reason, the follow-
+the cindex. However, it is apparent that this is equivalent             ing descriptions are based on the ranks rather than the
+to using the expected mortality since the formula for the               raw performance measure values.
+individual patient hazard function in the Lasso variants                  The results differ quite considerably across the different
+mirrors that in the classical Cox model. In the latter, it is           prediction methods. However, a consistent observation
+straightforward to see that the expected mortality mono-                we can make is that the best performances were achieved
+tonically increases with the linear predictor. We used the              with one to three blocks. Adding more blocks did not
+R packages “pec” (version 2022.03.06) and “survcomp”                    deliver better predictive performance, but actually tended
+(version 1.44.1) for estimating the ibrier and cindex,                  to lead to worse results. For rsf and bf, we see that mRNA
+respectively.                                                           was very important for prediction, as the best-perform-
+   As an evaluation scheme, we used 5-fold cross-vali-                  ing block combinations all included mRNA. Apart from
+dation repeated five times, without stratification based                the latter specific observation, there is no clear picture
+on the censoring indicator, although ideally, this should               regarding the importance of each individual block. In
+have been done. There were no errors in applying the                    general, the boxplots in Fig. 1 reveal that the results dif-
+five prediction methods across any of the cross-vali-                   fer quite strongly across the datasets, particularly for
+dation iterations, resulting in no missing values in the                ipflasso. The results obtained for lasso and prioritylasso
+performance measure values. The benchmark experi-                       are shown in Figure S5 in Additional file 1. Interestingly,
+ment was conducted using R version 4.1.2 [41]. All R                    lasso was the only method for which using more blocks
+code written to produce and evaluate our results is avail-              tended to deliver better prediction results. For priority-
+able on GitHub (https://github.com/YingxiaLi2023/                       lasso, we again see a clear trend towards worse predictive
+multi-omics-data, commit hash: 5531dcea6f63a08fe9f-                     performance for block combinations with many blocks,
+1c02e53b7cc0666751227, accessed on August 12, 2024).                    while the best results were obtained with single blocks.
+                                                                        In the next subsection it will, however, be seen that the
+Results                                                                 use of prioritylasso tended to lead to worse prediction
+This section presents the full results of our benchmark                 results than the other prediction methods. While we do
+study. Readers seeking a condensed overview are encour-                 see differences in the results obtained for the cindex (Fig-
+aged to skip to the “Discussion” section, where the main                ures S6 and S7 in Additional file 1), the general conclu-
+findings are reviewed and contextualized                                sions are very similar to those obtained with the ibrier.
+                                                                        Exceptions are that for lasso we no longer observe a trend
+Ranking of the predictive information contained in all                  towards better predictive performance by including more
+block combinations per prediction method                                blocks, and that for ipflasso there was less variability of
+In this subsection, we initially present and discuss the                the results across datasets.
+results in a purely descriptive manner. We then present                   There is a possibility that the number of observations
+the results of a bootstrap analysis, aimed at evaluating                in the available datasets is not sufficient to adequately
+the statistical significance of certain overall patterns in             exploit the predictive information contained in combina-
+the results                                                             tions with many omics blocks. If this were the case, con-
+  For the sake of clarity, we present here only the results             trary to the results described above, combinations with
+obtained for the ibrier with rsf [27], bf [3], and the ipf-             many blocks might outperform combinations with fewer
+lasso [33, 34]. The results obtained for the ibrier with the            blocks for large datasets. If so, a trend should be observ-
+lasso [30] and the prioritylasso [35], as well as all results           able where combinations with many blocks rank better
+obtained for the cindex are shown in Additional file 1.                 for larger datasets than for smaller datasets. Conversely, a
+  Figure 1 shows, for each prediction method, the rank-                 trend should be observed where combinations with fewer
+ings achieved by each block combination among all 31                    blocks rank worse for larger datasets than for smaller
+possible block combinations for all datasets. Figures S1                ones. We investigated this using the available datasets
+to S4 in Additional File 1 display these results for the                in an analysis described in detail in Additional file 1. To
+raw cross-validated ibrier and cindex values for all pre-               summarize, this analysis did not suggest that combina-
+diction methods. The raw performance measure values                     tions with many blocks would benefit from larger data-
+for each combination of block combination, dataset,                     sets in prediction. Even though the number of datasets
+and prediction method are detailed in Tables S2 and                     included in our benchmark experiment is comparably
+S3 in Additional File 1. Although the raw performance                   large, we still must consider that the mean ranks obtained
+Li et al. BMC Medical Informatics and Decision Making         (2024) 24:244                                                                Page 7 of 14
+
+
+
+
+Fig. 1 Dataset-specific ranks of each block combination (ibrier). The ranks of each combination among all 31 combinations are shown. The purple
+squares indicate which omics block(s) were included in the respective combinations. The values shown by the boxplots are the ranks achieved across
+all 14 datasets, where the blue diamonds represent the means of the ranks. The upper (a), middle (b), and lower (c) panels show the results obtained for
+rsf, bf, and ipflasso, respectively. Smaller ranks indicate a better predictive performance. The combinations are sorted in increasing order according to
+the mean ranks across the datasets, which is why the combinations further to the left tend to perform better. The combinations using all five blocks are
+marked with red boxes. cnv: CNV, mirna: miRNA, mut: DNAseq, met: methylation, rna: mRNA
+
+for the block combinations are associated with consider-                      uncertainty we performed bootstrap analysis [42, 43]
+able variability. This was already indicated by the large                     at the level of the 14 included datasets. This analysis
+variances observed in the boxplots showing the results                        was used to construct 95% confidence intervals for the
+obtained for the different datasets. To assess statistical                    means of the dataset-specific ranks for each combination
+Li et al. BMC Medical Informatics and Decision Making          (2024) 24:244                                                                Page 8 of 14
+
+
+
+
+of block combination and prediction method. Through                            combinations. Almost all of the best combinations fea-
+this approach, we investigated whether the mean ranks                          tured mRNA, and the two best combinations used only
+for the best-performing combinations were statisti-                            mRNA. We used statistical testing based on the hyper-
+cally significantly different from those involving all five                    geometric distribution to evaluate whether this frequent
+omics blocks. This was the case for all methods except                         occurrence of mRNA in the top 30 combinations could
+lasso, where the confidence intervals were very wide. The                      be attributable to random chance. This was found to be
+results obtained for the two performance measures were                         highly unlikely (p = 5.9 × 10−6 ). Details of the statistical
+quite similar, where the confidence intervals for the cin-                     test procedure can be found in Additional file 1.
+dex tended to be narrower. A detailed description of this                        If all 155 combinations were equally important in pre-
+analysis and its results can be found in Additional file 1.                    diction, the expected number of combinations in the 30
+                                                                               best combinations that feature a particular block would
+Ranking of the predictive performance of all prediction                        be 15.5. Against this background, the expected number
+methods for all block combinations                                             of combinations that feature a particular block is 15.5,
+In the previous subsection, we analyzed the results per                        Fig. 2 reveals that the remaining blocks were not over-
+prediction method. This analysis did not allow us to                           represented in the top 30 combinations. In particular,
+judge which combinations of prediction methods and                             DNAseq was featured only in eight of the top 30 com-
+blocks tend to deliver the best prediction results. Figure 2                   binations. Nevertheless, there is again a large variability
+shows, for all datasets, the ranking achieved by each pre-                     between the results obtained for the different datasets.
+diction method-block combination among all 155 predic-                         Interestingly, for the cindex (Figure S12 in Additional file
+tion method-block combinations. For clarity, only the 30                       1), lasso was featured by far the most frequently in the
+combinations with the lowest positions are shown. The                          top 30 combinations. This result seems surprising at first,
+corresponding results for the cindex are shown in Figure                       considering that lasso was among the worst-performing
+S12 in Additional file 1.                                                      methods in the benchmark studies of [2] and [3]. How-
+  The prediction method bf occurred the most often                             ever, in contrast to these previous benchmark studies,
+in the 30 best combinations, and rsf, lasso, and ipflasso                      we did not penalize the coefficients of the clinical covari-
+occurred about equally frequently in these combinations.                       ates. This likely explains why lasso performed much bet-
+The method prioritylasso was not featured in the best                          ter in our benchmark study given the high predictive
+
+
+
+
+Fig. 2 Dataset-specific ranks of each combination of prediction method and blocks (ibrier). The ranks of each combination among all 155 combinations
+of prediction methods and blocks are shown. The purple squares indicate which omics block(s) were included in the respective combinations. The values
+shown by the boxplots are the ranks achieved across all 14 datasets, where the blue diamonds represent the means of the ranks. Smaller ranks indicate
+a better predictive performance. The combinations are sorted in increasing order according to the mean ranks across the datasets, which is why the
+combinations further to the left tend to perform better. For reasons of clarity, only the 30 combinations with the smallest positions are shown. cnv: CNV,
+mirna: miRNA, mut: DNAseq, met: methylation, rna: mRNA
+Li et al. BMC Medical Informatics and Decision Making       (2024) 24:244                                                   Page 9 of 14
+
+
+
+
+importance of clinical covariates. A disadvantage of the                    detailed description of the testing procedure, refer to
+lasso, seen in Fig. 2 and Figure S12 (Additional file 1), is                Additional file 1.
+that it tends to require more blocks than the other meth-                     We observed quite large variability in the performance
+ods. The majority of the 30 best combinations featured                      of the block combinations across the datasets, and, for
+mRNA also for the cindex. Again, it is important not to                     each dataset, between the two performance measures.
+over-interpret details of the obtained results, as the vari-                While it is not clear how much of this is due to random
+ability across the different datasets is large here as well.                variation, it is congruent with the observation made in
+Figures S13 and S14 in Additional file 1 present versions                   the previous subsections that there is large variability in
+of Fig. 2 and S12, displaying the raw cross-validated ibrier                the ranks of the block combinations across datasets. For
+and cindex values in the boxplots instead of their corre-                   more than half of the datasets, mRNA was used, with
+sponding ranks.                                                             miRNA in second place.
+                                                                              In the case of the cindex, for five datasets only mRNA
+Best-performing combinations of prediction methods and                      was used. Another difference observed between the
+blocks per dataset                                                          results obtained for the ibrier and the cindex is that
+As seen above, the rankings achieved by the different                       methylation data was used quite frequently in the case
+combinations of prediction methods and blocks varied                        of the ibrier, but only for one dataset in the case of the
+widely between the datasets. It is interesting to learn                     cindex.
+which prediction methods and block combinations are                           For the cindex, which assesses discrimination alone,
+most successful for which datasets. Table 3 shows, for                      the best-performing combinations tended to use few
+each dataset, the combinations of prediction methods                        blocks. This suggests that a small number of blocks may
+and blocks associated with the smallest cross-validated                     be sufficient to achieve good discrimination. Conversely,
+ibrier values and the largest cross-validated cindex val-                   for the ibrier, which assesses both discrimination and
+ues. For the great majority of datasets, the best per-                      calibration, the best-performing combinations tended
+formance was achieved using only up to two blocks.                          to have more blocks. This pattern suggests that achiev-
+Statistical tests based on the binomial distribution con-                   ing good calibration in addition to discrimination may
+firmed that this is unlikely to occur by chance, with p-val-                require the integration of more blocks.
+ues of 0.022 for ibrier and 3.9 × 10−5 for cindex. For a                      Regarding the prediction methods, we do not see a
+                                                                            clear winner. For both performance measures, each pre-
+Table 3 The best-performing combinations of prediction                      diction method was used at least for one dataset.
+methods and blocks per dataset. Cnv: CNV, mirna: miRNA, mut:                  In the previous paragraph, we noted that mRNA and
+DNAseq, met: methylation, rna: mRNA                                         miRNA were the most frequent blocks in the optimal
+            ibrier                          cindex                          combinations. We again used statistical testing to evalu-
+dataset     prediction        blocks        prediction       blocks         ate whether the occurrence of these blocks significantly
+            method                          method
+                                                                            exceeds what would be expected by random chance.
+BLCA        lasso             rna, mirna    prioritylasso    rna
+                                                                            Here, only mRNA was found to be statistically signifi-
+BRCA        bf                rna, met      bf               rna,
+                                                             mirna
+                                                                            cantly overrepresented in the best-performing combina-
+COAD        bf                met           bf               rna, mut
+                                                                            tions, and solely for the cindex (p-value: 0.031). However,
+ESCA        ipflasso          mut           rsf              mirna,
+                                                                            these findings should be interpreted considering the lim-
+                                                             mut            ited number of cases (14, the number of datasets), which
+HNSC        ipflasso          rna, mirna    rsf              rna            means that these tests may have relatively low statistical
+LGG         ipflasso          met, cnv      prioritylasso    rna            power. We refer the interested reader to Additional file 1
+LIHC        bf                rna, mirna,   lasso            rna, cnv       for details on the statistical testing procedure.
+                              met, cnv                                        In Table 3, we observed that the block combinations
+LUAD        lasso             mirna         ipflasso         mut            that yielded the best predictive performance varied con-
+LUSC        ipflasso          mirna, met    prioritylasso    rna,           siderably between the different datasets. At the same
+                                                             mirna          time, mRNA and miRNA were the most frequent blocks
+PAAD        prioritylasso     rna           bf               rna            in these optimal combinations (although only partially
+SARC        prioritylasso     met, cnv      rsf              mirna,
+                                                                            statistically significant). Consequently, we examine a cru-
+                                                             met,
+                                                             mut            cial practical question: Is the availability of only mRNA
+SKCM        lasso             rna, mut,     bf               rna            and miRNA typically sufficient to achieve near-optimal
+                              cnv                                           predictive performance compared to the availability of all
+STAD        rsf               rna, mirna,   rsf              mirna          blocks?
+                              mut                                             To investigate this, we conducted an analysis of the
+UCEC        bf                rna, cnv      rsf              mirna          performance rankings of all block combinations by
+Li et al. BMC Medical Informatics and Decision Making   (2024) 24:244                                                   Page 10 of 14
+
+
+
+
+dataset, presented in detail in Additional file 1. Here                 for prediction, integrating many blocks in multi-omics
+combinations involving only mRNA or miRNA (exclud-                      data is informative for understanding cancer biology [46,
+ing other blocks, i.e., solely mRNA, miRNA, or a combi-                 47].
+nation of both) ranked in the top 30% for all datasets and                 As described in the ”Background” section, other studies
+both performance measures. For the ibrier, after addi-                  have also compared different combinations of blocks with
+tionally including the methylation data for the datasets                respect to their predictive performance [2, 3, 13–17]. Our
+COAD, LGG, LIHC, LUSC, and SARC, top 10% rankings                       results are consistent with these studies despite the dif-
+were achieved for all datasets. This additional inclusion               ferences in study designs (refer to the “Background” sec-
+of methylation data also enhanced the rankings for the                  tion for details). The study detailed in this paper is unique
+cindex. For both performance metrics, the best combina-                 in that it used a multitude of datasets and survival pre-
+tions after additional consideration of methylation data                diction methods to examine all possible combinations
+outperformed those using all five blocks across all data-               of available omics blocks. This approach enables more
+sets. For further insights into this analysis, interested               reliable conclusions about the efficacy of different block
+readers are referred to Additional file 1.In summary,                   combinations. Crucially, due to the overlap and inter-
+when only mRNA and miRNA are available, it is gener-                    action of predictive information among blocks, it was
+ally possible to achieve predictive performance close to                important to consider all possible combinations, rather
+that attainable when all considered blocks are available                than limiting the analysis to combinations where each
+for potential use. However, for certain datasets, the addi-             block independently carries substantial predictive infor-
+tional inclusion of methylation data can lead to improved               mation. Based on the results of our study, future inves-
+prediction results                                                      tigations need not evaluate every possible combination.
+                                                                        Instead, combinations containing blocks that did not
+Discussion                                                              improve prediction when combined with others in our
+Despite notable variations in outcomes across different                 study could be excluded.
+datasets, in our analysis, predictive models incorporat-                   As depicted in Figs. 1 and 2, the rankings of distinct
+ing the entire array of available omics data consistently               block combinations exhibited pronounced variations
+exhibited poorer performance compared to models using                   across diverse datasets. Consequently, as illustrated in
+only a subset of omics blocks. This challenges the prevail-             Table 3, varying cancer types called for distinct optimal
+ing approach in multi-omics data prediction and sug-                    block combinations. Remarkably, for certain datasets,
+gests that maximal utilization of diverse omics blocks is               neither mRNA nor miRNA were part of the optimal
+not always optimal, despite the limitations present in our              block combinations. These findings emphasize that there
+study (see below).                                                      is no universally superior block combination that outper-
+  Moreover, it is important to emphasize that not all                   forms all others across all datasets. However, when inter-
+omics blocks are equal in their predictive capabilities.                preting the results in Table 3, it should also be noted that
+Our findings underscore the importance of data source                   for many datasets, several similar combinations yielded
+in this context. Specifically, among the various omics                  similar performance to the best-performing one (results
+data blocks, mRNA data emerged as the most informa-                     not shown). This suggests that the findings in Table 3 may
+tive and impactful. In most cancer types, predictive per-               be influenced by random variation. Similar statements
+formance achieved through combinations of mRNA and                      can be made with respect to Figs. 1 and 2, where the dif-
+miRNA approached the levels attainable with the com-                    ferences in performance between the best-performing
+plete spectrum of analyzed omics blocks. Notably, in                    combinations were small. The large variability observed
+specific instances, the incorporation of methylation data               in our study emphasizes the importance of large-scale
+contributed to additional enhancements in predictive                    benchmark studies using many datasets, as performed
+performance.                                                            in this paper. It is well known that many observations are
+  Focusing on mRNA, miRNA, and, for certain cancer                      necessary to draw valid statistical conclusions, which is
+types, additional methylation data, not only enhances                   due to the large variability between these observations.
+predictive performance but also contributes to resource                 However, this issue is often overlooked when design-
+conservation in terms of time, materials, and finances.                 ing benchmark experiments where the datasets play the
+Furthermore, the field of multi-omics prediction faces                  roles of the observations [48]. It is common in published
+the challenge that the data to which the prediction mod-                benchmark studies that only few (e.g., 5 to 7) datasets are
+els are applied often do not contain all of the necessary               considered. This limitation is occasionally due to the lim-
+blocks required by those models, complicating their                     ited availability of suitable datasets in certain fields.
+application [44, 45]. The use of fewer blocks for predic-                  The ranks of the different block combinations also varied
+tion modeling is anticipated to mitigate this issue. Note               quite strongly between the considered prediction meth-
+that while focusing on a few blocks seems to be beneficial              ods. However, we did not observe structural differences
+Li et al. BMC Medical Informatics and Decision Making   (2024) 24:244                                                      Page 11 of 14
+
+
+
+
+between methods that do (bf, ipflasso, prioritylasso) and                  By prioritizing the clinical covariates, we exploited the
+do not consider the group structure of the multi-omics                  predictive information contained in them to a large degree.
+data (rsf, lasso). The best-performing prediction mod-                  Given that the predictive information contained in the
+els (Fig. 2) also included many prediction methods that                 clinical covariates and the omics features is overlapping, it
+do not consider the group structure of the multi-omics                  might be assumed that, if we had not prioritized the clini-
+data. In contrast, in the large-scale benchmark studies by              cal covariates, more omics blocks would have been neces-
+Herrmann et al. [2] and Hornung and Wright [3], most                    sary to achieve optimal predictive performance. However,
+prediction methods that consider the group structure out-               this seems unlikely because few blocks were necessary for
+performed those that do not. This discrepancy can likely                almost all datasets, the number of clinical covariates varied
+be explained by the fact that we prioritized the clinical               widely across datasets, and we made the same observation
+covariates also for those methods that do not consider                  in the case of ipflasso, the only method for which we did
+the group structure (see “Experimental settings” section),              not prioritize the clinical covariates. Irrespective of this, it
+which was not done in Herrmann et al. [2] and Hornung                   is always important to prioritize the clinical covariates to
+and Wright [3]. In addition, Nießl et al. [49] have shown               exploit their strong predictive information. Furthermore,
+that the results of benchmark studies in general are vari-              including clinical covariates is typically feasible, as they are
+able and sensitive to analytic choices even if large numbers            cost-effective and easily obtainable, both in the develop-
+of datasets are used.                                                   ment and application of the prediction model.
+   Lastly, the results also varied between the two consid-                 We did not include models that use only the clinical
+ered performance metrics. The concordance index is not                  variables in the benchmark study. Unlike the omics blocks,
+a scoring rule as it only measures discrimination. It is not            where the included variables within the same block are
+suitable in situations where the interest is in predicting              very similar across different data sources, the same can-
+the risk for a given time horizon [50]. Additionally, Har-              not be expected for the clinical variables. The specific sets
+rell’s version of the concordance index has been shown to               of clinical variables available in the datasets used in our
+be influenced by the censoring distribution [51], and its               analysis will often not be available in applications. It can
+estimator is increasingly biased for higher censoring rates             be safely assumed that the predictive performance of mod-
+[52, 53]. Uno et al. proposed an alternative version of the             els that rely solely on clinical variables strongly depends on
+concordance index that is not affected by the censoring                 the specific clinical variables used. For this reason, the per-
+distribution [51]. Pencina et al. [54] demonstrated notable             formance of such models in our benchmark study would
+variations in estimates obtained from different versions of             likely not have been representative of real-world analyses.
+the concordance index. However, in our benchmark study,                 This would have been problematic considering our goal
+our focus was not on the absolute cindex values but on                  was to draw generalizable conclusions.
+the relative performances of different block combinations.                 However, it is important to emphasize that models
+Therefore, the bias in the cindex is of lesser concern here,            based exclusively on clinical variables can achieve high
+provided it is consistent across the different combinations.            predictive performance. The large-scale comparison study
+   In contrast, the ibrier assesses both discrimination and             by Herrmann et al. [2] demonstrated that such models can
+calibration. As a scoring rule, it evaluates the quality of             outperform those based on multi-omics data. Additionally,
+survival function predictions, offering a more comprehen-               in the field of predictive modeling based on single-omics
+sive assessment of the predictive performance of models.                data, it is known that omics data often do not provide an
+Therefore, the ibrier should be considered as the primary               additive predictive value over clinical variables alone [37,
+measure of predictive accuracy.                                         55]. Therefore, it is crucial to also evaluate the predictive
+   Given the strong variability across datasets it is difficult         performance of models based solely on the clinical vari-
+to judge how strongly the aggregated results are affected               ables. This evaluation can prevent the unnecessary use of
+by random variation. We took great care not to interpret                complex omics predictive models in situations where sim-
+details of the obtained results but focused on general                  pler clinical models are equally effective or superior.
+observations that could be made across the different pre-                  There exists a possibility that current prediction meth-
+diction methods and performance metrics. Using boot-                    ods for multi-omics data do not optimally exploit the
+strap analysis, we were able to strengthen important broad              interplay among multiple omics blocks. If so, it would be
+patterns in the results by accounting for result variability            possible to develop methods that leverage this interplay
+among datasets. Additionally, we conducted a series of sta-             very efficiently, potentially leading to improved predictive
+tistical tests to examine the robustness of a limited number            performance with multiple omics blocks, contrary to our
+of specific key aspects of the results. This approach was               findings. However, this may be a challenging endeavor.
+adopted to minimize the risk of generating false positive               Across all methods in our benchmark study, combina-
+results.                                                                tions with fewer blocks consistently outperformed those
+                                                                        with all available blocks. Additionally, the studies by
+Li et al. BMC Medical Informatics and Decision Making   (2024) 24:244                                                    Page 12 of 14
+
+
+
+
+Wissel et al. [15], Vale-Silva and Rohr [16] and Osipov et              noted that data from databases containing processed ver-
+al. [17], which included several methods not used in our                sions of TCGA data can feature error-prone survival infor-
+study, support our observations. These studies also found               mation [59]. However, the latter is not an issue in our study
+that selected block combinations yielded better prediction              because we used the data provided directly by TCGA.
+results compared to the use of all blocks. Given the consis-               We avoided interpreting finer details of the results to
+tency of these findings across diverse methods, it is crucial           reduce the risk of obtaining nongeneralizable results.
+to properly address the challenges associated with multi-               However, this risk cannot be excluded, especially given
+omics data, particularly overlapping predictive informa-                the relatively short follow-up time in TCGA, the impact of
+tion and feature interactions across omics blocks, in the               preprocessing, and the heterogeneity between data from
+development of future prediction methods. The results of                different sources. Given these issues, more open-source
+our benchmark study may offer valuable insights for meth-               cancer datasets with survival outcomes from different
+odological researchers in this field. Beyond predictive per-            sources are needed. These would provide a good basis for
+formance, future prediction methods for multi-omics data                further benchmark studies on various topics. Such bench-
+could place greater emphasis on sparsity and interpretabil-             mark studies are critical in areas such as predictive model-
+ity. A recent notable example of a method that prioritizes              ing based on (multi-)omics data, where analytical results
+these aspects is Stabl [56].                                            are difficult to obtain due to the complexity of these data.
+   In our benchmark study, we employed prediction meth-                    We used exclusively overall survival as the outcome.
+ods most commonly used in previous benchmarks. How-                     Depending on the application, progression-free survival
+ever, these previous studies included varying methods.                  can also be relevant. Typically, there is only a modest cor-
+Future benchmark studies could broaden their scope to                   relation between overall survival and progression-free
+include an even wider range of prediction methods, fur-                 survival [60, 61]. A statistical benefit of using progression-
+ther enhancing the generalizability of the results. A partic-           free survival is the reduced number of censored observa-
+ular challenge in this effort is that these methods are often           tions, as the time to progression is shorter than the time to
+implemented in different software environments, com-                    death. This advantage becomes more important in cancers
+plicating direct comparisons within a unified benchmark                 with longer survival. However, the definition of progres-
+setting. The benchmark study by Wissel et al. [15] is exem-             sion-free survival can vary between studies and its mea-
+plary in this context. Wissel et al. compared (multi-)omics             surement can contain subjective components. In contrast,
+prediction methods implemented in both R and Python.                    overall survival is clearly defined, which makes it better
+They have made their code publicly available on GitHub,                 comparable across studies. Consequently, overall survival
+enabling others to adopt a similar approach. As noted                   is likely more appropriate for benchmark studies like ours,
+above, different datasets were associated with markedly                 where the aim is to draw generalizable conclusions.
+different best-performing block combinations in our study.                 We did not investigate how sensitive our results are to
+While this result can be expected to be subject to some                 the number of features selected. The choice of 2,500 fea-
+degree to random variation, it is also likely to reflect dif-           tures was not based on statistical criteria. Instead, this
+ferent information structures across cancer entities. It may            number was selected as a compromise, balancing the need
+be the subject of future research whether this formal result            to capture the relevant predictive information from the
+can be related to specific biological information structures            omics blocks with maintaining computational demands
+within specific cancer entities.                                        consistent with practical applications.
+   In the following we will discuss several limitations of                 However, our findings align with those of previous stud-
+our study. We exclusively used multi-omics datasets from                ies that used different numbers of features. For example,
+TCGA, which offers the currently largest collection of                  Wissel et al. [15] did not perform feature selection and
+such datasets. To draw broader conclusions, we implicitly               found that models based solely on mRNA typically outper-
+assumed these datasets are representative of multi-omics                formed those that incorporated all available omics blocks.
+datasets generally beyond TCGA. In particular, when per-                Similarly, Vale-Silva et al. [16] and Osipov et al. [17], who
+forming statistical inference using bootstrap analysis and              selected fewer features than in our study, observed that
+statistical tests, we treated the TCGA multi-omics datasets             models with fewer omics blocks generally provided bet-
+as a random sample from the entire spectrum of potential                ter predictive performance than those incorporating all
+multi-omics datasets.                                                   blocks. Given these previous findings, our results are
+   While the quality of the omics data in TCGA datasets                 likely sufficiently robust to the specific number of features
+has often been praised, there have been concerns about                  selected.
+the accompanying clinical data [57]. In particular, it has                 The multi-omics analyses conducted in our study do
+been noted that the follow-up interval in these data is rela-           not pertain to single-cell omics datasets. Whether com-
+tively short [58], resulting in comparatively large propor-             parable results can be found in this context should be
+tions of censored survival times. In addition, it has been              considered in future analyses.
+Li et al. BMC Medical Informatics and Decision Making                 (2024) 24:244                                                                      Page 13 of 14
+
+
+
+
+                                                                                      Data availability
+Conclusions                                                                           All R code written to produce and evaluate our results is available on
+The use of multi-omics data to predict clinical outcomes                              GitHub (https://github.com/YingxiaLi2023/multi-omics-data, commit hash:
+has been an active and productive area of research in                                 5531dcea6f63a08fe9f1c02e53b7cc0666751227, accessed on August 12, 2024).
+
+recent years. However, obtaining such data is complex
+and costly, which is why for prediction purposes it would                             Declarations
+be beneficial to only collect omics data types that contrib-                          Ethics approval and consent to participate
+ute to improving the predictive performance. Note that in                             Not applicable.
+contrast, if the goal is to better understand cancer biology,
+                                                                                      Consent for publication
+the integration of multiple omics data types is likely always                         Not applicable.
+beneficial in multi-omics data analysis.
+  In the extensive benchmark study outlined in this                                   Competing interests
+                                                                                      The authors declare no competing interests.
+paper, in alignment with prior findings, we observed that
+the amalgamation of numerous omics data types can                                     Author details
+                                                                                      1
+impede the effectiveness of multi-omics survival predic-                               Institute for Medical Information Processing, Biometry and Epidemiology,
+                                                                                      LMU Munich, Marchioninistr. 15, 81377 Munich, Germany
+tion. Our results strongly suggest that employing only                                2
+                                                                                       Laboratory for Leukemia Diagnostics, Department of Medicine III, LMU
+a handful of data types tends to yield superior perfor-                               University Hospital, LMU Munich, Munich, Germany
+                                                                                      3
+mance. In most instances, leveraging mRNA alone or in                                  Munich Center for Machine Learning (MCML), Munich, Germany
+
+combinations with miRNA is sufficient. Yet, for certain
+                                                                                      Received: 6 March 2024 / Accepted: 21 August 2024
+cancer types, the inclusion of methylation data demon-
+strates an ability to enhance predictions.
+  We anticipate that our results will augment the predic-
+tive potential of multi-omics data within the field, simul-                           References
+taneously optimizing resource allocation and minimizing                               1. Ferlay J, Soerjomataram I, Dikshit R, Eser S, Mathers C, Rebelo M, Parkin DM,
+endeavors.                                                                                Forman D, Bray F. Cancer incidence and mortality worldwide: sources, meth-
+                                                                                          ods and major patterns in GLOBOCAN 2012. Int J Cancer. 2015;136:E359–86.
+Abbreviations                                                                         2. Herrmann M, Probst P, Hornung R, Jurinovic V, Boulesteix A-L. Large-scale
+TCGA	The Cancer Genome Atlas                                                             benchmark study of survival prediction methods using multi-omics data.
+RF-VI	The permutation-based variable importance measure of                               Brief Bioinform. 2021;22:bbaa167.
+               random survival forests                                                3. Hornung R, Wright MN. Block forests: random forests for blocks of clinical and
+rsf	Random Survival Forests                                                              omics covariate data. BMC Bioinformatics. 2019;20:1–17.
+bf	Block Forest                                                                      4. Mariani M, He S, McHugh M, Andreoli M, Pandya D, Sieber S, Wu Z, Fiedler P,
+lasso	The Least Absolute Shrinkage and Selection Operator                                Shahabi S, Ferlini C. Integrated multidimensional analysis is required for accu-
+ipflasso	The Two-Step Integrative Lasso with Penalty Factors                             rate prognostic biomarkers in colorectal cancer. PLoS ONE. 2014;9:e101065.
+prioritylasso	Priority-Lasso                                                         5. Chari R, Coe BP, Vucic EA, Lockwood WW, Lam WL. An integrative multi-
+cindex	Harrell’s Concordance Index                                                       dimensional genetic and epigenetic strategy to identify aberrant genes and
+ibrier	Integrated Brier Score                                                            pathways in cancer. BMC Syst Biol. 2010;4:1–14.
+                                                                                      6. Tomczak K, Czerwińska P, Wiznerowicz M. The Cancer Genome Atlas (TCGA):
+                                                                                          an immeasurable source of knowledge. Contemp Oncol. 2015;19:A68.
+Supplementary Information                                                             7. Creighton CJ. Gene expression profiles in cancers and their therapeutic
+The online version contains supplementary material available at https://doi.              implications. Cancer J. 2023;29:9–14.
+org/10.1186/s12911-024-02642-9.                                                       8. Yong Z, Dun-wei G, Wan-qiu Z. Feature selection of unreliable data
+                                                                                          using an improved multi-objective PSO algorithm. Neurocomputing.
+  Supplementary Material 1                                                                2016;171:1281–90.
+                                                                                      9. Dong Y, Yang W, Wang J, Zhao J, Qiang Y, Zhao Z, Kazihise NGF, Cui Y, Yang X,
+                                                                                          Liu S. MLW-gcForest: a multi-weighted gcForest model towards the staging
+Acknowledgements                                                                          of lung adenocarcinoma based on multi-modal genetic data. BMC Bioinfor-
+The authors thank Anne-Laure Boulesteix for helpful discussions and Anna                  matics. 2019;20:1–14.
+Jacob for valuable language corrections.                                              10. Sun D, Li A, Tang B, Wang M. Integrating genomic data and pathological
+                                                                                          images to effectively predict breast cancer clinical outcome, Comput. Meth-
+Author contributions                                                                      ods Programs Biomed. 2018;161:45–53.
+Supervision, R.H. and U.M.; experimental design, Y.L. and R H.; data analysis, Y.L.   11. Kim D, Shin H, Song YS, Kim JH. Synergistic effect of different levels of
+and R. H.; writing—original draft preparation, Y.L.; writing—review and editing,          genomic data for cancer clinical outcome prediction. J Biomed Inf.
+R.H., U.M., and T.H.; All authors have read and agreed to the published version           2012;45:1191–8.
+of the manuscript.                                                                    12. Li Y, Mansmann U, Du S, Hornung R. Synergistic effects of different levels of
+                                                                                          genomic data for the staging of lung adenocarcinoma: an illustrative study,
+Funding                                                                                   genes (Basel). 12 (2021) 1872.
+Y.L. was supported by the China Scholarship Council (CSC, No. 201809505004).          13. Zhao Q, Shi X, Xie Y, Huang J, Shia B, Ma S. Combining multidimensional
+R.H. was supported by the German Science Foundation (DFG-Einzelförderung                  genomic measurements for predicting cancer prognosis: observations from
+HO6422/1–2 and HO6422/1–3).                                                               TCGA. Brief Bioinform. 2015;16:291–303.
+Open Access funding enabled and organized by Projekt DEAL.                            14. Gómez-Rueda H, Mart\’\inez-Ledesma E, Mart\’\inez-Torteya A, Palacios-
+                                                                                          Corona R, Trevino V. Integration and comparison of different genomic data
+                                                                                          for outcome prediction in cancer. BioData Min. 2015;8:1–12.
+Li et al. BMC Medical Informatics and Decision Making                  (2024) 24:244                                                                       Page 14 of 14
+
+
+
+
+15. Wissel D, Rowson D, Boeva V. Systematic comparison of multi-omics survival          42. Efron B. Bootstrap methods: another look at the Jackknife. Ann Stat.
+    models reveals a widespread lack of noise resistance. Cell Rep Methods 3                1979;7:1–26.
+    (2023).                                                                             43. Stine R. An introduction to bootstrap methods: examples and ideas. Sociol
+16. Vale-Silva LA, Rohr K. Long-term cancer survival prediction using multimodal            Methods Res. 1989;18:243–91.
+    deep learning. Sci Rep. 2021;11:13505.                                              44. Krautenbacher N, Flach N, Böck A, Laubhahn K, Laimighofer M, Theis FJ,
+17. Osipov A, Nikolic O, Gertych A, Parker S, Hendifar A, Singh P, Filippova                Ankerst DP, Fuchs C, Schaub B. A strategy for high-dimensional multivariable
+    D, Dagliyan G, Ferrone CR. Zheng, others, the Molecular Twin artificial-                analysis classifies childhood asthma phenotypes from genetic, immunologi-
+    intelligence platform integrates multi-omic data to predict outcomes for                cal, and environmental factors. Allergy. 2019;74:1364–73.
+    pancreatic adenocarcinoma patients. Nat Cancer. 2024;5:299–314.                     45. Hornung R, Ludwigs F, Hagenberg J, Boulesteix A-L. Prediction approaches
+18. Picard M, Scott-Boyer M-P, Bodein A, Périn O, Droit A. Integration strategies of        for partly missing multi-omics covariate data: a literature review and an
+    multi-omics data for machine learning analysis. Comput Struct Biotechnol J.             empirical comparison study. Wiley Interdiscip Rev Comput Stat (2023) e1626.
+    2021;19:3735–46.                                                                    46. Huang SC, Clarke DC, Gosline SJC, Labadorf A, Chouinard CR, Gordon W,
+19. Abe K, Shimamura T. UNMF: a unified nonnegative matrix factorization for                Lauffenburger DA, Fraenkel E. Linking proteomic and transcriptional data
+    multi-dimensional omics data. Brief Bioinform. 2023;24:bbad253.                         through the interactome and epigenome reveals a map of oncogene-
+20. Wu Y, Liu Q, Xie L. Hierarchical multi-omics data integration and modeling              induced signaling. PLoS Comput Biol. 2013;9:e1002887.
+    predict cell-specific chemical proteomics and drug responses. Cell Rep              47. Heo YJ, Hwa C, Lee G-H, Park J-M, An J-Y. Integrative multi-omics approaches
+    Methods 3 (2023).                                                                       in Cancer Research: from Biological Networks to Clinical subtypes, Mol. Cells.
+21. Li Y, Mansmann U, Du S, Hornung R. Benchmark study of feature selection                 2021;44:433.
+    strategies for multi-omics data. BMC Bioinformatics. 2022;23:1–18.                  48. Boulesteix A-L, Hable R, Lauer S, Eugster MJA. A statistical framework for
+22. Simon R, Radmacher MD, Dobbin K, McShane LM. Pitfalls in the use of DNA                 hypothesis testing in real data comparison studies. Am Stat. 2015;69:201–12.
+    microarray data for diagnostic and prognostic classification. J Natl Cancer         49. Nießl C, Herrmann M, Wiedemann C, Casalicchio G, Boulesteix A-L. Over-
+    Inst. 2003;95:14–8.                                                                     optimism in benchmark studies and the multiplicity of design and analysis
+23. Bischl B, Mersmann O, Trautmann H, Weihs C. Resampling methods for meta-                options when interpreting their results. Wiley Interdiscip Rev Data Min Knowl
+    model validation with recommendations for evolutionary computation. Evol                Discov. 2022;12:e1441.
+    Comput. 2012;20:249–75.                                                             50. Blanche P, Kattan MW, Gerds TA. The c-index is not proper for the evaluation
+24. Hornung R, Bernau C, Truntzer C, Wilson R, Stadler T, Boulesteix A-L. A                 of-year predicted risks. Biostatistics. 2019;20:347–57.
+    measure of the impact of CV incompleteness on prediction error estima-              51. Uno H, Cai T, Pencina MJ, D’Agostino RB, Wei L-J. On the C-statistics for evalu-
+    tion with application to PCA and normalization, BMC Med. Res Methodol.                  ating overall adequacy of risk prediction procedures with censored survival
+    2015;15:1–15.                                                                           data. Stat Med. 2011;30:1105–17.
+25. Wiegrebe S, Kopper P, Sonabend R, Bischl B, Bender A. Deep learning for             52. Schmid M, Potapov S. A comparison of estimators to evaluate the discrimina-
+    survival analysis: a review, Artif. Intell Rev. 2024;57:65.                             tory power of time-to-event models. Stat Med. 2012;31:2588–609.
+26. Zhao Z, Zobolas J, Zucknick M, Aittokallio T. Tutorial on survival modeling         53. Rahman MS, Ambler G, Choodari-Oskooei B, Omar RZ. Review and evaluation
+    with applications to omics data. Bioinformatics. 2024;40:btae132.                       of performance measures for survival prediction models in external valida-
+27. Ishwaran H, Kogalur UB, Blackstone EH, Lauer MS. Random survival forests.               tion settings. BMC Med Res Methodol. 2017;17:1–15.
+    Ann Appl Stat. 2008;2:841–60.                                                       54. Pencina MJ, D’Agostino Sr RB, Song L. Quantifying discrimination of
+28. Breiman L. Random forests. Mach Learn. 2001;45:5–32.                                    Framingham risk functions with different survival C statistics. Stat Med.
+29. Probst P, Boulesteix A-L, Bischl B. Tunability: importance of hyperparameters           2012;31:1543–53.
+    of machine learning algorithms. J Mach Learn Res. 2019;20:1–32.                     55. Volkmann A, De Bin R, Sauerbrei W, Boulesteix A-L. A plea for taking all avail-
+30. Tibshirani R. Regression shrinkage and selection via the lasso. J R Stat Soc Ser        able clinical information into account when assessing the predictive value of
+    B. 1996;58:267–88.                                                                      omics data. BMC Med Res Methodol. 2019;19:1–15.
+31. Tibshirani R. The lasso method for variable selection in the Cox model. Stat        56. Hédou J, Marić I, Bellan G, Einhaus J, Gaudillière DK, Ladant F-X, Verdonk
+    Med. 1997;16:385–95.                                                                    F, Stelzer IA, Feyaerts D. A.S. Tsai, others, Discovery of sparse, reliable omic
+32. Cox DR. Regression models and life-tables. J R Stat Soc Ser B.                          biomarkers with Stabl. Nat Biotechnol (2024) 1–13.
+    1972;34:187–202.                                                                    57. Liu J, Lichtenberg T, Hoadley KA, Poisson LM, Lazar AJ, Cherniack AD,
+33. Boulesteix A-L, De Bin R, Jiang X, Fuchs M. IPF-LASSO: integrative-penalized            Kovatich AJ, Benz CC, Levine DA. Lee, others, an integrated TCGA pan-cancer
+    regression with penalty factors for prediction based on multi-omics data.               clinical data resource to drive high-quality survival outcome analytics. Cell.
+    Comput Math Methods Med. 2017 (2017).                                                   2018;173:400–16.
+34. Schulze G. Clinical outcome prediction based on multi-omics data: extension         58. Huo D, Hu H, Rhie SK, Gamazon ER, Cherniack AD, Liu J, Yoshimatsu TF, Pitt JJ,
+    of IPF-LASSO, MA thesis. Munich: Ludwig-Maximilians-University. Department              Hoadley KA. Troester, others, comparison of breast cancer molecular features
+    of Statistics, 2017.                                                                    and survival by African and European ancestry in the Cancer Genome Atlas.
+35. Klau S, Jurinovic V, Hornung R, Herold T, Boulesteix A-L. Priority-Lasso: a             JAMA Oncol. 2017;3:1654–62.
+    simple hierarchical approach to the prediction of clinical outcome using            59. Idogawa M, Koizumi M, Hirano T, Tange S, Nakase H, Tokino T. Dead or
+    multi-omics data. BMC Bioinformatics. 2018;19:1–14.                                     alive? Pitfall of survival analysis with TCGA datasets. Cancer Biol \& Ther.
+36. Boulesteix A-L, Sauerbrei W. Added predictive value of high-throughput                  2021;22:527–8.
+    molecular data to clinical data and its validation. Brief Bioinform.                60. Broglio KR, Berry DA. Detecting an overall survival benefit that is derived from
+    2011;12:215–29.                                                                         progression-free survival. JNCI J Natl Cancer Inst. 2009;101:1642–9.
+37. De Bin R, Sauerbrei W, Boulesteix A-L. Investigating the prediction ability of      61. Pasalic D, McGinnis GJ, Fuller CD, Grossberg AJ, Verma V, Mainwaring W, Miller
+    survival models based on both clinical and omics data: two case studies. Stat           AB, Lin TA, Jethanandani A. Espinoza, others, progression-free survival is a
+    Med. 2014;33:5310–29.                                                                   suboptimal predictor for overall survival among metastatic solid tumour
+38. Graf E, Schmoor C, Sauerbrei W, Schumacher M. Assessment and com-                       clinical trials. Eur J Cancer. 2020;136:176–85.
+    parison of prognostic classification schemes for survival data. Stat Med.
+    1999;18:2529–45.
+39. Harrell FE, Califf RM, Pryor DB, Lee KL, Rosati RA. Evaluating the yield of medi-   Publisher’s note
+    cal tests. JAMA. 1982;247:2543–6.                                                   Springer Nature remains neutral with regard to jurisdictional claims in
+40. Sonabend R, Bender A, Vollmer S. Avoiding C-hacking when evaluating                 published maps and institutional affiliations.
+    survival distribution predictions with discrimination measures. Bioinformatics.
+    2022;38:4178–84.
+41. Team RC. R: A language and environment for statistical computing. R Foun-
+    dation for Statistical Computing, Vienna, Austria, Http//Www.R-Project. Org/
+    (2013).
+
+==============================================================================
+VISUAL FIGURE VALUE AUDIT
+==============================================================================
+
+# L03: Figure and table review
+
+Source: pdfs/L03.pdf, *Does combining numerous data types in multi-omics data improve or hinder performance in survival prediction?* (2024), DOI 10.1186/s12911-024-02642-9.
+
+## Figure 1, printed counts and visual rank distributions, PDF page 7
+
+Shows dataset-specific ranks for block combinations under random survival forest, block forest, and inverse-probability lasso. Lower ranks are better; the 31 block combinations are sorted by mean rank. Boxplots summarize ranks over 14 datasets. Individual boxplot medians are not numerically labeled, so only the direction and spread can be visually read. The combination using all five blocks is marked with a red outline in each panel.
+
+## Figure 2, printed counts, PDF page 8
+
+Among the 30 highest-ranked method/block combinations, plotted modality inclusion counts are:
+
+| Modality | Count in top 30 |
+|---|---:|
+| mRNA | 27/30 |
+| miRNA | 14/30 |
+| Copy-number variation | 13/30 |
+| Methylation | 14/30 |
+| DNA sequencing / mutation | 8/30 |
+
+If all 155 method/block combinations were equally likely to appear in the top 30, the expected count for a modality is 15.5. The paper reports a hypergeometric-test p-value of 5.9 x 10^-6 for the frequent appearance of mRNA in the top 30. This is printed in the adjacent main text, not in the plotted graphic. Lasso is highlighted as frequent among the best combinations, but the article notes that clinical covariates were not penalized, limiting direct comparison with other benchmark settings.
+
+## Tables and equations
+
+The downloaded PDF provides table text in reading order; the structured Europe PMC extraction for this source also preserves table rows and display-equation text. Check txt/L03.txt for Tables 1-3. Figure rank values are plotted but not individually printed, so do not report guessed exact ranks.
+

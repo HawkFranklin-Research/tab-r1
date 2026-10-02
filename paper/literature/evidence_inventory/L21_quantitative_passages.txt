@@ -1,0 +1,180 @@
+# Retrieval inventory, NOT completed visual/claim audit
+Source L21: Why do tree-based models still outperform deep learning on typical tabular data?; DOI NA
+Original text line numbers. Numbers may be citations, secondary reports,
+toy examples, or ambiguous table columns. Verify context before citing.
+
+L28:                                                   ter combinations. We define a standard set of 45 datasets from varied domains with
+L31:                                                   based models remain state-of-the-art on medium-sized data (∼10K samples) even
+L36:                                                   features, 2. preserve the orientation of the data, and 3. be able to easily learn
+L54:                                          datasets [Shwartz-Ziv and Armon, 2021]. Indeed, the lack of an established benchmark for tabular
+L76: these datasets through OpenML [Vanschoren et al., 2014], which makes them easy to use. 2. We
+L85: including datasets, data processing, and hyper-parameter tuning. Then, Sec. 4 shows our raw results
+L108: to generalize to new datasets" than to create a comprehensive benchmark. Borisov et al. [2022]
+L109: benchmarked recent algorithms in their review of deep learning for tabular data, but only on 3 datasets,
+L114: benchmarking novel algorithms, on 11 tabular datasets. We provide a more comprehensive benchmark,
+L115: with 45 datasets, split across different settings (medium-sized / large-size, with/without categorical
+L126: Benchmark Gijsbers et al. [2019] contain tabular data, but also include images and artificial datasets,
+L138: 3.1   45 reference tabular datasets
+L140: For our benchmark, we compiled 45 tabular datasets from various domains provided mainly by
+L144: Not high dimensional. We only keep datasets with a d/n ratio below 1/10.
+L151: Not too small. We remove datasets with too few features (< 4) and too few samples (< 3 000). For
+L157:    entBoosting model (from scikit learn) is below 5%. Other benchmarks use different metrics to
+L159:    classifier [Bischl et al., 2021], but this does not account for different Bayes rate of different datasets.
+L171: Medium-sized training set We truncate the training set to 10,000 samples for bigger datasets. This
+L172:  allows us to investigate the medium-sized dataset regime. We study the large-sized (50,000) regime,
+L173:  for which fewer datasets matching our criteria are available, in A.2.
+L176:  [Perez-Lebel et al., 2022]. In practice, we first remove columns containing many missing data, then
+L180: Low cardinality categorical features We remove categorical features with more than 20 items.
+L181: High cardinality numerical features We remove numerical features with less than 10 unique val-
+L182:  ues. Numerical features with 2 unique values are converted to categorical features.
+L195: (see A.3). We run a random search of ≈ 400 iterations per dataset, on CPU for tree-based models
+L199: and evaluate it on the test set. We do this 15 times while shuffling the random search order at each
+L209: 3.4   Aggregating results across datasets
+L211: We use the test set accuracy (classification) and R2 score (regression) to measure model performance.
+L215: each test accuracy between 0 and 1 via an affine renormalization between the top-performing and
+L217: 10% (classification) or 50% (regression) test error quantile. Indeed, the worse scores are achieved by
+L219: all negative scores (i.e below 50% scores) to 0 to reduce the influence of very low scores.
+L238: features), and XGBoost Chen and Guestrin [2016]. We benchmark the following deep models:
+L247:           Classification (15 datasets)                        Regression (19 datasets)
+L252: Figure 1: Benchmark on medium-sized datasets, with only numerical features. Dotted lines
+L258:           Classification (7 datasets)                         Regression (14 datasets)
+L263: Figure 2: Benchmark on medium-sized datasets, with both numerical and categorical features.
+L271:   and numerical features, created in Gorishniy et al. [2021]. We choose this model because it was
+L276:   deep model in Borisov et al. [2021], and to investigate the impact of inter-sample attention, which
+L281: Fig. 1 and 2 give benchmark results for different types of datasets (appendix A.2 gives results as a
+L287:                                                             Figure 3: Normalized test accuracy of
+L336: and dataset-specific results are available in A.4, along with additional details on our experiments.
+L362: 5.3   Finding 2: Uninformative features affect more MLP-like NNs
+L365: large fraction of features, according to feature importance (ranked by a Random Forest). Fig. 4 shows
+L368: certain feature importance threshold) is very low up to 20% of features removed, and quite low until
+L369: 50%, which suggests that most of these features are uninformative, and not solely redundant.
+L372: in Fig. 5, we can see that removing uninformative features (5a) reduces the performance gap
+L377: In Fig. 5a, we also remove informative features as we remove a larger fraction of features. Our
+L378: reasoning, which is backed by 5b, is that the decrease in accuracy due to the removal of these features
+L388: rotation (unitary matrix) to the features on both the training and testing set. Indeed, Ng [2004] shows
+L393: Fig. 6a, which shows the change in test accuracy when randomly rotating our datasets, confirms
+L400: names: age, weight. The link with uninformative features is apparent in 6b: removing the least
+L409:                                                           Figure 4: Test accuracy of a GBT
+L420:                                                           each dataset, and 0.0 correspond to random
+L423:                                                           correspond to the 80% interval among the
+L434: Figure 5: Test accuracy changes when removing (a) or adding (b) uninformative features. Fea-
+L461: a. With all features                                b. With 50% features removed
+L466: Figure 6: Normalized test accuracy of different models when randomly rotating our datasets.
+L540:  Training. arXiv:2106.01342 [cs, stat], June 2021.
+L542: Sercan Ö Arik and Tomas Pfister. TabNet: Attentive Interpretable Tabular Learning. undefined, 2019.
+L546:   for Tabular Datasets. arXiv:2106.04462 [cs], June 2021.
+L550:   Tabular Datasets, November 2021a.
+L616: Andrew Y. Ng. Feature selection, L 1 vs. L 2 regularization, and rotational invariance. In Twenty-First
+L638: A.1     Datasets used
+L645: how to use these datasets to benchmark your own algorithms are available at A.7.
+L666:  credit                    16714       10           https://www.kaggle.com/c/GiveMeSomeCredit/data?select=cs-training.csv       https://www.openml.org/d/44089
+L668:  wine                      2554        11           https://archive.ics.uci.edu/ml/datasets/wine+quality                        https://www.openml.org/d/44091
+L698:  fifa                      18063       5            https://www.kaggle.com/datasets/stefanoleone992/fifa-22-complete-player-dataset    https://www.openml.org/d/44026
+L699:  year                      515345      90           https://archive.ics.uci.edu/ml/datasets/yearpredictionmsd                          https://www.openml.org/d/44027
+L720:  compass                16644          17                https://www.kaggle.com/datasets/danofer/compass?select=cox-violent-parsed.csv    https://www.openml.org/d/44162
+L748: In Figure 7 and Figure 8, we present the same results that in section 4.2, but as a function of random
+L767:           Classification (15 datasets)                        Regression (18 datasets)
+L772: Figure 7: Time benchmark on medium-sized datasets, with only numerical features. The first
+L778:           Classification (7 datasets)                         Regression (14 datasets)
+L783: Figure 8: Time benchmark on medium-sized datasets, with both numerical and categorical
+L794: A.2.2   Large-sized datasets
+L795: We extend our benchmark to large-scale datasets: in Figures 9, 10, 11 and 12, we compare the results
+L796: of our models on the same set of datasets, in large-size (train set truncated to 50,000 samples) and
+L797: medium-size (train set truncated to 10,000 samples) settings.
+L798: We only keep datasets with more than 50,000 samples and restrict the train set size to 50,000 samples
+L799: (vs 10,000 samples for the medium-sized benchmark). Unfortunately, this excludes a lot of datasets,
+L814: Figure 9: Comparison of accuracies on 4 classification tasks for different train set sizes, with
+L815: only numerical features. Only datasets with more than 50,000 samples were kept, and the train
+L816: set size was truncated to either 10,000 samples or 50,000 samples. Dotted lines correspond to the
+L827: Figure 10: Comparison of R2 scores on 3 regression tasks for different train set sizes, with only
+L828: numerical features. Only datasets with more than 50,000 samples were kept, and the train set size
+L829: was truncated to either 10,000 samples or 50,000 samples. Dotted lines correspond to the score of the
+L845: Figure 11: Comparison of accuracies on 2 classification tasks for different train set sizes, with
+L846: both numerical and categorical features. Only datasets with more than 50,000 samples were
+L847: kept, and the train set size was truncated to either 10,000 samples or 50,000 samples. Dotted lines
+L858: Figure 12: Comparison of R2 scores on 5 regression tasks for different train set sizes, with both
+L859: numerical and categorical features. Only datasets with more than 50,000 samples were kept, and
+L860: the train set size was truncated to either 10,000 samples or 50,000 samples. Dotted lines correspond
+L873: Train / Validation / Test split We take 70% of samples for the train set (or the percentage which
+L874: corresponds to the maximum train set size if 70% is too high). Of the remaining 30%, we take
+L875: 30% for the validation set, and 70% for the test set. The validation and test sets are truncated to
+L876: 50,000 samples for speed. Note that the validation set is only used to select the best performing
+L883:       • If We have more than 6000 samples, we evaluate our algorithms on 1 fold.
+L884:       • If we have between 3000 and 6000 samples, we evaluate our algorithms on 2 folds.
+L885:       • If we have between 1000 and 3000 samples, we evaluate our algorithms on 3 folds.
+L886:       • If we have less than 1000 testing samples, we evaluate our algorithms on 5 folds.
+L903: for 300 epochs, with early stopping and checkpointing (the best model on the validation set is kept).
+L908:  Feature embedding size       UniformInt [64, 512]         192
+L919:                          Table 1: FT Transformer hyperparameters space
+L938:                              Table 2: Resnet hyperparameters space
+L948:                               Table 3: MLP hyperparameters space
+L957:                               Table 4: SAINT hyperparameters space
+L963: Subsample               Uniform[0.5,1]
+L965: Col sample by level     Uniform[0.5,1]
+L966: Col sample by tree      Uniform[0.5, 1]
+L970:                             Table 5: XGBoost hyperparameters space
+L976: Max features              [sqrt, sqrt, log2, None, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9]
+L977: Min samples split         [2, 3] ([0.95, 0.05])
+L978: Min samples leaf          LogUniformInt[1.5, 50.5]
+L981:                          Table 6: RandomForest hyperparameters space
+L991: Subsample              Uniform[0.5, 1]
+L995: Min samples split      [2, 3] ([0.95, 0.05])
+L996: Min samples leaf       LogUniformInt[1.5, 50.5]
+L999:                      Table 7: GradientBoosting hyperparameters space
+L1008: Min samples leaf   NormalInt[20, 2]
+L1010:                     Table 8: HistGradientBoosting hyperparameters space
+L1020: Dataset by dataset We show all unnormalized benchmark results dataset by dataset: Figure 13, 14,
+L1021: 15 and 16 for the medium-size setting, and Figure 17 and 18 for the large-size setting.
+L1026: Figure 13: Unormalized benchmark results for classification tasks on numerical features only.
+L1034: Figure 14: Unormalized benchmark results for regression tasks on numerical features only.
+L1040: Figure 15: Unormalized benchmark results for classification tasks on both categorical and
+L1047: Figure 16: Unormalized benchmark results for regression tasks on both categorical and numer-
+L1061: Figure 17: Unormalized benchmark results for large scale datasets, for numerical features only.
+L1068: Figure 18: Unormalized benchmark results for large-scale datasets, for both numerical and
+L1095: with (X1 , ..XN ) the training set covariates and (Y1 , ..., YN ) the training set original targets.
+L1099:         • We restrict all datasets to their 5 most important features (according to a RandomForest
+L1105: Raw results are shown in Figure 19 dataset by dataset.
+L1107: Examples of irregular patterns Figure 20 shows the decision boundaries of a default MLP and a
+L1108: default RandomForest on the 2 most important features of the electricity dataset. The RandomForest
+L1109: achieve a perfect training accuracy and a test accuracy (85%) higher than the MLP (80%). The
+L1116: A.4.2    Finding 2: Uninformative features affect more MLP-like NNs
+L1117: Tabular datasets contain a lot of uninformative features            Raw results are shown in Figure 21
+L1120: Uninformative features affect more MLP-like NNs Raw results are shown in Figure 22 (uninfor-
+L1121: mative features added) and Figure 23 (uninformative features removed).
+L1126: Raw results are shown in Figure 24 (with all features) and Figure 25 (with 50% features) dataset by
+L1134: Figure 19: Test accuracy of different models for varying smoothing of the target function on
+L1137: A lengthscale of 0 corresponds to no smoothing (the original data). All features have been Gaussi-
+L1145:           RandomForest (85%)                                 MLP (80%)
+L1150: Figure 20: Decision boundaries of a default MLP and RandomForest for the 2 most important features
+L1158: Figure 21: Test accuracy of a GBT for varying proportions of removed features. Features are
+L1161: removed features (red). Scores are normalized between 0 (random chance) and 1 (best score among
+L1164: 4, shown for each dataset. Note that axes do not always start at zero.
+L1171: Figure 22: Test accuracy changes when adding uninformative features. Added features are
+L1174: (starting with the default models). Same experiment that in Figure 5 (b), shown for each dataset
+L1180: Figure 23: Test accuracy changes when removing uninformative features. Features are removed
+L1183: the default models). Same experiment that in Figure 5 (a), shown for each dataset without score
+L1189: Figure 24: Test accuracy of different models when randomly rotating our datasets. All features
+L1197: Figure 25: Test accuracy of different models when randomly rotating our datasets, with 50%
+L1201: shuffles. Same experiment that in 6 (Right), shown for each dataset without score normalization.
+L1215: presence of "deterministic" game-inspired datasets in Kadra et al. [2021b], on which their method
+L1224: Methodology Accuracy is normalized (see 3), and negative scores are truncated to zero. For
+L1300:  subsample           0.02            0.01
+L1301:  colsample_bytree    0.02            0.0
+L1312:  colsample_bylevel   0.01            0.0
+L1321:  min_samples_leaf    0.01            0.0
+L1322:  subsample           0.01            0.0
+L1323:  loss_exponential    0.0             0.0
+L1334:  min_samples_leaf    0.01            -0.01
+L1336:  max_features_None   0.01            -0.06
+L1337:  bootstrap           0.01            0.01
+L1338:  max_features_log2   0.0             0.04
+L1340:  max_features_0.2    0.0             0.04
+L1341:  max_features_sqrt   0.0             0.04
+L1342:  max_features_0.4    0.0             0.05
+L1343:  max_features_0.5    0.0             0.04
+L1344:  max_features_0.6    0.0             0.04
+L1345:  max_features_0.7    0.0             0.03
+L1346:  max_features_0.8    0.0             0.01
+L1347:  max_features_0.9    0.0             -0.01
+L1348:  max_features_0.3    0.0             0.05
+L1358:         original datasets are also in A.1.

@@ -1,0 +1,139 @@
+# Retrieval inventory, NOT completed visual/claim audit
+Source L36: Comprehensive molecular profiling of lung adenocarcinoma; DOI 10.1038/nature13385
+Original text line numbers. Numbers may be citations, secondary reports,
+toy examples, or ambiguous table columns. Verify context before citing.
+
+L25:     genes were statistically significantly mutated, including RIT1 activating mutations and newly described loss-of-function
+L27:     patients, whereas mutations in RBM10 were more common in males. Aberrations in NF1, MET, ERBB2 and RIT1 occurred
+L28:     in 13% of cases and were enriched in samples otherwise lacking an activated oncogene, suggesting a driver role for these
+L30:     somatic genomic changes, including exon 14 skipping in MET mRNA in 4% of cases. MAPK and PI(3)K pathway activity,
+L40: cases occur in never-smokers (defined as less than 100 cigarettes in a life-                                                            Clinical samples and histopathologic data
+L43: genes such as mutant EGFR1 or translocated ALK, RET, or ROS1 (refs 2–4).                                                                sent (Supplementary Table 1). All major histologic types of lung ade-
+L44: Mutant BRAF and ERBB2 (ref. 5) are also investigational targets. How-                                                                   nocarcinoma were represented: 5% lepidic, 33% acinar, 9% papillary,
+L45: ever, most lung adenocarcinomas either lack an identifiable driver onco-                                                                14% micropapillary, 25% solid, 4% invasive mucinous, 0.4% colloid and
+L46: gene, or harbour mutations in KRAS and are therefore still treated with                                                                 8% unclassifiable adenocarcinoma (Supplementary Fig. 1)14. Median
+L47: conventional chemotherapy. Tumour suppressor gene abnormalities,                                                                        follow-up was 19 months, and 163 patients were alive at the time of last
+L48: such as those in TP53 (ref. 6), STK11 (ref. 7), CDKN2A8, KEAP1 (ref. 9),                                                                follow-up. Eighty-one percent of patients reported past or present smok-
+L49: and SMARCA4 (ref. 10) are also common but are not currently clinically                                                                  ing. Supplementary Table 2 summarizes demographics. DNA, RNA and
+L51: mutation and genomic rearrangement, challenging identification of all                                                                   were performed as described previously15. Supplementary Table 3 sum-
+L54: a                                                                                                          b  Transversion high                       Transversion low     Figure 1 | Somatic mutations in lung
+L61:         KRAS                                                                                    33                                               EGFR                      Data from TCGA samples were combined with
+L65:          NF1                                                                                    11                                             SMARCA4                     Co-mutation plot for all samples used in the
+L84:                                                                                                                           60 40 20 0                  0   20 40 60         differential patterns of mutation between samples
+L87:                            Nonsense        In-frame indel                                                                                      SMARCA4                     samples (b) or male and female patients (c) are
+L95:                       20                                                                                                 P < 0.05   Splice site   In-frame indel           using the Fisher’s exact test (black stars: q , 0.05,
+L97:                            Transversions     Transitions    Indels, other                                                                                                  grey stars: P , 0.05) and are adjacent to the sample
+L103:                                                                                                                                                                            3 1 J U LY 2 0 1 4 | V O L 5 1 1 | N AT U R E | 5 4 3
+L109: We performed whole-exome sequencing (WES) on tumour and germ-                    plementary Table 6), as previously described24, 8q24 near MYC, and a
+L110: line DNA, with a mean coverage of 97.63 and 95.83, respectively, as per-         novel peak containing CCND3 (Supplementary Table 6). The CDKN2A
+L111: formed previously17. The mean somatic mutation rate across the TCGA              locus was the most significant deletion (Supplementary Table 6). Sup-
+L112: cohort was 8.87 mutations per megabase (Mb) of DNA (range: 0.5–48,               plementary Table 7 summarizes molecular and clinical characteristics
+L113: median: 5.78). The non-synonymous mutation rate was 6.86 per Mb.                 by sample. Low-pass whole-genome sequencing on a subset (n 5 93) of
+L114: MutSig2CV18 identified significantly mutated genes among our 230                 the samples revealed an average of 36 gene–gene and gene–inter-gene
+L119: plot of TCGA samples (n 5 230), Supplementary Fig. 2 shows co-mutation
+L121: plot of all samples used in the statistical analysis (n 5 412) and Sup-
+L123: plementary Table 4 contains complete MutSig2CV results, which also                                                                                                                      EML4–ALK
+L126: commonly mutated (46%). Mutations in KRAS (33%) were mutually                                             11                                                         12
+L127: exclusive with those in EGFR (14%). BRAF was also commonly mutated                                                                                                                      TRIM33–RET
+L129: (10%), as were PIK3CA (7%), MET (7%) and the small GTPase gene, RIT1                           1                                                                     12
+L131: (2%). Mutations in tumour suppressor genes including STK11 (17%),
+L133: KEAP1 (17%), NF1 (11%), RB1 (4%) and CDKN2A (4%) were observed.
+L135: Mutations in chromatin modifying genes SETD2 (9%), ARID1A (7%) and                   6                                                                                       34
+L136: SMARCA4 (6%) and the RNA splicing genes RBM10 (8%) and U2AF1                                                                                                                            CD74–ROS1
+L137: (3%) were also common. Recurrent mutations in the MGA gene (which                                                31                                                          35
+L139: 8% of samples. Loss-of-function (frameshift and nonsense) mutations                           14                                                                           32–34
+L142: exact test P 5 0.04), suggesting a hitherto unappreciated potential mech-
+L146: indel variants were verified by resequencing at a rate of 99% and 100%,
+L147: respectively (Supplementary Fig. 3a, Supplementary Table 5). Tumour              b
+L148:                                                                                      Exon 14 skipping          Number of samples                             TCGA-99-7458
+L156: in the validation data (P 5 0.31; Supplementary Fig. 3b).                                (0% skipping)         199    0        0          0
+L160: and genome-wide12,13. C . A nucleotide transversion fraction showed                  (60–80% skipping)          0     1        1          1
+L163: quency (R2 5 0.75) (Supplementary Fig. 4). We classified each sample                        Full
+L164:                                                                                      (90–100% skipping)         0     5        1          0
+L177: high cohort (P 5 2.13 10213), EGFR mutations were significantly enriched                                                                                                                                                              *
+L186: substitutions compared to SCLC (P , 0.05)20,21 suggesting a mutational           Figure 2 | Aberrant RNA transcripts in lung adenocarcinoma associated
+L190: Only a fraction of significantly mutated genes from the complete set reported    fusion events are also listed in Supplementary Table 9. Exon numbers refer
+L191: in this study (Fig. 1a) were enriched in men or women (Fig. 1c). EGFR            to reference transcripts listed in Supplementary Table 9. b, MET exon 14
+L192: mutations were enriched in tumours from the female cohort (P 5 0.03)             skipping observed in the presence of exon 14 splice site mutation (ss mut),
+L193: whereas loss-of-function mutations within RBM10, an RNA-binding pro-             splice site deletion (ss del) or a Y1003* mutation. A total of 22 samples had
+L198: RBM10 mutations were observed in males (P 5 0.003, Fisher’s exact test).         mRNA from tumours with U2AF1 S34F tumours compared to U2AF1 WT
+L201: plementary Table 6). Significant amplifications included NKX2-1, TERT,           alternative 39 splice site events (chi-squared test, P , 0.001).
+L203: 5 4 4 | N AT U R E | V O L 5 1 1 | 3 1 J U LY 2 0 1 4
+L209: 93 samples (6%) (Supplementary Fig. 6, Supplementary Table 8). Low-                                                         The receptor tyrosine kinase (RTK)/RAS/RAF pathway is frequently
+L211: Supplementary Table 9.                                                                                                      often achieved when mutant pathway components are successfully inhib-
+L214: Gene fusions, splice site mutations or mutations in genes encoding splic-                                                   associated mutations in KRAS (32%, n 5 74), EGFR (11%, n 5 26) and
+L215: ing factors promote or sustain the malignant phenotype by generating                                                        BRAF (7%, n 5 16) were common. Additional, previously uncharac-
+L223: (2/230) (Fig. 2a, Supplementary Table 10), all occurred in transversion-                                                    HRAS (n 5 1 each). RNA sequencing revealed the aforementioned MET
+L224: low tumours (P 5 1.85 3 1024, Fisher’s exact test).                                                                         exon 14 skipping (n 5 10) and fusions involving ROS1 (n 5 4), ALK
+L227: with MET exon 14 skipping in RNA. In nine of these samples, a 59 or                                                         RAF pathway somatic event. DNA amplification events were not con-
+L230: tion (Fig. 2b, Supplementary Fig. 8a). The codon affected by the Y1003*                                                     might activate this critical pathway in the 38% of samples without a
+L235: Eight samples harboured U2AF1S34F. We identified 129 splicing events                                                        subset (Fig. 3a, Supplementary Table 6); amplifications in other wild-type
+L238: sites were most commonly affected (Fig. 2c, Supplementary Table 11)29.                                                         We next analysed WES data independently in the oncogene-negative
+L241: Thus, concurrent analysis of DNA and RNA enabled delineation of                                                             (P , 0.01; Fig. 3b, Supplementary Table 12). NF1 mutations have previ-
+L273:                                                                                                                                                                                                                           HRAS (0.4%)
+L281:                                                                                                                                                                                                                           NRAS (0.4%)
+L284:                                                                                                                                                                                               d                           RET fusion (0.9%)
+L285:                                                                                                                                                                                                                           MAP2K1 (0.9%)
+L286:                                           Oncogene-positive                                                                          oncogene-negative                                                                    ALK fusion (1.3%)
+L287:                                           (62%, n = 143)                                                                             (13%, n = 31)                                                   RIT1 (2.2%)          ROS1 fusion (1.7%)
+L288:                                KRAS                                                                                                                   32                                             ERBB2 amp (0.9%)     ERBB2 (1.7%)
+L289:                                                                                                                                                                                                      MET amp (2.2%)       MET ex14 (4.3%)
+L292:                                BRAF                                                                                                                  7                                                         (8.3%)
+L299:                  HRAS / NRAS                                                                                                                         2                                                                          (7.0%)
+L302:                              ERBB2                                                                                                                   3                                                    (24.4%)               (11.3%)
+L306:                                                                                                                                                                                                                       (32.2%)
+L310: Figure 3 | Identification of novel candidate driver genes. a, GISTIC analysis                                               adenocarcinoma. Not shown are the 63 tumours lacking an identifiable driver
+L312: (n 5 143) TCGA samples identifies focal gains of MET and ERBB2 that are                                                     proposed driver events, are shown; hence not every alteration found is
+L313: specific to the oncogene-negative set (purple). b, TP53, KEAP1, NF1 and RIT1                                                displayed. d, New candidate driver oncogenes (blue: 13% of cases) and known
+L314: mutations are significantly enriched in samples otherwise lacking oncogene                                                  somatically activated drivers events (red: 63%) that activate the RTK/RAS/RAF
+L315: mutations (adjusted P , 0.05 by Fisher’s exact test). c, Co-mutation plot of                                                pathway can be found in the majority of the 230 lung adenocarcinomas.
+L318:                                                                                                                                                                                               3 1 J U LY 2 0 1 4 | V O L 5 1 1 | N AT U R E | 5 4 5
+L326: in the oncogene-negative subset and clustered around residue Q79 (homol-                                                                                            RAF pathway activation (76% of cases), PI(3)K-mTOR pathway activa-
+L327: ogous to Q61 in the switch II region of RAS genes). These mutations                                                                                                 tion (25%), p53 pathway alteration (63%), alteration of cell cycle regu-
+L328: transform NIH3T3 cells and activate MAPK and PI(3)K signalling32,                                                                                                   lators (64%, Supplementary Fig. 10), alteration of oxidative stress pathways
+L329: supporting a driver role for mutant RIT1 in 2% of lung adenocarcinomas.                                                                                             (22%, Supplementary Fig. 11), and mutation of various chromatin and
+L330: This analysis increases the rate at which putative somatic lung adeno-                                                                                              RNA splicing factors (49%).
+L332: pathway to 76% (Fig. 3d).                                                                                                                                           events in the tumours in which they occurred. Reverse-phase protein
+L337:                    11%        3%          7%          1%       <1%       2%                                                                                         tary Table 13. This analysis suggested that DNA sequencing did not
+L340:        3%
+L344:       PIK3R1            4%               32%         <1%                                                                                                            nocarcinomas had higher levels of phosphorylated MAPK than KRAS
+L346:        <1%
+L347:                                          HRAS         RIT1          11%                                                                                             wild-type tumours had on average, many KRAS wild-type tumours dis-
+L348:       STK11            AKT1              <1%          2%                                                                                                            played significant MAPK pathway activation (Fig. 4b, Supplementary
+L349:        17%              1%
+L352:       AMPK                                      7%
+L358:                                               <1%                         Activation                                         Inhibition
+L363:                 Proliferation, cell survival, translation            43%
+L367:       19%           <1%           8%          9%             4%       7%                3%
+L371:              3%                         46%                          7%                                                                                             tion, or both. As with MAPK, many tumours lack an obvious underlying
+L376:        7%          6%
+L379:        7%            6%                 9%                      4%         9%
+L406:          PIK3CA STK11        High     Low                                                                                                                           mosomal loss, inactivating mutation, and reduced gene expression. In
+L419:                                                                                                                                                                     Figure 4 | Pathway alterations in lung adenocarcinoma. a, Somatic
+L425:     p-mTOR                                                                                                                                –1                        b, c, Proteomic analysis by RPPA (n 5 181) P values by two-sided t-test.
+L426:    p-4E-BP1                                                                                                                                                         Box plots represent 5%, 25%, 75%, median, and 95%. PP, proximal
+L435:      Pathway                                                                                                                                                        inactivation of AMPK (for example, via STK11 loss). Tumours were separated
+L441:        Low        High           PP       TRU         PI          Low         High                              **P < 0.001                                         of the above features.
+L443: 5 4 6 | N AT U R E | V O L 5 1 1 | 3 1 J U LY 2 0 1 4
+L480: CpG       T%                                                                                                                                    11
+L519: Figure 5 | Integrative analysis. a–c, Integrating unsupervised analyses of 230                                       iCluster analysis (c). All displayed features are significantly associated with
+L533: mRNA-based subtypes, as demonstrated in Supplementary Figs 12 and 13.                                                scriptional subtypes. Fisher’s combined probability tests revealed signi-
+L537: manner, we selected the most variable DNA methylation-specific probes                                                and five contain many TRU samples, whereas tumours in cluster 6 have
+L539: sity (Supplementary Table 14). This analysis divided samples into two                                                molecular features. Significant copy number-associated gene expres-
+L542: with a third set of samples occupying an intermediate level of methy-                                                proximal-inflammatory CIMP-H group (cluster 3) and a low ploidy, low
+L550: within this subtype. MYC overexpression was significantly associated                                                 (Supplementary Fig. 15, Supplementary Table 6).
+L555:                                                                                                                                                                          3 1 J U LY 2 0 1 4 | V O L 5 1 1 | N AT U R E | 5 4 7
+L569: from 62% to 76%. While all lung adenocarcinomas may activate this                                 cancer. Nature Biotechnol. 30, 413–421 (2012).
+L571: pathway by some mechanism, only a subset show tonic pathway acti-                                 heterogeneous cancer samples. Nature Biotechnol. 31, 213–219 (2013).
+L576: range of possible targetable alterations within the RTK/RAS/RAF path-                             T-domain DNA-binding motif. EMBO J. 18, 7019–7028 (1999).
+L604: All specimens were obtained from patients with appropriate consent from the rele-             31. Beroukhim, R. et al. Assessing the significance of chromosomal aberrations in
+L605: vant institutional review board. DNA and RNA were collected from samples using                    cancer: methodology and application to glioma. Proc. Natl Acad. Sci. USA 104,
+L616:                                                                                               35. Beer, D. G. et al. Gene-expression profiles predict survival of patients with lung
+L619: Received 11 June 2013; accepted 22 April 2014.                                                    adenocarcinoma subtypes in multiple independent patient cohorts. J. Clin. Oncol.
+L628: 4. Drilon, A. et al. Response to cabozantinib in patients with RET fusion-positive lung           adenocarcinomas. Am. J. Surg. Pathol. 26, 767–773 (2002).
+L647: 5 4 8 | N AT U R E | V O L 5 1 1 | 3 1 J U LY 2 0 1 4
+L752:                                                                                                                                 3 1 J U LY 2 0 1 4 | V O L 5 1 1 | N AT U R E | 5 4 9
+L789: 5 5 0 | N AT U R E | V O L 5 1 1 | 3 1 J U LY 2 0 1 4
+L809: 2 6 2 | N AT U R E | VO L 5 1 4 | 9 O C T O B E R 2 0 1 4
+L823: In this Article, the Supplementary Table 7 iCLUSTER output column
+L827: apologise for the error. Supplementary Table 7 has been corrected

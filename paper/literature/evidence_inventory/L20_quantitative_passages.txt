@@ -1,0 +1,446 @@
+# Retrieval inventory, NOT completed visual/claim audit
+Source L20: TabArena: A Living Benchmark for Machine Learning on Tabular Data; DOI 10.48550/arXiv.2506.16791
+Original text line numbers. Numbers may be citations, secondary reports,
+toy examples, or ambiguous table columns. Verify context before citing.
+
+L71:                                         Figure 1: TabArena-v0.1 Leaderboard. We evaluate models under default parameters, tuning, and
+L73:                                         datasets, we evaluate them on subsets of the benchmark in Figure 4 .
+L76:                                         39th Conference on Neural Information Processing Systems (NeurIPS 2025) Track on Datasets and Benchmarks.
+L83: protocols utilized [7, 8, 9]. Most importantly, many datasets used in benchmarks are outdated, contain
+L95:       ➢ We investigate 1053 datasets used in tabular data research and carefully, manually curate a
+L96:         set of 51 datasets out of these, representing real-world tabular data tasks.
+L99:         trained ∼25 000 000 instances of models across all our experiments.
+L112: distribution shifts); few-shot predictions, or very small data (e.g., less than 500 training samples); large
+L113: data (e.g., more than 250 000 training samples); or other machine learning tasks such as clustering,
+L124: and hyperparameter optimization, (2.2) datasets, and (2.3) evaluation design. Through continuous
+L138: to represent them fairly. This only affects TabPFNv2, which is restricted to datasets with up to
+L139: 10, 000 training samples, 500 features, and 10 classes for classification tasks, and TabICL, which is
+L140: constrained to classification tasks with up to 100, 000 training samples and 500 features.
+L141: TabArena models are powered by three components: (1) implementation in a well-tested modeling
+L144: class. Table 1 provides an overview of the models benchmarked in TabArena-v0.1.
+L147: Table 1: TabArena-v0.1 Models. We show all models included in our initialization of TabArena,
+L172: validation with ensembling, (3) hyperparameter optimization, (4) evaluation metrics, (5) fold-wise
+L173: training parallelization, (6) (customizable) model-specific preprocessing pipeline, (7) (customiz-
+L174: able) early stopping and validation logic, and (8) unit tests. As a result, any model implemented in
+L177: a tested framework regularly used in real-world applications. Appendix C.1 summarizes further
+L180: academic studies, cf. [8, 20, 25, 26], for most datasets, peak performance requires ensembling
+L181: strategies. Therefore, we default to using 8-fold cross-validation (with class-wise stratification for
+L182: classification) and then employ cross-validation ensembles [27]; which we describe in detail in
+L183: Appendix C.3. For all foundation models, we refit on training and validation data instead of using
+L194: Table 2: Comparison of Tabular Benchmarks. We systematically compare prior tabular benchmark
+L196: outer validation: 1 for holdout validation; - if the benchmark does not specify; and any other number
+L224: search spaces from prior work. We evaluate 1 default and a fixed set of 200 randomly-sampled
+L228: is validated using 8-fold (inner) cross-validation. We use the score of this (inner) cross-validation to
+L238: 2.2   Datasets Protocol
+L245: predictive tabular datasets, as seen in Table 2. Our work indicates a turning point with the most
+L247: We define criteria for data selection according to our focus statement and filter 1053 datasets used
+L248: in 14 prior benchmarks accordingly. Figure 2 describes our selection process. Notably, only the
+L251: Dataset Selection Criteria. We comprehensively describe our selection criteria in Appendix B.1.
+L252: In short, we selected datasets that fulfilled the following requirements: (1) The dataset and its
+L253: predictive machine learning task are unique within our benchmark; (2) The dataset is IID, that is, a
+L254: random split is appropriate for the underlying original task; (3) The dataset is not from a non-tabular
+L259: Figure 2: Data Curation Results. The figure shows why and how many datasets we filter based on
+L265: alternative to domain-specific methods; (4) The dataset stems from a real random distribution, and
+L266: is not generated, e.g., from a deterministic function; (5) The dataset was published explicitly for a
+L267: predictive modeling task in a real-world application; (6) The dataset is small-to-medium-sized, i.e., it
+L268: has at least 500 and at most 250 000 train samples; (7) We can use a version of the dataset without
+L269: pre-applied problematic preprocessing, such as irreversible data leaks; (8) The dataset was originally
+L270: published with a license allowing for scientific usage; (9) The dataset and its structured metadata can
+L272: API; (10) The dataset and its predictive task do not raise (obvious) ethical concerns.
+L312:                            UCI      Kaggle OpenML Other       0-5 Years 6-15 Years 16+ Years                                          Number of Samples
+L315: Figure 3: Characteristics of Datasets in TabArena. On the left, we show the number of datasets per
+L319: Figure 3 summarizes dataset characteristics; we share per-dataset details and domain coverage in
+L325: the tasks represented by datasets. We share more noteworthy observations in Appendix B.3.
+L337: protocol to contribute a new dataset to TabArena in Appendix E.3.
+L345: TabArena in Appendix D.2. We employ a dataset-specific repetition strategy using more repeats for
+L347: dataset size. The strategy is as follows: (I) for datasets with less than 2 500 samples, we use 10 times
+L348: repeated 3-fold outer cross-validation; (II) for all other datasets, we use 3 repeats. For classification
+L352: against others, with a 400-point Elo gap corresponding to a 10 to 1 (91%) expected win rate. We
+L353: calibrate 1000 Elo to the performance of our default random forest configuration across all figures,
+L354: and perform 200 rounds of bootstrapping to obtain 95% confidence intervals, similar to Chiang et al.
+L355: [39], see Appendix D.1. In our main results, Elo scores are computed using ROC AUC for binary
+L376: best_quality preset and 4 hours for training) as the first official TabArena reference pipeline.
+L390: To initialize the leaderboard, we run 16 curated models (Section 2.1) on 51 curated datasets (Sec-
+L419: Figure 4: Leaderboard for TabPFNv2-compatible (left) and TabICL-compatible (right) datasets.
+L420: For TabPFNv2, we obtain 33 datasets (≤ 10K training samples, ≤ 500 features). For TabICL, we
+L421: obtain 36 classification datasets (≤ 100K, ≤ 500). Everything but the datasets is identical to Figure 1.
+L432: Figure 1 shows our main results, the leaderboard of TabArena-v0.1, which includes the performance
+L441: work [33], CatBoost is ranked first in the conventional tuning regime (Figure 1). However, the
+L445: three models in our leaderboard (TabM, LightGBM, RealMLP; see Figure 1) would all be worse
+L447: trade off the increased predictive performance with the increased inference cost (see Figure 6) [40],
+L451: limited in their applicability, we evaluate them separately in Figure 4, presenting the leaderboard
+L452: after restricting the datasets to the constraints of TabPFNv2 or TabICL. TabPFNv2 outperforms
+L454: datasets within their constraints. Moreover, TabPFNv2 with tuning and post-hoc ensembling again
+L458: ability and inference time in Figure 5 (left) reveals that tuned EBM (EBM-T) and tuned CatBoost
+L460: an increase in inference time of ∼ 15× for TabM-TE and ∼ 100× for RealMLP-TE. Figure 5
+L466: only starts to dominate them after a considerable amount of training time with an ensemble of 25+
+L500:                             Inference time per 1K samples (s) (median)                                                                         Train time per 1K samples (s) (median)
+L501: Figure 5: (Left) Pareto front of improvability and inference time. We report the median inference
+L502: time per 1000 samples across all datasets. (Right) Improvability tuning trajectories. Time is shown
+L504: configurations (1, 2, 5, 10, 25, 50, 100, 150, 201). The trajectories are sampled 20 times from all
+L513: us to study what-if cases for our evaluation design. Figure 6 shows that when using holdout
+L516: [11, 41, 42] and demonstrates the importance of nested cross-validation in our benchmark design.
+L549:                                               Median time per 1K samples [s]
+L551:                                                                                   Median time per 1K samples [s]
+L555: Figure 6: (Left) Model Efficiency. Median training times with cross-validation across TabPFNv2-
+L556: and TabICL-compatible datasets (see Figure 4). (Right) Holdout vs. Cross-Validation. Predictive
+L564: consists of all datasets with one outer fold (see Appendix A.4). We intend TabArena-Lite to be
+L569: that lower-ranked models are unnecessary. In Figure 7 (left), we show that a simulated ensembling
+L571: advancing the state-of-the-art. In Figure 7 (right), we show the average weights of different models
+L574: overfitting the validation data [43, 44], such as ModernNCA and RealMLP as seen in Appendix A.6.
+L579: strongly outperform individual model families (Figure 7). Thus, we posit that it is more important
+L615: Figure 7: (Left) TabArena Ensemble. Simulated performance of an ensemble using all models
+L616: in TabArena compared to the leaderboard from Figure 1. (Right) Individual Contributions.
+L628: Recent studies revealed further flaws in tabular benchmarking: datasets are often outdated [7], non-IID
+L633: data is used inappropriately [10], many datasets are not originally tabular [7, 10], and inappropriate
+L635: curation efforts and evaluation in sophisticated ensembling pipelines. As seen in Table 2, TabArena
+L655: representative real-world tabular data tasks out of 1053 available datasets for running a large-scale
+L671: representative, high-quality collection of datasets with more diversity and statistical power. (4) Lastly,
+L815: [26] Myung Jun Kim, Leo Grinsztajn, and Gael Varoquaux. Carte: Pretraining and transfer for
+L818: [27] Anders Krogh and Jesper Vedelsby.      Neural network ensembles, cross valida-
+L936: [63] Xiang Deng, Huan Sun, Alyssa Lees, You Wu, and Cong Yu. Turl: Table understanding
+L938: [64] Madelon Hulsebos, Çagatay Demiralp, and Paul Groth. Gittables: A large-scale corpus of
+L939:      relational tables. Proceedings of the ACM on Management of Data, 1(1):1–17, 2023.
+L951: [69] H. Hofmann. Statlog (german credit data) [dataset]. https://doi.org/10.24432/C5NC77,
+L964:      datasets/arunjangir245/healthcare-insurance-expenses/, 2023. Kaggle dataset.
+L967: [75] Kaggle User Ddosad. Fitness club dataset for ml classification. https://www.kaggle.com/
+L968:      datasets/ddosad/datacamps-data-science-associate-certification,                    2023.
+L976: [77] Kaggle User Paolocons. Another dataset on used fiat 500 (1538 rows). https://www.kaggle.
+L977:      com/datasets/paolocons/another-fiat-500-dataset-1538-rows, 2020. Kaggle
+L983: [79] Kaggle User Podsyp. Is this a good customer? https://www.kaggle.com/datasets/
+L984:      podsyp/is-this-a-good-customer, 2020. Kaggle dataset.
+L985: [80] Rodolfo Saldanha.      Marketing campaign.          https://www.kaggle.com/datasets/
+L986:      rodsaldanha/arketing-campaign, 2020. Kaggle dataset.
+L1024: [94] Gaurav Topre. Bank customer churn dataset. https://www.kaggle.com/datasets/
+L1025:      gauravtopre/bank-customer-churn-dataset, 2022. Kaggle dataset.
+L1027:      com/datasets/averkiyoliabev/home-equity-line-of-creditheloc, 2021. Kaggle
+L1036:  [97] Prachi Gopalani. E-commerce shipping data. https://www.kaggle.com/datasets/
+L1037:       prachi13/customer-analytics, 2021. Kaggle dataset.
+L1047:       com/datasets/arashnic/hr-analytics-job-change-of-data-scientists, 2021.
+L1054:       accuracy of probability of default of credit card clients. Expert systems with applications, 36
+L1063: [108] Kaggle User Rajatkumar30. Food delivery time. https://www.kaggle.com/datasets/
+L1064:       rajatkumar30/food-delivery-time, 2023. Kaggle dataset.
+L1074:       sion rates: analysis of 70,000 clinical database patient records. BioMed research international,
+L1076: [113] IDA2016Challenge. Ida2016challenge [dataset]. https://doi.org/10.24432/C5V60Q,
+L1083:       datasets/yakhyojon/customer-satisfaction-in-airline, 2023. Kaggle dataset.
+L1127:       scope. In detail, we claim that we (1) introduce TabArena, (2) manually curate datasets, (3)
+L1130:       show: (6) the importance of validation and ensembling methods, (7) deep learning has
+L1131:       caught up to gradient-boosted trees, (8) foundation models excel on smaller datasets, (9)
+L1306:          preferably report a 2-sigma error bar than state that they have a 96% CI, if the hypothesis
+L1423:    Justification: We detail our new dataset assets in Appendix B.2 and provide user guides for
+L1495:    A.2 Analyzing Training Time Limit . . . . . . . . . . . . . . . . . . . . . . . . . . . .      27
+L1499:    A.6 Investigating Tuning Trajectories and Validation Overfitting . . . . . . . . . . . . .     35
+L1502:    B.1 Dataset Selection Criteria . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .   37
+L1503:    B.2 Included Datasets Details . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .    38
+L1509:    C.3 Cross-validation Ensembles . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .     47
+L1514:    D.1 Elo Confidence Intervals . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .     48
+L1521:    E.3 Contributing Data: New Datasets and Curation Feedback . . . . . . . . . . . . . .          51
+L1524:    E.6 Handling Foul Play and Dataset Contamination . . . . . . . . . . . . . . . . . . .         55
+L1526: F Performance Results Per Dataset                                                                 57
+L1537: strategies. Specifically, we obtain errors erri for each dataset i by averaging error metrics (1-AUROC
+L1561:                                  Improvability :=                     · 100% .
+L1563:          Improvability is always between 0% and 100%.
+L1565: Results. Figure A.1 presents a leaderboard including all models. We impute the results for models
+L1568: penalize models that are not applicable to all datasets. Table A.1 presents the same data in tabularized
+L1569: format, akin to the current version of the live leaderboard at tabarena.ai. Table A.1 further includes
+L1574: per task type by computing the results only with datasets from: binary classification in Figure A.2,
+L1575: multiclass classification in Figure A.3, and regression in Figure A.4.
+L1576: In addition, we show pairwise win rate comparisons of the models in Figure A.5. Among the models
+L1579: Next, Figure A.6 and Figure A.7 present the results for the TabPFNv2-compatible and TabICL-
+L1580: compatible datasets, but also impute TabPFNv2/TabICL to enable a more direct comparison between
+L1581: these two foundation models. Finally, Figure A.8 presents the result only with datasets for which
+L1584: A.2   Analyzing Training Time Limit
+L1587: to 1 hour. Thus, a model must finish training (across all 8 inner folds) within 1 hour, or its training
+L1588: will be gracefully stopped early. Figure A.9 presents the training runtime for all hyperparameter
+L1618: Figure A.1: TabArena-v0.1 leaderboard with imputation for TabPFNv2 and TabICL, Elo (left)
+L1619: and normalized scores (right). For TabPFNv2 and TabICL, on datasets where they are not applicable,
+L1646: Figure A.2: Benchmark results on binary classification with Elo (left) and normalized scores
+L1647: (right). For TabPFNv2 and TabICL, on datasets where they are not applicable, we impute their results
+L1674: Figure A.3: Benchmark results on multiclass classification with Elo (left) and normalized scores
+L1675: (right). For TabPFNv2 and TabICL, on datasets where they are not applicable, we impute their results
+L1703: Figure A.4: Benchmark results on regression with Elo (left) and normalized scores (right). For
+L1704: TabPFNv2 and TabICL, on datasets where they are not applicable, we impute their results with
+L1727:                        RealMLP (T+E)                   57         61        65         57        71          80        71        78         84         86         90        96        96         Win Rate (%)
+L1771: Figure A.5: Pairwise win rate comparison for all datasets. Higher numbers correspond to a better
+L1802: Figure A.6: Benchmark results on TabPFNv2-compatible datasets with imputed results for
+L1830: Figure A.7: Benchmark results on TabICL-compatible datasets with imputed results for
+L1831: TabPFNv2, using Elo (left) and normalized scores (right). On datasets where TabPFNv2 is
+L1858: Figure A.8: Benchmark results on TabPFNv2- and TabICL-compatible datasets using Elo (left)
+L1864: Table A.1: TabArena-v0.1 Leaderboard. We show default (D), tuned (T), and tuned + ensembled
+L1866: for datasets on which they were not run. Times are median times per 1K samples across datasets,
+L1868: silver, and bronze colors. For Elo values, we also indicate their approximate 95% confidence intervals
+L1873:  RealMLP (T+E)      1564−57,+73      0.532      8.6         4.9    1.0    6.4%        6564.71        10.26
+L1874:  TabM (T+E)         1541−61,+74      0.499      9.4         4.4    4.0    6.7%        3285.87         1.47
+L1875:  LightGBM (T+E)     1527−45,+49      0.448      9.9         5.5    2.0     8.3%        416.98         2.64
+L1876:  CatBoost (T+E)     1482−55,+57      0.428     11.7         7.3    0.0    7.6%        1658.41         0.65
+L1877:  CatBoost (T)       1469−49,+56      0.411     12.2         6.1    2.0     7.8%       1658.41         0.08
+L1878:  TabM (T)           1447−52,+73      0.410     13.2         6.7    1.0     7.7%       3285.87         0.17
+L1879:  LightGBM (T)       1446−37,+39      0.359     13.2        10.7    0.0     9.0%        416.98         0.33
+L1880:  XGBoost (T+E)      1440−47,+50      0.358     13.5         8.2    1.0     9.1%        693.49         1.69
+L1881:  CatBoost (D)       1427−43,+52      0.369     14.1         7.0    2.0     9.0%          6.83         0.08
+L1882:  ModernNCA (T+E) 1425−67,+103        0.444     14.2         5.0    3.0     8.4%       4621.67         8.15
+L1883:  TabPFNv2 (T+E)     1405−76,+83      0.474     15.1         3.1   11.0     8.3%       3030.15        21.44
+L1884:  XGBoost (T)        1404−44,+49      0.309     15.1        12.2    0.0     9.4%        693.49         0.31
+L1885:  ModernNCA (T)      1396−44,+55      0.305     15.5         8.6    1.0     9.1%       4621.67         0.47
+L1886:  TabICL (D)         1383−64,+71      0.380     16.1         4.5    6.0     8.9%          6.63         1.48
+L1887:  TabM (D)           1343−55,+68      0.282     18.0        11.9    0.0    10.7%         10.49         0.13
+L1888:  RealMLP (T)        1342−45,+43      0.226     18.1        15.3    0.0     9.8%       6564.71         0.49
+L1889:  TabPFNv2 (T)       1336−72,+77      0.359     18.4         5.7    1.0    10.4%       3030.15         0.46
+L1890:  TorchMLP (T+E)     1327−53,+49      0.215     18.8        13.6    0.0    10.3%       2874.67         1.95
+L1891:  TabPFNv2 (D)       1309−81,+87      0.323     19.7         5.5    4.0    11.4%          3.36         0.31
+L1892:  ModernNCA (D)      1294−48,+58      0.158     20.5        12.3    1.0    12.6%         14.87         0.31
+L1893:  TabDPT (D)         1290−72,+79      0.298     20.7         4.8    7.0    12.0%         22.53         8.55
+L1894:  EBM (T+E)          1286−63,+59      0.182     20.8        11.6    1.0    14.4%       1331.68         0.20
+L1895:  FastaiMLP (T+E)    1242−64,+64      0.156     23.0        13.4    0.0    13.7%        593.24         4.47
+L1896:  RealMLP (D)        1238−47,+51      0.103     23.2        19.6    0.0    12.4%         21.86         0.84
+L1897:  ExtraTrees (T+E)   1236−50,+54      0.123     23.4        15.1    0.0    14.1%        183.02         0.76
+L1898:  EBM (T)            1231−55,+55      0.132     23.6        16.3    0.0    15.0%       1331.68         0.02
+L1899:  XGBoost (D)        1225−50,+49      0.115     23.9        18.3    0.0    12.4%          1.94         0.12
+L1900:  TorchMLP (T)       1220−54,+59      0.111     24.1        20.3    0.0    12.4%       2874.67         0.13
+L1901:  EBM (D)            1198−66,+64      0.133     25.2        13.2    1.0    16.0%          4.67         0.04
+L1902:  RandomForest (T+E) 1197−56,+62      0.096     25.2        13.0    1.0    14.9%        373.18         0.77
+L1903:  LightGBM (D)       1197−45,+44      0.088     25.3        22.3    0.0    13.3%          1.96         0.14
+L1904:  ExtraTrees (T)     1190−52,+55      0.093     25.6        17.7    0.0    15.1%        183.02         0.09
+L1905:  FastaiMLP (T)      1154−61,+60      0.070     27.3        21.8    0.0    15.4%        593.24         0.31
+L1906:  RandomForest (T)   1149−49,+59      0.071     27.5        15.1    1.0    15.9%        373.18         0.09
+L1907:  TorchMLP (D)       1065−49,+50      0.022     31.2        28.5    0.0    17.2%          9.99         0.13
+L1908:  FastaiMLP (D)      1007−71,+66      0.022     33.4        30.4    0.0    20.6%          2.86         0.37
+L1909:  RandomForest (D) 1000−44,+50        0.009     33.7        31.8    0.0    21.0%          0.43         0.05
+L1910:  KNN (T+E)          984−79,+66       0.027     34.2        30.7    0.0    23.3%        129.01         1.80
+L1911:  ExtraTrees (D)     980−75,+72       0.024     34.3        30.6    0.0    22.8%          0.25         0.05
+L1912:  Linear (T+E)       967−110,+72      0.036     34.8        26.8    0.0    28.9%        237.58         0.42
+L1913:  Linear (T)         936−115,+72      0.027     35.8        30.1    0.0    29.7%        237.58         0.08
+L1914:  KNN (T)            858−93,+64       0.011     38.0        36.3    0.0    28.8%        129.01         0.18
+L1915:  Linear (D)         836−136,+84      0.014     38.5        30.8    0.0    32.7%          1.19         0.12
+L1916:  KNN (D)            614−133,+102     0.000     42.2        41.7    0.0    43.0%          0.19         0.04
+L1920: We observe that for all models, less than 1% of all configurations reach the time limit of 1 hour. We
+L1922: notice that the training was not stopped early at the 1 hour time limit, positively influencing its results.
+L1997: Figure A.9: Training Runtime Analysis, Runtime Distribution (left) and Cumulative Total
+L2060: Figure A.10: Runtime Analysis of RealMLP, TabM, and ModernNCA on CPU vs. GPU. We
+L2062: GPU across all TabArena datasets. For ModernNCA and TabM on CPU, approximately 16% of runs
+L2063: are early stopped due to the 1-hour time limit. For GPU, less than 0.1% of runs are early stopped due
+L2069: ran RealMLP on GPU. Figure A.10 demonstrates that the hyperparameter configurations of TabM
+L2071: from this ablation that training TabM and ModernNCA on CPU with a time limit of 1 hour would
+L2099: Figure A.11: Benchmark results on TabArena-Lite using Elo (left) and normalized scores
+L2109: all datasets with one outer fold. Figure A.11 shows results on TabArena-Lite, using 200 hyperpa-
+L2111: to the results on TabArena in Figure 1, showing that TabArena-Lite is a good indicator of model
+L2127: (CDDs) [58] to represent the results of a Friedman test and then a Nemenyi post-hoc test (α = 0.05)
+L2128: from AutoRank1 [59]. Figures A.12 to A.14 show the CDDs for the full benchmark, TabPFNv2-
+L2159: Figure A.12: Critical Difference Diagram for tuned+ensembled methods on the full benchmark.
+L2178: Figure A.13: Critical Difference Diagram for tuned+ensembled methods on TabPFNv2-
+L2197: Figure A.14: Critical Difference Diagram for tuned+ensembled methods on TabICL-compatible
+L2205: A.6     Investigating Tuning Trajectories and Validation Overfitting
+L2207: In Figure 5 (right), most models appear to have saturated their performance by 201 tuning configs,
+L2211: be attributed to validation data overfitting during tuning; also often called overtuning [41, 42]. This
+L2212: can be observed in Figure A.15, where despite ModernNCA being the 6th place model in terms of
+L2213: Elo when evaluated on the test data, it is the 1st place model when evaluated on the validation data.
+L2216: degree of overfitting for each method varies widely. As seen in Figure A.16, neural network models
+L2223: ernNCA and RealMLP over other models (Figure 7). The reason is not necessarily because these
+L2267:                Train time per 1K samples (s) (median)                                Train time per 1K samples (s) (median)
+L2268: Figure A.15: The tuning trajectories of model ensembles for (Left) Elo when evaluated on the test
+L2271: 10, 25, 50, 100, 150, 201). The trajectories are sampled 20 times from all trials and averaged. The
+L2272: right-most highlighted points use all configurations. The left figure calibrates 1000 Elo to the test
+L2273: performance of the default random forest configuration. The right figure calibrates 1000 Elo to the
+L2307:                                               Train time per 1K samples (s) (median)
+L2308: Figure A.16: The validation overfitting tuning trajectories of model ensembles for Elo when eval-
+L2310: Figure A.15. A value of 800 on the y-axis means that the configuration has 800 higher elo based on
+L2318: For initializing the TabArena benchmark, we surveyed all the datasets used in 14 previous benchmark-
+L2327: machine learning. Note that PMLB(Mini) [46, 47, 48] is not included in table 2 as the reference
+L2329: 1053 uniquely named datasets.
+L2330: For TabArena-v0.1, we aimed at using only those datasets representing realistic, predictive tabular
+L2332: criteria described in Appendix B.1. Two of the coauthors manually investigated each of the datasets
+L2334: ai/dataset-curation. Furthermore, we share insights from our curation process in Appendix B.3
+L2337: Figure 2 represents the first reason for exclusion that we noticed in a dataset.
+L2338: Surprisingly, only 51 datasets satisfying all criteria remained. Appendix B.2 provides additional
+L2348: B.1   Dataset Selection Criteria
+L2350: The datasets for Tabarena-v0.1 were curated by applying the following criteria:
+L2355:         the lower case and removing filling characters ’ ’| ’_’ | ’-’. (2) Manually remove datasets
+L2358:         or dataset versions with alternative targets. (4) Remove different datasets representing the
+L2369:         uninformed decisions, we exclude all datasets from other domains for TabArena-v0.1. In
+L2391:         like WikiTables [63] or GitTables [64].
+L2402:         For TabArena-v0.1, we exclude datasets with fewer than 500 or more than 250, 000 samples,
+L2410: Data Quality: We exclude datasets that suffer from one of the following data quality issues: (1)
+L2413:        of the test set (e.g., PCA features computed over all data points); (2) datasets for which we
+L2414:        could not find sufficient information to judge their source and preprocessing; (3) datasets
+L2435:          the Boston Housing dataset2 . While curating our datasets, we flagged such datasets and
+L2440: B.2     Included Datasets Details
+L2442: Table B.1 presents the domain coverage of all datasets included in TabArena-v0.1.
+L2443: Table B.2 presents a detailed overview for all datasets included in TabArena-v0.1. We further share
+L2444: all tasks and datasets as an OpenML suite [29, 61, 62] (ID 457, alias "tabarena-v0.1"). We share
+L2450: We observed several trends while curating the datasets for TabArena-v0.1. To improve the discussion
+L2460:            datasets in Appendix E.3.
+L2471: Table B.1: Domain Coverage of TabArena-v0.1. We present the domain name, along with the
+L2474: have datasets for all categories defined by Ye et al. [36], as these categories conflict with our selection
+L2477:                         business & marketing                       16    31.37%
+L2478:                         finance                                     8    15.69%
+L2479:                         chemistry & material science                6    11.76%
+L2480:                         medical & healthcare                        6    11.76%
+L2481:                         biology & life sciences                     5     9.80%
+L2482:                         technology & internet                       4     7.84%
+L2483:                         physics & astronomy                         3     5.88%
+L2484:                         education                                   1     1.96%
+L2485:                         environmental science & climate             1     1.96%
+L2486:                         industry & manufacturing                    1     1.96%
+L2490:          the development of high-performing modality-specific approaches. At least 16 datasets were
+L2497:        • The huge amount of tiny (fewer than 500 training samples) datasets is likely an artifact of a
+L2499:          the 142 tiny datasets for which we found a publication date were published later than 2010.
+L2507:        • Of the 254 datasets with alternative versions listed in Figure 2, most are from the PMLB
+L2509:          datasets: 118 are Feynman equations and 62 are Friedman data generation functions.
+L2517:          Therefore, some alternative versions were already filtered for the set of 1053 datasets with
+L2520:        • After applying all other criteria, only 51 datasets were found to satisfy the IID criterion,
+L2531: Table B.2: Datasets included in TabArena-v0.1. ’Dataset (Task) ID’ represents the OpenML dataset
+L2535: dataset has been used for the sub-benchmarks focusing on TabPFNv2 (left) and TabICL (right).
+L2537:  46913 (363621)      blood-transfusion-service-center        [65]         748      5      2   20.0    ✓| ✓
+L2538:  46921 (363629)      diabetes                                [66]         768      9      2   11.11   ✓| ✓
+L2539:  46906 (363614)      anneal                                  [67]         898      39     5   84.62   ✓| ✓
+L2540:  46954 (363698)      QSAR_fish_toxicity                      [68]         907      7      -   0.0     ✓| ✗
+L2541:  46918 (363626)      credit-g                                [69]         1000     21     2   66.67   ✓| ✓
+L2542:  46941 (363685)      maternal_health_risk                    [70]         1014     7      3   14.29   ✓| ✓
+L2543:  46917 (363625)      concrete_compressive_strength           [71]         1030     9      -   0.0     ✓| ✗
+L2544:  46952 (363696)      qsar-biodeg                             [72]         1054     42     2   14.29   ✓| ✓
+L2545:  46931 (363675)      healthcare_insurance_expenses           [73]         1338     7      -   42.86   ✓| ✗
+L2546:  46963 (363707)      website_phishing                        [74]         1353     10     3   100.0   ✓| ✓
+L2547:  46927 (363671)      Fitness_Club                            [75]         1500     7      2   57.14   ✓| ✓
+L2548:  46904 (363612)      airfoil_self_noise                      [76]         1503     6      -   16.67   ✓| ✗
+L2549:  46907 (363615)      Another-Dataset-on-used-Fiat-500        [77]         1538     8      -   12.5    ✓| ✗
+L2550:  46980 (363711)      MIC                                     [78]         1699     112    8   84.82   ✓| ✓
+L2551:  46938 (363682)      Is-this-a-good-customer                 [79]         1723     14     2   64.29   ✓| ✓
+L2552:  46940 (363684)      Marketing_Campaign                      [80]         2240     26     2   34.62   ✓| ✓
+L2553:  46930 (363674)      hazelnut-spread-contaminant-detection   [81]         2400     31     2   3.23    ✓| ✓
+L2554:  46956 (363700)      seismic-bumps                           [82]         2584     16     2   25.0    ✓| ✓
+L2555:  46958 (363702)      splice                                  [83]         3190     61     3   100.0   ✓| ✓
+L2556:  46912 (363620)      Bioresponse                             [84]         3751     1777   2   0.06    ✗| ✗
+L2557:  46933 (363677)      hiva_agnostic                           [85]         3845     1618   3   100.0   ✗| ✗
+L2558:  46960 (363704)      students_dropout_and_academic_success   [86]         4424     37     3   48.65   ✓| ✓
+L2559:  46915 (363623)      churn                                   [87]         5000     20     2   25.0    ✓| ✓
+L2560:  46953 (363697)      QSAR-TID-11                             [88]         5742     1025   -   0.0     ✗| ✗
+L2561:  46950 (363694)      polish_companies_bankruptcy             [89]         5910     65     2   1.54    ✓| ✓
+L2562:  46964 (363708)      wine_quality                            [90]         6497     13     -   7.69    ✓| ✗
+L2563:  46962 (363706)      taiwanese_bankruptcy_prediction         [91]         6819     95     2   1.05    ✓| ✓
+L2564:  46969 (363689)      NATICUSdroid                            [92]         7491     87     2   100.0   ✓| ✓
+L2565:  46916 (363624)      coil2000_insurance_policies             [93]         9822     86     2   4.65    ✓| ✓
+L2566:  46911 (363619)      Bank_Customer_Churn                     [94]         10000    11     2   45.45   ✓| ✓
+L2567:  46932 (363676)      heloc                                   [95]         10459    24     2   4.17    ✓| ✓
+L2568:  46979 (363712)      jm1                                     [96]         10885    22     2   4.55    ✓| ✓
+L2569:  46924 (363632)      E-CommereShippingData                   [97]         10999    11     2   45.45   ✓| ✓
+L2570:  46947 (363691)      online_shoppers_intention               [98]         12330    18     2   44.44   ✓| ✓
+L2571:  46937 (363681)      in_vehicle_coupon_recommendation        [99]         12684    25     2   88.0    ✓| ✓
+L2572:  46942 (363686)      miami_housing                           [100]        13776    16     -   6.25    ✓| ✗
+L2574:  46935 (363679)                                              [101]        19158    13     2   76.92   ✗| ✓
+L2576:  46934 (363678)      houses                                  [102]        20640    9      -   0.0     ✗| ✗
+L2577:  46961 (363705)      superconductivity                       [103]        21263    82     -   0.0     ✗| ✗
+L2578:  46919 (363627)      credit_card_clients_default             [104]        30000    24     2   16.67   ✗| ✓
+L2579:  46905 (363613)      Amazon_employee_access                  [105]        32769    10     2   100.0   ✗| ✓
+L2580:  46910 (363618)      bank-marketing                          [106, 107]   45211    14     2   57.14   ✗| ✓
+L2581:  46928 (363672)      Food_Delivery_Time                      [108]        45451    10     -   30.0    ✗| ✗
+L2582:  46949 (363693)      physiochemical_protein                  [109]        45730    10     -   0.0     ✗| ✗
+L2583:  46939 (363683)      kddcup09_appetency                      [110]        50000    213    2   18.31   ✗| ✓
+L2584:  46923 (363631)      diamonds                                [111]        53940    10     -   30.0    ✗| ✗
+L2585:  46922 (363630)      Diabetes130US                           [112]        71518    48     2   83.33   ✗| ✓
+L2586:  46908 (363616)      APSFailure                              [113]        76000    171    2   0.58    ✗| ✓
+L2587:  46955 (363699)      SDSS17                                  [114]        78053    12     3   25.0    ✗| ✓
+L2588:  46920 (363628)      customer_satisfaction_in_airline        [115]        129880   22     2   77.27   ✗| ✓
+L2589:  46929 (363673)      GiveMeSomeCredit                        [116]        150000   11     2   9.09    ✗| ✓
+L2607: We implement models (and their unit tests) based on the AbstractModel framework3 from Auto-
+L2608: Gluon [19]. In particular, we implement model-specific preprocessing, training, and inference within
+L2635: dataset size. In particular, TabPFNv2 is restricted to datasets with up to 10, 000 training samples, 500
+L2636: features, and 10 classes for classification tasks. TabICL is constrained to classification tasks with up
+L2637: to 100, 000 training samples and 500 features. TabDPT has no size restrictions because it natively
+L2652: AutoMLPipelineFeatureGenerator4 . The model-agnostic preprocessing can handle boolean,
+L2693:         A value of 0 means that all categorical features are dropped. Missing numerical values
+L2694:         are filled with 0. Moreover, KNN uses leave-one-out cross-validation instead of 8-fold
+L2702:       • The search spaces for CatBoost (Table C.1), LightGBM (Table C.2), XGBoost (Table C.3),
+L2703:         RandomForest (Table C.4), and ExtraTrees (Table C.5) were determined based on experi-
+L2710:         fit 300 trees on training+validation data and used out-of-bag predictions for validation. Since
+L2712:         fit these models using 8-fold CV with 50 estimators per model, resulting in 400 estimators
+L2714:       • For EBM(Table C.6), we use a search space provided by the authors.
+L2715:       • For RealMLP (Table C.7), we also use a search space provided by the authors. For the
+L2718:       • For TabM (Table C.8) and ModernNCA (Table C.9), we use search spaces coordinated
+L2747: • FastaiMLP (Table C.10) and TorchMLP (Table C.11) were taken from AutoGluon, in
+L2749: • Linear (Table C.12) and KNN (Table C.13) were taken from TabRepo. For KNN additional
+L2759:              Table C.1: Hyperparameter search space for CatBoost.
+L2763:    subsample                            Uniform([0.7, 1.0])
+L2766:    colsample_bylevel                    Uniform([0.85, 1.0])
+L2776:               Table C.2: Hyperparameter search space for LightGBM.
+L2779:                 feature_fraction          Uniform([0.4, 1.0])
+L2797:                    Table C.3: Hyperparameter search space for XGBoost.
+L2802:                  subsample                Uniform([0.6, 1.0])
+L2803:                  colsample_bylevel        Uniform([0.6, 1.0])
+L2804:                  colsample_bynode         Uniform([0.6, 1.0])
+L2814:                  Table C.4: Hyperparameter search space for Random Forest.
+L2816:                   max_features                     Uniform([0.4, 1.0])
+L2817:                   max_samples                      Uniform([0.5, 1.0])
+L2818:                   min_samples_split                LogUniformInt([2, 4])
+L2826:                    Table C.5: Hyperparameter search space for ExtraTrees.
+L2828: max_features                 Choice(["sqrt", 0.5, 0.75, 1.0])
+L2829: min_samples_split            LogUniformInt([2, 32])
+L2837:                    Table C.6: Hyperparameter search space for EBM.
+L2845:             min_samples_leaf                          UniformInt([2, 20])
+L2846:             validation_size                           Uniform([0.05, 0.25])
+L2855: Table C.7: Hyperparameter search space for RealMLP. With probability 0.5, either the “Default” or
+L2884:                       Table C.8: Hyperparameter search space for TabM.
+L2907:                  Table C.9: Hyperparameter search space for ModernNCA.
+L2916:            sample_rate                      Uniform([0.05, 0.6])
+L2925:                   Table C.10: Hyperparameter search space for FastaiMLP.
+L2935:                    Table C.11: Hyperparameter search space for TorchMLP.
+L2946:                   Table C.12: Hyperparameter search space for LinearModel.
+L2954:                      Table C.13: Hyperparameter search space for KNN.
+L2965: C.3   Cross-validation Ensembles
+L2967: We employ 8-fold cross-validation ensembles [27] within TabArena. Cross-validation ensembles
+L2969: we obtain 8 fold models. We then ensemble the 8 fold models by averaging their predictions, mirror-
+L2971: out-of-fold performance over the 8 folds.
+L2991: predictions on validation data previously collected while evaluating models [43, 120]; 2) GES op-
+L3009: other weights by n+1 , ∀ j ̸= i most reduces the validation error.
+L3016: The TabArena ensemble highlighted in Figure 7 was created by ensembling a portfolio, a set of
+L3019: [1] all evaluated hyperparameter configurations. For the sake of Figure 7, we simulated the TabArena
+L3022: leave-one-dataset-out cross-validation with a portfolio of size 200 and 40 ensemble selection steps.
+L3031: D.1       Elo Confidence Intervals
+L3033: Suppose that the benchmark datasets B = (D1 , . . . , D51 ) are i.i.d. samples from an unknown dataset-
+L3043: For a ML method A, we compute 200 bootstrap subsamples B̃ of B. The 2.5% and 97.5% quan-
+L3044: tiles of Elomean (B̃, A) yield an approximate 95% confidence interval [Lmean (A), Umean (A)] for
+L3080: by using 100 bootstrapping rounds and a stable Bradley-Terry Elo implementation.
+L3128:  4 from autogluon . features import L a b e l E n c o d e r F e a t u r e G e n e r a t o r
+L3136: 12                self . _feature_generator = None
+L3138: 14            def _preprocess ( self , X : pd . DataFrame , is_train = False , ** kwargs )
+L3142: 17                if is_train :
+L3149: 18                  self . _feature_generator = L a b e l E n c o d e r F e a t u r e G e n e r a t o r (
+L3151: 19                  self . _feature_generator . fit ( X = X )
+L3152: 20              if self . _feature_generator . features_in :
+L3154: 22                  X [ self . _feature_generator . features_in ] = self .
+L3168: 34              X = self . preprocess (X , is_train = True )
+L3221: 13 # Create and save the leaderboard figure and table
+L3268:      E.3   Contributing Data: New Datasets and Curation Feedback
+L3282: which includes: (1) a link to the raw data, and (2) the dataset license. The TabArena maintainers
+L3288:         1. Reference to pull request with a .yaml file including a dataset description following the
+L3340:      b) What is the sample size? 76,000
+L3374: Example for the socmob dataset, which was excluded for TabArena-v0.1 as it represents a scientific
+L3379:      b) What is the sample size? 1156
+L3421: (5) : Feasibility: The submission process, in particular the validation, must be manageable for the
+L3447:       Note that for TabArena-v0.1 no non-validated leaderboard exists on the website. This will change with the
+L3459:      new datasets, independent of the TabArena benchmark. Listing 5 shows how to run RealMLP on a
+L3463:                        Listing 5: Running RealMLP from TabArena on a new dataset.
+L3465:  2 from autogluon . features . generators import
+L3467:  3 from sklearn . datasets import load_breast_cancer
+L3468:  4 from sklearn . metrics import roc_auc_score
+L3469:  5 from sklearn . model_selection import train_test_split
+L3477: 12 X_train , X_test , y_train , y_test = train_test_split (X , y , test_size
+L3481: 15 feature_generator , label_cleaner = A u t o M L P i p e l i n e F e a t u r e G e n e r a t o r () ,
+L3483: 16 X_train , y_train = feature_generator . fit_transform ( X_train ) ,
+L3485: 17 X_test , y_test = feature_generator . transform ( X_test ) , label_cleaner .
+L3488: 19 # Train TabArena Model
+L3490: 21 clf . fit ( X = X_train , y = y_train )
+L3493: 24 p r e di c t io n _ pr o b ab i l it i e s = clf . predict_proba ( X = X_test )
+L3494: 25 print ( " ROC AUC : " , roc_auc_score ( y_test , p r ed i c ti o n _p r o ba b i li t i es ) )
+L3499:      E.6   Handling Foul Play and Dataset Contamination
+L3515:               approaches, model providers perform memorization tests [122]. For tabular foundation
+L3539: directly pretrained on benchmark datasets, covering seven tasks (KDDCup09_appetency, QSAR-
+L3549: dataset in prior benchmarks; cf. [23, 123, 124, 125]. As a result, we inevitably expect that TabArena
+L3581: This section presents the performance per dataset for all methods in TabArena-v0.1.
+L3588: Table F.1: Performance Per Dataset. We show the average predictive performance per dataset
+L3596: Wilcoxon Signed-Rank test for paired samples with Holm-Bonferroni correction and α = 0.05. We
+L3619:     Another-Dataset-on-used-Fiat-500 (rmse ↓)                                Bank_Customer_Churn (AUC ↑)
+L3640:                  Bioresponse (AUC ↑)                                               Diabetes130US (AUC ↑)
+L3755:                NATICUSdroid (AUC ↑)                                             QSAR-TID-11 (rmse ↓)
+L3777:              QSAR_fish_toxicity (rmse ↓)                                           SDSS17 (logloss ↓)
+L3847:                        churn (AUC ↑)                                    coil2000_insurance_policies (AUC ↑)
+L4013:                        jm1 (AUC ↑)                                            kddcup09_appetency (AUC ↑)

@@ -1,0 +1,623 @@
+SOURCE ID: L01
+TITLE: Established machine learning matches tabular foundation models in clinical predictions
+YEAR: 2026
+DOI: 10.1186/s12911-026-03654-3
+PDF: ../pdfs/L01.pdf
+PAGES: 12
+EXTRACTION: pdftotext -layout. Page breaks are form feeds. Check equations, tables, and figures against the PDF during visual audit.
+==============================================================================
+
+Shaktah et al. BMC Medical Informatics and Decision Making                                  (2026) 26:364                                                                  BMC Medical Informatics
+https://doi.org/10.1186/s12911-026-03654-3
+                                                                                                                                                                             and Decision Making
+
+
+ RESEARCH                                                                                                                                                                                                Open Access
+
+
+Established machine learning matches tabular
+foundation models in clinical predictions
+Lawrence A. Shaktah1, Marco Gustav1, Tim Lenz1, Junhao Liang1, Lars Hilgers1, Zunamys I. Carrero1 and
+Jakob Nikolas Kather1,2,3,4*
+
+
+  Abstract
+  Foundation models (FMs) promise to standardise predictive modeling across domains, yet their clinical value for
+  tabular data remains unproven. To test this, we performed a large, fully reproducible benchmark of TabPFN, a
+  leading FM for tabular prediction, against twelve established machine learning (ML) methods across twelve binary
+  clinical tasks. Cohorts spanned 788 − 139,528 patients across diverse outcomes, including survival, metastasis, and
+  disease status. Using standardized preprocessing, bootstrapping, and multiple performance metrics, TabPFN was
+  generally competitive but did not consistently outperform strong ML baselines. It exceeded the best ML model in
+  only 16.7% of tasks, with most area under the receiver operating characteristic (AUROC) differences within ± 0.02.
+  TabPFN also incurred higher computational cost, with median runtimes 5.5× longer and practical reliance on GPU
+  acceleration. These findings indicate that, for routine binary clinical prediction, TabPFN offers limited performance
+  gains relative to optimized ML methods, while introducing significant efficiency trade-offs.
+  Keywords Tabular data, Machine learning, Deep learning, TabPFN, Benchmarking
+
+
+
+​​Introduction                                                                                                  tasks such as classification or prediction [2]. In clinical
+  Artificial intelligence (AI), including its applications in                                                   applications, such models have already been applied to
+  data science, is rapidly evolving, and recent advances                                                        detect meaningful patterns from complex datasets, par-
+  have led to the development of large-scale, pre-trained                                                       ticularly in domains such as pathology [3], radiological
+  models known as foundation models (FMs). FMs are                                                              imaging [4], and clinical text [5]. The inclusion of FMs in
+  trained through a self-supervised-learning method [1],                                                        digital pathology workflows has accelerated research [6]
+  in which the model takes large amounts of unlabeled                                                           and is beginning to extend into clinical practice. Unlike
+  data and repeatedly tries to learn meaningful patterns                                                        conventional machine learning (ML) models, which
+  that can then be adapted to a wide range of downstream                                                        often require feature engineering and large, task-specific
+                                                                                                                labeled datasets to be developed from the ground up,
+                                                                                                                FMs are pre-trained on massive, heterogeneous datasets
+​​*​C​o​r​r​e​s​p​o​n​d​e​n​c​e​:​​                                                                             and can often be fine-tuned with fewer annotations while
+  Jakob Nikolas Kather
+  kather.jn@tu-dresden.de                                                                                       achieving performance comparable to, or exceeding, that
+  1
+    Else Kroener Fresenius Center for Digital Health, Faculty of Medicine, TUD                                  of task-specific ML models [7].
+  Dresden University of Technology, Dresden, Germany
+  2
+                                                                                                                  Like medical images and clinical text, electronic health
+    Department of Medicine I, Faculty of Medicine, TUD Dresden University
+  of Technology, Dresden, Germany                                                                               record (EHR) data are widely used in healthcare and often
+  3
+    Medical Oncology, National Center for Tumor Diseases (NCT), University                                      capture essential information related to patient histories,
+  Hospital Heidelberg, Heidelberg, Germany
+  4
+                                                                                                                diagnoses, treatments, and outcomes. A substantial pro-
+    Pathology & Data Analytics, Leeds Institute of Medical Research at St
+  James’s, University of Leeds, Leeds, UK                                                                       portion of clinical data is structured or semi-structured
+
+
+                                            © The Author(s) 2026. Open Access This article is licensed under a Creative Commons Attribution 4.0 International License, which permits use,
+                                            sharing, adaptation, distribution and reproduction in any medium or format, as long as you give appropriate credit to the original author(s) and
+                                            the source, provide a link to the Creative Commons licence, and indicate if changes were made. The images or other third party material in this
+                                            article are included in the article’s Creative Commons licence, unless indicated otherwise in a credit line to the material. If material is not included
+                                            in the article’s Creative Commons licence and your intended use is not permitted by statutory regulation or exceeds the permitted use, you will
+                                            need to obtain permission directly from the copyright holder. To view a copy of this licence, visit ​h​t​t​​p​:​/​/​​c​r​e​​a​t​​i​v​e​c​o​m​m​o​n​s​.​o​r​g​/​l​i​c​e​n​s​e​s​/​b​y​/​4​.​0​/​​​​.​​​​
+Shaktah et al. BMC Medical Informatics and Decision Making   (2026) 26:364                                           Page 2 of 12
+
+
+
+
+in tabular form, with defined variables such as demo-                As a result, reported performance differences may reflect
+graphics, laboratory results, medications, and diagnostic            pipeline choices as much as underlying model capability.
+codes routinely recorded in rows and columns. An ML                     In this study, we compare established ML models to
+model or FM trained for this data could therefore offer              the TabPFN FM in terms of performance and efficiency
+similar value in clinical settings, as well as new insights,         to evaluate the feasibility of replacing established ML
+by identifying patterns that may not be readily apparent             models with this FM. TabPFN was benchmarked against
+using conventional approaches.                                       strong representatives of the major model families com-
+  A leading foundation model for tabular prediction is               monly used for clinical tabular prediction, including
+the Tabular Prior-data Fitted Network (TabPFN), a gen-               classic statistical models [30], bagging ensembles [31],
+erative, transformer-based FM introduced and developed               boosting methods [32], and multilayer perceptrons [33].
+by Prior Labs (Prior Labs GmbH, Germany). Hollmann et                These families reflect distinct trade-offs in robustness
+al. reported that TabPFN outperformed state-of-the-art               for small-sample tabular data, calibration, interpretabil-
+baselines for tabular prediction including traditional ML            ity, and computational cost, and together provide a more
+models such as XGBoost, as well as a range of supervised             informative baseline than any single model class. In addi-
+deep learning architectures tailored for tabular predic-             tion, we quantify runtime on defined hardware and evalu-
+tion such as TabNet, DNF-Net, and FT-Transformer [8].                ate TabPFN with its recently introduced hyperparameter
+Unlike conventional ML models that require retraining                optimization (HPO) feature. By applying the same pipe-
+for each new task, TabPFN performs in-context learn-                 line to every target, we obtain performance and efficiency
+ing, enabling single-pass predictions without parameter              metrics that are directly comparable across models and
+updates. It processes training and testing data using a              datasets. This rigorous, uniform framework was essential
+two-way attention mechanism, allowing it to focus on                 to isolate genuine differences in model capability from
+relevant patterns at inference time by capturing rela-               artifacts introduced by heterogeneous analysis pipelines.
+tionships across columns. Currently TabPFN is opti-
+mized for predictions in small to medium sized datasets,             Results
+although future versions promise to exceed these limita-             We benchmarked TabPFN against twelve established
+tions (https:/​/priorl​abs.ai/​tabp​fn/large-data). TabPFN           ML models across twelve binary clinical prediction tasks
+was trained on millions of synthetic datasets from varied            from eight publicly available datasets, assessing discrimi-
+domains and benchmarked against widely used predic-                  nation performance, reproducibility relative to published
+tion models; Hollmann et al. reported improvements of                results, and computational efficiency.
+approximately 0.13–0.19 in per-dataset normalized area
+under the receiver operating characteristic (AUROC)                  Benchmark scope and task heterogeneity
+when compared to the strongest baselines [8]. However,               The benchmark comprises twelve clinically relevant
+although TabPFN was pre-trained on synthetic datasets                binary classification tasks derived from three indepen-
+and evaluated on general tabular benchmarks, its abil-               dent data sources: the Fundação Oncocentro de São
+ity to generalize across heterogeneous clinical tasks and            Paulo (FOSP) registry, public datasets curated by Arasteh
+outperform established ML models remains untested. If                et al. [34], and the Surveillance, Epidemiology, and End
+performance gains are small or inconsistent, the added               Results (SEER) cancer registry (Fig. 1a, b). All tasks are
+complexity and computational costs may not justify                   based on structured patient-level tabular data using con-
+replacing established tabular ML pipelines.                          sistent variable representations across datasets (Fig. 1a).
+  Previous studies comparing TabPFN with various ML                    Across tasks, cohort sizes ranged from 788 to 139,528
+models have reported mixed results. Karabacak et al.                 patients, feature dimensionality varied from 15 to 1,877
+conducted twelve independent benchmarking studies on                 variables, and target prevalences spanned a wide range
+clinical datasets, in which ML models outperformed Tab-              from rare outcomes (2.5%; esophageal cancer) to com-
+PFN in five cases [9–13], while TabPFN performed best                mon events (72.0%; 1-year survival) (Fig. 1b). The bench-
+in three [14–16], and performance was task dependent in              mark includes both cancer-related and non-cancer
+the remaining four [17–20]. At the time of writing, nine             prediction tasks, as well as disease status classification
+additional published studies similarly report heteroge-              and fixed-horizon survival endpoints.
+neous outcomes, with four favoring TabPFN [21–24],                     All datasets were evaluated using a unified benchmark-
+two favoring ML [25, 26], and three suggesting context-              ing workflow, including standardized preprocessing,
+specific performance [27–29]. However, many of these                 model training across multiple ML families, and repeated
+studies rely on private datasets and heterogeneous evalu-            bootstrap evaluation with consistent performance met-
+ation pipelines, including differences in feature handling,          rics (Fig. 1c). This design enables direct comparison
+missing-data strategies, imputation, encoding, class                 of model performance across heterogeneous clinical
+imbalance assessment, resampling, and model tuning.
+Shaktah et al. BMC Medical Informatics and Decision Making             (2026) 26:364                                                           Page 3 of 12
+
+
+
+
+Fig. 1 Overview of the TabPFN Benchmark Evaluation Pipeline and Data Sources. (a.) Example excerpt from the FOSP dataset, showing patient-level clini-
+cal data including diagnosis date, ICD-O-3 code, morphology, sex, and survival outcome. Consistent structured data formats were used across all datasets
+to establish the binary classification tasks. (b.) Patient-level tabular data were collected from three primary sources: the FOSP dataset, the SEER registry,
+and datasets published by Arasteh et al. These included both cancer-related and non-cancer conditions. Each dataset defines a binary classification task,
+with target labels representing outcomes such as disease presence or survival at specific time points. (c.) All datasets underwent a standardized prepro-
+cessing pipeline, including missing value imputation, and one-hot encoding. A comprehensive suite of machine learning models including boosting
+models, classic algorithms, and TabPFN with and without HPO was trained and evaluated on the processed data. Model performance was assessed over
+100 bootstrap iterations using metrics such as AUROC, 95% confidence intervals, and runtime per model iteration
+
+settings while minimizing confounding effects from data-                        differences (Fig. 2). When comparing AUROC values for
+set-specific evaluation procedures.                                             TabPFN, the best-performing ML model, and reported
+                                                                                literature benchmarks, all three were closely aligned
+Comparative discrimination performance across clinical                          across tasks (Fig. 2a). For each given task, the best-per-
+tasks                                                                           forming ML model is defined as the model that had the
+Across the twelve clinical prediction tasks, TabPFN                             highest AUROC for that task, as listed in Table 1 and
+achieved discrimination performance comparable                                  annotated on Fig. 2a.
+to strong ML baselines, with small, task-dependent
+Shaktah et al. BMC Medical Informatics and Decision Making             (2026) 26:364                                                           Page 4 of 12
+
+
+
+
+Fig. 2 Radar Plot of comparative TabPFN, Machine Learning, and Literature AUROC performance. (a.) AUROC across multiple clinical prediction tasks for
+three benchmarks: TabPFN (pink solid line), the best-performing machine learning model from the benchmark suite (blue dashed line), and reported val-
+ues from the literature (purple dash-dot line). Prediction tasks span cancer and non-cancer domains, including survival at 1, 3, and 5 years, cancer-specific
+and overall mortality, as well as disease classification tasks such as Amyloidosis and Hereditary Hearing Loss. TabPFN generally matched the strongest
+baseline, with small task-dependent differences. (b.) Error bars indicate the 95% CI for ΔAUROC derived from the corresponding 95% AUROC CIs. Posi-
+tive values (pink) indicate superior performance by TabPFN, while negative values (blue) indicate cases where the ML model performs better. In Fig. 2b,
+ΔAUROC intervals for Best ML–favored tasks do not cross zero, consistent with robust ML advantages for those tasks
+Shaktah et al. BMC Medical Informatics and Decision Making          (2026) 26:364                                             Page 5 of 12
+
+
+
+
+Table 1 Best-performing ML models per target                                best-performing ML model. In contrast, boosting and
+Target                                        Best-performing Model         bagging methods most frequently occupied a favorable
+Metastatic Disease                            GradientBoosting              region characterized by similar AUROCs with lower
+Hereditary Hearing Loss                       RandomForest                  runtimes.
+Esophageal Cancer                             LightGBM                        Classic models and multilayer perceptrons generally
+Amyloidosis                                   GradientBoosting              showed less favorable trade-offs, either due to lower dis-
+Renal Cell Carcinoma                          LightGBM
+                                                                            crimination performance or higher runtime. Across the
+Osteosarcoma                                  GradientBoosting
+                                                                            benchmark, TabPFN did not demonstrate a consistent
+Hepatocellular Carcinoma                      GradientBoosting
+                                                                            accuracy advantage sufficient to offset its higher compu-
+Overall Death                                 LightGBM
+                                                                            tational cost, placing it in a less favorable region of the
+Cancer Death                                  LightGBM
+                                                                            performance-efficiency space.
+5 Year Survival                               LightGBM
+                                                                              Given TabPFN’s near-parity discrimination with strong
+3 Year Survival                               CatBoost
+                                                                            ML baselines, we assessed whether comparable per-
+1 Year Survival                               LightGBM
+Best-performing ML model for each clinical target, with LightGBM emerging
+                                                                            formance reflected similar reliance on input features.
+most frequently, followed by GradientBoosting, while RandomForest and       Permutation SHAP on cardiac amyloidosis prediction
+CatBoost performed best for select outcomes                                 revealed a steep long-tailed importance profile for Tab-
+                                                                            PFN, with most attribution mass concentrated in a small
+   In direct comparisons against the strongest base-                        subset of predictors (Fig. 4a). Comparing SHAP-based
+line model per task, TabPFN outperformed the best                           rankings between TabPFN and each baseline showed
+ML model in 2 of 12 tasks and underperformed in the                         moderate-to-high agreement, with rank-biased overlap
+remaining 10 tasks when considering 95% confidence                          (RBO) values around ~ 0.55–0.65 and consistent over-
+intervals, with no cases of overlapping intervals. How-                     lap among the top-20 features (typically ~ 7–10 shared
+ever, the magnitude of these differences was small. Across                  features; Fig. 4b). Overall predictive performance was
+tasks, most absolute differences in AUROC between Tab-                      similar, TabPFN generally emphasized the same top pre-
+PFN and the best ML model were within ± 0.02 (Fig. 2b),                     dictors as boosting models, with higher computational
+indicating near-parity in discrimination performance.                       costs.
+   Both TabPFN and the strongest baseline models, most
+frequently boosting or bagging approaches such as Cat-                      Discussion
+Boost and ExtraTrees, achieved AUROC values close to                        We conducted a systematic benchmark of TabPFN
+those reported in the original publications, with only                      against established ML models across a diverse set of
+minor deviations observed in isolated cases, including                      clinically relevant binary prediction tasks, evaluating
+the SEER osteosarcoma task (Fig. 2a). Reported litera-                      both its default configuration and its automated HPO.
+ture AUROCs are included for reference and may not be                       Across tasks, TabPFN achieved discrimination per-
+directly comparable across differing evaluation protocols.                  formance comparable to strong ML baselines but did
+Negative-control label permutations yielded AUROC val-                      not consistently improve predictive accuracy. In con-
+ues near 0.5 for all models (Supplementary Fig. S1), indi-                  trast, TabPFN introduced a clear computational trade-
+cating that the observed results were unlikely to reflect a                 off, with substantially longer runtimes than competing
+false signal. Per-model performance summaries are pro-                      approaches. While CPU-only execution was feasible,
+vided in the Supplement (Bagging: Supplementary Fig.                        runtimes were markedly prolonged, whereas bagging and
+S2; Boosting: Supplementary Fig. S3; Classic: Supplemen-                    boosting methods frequently achieved similar AUROC
+tary Fig. S4; and TabPFN-HPO and MLP: Supplementary                         values with substantially lower computational cost and
+Fig. S5).                                                                   without reliance on specialized hardware.
+                                                                              These findings are consistent with prior work showing
+Performance-efficiency trade-offs                                           that ensemble-based methods remain strong baselines
+We next examined computational efficiency in relation to                    for binary prediction in clinical settings [35]. In addition
+discrimination performance (Fig. 3). When AUROC and                         to competitive performance, boosting and bagging mod-
+runtime were normalized to logistic regression as a refer-                  els benefit from mature tooling for feature attribution
+ence, clear differences emerged across model families in                    and error analysis, which facilitates model review and
+the performance-efficiency plane.                                           clinical validation [36]. Their relative simplicity also sup-
+                                                                            ports deployment on standard CPU-based infrastructure,
+  Despite achieving AUROC values comparable to the                          which remains a practical consideration in many clinical
+strongest ML baselines, TabPFN exhibited substan-                           environments.
+tially higher computational cost. Across tasks, Tab-                          The absence of a consistent performance advantage for
+PFN had a median runtime 5.53-fold higher than the                          TabPFN may reflect differences between the data regimes
+Shaktah et al. BMC Medical Informatics and Decision Making            (2026) 26:364                                                         Page 6 of 12
+
+
+
+
+Fig. 3 Runtime vs. AUROC normalized to LogisticRegression. Model performance by runtime (x-axis, log scale) and AUROC (y-axis), both normalized to
+LogisticRegression (reference at [1,1], bolded). Stars represent mean performance for each model class (excluding LogisticRegression reference); TabPFN,
+boosting, bagging, classic, and multilayer perceptron, all with 95% confidence intervals shown as error bars. Circles denote individual predictions across
+clinical targets contributing to class means
+
+
+used for model development and those encountered in                            reproduced as binary endpoint tasks, without modeling
+real-world clinical applications. TabPFN was trained pri-                      follow-up time or censoring, and should therefore not
+marily on large collections of synthetic datasets, which                       be interpreted as survival-modeling benchmarks. Future
+may not fully capture the heterogeneity, noise structure,                      benchmarking efforts that extend to larger tables, addi-
+and distributional shifts present in clinical tabular data.                    tional task formulations, and non-clinical domains will
+This interpretation aligns with broader observations in                        be necessary to more fully assess the potential of tabular
+healthcare ML cautioning against replacing well-tuned                          foundation models.
+classical models solely on the basis of architectural nov-                        Taken together our findings suggest that for large scale
+elty [37].                                                                     life science datasets, and the binary clinical classification
+  The observed performance patterns may also reflect                           tasks we evaluated here, TabPFN should be considered
+practical constraints related to TabPFN’s current col-                         a complementary method rather than a clear replace-
+umn/row processing design, which limited the effective                         ment for established ML models, especially when com-
+use of very large cohorts in this study and may have influ-                    putational efficiency and deployment constraints are
+enced achievable performance. In addition, the present                         critical. In clinical workflows, scalability, interpretability,
+benchmark focused exclusively on binary classification                         and operational simplicity are often as important as mar-
+tasks and did not evaluate multi-class or regression set-                      ginal differences in discrimination performance. Com-
+tings, despite TabPFN’s broader capabilities. The FOSP                         pared with widely used gradient-boosting frameworks
+Overall Death and Cancer Death endpoints were also                             such as CatBoost or LightGBM, TabPFN currently offers
+Shaktah et al. BMC Medical Informatics and Decision Making            (2026) 26:364                                                          Page 7 of 12
+
+
+
+
+Fig. 4 Explainability agreement between TabPFN and classical baselines. (a.) Global TabPFN feature-importance curve computed from permutation
+SHAP. Points show features sorted by decreasing mean absolute SHAP value; the dashed vertical line marks the cutoff k = 20 illustrating the rapid drop-off
+in importance beyond the highest-ranked features. (b.) Similarity between TabPFN’s SHAP-based feature ranking and each baseline model’s ranking pre-
+dicting cardiac amyloidosis. Rank overlap quantified by rank-biased overlap (RBO) (left y-axis indicates similarity among top-ranked features), set overlap
+by Jaccard similarity on the top-20 features, and absolute agreement by the top-20 overlap count (right y-axis; maximum 20)
+
+limited flexibility for domain-specific objectives and con-                    model auditing relative to baselines, at least under post-
+straints. While post-hoc explainability methods can be                         hoc SHAP attribution analyses.
+applied to any model, tree-based ensembles often remain                          For foundation models to achieve meaningful adoption
+easier to audit in practice due to well-established work-                      in healthcare, they must demonstrate clear and consis-
+flows for attribution and error analysis. In our analy-                        tent advantages that extend beyond architectural novelty.
+sis, TabPFN and Boosting ML models produced similar                            Although TabPFN may be useful as an out-of-the-box
+SHAP-derived importance rankings, implying substan-                            baseline with minimal feature engineering or tuning,
+tial overlap in the signals each model exploited. Taken                        broader clinical adoption will depend on improvements
+together, these results suggest that TabPFN does not                           in computational efficiency, scalability, and generalizabil-
+consistently offer added benefit for feature discovery or                      ity across diverse clinical tasks and data environments.
+Shaktah et al. BMC Medical Informatics and Decision Making   (2026) 26:364                                                                                Page 8 of 12
+
+
+
+
+Methods                                                                  All experiments were implemented in Python 3.12.7
+Datasets                                                             using TabPFN v2.5 and tabpfn-extensions v0.1.2, which
+We constructed twelve clinically relevant binary clas-               supports automated HPO configuration. For each pre-
+sification tasks using eight publicly available datasets             diction task, TabPFN’s HPO function was allowed 50
+with established use in the literature. From the Funda-              iterations to autoselect optimal settings. All models were
+ção Oncocentro de São Paulo (FOSP), previously used                  trained and evaluated on the same features, outcome def-
+by Woźniacki et al. [38], we derived five survival-related           initions, and tasks-specific protocols to ensure fair com-
+targets: 1-year survival, 3-year survival, 5-year survival,          parison of predictive performance and runtime across
+cancer-related deaths, and overall deaths. FOSP data                 models and tasks.
+were acquired from the publicly accessible Fundação                      Each clinical target had previously reported AUROC
+Oncocentro Registry [39], and colorectal cancer cases                values in the literature, which were reproduced to serve
+were identified using ICD-O-3 topography codes C18–                  as positive controls. In addition to the default TabPFN
+C20. FOSP Overall Death and Cancer Death were ana-                   configuration, we evaluated the recently introduced Tab-
+lyzed as reproduced binary endpoint tasks mirroring                  PFN HPO feature released after the original TabPFN
+previous publications, without modeling follow-up time               publication ​(​​h​t​​t​p​s​​:​/​/​g​​i​t​​h​u​b​.​c​o​m​/​P​r​i​o​r​L​a​b​s​/​t​a​b​p​f​n​-​e​x​t​e​n​s​
+or censoring.                                                        i​o​n​s​​​​)​.​​
+   Arasteh et al. provided four tabular clinical predic-
+tion datasets for cardiac amyloidosis, esophageal cancer,            General preprocessing
+hereditary hearing loss, and metastatic disease. These               Across all datasets, minimal preprocessing was applied
+datasets were downloaded from the supplementary                      to maintain comparability. Standard preprocessing steps
+materials of the original benchmark study and used as                included missing value handling, categorical encoding,
+provided, including predefined splits and engineered fea-            date transformation, outcome engineering, and exclusion
+tures. The tasks corresponded to prediction of amyloi-               of target leakage features.
+dosis risk [40], hereditary hearing loss inheritance [41],             Missing values in numerical columns were imputed
+high-risk esophageal cancer [42], and cancer metastasis              using a constant “-9” and cast to a floating-point format
+[43].                                                                to keep consistent with HCUP recommendations [48].
+   From the Surveillance, Epidemiology, and End Results              Missing datetime entries were filled with the placeholder
+(SEER) program [44], we reproduced three previously                  date “1900-01-01”, and missing categorical values labeled
+published ML tasks: hepatocellular carcinoma (HCC)                   as “Missing”. Columns with more than 95% missing val-
+metastasis [45], osteosarcoma (OST) [46], and renal cell             ues or with (near-)constant (i.e., had ≤ 1 unique non-null
+carcinoma (RCC) survival [47]. SEER data were extracted              value) were removed. High cardinality categorical col-
+using SEER*Stat (v8.4.5) by replicating published inclu-             umns (> 100 unique values) were also excluded to reduce
+sion criteria: (HCC metastasis; “Incidence—SEER                      unnecessary model complexity and hinder generalization.
+Research Data, 17 Registries, Nov 2023 Submission,                     Columns containing date-like strings (YYYY-MM-DD
+2000–2021”; Primary Site C22), (OST survival; “Inci-                 format) were automatically detected and converted to
+dence—SEER Research Data, 17 Registries, Nov 2024                    numeric representations as days from 1900-01-01. Tar-
+Submission, 2000–2022”; Primary Site C40.0–C41.9),                   get variables and derived outcome-related features, such
+(RCC 5‑year overall survival; same 2024 submission; Site             as “days_survived”, were excluded from all preprocessing
+recode ICD‑O‑3/WHO 2008 = Kidney and Renal Pelvis).                  steps prior to model training to prevent data leakage. A
+   All datasets were structured for clinically relevant              full list of excluded features is provided in the processing
+binary classification tasks.                                         scripts (Supplemental List 1).
+
+Experimental design                                                  Dataset-specific preprocessing
+For benchmark comparison, twelve supervised classifiers              FOSP data were filtered to colorectal cancer patients
+implemented in scikit-learn were evaluated using a fixed             using TOPO codes C18–C20. Outcome variables were
+random seed for reproducibility. These models included               defined as follows: overall_death = 1 if ULTINFO = 3 or
+AdaBoost, Bagging, CatBoost, DecisionTree, ExtraTrees,               4, and cancer_death = 1 if ULTINFO = 3. Survival tar-
+GradientBoosting, K-Nearest Neighbors (KNN), Light-                  gets (1-year, 3-year, and 5-year) were computed from
+GBM, LogisticRegression, RandomForest, Multilayer                    DTDIAG and DTULTINFO.
+Perceptron (MLP), and Support Vector Classification                    The four datasets from Arasteh et al. (amyloidosis,
+(SVC).                                                               esophageal cancer, hereditary hearing loss, metastatic
+Shaktah et al. BMC Medical Informatics and Decision Making   (2026) 26:364                                         Page 9 of 12
+
+
+
+
+disease) were used as provided, including predefined                 evaluated using identical features, targets, and prepro-
+splits and engineered features.                                      cessing. Baseline models were run on CPU, whereas
+   SEER datasets were extracted using disease-specific               TabPFN models were evaluated using an NVIDIA
+criteria as described in the Datasets section. HCC data              A100 40GB GPU. AUROC and runtime metrics were
+came from the 2023 submission (2000–2021) and were                   collected for all runs.
+filtered by Primary Site = C22. For OST cases, we used the
+2024 submission (2000–2022) with Primary Site = C40.0–               Evaluation
+C41.9. RCC cases were drawn from the same 2024 sub-                  Performance metrics included AUROC and runtime,
+mission, filtered using Site recode ICD-O-3/WHO                      computed per model and per prediction task across 100
+2008 = Kidney and Renal Pelvis.                                      bootstrap iterations. Runtimes were measured using sys-
+                                                                     tem time at the start and end of each loop, then averaged
+Sampling and bootstrapping                                           across runs for each model-target pair.
+For each of the twelve clinical prediction tasks, data                  Mean AUROCs with 95% confidence intervals were
+were preprocessed and features (X) and labels (y) were               computed, and TabPFN was compared against both the
+separated. After one-hot encoding, all datasets remained             best-performing baseline and reported literature AUROC
+within the input constraints of TabPFN v2.5, and no                  on a per-task basis. To assess performance–efficiency
+dimensionality reduction was required. Data were split               trade-offs, AUROC and inference time were normal-
+into training and testing sets using a 70/30 split. In the           ized to LogisticRegression, enabling direct comparison
+same fashion, any datasets with more than 100,000 sam-               of model quality versus runtime. No class rebalancing or
+ples were randomly sampled down to 100,000 samples to                oversampling was applied, preserving the real-world label
+allow for use within TabPFN 2.5’s input constraints.                 imbalance of each dataset.
+  Model evaluation followed a nested-loop design. In                    All threshold-based metrics including balanced accu-
+the outer loop, each baseline classifier was evaluated,              racy and F1-score, were computed after re-thresholding
+while the inner loop applied 100 bootstrap resamplings               using the Youden index. Additional metrics, including
+to the training data for each model–target pair. The test            AUPRC and standard deviations, are reported in Supple-
+set remained fixed. After 100 train/test cycles per model            mental Table 2.
+and task, an additional 100 iterations were run as nega-                To compare explainability across models, we computed
+tive controls. We used a fixed stratified split and boot-            permutation SHAP for TabPFN and Boosting ML base-
+strapped the training set only; uncertainty therefore                lines on predicting cardiac amyloidosis using the model’s
+reflects sampling variability conditional on the held-               predicted class as the output. SHAP was estimated on a
+out test set. Hyperparameters were selected once per                 random sample of up to 20 test instances with a back-
+task using 50 random search hyper parameter setting                  ground reference set of up to 1877 features. Global fea-
+iterations and then fixed across bootstrap resamplings.              ture importance was summarized as mean absolute
+Hyperparameter setting range for all baseline ML models              SHAP per feature and used to derive ranked feature lists.
+are listed in Table 2.                                               We quantified agreement between TabPFN and each
+  A second evaluation loop, identical in structure,                  baseline using RBO, Jaccard similarity on the top 20 fea-
+replaced the baseline models with TabPFN and Tab-                    tures, and the absolute overlap count. To compare GPU
+PFN-HPO. Hyperparameters were selected once                          vs. CPU dependent run times, AdaBoost and CatBoost
+per task using 50 optimization iterations and then                   were both run on CPU and GPU with otherwise identical
+fixed across bootstrap resamplings. All models were                  settings (Supplemental Fig. 6).
+Shaktah et al. BMC Medical Informatics and Decision Making              (2026) 26:364                                                                          Page 10 of 12
+
+
+
+
+Table 2 Machine learning models and hyperparameter settings
+Model                                                                                    Hyperparameter Search Space
+AdaBoost                                                                                 n_estimators: [25, 50, 75, 100, 150, 200]
+                                                                                         learning_rate: [0.01, 0.05, 0.1, 0.5, 1.0, 1.5]
+Bagging                                                                                  n_estimators: [25, 50, 75, 100, 150, 200]
+                                                                                         max_samples: [0.5, 0.7, 0.85, 1.0]
+                                                                                         max_features: [0.5, 0.75, 1.0]
+CatBoost                                                                                 iterations: [50, 100, 200, 300, 500]
+                                                                                         learning_rate: [0.01, 0.03, 0.05, 0.1, 0.2]
+                                                                                         depth: [4, 6, 8, 10]
+                                                                                         l2_leaf_reg: [1, 3, 5, 7, 9]
+Decision Tree                                                                            max_depth: [None, 2, 3, 4, 5, 6, 8, 10]
+                                                                                         min_samples_split: [2, 5, 10, 20]
+                                                                                         min_samples_leaf: [1, 2, 4, 8]
+Extra Trees                                                                              n_estimators: [50, 100, 150, 200, 300]
+                                                                                         max_depth: [None, 3, 5, 8, 12]
+                                                                                         min_samples_split: [2, 5, 10]
+                                                                                         min_samples_leaf: [1, 2, 4]
+                                                                                         max_features: [sqrt, log2, None, 0.5]
+Gradient Boosting                                                                        n_estimators: [50, 100, 150, 200, 300]
+                                                                                         learning_rate: [0.01, 0.03, 0.05, 0.1, 0.2]
+                                                                                         max_depth: [1, 2, 3, 4, 5]
+                                                                                         subsample: [0.6, 0.8, 1.0]
+KNN                                                                                      n_neighbors: [3, 5, 7, 9, 11, 15, 21]
+                                                                                         weights: [“uniform”, “distance”]
+                                                                                         p: [1, 2]
+LightGBM                                                                                 n_estimators: [50, 100, 150, 200, 300, 500]
+                                                                                         learning_rate: [0.01, 0.03, 0.05, 0.1, 0.2]
+                                                                                         num_leaves: [15, 31, 63, 127]
+                                                                                         max_depth: [-1, 3, 5, 7, 10]
+                                                                                         min_child_samples: [5, 10, 20, 50]
+                                                                                         subsample: [0.6, 0.8, 1.0]
+                                                                                         colsample_bytree: [0.6, 0.8, 1.0]
+LogisticRegression                                                                       max_iter: [100, 200, 300, 500, 700, 1000]
+                                                                                         C: [0.01, 0.1, 0.5, 1.0, 2.0, 5.0, 10.0]
+RandomForest                                                                             n_estimators: [25, 50, 100, 150, 200]
+                                                                                         max_depth: [2, 3, 4, 5, 6, 8, 10, None]
+                                                                                         min_samples_split: [2, 5, 10, 20]
+                                                                                         min_samples_leaf: [1, 2, 4, 8]
+                                                                                         max_features: [“sqrt”, “log2”, None, 0.5]
+MLP                                                                                      hidden_layer_sizes: [(50,), (100,), (150,), (100, 50), (200,), (200, 100)]
+                                                                                         max_iter: [200, 500, 800, 1000]
+                                                                                         activation: [“relu”, “tanh”]
+                                                                                         alpha: [1e-5, 1e-4, 1e-3, 1e-2]
+                                                                                         learning_rate_init: [1e-4, 5e-4, 1e-3, 5e-3, 1e-2]
+SVC                                                                                      C: [0.1, 0.5, 1.0, 2.0, 5.0, 10.0]
+                                                                                         gamma: [“scale”, “auto”, 0.001, 0.01, 0.1, 1.0]
+This table lists the machine learning algorithms in order of use in the study along with their corresponding hyperparameter configuration ranges used in random
+search
+
+Abbreviations                                                                    RBO	rank-biased overlap
+AI	Artificial intelligence                                                      RCC	renal cell carcinoma
+AUROC	area under the receiver operating characteristic                          SEER	Surveillance, Epidemiology, and End Results
+EHR	electronic health record                                                    SVC	Support Vector Classification
+FM	foundation model                                                             TabPFN	Tabular Prior-data Fitted Network
+FOSP	Fundação Oncocentro de São Paulo
+HCC	hepatocellular carcinoma
+HPO	hyper-parameter optimization
+JSC	JUWELS at Jülich Supercomputing Centre                                      Supplementary Information
+KNN	K-Nearest Neighbors                                                         The online version contains supplementary material available at ​h​t​t​​p​s​:​/​​/​d​o​​i​.​​o​r​
+ML	machine learning                                                             g​/​1​0​.​1​1​8​6​/​s​1​2​9​1​1​-​0​2​6​-​0​3​6​5​4​-​3​​​​.​​
+MLP	Multilayer Perceptron
+NIC	Neumann Institute for Computing                                               Supplementary Material 1
+OST	osteosarcoma
+Shaktah et al. BMC Medical Informatics and Decision Making                                               (2026) 26:364                                                               Page 11 of 12
+
+
+
+
+Acknowledgements                                                                                                   Consent for publication
+The authors gratefully acknowledge the Gauss Centre for Supercomputing e.V.                                        Not applicable.
+(www.gauss-centre.eu) for funding this project by providing computing time
+through the John von Neumann Institute for Computing (NIC) on the GCS                                              Competing interests
+Supercomputer JUWELS at Jülich Supercomputing Centre (JSC). The authors                                            J.N.K. declares ongoing consulting services for AstraZeneca and Bioptimus.
+gratefully acknowledge the GWK support for funding this project by providing                                       Furthermore, he holds shares in StratifAI, Synagen, and Spira Labs, has
+computing time through the Center for Information Services and HPC (ZIH) at                                        received an institutional research grant from GSK and AstraZeneca, as well as
+TU Dresden. We would also like to thank Jan Clusmann for helpful discussions                                       honoraria from AstraZeneca, Bayer, Daiichi Sankyo, Eisai, Janssen, Merck, MSD,
+and guidance during the initial phase of experimental design. Michaela                                             BMS, Roche, Pfizer, and Fresenius. M.G. has received honoraria for lectures
+Unger and Laura Žigutytė for their invaluable support and guidance in our                                          sponsored by Sartorius AG and AstraZeneca. All other authors do not have
+figure designs, as well as Radhika Juglan for her help exploring datasets as we                                    anything to disclose.
+searched for usable targets.
+                                                                                                                   Received: 21 February 2026 / Accepted: 22 June 2026
+Author contributions
+L.A.S., M.G., L.H., and J.N.K. contributed to conceptualization. L.A.S. and
+J.N.K. contributed to Data Curation. L.A.S. conducted formal analysis. J.N.K.
+conducted funding acquisition. L.A.S., M.G., L.H., J.L., and J.N.K. contributed
+methodology. L.A.S. and J.N.K. contributed to project administration and                                           References
+supervision. L.A.S., M.G., J.N.K. contributed to visualization. L.A.S., M.G., T.L., J.L.,                          1. Moor M, Banerjee O, Abad ZSH, Krumholz HM, Leskovec J, Topol EJ, et al.
+Z.I.C., and J.N.K. contributed to writing the manuscript.                                                              Foundation models for generalist medical artificial intelligence. Nature.
+                                                                                                                       2023;616:259–65.
+Funding                                                                                                            2. Bommasani R, Hudson DA, Adeli E, Altman R, Arora S, von Arx S, et al.
+Open Access funding enabled and organized by Projekt DEAL. JNK is                                                      On the opportunities and risks of foundation models. arXiv [cs.LG].
+supported by the German Cancer Aid DKH (DECADE, 70115166), the                                                         2021;arXiv:2108.07258.
+German Federal Ministry of Research, Technology and Space BMFTR                                                    3. Vorontsov E, Bozkurt A, Casson A, Shaikovski G, Zelechowski M, Severson K, et
+(PEARL, 01KD2104C; CAMINO, 01EO2101; TRANSFORM LIVER, 031L0312A;                                                       al. A foundation model for clinical-grade computational pathology and rare
+TANGERINE, 01KT2302 through ERA-NET Transcan; Come2Data, 16DKZ2044A;                                                   cancers detection. Nat Med. 2024;30:2924–35.
+DEEP-HCC, 031L0315A; DECIPHER-M, 01KD2420A; NextBIG, 01ZU2402A),                                                   4. Pai S, Bontempi D, Hadzic I, Prudente V, Sokač M, Chaunzwa TL, et al. Founda-
+the German Research Foundation DFG (TRR 412/1, 535081457; SFB 1709/1                                                   tion model for cancer imaging biomarkers. Nat Mach Intell. 2024;6:354–67.
+2025, 533056198), the German Academic Exchange Service DAAD (SECAI,                                                5. Rasmy L, Xiang Y, Xie Z, Tao C, Zhi D. Med-BERT: pretrained contextualized
+57616814), the German Federal Joint Committee G-BA (TransplantKI,                                                      embeddings on large-scale structured electronic health records for disease
+01VSF21048), the European Union EU’s Horizon Europe research and                                                       prediction. NPJ Digit Med. 2021;4:86.
+innovation programme (ODELIA, 101057091; GENIAL, 101096312), the                                                   6. Shaktah LA, Carrero ZI, Hewitt KJ, Gustav M, Cecchini M, Foersch S, et al.
+European Research Council ERC (NADIR, 101114631), the Breast cancer                                                    Application of artificial intelligence and digital tools in cancer pathology.
+Research Foundation (BELLADONNA, BCRF-25-225) and the National                                                         Lancet Digit Health. 2025;7:100933.
+Institute for Health and Care Research NIHR (Leeds Biomedical Research                                             7. Schneider J, Meske C, Kuss P. Foundation models: A new paradigm for artifi-
+Centre, NIHR203331). The views expressed are those of the author(s) and                                                cial intelligence. Bus Inf Syst Eng. 2024;66:221–31.
+not necessarily those of the NHS, the NIHR or the Department of Health and                                         8. Hollmann N, Müller S, Purucker L, Krishnakumar A, Körfer M, Hoo SB, et al.
+Social Care. This work was funded by the European Union. Views and opinions                                            Accurate predictions on small data with a tabular foundation model. Nature.
+expressed are, however, those of the author(s) only and do not necessarily                                             2025;637:319–26.
+reflect those of the European Union. Neither the European Union nor the                                            9. Karabacak M, Bhimani AD, Schupper AJ, Carr MT, Steinberger J, Margetis K.
+granting authority can be held responsible for them.                                                                   Machine learning models on a web application to predict short-term post-
+                                                                                                                       operative outcomes following anterior cervical discectomy and fusion. BMC
+Data availability                                                                                                      Musculoskelet Disord. 2024;25:401.
+No new datasets were generated for this study. All datasets analyzed are                                           10. Karabacak M, Carr MT, Schupper AJ, Bhimani AD, Steinberger J, Margetis K.
+publicly available from the original repositories/databases: Fundação                                                  An interpretable machine learning approach to predict survival outcomes in
+Oncocentro de São Paulo (FOSP;https://fosp.saude.sp.gov.br/), the public                                               spinal and sacropelvic chordomas. Spine (Phila Pa 1976). 2024.
+datasets curated by Arasteh et al. for cardiac amyloidosis, esophageal cancer,                                     11. Karabacak M, Jagtiani P, Panov F, Margetis K. Predicting 30-day non-seizure
+hereditary hearing loss, and metastatic disease ​(​​h​t​​t​p​s​​:​/​/​w​​w​w​​.​n​a​t​u​r​e​.​c​o​m​/​a​r​t​i​c​       outcomes following temporal lobectomy with personalized machine learn-
+l​e​s​/​s​4​1​4​6​7​-​0​2​4​-​4​5​8​7​9​-​8​​​​),​ and the Surveillance, Epidemiology, and End Results                 ing models. World Neurosurg. 2024;183:e59–70.
+(SEER) Program (https://seer.cancer.gov/). Dataset-specific links and identifiers                                  12. Karabacak M, Jagtiani P, Shrivastava RK, Margetis K. Personalized prognosis
+are provided in Supplementary Table 1, including the amyloidosis source                                                with machine learning models for predicting in-hospital outcomes following
+article, the esophageal cancer GitHub repository, the hereditary hearing loss                                          intracranial meningioma resections. World Neurosurg. 2024;182:e210–30.
+Mendeley Data record, the metastatic disease Zenodo record, and the FOSP                                           13. Karabacak M, Patil S, Feng R, Shrivastava RK, Margetis K. A large scale multi
+and SEER registry links. SEER-derived cohorts were extracted using SEER*Stat                                           institutional study for radiomics driven machine learning for meningioma
+v8.4.5 from the Nov 2023 and Nov 2024 SEER Research Data submissions as                                                grading. Sci Rep. 2024;14:26191.
+described in Methods. All analysis code is available at ​h​t​t​​p​s​:​/​​/​g​i​​t​h​​u​b​.​c​o​m​/​K​              14. Karabacak M, Jagtiani P, Carrasquilla A, Shrivastava RK, Margetis K. Advancing
+a​t​h​e​r​L​a​b​/​t​a​b​p​f​n​b​e​n​c​h​m​a​r​k​​​​ under an MIT licence. The code was developed                       personalized prognosis in atypical and anaplastic meningiomas through
+specifically for this study.                                                                                           interpretable machine learning models. J Neurooncol. 2023;164:671–81.
+                                                                                                                   15. Karabacak M, Jagtiani P, Di L, Shah AH, Komotar RJ, Margetis K. Advancing
+Declarations                                                                                                           precision prognostication in neuro-oncology: Machine learning models for
+                                                                                                                       data-driven personalized survival predictions in IDH-wildtype glioblastoma.
+Ethical consideration                                                                                                  Neurooncol Adv. 2024;6:vdae096.
+All datasets used in this study were publicly available and fully de-identified                                    16. Karabacak M, Margetis K. Machine learning-driven prognostication in trau-
+prior to access. No new patient data were collected, and no identifiable                                               matic subdural hematoma: Development of a predictive web application.
+information was handled at any point. Because all sources are open-access                                              Neurosurg Pract. 2024;5:e00079.
+and de-identified, this work did not require institutional ethics approval or                                      17. Karabacak M, Jagtiani P, Margetis K. The predictive abilities of machine learn-
+informed consent. All data analyses were performed in accordance with                                                  ing algorithms in patients with thoracolumbar spinal cord injuries. World
+the data-use terms of the respective repositories and the principles of the                                            Neurosurg. 2024;182:e67–90.
+Declaration of Helsinki.                                                                                           18. Karabacak M, Margetis K. Development of personalized machine learning-
+                                                                                                                       based prediction models for short-term postoperative outcomes in patients
+                                                                                                                       undergoing cervical laminoplasty. Eur Spine J. 2023;32:3857–67.
+Shaktah et al. BMC Medical Informatics and Decision Making                       (2026) 26:364                                                                                        Page 12 of 12
+
+
+
+
+19. Karabacak M, Schupper A, Carr M, Margetis K. A machine learning-based                 35. Grinsztajn L, Oyallon E, Varoquaux G. Why do tree-based models still outper-
+    approach for individualized prediction of short-term outcomes after anterior              form deep learning on tabular data? arXiv [cs.LG]. 2022;arXiv:2207.08815.
+    cervical corpectomy. Asian Spine J. 2024;18:541–9.                                    36. Mi X, Zou B, Zou F, Hu J. Permutation-based identification of important
+20. Karabacak M, Schupper AJ, Carr MT, Bhimani AD, Steinberger J, Margetis                    biomarkers for complex diseases via machine learning models. Nat Commun.
+    K. Development and internal validation of machine learning models for                     2021;12:3008.
+    personalized survival predictions in spinal cord glioma patients. Spine J.            37. Shwartz-Ziv R, Armon A. Tabular data: Deep learning is not all you need. Inf
+    2024;24:1065–76.                                                                          Fusion. 2022;81:84–90.
+21. Lara-Abelenda FJ, Chushig-Muzo D, Peiro-Corbacho P, Gómez-Martínez                    38. Woźniacki A, Książek W, Mrowczyk P. A novel approach for predicting the
+    V, Wägner AM, Granja C, et al. Transfer learning for a tabular-to-image                   survival of colorectal cancer patients using machine learning techniques and
+    approach: A case study for cardiovascular disease prediction. J Biomed Inf.               advanced parameter optimization methods. Cancers (Basel). 2024;16:3205.
+    2025;165:104821.                                                                      39. FOSP – Fundação. Oncocentro de São Paulo. https://fosp.saude.sp.gov.br/.
+22. Espinola-Sánchez M, Limay-Rios A, Campaña-Acuña A, Sanca-Valeriano                        Accessed 8 Jan 2026.
+    S. Machine learning models for estimating fetal weight based on ultra-                40. Huda A, Castaño A, Niyogi A, Schumacher J, Stewart M, Bruno M, et al. A
+    sonographic biometry: Development and validation study. Digit Health.                     machine learning model for identifying patients at risk for wild-type trans-
+    2025;11:20552076251342012.                                                                thyretin amyloid cardiomyopathy. Nat Commun. 2021;12:2725.
+23. Durmaz ES, Karabacak M, Ozkara BB, Kargın OA, Demir B, Raimoglou D, et al.            41. Luo X, Li F, Xu W, Hong K, Yang T, Chen J, et al. Machine learning-based
+    Machine learning and radiomics for ventricular tachyarrhythmia prediction                 genetic diagnosis models for hereditary hearing loss by the GJB2, SLC26A4
+    in hypertrophic cardiomyopathy: insights from an MRI-based analysis. Acta                 and MT-RNR1 variants. EBioMedicine. 2021;69:103322.
+    Radiol. 2024;65:1473–81.                                                              42. Gao Y, Xin L, Lin H, Yao B, Zhang T, Zhou A-J, et al. Machine learning-based
+24. Alzakari SA, Aldrees A, Umer M, Cascone L, Innab N, Ashraf I. Artificial                  automated sponge cytology for screening of oesophageal squamous
+    intelligence-driven predictive framework for early detection of still birth.              cell carcinoma and adenocarcinoma of the oesophagogastric junction: a
+    SLAS Technol. 2024;29:100203.                                                             nationwide, multicohort, prospective study. Lancet Gastroenterol Hepatol.
+25. Petre I, Negru S, Dragomir R, Bordianu A, Petre I, Marc L, et al. Artificial intel-       2023;8:432–45.
+    ligence algorithms in predictive factors for hematologic toxicities during            43. Pamporaki C, Berends AMA, Filippatos A, Prodanov T, Meuter L, Prejbisz A,
+    concurrent chemoradiation for cervical cancer. Cureus. 2024;16:e70665.                    et al. Prediction of metastatic pheochromocytoma and paraganglioma: a
+26. Duwe G, Mercier D, Kauth V, Moench K, Rajashekar V, Junker M, et al.                      machine learning modelling study using data from a cross-sectional cohort.
+    Development of an artificial intelligence-generated, explainable treatment                Lancet Digit Health. 2023;5:e551–9.
+    recommendation system for urothelial carcinoma and renal cell carcinoma to            44. Surveillance. Epidemiology, and end results program. SEER. ​h​t​t​p​s​:​/​/​s​e​e​r​.​c​a​n​c​e​
+    support multidisciplinary cancer conferences. Eur J Cancer. 2025;220:115367.              r​.​g​o​v​/​​​​. Accessed 15 Oct 2025.
+27. Tran VQ, Byeon H. Predicting dementia in Parkinson’s disease on a small               45. Kim JJH, Nahass GR, Dai Y, Tulabandhula T. Prediction of lung metastasis
+    tabular dataset using hybrid LightGBM-TabPFN and SHAP. Digit Health.                      from hepatocellular carcinoma using the SEER database. arXiv [q-bio.TO].
+    2024;10:20552076241272585.                                                                2025;arXiv:2501.11720.
+28. Sun Y, Cheng G, Wei D, Luo J, Liu J. Integrating omics data and machine               46. Cao P, Dun Y, Xiang X, Wang D, Cheng W, Yan L, et al. Machine learning-based
+    learning techniques for precision detection of oral squamous cell carcinoma:              individualized survival prediction model for prognosis in osteosarcoma: Data
+    evaluating single biomarkers. Front Immunol. 2024;15:1493377.                             from the SEER database. Med (Baltim). 2024;103:e39582.
+29. Noda R, Ichikawa D, Shibagaki Y. Machine learning-based diagnostic                    47. Jiang W, Chen Z, Chen C, Wang L, Han T, Wen L. Machine learning algorithms
+    prediction of minimal change disease: model development study. Sci Rep.                   being an auxiliary tool to predict the overall survival of patients with renal
+    2024;14:23460.                                                                            cell carcinoma using the SEER database. Transl Androl Urol. 2024;13:53–63.
+30. Hastie T, Tibshirani R, Friedman J. The elements of statistical learning: data        48. HCUP-US Home Page. HCUP coding practices. ​h​t​t​​​​p​s​​:​​/​/​​h​​c​​​u​p​-​​u​s​.​a​h​r​q​.​g​o​v​/​d​b​/​c​
+    mining, inference, and prediction. 1st ed. New York (NY): Springer; 2001.                 o​d​i​n​g​.​p​d​f​​​​. Accessed 1 May 2026.
+31. Breiman L. Bagging predictors. Mach Learn. 1996;24:123–40.
+32. Freund Y, Schapire RE. A decision-theoretic generalization of on-line learning
+    and an application to boosting. J Comput Syst Sci. 1997;55:119–39.                    Publisher’s note
+33. Rumelhart DE, Hinton GE, Williams RJ. Learning representations by back-               Springer Nature remains neutral with regard to jurisdictional claims in
+    propagating errors. Nature. 1986;323:533–6.                                           published maps and institutional affiliations.
+34. Tayebi Arasteh S, Han T, Lotfinia M, Kuhl C, Kather JN, Truhn D, et al. Large
+    language models streamline automated machine learning for clinical studies.
+    Nat Commun. 2024;15:1603.
+
+==============================================================================
+VISUAL FIGURE VALUE AUDIT
+==============================================================================
+
+# L01: Figure and table review
+
+Source: pdfs/L01.pdf, *Established machine learning matches tabular foundation models in clinical predictions* (2026), DOI 10.1186/s12911-026-03654-3.
+
+## Figure 2, printed values, PDF page 4
+
+Panel a is a radar chart comparing literature AUROC, TabPFN, and best classical ML for 12 binary tasks. The plotted labels are:
+
+| Task | Literature | TabPFN | Best ML |
+|---|---:|---:|---:|
+| Metastatic disease | 0.94 | 0.92 | 0.94 |
+| Hereditary hearing loss | 0.76 | 0.77 | 0.77 |
+| Esophageal cancer | 0.98 | 0.95 | 0.96 |
+| Amyloidosis | 0.95 | 0.92 | 0.94 |
+| Renal cell carcinoma | 0.84 | 0.86 | 0.87 |
+| Osteosarcoma | 0.75 | 0.80 | 0.81 |
+| Hepatocellular carcinoma | 0.82 | 0.83 | 0.83 |
+| Overall death | 0.87 | 0.87 | 0.88 |
+| Cancer death | 0.86 | 0.87 | 0.87 |
+| 5-year survival | 0.89 | 0.89 | 0.90 |
+| 3-year survival | 0.85 | 0.87 | 0.88 |
+| 1-year survival | 0.85 | 0.85 | 0.87 |
+
+The numeric point labels are printed on the image. Panel b shows 95% confidence intervals for the AUROC difference between TabPFN and the best ML model. Exact interval endpoints are not printed beside each task; they must not be estimated as exact from the pixels. The paper reports TabPFN as best in 16.7% of tasks and most differences within +/-0.02 in its abstract.
+
+## Figure 3, visual-only runtime plot, PDF page 6
+
+Axes: runtime normalized to logistic regression, logarithmic scale, approximately 0.03 to 300; AUROC normalized to logistic regression, approximately 0.7 to 1.65. Individual points and class means are not numerically labeled, so no exact per-point values are transcribed. The mean markers for TabPFN and TabPFN-HPO appear around 1.24-1.25 normalized AUROC and roughly 30-50 normalized runtime; these are visual estimates only. The figure caption says means exclude logistic regression and error bars are 95% CIs.
+
+## Tables
+
+Tables 1 and 2 are present in txt/L01.txt in PDF reading order. Table 2 contains evaluated model families and hyperparameter settings. Verify column alignment against the page before reusing any table value.
+

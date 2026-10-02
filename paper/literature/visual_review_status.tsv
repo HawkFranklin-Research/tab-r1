@@ -1,0 +1,41 @@
+source_id	title	pdf_status	text_status	caption_inventory_rows	visual_review_status	note_path
+L01	Established machine learning matches tabular foundation models in clinical predictions	downloaded	extracted	6	partial_manual_review; not exhaustive	notes/L01_visual_audit.md
+L02	Large-scale benchmark study of survival prediction methods using multi-omics data	no_pdf	extracted	0	not_reviewed_no_pdf	NA
+L03	Does combining numerous data types in multi-omics data improve or hinder performance in survival prediction? Insights from a large-scale benchmark study	downloaded	extracted	8	partial_manual_review; not exhaustive	notes/L03_visual_audit.md
+L04	Systematic comparison of multi-omics survival models reveals a widespread lack of noise resistance	no_pdf	extracted	0	not_reviewed_no_pdf	NA
+L05	External Validity of Risk Models: Use of Benchmark Values to Disentangle a Case-Mix Effect From Incorrect Coefficients	no_pdf	no_local_full_text	0	not_reviewed_no_pdf	NA
+L06	Propensity-based standardization to enhance the validation and interpretation of prediction model discrimination for a target population	downloaded	extracted	1	partial_manual_review; not exhaustive	notes/L06_visual_audit.md
+L07	Informative presence and observation in routine health data: A review of methodology for clinical risk prediction	no_pdf	extracted	0	not_reviewed_no_pdf	NA
+L08	Robust prediction under missingness shifts	downloaded	extracted	12	partial_manual_review; not exhaustive	notes/L08_visual_audit.md
+L09	Characterizing and Avoiding Negative Transfer	downloaded	extracted	9	partial_manual_review; not exhaustive	notes/L09_visual_audit.md
+L10	Shortcut learning in deep neural networks	downloaded	extracted	7	partial_manual_review; not exhaustive	notes/L10_visual_audit.md
+L11	Cell-of-Origin Patterns Dominate the Molecular Classification of 10,000 Tumors from 33 Types of Cancer	no_pdf	extracted	0	not_reviewed_no_pdf	NA
+L12	External validation of clinical prediction models using big datasets from e-health records or IPD meta-analysis: opportunities and challenges	no_pdf	extracted	0	not_reviewed_no_pdf	NA
+L13	Batch Effect Confounding Leads to Strong Bias in Performance Estimates Obtained by Cross-Validation	downloaded	extracted	8	partial_manual_review; not exhaustive	notes/L13_visual_audit.md
+L14	Cross-study validation for the assessment of prediction algorithms	no_pdf	extracted	0	not_reviewed_no_pdf	NA
+L15	Selection bias in gene extraction on the basis of microarray gene-expression data	no_pdf	no_local_full_text	0	not_reviewed_no_pdf	NA
+L16	TabPFN-2.5: Advancing the State of the Art in Tabular Foundation Models	downloaded	extracted	31	partial_manual_review; not exhaustive	notes/L16_visual_audit.md
+L17	TabPFN-3: Technical Report	downloaded	extracted	70	partial_manual_review; not exhaustive	notes/L17_visual_audit.md
+L18	Accurate predictions on small data with a tabular foundation model	downloaded	extracted	6	partial_manual_review; not exhaustive	notes/L18_visual_audit.md
+L19	TabICL: A Tabular Foundation Model for In-Context Learning on Large Data	downloaded	extracted	37	partial_manual_review; not exhaustive	notes/L19_visual_audit.md
+L20	TabArena: A Living Benchmark for Machine Learning on Tabular Data	downloaded	extracted	49	partial_manual_review; not exhaustive	notes/L20_visual_audit.md
+L21	Why do tree-based models still outperform deep learning on typical tabular data?	downloaded	extracted	35	partial_manual_review; not exhaustive	notes/L21_visual_audit.md
+L22	Random Forests	downloaded	extracted	11	partial_manual_review; not exhaustive	notes/L22_visual_audit.md
+L23	XGBoost: A Scalable Tree Boosting System	downloaded	extracted	17	partial_manual_review; not exhaustive	notes/L23_visual_audit.md
+L24	LightGBM: A Highly Efficient Gradient Boosting Decision Tree	downloaded	extracted	6	partial_manual_review; not exhaustive	notes/L24_visual_audit.md
+L25	CatBoost: unbiased boosting with categorical features	downloaded	extracted	6	partial_manual_review; not exhaustive	notes/L25_visual_audit.md
+L26	AutoGluon-Tabular: Robust and Accurate AutoML for Structured Data	downloaded	extracted	29	partial_manual_review; not exhaustive	notes/L26_visual_audit.md
+L27	Introducing TabFM: A zero-shot foundation model for tabular data	not_applicable_official_software_source	official documentation archived	0	official_source_text_archived; no paper figures	NA
+L28	TabFM: A Foundation Model for Tabular Data	not_applicable_official_software_source	official documentation archived	0	official_source_text_archived; no paper figures	NA
+L29	The Precision-Recall Plot Is More Informative than the ROC Plot When Evaluating Binary Classifiers on Imbalanced Datasets	downloaded	extracted	14	partial_manual_review; not exhaustive	notes/L29_visual_audit.md
+L30	Calibration: the Achilles heel of predictive analytics	downloaded	extracted	5	partial_manual_review; not exhaustive	notes/L30_visual_audit.md
+L31	Verification of forecasts expressed in terms of probability	wrong source quarantined; correct PDF unavailable	wrong-source extraction quarantined	0	not_reviewed_correct_source_unavailable	NA
+L32	Comprehensive molecular portraits of human breast tumours	downloaded	extracted	6	partial_manual_review; not exhaustive	notes/L32_visual_audit.md
+L33	Integrated genomic characterization of oesophageal carcinoma	downloaded	extracted	8	partial_manual_review; not exhaustive	notes/L33_visual_audit.md
+L34	Comprehensive genomic characterization of head and neck squamous cell carcinomas	downloaded	extracted	7	partial_manual_review; not exhaustive	notes/L34_visual_audit.md
+L35	Comprehensive genomic characterization of squamous cell lung cancers	downloaded	extracted	10	partial_manual_review; not exhaustive	notes/L35_visual_audit.md
+L36	Comprehensive molecular profiling of lung adenocarcinoma	downloaded	extracted	5	partial_manual_review; not exhaustive	notes/L36_visual_audit.md
+L37	An Integrated TCGA Pan-Cancer Clinical Data Resource to Drive High-Quality Survival Outcome Analytics	no_pdf	no_local_full_text	0	not_reviewed_no_pdf	NA
+L38	Pan-cancer proteogenomics connects oncogenic drivers to functional states	no_pdf	no_local_full_text	0	not_reviewed_no_pdf	NA
+L39	TRIPOD+AI statement: updated guidance for reporting clinical prediction models that use regression or machine learning methods	no_pdf	extracted	0	not_reviewed_no_pdf	NA
+L40	PROBAST+AI: an updated quality, risk of bias, and applicability assessment tool for prediction models using regression or artificial intelligence methods	no_pdf	extracted	0	not_reviewed_no_pdf	NA

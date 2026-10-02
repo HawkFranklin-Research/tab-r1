@@ -1,0 +1,81 @@
+# Retrieval inventory, NOT completed visual/claim audit
+Source L23: XGBoost: A Scalable Tree Boosting System; DOI 10.1145/2939672.2939785
+Original text line numbers. Numbers may be citations, secondary reports,
+toy examples, or ambiguous table columns. Verify context before citing.
+
+L89:      • We propose a theoretically justified weighted quantile       Figure 1: Tree Ensemble Model. The final predic-
+L126: method is originated from Friedman et al. [12]. We make mi-         is trained in an additive manner. Formally, let ŷi be the
+L133:   For a given data set with n examples and m features                                       i=1
+L170: Figure 2: Structure Score Calculation. We only
+L183:                                                                      (4)            Propose Sk = {sk1 , sk2 , · · · skl } by percentiles on feature k.
+L192:                                                                                     Gkv ←= j∈{j|sk,v ≥xjk >sk,v−1 } gj
+L194: weight wj∗ of leaf j by                                                             Hkv ←= j∈{j|sk,v ≥xjk >sk,v−1 } hj
+L264:                     0.77                                 global eps=0.3         Figure 4: Tree structure with default directions. An
+L273: Figure 3: Comparison of test AUC convergence on                                 ture are used to make candidates distribute evenly on the
+L274: Higgs 10M dataset. The eps parameter corresponds                                data. Formally, let multi-set Dk = {(x1k , h1 ), (x2k , h2 ) · · · (xnk , hn )}
+L276: roughly translates to 1 / eps buckets in the proposal.                          statistics of each training instances. We can define a rank
+L289: Alg. 2. To summarize, the algorithm first proposes can-                          |rk (sk,j ) − rk (sk,j+1 )| < , sk1 = min xik , skl = max xik .
+L322: statistics [22]. It is also possible to use other variants of bin-              accuracy level. A detailed description of the algorithm as
+L328:    Our system efficiently supports exact greedy for the single                  for sparsity: 1) presence of missing values in the data; 2)
+L337: Figure 6: Block structure for parallel learning. Each column in a block is sorted by the corresponding feature
+L345:   Input: Ik = {i ∈ I|xik 6= missing}                                                                  4
+L351:   Input: d, feature dimension                                                                         2
+L353:   statistics of non-missing entries into buckets                                                     0.5
+L359:       // enumerate missing value goto right                                                      0.03125
+L364:       for j in sorted(Ik , ascent order by xjk ) do              Figure 5: Impact of the sparsity aware algorithm
+L366:                                                                  on Allstate-10K. The dataset is sparse mainly due
+L389: Alg. 3. The key improvement is to only visit the non-missing     finding of all leaves collectively, so one scan over the block
+L391: as a missing value and learns the best direction to handle       branches. Fig. 6 shows how we transform a dataset into the
+L401: of non-missing entries in the input. Fig. 5 shows the com-       at each branch. The binary search in histogram aggregation
+L403: Allstate-10K dataset (description of dataset given in Sec. 6).      Collecting statistics for each column can be parallelized,
+L431: Figure 7: Impact of cache-aware prefetching in exact greedy algorithm. We find that the cache-miss effect
+L432: impacts the performance on the large datasets (10 million instances). Using cache aware prefetching improves
+L453: Figure 8:   Short range data dependency pattern
+L465: denote number of non-missing entries in the training data.                                                                                                                                           512
+L493:                                                                                                                                           Figure 9: The impact of block size in the approxi-
+L513: is large. Figure 7 gives the comparison of cache-aware vs.                                                                                are given in Fig. 9. This result validates our discussion and
+L515:                                  Table 1: Comparison of major tree boosting systems.
+L542: and increase the throughput of disk IO. We mainly use two          in Table 1.
+L554: of the dataset we tested, we achieve roughly a 26% to 29%          6.    END TO END EVALUATIONS
+L573: aware learning is essential in other types of models such as       6.2    Dataset and Setup
+L582:         Table 2: Dataset used in the Experiments.                  Table 3: Comparison of Exact Greedy Methods with
+L583:     Dataset         n      m    Task                               500 trees on Higgs-1M data.
+L584:     Allstate      10 M 4227 Insurance claim classification          Method                  Time per Tree (sec) Test AUC
+L586:     Yahoo LTRC 473K       700   Learning to Rank                    XGBoost (colsample=0.5)       0.6401         0.8245
+L590:    We used four datasets in our experiments. A summary of                                         32
+L591: these datasets is given in Table 2. In some of the experi-
+L598: the algorithm with varying dataset size. We use a suffix to                                        8                              pGBRT
+L602: means a subset of the Allstate dataset with 10K instances.
+L605: dataset8 . The task is to predict the likelihood and cost of
+L608: of an insurance claim. This dataset is used to evaluate the                                       0.5
+L612:                                                                    Figure 10: Comparison between XGBoost and pG-
+L613: randomly select 10M instances as training set and use the
+L616:    The second dataset is the Higgs boson dataset9 from high        Table 4: Comparison of Learning to Rank with 500
+L620: It also contains seven additional derived physics quantities        XGBoost (colsample=0.5)       0.506          0.7913
+L625: dataset [6], which is one of the most commonly used bench-         tributed and the out-of-core experiments will be described in
+L631:    The last dataset is the criteo terabyte click log dataset10 .
+L632: We use this dataset to evaluate the scaling property of the        6.3   Classification
+L635: data contains 13 integer features and 26 ID features of user,
+L644:                                                                    dense Higgs dataset for a fair comparison. We use the 1M
+L649: contains 1.7 billion instances with 67 features (13 integer, 26
+L651: average CTR statistics and 26 counts). The entire dataset
+L656:                                                                    shown in Table 3. Both XGBoost and scikit-learn give better
+L709: Figure 11: Comparison of out-of-core methods on
+L710: different subsets of criteo data. The missing data                                                                         4096
+L735: approximate algorithm. The results are shown in Table 4                                                                               Number of Training Examples (million)
+L738: and but also gives a bit higher performance for this prob-                             Figure 12: Comparison of different distributed sys-
+L746: RAM). The results are shown in Figure 11. We can find                                  the full 1.7 billion examples with given resources by
+L749: For this type of experiment, it is important to use a very                             32 m3.2xlarge machines and test the performance of the sys-
+L763: 80GB SSD local disks. The dataset is stored on AWS S3                                  of machines. The results are shown in Fig. 13. We can find
+L795: Figure 13: Scaling of XGBoost with different num-                             Statistics, 28(2):337–407, 2000.
+L796: ber of machines on criteo full 1.7 billion dataset.                      [13] J. H. Friedman and B. E. Popescu. Importance sampled
+L800: the entire dataset using as little as four machines,                          2001 ACM SIGMOD International Conference on
+L870: relative accuracy of . Two operations are defined for a quantile                r̃D (xi ) + ω̃D (xi ) ≤ r̃D (xi+1 ), r̃D (xi ) ≤ r̃D (xi+1 ) − ω̃D (xi+1 )
+L900: sition of the point and wi is the weight of the point. Assume                     Lemma A.1. Extended Constraint
+L904: functions rD , rD : X → [0, +∞)                                                 constraints
+L989: function. Lemma A.1 and A.2 show that the constraints on the
+L1019:                              , ω̃D2 ) quantile summary of two dataset
+L1061: and the extended constraint property in Lemma A.1, we can verify                               −           +
+L1063: that Q(D) satisfies all the constraints in Definition A.1. Therefore
+L1064: it is a valid quantile summary.                                                                 1 −            +
+L1130: the constraints in Definition A.1 and is a valid quantile summary.

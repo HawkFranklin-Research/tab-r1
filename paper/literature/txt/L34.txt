@@ -1,0 +1,695 @@
+SOURCE ID: L34
+TITLE: Comprehensive genomic characterization of head and neck squamous cell carcinomas
+YEAR: 2015
+DOI: 10.1038/nature14129
+PDF: ../pdfs/L34.pdf
+PAGES: 7
+EXTRACTION: pdftotext -layout. Page breaks are form feeds. Check equations, tables, and figures against the PDF during visual audit.
+==============================================================================
+
+ARTICLE                                                                                                                                                   OPEN
+                                                                                                                                            doi:10.1038/nature14129
+
+
+
+
+Comprehensive genomic
+characterization of head and neck
+squamous cell carcinomas
+The Cancer Genome Atlas Network*
+
+
+
+   The Cancer Genome Atlas profiled 279 head and neck squamous cell carcinomas (HNSCCs) to provide a comprehensive
+   landscape of somatic genomic alterations. Here we show that human-papillomavirus-associated tumours are
+   dominated by helical domain mutations of the oncogene PIK3CA, novel alterations involving loss of TRAF3, and
+   amplification of the cell cycle gene E2F1. Smoking-related HNSCCs demonstrate near universal loss-of-function TP53
+   mutations and CDKN2A inactivation with frequent copy number alterations including amplification of 3q26/28 and
+   11q13/22. A subgroup of oral cavity tumours with favourable clinical outcomes displayed infrequent copy number alter-
+   ations in conjunction with activating mutations of HRAS or PIK3CA, coupled with inactivating mutations of CASP8,
+   NOTCH1 and TP53. Other distinct subgroups contained loss-of-function alterations of the chromatin modifier NSD1,
+   WNT pathway genes AJUBA and FAT1, and activation of oxidative stress factor NFE2L2, mainly in laryngeal tumours.
+   Therapeutic candidate alterations were identified in most HNSCCs.
+
+
+HNSCCs affect ,600,000 patients per year worldwide1. They are char-                            (miRNA), DNA methylation, gene expression and somatic nucleotide
+acterized by phenotypic, aetiological, biological and clinical heterogen-                      substitutions (Supplementary Information section 1.2 and Supplemen-
+eity. Smoking is implicated in the rise of HNSCC in developing countries,                      tary Figs 1.1–1.3). HPV(1) tumours exhibited infrequent mutations in
+and the role of human papillomavirus (HPV) is emerging as an import-                           TP53 or genetic alterations in CDKN2A. We evaluated outcome by site,
+ant factor in the rise of oropharyngeal tumours affecting non-smokers                          stage, HPV status, molecular subtypes and putative biomarkers (Sup-
+in developed countries2. Despite surgery, radiation and chemotherapy,                          plementary Information section 1.3 and Supplementary Figs 1.4 and
+approximately half of all patients will die of the disease. Risk stratifica-                   1.5). HPV(1) and interestingly patients with HPV(2), TP53 wild-type
+tion for HNSCC is by anatomic site, stage and histological characteristics                     tumours demonstrated favourable outcomes compared to TP53 mutants
+of the tumour. Except for HPV status, numerous molecular and clin-                             and 11q13/CCND1-amplified tumours.
+ical risk factors that have been investigated have limited clinical utility.
+   Published genome-wide profiling studies of HNSCC3,4 are limited                             DNA and RNA structural alterations
+to single platforms. To generate an integrated genomic annotation of                           Most tumours demonstrated copy number alterations (CNAs) includ-
+molecular alterations in HNSCC, The Cancer Genome Atlas (TCGA)                                 ing losses of 3p and 8p, and gains of 3q, 5p and 8q chromosomal re-
+has undertaken a comprehensive multi-platform characterization of                              gions (Fig. 1a, Supplementary Fig. 2.1 and Supplementary Information
+500 tumours with the a priori hypothesis of detecting somatic variants                         section 2) resembling lung squamous cell carcinomas (LUSCs)5 (Fig. 1a
+present in at least 5% of samples. Here, we report the results for ana-                        and Supplementary Figs 2.1 and 2.2). HNSCC genomes showed high
+lyses from the first 279 patients with complete data.                                          instability with a mean of 141 CNAs (amplifications or deletions) from
+                                                                                               microarray data and 62 structural aberrations (chromosomal fusions)
+Samples and clinical data                                                                      per tumour by ‘high coverage’ whole-genome sequencing (n 5 29) (Sup-
+The cohort consists primarily of tumours from the oral cavity (n 5 172                         plementary Information section 2.2). We observed 39 regions of recur-
+out of 279, 62%), oropharynx (n 5 33 out of 279, 12%), and laryngeal                           rent copy number loss and 23 regions of recurrent copy number gain (q
+sites (n 5 72 out of 279, 26%) (Supplementary Information section 1,                           , 0.1, Supplementary Data 2.1 and 2.2). Both HPV(1) and (2) tumours
+Supplementary Table 1.1 and Supplementary Data 1.1). Most patients                             contained recurrent focal amplifications for 3q26/28, a region involv-
+were male (n 5 203 out of 279, 73%) and heavy smokers (mean pack                               ing squamous lineage transcription factors TP63 and SOX2 and the
+years 5 51). Samples were classified as HPV-positive using an empiric                          oncogene PIK3CA (Fig. 1b and Supplementary Fig. 2.3).
+definition of .1,000 mapped RNA sequencing (RNA-Seq) reads, prim-                                 HPV(1) tumours were distinguished by novel recurrent deletions
+arily aligning to viral genes E6 and E7 (Supplementary Information                             (n 5 5 out of 36, 14%) and truncating mutations (n 5 3 out of 36, 8%)
+section 1.2 and Supplementary Fig. 1.1). The HPV status by mapping                             of TNF receptor-associated factor 3 (TRAF3) (Supplementary Figs 2.3
+of RNA-Seq reads was concordant with the genomic, sequencing and                               and 2.4, and Supplementary Data 2.1). TRAF3 is implicated in innate
+molecular data, and indicated that 36 tumours were HPV(1) and 243                              and acquired anti-viral responses6 including Epstein–Barr, HPV and
+were HPV(2) (Supplementary Information section 1.2, Supplemen-                                 human immunodeficiency virus (HIV)7–9, while loss promotes aberrant
+tary Fig. 1.1 and Supplementary Data 1.2). Of 33 oropharyngeal tumours,                        NF-kB signalling10. Although TRAF3 inactivation has been reported in
+64% were positive for HPV, compared to 6% of 246 non-oropharyngeal                             haematological malignancies and nasopharyngeal carcinoma11,12, to our
+tumours. Molecular HPV signatures were identified using microRNA                               knowledge this is the first evidence linking TRAF3 to HPV-associated
+*Lists of participants and their affiliations appear at the end of the paper.
+
+
+5 7 6 | N AT U R E | VO L 5 1 7 | 2 9 J A N U A RY 2 0 1 5
+                                                                 ©2015 Macmillan Publishers Limited. All rights reserved
+                                                                                                                                                      ARTICLE RESEARCH
+
+ a 1                                                                                                 analysis also suggested that clustering was a function of chromosome
+                                                                                                     7 amplification (including the EGFR locus) in a manner that largely
+                   2                                                                          1.0
+                                                                                                     excluded HPV(1) tumours.
+              3                                                                                         To detect additional structural alterations, we interrogated whole-
+                   4
+                                                                                                     genome and RNA-Seq data (Supplementary Information section 3,
+              5
+                                                                                                     Supplementary Data 3.1 and Supplementary Fig. 3.1). Known fusion
+
+Chromosome
+                   6
+              7                                                                                      oncogenes reported in solid tumours including those involving the ALK,
+                   8                                                                          0      ROS or RET genes were not observed in HNSCC. Previously reported
+              9
+                  10                                                                                 FGFR3-TACC3 fusions were present in two HPV(1) tumours (Sup-
+             11                                                                                      plementary Fig. 3.2). Only 1 out of 279 patients showed evidence of the
+                  12
+             13                                                                                      type III isoform of EGFR (vIII), previously described in HNSCC16 (Sup-
+                  14
+             15
+                16
+                                                                                                     plementary Fig. 3.3). Although our investigation did not identify addi-
+             17
+             19
+                18
+                                                                                              –1.0
+                                                                                                     tional novel oncogenic fusions, several tumours demonstrated exon 1
+                20
+             21 22
+              X
+                                                                                                     of EGFR or FGFR3 fused to non-recurrent partners, suggesting poten-
+                                                                                                     tial promoter swaps for the partner genes (Supplementary Data 3.1). A
+                  LUSC (358)      HPV(–) HNSCC (243)        HPV(+) HNSCC (36)       CESC (114)       low prevalence of an alternative MET transcript with skipped exon 14
+                                                                                                     was identified in two HPV(2) tumours (Supplementary Fig. 3.4); this
+ b                                                                                                   finding was reported to be an activating event in non-small cell lung
+                                                                                                     cancer17. Structural alterations (homozygous deletions, intra- and inter-
+              1                                                                               1.5
+                                                                                                     chromosomal fusions) were more commonly associated with loss of
+                  2                                                                                  function in tumour suppressor genes, most prominently CDKN2A (Sup-
+              3                                                                                      plementary Figs 3.5 and 3.6), followed by TP53, RB1, NOTCH1 and
+                  4                                                                                  FAT1 (Supplementary Figs 3.7–3.9), than with protein-coding fusion
+              5                                                                                      events. RNA-Seq data (Supplementary Data 3.3) demonstrated evid-
+                  6
+                                                                                                     ence of alternative splicing in genes not previously described in HNSCC
+
+
+Chromosome
+              7
+                  8                                                                           0      including kallikrein 12 (KLK12) (Supplementary Fig. 3.11), as well as
+              9
+                  10                                                                                 genes such as TP63 with known importance in HNSCC (Supplemen-
+             11
+                12                                                                                   tary Fig. 3.12).
+             13
+             15
+                14                                                                                      By DNA analysis, most HPV(1) tumours demonstrated clear evid-
+             17
+                16
+                18
+                                                                                                     ence of host genome integration, usually in a single genomic location
+             19 20
+             21 22                                                                            –1.5   per sample and almost always in association with amplifications of the
+              X
+  Cluster
+                                                                                                     host genome (Supplementary Fig. 3.10 and Supplementary Data 3.2).
+     HPV                                                                                             Interrogation of RNA transcripts confirmed transcription across the
+    TP53
+ PIK3CA
+                                                                                                     viral–human integration locus. However, none of the genes involved
+   HRAS                                                                                              were recurrent, suggesting no single driver mechanism related to HPV
+  CASP8
+OncoSign                                                                                             integration. Similarly, none of the integration sites involved the MYC
+   HPV status:           HPV(+)   HPV(–) Mutation:   Mut   WT OncoSign:   C class   M class   NA
+                                                                                                     gene as reported in HPV(1) cell lines18.
+
+Figure 1 | DNA copy number alterations. a, Copy number alterations by                                Somatic mutations
+anatomic site and HPV status for squamous cancers. Lung squamous cell
+                                                                                                     Whole-exome sequencing identified somatically mutated genes, many
+carcinoma (LUSC, n 5 358) and cervical squamous cell carcinoma (CESC,
+n 5 114). b, Unsupervised analysis of copy number alteration of HNSCC                                located in regions of CNAs and annotated in the COSMIC database19
+(n 5 279) with associated characteristics. The rectangle indicates chromosome                        (Fig. 2). The mean sequencing coverage across targeted bases was 953,
+7 amplifications in the purple cluster. NA, not available.                                           with 82% of target bases above 303 coverage. In 279 samples, 12,159
+                                                                                                     synonymous somatic variants, 37,061 non-synonymous somatic var-
+                                                                                                     iants, and 2,579 germline single base substitutions from the single
+carcinomas. HPV(1) tumours were also notable for focal amplifica-                                    nucleotide polymorphism database (dbSNP)20 were detected (Sup-
+tion of E2F1 and an intact 9p21.3 region containing the CDKN2A gene                                  plementary Information section 4). Targeted re-sequencing of 394
+commonly deleted in HPV(2) tumours.                                                                  unique regions (Supplementary Fig. 4.1) validated 99% of mutations.
+   HPV(2) tumours featured novel co-amplifications of 11q13 (CCND1,                                  Interrogation of RNA for expression of the mutated alleles confirmed
+FADD and CTTN) and 11q22 (BIRC2 and YAP1), which also contain                                        the variant in 86% of cases (Supplementary Information section 3.2
+genes implicated in cell death/NF-kB and Hippo pathways. HPV(2)                                      and Supplementary Fig. 3.1). In contrast to previous reports, the muta-
+tumours featured novel focal deletions in the nuclear set domain gene                                tion rates did not differ by HPV status, although transversions at CpG
+(NSD1) and tumour suppressor genes (for example, FAT1, NOTCH1,                                       sites were more frequent in HPV(2) tumours and a predominance of
+SMAD4 and CDKN2A; Supplementary Fig. 2.3). Recurrent focal am-                                       TpC mutations were noted in HPV(1) cases3 (Supplementary Fig. 1.1).
+plifications in receptor tyrosine kinases (for example, EGFR, ERBB2                                  Mutations were statistically enriched in 11 genes (Fig. 2). Among inac-
+and FGFR1) also predominated in HPV(2) tumours. Notably, unsu-                                       tivating mutations (premature termination of the protein by nonsense,
+pervised clustering analysis of CNAs identified a mutually exclusive                                 frameshift or splice-site mutations), four genes segregated exclusively
+subset of predominantly oral cavity tumours with reduced CNAs, a pat-                                or predominantly in HPV(2) tumours. Two were associated with cell
+tern recently described in cancer as ‘M’ class (tumours driven by muta-                              cycle and survival (CDKN2A (P , 0.01) and TP53 (P , 0.01)) and two
+tion rather than CNA)13 (Fig. 1b). This subset in particular contained a                             were linked to Wnt/b-catenin signalling (FAT1 (P , 0.01) and AJUBA
+new three-gene pattern of activating mutations in HRAS, frequently                                   (P 5 0.14))21,22. We observed TP53 mutation among HPV(2) samples
+with inactivating CASP8 mutations, and wild-type TP53. We confirmed                                  at higher rates (86%) than have been previously reported19, while only
+a previously reported favourable clinical outcome in tumours with few                                1 out of 36 HPV(1) cases had a non-synonymous TP53 mutation.
+CNAs14. The three-gene constellation of wild-type TP53 with mutant                                   Previously unreported somatic mutations and deletions of AJUBA were
+HRAS and CASP8 suggested an alternative tumorigenesis pathway                                        primarily 59 inactivating events and clustered missense mutations in
+involving RAS and/or alterations in cell death/NF-kB15. Unsupervised                                 the functional LIM domain (Supplementary Fig. 4.2). AJUBA is a
+                                                                                                                        2 9 J A N U A RY 2 0 1 5 | VO L 5 1 7 | N AT U R E | 5 7 7
+                                                               ©2015 Macmillan Publishers Limited. All rights reserved
+ RESEARCH ARTICLE
+
+                                                                                            Smoking status                Figure 2 | Significantly mutated genes in
+           70
+
+
+
+
+         Mutations per Mb
+           60
+                            Synonymous                                                        Non-smoker                  HNSCC. Genes (rows) with significantly mutated
+                            Non-                                                              Smoker
+           50                                                                                                             genes (identified using the MutSigCV algorithim;
+           40               synonymous                                                      HPV status
+           30                                                                                 Positive                    q , 0.1) ordered by q value; additional genes
+           20                                                                                 Negative                    with trends towards significance are also shown.
+           10
+            0
+                                                                                            Anatomic site                 Samples (columns, n 5 279) are arranged to
+        Smoking                                                                               Hypopharynx                 emphasize mutual exclusivity among mutations.
+                                                                                              Larynx
+        HPV pos.                                                                                                          Left, mutation percentage in TCGA. Right,
+                                                                                              Oral cavity
+  Anatomic site                                                                               Oropharynx                  mutation percentage in COSMIC (‘upper
+                                                                                                       COSMIC             aerodigestive tract’ tissue). Top, overall number
+        22%                                                                                      CDKN2A  16%              of mutations per megabase. Colour coding
+        23%                                                                                      FAT1        5%           indicates mutation type.
+        72%                                                                                      TP53        41%
+        9%                                                                                       CASP8       5%
+        6%                                                                                       AJUBA       0%
+        21%                                                                                      PIK3CA      8%
+        19%                                                                                      NOTCH1      10%
+        18%                                                                                      KMT2D       5%
+        10%                                                                                      NSD1        4%
+        3%                                                                                       HLA-A       2%
+        4%                                                                                       TGFBR2      1%
+        4%                                                                                       HRAS        8%
+        5%                                                                                       FBXW7       3%
+        3%                                                                                       RB1         1%
+        1%                                                                                       PIK3R1      3%
+        1%                                                                                       TRAF3       0%
+        6%                                                                                       NFE2L2      5%
+        4%                                                                                       CUL3        2%
+        2%                                                                                       PTEN        3%
+
+300     150     0               Synonymous    Frameshift                                          q < 0.1
+      Mutations                 Missense      In-frame indel                                      q ≥ 0.1
+                                Splice site   Other non-synonymous        0 2 4 6 8 10
+                                Nonsense                             Significance (–log10(q) values)
+
+
+
+
+centrosomal protein that regulates cell division, vertebrate ciliogenesis                        intron and caspase peptidase domains. Statistically significant muta-
+and left–right axis determination23. Additionally, AJUBA is subject to                           tions in KMT2D (also known as MLL2) and HLA-A could contribute
+EGFR-RAS-MAPK-dependent phosphorylation and implicated in Hippo                                  to defective immunosurveillance. Of known oncogenes, only PIK3CA
+growth and regeneration pathways conserved from Drosophila to mam-                               achieved statistical significance (q , 0.01). Approximately one-quarter
+mals24,25, in ataxia-telangiectasia mutated (ATM) and ATM and Rad-3-                             of the mutated PIK3CA cases displayed concurrent amplification, with
+related (ATR)-mediated DNA damage response26, and tumour invasion                                an additional 20% of tumours containing focal amplification without
+and migration27.                                                                                 evidence of mutation. Seventy-three per cent of PIK3CA mutations lo-
+   A frequently mutated novel gene, the nuclear receptor binding SET                             calized to Glu542Lys, Glu545Lys and His1047Arg/Leu hotspots that
+domain protein 1 (NSD1), was identified in 33 HNSCCs. Alterations                                promote activation, with the remaining mutations of uncertain func-
+included inactivating mutations (n 5 29) and focal homozygous dele-                              tion. Recurrent activating mutations of HRAS in the GTPase domain in
+tions (n 5 4). NSD1 is a histone 3 Lys 36 (H3K36) methyltransferase,                             residues 11–13 approached statistical significance (q 5 0.2).
+similar to SETD2, which is frequently mutated in the clear cell variant                             We extended our unsupervised genome-wide analysis of significantly
+of renal cell carcinoma, and associated with DNA hypomethylation28.                              mutated genes as well as genes reported in COSMIC to a subgroup ana-
+Germline carriers of inactivating mutations in NSD1 are associated with                          lysis by anatomic sites, tumour versus normal status, HPV status and
+craniofacial abnormalities (Sotos syndrome), and malignancies includ-                            four previously validated gene expression subtypes32,33 (Supplementary
+ing squamous carcinoma, implicating NSD1 as a tumour suppressor                                  Information section 5, Supplementary Figs 5.1–5.4 and Supplementary
+gene29. Interestingly, NSD1 functions as an oncogene when fused to                               Data 4.1 and 5.1–5.4). Additional mutations included TRAF3, RB1 and
+nucleoporin-98 (NUP98) t(5;11)(q35;p15.5) in haematological cancers                              NFE2L2, among others with q values , 1, and we observed statistical
+with increased H3K36 trimethylation levels at HOXA genes and accom-                              evidence for mutations of HRAS (q 5 0 in COSMIC subset) and other
+panying transcriptional activation30. Translocations involving other ded-                        genes. Sporadic inactivating mutations and deletions of TGFBR2 were
+icated H3K36 methyltransferase genes including WHSC1 (also known                                 identified primarily in oral cavity tumours, consistent with its role in
+as MMSET and NSD2) are reported in 20% of multiple myelomas. By                                  promoting squamous tumorigenesis in mouse models34. Investigating
+contrast, NSD1 loss has been associated with sporadic non-melanoma                               COSMIC database mutations focused attention on the significant dele-
+skin cancers31. Significant inactivating mutations were found in genes                           tion peak at 4q31.3 containing the gene FBXW7, a ubiquitin ligase tar-
+linked to squamous differentiation including in NOTCH1 (19%), and                                geting cyclin E and NOTCH genes, in which we identified mutations
+other non-significant family members (NOTCH2 9%, and NOTCH3                                      that included recurrent Arg505Gly/Leu substitutions (n 5 14). Genes
+5%, q . 0.1, non-significant), and the TP63 target gene ZNF750 (4%,                              with at least one identical mutation previously reported in COSMIC
+q . 0.1, non-significant), which falls in a significantly deleted peak at                        include SCN9A, CHEK2, PTCH1 and PIK3R1. We further focused on
+17q25.3. The analysis identified additional mutations including TRAF3,                           somatic alterations and protein expression that represent plausible
+RB1 and NFE2L2, among others with q values , 1 (non-significant).                                therapeutic targets (Fig. 3, Supplementary Information sections 6
+The frequently mutated apoptosis gene CASP8 displayed clustered                                  and 7, Supplementary Figs 6.1 and 6.2 and Supplementary Data 6.1
+missense and other inactivating mutations in the first death effector,                           and 6.2).
+5 7 8 | N AT U R E | VO L 5 1 7 | 2 9 J A N U A RY 2 0 1 5
+                                                            ©2015 Macmillan Publishers Limited. All rights reserved
+                                                                                                                                                                                                                     ARTICLE RESEARCH
+
+                                                                                                                       HPV(–) n = 243                                                                                        HPV(+) n = 36
+                               EGFR          15%                          v                                                                                                                                                                  6%
+
+                               FGFR1         10%                                                                                                                                                                                             0%
+
+
+
+
+  Receptor tyrosine kinases
+                               ERBB2          5%                                                                                                                                                                                             3%
+
+                               IGF1R          4%                                                                                                                                                                                             0%
+
+                               EPHA2          4%                                                                                                                                                                                             3%
+
+                               DDR2           3%                                                                                                                                                                                             6%
+
+                               FGFR2          2%                                                                                                                                                                                             0%
+
+                               FGFR3          2%                                                                                                                                                                                             11%
+
+                               MET            2%                                                                                                                                                                                             0%
+
+                               CCND1
+
+
+  Oncogenes
+                                             31%                                                                                                                                                                                             3%
+
+                               MYC           14%                                                                                                                                                                                             3%
+
+                               HRAS           5%                                                                                                                                                                                             0%
+
+                               PIK3CA        34%                                                                                                                                                                                             56%
+
+  PI(3)K                       PTEN          12%                                                                                                                                                                                             6%
+
+                               PIK3R1         1%                                                                                                                                                                                             3%
+
+                               NF1            3%                                                                                                                                                                                             0%
+
+  TSG                          TP53          84%                                                                                                                                                                                             3%
+
+                               CDKN2A 58%                                                                                                                                                                                                    0%
+
+                                 Amplification         Homozygous deletion            Mutation      Protein up-regulation      Protein down-regulation v EGFR vIII deletion                         MET exon 14 skipping   FGFR3-TACC3 fusion
+
+
+Figure 3 | Candidate therapeutic targets and driver oncogenic events. Alteration events for key genes are displayed by sample (n 5 279). TSG, tumour
+suppressor gene.
+
+Integrated genome analysis and pathways                                                                                                    We investigated whether clinical factors, single gene alterations and
+Correlative genetic alteration analysis identified numerous pairwise                                                                    statistically significant pairwise gene correlations (Supplementary
+significant findings (Supplementary Information section 7 and Sup-                                                                      Fig. 7.1 and Supplementary Data 7.1) might segregate previously defined
+plementary Fig. 7.1). In particular, co-amplification of 11q13 containing                                                               molecular subtypes and/or anatomic sub-sites (Supplementary Data
+CCND1, FADD and CTTN and a narrow segment of 11q22 containing                                                                           5.1–5.4). We confirmed reported gene expression subtypes (atypical
+the genes with equal evidence for YAP1 and BIRC2 was further char-                                                                      (24%), mesenchymal (27%), basal (31%) and classical (18%)), and
+acterized (Supplementary Fig. 7.2). Chromosome 11q22 was focally but                                                                    assessed the subtypes for enrichment of somatic alterations32,33 (Sup-
+rarely amplified in the absence of co-amplification of 11q13. This novel                                                                plementary Data 7.1). Notably, TP53 mutation, CDKN2A loss of func-
+finding suggests that the selection pressure for this co-amplification                                                                  tion, chromosome 3q amplification, alteration of oxidative stress genes
+stems from the interaction of BIRC2 with FADD and the caspase cas-                                                                      (KEAP1, NFE2L2 or CUL3), heavy smoking history (Supplementary
+cade that inhibits cell death. Notably, the vast majority of tumours with                                                               Table 1.1) and larynx sub-site co-occurred in most classical subtype tu-
+the 11q13 amplification had large deletions in the telomeric region of                                                                  mours (Fig. 4a and Supplementary Information section 7.2), similar to
+11q22, including other genes known to be important in cell death in                                                                     LUSC5 (Supplementary Figs 5.1 and 5.2). Collectively, these findings
+cancer such as ATM and CASP1, 4, 5 and 12. Amplification of 11q13                                                                       suggest that the NFE2L2 oxidative stress pathway is a tobacco-related
+was anti-correlated with CASP8 mutations, suggesting an alternative                                                                     signature across anatomic tumour sites. By contrast, the basal subtype
+function of CASP8 and FADD in cell death/NF-kB activation35.                                                                            demonstrated inactivation of NOTCH1 with intact oxidative stress
+
+a                                       Atypical    Classical Mesenchymal         Basal
+                                                                                                           b                                                                                 Figure 4 | Integrated analysis of genomic
+
+
+
+                                                                                                                                                           DNA methylation level
+mRNA sub.                                                                                                                                                                          1         alterations. a, b, Samples (n 5 279) are displayed
+  Smoking                                                                                    0.01                                                                                            in columns and grouped by gene expression (a)
+                               Site                                                         <0.01                                                                                            or methylation (b) subtype (sub.). Unadjusted
+                              HPV                                                           <0.01                                                                                            two-sided Fisher’s exact test P values assess the
+               TRAF3                                                                         0.02
+                E2F1                                                                        <0.01
+                                                                                                                                                                                   0         association of each genomic alteration.
+                                                                                                                                                                                             Methylation probe location of CpG islands,
+                                                                                                           CpG locus
+                               p16                                                          <0.01
+                              TP53                                                          <0.01                                                                                            shores and shelves are shown on the left of b.
+       PIK3CA                                                                               <0.01                                                                                            Annotation shows HPV status and subtype
+        HRAS                                                                                 0.20
+       CASP8                                                                                <0.01                                                                                            (16, 33 and 35). CN, copy number.
+ NOTCH1                                                                                     <0.01
+ NOTCH2                                                                                      0.24
+ NOTCH3                                                                                      0.82
+      3q                                                                                    <0.01
+  NFE2L2                                                                                    <0.01     DNA meth.
+                                                                                                        subtype
+   KEAP1                                                                                     0.10         NSD1                                             <0.01
+    CUL3                                                                                    <0.01
+                                                                                                       NOTCH1                                              <0.01
+          KMT2D                                                                              0.82      Smoking                                             <0.01
+           NSD1                                                                             <0.01
+                                                                                                            Site                                           <0.01
+               FAT1                                                                          0.46          HPV                                              0.44
+              AJUBA                                                                          0.03     mRNA sub.                                            <0.01
+
+                                      Smoking status   Tissue site            PIK3CA mutation           Gene alteration               DNA methylation subtype
+                                         Smoker             Oropharynx            Adaptor binding domain   Mutation                      Hyper-methylated
+                                         Non-smoker         Oral cavity           Helical domain           DNA methylation               Hypo-methylated
+                                                            Larynx                Kinase domain            CN deletion                   Normal-like
+                                      HPV
+                                                            Hypopharynx           Other                     CN amplification             CpG island methylated
+                                         Negative                                 None                      Low mRNA expression
+                                         16                                                                                           CpG locus position
+                                                                                                            High mRNA expression
+                                         33/35                                                              None                         CpG island
+                                                                                                                                         Shore
+                                                                                                                                         Shelf
+
+
+                                                                                                                                                                                       2 9 J A N U A RY 2 0 1 5 | VO L 5 1 7 | N AT U R E | 5 7 9
+                                                                                             ©2015 Macmillan Publishers Limited. All rights reserved
+    RESEARCH ARTICLE
+
+                               RTK/RAS/PI(3)K                                               Cell death                     Immunity             Differentiation                Oxidative stress             Figure 5 | Deregulation of
+                                                                                                                                                                                                            signalling pathways and
+                               HPV(–)   62%   61%   HPV(+)                         HPV(–)   44%   31%    HPV(+)   HPV(–)   7%   11%   HPV(+)   HPV(–)   64%   44%    HPV(+)    HPV(–)   22%   3%   HPV(+)
+                                                                                                                                                                                                            transcription factors. Key affected
+                                                                                                                           HLA-A/B                                                                          pathways, components and inferred
+         EGFR      ERBB2                 FGFR1      FGFR3           IGF1R                    TNFR/                          B2M                          NOTCH
+                                                                                             LTBR                                                                                                           functions, are summarized in
+   15% 6%          4% 3% 10% 0%                    2% 11% 4% 0%                                                            7% 11%                       26%17%
+                                                                                                                                                                                          CUL3              the main text and Supplementary
+                                                                                                                                                                                         6% 3%              Information section 7 for n 5 279
+                 HRAS                    PIK3CA                PTEN               FADD                BIRC2                                                                              KEAP1              samples. The frequency (%) of
+                                                                                                                           Immunity
+                5% 0%                   34%56%               12% 6%             32% 6%               7% 3%                                                                               5% 0%              genetic alterations for HPV(2) and
+                                                                                                                                                                                                            HPV(1) tumours are shown
+                                                                                 CASP8                TRAF3                                                                               NFE2L2
+                                                                                11% 3%               1% 22%                  IFNs                                                                           separately within sub-panels and
+                                                                                                                                                                                         14% 0%
+                         CCND1                                                                                                                                                                              highlighted. Also see Supplementary
+                        31% 3%
+         CDKN2A                                   let-7c                                                                                                                                                    Fig. 7.15. Pathway alterations
+         57% 0%            CDK6                  40%17%                                                                                                                         FAT1
+                                                                                                                                                                              32% 3%                        include homozygous deletions,
+                          8% 0%                                                                                                TP63
+                                                                                             NF-κB                           19%28%                     CTNNB1                                              focal amplifications and somatic
+                                                                                                                                                                              AJUBA                         mutations. Activated and inactivated
+         HPVE6/7               RB1                E2F1                MYC                                                                                                     7% 0%
+         0% 100%           4%           6%       2% 19%           14% 3%                                                                                                                                    pathways/genes, and activating or
+                                                                                                                                                                                                            inhibitory symbols are based on
+                                         TP53                   Cell cycle                               Inflammation                                                                                       predicted effects of genome
+         Cell cycle                     84% 3%                                                                                                                                           Oxidative
+                                                               and survival                              angiogenesis                                                                                       alterations and/or pathway
+HPV(–)   96% 100%     HPV(+)                                                                                                        Differentiation                                      damage
+                                                                                                           migration                                                                                        functions.
+                                              Frequency               HPV(–) predominant                     Cases (%)
+                                                                                                                                                                    Activation
+                                                                      HPV(+) predominant           50           0            50
+                                                                                                  Inactivated          Activated                                    Inhibition
+                               HPV-negative                  HPV-positive
+
+
+
+signalling and fewer alterations of chromosome 3q. Analysis of the 3q                                                               miRNAs in HNSCC (Supplementary Information section 7.4). Among
+locus highlighted a marked relative decrease of SOX2 expression in                                                                  these miRNA–messenger RNA networks, let-7c-5p and miR-100-5p
+basal tumours relative to all other HNSCC and tumour adjacent nor-                                                                  exhibited a correlation between low copy number and expression.
+mal samples (Supplementary Fig. 5.4), supporting the interaction of                                                                 Let-7c-5p and miR-100-5p were decreased in tumours compared to nor-
+transcription factors SOX2, TP63, NFE2L2 and NOTCH1 as driving                                                                      mal (Supplementary Fig. 7.10). For these miRNAs, deletion was highly
+differences between expression subtypes. Additionally, the basal sub-                                                               associated with increased expression of target genes, including the cell
+type included most tumours with the HRAS–CASP8 co-mutation and                                                                      cycle regulator CDK6, transcription factor E2F1 (ref. 38), mitosis regu-
+most co-amplified 11q13/q22 tumours. These findings along with HRAS                                                                 lator PLK1 (ref. 39), and transcription factor HMGA2 (ref. 40; Sup-
+mutations implicate disrupted cell death as a major alteration in this                                                              plementary Figs 7.10, Supplementary Tables 7.2 and 7.3).
+subtype36 (Supplementary Fig. 7.2). The atypical subtype was charac-                                                                    Integrative bioinformatics analysis identified a limited number of
+terized by a lack of chromosome 7 amplifications (Supplementary Fig. 5.3),                                                          pathways targeted by frequent genome alterations (Fig. 5, Supplemen-
+enrichment of HPV(1) tumours with activating mutations in exon 9                                                                    tary Information section 7, Supplementary Figs 7.11–7.15 and Sup-
+that contains the PIK3CA helical domain. By contrast, the mesench-                                                                  plementary Data 7.3). Among receptor tyrosine kinases, EGFR/ERBB2
+ymal subtype showed high levels of alteration in innate immunity genes,                                                             or FGFR1/3 alterations are the most frequent. Among downstream tar-
+in particular high expression of natural killer cell marker CD56 and                                                                gets of the receptor tyrosine kinase (RTK)/RAS/phosphatidylinositol-
+a low frequency of HLA class I mutations (Supplementary Fig. 7.3).                                                                  3-OH kinase (PI(3)K) pathway, PIK3CA dominates with occasional
+Among the significantly mutated genes, TP53 (P , 0.001), CASP8 (P 5                                                                 HRAS and PTEN alterations. Further downstream, nearly every tumour
+0.01), NSD1 (P 5 0.01) and CDKN2A (0.06) were the most differentially                                                               has alteration of genes governing the cell cycle. The tumour suppressors
+mutated across anatomic sites (Supplementary Data 4.1). Most CASP8                                                                  TP53 and CDKN2A, oncogenes CCND1 and MYC, and the newly iden-
+mutations (22 out of 24, 92%) were in oral cavity tumours, whereas                                                                  tified miRNA let-7c, are most often altered in HPV(2) tumours, whereas
+TP53, NSD1 and CDKN2A demonstrated decreased mutation rates in                                                                      viral genes E6, E7 and E2F1 predominate in HPV(1) cases. In addi-
+oropharyngeal tumours relative to other sites.                                                                                      tion, we report frequent alterations in genes involved in cell death, NF-
+   Unsupervised analysis of gene expression by HPV status and of                                                                    kB-mediated survival, or immunity pathways15,35. Co-amplification of
+reverse-phase protein arrays (Supplementary Information section 6),                                                                 FADD 6 BIRC2, or CASP8 6 HRAS mutations define exclusive HPV(2)
+DNA methylation (Supplementary Information section 8), and miRNA                                                                    subsets, whereas TRAF3 loss characterizes an HPV(1) subset. These alter-
+platforms (Supplementary Information section 9, Supplementary Table                                                                 ations along with PIK3CA and TP63 converge on NF-kB transcription
+9.1, Supplementary Figs 7.4–7.9 and Supplementary Data 7.1) showed                                                                  factors that promote cell survival, migration, inflammation and angio-
+high correlation across platforms (P , 0.01; Fig. 4, Supplementary In-                                                              genesis41,42. Furthermore, TRAF3 and/or HLA loss are implicated in de-
+formation section 7.9 and Supplementary Data 7.2) and coordinated                                                                   regulation of innate antiviral and adaptive anti-tumour immunity43,44.
+alterations of genes including the epithelial–mesenchymal transition                                                                Further alterations of NOTCH, TP63 and other genes in HPV(2) tu-
+signature37 (Supplementary Figs 7.4, 7.7 and 7.8). However, within the                                                              mours (FAT1 and AJUBA) recently linked functionally to b-catenin
+broader cross-platform agreement, individual unsupervised clustering                                                                (CTNNB1) are also detected21,22,45. Finally, we highlight a previously
+of miRNA, reverse-phase protein arrays and DNA methylation data                                                                     underappreciated role for a key transcription factor regulator of oxid-
+provided insight into the association of molecular subtypes with single                                                             ative stress, NFE2L2, and its protein complex partners CUL3 and KEAP1
+gene alterations. The most notable example was the detection of hypo-                                                               in HPV(2) HNSCCs.
+methylation and loss-of-function mutations of NSD1, and wild-type
+NOTCH1 in atypical and classical gene expression subtypes (Fig. 4b                                                                  Conclusion
+and Supplementary Table 7.1).                                                                                                       The TCGA study represents the most comprehensive integrative ge-
+   Supervised analyses detected genomic features (miRNA, gene ex-                                                                   nomic analysis of HNSCC. Loss of TRAF3, activating mutations of
+pression and DNA methylation) associated with anatomic site (Sup-                                                                   PIK3CA, and amplification of E2F1 in HPV(1) oropharyngeal can-
+plementary Figs 5.5–5.8 and Supplementary Data 5.1–5.4). A supervised                                                               cers point to aberrant activation of NF-kB, other oncogenic pathways,
+integrated analysis identified target genes that are inversely regulated by                                                         and cell cycle, as critical in the pathogenesis and development of new
+5 8 0 | N AT U R E | VO L 5 1 7 | 2 9 J A N U A RY 2 0 1 5
+                                                                                 ©2015 Macmillan Publishers Limited. All rights reserved
+                                                                                                                                                          ARTICLE RESEARCH
+
+targeted therapies for these tumours. In HPV(2) HNSCCs, mutually                              29. Fickie, M. R. et al. Adults with Sotos syndrome: review of 21 adults with molecularly
+                                                                                                  confirmed NSD1 alterations, including a detailed case report of the oldest person.
+exclusive subsets containing amplicons on 11q with CCND1, FADD,                                   Am. J. Med. Genet. A. 155, 2105–2111 (2011).
+BIRC2 and YAP1, or concurrent mutations of CASP8 with HRAS, also                              30. Wang, G. G., Cai, L., Pasillas, M. P. & Kamps, M. P. NUP98–NSD1 links H3K36
+target cell cycle, death, NF-kB and other oncogenic pathways. Recent                              methylation to Hox-A gene activation and leukaemogenesis. Nature Cell Biol. 9,
+                                                                                                  804–812 (2007).
+studies predict that the inactivation of AJUBA, as well as FAT1 and                           31. Quintana, R. M. et al. A transposon-based analysis of gene mutations related to skin
+NOTCH1, may converge to uncheck Wnt/b-catenin signalling, impli-                                  cancer development. J. Invest. Dermatol. 133, 239–248 (2013).
+cated in deregulation of cell polarity and differentiation. The 3q amplicon                   32. Chung, C. H. et al. Molecular classification of head and neck squamous cell
+                                                                                                  carcinomas using patterns of gene expression. Cancer Cell 5, 489–500 (2004).
+found in both HPV(1) and (2) HNSCCs includes transcription fac-                               33. Walter, V. et al. Molecular subtypes in head and neck cancer exhibit distinct
+tors TP63, SOX2 and signal molecule PIK3CA, which are also impli-                                 patterns of chromosomal gain and loss of canonical cancer genes. PLoS ONE 8,
+cated in homeostasis of epithelial stem cells and differentiation. Among                          e56823 (2013).
+these, the biological function and agents targeting BIRCs, PI(3)K, Wnt/                       34. Lu, S. L. et al. Loss of transforming growth factor-b type II receptor promotes
+                                                                                                  metastatic head-and-neck squamous cell carcinoma. Genes Dev. 20, 1331–1342
+b-catenin and NOTCH are under investigation. Collectively, these find-                            (2006).
+ings provide new insights into HNSCC and suggest that shared and                              35. Oberst, A. & Green, D. R. It cuts both ways: reconciling the dual roles of caspase 8 in
+unique alterations might be leveraged to accelerate progress in preven-                           cell death and survival. Nature Rev. Mol. Cell Biol. 12, 757–763 (2011).
+                                                                                              36. Park, S. J. et al. Opposite role of Ras in tumor necrosis factor-a-induced cell cycle
+tion and therapy across tumour types.                                                             regulation: competition for Raf kinase. Biochem. Biophys. Res. Commun. 287,
+                                                                                                  1140–1147 (2001).
+Received 19 October 2013; accepted 1 December 2014.                                           37. Byers, L. A. et al. An epithelial-mesenchymal transition gene signature predicts
+                                                                                                  resistance to EGFR and PI3K inhibitors and identifies Axl as a therapeutic target for
+1.  Ferlay, J. et al. Estimates of worldwide burden of cancer in 2008: GLOBOCAN                   overcoming EGFR inhibitor resistance. Clin. Cancer Res. 19, 279–290 (2013).
+    2008. Int. J. Cancer 127, 2893–2917 (2010).                                               38. Wong, J. V., Dong, P., Nevins, J. R., Mathey-Prevot, B. & You, L. Network calisthenics:
+2. Ang, K. K. et al. Human papillomavirus and survival of patients with oropharyngeal             control of E2F dynamics in cell cycle entry. Cell Cycle 10, 3086–3094 (2011).
+    cancer. N. Engl. J. Med. 363, 24–35 (2010).                                               39. Sanhaji, M. et al. Polo-like kinase 1 inhibitors, mitotic stress and the tumor
+3. Stransky, N. et al. The mutational landscape of head and neck squamous cell                    suppressor p53. Cell Cycle 12, 1340–1351 (2013).
+    carcinoma. Science 333, 1157–1160 (2011).                                                 40. Morishita, A. et al. HMGA2 is a driver of tumor metastasis. Cancer Res. 73,
+4. Agrawal, N. et al. Exome sequencing of head and neck squamous cell carcinoma                   4289–4299 (2013).
+    reveals inactivating mutations in NOTCH1. Science 333, 1154–1157 (2011).                  41. Bancroft, C. C. et al. Effects of pharmacologic antagonists of epidermal growth
+5. The Cancer Genome Atlas Research Network. Comprehensive genomic                                factor receptor, PI3K and MEK signal kinases on NF-kB and AP-1 activation and IL-
+    characterization of squamous cell lung cancers. Nature 489, 519–525 (2012).                   8 and VEGF expression in human head and neck squamous cell carcinoma lines.
+6. Oganesyan, G. et al. Critical role of TRAF3 in the Toll-like receptor-dependent and            Int. J. Cancer 99, 538–548 (2002).
+    -independent antiviral response. Nature 439, 208–211 (2006).                              42. Yang, X. et al. DNp63 versatilely regulates a broad NF-kB gene program and
+7. Karim, R. et al. Human papillomavirus (HPV) upregulates the cellular                           promotes squamous epithelial proliferation, migration, and inflammation. Cancer
+    deubiquitinase UCHL1 to suppress the keratinocyte’s innate immune response.                   Res. 71, 3688–3700 (2011).
+    PLoS Pathog. 9, e1003384 (2013).                                                          43. Keating, P. J. et al. Frequency of down-regulation of individual HLA-A and -B alleles
+8. Eliopoulos, A. G. et al. CD40-induced growth inhibition in epithelial cells is                 in cervical carcinomas in relation to TAP-1 expression. Br. J. Cancer 72, 405–411
+    mimicked by Epstein–Barr Virus-encoded LMP1: involvement of TRAF3 as a                        (1995).
+    common mediator. Oncogene 13, 2243–2254 (1996).                                           44. Esteban, F. et al. Lack of MHC class I antigens and tumour aggressiveness of the
+9. Imbeault, M. et al. Acquisition of host-derived CD40L by HIV-1 in vivo and its                 squamous cell carcinoma of the larynx. Br. J. Cancer 62, 1047–1051 (1990).
+    functional consequences in the B-cell compartment. J. Virol. 85, 2189–2200                45. Dotto, G. P. Crosstalk of Notch with p53 and p63 in cancer growth control. Nature
+    (2011).                                                                                       Rev. Cancer 9, 587–595 (2009).
+10. Ni, C. Z. et al. Molecular basis for CD40 signaling mediated by TRAF3. Proc. Natl
+    Acad. Sci. USA 97, 10395–10399 (2000).                                                    Supplementary Information is available in the online version of the paper.
+11. Chung, G. T. et al. Constitutive activation of distinct NF-kB signals in EBV-             Acknowledgements This study was supported by National Institutes of Health (NIH)
+    associated nasopharyngeal carcinoma. J. Pathol. 231, 311–322 (2013).                      grants: P50CA097190, P50CA16672, U54 HG003273, U54 HG003067, U54
+12. Annunziata, C. M. et al. Frequent engagement of the classical and alternative NF-kB       HG003079, U24 CA143799, U24 CA143835, U24 CA143840, U24 CA143843, U24
+    pathways by diverse genetic abnormalities in multiple myeloma. Cancer Cell 12,            CA143845, U24 CA143848, U24 CA143858, U24 CA143866, U24 CA143867, U24
+    115–130 (2007).                                                                           CA143882, U24 CA143883, U24 CA144025 and RO1 CA 095419. Supported by The
+13. Ciriello, G. et al. Emerging landscape of oncogenic signatures across human               Bobby F. Garrett Fund for Head and Neck Cancer Research and NIDCD Intramural
+    cancers. Nature Genet. 45, 1127–1133 (2013).                                              Projects ZIA-DC-000016, 73 and 74.
+14. Smeets, S. J. et al. Genetic classification of oral and oropharyngeal carcinomas
+    identifies subgroups with a different prognosis. Cellular Oncol. 31, 291–300              Author Contributions The TCGA research network contributed collectively to this
+    (2009).                                                                                   study. Biospecimens were provided by the tissue source sites and processed by the
+15. Mayo, M. W. et al. Requirement of NF-kB activation to suppress p53-independent            biospecimen core resource. Data generation and analyses were performed by the
+    apoptosis induced by oncogenic Ras. Science 278, 1812–1815 (1997).                        genome sequencing centres, cancer genome characterization centres and genome
+16. Sok, J. C. et al. Mutant epidermal growth factor receptor (EGFRvIII) contributes to       data analysis centres. All data were released through the data coordinating centre.
+    head and neck cancer growth and resistance to EGFR targeting. Clin. Cancer Res.           Project activities were coordinated by the National Cancer Institute and National
+    12, 5064–5073 (2006).                                                                     Human Genome Research Institute project teams. We also acknowledge the following
+17. Kong-Beltran, M. et al. Somatic mutations lead to an oncogenic deletion of met in         TCGA investigators who made substantial contributions to the project:
+    lung cancer. Cancer Res. 66, 283–289 (2006).                                              C.V.W. (manuscript coordinator); V.W. (data coordinator); P.S.H. and D.N.H. (analysis
+18. Popescu, N. C., DiPaolo, J. A. & Amsbaugh, S. C. Integration sites of human               coordinators); Y.W. (data coordinating centre representative); R.A., J.B., T.E.C., J.J.L.,
+    papillomavirus 18 DNA sequences on HeLa cell chromosomes. Cytogenet. Cell                 M.Parfenov, A.D.T., V.W. and M.D.W. (clinical and HPV analysis); A.D.C. (DNA copy
+    Genet. 44, 58–62 (1987).                                                                  number analysis); J.Cho, A.H., M.Parfenov and M.D.W. (mutation calling); L.C. and
+19. Forbes, S. A. et al. The Catalogue of Somatic Mutations in Cancer (COSMIC). Curr.         L.Danilova (DNA methylation analysis); R.Bowlby, J.P.B., Z.C., H.Cheng, A.H., F.F.L.,
+    Protoc. Hum. Genet. Chapter 10, Unit 10.11 (2008).                                        A.G.R., A.D.S. and C.V.W. (miRNA sequence analysis); L.A.B., L.Diao, P.K., W.L., S.N. and
+20. Sherry, S. T. et al. dbSNP: the NCBI database of genetic variation. Nucleic Acids Res.    J.W. (reverse-phase protein arrays analysis); L.A.B., L.Diao, S.R.J., P.K.K., V.W., M.D.W.
+    29, 308–311 (2001).                                                                       and N.Z. (mRNA sequence analysis); S.Benz, Z.C., R.L.F., S.N., C.R.P., N.Schultz, T.Y.S.,
+21. Morris, L. G. et al. Recurrent somatic mutation of FAT1 in multiple human cancers         C.V.W. and V.W. (pathway analysis); A.E.N., J.R.G. and D.N.H. (project chairs).
+    leads to aberrant Wnt activation. Nature Genet. 45, 253–261 (2013).
+22. Haraguchi, K. et al. Ajuba negatively regulates the Wnt signaling pathway by              Author Information The primary and processed data used to generate the analyses can
+    promoting GSK-3b-mediated phosphorylation of b-catenin. Oncogene 27,                      be downloaded by registered users from The Cancer Genome Atlas (https://
+    274–284 (2008).                                                                           tcga-data.nci.nih.gov/tcga/tcgaDownload.jsp, https://cghub.ucsc.edu/ and https://
+23. Nagai, Y. et al. The LIM protein Ajuba is required for ciliogenesis and left-right axis   tcga-data.nci.nih.gov/docs/publications/hnsc_2014/). Reprints and permissions
+    determination in medaka. Biochem. Biophys. Res. Commun. 396, 887–893 (2010).              information is available at www.nature.com/reprints. The authors declare no
+24. Sun, G. & Irvine, K. D. Ajuba family proteins link JNK to Hippo signaling. Sci. Signal.   competing financial interests. Readers are welcome to comment on the online
+    6, ra81 (2013).                                                                           version of the paper. Correspondence and requests for materials should
+25. Reddy, B. V. & Irvine, K. D. Regulation of Hippo signaling by EGFR-MAPK signaling         be addressed to D.N.H. (hayes@med.unc.edu), J.R.G. (grandisjr@upmc.edu) or
+    through Ajuba family proteins. Dev. Cell 24, 459–471 (2013).                              A.E.N. (anaggar@mdanderson.org).
+26. Kalan, S., Matveyenko, A. & Loayza, D. LIM protein Ajuba participates in the
+    repression of the ATR-mediated DNA damage response. Front. Genet. 4, 95 (2013).                         This work is licensed under a Creative Commons Attribution-
+27. Nola, S. et al. Ajuba is required for Rac activation and maintenance of E-cadherin                      NonCommercial-ShareAlike 3.0 Unported licence. The images or other
+    adhesion. J. Cell Biol. 195, 855–871 (2011).                                              third party material in this article are included in the article’s Creative Commons licence,
+28. The Cancer Genome Atlas Research Network. Comprehensive molecular                         unless indicated otherwise in the credit line; if the material is not included under the
+    characterization of clear cell renal cell carcinoma. Nature 499, 43–49 (2013).            Creative Commons licence, users will need to obtain permission from the licence holder
+
+                                                                                                                       2 9 J A N U A RY 2 0 1 5 | VO L 5 1 7 | N AT U R E | 5 8 1
+                                                       ©2015 Macmillan Publishers Limited. All rights reserved
+ RESEARCH ARTICLE
+
+to reproduce the material. To view a copy of this licence, visit http://creativecommons.     Project office: Robert A. Burton34, Tanja Davidsen35, John A. Demchok35, Greg Eley36,
+org/licenses/by-nc-sa/3.0                                                                    Martin L. Ferguson35, Kenna R. Mills Shaw35, Bradley A. Ozenberger37, Margi Sheth35,
+                                                                                             Heidi J. Sofia37, Roy Tarnuzzer35, Zhining Wang35, Liming Yang35, Jean Claude
+                                                                                             Zenklusen35
+
+The Cancer Genome Atlas Research Network (Participants are arranged by area of               Tissue source sites: Analytical Biological Services Charles Saller38, Katherine
+contribution and then by institution.)                                                       Tarvin38; Fred Hutchinson Cancer Research Center Chu Chen39; Georgia Regents
+                                                                                             University Roni Bollag40, Paul Weinberger40; Greater Poland Cancer Centre
+                                                                                             Wojciech Golusiński29, Paweł Golusiński29, Matthew Ibbs29, Konstanty Korski29,
+Genome sequencing centre: Broad Institute Michael S. Lawrence1, Carrie Sougnez1,
+                                                                                             Andrzej Mackiewicz29, Wiktoria Suchorska29, Bartosz Szybiak29, Maciej
+Lee Lichtenstein1, Kristian Cibulskis1, Eric Lander1, Stacey B. Gabriel1, Gad Getz1,2
+                                                                                             Wiznerowicz29; International Genomics Consortium Ken Burnett31, Erin Curley31,
+                                                                                             Johanna Gardner31, David Mallery31, Robert Penny31, Troy Shelton31, Peggy Yena31;
+Genome characterization and data analysis centres: BC Cancer Agency Adrian Ally3,            Indiana University Simon Cancer Center Christina Beard41, Colleen Mitchell41,
+Miruna Balasundaram3, Inanc Birol3, Reanne Bowlby3, Denise Brooks3, Yaron S. N.              George Sandusky41; Johns Hopkins University Nishant Agrawal17, Julie Ahn17,
+Butterfield3, Rebecca Carlsen3, Dean Cheng3, Andy Chu3, Noreen Dhalla3, Ranabir              Justin Bishop17, Joseph Califano17, Zubair Khan17; Princess Margaret Cancer Centre
+Guin3, Robert A. Holt3, Steven J. M. Jones3, Darlene Lee3, Haiyan I. Li3, Marco A. Marra3,
+                                                                                             Jeff P. Bruce19, Angela B. Y. Hui19, Jonathan Irish27, Fei-Fei Liu27, Bayardo
+Michael Mayo3, Richard A. Moore3, Andrew J. Mungall3, A. Gordon Robertson3,
+                                                                                             Perez-Ordonez28, John Waldron27; Ontario Institute for Cancer Research Paul C.
+Jacqueline E. Schein3, Payal Sipahimalani3, Angela Tam3, Nina Thiessen3, Tina Wong3;
+                                                                                             Boutros18, Daryl M. Waggott18; The University of Texas MD Anderson Cancer Center
+Harvard Medical School/Brigham & Women’s Hospital/MD Anderson Cancer
+Center Alexei Protopopov4, Netty Santoso5, Semin Lee5, Michael Parfenov5, Jianhua            Jeff Myers4, William N. William Jr4; University of California San Diego Scott M.
+Zhang4, Harshad S. Mahadeshwar4, Jiabin Tang4, Xiaojia Ren5, Sahil Seth4, Psalm              Lippman26; University of Miami Sophie Egea42, Carmen Gomez-Fernandez42, Lynn
+Haseley5, Dong Zeng4, Lixing Yang5, Andrew W. Xu5, Xingzhi Song4, Angeliki Pantazi5,         Herbert42; University of Michigan Carol R. Bradford20, Thomas E. Carey20, Douglas B.
+Christopher A. Bristow4, Angela Hadjipanayis5,6, Jonathan Seidman5, Lynda Chin1,4,           Chepeha20, Andrea S. Haddad20, Tamara R. Jones20, Christine M. Komarck20, Mayya
+Peter J. Park5,6,7, Raju Kucherlapati5,6; The University of Texas MD Anderson                Malakh20, Jonathan B. McHugh20, Jeffrey S. Moyer20, Ariane Nguyen20, Lisa A.
+Cancer Center Rehan Akbani4, Tod Casasent4, Wenbin Liu4, Yiling Lu4, Gordon Mills4,          Peterson20, Mark E. Prince20, Laura S. Rozek20, Maureen A. Sartor20, Evan G. Taylor20,
+Thomas Motter4, John Weinstein4, Lixia Diao4, Jing Wang4, You Hong Fan4; University          Heather M. Walline20, Gregory T. Wolf20; University of North Carolina at Chapel Hill
+of Kentucky Jinze Liu8, Kai Wang8; University of North Carolina at Chapel Hill J. Todd       Lori Boice9, Bhishamjit S. Chera9, William K. Funkhouser9, Margaret L. Gulley9, Trevor G.
+Auman9, Saianand Balu9, Thomas Bodenheimer9, Elizabeth Buda9, D. Neil Hayes9,                Hackman9, D. Neil Hayes9, Michele C. Hayward9, Mei Huang9, W. Kimryn Rathmell9,
+Katherine A. Hoadley9, Alan P. Hoyle9, Stuart R. Jefferys9, Corbin D. Jones9, Patrick K.     Ashley H. Salazar9, William W. Shockley9, Carol G. Shores9, Leigh Thorne9, Mark C.
+Kimes9, Yufeng Liu9, J. S. Marron9, Shaowu Meng9, Piotr A. Mieczkowski9, Lisle E. Mose9,     Weissler9, Sylvia Wrenn9, Adam M. Zanation9; University of Pittsburgh Simion I.
+Joel S. Parker9, Charles M. Perou9, Jan F. Prins9, Jeffrey Roach9, Yan Shi9, Janae V.        Chiosea22, Brenda Diergaarde22, Ann Marie Egloff22, Robert L. Ferris22, Marjorie
+Simons9, Darshan Singh9, Matthew G. Soloway9, Donghui Tan9, Umadevi Veluvolu9,               Romkes22, Raja Seethala22; Vanderbilt University Brandee T. Brown24, Yan Guo24,
+Vonn Walter9, Scot Waring9, Matthew D. Wilkerson9, Junyuan Wu9, Ni Zhao9; Broad              Michelle Pham24; Yale University Wendell G. Yarbrough30
+Institute Andrew D. Cherniack1, Peter S. Hammerman1,10, Aaron D. Tward1,5, Chandra
+Sekhar Pedamallu1,10, Gordon Saksena1, Joonil Jung1, Akinyemi I. Ojesina1,10, Scott L.       1
+Carter1, Travis I. Zack1,10,11, Steven E. Schumacher1,10, Rameen Beroukhim1,5,10,             The Eli and Edythe L. Broad Institute of Massachusetts Institute of Technology and
+Samuel S. Freeman1, Matthew Meyerson1,5,10, Juok Cho1, Lynda Chin1,4, Gad Getz1,2,           Harvard University, Cambridge, Massachusetts 02142, USA. 2Massachusetts General
+Michael S. Noble1, Daniel DiCara1, Hailei Zhang1, David I. Heiman1, Nils Gehlenborg1,5,      Hospital, 55 Fruit Street, Boston, Massachusetts 02114, USA. 3Canada’s Michael Smith
+Doug Voet1, Pei Lin1, Scott Frazer1, Petar Stojanov1,10, Yingchun Liu1, Lihua Zou1,          Genome Sciences Centre, BC Cancer Agency, Vancouver, British Columbia V5Z 4S6,
+                                                                                             Canada. 4The University of Texas MD Anderson Cancer Center, Houston, Texas 77030,
+Jaegil Kim1, Carrie Sougnez1, Stacey B. Gabriel1, Michael S. Lawrence1; Baylor College
+                                                                                             USA. 5Harvard Medical School, Boston, Massachusetts 02115, USA. 6Brigham and
+of Medicine Donna Muzny12, HarshaVardhan Doddapaneni12, Christie Kovar12,
+                                                                                             Women’s Hospital, Boston, Massachusetts 02115, USA. 7Boston Children’s Hospital,
+Jeff Reid12, Donna Morton12, Yi Han12, Walker Hale12, Hsu Chao12, Kyle Chang12,
+                                                                                             Boston, Massachusetts 02115, USA. 8University of Kentucky, Lexington, Kentucky 40506,
+Jennifer A. Drummond12, Richard A. Gibbs12, Nipun Kakkar12, David Wheeler12, Liu
+                                                                                             USA. 9University of North Carolina at Chapel Hill, Chapel Hill, North Carolina 27599, USA.
+Xi12; Memorial Sloan-Kettering Cancer Center Giovanni Ciriello13, Marc Ladanyi13,            10
+                                                                                               Dana-Farber Cancer Institute, 450 Brookline Avenue, Boston, Massachusetts 02215,
+William Lee13, Ricardo Ramirez13, Chris Sander13, Ronglai Shen13, Rileen Sinha13, Nils
+                                                                                             USA. 11Harvard University, Boston, Massachusetts 02115, USA. 12Baylor College of
+Weinhold13, Barry S. Taylor13, B. Arman Aksoy13, Gideon Dresdner13, Jianjiong Gao13,
+                                                                                             Medicine, Houston, Texas 77030, USA. 13Memorial Sloan-Kettering Cancer Center, 1275
+Benjamin Gross13, Anders Jacobsen13, Boris Reva13, Nikolaus Schultz13, S. Onur
+                                                                                             York Ave, New York, New York 10065, USA. 14University of California Santa Cruz, Santa
+Sumer13, Yichao Sun13, Timothy A. Chan13, Luc G. Morris13; University of California
+                                                                                             Cruz, California 95064, USA. 15The Sidney Kimmel Comprehensive Cancer Center at
+Santa Cruz/Buck Institute Joshua Stuart14, Stephen Benz14, Sam Ng14, Christopher
+                                                                                             Johns Hopkins University, Baltimore, Maryland 21287, USA. 16University of Southern
+Benz14, Christina Yau14; Johns Hopkins University/Sidney Kimmel Comprehensive
+                                                                                             California,1450 Biggy Street, NRT G511, Los Angeles, California 90033, USA. 17Johns
+Cancer Center Stephen B. Baylin15, Leslie Cope15, Ludmila Danilova15, James G.
+                                                                                             Hopkins Medical Institutions, Baltimore, Maryland 21205, USA. 18Ontario Institute for
+Herman15; University of Southern California Moiz Bootwalla16, Dennis T. Maglinte16,
+                                                                                             Cancer Research 101 College Street, Suite 800, Toronto, Ontario M5G 0A3, Canada.
+Peter W. Laird16, Timothy Triche Jr16, Daniel J. Weisenberger16, David J. Van Den Berg16     19
+                                                                                               Ontario Cancer Institute, Toronto, Ontario M5G 2M9, Canada. 20University of Michigan
+                                                                                             Comprehensive Cancer Center, Ann Arbor, Michigan 48109, USA. 21National Institute on
+Disease working group: Nishant Agrawal17, Justin Bishop17, Paul C. Boutros18, Jeff P.        Deafness and Other Communication Disorders, National Institutes of Health, Bethesda,
+Bruce19, Lauren Averett Byers4, Joseph Califano17, Thomas E. Carey20, Zhong Chen21,          Maryland 20892, USA. 22University of Pittsburgh, Pittsburgh, Pennsylvania 15213, USA.
+Hui Cheng21, Simion I. Chiosea22, Ezra Cohen23, Brenda Diergaarde22, Ann Marie               23
+                                                                                               The University of Chicago, Chicago, Illinois 60637, USA. 24Vanderbilt University Medical
+Egloff22, Adel K. El-Naggar4, Robert L. Ferris22, Mitchell J. Frederick4, Jennifer R.        Center 7209 Medical Center East, South Tower Nashville, Tennessee 37232, USA.
+                                                                                             25
+Grandis22, Yan Guo24, Robert I. Haddad10, Peter S. Hammerman1,10, Thomas Harris25,             Albert Einstein College of Medicine, Bronx, New York 10461, USA. 26University of
+D. Neil Hayes9, Angela B. Y. Hui19, J. Jack Lee4, Scott M. Lippman26, Fei-Fei Liu27,         California San Diego, San Diego, California 92093, USA. 27University of Toronto, Toronto,
+Jonathan B. McHugh20, Jeff Myers4, Patrick Kwok Shing Ng4, Bayardo                           Ontario M5G 2M9, Canada. 28University Health Network, Toronto, Ontario M5G 2C4,
+Perez-Ordonez28, Curtis R. Pickering4, Michael Prystowsky25, Marjorie Romkes22,              Canada. 29Greater Poland Cancer Centre, Garbary 15, 61-866, Poznań, Poland. 30Yale
+Anthony D. Saleh21, Maureen A. Sartor20, Raja Seethala22, Tanguy Y. Seiwert23, Han           School of Medicine, 800 Howard Avenue, 4th Floor Yale Physicians Building, New Haven,
+Si21, Aaron D. Tward1,5, Carter Van Waes21, Daryl M. Waggott18, Maciej Wiznerowicz29,        Connecticut 06520-8041, USA. 31International Genomics Consortium, 445 North 5th
+Wendell G. Yarbrough30, Jiexin Zhang4, Zhixiang Zuo23                                        Street, Phoenix, Arizona 85004, USA. 32The Research Institute at Nationwide Children’s
+                                                                                             Hospital, Columbus, Ohio 43205, USA. 33SRA International, Fairfax, Virginia 22033, USA.
+                                                                                             34
+                                                                                               Frederick National Laboratory for Cancer Research, 1050 Boyles Street, Frederick,
+Biospecimen core resource: International Genomics Consortium Ken Burnett31,
+                                                                                             Maryland 21702, USA. 35National Cancer Institute, 31 Center Drive 3A20, Bethesda,
+Daniel Crain31, Johanna Gardner31, Kevin Lau31, David Mallery31, Scott Morris31,
+                                                                                             Maryland 20892, USA. 36Scimentis, LLC, Atlanta, Georgia 30666, USA. 37National Human
+Joseph Paulauskis31, Robert Penny31, Candace Shelton31, Troy Shelton31, Mark
+                                                                                             Genome Research Institute, National Institutes of Health, Bethesda, Maryland 20892,
+Sherman31, Peggy Yena31; Nationwide Children’s Hospital Aaron D. Black32, Jay
+                                                                                             USA. 38Analytical Biological Services, Inc., 701 Cornell Drive, Wilmington, Delaware
+Bowen32, Jessica Frick32, Julie M. Gastier-Foster32, Hollie A. Harper32, Kristen Leraas32,
+                                                                                             19801, USA. 39Fred Hutchinson Cancer Research Center, Mailstop M5-C800, 1100
+Tara M. Lichtenberg32, Nilsa C. Ramirez32, Lisa Wise32, Erik Zmuda32                         Fairview Avenue North, Seattle, Washington 98109, USA. 40Georgia Regents University,
+                                                                                             Augusta, Georgia 30912, USA. 41Indiana University Simon Cancer Center, Indianapolis,
+Data coordinating centre: Julien Baboud33, Mark A. Jensen33, Ari B. Kahn33, Todd D.          Indiana 46202, USA. 42University of Miami, Sylvester Comprehensive Cancer Center,
+Pihl33, David A. Pot33, Deepak Srinivasan33, Jessica S. Walton33, Yunhu Wan33                1550 NW 10th Avenue, Miami, Florida 33136, USA.
+
+
+
+
+5 8 2 | N AT U R E | VO L 5 1 7 | 2 9 J A N U A RY 2 0 1 5
+                                                         ©2015 Macmillan Publishers Limited. All rights reserved
+
+==============================================================================
+VISUAL FIGURE VALUE AUDIT
+==============================================================================
+
+# Visual figure audit: L34
+
+Source: `pdfs/L34.pdf`; viewed rendered pages 3-4 (journal pagination).
+
+- Figure 1 (p. 3): copy-number landscape stratified by lung squamous cancer, HPV-negative/positive head-and-neck cancer, and cervical squamous cancer. Caption gives group sizes: LUSC n=358, HPV-negative HNSCC n=243, HPV-positive HNSCC n=34, CESC n=114. Figure is a genomic heatmap, not a predictive benchmark.
+- Figure 2 (p. 4): significantly mutated genes across n=279 HNSCC samples, ordering genes by q-value and displaying mutation prevalence and mutation types. Legible right-side overall mutation percentages include CDKN2A 16%, TP53 41%, CASP8 5%, AJUBA 0%, PIK3CA 8%, NOTCH1 10%, KMT2D 5%, NSD1 4%, HLA-A 2%, TGFB2 1%, HRAS 8%, FBXW7 3%, RB1 1%, PIK3H 3%, TRAF3 0%, NFE2L2 5%, CUL3 2%, and PTEN 3%. Preserve the source's labels; the small labels and significance marks should be checked against extracted caption/text before citation.
+
+These figures describe genomic cohort structure and mutation prevalence only; they do not establish survival discrimination.

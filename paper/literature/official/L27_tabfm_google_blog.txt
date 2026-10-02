@@ -1,0 +1,216 @@
+SOURCE: Google Research TabFM announcement
+URL: https://research.google/blog/introducing-tabfm-a-zero-shot-foundation-model-for-tabular-data/
+ARCHIVED: 2026-10-02
+
+Introducing TabFM: A zero-shot foundation model for tabular data
+Skip to main content
+Explore our many areas of focus
+Explore all research areas
+Applied AI & sciences
+Earth AI
+Health AI
+Science AI
+Sustainability & crisis resilience
+Foundational ML & algorithms
+Algorithms & theory
+Information retrieval
+Machine intelligence
+Machine perception
+Natural language processing
+People, systems & quantum AI
+Human-computer interaction and visualization
+Networking
+Quantum AI
+Responsible AI
+Anti abuse
+Software engineering
+Software systems
+Learn More
+Publications
+Projects
+Building a collaborative ecosystem
+Datasets
+Access high-quality datasets to accelerate your research.
+Tools & services
+Explore our latest AI models and products.
+Open source
+Discover open-source code and collaborate with the community.
+Shaping the future together
+See all programs
+Faculty programs
+Participating in the academic research community through meaningful engagement with university faculty.
+Student programs
+Supporting the next generation of researchers through a wide range of programming.
+R&D programs
+Collaborating with industry and academic experts to support foundational science and innovation.
+Locations
+Find your place in our global offices and research labs.
+Translating discovery into real-world impact
+People
+Our researchers drive advancements in computer science through both fundamental and applied research.
+Teams
+Collaborative groups tackling the world's most challenging AI problems.
+Research
+Explore our many areas of focus
+Explore all research areas
+Applied AI & sciences
+Earth AI
+Health AI
+Science AI
+Sustainability & crisis resilience
+Foundational ML & algorithms
+Algorithms & theory
+Information retrieval
+Machine intelligence
+Machine perception
+Natural language processing
+People, systems & quantum AI
+Human-computer interaction and visualization
+Networking
+Quantum AI
+Responsible AI
+Anti abuse
+Software engineering
+Software systems
+Learn More
+Publications
+Projects
+Resources
+Building a collaborative ecosystem
+Datasets
+Access high-quality datasets to accelerate your research.
+Tools & services
+Explore our latest AI models and products.
+Open source
+Discover open-source code and collaborate with the community.
+Conferences & events
+Careers
+Shaping the future together
+See all programs
+Faculty programs
+Participating in the academic research community through meaningful engagement with university faculty.
+Student programs
+Supporting the next generation of researchers through a wide range of programming.
+R&D programs
+Collaborating with industry and academic experts to support foundational science and innovation.
+Locations
+Find your place in our global offices and research labs.
+Blog
+About
+Translating discovery into real-world impact
+People
+Our researchers drive advancements in computer science through both fundamental and applied research.
+Teams
+Collaborative groups tackling the world's most challenging AI problems.
+GoogleResearch
+Google AI
+Learn about all our AI
+Google DeepMind
+Explore the frontier of AI
+Google Labs
+Try our AI experiments
+Research
+Resources
+Conferences & events
+Careers
+Blog
+About
+Search
+Home
+Blog
+Introducing TabFM: A zero-shot foundation model for tabular data
+June 30, 2026
+Weihao Kong and Abhimanyu Das, Research Scientists, Google Research
+We’ve seen a massive shift in how people handle time-series forecasting since we launched TimesFM. Now, we’re bringing that same "zero-shot" logic to tabular data.
+We introduce TabFM, a new foundation model for tabular data to simplify classification and regression workflows.
+Quick links
+Hugging Face
+GitHub
+Share
+Copy link
+×
+Tabular data constitutes the backbone of enterprise data infrastructure and powers a significant fraction of critical predictive machine learningapplications. From predicting customer churn to identifying financial fraud, tabular regression and classification tasks are ubiquitous. For years, supervised tree-based algorithms likeAdaBoost,XGBoostandrandom forests, to name a few, have historically dominated this space, offering robust performance on structured data.
+However, the lifecycle of deploying these traditional models presents a significant bottleneck. Fitting an XGBoost model to a new dataset is not merely a matter of a single.fit()step; it invariably requires tedious manual effort. Data scientists must invest countless hours into extensive hyperparameter optimization and domain-specific feature engineering just to extract a reliable signal from the raw data.
+On the other hand, recent advances in the broader machine learning landscape — particularly the evolution of large language models (LLMs) — have changed how we interact with novel tasks. LLMs have demonstrated the remarkable power of zero-shot prediction throughin-context learning(ICL). This technique lets a pretrained model learn a new task by providing examples and instructions in the input context, without updating any underlying model weights.
+Today, we introduce TabFM, a foundation model designed specifically for tabular data classification and regression. By framing tabular prediction as an ICL problem, TabFM eliminates the need for manual model training,hyperparameter tuning, and complex feature engineering. We are excited to share how this approach allows users to generate high-quality predictions on previously unseen tables in a single forward pass. TabFM is now available on ourHugging FaceandGitHubrepos, and is now livedirectly within Google Cloud BigQuery.
+How it works
+The traditional ML paradigm relies on updating model parameters specific to a given dataset's distribution. In contrast, the ICL paradigm bypasses this completely. Instead of undergoing a traditional training phase for each new task, TabFM takes the entire dataset — comprising both the historical training examples and the target testing rows — as a single unified prompt. The model learns to interpret the relationships between columns and rows directly from this context at inference time.
+However, applying ICL to tabular data is not as straightforward as tokenizing natural language. Standard language models process one-dimensional, ordered sequences, but tables are fundamentally two-dimensional and inherently orderless: swapping two rows or two columns does not change the underlying meaning of the data. To effectively process these diverse tabular structures while enabling scalable zero-shot prediction, TabFM synthesizes the strengths of architectures likeTabPFNandTabICLinto a novel hybrid design. This architecture, visualized below, relies on three key mechanisms:
+Alternating row and column attention: First, the raw table is processed through a multilayer attention module. Similar to TabPFN, this step applies alternating attention across both columns (features) and rows (examples). By continuously attending across these two dimensions, the model learns rich representations that natively capture complex feature interactions and dependencies. This deep contextualization effectively performs the heavy lifting that would otherwise require tedious manual feature crafting by data scientists.
+Row compression: Following this contextualization, the rich, cross-attended information for each individual row is compressed into a single, dense vector representation.
+In-context learning (ICL): Finally, a dedicated Transformer operates on this sequence of compressed embeddings. Adopting the highly efficient approach of TabICL, performing attention over these compressed row vectors — rather than the raw, uncompressed grid — drastically reduces the computation cost. This ensures the prediction step remains highly computationally efficient, even for much larger datasets.
+TabFM model architecture.
+Training on synthetic data at scale
+A typical recipe for building foundation models is to use a high-capacity neural network trained on vast amounts of diverse data. However, a major hurdle in tabular ML is that high-quality, diverse tabular datasets — especially the massive tables required to reflect true industrial data analysis — are critically scarce in the open-source space. Industrial tables often contain proprietary schemas and sensitive information, making them inaccessible for broad pre-training.
+Because synthetic tables can be generated to be arbitrarily large, they are effectively the only viable option for pre-training a foundation model at this scale. As a result, TabFM is trained entirely on hundreds of millions of synthetic datasets. These datasets are dynamically generated using structural causal models (SCMs) that incorporate a wide variety of random functions. This massive synthetic generation captures the wide variety of distributions and complex feature relationships prevalent in real-world tabular data. As a result, the model generalizes well to unseen real-world tables, as we demonstrate in our benchmarks below.
+Performance and benchmarking
+To rigorously test TabFM against existing state-of-the-art methods, we evaluated it onTabArena, a living benchmark system that calculatesElo scoresbased on head-to-head win rates. This comprehensive evaluation spans 38 classification datasets and 13 regression datasets ranging in size from 700 to 150,000 samples.
+As shown in the performance plot below, we benchmarked two distinct configurations of our model:
+TabFM: This represents the out-of-the-box capability of the model. Predictions are generated in a single forward pass, requiring no tuning or cross-validation.
+TabFM-Ensemble: This configuration pushes performance further by incorporating cross features andSVD(Singular Value Decomposition) features. We compute the optimal weights for a 32-way ensemble using a non-negative least squares solver. For classification tasks, this variant also incorporatesPlatt scalingas an additional calibration step.
+For comprehensive TabArena benchmark results—including detailed per-fold metrics and head-to-head win rates against specific baseline models—please visit ourGitHub page.
+ELO ratings (↑) for the top 10 models across TabArena classification (upper) and regression (lower).(D)= default;(T+E)= tuned + ensemble. Higher scores denote superior performance.
+Conclusion
+By reframing tabular prediction as an in-context learning problem, TabFM utilizes a hybrid attention architecture and massive synthetic training data to natively capture complex feature interactions. This approach successfully eliminates the traditional bottlenecks of manual feature engineering, hyperparameter optimization, and repetitive model training, and consistently outperforms heavily tuned, industry-standard supervised algorithms. TabFM brings the out-of-the-box convenience of modern foundation models directly to tabular ML workflows, empowering practitioners to generate highly accurate predictions in a single forward pass.
+To make these capabilities directly accessible for enterprise analytics, TabFM is now natively integrated into Google Cloud BigQuery. Practitioners can run zero-shot regression and classification directly on their tables using simple SQL queries (AI.PREDICT) - eliminating custom model training. Read more in theGoogle Cloud announcementor explore the documentation to get started in BigQuery today.
+Acknowledgements
+This project is joint work with Erez Louidor Ilan, Taman Narayan, Shuxin Nie, Rajat Sen, Yichen Zhou, Joe Toth, Deqing Fu and Samet Oymak. We thank Kimberly Schwede for designing the graphics.
+Labels:
+Data Management
+Machine Intelligence
+Product
+Quick links
+Hugging Face
+GitHub
+Share
+Copy link
+×
+Other posts of interest
+September 29, 2026
+How Diffusion Controller unifies and simplifies AI image generation
+Algorithms & Theory·
+Machine Intelligence
+September 24, 2026
+Automating coherent long-form video generation
+Generative AI·
+Machine Intelligence
+September 17, 2026
+The future of practice: Enabling teachers to create learning interactives with generative UI
+Education Innovation·
+Generative AI·
+Machine Intelligence
+×❮❯
+Follow us
+Explore our other initiatives
+Google AI
+Discover how Google AI is committed to enriching knowledge and solving complex challenges
+Products
+Build
+Research
+Responsibility
+Societal Impact
+About
+Google Cloud
+High-performance infrastructure for cloud computing, data analytics & machine learning
+Overview
+Solutions
+Products
+Pricing
+Resources
+Google DeepMind
+Our mission is to build AI responsibly to benefit humanity
+Models
+Research
+Science
+About
+Google Labs
+Explore the future of AI responsibly with Google Labs
+About
+Experiments
+Stay connected
+About Google
+Google Products
+Privacy
+Terms
+Cookies management controls
+×

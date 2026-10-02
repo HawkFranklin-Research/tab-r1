@@ -1,0 +1,41 @@
+source_id	text_path	source_sha256	findings	quantitative_passages	review_scope
+L01	paper/literature/txt/L01.txt	95591aa12da73a454f384aeb228628959c56797b8a40064291a834fd101657d3	3	79	Selected main-text findings/table passages, NOT exhaustive figures/supplements
+L02	paper/literature/txt/L02.txt	8bfa12c8f20d85457ba7adcb7ee75701aae36bd6212cf36860ce6a8e4ab55eff	5	145	Selected main-text findings/table passages, NOT exhaustive figures/supplements
+L03	paper/literature/txt/L03.txt	a6ab7ca535f7d46c42b8001745defa14f5af3a04be5ce4a02072c1a98d9639ee	4	99	Selected main-text findings/table passages, NOT exhaustive figures/supplements
+L04	paper/literature/txt/L04.txt	78fc74c31d7d726de2b49deb88a6eb09af12adb72e4372cb6199362ac20566be	3	135	Selected main-text findings/table passages, NOT exhaustive figures/supplements
+L05	NA	NA	1	0	Correct text unavailable
+L06	paper/literature/txt/L06.txt	b66209b78534ee03112d90db846b144bc8f78ab322ed51d964913c6b9535b502	3	128	Selected main-text findings/table passages, NOT exhaustive figures/supplements
+L07	paper/literature/txt/L07.txt	e833b2efa2d69c5b1306feff0fa23078981f237d87dc008b53b0080c4021a635	1	60	Selected main-text findings/table passages, NOT exhaustive figures/supplements
+L08	paper/literature/txt/L08.txt	5fb87f3bca2f5971f5f0a1b4a3b1081151b05dc3a9f7bee921515c25e519461f	2	224	Selected main-text findings/table passages, NOT exhaustive figures/supplements
+L09	paper/literature/txt/L09.txt	374c3587dd9fec625b8aab6ef6f7c112c4307cb3cf6d0765c4178eb0c01fa254	2	62	Selected main-text findings/table passages, NOT exhaustive figures/supplements
+L10	paper/literature/txt/L10.txt	45b5bf20a3bd254ad9d8793394a27a9e2bf5bf27006ba7df9ff949ee3eae8a7b	1	84	Selected main-text findings/table passages, NOT exhaustive figures/supplements
+L11	paper/literature/txt/L11.txt	aa9a21b0f48b19a9e3f23c1e8bc7530bb9812ddee5ac709072af8959b4fb90c9	1	100	Selected main-text findings/table passages, NOT exhaustive figures/supplements
+L12	paper/literature/txt/L12.txt	80c77b9474118e2477bffb7bed9435d65e6759252f5b2f9998c489e97c73eae9	2	53	Selected main-text findings/table passages, NOT exhaustive figures/supplements
+L13	paper/literature/txt/L13.txt	365dfeb6245fde28eef38e0fd24fb66f1e6271fba9b206ec6da63ddaf943a5f7	1	79	Selected main-text findings/table passages, NOT exhaustive figures/supplements
+L14	paper/literature/txt/L14.txt	37f09d8ac8d9bb1b600089965ddf47fb02743789090d4f03225159c3460654f8	1	67	Selected main-text findings/table passages, NOT exhaustive figures/supplements
+L15	NA	NA	1	0	Correct text unavailable
+L16	paper/literature/txt/L16.txt	12d2153e7d66c3f5353f7bc19207938224066c1b0130a952ff90a2b9b44b9b2b	3	191	Selected main-text findings/table passages, NOT exhaustive figures/supplements
+L17	paper/literature/txt/L17.txt	bc15cfac1b6d5622a3c683295b15c182256577d793b83645ebd8c73e569635c2	1	639	Selected main-text findings/table passages, NOT exhaustive figures/supplements
+L18	paper/literature/txt/L18.txt	d8a8fcdf2010c2d03cfe414fd5c8e3e08dee764efbe5c139a29834868c369f74	3	209	Selected main-text findings/table passages, NOT exhaustive figures/supplements
+L19	paper/literature/txt/L19.txt	4dbdc33ac89a77c7841197c54c520273cd229bb75d5fed9c9f3a3bf736ee1620	2	277	Selected main-text findings/table passages, NOT exhaustive figures/supplements
+L20	paper/literature/txt/L20.txt	763ecdd083ce306bbfc93df6da1af3797c11145778efe86994cff7d7a5c0f732	2	441	Selected main-text findings/table passages, NOT exhaustive figures/supplements
+L21	paper/literature/txt/L21.txt	7766bfc5fde6a537db42b34355af90469a79bd41c007434c7f748852b2b2ece6	1	175	Selected main-text findings/table passages, NOT exhaustive figures/supplements
+L22	paper/literature/txt/L22.txt	ac3c56466b39c6622912b386a42ce2500d63a2feec8484f47615a6b356ff2a2f	1	102	Selected main-text findings/table passages, NOT exhaustive figures/supplements
+L23	paper/literature/txt/L23.txt	56614f46efc2deccb4a48274f488a23a4b3057fdccf954ac5df0e62a5ffe76be	1	76	Selected main-text findings/table passages, NOT exhaustive figures/supplements
+L24	paper/literature/txt/L24.txt	3cb496ccafcc086e7c1a0f07bc53290791841fdfd9752115f2fb8787edb661cb	1	66	Selected main-text findings/table passages, NOT exhaustive figures/supplements
+L25	paper/literature/txt/L25.txt	bfff467adcc562d126916f7631f596f6f1d053786f20325ebbc67e26d128d3af	2	112	Selected main-text findings/table passages, NOT exhaustive figures/supplements
+L26	paper/literature/txt/L26.txt	426ed4419a355a2b97b70f06f2ad693ff519ac0565cd6cf4cd31175b3c337db6	2	220	Selected main-text findings/table passages, NOT exhaustive figures/supplements
+L27	paper/literature/official/L27_tabfm_google_blog.txt	43988fef076abcd3fae2ba2c4012f6bd7bbfade60a1696c7ff85bb4e2ab640ad	1	2	Selected main-text findings/table passages, NOT exhaustive figures/supplements
+L28	paper/literature/official/L28_tabfm_repository_readme.txt	bbb0cc12caedd3f9ef25b22163d4a63766da4df27e5b2cf42a1df1c7bd91aa0b	1	6	Selected main-text findings/table passages, NOT exhaustive figures/supplements
+L29	paper/literature/txt/L29.txt	fb066b0ce666f6f13ba49b2cd3ff9f1da8fd04900fad4dcf3c0dd528361f993c	3	139	Selected main-text findings/table passages, NOT exhaustive figures/supplements
+L30	paper/literature/txt/L30.txt	e37538824a9e09f9cd8cdd2baed8ff61004738ed1b6799818450bb3cd3d27b80	1	48	Selected main-text findings/table passages, NOT exhaustive figures/supplements
+L31	NA	NA	1	0	Correct text unavailable
+L32	paper/literature/txt/L32.txt	7cf206da1549f155d2c4a85636bd8b060d5a80d1a8c8091ec03617913eaf731f	1	151	Selected main-text findings/table passages, NOT exhaustive figures/supplements
+L33	paper/literature/txt/L33.txt	50be75e5479be1e252afb09d87d3f979b28544ef83554282cd0cb751154ccaa6	1	172	Selected main-text findings/table passages, NOT exhaustive figures/supplements
+L34	paper/literature/txt/L34.txt	9a9bf19dd5f1782b16a9d10cf3301195d2c019002f98a4effd3c820ba67105ef	1	119	Selected main-text findings/table passages, NOT exhaustive figures/supplements
+L35	paper/literature/txt/L35.txt	739274c08258215178f3d4cfa79d08725f89440cdeed2c57fda2f7199cc75f9a	1	118	Selected main-text findings/table passages, NOT exhaustive figures/supplements
+L36	paper/literature/txt/L36.txt	bdc0a3439891a95aa56d5a02d77b5d406efc89b35b2b61096cc4d6d36de5b2a2	1	134	Selected main-text findings/table passages, NOT exhaustive figures/supplements
+L37	NA	NA	1	0	Correct text unavailable
+L38	NA	NA	1	0	Correct text unavailable
+L39	paper/literature/txt/L39.txt	35ca63f37438f5ba855d1162324817d1d486be8d9dbaeab3ec47f1e960ff31f9	1	110	Selected main-text findings/table passages, NOT exhaustive figures/supplements
+L40	paper/literature/txt/L40.txt	35b2cd655bbeeeeaafe3954320228d3ba46cc61bccf332bc005ae24a50ccaddc	1	56	Selected main-text findings/table passages, NOT exhaustive figures/supplements

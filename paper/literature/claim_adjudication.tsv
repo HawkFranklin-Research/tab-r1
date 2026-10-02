@@ -1,0 +1,67 @@
+evidence_id	source_id	citation_key	action	report_section_now	what_changed_and_why
+E001	L01	shaktah2026established	qualified	Introduction; Discussion	Intro sentence now states 2 of 12 tasks, most AUROC differences within 0.02, tuned baselines, different predictors/endpoints/budgets. Discussion cites it as consistent context, no numerical comparison.
+E002	L01	shaktah2026established	not used numerically	Discussion	Per-task rounded AUROCs are secondary; used only as qualitative context, not as a cross-paper ranking.
+E003	L02	herrmann2021benchmark	added	Introduction	Clinical-only reference performs about as well as best molecular models in aggregate (Herrmann). No C-index value set beside our ROC AUC.
+E004	L02	herrmann2021benchmark	not used	-	Runtime/prioritisation detail not needed in this report.
+E005	L03	li2024combining	added	Introduction	More modalities need not help censored survival prediction (Li 2024); kept separate from cohort pooling.
+E006	L03	li2024combining	not used	-	Selection-in-training-fold detail covered by Ambroise citation; our variance selection differs from RF-importance selection.
+E007	L04		added	Introduction	Wissel 2023 cited with Herrmann/Li for modality-integration findings; bib entry added.
+E008	L04		added	Discussion	Noise-block/modality-removal designs cited as analogous probes for the proposed (not yet run) within-cancer standardisation test.
+E009	L06		added	Discussion	Case-mix dependence of discrimination (de Jong 2023) in new context paragraph; DVT diagnosis, not oncology, so framed as context.
+E010	L06		added	Discussion	Clause that our within-cancer scoring stratifies and does not reweight to a target population.
+E011	L07		added	Discussion	Informative presence (Sisk 2021) as counterpoint; flagged as care-process, not assay absence, so analogy only.
+E012	L08		added	Discussion	Missingness-shift robustness (Rockenschaub 2024); preprint; analogy only, not evidence about our mechanism.
+E013	L09		added	Discussion	Negative transfer defined against target-only learning (Wang 2019); image domain adaptation noted as different setting.
+E014	L10	geirhos2020shortcut	kept; softened	Introduction	"Shortcut sentence now ""can score well ... and transfer poorly""; no claim that shared biology is absent."
+E015	L11		added	Introduction; Discussion	Cell-of-origin organisation of TCGA data: differences between cancers are biological as well as technical; not claimed to prove survival confounding.
+E016	L12		added	Discussion	Averages can conceal between-setting variation (Riley 2016), qualitative only.
+E017	L12		added	Discussion (limitations)	Internal-external validation named as the standard check; our held-out diagnostic described as a weaker version.
+E018	L13	soneson2014batch	kept	Introduction	"Bounded genomic-confounding citation retained; wording ""can""."
+E019	L14	bernau2014crossstudy	kept	Introduction	Cross-study validation precedent retained; no claim of external validation of foundation models.
+E020	L16	priorlabs2025tabpfn25	qualified	Introduction	Supported size stated as 50,000 rows/2,000 features for TabPFN-2.5, kept distinct from the 1,000-sample CPU safeguard.
+E021	L16	priorlabs2025tabpfn25	qualified	Reproducibility	Our default-setting comparison is not described as reproducing default-vs-tuned-vs-distilled claims.
+E022	L17	priorlabs2026tabpfn3	qualified	Introduction; Methods	Larger regimes for TabPFN-3 stated; Methods says local checkpoint used and API variants not evaluated.
+E023	L18	hollmann2025accurate	qualified	Reproducibility; Introduction	"Original protocol stated (29/28 datasets, ten seeds, 90/10, tuned baselines, normalised scores, GPU). Claim narrowed to ""direction""; 0.939 vs 0.752 quoted as normalised and explicitly not comparable to our raw AUC."
+E024	L18	hollmann2025accurate	qualified	Introduction	"""Seconds"" now tied to a GPU-equipped machine versus up to four hours for tuned baselines."
+E025	L18	hollmann2025accurate	qualified	Discussion	Mechanism now a hypothesis: architecture paper describes computation, not why pooling hurt; no attention measurement or ablation.
+E026	L19	qu2025tabicl	not used	-	TabICL scalability subsets are background only; TabICL is not an evaluated arm.
+E027	L20	erickson2025tabarena	qualified	Reproducibility; Discussion	"Tuning/validation/ensembling change rankings; our baselines untuned, so comparison is between defaults. ""Tuned tree ensembles"" removed."
+E028	L21	grinsztajn2022tree	qualified	Introduction	Tree-vs-deep claim limited to data with many more rows than features (d/n<0.1); not p>>n omics.
+E029	L22	breiman2001random	kept; restricted	Methods; Discussion	Breiman cited with XGBoost for feature-wise splits; no claim that trees are immune to shortcuts.
+E030	L23	chen2016xgboost	kept	Methods	Algorithm citation retained.
+E031	L24	ke2017lightgbm	kept	Methods	Algorithm citation retained.
+E032	L25	prokhorenkova2018catboost	kept	Methods	Algorithm citation retained.
+E033	L26	erickson2020autogluon	qualified	Methods	AutoGluon 180-second limit contrasted with original 1-4 hour budgets.
+E034	L27	google2026tabfm	qualified	Introduction; Methods	TabFM described as announcement plus software release, not a peer-reviewed report; architecture sentence matches source.
+E035	L28	tabfmsoftware2026	kept	Methods	Repository cited with the evaluated commit given separately.
+E036	L29	saito2015precision	added	Methods	Precision-recall AUC depends on prevalence (Saito); definition level only.
+E037	L30	van2019calibration	added	Discussion; Methods	Lower log loss/Brier not calibration (Van Calster).
+E038	L32	tcga2012brca	added	Reusability	Original TCGA marker-paper cohort sizes stated (825/164/279/178/230) as provenance, not as our eligible counts; ESCA and HNSCC internal heterogeneity noted. LUSC = our LSCC label.
+E039	L33	tcga2017esca	added	Reusability	Original TCGA marker-paper cohort sizes stated (825/164/279/178/230) as provenance, not as our eligible counts; ESCA and HNSCC internal heterogeneity noted. LUSC = our LSCC label.
+E040	L34	tcga2015hnsc	added	Reusability	Original TCGA marker-paper cohort sizes stated (825/164/279/178/230) as provenance, not as our eligible counts; ESCA and HNSCC internal heterogeneity noted. LUSC = our LSCC label.
+E041	L35	tcga2012lusc	added	Reusability	Original TCGA marker-paper cohort sizes stated (825/164/279/178/230) as provenance, not as our eligible counts; ESCA and HNSCC internal heterogeneity noted. LUSC = our LSCC label.
+E042	L36	tcga2014luad	added	Reusability	Original TCGA marker-paper cohort sizes stated (825/164/279/178/230) as provenance, not as our eligible counts; ESCA and HNSCC internal heterogeneity noted. LUSC = our LSCC label.
+E043	L39	tripodai2024	qualified	Methods	"Changed from ""followed"" to ""consulted""; no formal checklist completed. PROBAST+AI bib year already 2025 (key name stale only)."
+E044	L40	probastai2024	qualified	Methods	"Changed from ""followed"" to ""consulted""; no formal checklist completed. PROBAST+AI bib year already 2025 (key name stale only)."
+E045	L01	shaktah2026established	not used	-	No numerical comparison with the clinical study is made, so the uncertainty-design distinction is not needed.
+E046	L02	herrmann2021benchmark	added	Discussion	Per-cancer C-index gains over clinical-only (0.002 to 0.028 in four cancers) given as context; winner chosen retrospectively; metrics not comparable.
+E047	L02	herrmann2021benchmark	added	Reusability; Discussion	Non-significance is not equivalence, stated for our Nemenyi result and Methods; Herrmann P-values not quoted in text.
+E048	L02	herrmann2021benchmark	not used	-	Detail rows; not needed for a report of this length.
+E049	L03	li2024combining	not used	-	Detail rows; not needed for a report of this length.
+E050	L03	li2024combining	added	Discussion (limitations)	Survival benchmarks include clinical variables and use time-to-event metrics, so protocols are not numerically interchangeable with ours.
+E051	L04		not used	-	Detail rows; not needed for a report of this length.
+E052	L06		not used	-	Detail rows; not needed for a report of this length.
+E053	L08		not used	-	Detail rows; not needed for a report of this length.
+E054	L09		not used	-	Detail rows; not needed for a report of this length.
+E055	L16	priorlabs2025tabpfn25	qualified	Discussion; Methods	CPU safeguard described as a runtime safeguard distinct from recommended data sizes (10,000 rows v2; 50,000 rows v2.5).
+E056	L19	qu2025tabicl	added	Reproducibility	In-context models trained without validation set in TabICL benchmark vs conventional models tuned with one; cited for protocol dependence.
+E057	L20	erickson2025tabarena	kept	Methods	Our NA treatment retained; no imputation of absent configurations.
+E058	L25	prokhorenkova2018catboost	not used	-	Detail rows; not needed for a report of this length.
+E059	L26	erickson2020autogluon	qualified	Methods	Same as E033.
+E060	L29	saito2015precision	not used	-	Detail rows; not needed for a report of this length.
+E061	L29	saito2015precision	not used	-	Detail rows; not needed for a report of this length.
+E062	L05		not cited	-	L05 correct-source full text unavailable; left out as instructed.
+E063	L15	ambroise2002selection	kept (generic)	Methods	Ambroise cited only for the rationale of train-only selection; no numbers taken from it.
+E064	L31	brier1950verification	kept (generic)	Methods	Brier 1950 cited only for the score definition; no numbers taken from it.
+E065	L37	liu2018clinical	kept (existing)	Methods; Reusability	Existing TCGA-clinical and CPTAC provenance citations unchanged; no source-specific numbers used.
+E066	L38	li2023pancancer	kept (existing)	Methods; Reusability	Existing TCGA-clinical and CPTAC provenance citations unchanged; no source-specific numbers used.

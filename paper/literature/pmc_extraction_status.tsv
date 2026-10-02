@@ -1,0 +1,14 @@
+source_id	pmcid	status	text_path	xml_bytes
+L01	PMC13599330	xml_text_extracted	txt/L01.txt	120013
+L02	PMC8138887	xml_text_extracted	txt/L02.txt	184949
+L03	PMC11370316	xml_text_extracted	txt/L03.txt	144758
+L04	PMC10162996	xml_text_extracted	txt/L04.txt	177459
+L07	PMC7810439	xml_text_extracted	txt/L07.txt	154542
+L12	PMC4916924	xml_text_extracted	txt/L12.txt	144563
+L14	PMC4058929	xml_text_extracted	txt/L14.txt	128240
+L15	PMC124442	unavailable:HTTPError		0
+L18	PMC11711098	xml_text_extracted	txt/L18.txt	164892
+L11	PMC5957518	xml_text_extracted	txt/L11.txt	186913
+L37	PMC6066282	unavailable:HTTPError		0
+L39	PMC11019967	xml_text_extracted	txt/L39.txt	221676
+L40	PMC11931409	xml_text_extracted	txt/L40.txt	179719

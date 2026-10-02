@@ -1,0 +1,214 @@
+# Retrieval inventory, NOT completed visual/claim audit
+Source L18: Accurate predictions on small data with a tabular foundation model; DOI 10.1038/s41586-024-08328-6
+Original text line numbers. Numbers may be citations, secondary reports,
+toy examples, or ambiguous table columns. Verify context before citing.
+
+L24:                                                                 science1,2. The fundamental prediction task of filling in missing values of a label
+L31:                                                                 methods on datasets with up to 10,000 samples by a wide margin, using substantially
+L32:                                                                 less training time. In 2.8 s, TabPFN outperforms an ensemble of the strongest
+L45: end-to-end learned ones. Hand-designed features in computer vision,                              tree-based models, the strongest contender so far14,15.
+L46: such as SIFT (Scale Invariant Feature Transform)10 and HOG (Histogram                               However, these traditional machine learning models have sev-
+L49: replaced by learned transformers12; and the design of customized open-                           one dataset to another16. Finally, they are hard to combine with neural
+L54: modalities such as text and images. While in language modelling for                              yields dominant performance for datasets with up to 10,000 samples
+L55: example the meaning of a word is consistent across documents, in                                 and 500 features. In a single forward pass, TabPFN significantly out-
+L57: things. A drug discovery dataset, for example, might record chemical                             gradient-boosted decision trees, even when these are allowed 4 h of
+L58: properties, whereas another dataset in materials science might docu-                             tuning, a speedup of 5,140× (classification) and 3,000× (regression).
+L62: 76% of the datasets contain less than 10,000 rows at the time of writing.
+L65: neity of the raw data itself: Tables contain columns, also called features,                      TabPFN leverages in-context learning (ICL)17, the same mechanism
+L77:                                                                                                                                         Nature | Vol 637 | 9 January 2025 | 319
+L97: b                        Input dataset                                                   2D TabPFN layer (12×)                                              Predictions: ˆy test
+L99:                  x1            x2          y                    1D feature attention                   1D sample attention              MLP        to a piece-wise constant
+L111: Test            33.3          2.2          ?
+L116: Fig. 1 | Overview of the proposed method. a, The high-level overview of TabPFN                 standard transformer encoder that is adapted for the two-dimensional data
+L124: such as logistic regression through ICL18–21. Prior-data Fitted Net-                           being applied to real-world datasets, the model is once pre-trained
+L127: mated with ICL22. ICL enables us to learn a wider space of possible                            both labelled training and unlabelled test samples and performs
+L130:     We build on a preliminary version of TabPFN23, which demonstrated                             Figures 1 and 2 outline our approach:
+L133: Based on a series of improvements, the new TabPFN scales to 50× larger                            ships between features and targets, designed to capture a wide range
+L137: tabular datasets and then train a transformer-based12 neural network                              supervised prediction problem. Further details of our prior design
+L139: approaches require hand-engineered solutions for data challenges                               2. Pre-training: we train a transformer model, our PFN, to predict the
+L144: by generating diverse synthetic datasets that demonstrate the desired                          3. Real-world prediction: the resulting trained model can now be
+L155: to hand-crafted weight-updating algorithms, such as Adam 24.                                   artificial datasets used during PFN pre-training.
+L158: 320 | Nature | Vol 637 | 9 January 2025
+L189: Fig. 2 | Overview of the TabPFN prior. a, For each dataset, we first sample              for each to-be-generated sample. In step 2, we randomly sample feature and
+L192: the dataset. Each node holds a vector and each edge in the computational                 target node positions. In step 4, we post-process the extracted data. c, We
+L193: graph implements a function according to one of the connection types. In step 1,         retrieve the final datasets. We plot interactions of feature pairs and the node
+L200: An architecture designed for tables                                                      features (100), the speedups increase to 800× on CPU and 30× speedup
+L210: learning models are often used in a fit-predict model, in which a model                  the prediction on datasets with up to 50 million cells (for example,
+L211: is fitted on the training set once and then reused for multiple test data-               5 million rows × 10 features) on a single H100 GPU.
+L213: test data in a single pass and thus perform training and prediction at                   tion, following refs. 22,30, which allows our models to predict a prob-
+L222: architecture to be invariant to the order of both samples and features                   approach based on structural causal models (SCMs)31. SCMs provide a
+L227: sample in a fit-predict setting, our model can separate the inference                    ments, contaminating our training data with test data32 or limited data
+L229: training set once, save the resulting state and reuse it for multiple test                 As shown in Fig. 2, our generative pipeline first samples high-level
+L230: set inferences. On datasets with 10,000 training samples and 10 fea-                     hyperparameters, such as dataset size, number of features and diffi-
+L234:                                                                                                                                          Nature | Vol 637 | 9 January 2025 | 321
+L238:                           sin(x) + x              x2              |x|        Step function      noise           noise             True function            TabPFN            CatBoost (quantile)
+L290: Fig. 3 | The behaviour of TabPFN and a set of baselines on simple functions.                                  different functions, including noisy functions. b, TabPFN can model distributions
+L307: sigmoid, ReLU (rectified linear unit), modulo, sine), discretization                                          worse on datasets with highly non-smooth patterns14. This is especially
+L320: For instance, consider the case of missing values, commonly present                                           tions and can handle complex, multi-modal distributions. Figure 3b
+L322: patterns and fractions of missing values in our synthetic data genera-                                        in a double-slit experiment35 for different slit distances and widths. In
+L327: Kumaraswamy distribution33, introducing complex nonlinear distor-                                             methods such as CatBoost require training multiple quantile models
+L331: around 100 million synthetic datasets per model training, each with a                                         see Fig. 3b. With default settings, CatBoost requires 169.3 s and yields
+L335: 322 | Nature | Vol 637 | 9 January 2025
+L446: Fig. 4 | Comparison of TabPFN on our test benchmarks, containing datasets                                                                                                        RF, random forest; CB, CatBoost; XGB, XGBoost; Lin, logistic regression for
+L447: with up to 10,000 samples and 500 features. Performance was normalized                                                                                                           classification and ridge regression for regression tasks. Plots on the right-hand
+L448: per dataset before aggregation using all baselines; intervals represent the 95%                                                                                                  side show a magnified analysis of the strongest baselines considered. b, A per-
+L450: test P value54. a, Average performance of the default as well as the tuned versions                                                                                              is the average score on one dataset. c, The impact of hyperparameter tuning for
+L458:                                                                                                                                                                                  Figure 4a demonstrates the strong out-of-the-box performance of
+L461: We quantitatively evaluate TabPFN on two dataset collections: the                                                                                                                passes CatBoost, the strongest default baseline, by 0.187 (0.939 com-
+L462: AutoML Benchmark36 and OpenML-CTR2337. These benchmarks com-                                                                                                                     pared with 0.752) in normalized ROC AUC in the default setting and by
+L463: prise diverse real-world tabular datasets, curated for complexity, rel-                                                                                                          0.13 (0.952 compared with 0.822) in the tuned setting. For regression,
+L465: classification datasets and 28 regression datasets that have up to 10,000                                                                                                        compared with 0.872) in the default setting and by 0.093 (0.968 com-
+L466: samples, 500 features and 10 classes. We further evaluated additional                                                                                                            pared with 0.875) in the tuned setting. In Fig. 4b, we show per-dataset
+L467: benchmark suites from refs. 14,15, as well as five Kaggle competitions                                                                                                           comparisons. Although for some datasets CatBoost outperforms
+L469:    We compared TabPFN against state-of-the-art baselines, including                                                                                                                 Figure 4c shows how the performance of TabPFN and the baselines
+L473:    Evaluation metrics include ROC AUC (area under the receiver operat-                                                                                                           speedup of 5,140× and 3,000×, respectively. We show comparisons
+L474: ing characteristic curve; One-vs-Rest) and accuracy for classification,                                                                                                          on a larger number of metrics in Extended Data Tables 1 and 2.
+L479:    For each dataset and method, we ran 10 repetitions with different ran-                                                                                                        Moreover, we show in Extended Data Table 6 that default TabPFN
+L480: dom seeds and train–test splits (90% train, 10% test). We tuned hyper-                                                                                                           outperforms default CatBoost on all five Kaggle competitions with
+L481: parameters using random search with five-fold cross-validation, with                                                                                                             less than 10,000 training samples from the latest completed Tabular
+L485: Data Fig. 2d). TabPFN was pre-trained once using eight NVIDIA RTX                                                                                                                In Fig. 5a,b, we show the robustness of TabPFN to dataset character-
+L486: 2080 GPUs over 2 weeks, allowing for ICL on all new datasets in a single                                                                                                         istics that are traditionally hard to handle for neural-network-based
+L488: research accessible to academic labs. For details, refer to the section                                                                                                             Figure 5a provides an analysis of the performance of TabPFN across
+L492:                                                                                                                                                                                                                                                       Nature | Vol 637 | 9 January 2025 | 323
+L505:                                      0.4   Fraction (%)                                                                 0                                                                Missing values?                                                                    Categorical features
+L521:                                            Fraction kept (%)                                                       Fraction kept (%)                                                        2,000–3,999                                                                           20–39
+L572: Fig. 5 | Robustness across datasets and performance comparison with                                                                                                       analyse the performance per subgroup. c, Classification performance. Left,
+L577: (sharing one normalization across all modifications of one experiment) to                                                                                                 Intervals represent the 95% confidence interval and Wilcoxon P refers to the
+L578: avoid negative outliers. b, We split the test datasets by data characteristics and                                                                                        two-sided Wilcoxon signed-rank test P value 54.
+L582: shuffled features from the original dataset) and outliers (multiply each                                                                                                     Figure 5c–d compares the performance of TabPFN, TabPFN (PHE),
+L583: cell with 2% probability with a random number between 0 and the out-                                                                                                      AutoGluon and CatBoost. For TabPFN (PHE) and AutoGluon, we start
+L585: tive features and outliers, something typically hard for neural networks,                                                                                                 erwise does not reliably return results. In just 2.8 s, TabPFN (default)
+L587: samples or features hurts the performance of all methods, with half                                                                                                       allowed up to 4 h, a 5.140× speedup. TabPFN (PHE) further improves
+L588: the samples TabPFN still performs as well as the next best method                                                                                                         performance leading to an average normalized ROC AUC score of 0.971,
+L589: using all samples.                                                                                                                                                        compared with 0.939 for TabPFN (default) and 0.914 for AutoGluon.
+L590:    In Fig. 5b, we split our test datasets into subgroups and perform                                                                                                      For regression tasks, tuning hyperparameters is more important. Here,
+L592: categorical features, missing values, number of samples and number of                                                                                                     tuning budget of 300 s, a 48× speedup.
+L598: the 10,000 samples and 500 features considered here. We show four                                                                                                         tion, learning reusable embeddings and fine-tuning. We showcase
+L600:                                                                                                                                                                           man Credit Dataset44, which contains credit risk information and the
+L601: Comparison with tuned ensemble methods                                                                                                                                    mfeat-factors45 dataset classifying handwritten digits based on a tabular
+L604: lines, into a stacked ensemble41, tunes their hyperparameters and then                                                                                                    features, as shown in Fig. 6a, and the probability mass function of cat-
+L605: generates the final predictions using post hoc ensembling (PHE)42,43. It                                                                                                  egorical features. Computing the sample densities enables anomaly
+L609: approach, we introduce TabPFN (PHE). TabPFN (PHE) automatically                                                                                                           real-world dataset characteristics as shown in Fig. 6b. This enables appli-
+L615: 324 | Nature | Vol 637 | 9 January 2025
+L627:                Medium density (10th percentile)                              Generated samples
+L647: Fig. 6 | Showcase of the application of TabPFN as tabular foundation model.                      (mfeat-factors) with different classes forming different clusters. d, We
+L655: dings from the mfeat-factors dataset in Fig. 6c, showing improved                                empowering researchers. To facilitate the widespread use of TabPFN,
+L663: test data. Figure 6d shows an example fine-tuning result. Our analysis                           and competing interests; and statements of data and code availability
+L666: fine-tuning and test tasks, with performance improving as distributions                          1.       Borisov, V. et al. Deep neural networks and tabular data: a survey. IEEE Trans. Neural Netw.
+L668: range of datasets from medical studies to obtain an improved general                             2.       van Breugel, B. & van der Schaar, M. Position: why tabular foundation models should
+L674:                                                                                                  4.       Jumper, J. M. et al. Highly accurate protein structure prediction with AlphaFold. Nature
+L678: We support the computation of feature importance through SHAP47
+L683: feature to the output of the model. Extended Data Fig. 3 compares
+L686: and TabPFN. TabPFN achieves high accuracy while learning simple,                                          (eds Guyon, I. et al.) 3149–3157 (Curran Associates, 2017).
+L689:                                                                                                           boosting with categorical features. In Proc. 30th International Conference on Advances
+L690: interpretable but less accurate, whereas CatBoost is accurate but quali-                                  in Neural Information Processing Systems (eds Bengio, S. et al.) 6639–6649 (Curran
+L691: tatively less interpretable because of complex, non-smooth decision                                       Associates, 2018).
+L692:                                                                                                  10.      Lowe, D. G. Distinctive image features from scale-invariant keypoints. Int. J. Comput. Vis.
+L702: outperforms traditional human-designed approaches on datasets with                                        (2017).
+L703: up to 10,000 samples and 500 features. This shift towards foundation                             14.      Grinsztajn, L., Oyallon, E. & Varoquaux, G. Why do tree-based models still outperform
+L704: models trained on synthetic data opens up new possibilities for tabular                                   deep learning on typical tabular data? In Proc. 36th International Conference on Neural
+L707:   Potential future directions include scaling to larger datasets48,                                       Proc. 37th International Conference on Neural Information Processing System Vol. 36,
+L719:                                                                                                                                               Nature | Vol 637 | 9 January 2025 | 325
+L730:       can do Bayesian inference. In Proc. The Tenth International Conference on Learning               45. Duin, R. Multiple Features. UCI Machine Learning Repository https://doi.org/10.24432/
+L737: 25.   Bahdanau, D., Cho, K. & Bengio, Y. Neural machine translation by jointly learning to align       48. Feuer, B. et al. TuneTables: context optimization for scalable prior-data fitted networks.
+L748: 27.   Zhu, B. et al. XTab: cross-table pretraining for tabular transformers. In Proc. 40th
+L759:                                                                                                            trained zero-shot forecasting. In Proc. 37th Conference on Advances in Neural Information
+L762:       exact attention with io-awareness. In Proc. Advances in Neural Information Processing            53. Czolbe, S. & Dalca, A. V. Neuralizer: General neuroimage analysis without re-training.
+L767: 32.   Jiang, M. et al. Investigating Data Contamination for Pre-training Language Models.
+L787: 326 | Nature | Vol 637 | 9 January 2025
+L792: When to use TabPFN. TabPFN excels in handling small- to medium-sized        and the original PFN architecture22, but it treats each cell in the table
+L793: datasets with up to 10,000 samples and 500 features (Fig. 4 and Extended    as a separate time position, similar to that in ref. 28. Therefore, it can
+L794: Data Table 1). For larger datasets and highly non-smooth regression         generalize to more training samples as well as features than seen dur-
+L795: datasets, approaches such as CatBoost9, XGB7 or AutoGluon40 are likely      ing training.
+L796: to outperform TabPFN.                                                           Figure 1b details our new architecture. All features that go into our
+L812: sets; and (3) our evaluation focused on datasets with up to 10,000          it represents one value.
+L813: samples and 500 features; scalability to larger datasets requires further       Although the inter-feature attention is a classical fully connected
+L821: inference tasks. For a dataset with 10,000 rows and 10 columns, our         generate one embedding per feature by projecting a random vector of
+L823: one sample, whereas CatBoost (default) can do the same in 0.0002 s.         and add this to all embeddings representing an instance of that feature.
+L824: In ref. 55, further optimizing TabPFN specifically for inference tasks          As the representations of training samples are not influenced by the
+L827: predictive quality. Refer to the section ‘Details on the neural archi-      attention for our inter-sample attention from test samples56 to save
+L836: using dataset-specific pre-processing. This can also be partly done         O(n2 + m2), and the memory requirements scale linearly in the dataset
+L841: for example, know that a feature follows a log distribution, it might       the input was missing; the input itself is set to 0 in these cases. All
+L858: implicitly represents a Bayesian ensemble, jointly integrating over a         tion ρ of samples to serve as prototypes x1*, …, xM* , where M = ρn and n
+L866: growing network with redirection sampling method57, a preferential            where ∑jαij = 1. The weights αij are sampled from a multinomial distri-
+L873: parameters: the number of nodes N and the redirection probability P.          or more of the following post-processings: (1) For some datasets, we
+L875: and b are hyperparameters controlling the range of the graph size. The        tions33 to features as done in ref. 61. (2) We quantize some continuous
+L879: ues of P lead to denser graphs with more edges on average57.                  determined by K + 1 bin edges sampled from the set of values this fea-
+L890:    tions σ : Rd → Rd , randomly sampled from a set, including identity,       that contains up to 10 classes. Thus, natively our method is limited
+L892:    operation, squaring, power functions, smooth ReLU59, step function         pre-training on datasets with a larger number of classes or by using
+L894: 2. Categorical feature discretization: to generate categorical features       sifier or building on approaches such as error-correcting output codes
+L897:    vectors {p1, …, pK} for a feature with K categories. This discrete index   Training details
+L900:    an offset of 2 to yield a minimum number of classes of 2. To further       diction. For a test set (Xtest, ytest) = Dtest, the training loss is given by
+L903:    set of embedding vectors {p1′, …, pK′ } for each class and transform       predictive distribution for a chosen prior over datasets (and potentially
+L905: 3. Decision trees: to incorporate structured, rule-based dependencies,           We trained our final models for approximately 2,000,000 steps with
+L906:    we implement decision trees in the SCMs. At certain edges, we select       a batch size of 64 datasets. That means the models used for TabPFN
+L907:    a subset of features and apply decision boundaries on their values         are trained on around 130,000,000 synthetically generated datasets
+L908:    to determine the output60. The decision tree parameters (feature           each. One training run requires around 2 weeks on one node with eight
+L909:    splits, thresholds) are randomly sampled per edge.                         Nvidia RTX 2080 Ti GPUs. We sample the number of training samples
+L910: 4. Noise injection: at each edge, we add random normal noise from the         for each dataset uniformly up to 2,048 and use a fixed validation set
+L911:    normal distribution N(0, σ 2I ).                                           size of 128. We sample the number of features using a beta distribution
+L914: randomly generate initialization data ϵ that is inserted at the DAG root      be below 75,000 cells by decreasing the number of samples for large
+L920: 3. Mixed: for each root node, we randomly select either a normal or           tested a set of learning rates in [0.0001, 0.0005], using the one with
+L931: ance64. For classification tasks, we additionally randomly permute the        training data into smaller more homogeneous datasets. This technique
+L936: 1. Quantile + Id: we quantize the inputs to equally spaced values bet­        sample bootstrapping and Gini impurity loss. For each leaf node of the
+L937:    ween 0 and 1, but keep a copy of each original feature. This effectively   decision tree, we store the subset of training samples that fall into that
+L939: 2. Category shuffling: the labels of categorical features with low cardi-     sample x, we determine the TabPFN to use by passing x through the
+L941: 3. SVD: an SVD compression of the features is appended to the features.       that the resulting data groups are large enough to train a strong model.
+L944: 5. Power transform: each feature (or the label for regression) is trans-      To further enhance the inference performance of TabPFN, in TabPFN
+L946:    and make the data more normally distributed.                               our search space detailed in Extended Data Table 5. For TabPFN (PHE),
+L947: 6. One-hot encoding: categorical features are encoded using one-hot           we first use holdout validation to sequentially evaluate models from
+L961:                                                                               (repeated) holdout validation (as in Auto-Sklearn 1; ref. 67) instead of
+L962: where zi are the logits, T is the temperature and P(yi∣x) is the calibrated   (repeated) cross-validation (as in AutoGluon40). Moreover, as GES usu-
+L964: features by multiplying up to 50 randomly selected feature pairs:             after pruning each zero-weighted model to consist of a smaller number
+L972: sample identifier feature. This is a random number drawn from a stand-        only modelling targets but features as well. Let D = {(xi, yi )}iN=1 denote
+L996: Nj = 24 in our experiments64.                                                    relevance, absence of free-form text features and diversity of problem
+L998: we condition the prediction of the first feature x1, on a feature with              For our quantitative analysis of TabPFN for classification tasks, we
+L999: random noise, that is, no information.                                           use a set of test datasets comprising all 29 datasets from the AutoML
+L1000:    The above factorization of the density of a sample (equation (5)) is          benchmark with up to 10,000 samples, 500 features and 10 classes.
+L1001: completely tractable and we thus use it to estimate the likelihood for           For regression tasks, the AutoML benchmark contains only 16 data-
+L1004:                                                                                  the recent OpenML-CTR23 benchmark, yielding a test set of 28 unique
+L1005: Synthetic data generation. We can leverage the generative abilities              regression datasets in total. Extended Data Tables 3 and 4 provide
+L1008: dataset, by simply following the factorization in equation (5) and                  We further evaluated additional benchmark suites from refs. 14,15.
+L1009: sampling each feature step by step. The generated synthetic samples              In ref. 14, there are 22 tabular classification datasets selected based on
+L1014: resentations or embeddings. Given a dataset D = {(xi, yi )}iN=1, the goal        or quality controlled as for AutoML Benchmark and OpenML-CTR23. We
+L1015: is to learn a mapping fθ : Rd → Rk that transforms the original                  also evaluated five Kaggle competitions with less than 10,000 training
+L1022: Detailed evaluation protocol                                                     list of development datasets can be found in Supplementary Tables 5
+L1032: post-processing of predictions (for example, feature scaling or softmax             For regression tasks, we use R2 and negative RMSE as evaluation met-
+L1039: parameter search optimized on our development datasets. The exact                test datasets, we evaluated 10 repetitions, each with a different random
+L1040: settings chosen are listed in Extended Data Table 5. We emphasize that,          seed and train–test split (90% train and 10% test samples; all methods
+L1041: as for other foundation models (such as GPT), we trained our TabPFN              used the same cross-validation splits, defined by OpenML72). We average
+L1043: on all new datasets.                                                             datasets, we normalize per dataset following previous benchmarks36,40.
+L1047: experts to perform predictions on tabular data14,15. We also compare             allows for building meaningful averages across datasets with very dif-
+L1049: and SVMs39. Although standard neural networks, which unlike TabPFN               Supplementary Data Tables 1–2. All confidence intervals shown are
+L1050: do not use ICL, were shown to underperform for small (<10,000 sam-               95% confidence intervals.
+L1051: ples) tabular data1,14,71, as a point of reference, we still consider a simple      We tuned all methods with a random search using five-fold cross-
+L1061: GPU (RTX 2080 Ti). We also tested GPU acceleration for the baselines.                                 Vol. 224, 1–23 (PMLR, 2023).
+L1063: mance, probably because of the small dataset sizes.                                                   problems. Technometrics 12, 55–67 (1970).
+L1069: All datasets evaluated are publicly available on openml.org or kaggle.                                properties. Int. Stat. Rev. 57, 238–247 (1989).
+L1111: 58. Glorot, X. & Bengio, Y. Understanding the difficulty of training deep feedforward neural      Author contributions N.H. improved the prior of the model; added regression support,
+L1113:     249–256 (JMLR, 2010).                                                                         and wrote the paper. S.M. improved the neural network architecture, training and efficiency;
+L1149: Extended Data Fig. 1 | Performance comparison across additional dataset            generally subtle across these splits, the most notable variation is observed for
+L1150: characteristics, extending Fig. 5. This figure shows the relative performance      datasets with outliers in the target variable, though confidence intervals still
+L1152: bars represent 95% confidence intervals. While performance differences are
+L1154: Extended Data Fig. 2 | Performance comparisons of TabPFN and baselines          Duplicated datasets and those with fewer than 5 samples per class were
+L1155: on additional benchmark datasets and with GPU support. (a) Classification       removed to enable 5-fold cross-validation. (d) Performance Over Time
+L1157: features, across 7 datasets. (b) Classification performance on the Grinsztajn   running our strongest baselines with eight CPUs (CPU) vs. eight CPUs and on
+L1158: medium-sized benchmark with numerical features, across its 15 datasets.         one GPU (+GPU) on our classification test benchmark. AutoGluon automatically
+L1159: (c) Classification performance on the TabZilla benchmark, consisting of 102     decides which models to train with what resources. For CatBoost and XGB, we
+L1160: datasets with fewer than 10,000 rows of data, 500 features, and 10 classes.     specified that the models should train with GPU. Intervals represent 95% CI.
+L1167: Extended Data Fig. 3 | Comparing SHAP (SHapley Additive exPlanations)              We see that Logistic Regression is most interpretable due to the simple underlying
+L1172: color indicating the value of the checking status feature (blue for low, red for   SHAP values per sample. This figure is adapted from Lundberg et al.47.
+L1175: Extended Data Fig. 4 | Finetuning TabPFN on 2-dimensional sine curve            with better performance for more similar distributions. For a dataset shift of π,
+L1176: datasets. (a) Examples of 2D sine curve datasets with different offsets.        the inverse label needs to be predicted in the test set, compared to the finetuning
+L1177: (b) Finetuning loss curves for 50 runs with random train-test offsets. Colors   data. However, TabPFN still generalizes when finetuned on this data.
+L1181: Extended Data Table 1 | Aggregated results on the 29 AMLB classification Benchmark datasets
+L1186: Scores are normalized on all the baselines shown in this table, with the weakest score set to 0.0 and the highest to 1.0, per dataset. All baselines are optimized for ROC AUC thus trading-off
+L1190: Extended Data Table 2 | Aggregated results on the 28 AMLB and OpenML-CTR23 regression Benchmark datasets
+L1195: Scores are normalized on all the baselines shown in this table, with the weakest score set to 0.0 and the highest to 1.0, per dataset. K-Nearest Neighbors73 performed significantly worse than
+L1201: Extended Data Table 3 | List of test datasets used for primary evaluation of classification tasks
+L1206: All classification tasks from the AutoML Benchmark36 with fewer 10,000 samples and 500 features. The benchmark comprises diverse real-world tabular datasets, curated for complexity,
+L1209: Extended Data Table 4 | List of test datasets used for primary evaluation of regression tasks
+L1214: All regression tasks from the AutoML36 and OpenML-CTR2337 Benchmarks with fewer 10,000 samples and 500 features. The benchmark comprises diverse real-world tabular datasets, curated
+L1218: Extended Data Table 5 | Hyperparameter defaults and search space for TabPFN and our baselines
+L1225: Extended Data Table 6 | Performance on Kaggle Data Science Challenges
+L1231: than 10,000 rows of data, 500 features, and 10 classes. We report the private score averaged over 5 seeds. For Episode 5, as ordinal regression can be treated as a classification or regression

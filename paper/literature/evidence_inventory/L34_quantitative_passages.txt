@@ -1,0 +1,124 @@
+# Retrieval inventory, NOT completed visual/claim audit
+Source L34: Comprehensive genomic characterization of head and neck squamous cell carcinomas; DOI 10.1038/nature14129
+Original text line numbers. Numbers may be citations, secondary reports,
+toy examples, or ambiguous table columns. Verify context before citing.
+
+L25:    dominated by helical domain mutations of the oncogene PIK3CA, novel alterations involving loss of TRAF3, and
+L26:    amplification of the cell cycle gene E2F1. Smoking-related HNSCCs demonstrate near universal loss-of-function TP53
+L30:    NOTCH1 and TP53. Other distinct subgroups contained loss-of-function alterations of the chromatin modifier NSD1,
+L35: HNSCCs affect ,600,000 patients per year worldwide1. They are char-                            (miRNA), DNA methylation, gene expression and somatic nucleotide
+L41: approximately half of all patients will die of the disease. Risk stratifica-                   1.5). HPV(1) and interestingly patients with HPV(2), TP53 wild-type
+L47: molecular alterations in HNSCC, The Cancer Genome Atlas (TCGA)                                 ing losses of 3p and 8p, and gains of 3q, 5p and 8q chromosomal re-
+L50: present in at least 5% of samples. Here, we report the results for ana-                        and Supplementary Figs 2.1 and 2.2). HNSCC genomes showed high
+L51: lyses from the first 279 patients with complete data.                                          instability with a mean of 141 CNAs (amplifications or deletions) from
+L53: Samples and clinical data                                                                      per tumour by ‘high coverage’ whole-genome sequencing (n 5 29) (Sup-
+L54: The cohort consists primarily of tumours from the oral cavity (n 5 172                         plementary Information section 2.2). We observed 39 regions of recur-
+L55: out of 279, 62%), oropharynx (n 5 33 out of 279, 12%), and laryngeal                           rent copy number loss and 23 regions of recurrent copy number gain (q
+L56: sites (n 5 72 out of 279, 26%) (Supplementary Information section 1,                           , 0.1, Supplementary Data 2.1 and 2.2). Both HPV(1) and (2) tumours
+L57: Supplementary Table 1.1 and Supplementary Data 1.1). Most patients                             contained recurrent focal amplifications for 3q26/28, a region involv-
+L58: were male (n 5 203 out of 279, 73%) and heavy smokers (mean pack                               ing squamous lineage transcription factors TP63 and SOX2 and the
+L59: years 5 51). Samples were classified as HPV-positive using an empiric                          oncogene PIK3CA (Fig. 1b and Supplementary Fig. 2.3).
+L61: arily aligning to viral genes E6 and E7 (Supplementary Information                             (n 5 5 out of 36, 14%) and truncating mutations (n 5 3 out of 36, 8%)
+L63: of RNA-Seq reads was concordant with the genomic, sequencing and                               and 2.4, and Supplementary Data 2.1). TRAF3 is implicated in innate
+L65: were HPV(2) (Supplementary Information section 1.2, Supplemen-                                 human immunodeficiency virus (HIV)7–9, while loss promotes aberrant
+L67: 64% were positive for HPV, compared to 6% of 246 non-oropharyngeal                             haematological malignancies and nasopharyngeal carcinoma11,12, to our
+L72: 5 7 6 | N AT U R E | VO L 5 1 7 | 2 9 J A N U A RY 2 0 1 5
+L93:              11                                                                                      plementary Fig. 3.2). Only 1 out of 279 patients showed evidence of the
+L139:              21 22                                                                            –1.5   per sample and almost always in association with amplifications of the
+L153: Figure 1 | DNA copy number alterations. a, Copy number alterations by                                Somatic mutations
+L159: 7 amplifications in the purple cluster. NA, not available.                                           with 82% of target bases above 303 coverage. In 279 samples, 12,159
+L162: carcinomas. HPV(1) tumours were also notable for focal amplifica-                                    nucleotide polymorphism database (dbSNP)20 were detected (Sup-
+L164: commonly deleted in HPV(2) tumours.                                                                  unique regions (Supplementary Fig. 4.1) validated 99% of mutations.
+L165:    HPV(2) tumours featured novel co-amplifications of 11q13 (CCND1,                                  Interrogation of RNA for expression of the mutated alleles confirmed
+L166: FADD and CTTN) and 11q22 (BIRC2 and YAP1), which also contain                                        the variant in 86% of cases (Supplementary Information section 3.2
+L177: new three-gene pattern of activating mutations in HRAS, frequently                                   (P 5 0.14))21,22. We observed TP53 mutation among HPV(2) samples
+L178: with inactivating CASP8 mutations, and wild-type TP53. We confirmed                                  at higher rates (86%) than have been previously reported19, while only
+L183:                                                                                                                         2 9 J A N U A RY 2 0 1 5 | VO L 5 1 7 | N AT U R E | 5 7 7
+L188:                                                                                             Smoking status                Figure 2 | Significantly mutated genes in
+L204:                                                                                             Anatomic site                 Samples (columns, n 5 279) are arranged to
+L211:         22%                                                                                      CDKN2A  16%              of mutations per megabase. Colour coding
+L212:         23%                                                                                      FAT1        5%           indicates mutation type.
+L213:         72%                                                                                      TP53        41%
+L214:         9%                                                                                       CASP8       5%
+L215:         6%                                                                                       AJUBA       0%
+L216:         21%                                                                                      PIK3CA      8%
+L217:         19%                                                                                      NOTCH1      10%
+L218:         18%                                                                                      KMT2D       5%
+L219:         10%                                                                                      NSD1        4%
+L220:         3%                                                                                       HLA-A       2%
+L221:         4%                                                                                       TGFBR2      1%
+L222:         4%                                                                                       HRAS        8%
+L223:         5%                                                                                       FBXW7       3%
+L224:         3%                                                                                       RB1         1%
+L225:         1%                                                                                       PIK3R1      3%
+L226:         1%                                                                                       TRAF3       0%
+L227:         6%                                                                                       NFE2L2      5%
+L228:         4%                                                                                       CUL3        2%
+L229:         2%                                                                                       PTEN        3%
+L244: related (ATR)-mediated DNA damage response26, and tumour invasion                                an additional 20% of tumours containing focal amplification without
+L253: craniofacial abnormalities (Sotos syndrome), and malignancies includ-                            four previously validated gene expression subtypes32,33 (Supplementary
+L260: as MMSET and NSD2) are reported in 20% of multiple myelomas. By                                  promoting squamous tumorigenesis in mouse models34. Investigating
+L261: contrast, NSD1 loss has been associated with sporadic non-melanoma                               COSMIC database mutations focused attention on the significant dele-
+L263: linked to squamous differentiation including in NOTCH1 (19%), and                                geting cyclin E and NOTCH genes, in which we identified mutations
+L264: other non-significant family members (NOTCH2 9%, and NOTCH3                                      that included recurrent Arg505Gly/Leu substitutions (n 5 14). Genes
+L265: 5%, q . 0.1, non-significant), and the TP63 target gene ZNF750 (4%,                              with at least one identical mutation previously reported in COSMIC
+L271: 5 7 8 | N AT U R E | VO L 5 1 7 | 2 9 J A N U A RY 2 0 1 5
+L277:                                EGFR          15%                          v                                                                                                                                                                  6%
+L279:                                FGFR1         10%                                                                                                                                                                                             0%
+L285:                                ERBB2          5%                                                                                                                                                                                             3%
+L287:                                IGF1R          4%                                                                                                                                                                                             0%
+L289:                                EPHA2          4%                                                                                                                                                                                             3%
+L291:                                DDR2           3%                                                                                                                                                                                             6%
+L293:                                FGFR2          2%                                                                                                                                                                                             0%
+L295:                                FGFR3          2%                                                                                                                                                                                             11%
+L297:                                MET            2%                                                                                                                                                                                             0%
+L303:                                              31%                                                                                                                                                                                             3%
+L305:                                MYC           14%                                                                                                                                                                                             3%
+L307:                                HRAS           5%                                                                                                                                                                                             0%
+L309:                                PIK3CA        34%                                                                                                                                                                                             56%
+L311:   PI(3)K                       PTEN          12%                                                                                                                                                                                             6%
+L313:                                PIK3R1         1%                                                                                                                                                                                             3%
+L315:                                NF1            3%                                                                                                                                                                                             0%
+L317:   TSG                          TP53          84%                                                                                                                                                                                             3%
+L319:                                CDKN2A 58%                                                                                                                                                                                                    0%
+L324: Figure 3 | Candidate therapeutic targets and driver oncogenic events. Alteration events for key genes are displayed by sample (n 5 279). TSG, tumour
+L332: the genes with equal evidence for YAP1 and BIRC2 was further char-                                                                      (24%), mesenchymal (27%), basal (31%) and classical (18%)), and
+L334: rarely amplified in the absence of co-amplification of 11q13. This novel                                                                plementary Data 7.1). Notably, TP53 mutation, CDKN2A loss of func-
+L337: cade that inhibits cell death. Notably, the vast majority of tumours with                                                               Table 1.1) and larynx sub-site co-occurred in most classical subtype tu-
+L345:                                                                                                            b                                                                                 Figure 4 | Integrated analysis of genomic
+L350: mRNA sub.                                                                                                                                                                          1         alterations. a, b, Samples (n 5 279) are displayed
+L353:                               HPV                                                           <0.01                                                                                            two-sided Fisher’s exact test P values assess the
+L393:                                                                                                                                                                                        2 9 J A N U A RY 2 0 1 5 | VO L 5 1 7 | N AT U R E | 5 7 9
+L398:                                RTK/RAS/PI(3)K                                               Cell death                     Immunity             Differentiation                Oxidative stress             Figure 5 | Deregulation of
+L400:                                HPV(–)   62%   61%   HPV(+)                         HPV(–)   44%   31%    HPV(+)   HPV(–)   7%   11%   HPV(+)   HPV(–)   64%   44%    HPV(+)    HPV(–)   22%   3%   HPV(+)
+L405:    15% 6%          4% 3% 10% 0%                    2% 11% 4% 0%                                                            7% 11%                       26%17%
+L407:                                                                                                                                                                                          6% 3%              Information section 7 for n 5 279
+L408:                  HRAS                    PIK3CA                PTEN               FADD                BIRC2                                                                              KEAP1              samples. The frequency (%) of
+L410:                 5% 0%                   34%56%               12% 6%             32% 6%               7% 3%                                                                               5% 0%              genetic alterations for HPV(2) and
+L413:                                                                                 11% 3%               1% 22%                  IFNs                                                                           separately within sub-panels and
+L414:                                                                                                                                                                                          14% 0%
+L416:                         31% 3%
+L418:          57% 0%            CDK6                  40%17%                                                                                                                         FAT1
+L419:                                                                                                                                                                               32% 3%                        include homozygous deletions,
+L420:                           8% 0%                                                                                                TP63
+L421:                                                                                              NF-κB                           19%28%                     CTNNB1                                              focal amplifications and somatic
+L423:          HPVE6/7               RB1                E2F1                MYC                                                                                                     7% 0%
+L424:          0% 100%           4%           6%       2% 19%           14% 3%                                                                                                                                    pathways/genes, and activating or
+L427:          Cell cycle                     84% 3%                                                                                                                                           Oxidative
+L429: HPV(–)   96% 100%     HPV(+)                                                                                                        Differentiation                                      damage
+L442: mal samples (Supplementary Fig. 5.4), supporting the interaction of                                                                 Let-7c-5p and miR-100-5p were decreased in tumours compared to nor-
+L447: mutations implicate disrupted cell death as a major alteration in this                                                              plementary Figs 7.10, Supplementary Tables 7.2 and 7.3).
+L458: mutations (22 out of 24, 92%) were in oral cavity tumours, whereas                                                                  tified miRNA let-7c, are most often altered in HPV(2) tumours, whereas
+L463: DNA methylation (Supplementary Information section 8), and miRNA                                                                    subsets, whereas TRAF3 loss characterizes an HPV(1) subset. These alter-
+L464: platforms (Supplementary Information section 9, Supplementary Table                                                                 ations along with PIK3CA and TP63 converge on NF-kB transcription
+L466: high correlation across platforms (P , 0.01; Fig. 4, Supplementary In-                                                              genesis41,42. Furthermore, TRAF3 and/or HLA loss are implicated in de-
+L473: gene alterations. The most notable example was the detection of hypo-                                                               in HPV(2) HNSCCs.
+L474: methylation and loss-of-function mutations of NSD1, and wild-type
+L476: and Supplementary Table 7.1).                                                                                                       The TCGA study represents the most comprehensive integrative ge-
+L477:    Supervised analyses detected genomic features (miRNA, gene ex-                                                                   nomic analysis of HNSCC. Loss of TRAF3, activating mutations of
+L481: 5 8 0 | N AT U R E | VO L 5 1 7 | 2 9 J A N U A RY 2 0 1 5
+L497: tors TP63, SOX2 and signal molecule PIK3CA, which are also impli-                                 patterns of chromosomal gain and loss of canonical cancer genes. PLoS ONE 8,
+L499: these, the biological function and agents targeting BIRCs, PI(3)K, Wnt/                       34. Lu, S. L. et al. Loss of transforming growth factor-b type II receptor promotes
+L511: 2. Ang, K. K. et al. Human papillomavirus and survival of patients with oropharyngeal             control of E2F dynamics in cell cycle entry. Cell Cycle 10, 3086–3094 (2011).
+L574:                                                                                                                        2 9 J A N U A RY 2 0 1 5 | VO L 5 1 7 | N AT U R E | 5 8 1
+L687: 5 8 2 | N AT U R E | VO L 5 1 7 | 2 9 J A N U A RY 2 0 1 5

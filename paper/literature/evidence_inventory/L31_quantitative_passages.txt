@@ -1,0 +1,6 @@
+# Retrieval inventory, NOT completed visual/claim audit
+Source L31: Verification of forecasts expressed in terms of probability; DOI 10.1175/1520-0493(1950)078<0001:VOFEIT>2.0.CO;2
+Original text line numbers. Numbers may be citations, secondary reports,
+toy examples, or ambiguous table columns. Verify context before citing.
+
+Correct full text unavailable; no empirical values verified.

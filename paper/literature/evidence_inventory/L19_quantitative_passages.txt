@@ -1,0 +1,282 @@
+# Retrieval inventory, NOT completed visual/claim audit
+Source L19: TabICL: A Tabular Foundation Model for In-Context Learning on Large Data; DOI NA
+Original text line numbers. Numbers may be citations, secondary reports,
+toy examples, or ambiguous table columns. Verify context before citing.
+
+L20:      Context Learning (ICL): setting the training data              in-context learning (ICL) capabilities (Brown et al., 2020),
+L23:      While TabPFNv2 foundation model excels on                      the pervasiveness of tables have spurred interest in tabular
+L24:      tables with up to 10K samples, its alternating                 foundation models (van Breugel & van der Schaar, 2024).
+L30:      trained on synthetic datasets with up to 60K sam-              tences which can then be tokenized. Gardner et al. (2024)
+L31:      ples and capable of handling 500K samples on                   fine-tuned Llama 3-8B on a corpus of serialized tables and
+L36:      efficient ICL. Across 200 classification datasets              up to 32 or 64 shots in Gardner et al. 2024). Moreover, it
+L39:      faster (up to 10 times), and significantly out-                that LLMs are pretrained on many popular datasets (Bordt
+L40:      performs all other approaches. On 53 datasets                  et al., 2024), their evaluation on tabular prediction tasks
+L41:      with over 10K samples, TabICL surpasses both                   should also be conducted with care.
+L44:      inference code, and pre-trained models are avail-              (2022) introduced TabPFN, a transformer-based tabular
+L48: 1. Introduction                                                     and enables efficient handling of small tables with up to 1K
+L49:                                                                     samples and 100 features. The same authors then introduced
+L52: and finance (Johnson et al., 2016), where tabular classifica-       competitors on small-to-medium datasets with up to 10K
+L53: tion problems underpin numerous real-world applications.            samples and 500 features. The great promise of tabular ICL
+L60: Proceedings of the 42 nd International Conference on Machine        scenarios, where industrial datasets can contain millions of
+L62: by the author(s).                                                   samples (Rubachev et al., 2024), the high computational
+L68: and memory demands of TabPFNv2 hinder its practicality.              The feature embeddings are then processed per-row by an-
+L74: 2024) and designed for classification tasks. Pretrained on
+L76: synthetic datasets up to 60K samples, TabICL can effec-
+L78: tively handle datasets up to 500K samples and 500 features,
+L86:                                                                      improvements: (1) We refine TabPFN’s pretraining synthetic
+L96:                                                                      the pretraining dataset size from 1K to 60K; (3) To address
+L98:                                                                      classification problems with over 10 classes (the pretraining
+L114:                                                                      500K samples and 500 features with around 20GB of GPU
+L116:                                                                      memory; (2) We introduce a distribution-aware feature em-
+L122:                                                                      cross-table transferability; (3) TabICL performs tasks in a
+L132:                                                                      efficiency gains increasing as dataset size grows; (4) We
+L134: high-dimensional vectors for each feature, serving as a crit-        2025), comprising 200 classification datasets across various
+L135: ical factor in model performance (Gorishniy et al., 2022).           domains and sizes (up to 150K samples). TabICL performs
+L136: Since features often exhibit vastly different distributions,         comparably to TabPFNv2 on medium-sized datasets and
+L137: previous approaches typically use feature-specific embed-            significantly outperforms all other methods. On the 53 large
+L138: ding modules without parameter sharing, which, however,              datasets with over 10K samples, TabICL surpasses both
+L139: limits cross-table transferability. In this work, we refor-          TabPFNv2 and CatBoost (Dorogush et al., 2018). These
+L180:                      Transformer                                                       Dataset-wise                                         4
+L199: Figure 1. Architecture Overview of TabICL. First, column-wise embedding transforms each cell of the input table into an embedding
+L200: vector using a transformer TFcol (Section 3.2), producing E. Next, row-wise interaction prepends four trainable [CLS] tokens to E,
+L223: and XGBoost (Chen & Guestrin, 2016), have long dom-                                 vant subset of training data for each test sample (Xu et al.,
+L232: direction include XTab (Zhu et al., 2023) and CARTE (Kim                             training data, such as TabForestPFN (den Breejen et al.,
+L233: et al., 2024), which incorporate transferable components                             2024) incorporating tree-based synthetic datasets and Tab-
+L234: that are typically shareable backbone networks and dataset-                          DPT (Ma et al., 2024a) using real-world datasets.
+L237: new possibilities to cross-table learning, paving the way for                       achieves comparable performance to TabPFNv2 while being
+L246: TabICL across architecture, pretraining, and scalability.                 layer, processed by ISAB consisting of MAB1 and MAB2 ,
+L252: X ∈ Rm and a target space Y ∈ [1, · · · , C]. Given a train-
+L254: ing dataset of input-output pairs Dtrain = {(xtrain , ytrain )}ni=1
+L259:                                                                           agate across all training samples. We use k = 128 inducing
+L266: This module consists of two components: distribution-aware                feature embeddings, we visualize M ∈ Rk×d (Equation (4))
+L271: test embeddings through a transformer, enabling the predic-               ponent Analysis. Figure 3 reveals that columns with similar
+L273: ICL. The overall architecture is depicted in Figure 1.                    symmetric distributions are differentiated from symmetrical
+L274:                                                                           ones (Figure 3 left), and heavy-tailed distributions are dif-
+L287: TFcol , as illustrated in Figure 2b and formulated as follows:
+L289:               W, B = TFcol (cj )          ∈ Rn×d              (1)         learn feature identifier vectors (Kossen et al., 2021).
+L294: and bias. Essentially, feature embedding can be framed as                 After obtaining all feature embeddings E = [e1 , · · · , em ] ∈
+L302:             M = MAB1 (VI , Utrain , Utrain ) ∈ R     k×d
+L311: attention block (Figure 2a), introduced by (Lee et al., 2019).            wise embedding. Consequently, features originating from
+L330: Figure 2. The distribution-aware column-wise embedding block in TabICL. The overall structure (right) relies on the induced self-
+L334:                                                                                             Feature 0              Feature 1            Feature 2             Feature 3
+L345: Figure 3. Learned column-wise embeddings encode statistical
+L348: 40,000 features from synthetic datasets.
+L349:                                                                                   Figure 4. An example of learning collapse without RoPE for the
+L356: self-attention cannot differentiate a sample from any of its                      represent 3 classes.
+L360: scale dataset (Siegler, 1976), as shown in Figure 4. In
+L365: despite being originally distinct (leftmost plot).                                ferent samples (Figure 4 middle). Following Xiong et al.
+L368: TabPFNv2. To mitigate this, Hollmann et al. (2025) in-                            seen during training (up to 100). To approximately restore
+L374:                                                                                   3.4. Dataset-wise In-Context Learning
+L376: (Dubey et al., 2024) and directly encodes relative positional                     After converting all samples into embeddings H ∈ Rn×4d ,
+L380: i, defined as θi = p/(base2i/d ), where d is the embedding                        Htrain . We then process Htrain and Htest using a 12-layer
+L387: embeddings in Htrain can attend to one another while those           ables. To balance data generation, we combine SCMs (70%)
+L388: in Htest can only attend to Htrain . Finally, a two-layer MLP        with tree-based SCMs (30%). Appendix C gives details and
+L396: components for a table with n rows and m features:                   with 15 additional activation functions to enhance the diver-
+L401:  2. TFrow applies self-attention over features and 4 [CLS]           have been used for synthetic data generation for time series
+L406:     in n, its cost is incurred once since the feature dimen-         dom rescaling before each activation function. Figure C.1
+L409:                                                                      4.2. Curriculum Learning for Large-scale Pretraining
+L415: 4. Pretraining and Inference                                         to accommodate memory constraints. We employed a three-
+L417: 4.1. Improved Pretraining Synthetic Datasets
+L419: TabICL is pre-trained exclusively on synthetic datasets. To            2. NB = 1 with the size randomly drawn from a log-
+L422: following the approach proposed in TabPFN (v1). We first                  exceeding 10K samples, and we accordingly reduce
+L424: dencies, following the structure of a fully connected MLP,             3. NB = 1 with the size uniformly sampled between 40K
+L425: where each neuron corresponds to a variable. Each feature                 and 60K for 50 steps, training only TFicl while freezing
+L428: c = f (Pa(c)) + ϵ. Compared to previous work, we enrich              Each step consists of 512 datasets with the number of
+L429: the dataset generation in two ways: (i) we introduce tree-           features (≤ 100) and classes (≤ 10) randomly sampled.
+L431: increase the diversity of modeling functions f .                     globally. The pretraining took 20 days on three A100 GPUs
+L434: Tree-based generation Inspired by Grinsztajn (2024), we              pretraining details.
+L462:                                                                       30K samples for TabPFNv2, while TabICL could predict on
+L463: 4.4. Memory-efficient Inference                                       all datasets without subsampling. In addition, we disable au-
+L470: α2 ×seq len+α3 ×batch size×seq len+α4 . This enabled                  TabICL obtains state-of-the-art accuracy. Figure 5
+L475: the sample size for row-wise interaction, and the number              per 1K samples for TabICL is 1.1 seconds, while tuning
+L476: of datasets for dataset-wise ICL. Inspired by Rajbhandari             CatBoost on a CPU takes around 3 minutes, and RealMLP
+L479: tion. These optimizations enable TabICL to handle datasets            cies, the critical difference diagram in Figure I.1 shows that
+L480: with 100K samples and 500 features using only 5 GB of                 TabICL and TabPFNv2 outperform competitors by a wide
+L484: 5. Experiments                                                        Speedup over TabPFNv2. Figure 6 shows that TabICL
+L485:                                                                       is 1.5× faster than TabPFNv2 on small datasets and 3-10×
+L486: 5.1. Benchmark                                                        faster on large datasets. This is facilitated by the hybrid ar-
+L490: by Ye et al. (2025). It comprises 200 classification datasets
+L492: (120 binary and 80 multiclass datasets) and comes with re-
+L493:                                                                       10,000 samples and 100 features, TabICL takes roughly 20
+L496: son, we exclude 15 datasets that were used by TabPFNv2 for
+L497:                                                                       for a dataset of 1000 samples and 10 features, TabICL takes
+L502: 171 datasets with at most 10 classes, since these can be
+L503:                                                                       the complexity analysis in Section 3.5. In Figure B.1, we
+L506: Datasets are split into 64% training, 16% validation, and             TabPFNv2 based on the number of samples and features.
+L507: 20% test data. While most models rely on the validation set           These scaling laws show that the average speedup of TabICL
+L509: TabPFNv2 do not. Nonetheless, we opted to train TabICL
+L510: and TabPFNv2 using the training data only, which places               TabICL enables ICL for large datasets. While
+L511: them at a disadvantage. On the flip side, both TabICL and             TabPFNv2 achieves excellent performance on datasets up to
+L512: TabPFNv2 leverage ensembles, unlike the other deep learn-             10K samples, it has only been pre-trained with up to 2048
+L542:    TANGOS                                                                 Figure 6. Speedup of TabICL vs. TabPFNv2 on datasets with
+L543:     TabCaps                                                               less than 30K samples and at most 10 classes.
+L555:            -10%         -5%          0%           5%            10%
+L556:                Relative accuracy improvement over MLP (↑)                          10
+L561:                    Geom. mean train time [s] per 1K samples                                    103               104                 105
+L563: Figure 5. Accuracy and training/inference times on the TAL-
+L564: ENT benchmark up to 10 classes. The red bar indicates the me-             Figure 7. Model rankings as a function of sample size. Each
+L566: for each method. For TabICL and TabPFNv2, the time reported               The lines show the bootstrap median and 10% / 90% bootstrap
+L567: corresponds to training+inference on an A100 GPU. For the other           confidence intervals of a piecewise linear fit.
+L569: Ye et al. (2025) track only the training time using the best hyper-
+L571: training time by multiplying this value by 100. For TabPFN (v1),          tical situations, the quality of the estimated probabilities
+L578: training samples and can fail on datasets above 30K sam-                  does not leverage hyperparameter tuning, its predictions are
+L579: ples due to its memory usage. Figure 7 shows that unlike                  not specifically optimized towards accuracy. The critical
+L581: larger datasets. While ICL is often used in few-shot settings,            TabPFNv2 significantly outperform accuracy-tuned com-
+L586: also performs well for many classes, features, and high ra-               TabICL remains effective with more than 10 classes.
+L587: tios of categorical features. To enhance the performance of               On datasets with more than 10 classes, we apply the hier-
+L588: TabPFNv2 on large datasets, Hollmann et al. (2025) pro-                   archical classification strategy from Section 4.3 to TabICL.
+L591: ted at each leaf to enable localized predictions at inference             efficiently to a large number of classes. Figure 8 shows that
+L593: the performance of both TabPFNv2 and TabICL on large                      in terms of mean normalized accuracy, while TabPFNv2
+L594: datasets (refer to Appendix G for more details).                          cannot natively handle more than 10 classes.
+L601:                                                                                                                                                                                   10%
+L610:                                        0.90                                                                                                                                       8%
+L621:                                                                                                                                                                                   6%
+L627:                                        0.80                                                                                                                                       4%                                          104
+L632:                                        0.75                                                                                                                                       2%
+L635:                                        0.70                                                                                                                                       0%
+L638:                                                                                                                                                                                   -2%
+L639: Figure 8. Normalized accuracy across the 12 datasets with more
+L643: ange), and in-context models (blue).                                                                                                            Figure 10. Relative accuracy improvements over Stage 1 across
+L644:                                                                                                                                                 200 classification datasets. Green triangles denote the mean
+L645:                                         3%                          2%                                    10%                                   relative improvements.
+L651:                                                                                                            8%
+L652:                                         2%
+L654:                                                                     1%
+L655:                                                                                                            6%
+L657:                                         1%                                                                 4%                                   requiring hyper-parameter tuning. TabICL achieves this
+L658:                                                                                                            2%                                   through a hybrid architecture and memory-saving optimiza-
+L659:                                         0%
+L660:                                                                     0%                                     0%
+L663:                                        -1%                                                                 -2%
+L665:                                                                                                            -4%
+L666:                                        -2%                         -1%
+L670: Figure 9. Relative improvements of TabICL pretrained on
+L673: 200 datasets. Green triangles denote the mean relative improve-                                                                                 similar methodology, as Hollmann et al. (2025) showed. (2)
+L681: improve the performance of TabICL, as shown in Figure 9.                                                                                        evaluated using cross-validation can improve performance.
+L689:                                                                                                                                                 allow TabPFNv2 to handle missing values internally despite
+L691:                                                                                                                                                 the low proportion of missing values in TALENT. (5) We did
+L692: nally to 6.95 (first), as shown in Figure E.2. These results
+L695:                                                                                                                                                 TabPFNv2 infers categorical features internally, providing
+L698: datasets during curriculum learning, as shown in Figure 10.
+L700: 6. Conclusion                                                                                                                                   nally introduced as a speedup for small tables (Hollmann
+L708: with up to 100K training samples, it delivers excellent per-
+L748:   Testing language models for memorization of tabular data.             Function Classes, August 2023.
+L794:   ISSN 1476-4687. doi: 10.1038/s41586-024-08328-6.                    Rahimi, A. and Recht, B. Random features for large-scale
+L805:   Pretraining and Transfer for Tabular Learning, May 2024.
+L860:   Datasets, January 2025.
+L863:   2024 Third Table Representation Learning Workshop,
+L895: Representation collapse. When features have similar distributions, both TabICL and TabPFNv2 may suffer from the
+L898: encoding relative positional information. (2) TabPFNv2 addresses this by introducing random feature identifier vectors for
+L904: strategy for label information. TabPFNv2 directly concatenates the input features with the labels of the training samples,
+L907: A.2. Pretraining
+L908: Prior generation. Both TabICL and TabPFNv2 are pretrained exclusively on synthetic prior datasets. (1) TabICL builds
+L916: Dataset size. (1) TabICL was pretrained using curriculum learning that progressively scales the number of samples from
+L917: 1,024 to 60K. The number of features was sampled uniformly up to 100, and the number of classes was sampled uniformly
+L918: up to 10. (2) TabPFNv2 was pretrained on synthetic datasets containing up to 2,048 training samples (uniformly sampled).
+L919: The number of features was drawn from a beta distribution and then linearly scaled to the range from 1 to 160, while the
+L920: number of classes was also uniformly sampled up to 10.
+L922: Pretraining scale. (1) TabICL was pretrained over approximately 82 million synthetic datasets. (2) TabPFNv2 was trained
+L923: on a larger corpus, comprising approximately 130 million synthetic datasets.
+L926: Dataset size handling. (1) At inference, TabICL is capable of handling tables with 100K samples and 500 features within
+L928: excels on tables with up to 10K samples and 500 features, and can only deal with up to 10 classes.
+L930: Computational complexity. Given a table with n rows and m columns, the time complexity of TabICL is O(m2 n + n2 ),
+L939: Predicting the runtime of TabICL and TabPFNv2. To obtain rough predictions of the time for a forward pass (training
+L941: modules. As discussed in Section 3.5, for a table with n rows and m columns, the runtime complexity is O(n2 m + nm2 ) =
+L943: complexity of TabPFNv2, plot this quantity on the x-axis of Figure B.1, and fit models of the form
+L950: speedup of TabICL over TabPFNv2 for large datasets approaches 5, while it is 1.4 for small datasets.
+L974: Figure B.1. Training+inference times of TabICL and TabPFNv2. Each point represents the time on one dataset on an A100 GPU. We
+L975: only use datasets with less than 30,000 samples because TabPFNv2 is applied with subsampling on larger datasets to avoid RAM overflow.
+L978: Metafeatures. We analyze the dependence of the ranks of TabICL, TabPFNv2, CatBoost, and ModernNCA based on
+L981: Figure B.2 shows the scaling with the number of classes. The performance of TabICL deteriorates on datasets with three
+L984: Figure B.3 shows the scaling with the number of features. These plots show that TabICL behaves well for large numbers of
+L986: Figure B.4 shows the dependence on the ratio of categorical to numerical variables. In general, the performance of TabICL
+L987: and TabPFNv2 deteriorates somewhat in the presence of many categorical variables. However, it is notable that TabICL
+L988: performs slightly better than TabPFNv2 on such datasets even though TabPFNv2 has a more sophisticated categorical feature
+L996:    • A random rescaling layer that, for each neuron i, computes xi ← exp(2a)(xi + b), with a, b ∼ N (0, 1) sampled once
+L1020: Figure B.2. Dependency of the benchmark rank on the number of classes. Each point is the rank of one method on one dataset. Lower
+L1021: rank is better. The lines show the bootstrap median and 10% / 90% bootstrap confidence intervals of a piecewise linear fit.
+L1042: Figure B.3. Dependency of the benchmark rank on the number of features. Each point is the rank of one method on one dataset.
+L1043: Lower rank is better. The lines show the bootstrap median and 10% / 90% bootstrap confidence intervals of a piecewise linear fit.
+L1092: Figure B.4. Dependency of the benchmark rank on the ratio of categorical to overall features. Each point is the rank of one method
+L1093: on one dataset. Lower rank is better. The lines show the bootstrap median and 10% / 90% bootstrap confidence intervals of a piecewise
+L1101:    • f (x) = 1|x|≤1
+L1107:    • A random function f (x) = ϕ(x)⊤ z, where z ∼ N (0, 1) and the feature map ϕ is defined randomly as
+L1120:      k(x, x′ ) = ϕ(x)⊤ ϕ(x′ ). The design of ϕ is inspired by random Fourier features (Rahimi & Recht, 2007). The randomly
+L1122:      levels of smoothness for the sampled function as shown in Figure C.1 (right) (Da Costa et al., 2023). This activation
+L1127: Figure C.1 visualizes the used activation functions. Figure C.2 shows datasets from the resulting prior.
+L1133:    • Sample n estimators and max depth independently as min{4, 1 + Exponential(λ = 0.5)} and min{4, 2 +
+L1161: Figure C.1. Activation functions from the SCM prior. Left: Non-random activation functions from the SCM prior without standard-
+L1168:             Figure C.2. Randomly generated 2D datasets from the SCM prior. The color corresponds to the class label.
+L1178: Figure C.3. Randomly generated 2D datasets from the tree-based SCM prior. The color corresponds to the class label.
+L1186: Figure C.3 shows datasets from the tree SCM prior.
+L1230: E.1. Pretraining details
+L1237:     checkpointing is enabled for datasets exceeding 10K samples, and we accordingly reduce the number of features to
+L1239:  3. NB = 1 with the size uniformly sampled between 40K and 60K for 50 steps, training only TFicl while all other
+L1242: Each step comprises 512 datasets. In the first stage, all datasets contain an equal number of samples. In the second and
+L1245: for pretraining are shown in Figure E.1, including:
+L1253: In addition, Figure E.2 shows critical difference diagrams across the three stages of curriculum learning. We observe that
+L1275:                                                 Figure E.1. Learning rate schedules for 3 pretraining stages.
+L1286: outlined in Table E.1.
+L1294:                                          Table E.1. Notions of batch size and sequence length for different transformers
+L1312: alleviate GPU memory constraints. Figure E.3 illustrates the CPU and GPU memory consumption for a large dataset
+L1313: containing 100K samples and 500 features (80% training set and 20% test set). As shown, only 5GB of GPU memory and
+L1340: TuneTables [15.94]                                                                  [14.53] ResNet
+L1345:     (a) Critical difference diagram (based on accuracy) after the stage 1 of curriculum learning
+L1364: TuneTables [15.99]                                                                   [14.63] ResNet
+L1369:     (b) Critical difference diagram (based on accuracy) after the stage 2 of curriculum learning
+L1388: TuneTables [16.00]                                                                   [14.65] ResNet
+L1393:     (c) Critical difference diagram (based on accuracy) after the stage 3 of curriculum learning
+L1395:       Figure E.2. Critical difference diagrams for different stages of curriculum learning
+L1462: Figure E.3. CPU and GPU memory consumption during inference for a dataset with 100K samples and 500 features. During
+L1467: Figure E.4 shows the CPU and GPU memory consumption for a larger dataset containing 500K samples and 500 features
+L1468: (80% training set and 20% test set). As depicted, the computation requires less than 14GB of GPU memory. The CPU
+L1502:                         60                                                                         Dataset-wise ICL
+L1533:                         40                                                                                      Dataset-wise ICL
+L1545: Figure E.4. CPU and GPU memory consumption during inference for a dataset with 500K samples and 500 features. The relatively
+L1556: Due to pretraining limitations, TabICL cannot natively handle classification problems with more than 10 classes. To address
+L1575:                                           py=c|x           =          p gi (c) gi−1 (c), x, Dgi−1 (c)
+L1578: where x is the given test sample, and Dgi−1 (c) represents the training data associated with the node gi−1 (c). Note that the
+L1581: F. Excluded Development Datasets of TabPFNv2
+L1582: TabPFNv2 utilized several development datasets for hyperparameter tuning (e.g., learning rate, prior-related parameters),
+L1589:                                      Table F.1. Performance on 15 development datasets of TabPFNv2
+L1612: G. Random Forest Extension of TabPFNv2 for Large Datasets
+L1620: At inference time, instead of relying on simple majority voting at the leaves, it fits TabPFNv2 to the subset of training data
+L1622: number of samples processed by TabPFNv2, thereby mitigating its scalability limitations.
+L1623: The ensemble prediction of this RF extension involves two main steps: (1) routing each test sample through all trees to
+L1630: evaluated this RF extension with adaptive pruning enabled for both TabPFNv2 and TabICL on large datasets with more than
+L1631: 10K samples. Additionally, we set the ensemble size for both TabPFNv2 and TabICL to 4, considering that random forest
+L1632: already ensembles multiple decision trees. As shown in Figure G.1, the RF extension significantly improves the performance
+L1646:                  TuneTables [24.70]                                                          [9.85] TabICL
+L1660: Figure G.1. Critical difference diagram (based on accuracy) on 53 large datasets with more than 10K samples. For TabICL-RF and
+L1668: their performance, as shown in Figure H.1. Our findings indicate that TabPFNv2 shows a clear improvement even with a
+L1688: Rel. accuracy improvements over E = 1                                                                      Rel. accuracy improvements over E = 1
+L1690:                                         1.0%                                                                                                       1.0%
+L1692:                                         0.8%      Median                              0.74%   0.76%                                                0.8%      Median                              0.72%   0.75%
+L1693:                                                                     0.64%   0.68%
+L1694:                                                                                                                                                                                          0.61%
+L1695:                                         0.6%                                                                                                       0.6%
+L1696:                                                                                                                                                                               0.44%
+L1697:                                         0.4%               0.32%                                                                                   0.4%
+L1699:                                         0.2%
+L1700:                                                                             0.27%     0.30%   0.26%                                                0.2%               0.10%
+L1701:                                                                     0.24%
+L1702:                                                 0.00%      0.18%                                                                                           0.00%                                 0.15%   0.15%
+L1703:                                         0.0%                                                                                                       0.0%
+L1704:                                                                                                                                                                               0.06%      0.10%
+L1705:                                                 0.00%                                                                                                      0.00%      0.00%
+L1706:                                         -0.2%                                                                                                      -0.2%
+L1711: Figure H.1. Effect of ensemble size on TabPFNv2 and TabICL. The figures show the relative accuracy improvements of different
+L1712: ensemble sizes over no ensembling across 171 datasets with at most 10 classes.
+L1717:   multi-class datasets (≤10 classes), small classification datasets (≤10K samples), and large classification datasets (>10K
+L1719:   diagrams, with Wilcoxon-Holm tests with a significance level 0.05. The lower the rank value, the better the performance.
+L1721:   LoCalPFN (Thomas et al., 2024) and TuneTables (Feuer et al., 2024) are only included in the accuracy-based rankings.
+L1750: TuneTables [16.00]                                                                        [14.65] ResNet
+L1803:     Figure I.1. Critical difference diagram for all 171 classification datasets (≤ 10 classes).
+L1833: TuneTables [15.47]                                                                         [15.31] TabPFN
+L1884:           Figure I.2. Critical difference diagram for 112 binary classification datasets.
+L1911: TuneTables [17.00]                                                                                                                [13.97] MLP-PLR
+L1965: Figure I.3. Critical difference diagram for 59 multi-class classification datasets (≤ 10 classes).
+L1991:  TabCaps [16.34]                                                                  [12.64] TuneTables
+L2046: Figure I.4. Critical difference diagram for 116 small classification datasets (≤ 10K samples).
+L2067: TuneTables [22.92]                                                                                           [10.58] MLP-PLR
+L2127:  Figure I.5. Critical difference diagram for 53 large classification datasets (> 10K samples).
