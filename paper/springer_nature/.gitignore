@@ -1,0 +1,19 @@
+working/*.aux
+working/*.bbl
+working/*.blg
+working/*.fdb_latexmk
+working/*.fls
+working/*.log
+working/*.out
+submission/*.aux
+submission/*.bbl
+submission/*.blg
+submission/*.fdb_latexmk
+submission/*.fls
+submission/*.log
+submission/*.out
+__pycache__/
+
+# Allow self-contained submission archive and compiled PDFs in this folder
+!*.pdf
+!*.zip

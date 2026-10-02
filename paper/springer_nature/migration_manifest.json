@@ -1,0 +1,105 @@
+{
+  "source": "paper/reusability_report.tex",
+  "source_sha256": "9304551db38fe4f3660496903ebf4e9a8a1a1b6e3d6579d939da7695a8f2a693",
+  "assets": [
+    {
+      "path": "figures/manuscript/figure_01_cohort_and_design.pdf",
+      "sha256": "638bae7cd08acc80676614dfd7fb74afc747c3da39e42317bbbdaab23e76e62d"
+    },
+    {
+      "path": "figures/manuscript/figure_02_within_cancer_performance.pdf",
+      "sha256": "cc7c436d0d79f3ed82c5cb95f04c1d7b802a65e28c3d5c55b6dcea9dc12c90f4"
+    },
+    {
+      "path": "figures/manuscript/figure_03_pooling_effect.pdf",
+      "sha256": "13e63941fb0856bc309c6b36974aef620aa3d95f0081d2201e51e7cfc9a6d537"
+    },
+    {
+      "path": "figures/manuscript/figure_04_shortcut_stress_tests.pdf",
+      "sha256": "448d173576e2082665eb21062caae956a9a5548048c77ad88870d7b9571c6c82"
+    },
+    {
+      "path": "figures/manuscript/figure_05_probabilistic_and_compute.pdf",
+      "sha256": "57bb606c31607836f4af38dda90ba64dddefdbcc0508e734a2c5697882da4330"
+    },
+    {
+      "path": "figures/reusability/fig1_roadmap_and_design.pdf",
+      "sha256": "f20d311a7e72acb33c67bb9f98e99d2fb087766cdce281bade31255899ccbb2d"
+    },
+    {
+      "path": "figures/reusability/fig2_reproduction.pdf",
+      "sha256": "6fd101354b009c108a6c0a56e363888837077a29bf2611e1b590f72f9b2f35e5"
+    },
+    {
+      "path": "figures/reusability/fig3_within_cancer.pdf",
+      "sha256": "35fa41cbe48e61bca72de207cea15cca3b4ea7af58afa913ff53dbfb5a18eeb1"
+    },
+    {
+      "path": "figures/reusability/fig4_pooling_and_controls.pdf",
+      "sha256": "63ff82219c099815fc4456477dc28c74faf0b4551fba994d53084059f958f8aa"
+    },
+    {
+      "path": "figures/reusability/fig5_within_cancer_effect.pdf",
+      "sha256": "d90ba014973dffa5489b9dcf8648e944335fde877cd5c5e649e3dc20bb0acd7c"
+    },
+    {
+      "path": "tables/generated/table_01_cohort_characteristics.tex",
+      "sha256": "3336ba8a7449674170cbc9a8c8e10dc43b5447914099f156e18ef7cbe7b8c9e9"
+    },
+    {
+      "path": "tables/generated/table_02_model_auc_summary.tex",
+      "sha256": "a8a2eeed122a4d066842f8c18d2e5379bae300729e013e58f400c9efcdc93626"
+    },
+    {
+      "path": "tables/generated/table_03_shortcut_summary.tex",
+      "sha256": "e8e855fb7db819e647cba4dc2a07fa9dd74c33bc130163f9f4bafad2c90e0d83"
+    },
+    {
+      "path": "references.bib",
+      "sha256": "658389355ebf5860f1be6d731ea333568e3fde04f810babdb3ef887cf01a3464"
+    }
+  ],
+  "sections": [
+    {
+      "name": "introduction",
+      "path": "sections/01_introduction.tex"
+    },
+    {
+      "name": "reproducibility",
+      "path": "sections/02_reproducibility.tex"
+    },
+    {
+      "name": "reusability",
+      "path": "sections/03_reusability.tex"
+    },
+    {
+      "name": "discussion",
+      "path": "sections/04_discussion.tex"
+    },
+    {
+      "name": "methods",
+      "path": "sections/05_methods.tex"
+    },
+    {
+      "name": "data_availability",
+      "path": "sections/06_data_availability.tex"
+    },
+    {
+      "name": "code_availability",
+      "path": "sections/07_code_availability.tex"
+    },
+    {
+      "name": "author_contributions",
+      "path": "sections/08_author_contributions.tex"
+    },
+    {
+      "name": "competing_interests",
+      "path": "sections/09_competing_interests.tex"
+    },
+    {
+      "name": "extended_data",
+      "path": "sections/10_extended_data.tex"
+    }
+  ],
+  "policy": "Format-only snapshot; no scientific prose edits"
+}

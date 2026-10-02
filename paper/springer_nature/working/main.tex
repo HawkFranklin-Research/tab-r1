@@ -1,0 +1,33 @@
+\documentclass[pdflatex,sn-nature]{sn-jnl}
+\usepackage{graphicx}
+\usepackage{amsmath,amssymb}
+\usepackage{booktabs}
+\usepackage{array}
+\usepackage{xcolor}
+\usepackage{placeins}
+\raggedbottom
+\usepackage{url}
+\setlength{\emergencystretch}{3em}
+\hypersetup{hidelinks}
+\begin{document}
+\title{Reusability report: Tabular foundation models for cancer survival prediction from multiomics}
+\author*[1]{\fnm{Vatsal P.} \sur{Patel}}\email{vatsal1@hawkfranklin.in}
+\author[1]{\fnm{Satya Prakash} \sur{Mohanty}}
+\affil[1]{\orgname{HawkFranklin Research}, \orgaddress{\country{India}}}
+\abstract{Tabular foundation models make predictions from a labeled table in a single forward pass, and TabPFN was introduced as giving accurate predictions on small datasets without task-specific tuning. Clinical cohorts are small tables, which makes these models attractive for cancer research. Here we assess the reusability of TabPFN, together with its later generations and Google's TabFM, first on its own benchmark data and then on survival prediction from cancer multiomics. On six of its benchmark datasets, TabPFN again had the highest mean ROC AUC among default-setting models (0.877 against 0.873 for CatBoost), a directional reproduction under a simpler protocol than the original, and five TabPFN generations and TabFM differed by less than 0.01. We then evaluated eleven models on 3,238 patients from five TCGA and CPTAC cancer cohorts using 400 frozen test sets. Within single cancers, survival prediction was difficult for every model and no two nonlinear models differed significantly. Pooling the cancers raised ROC AUC to 0.721 for 3-year survival ($n = 1{,}645$) and 0.786 for extreme survival ($n = 937$), but tree ensembles matched these scores and controls using only cancer type or the pattern of zero-valued features reached similar levels. Scored within each cancer, pooled training lowered the ROC AUC of TabFM by 0.084 and TabPFN v3 by 0.070 at 5 years, losses that were larger on average than those of tree ensembles. TabPFN ran without tuning and performed comparably to default tree ensembles on single-cancer survival tasks, but pooled pan-cancer scores should be reported with within-cancer results and shortcut controls.}
+\keywords{tabular foundation models; TabPFN; TabFM; reusability; cancer multiomics; survival prediction; cohort shortcuts}
+\maketitle
+\raggedbottom
+
+\input{sections/01_introduction.tex}
+\input{sections/02_reproducibility.tex}
+\input{sections/03_reusability.tex}
+\input{sections/04_discussion.tex}
+\input{sections/05_methods.tex}
+\input{sections/06_data_availability.tex}
+\input{sections/07_code_availability.tex}
+\input{sections/08_author_contributions.tex}
+\input{sections/09_competing_interests.tex}
+\bibliography{references}
+\input{sections/10_extended_data.tex}
+\end{document}
