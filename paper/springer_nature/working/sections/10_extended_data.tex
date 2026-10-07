@@ -4,6 +4,7 @@
 \renewcommand{\figurename}{Extended Data Fig.}
 \renewcommand{\theHfigure}{extended.\arabic{figure}}
 
+
 \begin{figure}[p]
 \section*{Extended Data}
 \centering
@@ -21,8 +22,8 @@
 
 \begin{figure}[p]
 \centering
-\includegraphics[width=\linewidth,height=0.64\textheight,keepaspectratio]{figures/manuscript/figure_03_pooling_effect.pdf}
-\caption{\textbf{Pooled-task curves.} Within-cancer versus pooled AUC, pooled 3-year ROC and precision-recall curves, pooled AUC heatmap, the paired within-cancer effect (first version) and task size against discrimination.}
+\includegraphics[width=\linewidth,height=0.64\textheight,keepaspectratio]{figures/manuscript/figure_03_pooling_effect_ed.pdf}
+\caption{\textbf{Pooled-task curves and estimator sensitivity.} Within-cancer versus pooled AUC, pooled 3-year ROC and precision-recall curves, pooled AUC heatmap, and task size against discrimination. Panel E compares two estimators of the change in within-cancer ROC AUC after pooling, as the mean over foundation models and over tree ensembles: pooling each patient's predictions across folds (open circles) and scoring within each test set (filled circles, as in Fig.~\ref{fig:effect}).}
 \label{fig:ed_pool}
 \end{figure}
 
@@ -38,6 +39,13 @@
 \includegraphics[width=\linewidth,height=0.64\textheight,keepaspectratio]{figures/manuscript/figure_05_probabilistic_and_compute.pdf}
 \caption{\textbf{Probability quality and compute.} Calibration curves for pooled 5-year predictions, pooled Brier score and log loss, sensitivity and specificity at validation-selected thresholds, selected-feature modality composition, and median fit and prediction time per fold. Classical models ran locally and foundation models on a separate CPU machine, so runtimes are indicative.}
 \label{fig:ed_prob}
+\end{figure}
+
+\begin{figure}[p]
+\centering
+\includegraphics[width=\linewidth,height=0.64\textheight,keepaspectratio]{figures/reusability/ed_cindex_eligible_patients.pdf}
+\caption{\textbf{C-index of the saved risk scores among eligible patients.} Harrell C-index of each model's predicted probability of the event at the horizon, using patients' real overall-survival times and events, in three settings: cancer-specific models scored within their cancer; pooled models scored within each cancer; and pooled models scored over all pairs of patients in the test set. Lines join the same model; values are means over test sets (and over cancers for within-cancer scoring). Only patients with a defined label at the horizon are included, so this is not a censoring-adjusted C-index over the whole cohort, and for extreme survival the eligible patients are the extremes. The lone points at 3 years are TabPFN v2--v2.6, which were not evaluated on the pooled task. Dotted line, no discrimination.}
+\label{fig:ed_cindex}
 \end{figure}
 
 

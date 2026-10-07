@@ -1,46 +1,50 @@
 {
   "source": "paper/reusability_report.tex",
-  "source_sha256": "9304551db38fe4f3660496903ebf4e9a8a1a1b6e3d6579d939da7695a8f2a693",
+  "source_sha256": "cdf0c913c1f8882fe54a29e64bbda94d7b2156d62738019da394f7f9f08d775e",
   "assets": [
     {
       "path": "figures/manuscript/figure_01_cohort_and_design.pdf",
-      "sha256": "638bae7cd08acc80676614dfd7fb74afc747c3da39e42317bbbdaab23e76e62d"
+      "sha256": "301daa0ee762480d352c52051f96631ef2c35bd1be836736f2cbc016d86157ff"
     },
     {
       "path": "figures/manuscript/figure_02_within_cancer_performance.pdf",
-      "sha256": "cc7c436d0d79f3ed82c5cb95f04c1d7b802a65e28c3d5c55b6dcea9dc12c90f4"
+      "sha256": "d17576657e6530d2de3e279a125179480454a28f7e0a90938250f98967acd822"
     },
     {
-      "path": "figures/manuscript/figure_03_pooling_effect.pdf",
-      "sha256": "13e63941fb0856bc309c6b36974aef620aa3d95f0081d2201e51e7cfc9a6d537"
+      "path": "figures/manuscript/figure_03_pooling_effect_ed.pdf",
+      "sha256": "52c39302d12c6f5441d7adfe4e868dfea2ef53e4cad7e3844eade6721d048fbb"
     },
     {
       "path": "figures/manuscript/figure_04_shortcut_stress_tests.pdf",
-      "sha256": "448d173576e2082665eb21062caae956a9a5548048c77ad88870d7b9571c6c82"
+      "sha256": "3345de4ffacf8696748a5d55ad3bdc2cc57a3e845bb7e9ee5da54a70ce363332"
     },
     {
       "path": "figures/manuscript/figure_05_probabilistic_and_compute.pdf",
-      "sha256": "57bb606c31607836f4af38dda90ba64dddefdbcc0508e734a2c5697882da4330"
+      "sha256": "b1898b2c8934b373a2e17bdf62538ea8ac5fdafbb4e4c7327f4c0e0b3dfa6686"
+    },
+    {
+      "path": "figures/reusability/ed_cindex_eligible_patients.pdf",
+      "sha256": "5923b50e2e809448069043cf89588d258a61b74c3b25cf6dd5aa43a287e7a66b"
     },
     {
       "path": "figures/reusability/fig1_roadmap_and_design.pdf",
-      "sha256": "f20d311a7e72acb33c67bb9f98e99d2fb087766cdce281bade31255899ccbb2d"
+      "sha256": "1a01660e70109458f5448120f0a9d7959ffe2a79a00b56def90d4973700af787"
     },
     {
       "path": "figures/reusability/fig2_reproduction.pdf",
-      "sha256": "6fd101354b009c108a6c0a56e363888837077a29bf2611e1b590f72f9b2f35e5"
+      "sha256": "663dae366444a4711180daeae1e2c15550962e7acdcd1c3b3cd349b157e73c25"
     },
     {
       "path": "figures/reusability/fig3_within_cancer.pdf",
-      "sha256": "35fa41cbe48e61bca72de207cea15cca3b4ea7af58afa913ff53dbfb5a18eeb1"
+      "sha256": "f60ce6f7b9669f5c6d158e9240e8ff5e30fb674e5f9fa70d37fb1d021bd53a49"
     },
     {
       "path": "figures/reusability/fig4_pooling_and_controls.pdf",
-      "sha256": "63ff82219c099815fc4456477dc28c74faf0b4551fba994d53084059f958f8aa"
+      "sha256": "4857f45944799b8503998c08ce8ec06d77a9702ed246b22438b05f354a7524f8"
     },
     {
       "path": "figures/reusability/fig5_within_cancer_effect.pdf",
-      "sha256": "d90ba014973dffa5489b9dcf8648e944335fde877cd5c5e649e3dc20bb0acd7c"
+      "sha256": "7974521af771c4404b8991527648d4922b3e3bde6902fff31441e1b6221f8d8c"
     },
     {
       "path": "tables/generated/table_01_cohort_characteristics.tex",

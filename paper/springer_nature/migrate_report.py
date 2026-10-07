@@ -7,6 +7,7 @@ import json
 import re
 import shutil
 import zipfile
+from datetime import datetime, timezone
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parent
@@ -56,11 +57,26 @@ def frontmatter(source: str) -> str:
     )
 
 
-def prepare() -> None:
+def prepare(sync: bool = False) -> None:
     source_path = PAPER / "reusability_report.tex"
     source = source_path.read_text()
-    if (WORK / "main.tex").exists():
+    if (WORK / "main.tex").exists() and not sync:
         raise SystemExit("Working copy exists; migration will not overwrite manual edits.")
+    if sync:
+        archive_dir = ROOT / "archive"
+        archive_dir.mkdir(exist_ok=True)
+        stamp = datetime.now(timezone.utc).strftime("%Y%m%dT%H%M%S%fZ")
+        backup = archive_dir / f"pre_sync_{stamp}.zip"
+        with zipfile.ZipFile(backup, "w", zipfile.ZIP_DEFLATED) as archive:
+            for directory in (WORK, SUBMISSION):
+                for path in sorted(directory.rglob("*")):
+                    if path.is_file():
+                        archive.write(path, path.relative_to(ROOT))
+            for filename in ("source_snapshot.tex", "migration_manifest.json", "submission_source.zip"):
+                path = ROOT / filename
+                if path.exists():
+                    archive.write(path, filename)
+        print(f"Previous Springer version preserved in {backup.relative_to(ROOT)}")
     assets = sorted(set(re.findall(r"\\includegraphics(?:\[[^\]]*\])?\{([^}]+)\}", source)))
     tables = sorted(set(re.findall(r"\\input\{([^}]+)\}", source)))
     records = []
@@ -205,6 +221,9 @@ def export() -> None:
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser()
-    parser.add_argument("action", choices=["prepare", "export"])
+    parser.add_argument("action", choices=["prepare", "sync", "export"])
     args = parser.parse_args()
-    (prepare if args.action == "prepare" else export)()
+    if args.action == "export":
+        export()
+    else:
+        prepare(sync=args.action == "sync")

@@ -86,25 +86,15 @@ def card(ax, x, y, w, h, title, body, edge):
 # ----------------------------------------------------------------------------------------------
 def figure_1() -> None:
     cohort = pd.read_csv(TABLES / "table_01_cohort_characteristics.csv")
-    fig = plt.figure(figsize=(7.2, 5.4))
-    gs = fig.add_gridspec(2, 3, height_ratios=[0.5, 1.0], hspace=0.45, wspace=0.45)
+    fig = plt.figure(figsize=(7.2, 6.2))
+    gs = fig.add_gridspec(2, 3, height_ratios=[0.78, 1.0], hspace=0.28, wspace=0.45)
 
     ax = fig.add_subplot(gs[0, :])
     ax.set_axis_off()
     letter(ax, "a", x=-0.02, y=1.0)
-    steps = [
-        ("1  Reproduce", "TabPFN's own small-data\nbenchmarks: 7 datasets,\nTabPFN v1–v3, TabFM\nand 6 baselines", INK_3),
-        ("2  Single cancer", "5 cohorts, 3,238 patients\n13 tasks × 25 frozen\ntest sets; 11 models", FAMILY_COLOR["TabPFN"]),
-        ("3  Pooled cancers", "3 pooled tasks × 25 test\nsets; cancer-type, zero-\npattern, permutation and\nheld-out-cancer controls", FAMILY_COLOR["Tree ensemble"]),
-        ("4  Inside each cancer", "Same patients, paired:\npooled vs cancer-specific\ntraining, scored within\neach diagnosis", FAMILY_COLOR["TabFM"]),
-    ]
-    w, gap = 0.215, 0.04
-    for i, (title, body, edge) in enumerate(steps):
-        x = 0.01 + i * (w + gap)
-        card(ax, x, 0.04, w, 0.9, title, body, edge)
-        if i < len(steps) - 1:
-            ax.annotate("", xy=(x + w + gap - 0.004, 0.5), xytext=(x + w + 0.004, 0.5), xycoords="axes fraction",
-                        arrowprops=dict(arrowstyle="-|>", color=INK_3, lw=1.1))
+    # Panel A is illustrative; panels B-D retain their data-driven/vector rendering.
+    schematic = OUT / "design_candidates/fig1_panel_a_schematic.png"
+    ax.imshow(plt.imread(schematic), aspect="equal", interpolation="antialiased")
 
     ax = fig.add_subplot(gs[1, 0])
     letter(ax, "b")

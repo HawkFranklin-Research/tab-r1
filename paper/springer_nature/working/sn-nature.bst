@@ -1452,8 +1452,7 @@ FUNCTION {inproceedings}
   format.authors "author" output.check
 	  new.block
 	  format.editors output
-% Local compatibility fix: output consumes the editor string; add.blank here
-% would concatenate against an empty stack for conference references.
+% Local fix: output leaves no string for add.blank.
   format.inpro.title "title" output.check
   new.block
   crossref missing$
