@@ -1,0 +1,160 @@
+# survival_v2 configuration. Every CLI run reads this file (override with --config); CLI flags win over it.
+# Paths: relative paths are resolved against the repository root.
+
+paths:
+  c5_root: /home/prime/Documents/g3/c-5                      # raw/processed cohort data (outside the repo)
+  train_ready: gpt/processed/train_ready                     # under c5_root
+  clinical_master: gpt/processed/clinical/patient_master.parquet   # under c5_root
+  metabric_root: /home/prime/Documents/g3/c-5/metabric/brca_metabric
+  output_root: survival_v2/outputs                            # gitignored; --smoke switches to outputs_smoke
+  evaluator_package: package/src                              # ev_tabpfn (model builders reused from the paper pipeline)
+
+cancers: [BRCA, ESCA, HNSCC, LSCC, LUAD]
+
+# Outcome ------------------------------------------------------------------------------------------------
+endpoint: OS                    # OS | DSS (DSS exists for TCGA patients only)
+max_followup_days: null         # optional administrative censoring for all cohorts (null = none)
+horizons_days: {h3: 1095, h5: 1825}      # identical to the horizons of the fixed-horizon paper analysis
+tau_days: 1825                  # restriction time for RMST pseudo-values and Uno's C-index
+
+# Cohorts. `tcga` is the primary analysis: CPTAC patients lack several assays, have very short follow-up
+# (BRCA CPTAC: 2 events in 96 patients) and sit in separate source-specific feature blocks in c-5.
+# `all` adds CPTAC patients (blocks are coalesced per patient) as a sensitivity analysis.
+cohorts: [tcga]
+
+# Frozen folds ---------------------------------------------------------------------------------------------
+folds:
+  n_repeats: 5
+  n_splits: 5
+  seed: 42
+
+# Features ---------------------------------------------------------------------------------------------------
+features:
+  k: 100                                  # selected omics features per training set (same k for every model)
+  min_observed: {tcga: 0.90, all: 0.80}   # per cancer, over the rows of the cohort variant (mask: 1 = missing)
+  modality_quota: equal                   # equal | none  (equal: k / n_modalities per modality, redistributed if short)
+  min_nonzero: 10                         # sparse/binary features need this many non-zero training rows
+  modalities: [rnaseq_gene, cnv_log2, cnv_gistic, methylation_gene, mutation_binary]
+  preload: true                           # load all matrices into RAM (~1.5 GB); false = memory-map
+clinical_features: [age, sex_male, stage, t_stage, n_stage]   # harmonised; grade is excluded (CPTAC-only)
+
+# Training-set contexts (Question 2). A = target cancer only; B = naive pooling; C = standardised pooling;
+# D = C with cancer-stratified pseudo-values; P = pooled folds (all cancers in train and test; Question 1 pooled).
+# B vs C changes three things at once (selector mode, cancer indicator, missing handling); see README "Attribution".
+contexts:
+  A: {scope: per_cancer, pool: false, selector: pseudo_corr, mode: pooled, onehot: false, nan: imputed, stratified_pseudo: false}
+  B: {scope: per_cancer, pool: true,  selector: pseudo_corr, mode: pooled, onehot: false, nan: imputed, stratified_pseudo: false}
+  C: {scope: per_cancer, pool: true,  selector: pseudo_corr, mode: within, onehot: true,  nan: nan,     stratified_pseudo: false}
+  D: {scope: per_cancer, pool: true,  selector: pseudo_corr, mode: within, onehot: true,  nan: nan,     stratified_pseudo: true}
+  P: {scope: pooled,     pool: true,  selector: pseudo_corr, mode: pooled, onehot: false, nan: imputed, stratified_pseudo: false}
+
+# What each question runs --------------------------------------------------------------------------------------
+questions:
+  q1: {contexts: [A, P], arms: [omics]}
+  q2: {contexts: [B, C],  arms: [omics]}            # add D here for the stratified-target variant
+  q3: {contexts: [A],    arms: [clinical, omics_clinical]}   # the omics arm is Question 1, context A
+  q4: {enabled: true}
+
+# Model specifications. Grammar:  family:variant[:targets]  (targets joined by +: rmst, h3, h5)
+#   classical     coxnet | coxph | rsf | gbsa | km | null_cancer | null_source
+#   pseudo        pseudo:<regressor>:<targets>      jackknife pseudo-observations; regressor in
+#                                                   ridge|random_forest|catboost|tabpfn_v2|tabpfn_v2_5|tabpfn_v2_6|tabpfn_v3|tabfm
+#   native        native:<tabpfn_version>           TabPFN event classifier x event-time distribution (re-implementation of
+#                                                   tabpfn_extensions SurvivalTabPFN; treats censored patients as non-events)
+#   ipcw          ipcw:<classifier>                 horizon classifiers on IPCW-resampled training rows
+#                                                   classifier in logistic|random_forest|catboost|tabpfn_*|tabfm
+model_sets:
+  q1:
+    - km
+    - null_cancer
+    - null_source
+    - coxnet
+    - coxph
+    - rsf
+    - gbsa
+    - pseudo:ridge:rmst+h3+h5
+    - pseudo:random_forest:rmst+h3+h5
+    - pseudo:catboost:rmst+h3+h5
+    - pseudo:tabpfn_v2:rmst
+    - pseudo:tabpfn_v2_5:rmst+h3+h5
+    - pseudo:tabpfn_v2_6:rmst
+    - pseudo:tabpfn_v3:rmst+h3+h5
+    - pseudo:tabfm:rmst+h3+h5
+    - native:tabpfn_v2
+    - native:tabpfn_v2_5
+    - native:tabpfn_v2_6
+    - native:tabpfn_v3
+    - ipcw:random_forest
+    - ipcw:catboost
+    - ipcw:tabpfn_v2_5
+    - ipcw:tabpfn_v3
+    - ipcw:tabfm
+  q2:
+    - coxnet
+    - rsf
+    - pseudo:random_forest:rmst
+    - pseudo:catboost:rmst
+    - pseudo:tabpfn_v2_5:rmst
+    - pseudo:tabpfn_v3:rmst
+    - pseudo:tabfm:rmst
+  q3:
+    - coxph
+    - coxnet
+    - rsf
+    - pseudo:random_forest:rmst
+    - pseudo:catboost:rmst
+    - pseudo:tabpfn_v2_5:rmst
+    - pseudo:tabpfn_v3:rmst
+    - pseudo:tabfm:rmst
+  q4:
+    - km
+    - coxph
+    - coxnet
+    - rsf
+    - pseudo:random_forest:rmst+h3+h5
+    - pseudo:tabpfn_v2_5:rmst+h3+h5
+    - pseudo:tabpfn_v3:rmst+h3+h5
+    - pseudo:tabfm:rmst+h3+h5
+    - native:tabpfn_v3
+
+# Model hyper-parameters. Foundation models use released defaults. Classical models use the fixed settings below
+# (Cox elastic net selects its penalty by 3-fold inner CV on the training rows only).
+models:
+  coxnet: {l1_ratio: 0.5, n_alphas: 30, alpha_min_ratio: 0.05, inner_folds: 3, max_iter: 100000}
+  coxph: {alpha: 0.1}
+  rsf: {n_estimators: 300, min_samples_leaf: 10, max_features: sqrt}
+  gbsa: {n_estimators: 200, learning_rate: 0.05, max_depth: 2, subsample: 0.8}
+  regressor_random_forest: {n_estimators: 300, min_samples_leaf: 5, max_features: 0.33}
+  regressor_catboost: {iterations: 300, depth: 4, learning_rate: 0.05}
+  classifier_random_forest: {n_estimators: 300, min_samples_leaf: 5, max_features: sqrt}
+  classifier_catboost: {iterations: 300, depth: 4, learning_rate: 0.05}
+  native_survival: {risk_gamma: 0.85, n_horizons: 6, horizon_quantiles: [0.10, 0.90]}
+  ipcw: {weight_floor: 0.05}
+
+# Compute ------------------------------------------------------------------------------------------------------
+compute:
+  threads: 12
+  memory_gb: 12             # RLIMIT_AS is skipped automatically on CUDA (CUDA reserves a large address space)
+  device: auto              # auto | cpu | cuda
+  allow_cpu_large: true     # sets TABPFN_ALLOW_CPU_LARGE_DATASET=1 (TabPFN v2-v2.6 refuse >1000 rows on CPU otherwise)
+  seed: 42
+
+# External validation (Question 4): TCGA-BRCA <-> METABRIC ---------------------------------------------------
+external:
+  n_seeds: 3
+  max_followup_days: 3650           # administrative censoring applied to BOTH cohorts (METABRIC follow-up is ~16 years)
+  expression_only: true             # gene-level RNA on the shared symbols; each cohort is z-scored on its own
+  clinical: [age, stage]            # the covariates available in both cohorts
+  bootstrap: 1000                   # patient bootstrap for test-set intervals
+
+# Smoke mode (--smoke): tiny run for checking the code path; writes to outputs_smoke ------------------------------
+smoke:
+  cancers: [HNSCC, LUAD]
+  n_repeats: 1
+  n_splits_run: 2           # run only the first two folds
+  max_train: 200            # random stratified subsample of the training rows
+  max_test: 100
+  k: 30
+  models: [km, coxph, coxnet, rsf, "pseudo:random_forest:rmst+h3+h5", "pseudo:tabpfn_v2_5:rmst", "native:tabpfn_v2_5", "ipcw:random_forest"]
+  external_models: [km, coxph, "pseudo:random_forest:rmst"]
+  external_n_seeds: 1

@@ -1,0 +1,47 @@
+Submission portal copy from the current reusability report.
+Paste field text only; headings and instructions are not field content.
+The abstract is unchanged apart from conversion to plain text.
+
+== TARGET JOURNAL ==
+Nature Machine Intelligence
+
+== PROPOSED ARTICLE TYPE ==
+Reusability Report
+
+== TITLE ==
+Reusability report: Tabular foundation outstands in cancer survival prediction
+
+== ABSTRACT (280 whitespace-delimited words) ==
+Tabular foundation models make predictions from a labeled table in a single forward pass, and TabPFN was introduced as giving accurate predictions on small datasets without task-specific tuning. Clinical cohorts are small tables, which makes these models attractive for cancer research. Here we assess the reusability of TabPFN, together with its later generations and Google's TabFM, first on its own benchmark data and then on survival prediction from cancer multiomics. On six of its benchmark datasets, TabPFN again had the highest mean ROC AUC among default-setting models (0.877 against 0.873 for CatBoost), a directional reproduction under a simpler protocol than the original, and five TabPFN generations and TabFM differed by less than 0.01. We then evaluated eleven models on 3,238 patients from five TCGA and CPTAC cancer cohorts using 400 frozen test sets. Within single cancers, survival prediction was difficult for every model and no two nonlinear models differed significantly. Pooling the cancers raised ROC AUC to 0.721 for 3-year survival (n = 1,645) and 0.786 for extreme survival (n = 937), but tree ensembles matched these scores and controls using only cancer type or the pattern of zero-valued features reached similar levels. Scored within each cancer, pooled training changed ROC AUC by only -0.05 to +0.04 for individual models, and for extreme survival it lowered the ROC AUC of foundation models by 0.021 more than that of tree ensembles (95% CI, -0.043 to 0.003; Harrell C-index, -0.022, -0.036 to -0.007); at 3 and 5 years the two families did not differ. TabPFN ran without tuning and performed comparably to default tree ensembles on single-cancer survival tasks, but pooled pan-cancer scores should be reported with within-cancer results and shortcut controls.
+
+== KEYWORDS ==
+tabular foundation models; TabPFN; TabFM; reusability; cancer multiomics; survival prediction; cohort shortcuts
+
+== AUTHORS IN MANUSCRIPT ORDER ==
+1. Vatsal Pravinbhai Patel (corresponding author)
+2. Satya Prakash Mohanty
+3. Bikram Bhakat [2]
+4. Abhijeet Patel [1,3]
+5. Yash Jayeshbhai Patel [1,4]
+6. Ananya Pal [1,5]
+Vatsal Pravinbhai Patel and Satya Prakash Mohanty: affiliation [1]
+[1] HawkFranklin Research, India
+[2] Department of Zoology, The University of Burdwan, Purba Bardhaman, West Bengal, 713104, India
+[3] Primary Health Centre Dehri, Valsad, Gujarat, 396170, India
+[4] Medical College Baroda and SSG Hospital, Vadodara, Gujarat, 390001, India
+[5] Department of Zoology, Bethune College, Kolkata, West Bengal, 700006, India
+
+== CORRESPONDING AUTHOR EMAIL ==
+vatsal1@hawkfranklin.in
+
+== DATA AVAILABILITY ==
+TCGA and CPTAC data are available from their originating resources under their terms of use. Frozen fold bundles are held in the Hugging Face dataset TABR1-Cancer-OS-LeakageSafe-Folds under the HawkFranklin-Research organization. Source data for every figure panel are provided in paper/figures/reusability/source_data and paper/figures/source_data.
+
+== CODE AVAILABILITY ==
+All code is available at https://github.com/HawkFranklin-Research/tab-r1.
+
+== AUTHOR CONTRIBUTIONS ==
+V.P.P. and S.P.M. conceived the study. S.P.M. and V.P.P. performed the reproduction experiments; V.P.P. performed the cancer evaluation and analysis. V.P.P. and S.P.M. interpreted the results and wrote the manuscript. Bikram Bhakat, Abhijeet Patel, Yash Jayeshbhai Patel and Ananya Pal reviewed and edited the manuscript and contributed to data visualization. Ananya Pal also contributed to funding acquisition. Language-model assistance was used for code development, editing and reproducibility checks under human supervision; such tools are not authors and bear no responsibility for the conclusions.
+
+== COMPETING INTERESTS ==
+The authors declare no competing interests.

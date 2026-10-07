@@ -1,0 +1,17 @@
+# survival_v2 runtime requirements (versions are lower bounds; record `pip freeze` of the run environment alongside results)
+numpy>=1.26
+scipy>=1.11
+pandas>=2.1
+pyarrow>=15
+pyyaml>=6
+scikit-learn>=1.4
+scikit-survival>=0.23
+lifelines>=0.28
+matplotlib>=3.8
+catboost>=1.2
+threadpoolctl>=3.2
+tabpfn>=8.0.0          # TabPFN v2 / v2.5 / v2.6 / v3 via ModelVersion
+torch>=2.2
+# TabFM (google-research/tabfm, PyTorch backend) and the evaluator package are installed from the repository:
+#   pip install ./package './tabfm[pytorch]'
+pytest>=8              # tests only

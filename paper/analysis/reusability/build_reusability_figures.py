@@ -92,9 +92,54 @@ def figure_1() -> None:
     ax = fig.add_subplot(gs[0, :])
     ax.set_axis_off()
     letter(ax, "a", x=-0.02, y=1.0)
-    # Panel A is illustrative; panels B-D retain their data-driven/vector rendering.
-    schematic = OUT / "design_candidates/fig1_panel_a_schematic.png"
-    ax.imshow(plt.imread(schematic), aspect="equal", interpolation="antialiased")
+    # Keep explanatory labels as vector text, readable at journal column width.
+    ax.set_xlim(0, 1)
+    ax.set_ylim(0, 1)
+    cohort_colors = ["#2a78d6", "#159d92", "#e7a12d", "#747b85", "#d96545"]
+    centers = [0.105, 0.365, 0.625, 0.885]
+    titles = ["1  Reproduce", "2  Within cancer", "3  Pool cancers", "4  Score within\ndiagnosis"]
+    for x, title in zip(centers, titles):
+        ax.text(x, 0.98, title, ha="center", va="top", fontsize=8.5, fontweight="bold", color=INK)
+    for x in [0.225, 0.485, 0.745]:
+        ax.annotate("", xy=(x + 0.028, 0.48), xytext=(x - 0.012, 0.48),
+                    arrowprops=dict(arrowstyle="-|>", color=INK_3, lw=1.2))
+
+    # Small overlapping benchmark tables, deliberately without measured values.
+    for k in range(3):
+        x, y = 0.035 + k * 0.023, 0.49 - k * 0.055
+        ax.add_patch(plt.Rectangle((x, y), 0.10, 0.23, fc=SURFACE, ec="#2a78d6", lw=0.8))
+        for row in range(4):
+            for col in range(4):
+                ax.add_patch(plt.Rectangle((x + 0.004 + col * 0.024, y + 0.007 + row * 0.053),
+                                          0.020, 0.041, fc="#cbe0f5", ec="none"))
+    ax.text(centers[0], 0.23, "Original benchmarks", ha="center", fontsize=8)
+    ax.text(centers[0], 0.08, "Matched model\ncomparisons", ha="center", fontsize=8, color=INK_2)
+
+    # Cohort colors are preserved through pooling and subgroup scoring.
+    for k, (name, c) in enumerate(zip(CANCERS, cohort_colors)):
+        y = 0.68 - k * 0.103
+        ax.text(0.29, y, name, fontsize=8, va="center", ha="left")
+        ax.add_patch(plt.Rectangle((0.375, y - 0.026), 0.07, 0.052, fc=c, ec="none"))
+    ax.text(centers[1], 0.08, "Train separately\nfor each diagnosis", ha="center", fontsize=8, color=INK_2)
+
+    for row, c in enumerate(cohort_colors):
+        for col in range(6):
+            missing = (row + col) % 5 == 0
+            ax.add_patch(plt.Rectangle((0.553 + col * 0.024, 0.68 - row * 0.073),
+                                      0.022, 0.063, fc=SURFACE if missing else c,
+                                      ec="#b8bdc1", lw=0.35))
+    ax.text(centers[2], 0.23, "One combined cohort", ha="center", fontsize=8)
+    ax.text(centers[2], 0.08, "Cancer identity and\nzero-pattern controls", ha="center", fontsize=8, color=INK_2)
+
+    ax.text(0.828, 0.76, "Separate", ha="center", fontsize=7.5)
+    ax.text(0.937, 0.76, "Pooled", ha="center", fontsize=7.5)
+    for k, c in enumerate(cohort_colors):
+        y = 0.68 - k * 0.073
+        for x in [0.803, 0.912]:
+            ax.add_patch(plt.Rectangle((x, y - 0.023), 0.05, 0.046, fc=c, ec="none"))
+        ax.plot([0.853, 0.912], [y, y], color=INK_3, lw=0.8)
+    ax.text(centers[3], 0.23, "Same patients", ha="center", fontsize=8)
+    ax.text(centers[3], 0.08, "Paired scoring\nwithin each cancer", ha="center", fontsize=8, color=INK_2)
 
     ax = fig.add_subplot(gs[1, 0])
     letter(ax, "b")
@@ -396,20 +441,23 @@ def figure_4() -> None:
 
 # ----------------------------------------------------------------------------------------------
 def figure_5() -> None:
-    summary = pd.read_csv(SRC / "pooling_delta_draws_summary.csv")
-    did = pd.read_csv(SRC / "pooling_did.csv").set_index("endpoint")
-    per = pd.read_csv(OLD_SRC / "figure_03_within_cancer_pooling_contrast.csv")
+    """Fold-aware within-cancer effect of pooled training (fold_aware_contrast.py)."""
+    summary = pd.read_csv(SRC / "foldaware_pooling_summary.csv")
+    summary = summary[summary["metric"] == "auc"]
+    did = pd.read_csv(SRC / "foldaware_pooling_did.csv")
+    per = pd.read_csv(SRC / "foldaware_pooling_per_cancer.csv")
+    per = per[per["metric"] == "auc"]
 
     fig = plt.figure(figsize=(7.2, 5.9))
     gs = fig.add_gridspec(2, 3, height_ratios=[1.35, 1.0], hspace=0.55, wspace=0.18)
+    all_models = list(MODEL_ORDER)
 
     for k, e in enumerate(ENDPOINTS):
         ax = fig.add_subplot(gs[0, k])
-        sub = summary[summary["endpoint"] == e].set_index("model_name")
-        all_models = list(MODEL_ORDER)
         ax.set_title(ENDPOINT_LABEL[e], pad=6)
         if k == 0:
             letter(ax, "a", x=-0.62)
+        sub = summary[summary["endpoint"] == e].set_index("model_name")
         for i, m in enumerate(all_models):
             if m not in sub.index:
                 ax.text(0, i, "not evaluated", ha="center", va="center", fontsize=5.6, color=INK_3)
@@ -425,7 +473,7 @@ def figure_5() -> None:
             for tick, m in zip(ax.get_yticklabels(), all_models):
                 tick.set_color(color(m))
         ax.set_ylim(len(all_models) - 0.5, -0.5)
-        ax.set_xlim(-0.15, 0.15)
+        ax.set_xlim(-0.13, 0.13)
         ax.grid(axis="y", visible=False)
         if k == 1:
             ax.set_xlabel("Within-cancer ROC AUC: pooled minus cancer-specific training (95% CI)")
@@ -440,7 +488,7 @@ def figure_5() -> None:
     rng = np.random.default_rng(3)
     for i, e in enumerate(ENDPOINTS):
         for j, (name, test, c) in enumerate(groups):
-            d = per[(per["endpoint"] == e) & per["model_name"].map(test)]["delta_pooled_minus_specific"].to_numpy()
+            d = per[(per["endpoint"] == e) & per["model_name"].map(test)]["delta"].to_numpy()
             x = i + (j - 0.5) * 0.32
             ax.scatter(x + rng.uniform(-0.09, 0.09, len(d)), d, s=10, color=c, alpha=0.55, linewidths=0)
             ax.plot([x - 0.12, x + 0.12], [np.median(d)] * 2, color=c, lw=2.2)
@@ -454,19 +502,52 @@ def figure_5() -> None:
     ax = fig.add_subplot(gs[1, 2])
     letter(ax, "c", x=-0.1)
     for i, e in enumerate(ENDPOINTS):
-        r = did.loc[e]
-        resolved = r["did_ci_high"] < 0
-        ax.plot([r["did_ci_low"], r["did_ci_high"]], [i, i], color=INK, lw=1.6, solid_capstyle="round")
-        ax.scatter(r["did"], i, s=34, color=INK if resolved else SURFACE, edgecolor=INK, linewidth=1.3, zorder=3)
-        ax.text(r["did"], i - 0.28, f"{r['did']:+.3f}", ha="center", fontsize=6.3, color=INK_2)
+        for metric, marker, off in (("auc", "o", -0.17), ("cidx", "s", 0.17)):
+            r = did[(did["endpoint"] == e) & (did["metric"] == metric)].iloc[0]
+            resolved = r["did_ci_high"] < 0 or r["did_ci_low"] > 0
+            y = i + off
+            ax.plot([r["did_ci_low"], r["did_ci_high"]], [y, y], color=INK, lw=1.4, solid_capstyle="round")
+            ax.scatter(r["did"], y, s=26, marker=marker, color=INK if resolved else SURFACE, edgecolor=INK, linewidth=1.2, zorder=3)
+            ax.text(r["did_ci_high"] + 0.003, y, f"{r['did']:+.3f}", va="center", fontsize=5.8, color=INK_2)
     ax.axvline(0, color=INK_3, lw=0.8, ls="--")
     ax.set_yticks(range(3), [ENDPOINT_LABEL[e] for e in ENDPOINTS])
     ax.yaxis.tick_right()
     ax.set_ylim(2.6, -0.6)
-    ax.set_xlim(-0.1, 0.12)
-    ax.set_xlabel("Difference in mean change (95% CI)")
+    ax.set_xlim(-0.06, 0.075)
+    ax.set_xlabel("Foundation models minus trees (95% CI)")
     ax.grid(axis="y", visible=False)
+    ax.legend(handles=[Line2D([], [], marker="o", ls="", mfc=INK_2, mec=INK_2, ms=4.5, label="ROC AUC"),
+                       Line2D([], [], marker="s", ls="", mfc=INK_2, mec=INK_2, ms=4.5, label="Harrell C")],
+              loc="upper center", bbox_to_anchor=(0.5, -0.2), ncol=2, fontsize=5.9)
     save(fig, "fig5_within_cancer_effect")
+
+
+def figure_ed_cindex() -> None:
+    """Extended Data: Harrell C-index of the saved horizon-classifier risk scores, eligible patients only."""
+    t = pd.read_csv(SRC / "cindex_eligible_summary.csv")
+    fig, axes = plt.subplots(1, 3, figsize=(7.2, 3.1), sharey=True, gridspec_kw=dict(wspace=0.08))
+    labels = ["Specific,\nwithin cancer", "Pooled,\nwithin cancer", "Pooled,\nall pairs"]
+    cols = ["c_specific_within", "c_pooled_within", "c_pooled_allpairs"]
+    for ax, e in zip(axes, ENDPOINTS):
+        ax.set_title(ENDPOINT_LABEL[e], pad=6)
+        sub = t[t["endpoint"] == e].set_index("model_name")
+        for m in MODEL_ORDER:
+            if m not in sub.index:
+                continue
+            vals = sub.loc[m, cols].to_numpy(float)
+            if np.isnan(vals[1]):
+                ax.scatter(0, vals[0], s=14, color=color(m), zorder=3, alpha=0.9, linewidths=0)
+                continue
+            ax.plot(range(3), vals, color=color(m), lw=1.0 if FAMILY.get(m) == "Linear" else 1.6, marker="o", ms=3.2, alpha=0.9)
+        ax.axhline(0.5, color=INK_3, lw=0.8, ls=":")
+        ax.set_xticks(range(3), labels, fontsize=6.0)
+        ax.set_xlim(-0.3, 2.3)
+        ax.set_ylim(0.48, 0.70)
+        ax.grid(axis="x", visible=False)
+    axes[0].set_ylabel("Harrell C-index (eligible patients)")
+    handles = [Line2D([], [], color=FAMILY_COLOR[f], lw=1.8, label=f) for f in ["TabPFN", "TabFM", "Tree ensemble", "AutoML", "Linear"]]
+    axes[1].legend(handles=handles, loc="upper center", bbox_to_anchor=(0.5, -0.22), ncol=5, fontsize=5.9, handlelength=1.2, columnspacing=0.9)
+    save(fig, "ed_cindex_eligible_patients")
 
 
 def main() -> None:
@@ -477,6 +558,7 @@ def main() -> None:
     figure_3()
     figure_4()
     figure_5()
+    figure_ed_cindex()
     print("figures written to", OUT)
 
 

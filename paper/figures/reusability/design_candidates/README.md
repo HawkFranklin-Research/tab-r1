@@ -1,5 +1,10 @@
 # Figure 1A candidate
 
+The raster candidate is now superseded by the simplified vector schematic in
+`paper/analysis/reusability/build_reusability_figures.py`. It remains here as a
+design reference only. The active PDFs use vector labels and shapes for panel A;
+the complete Figure 1 PNG is exported at 300 DPI, matching the other panels.
+
 `fig1_panel_a_schematic.png` is an AI-generated illustrative workflow, not experimental data. On 8 October 2026 it was incorporated into Figure 1A in all three manuscript versions. Other panels remain code-generated.
 
 The schematic shows benchmark reproduction, separate cohort training, pooled training with cohort/missingness diagnostics, and paired scoring within diagnosis. Matrices, patient icons and rank connections are conceptual, not observations or measured rankings. Model icons are examples, not the complete eleven-model taxonomy.

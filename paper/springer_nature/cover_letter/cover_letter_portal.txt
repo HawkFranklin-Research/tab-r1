@@ -1,0 +1,27 @@
+7 October 2026
+
+The Editors
+Nature Machine Intelligence
+
+Re: Reusability report: Tabular foundation outstands in cancer survival prediction
+
+Dear Editors,
+
+We submit our manuscript for consideration as a Reusability Report in Nature Machine Intelligence. We examine the reuse of the published TabPFN implementation associated with Hollmann and colleagues' "Accurate predictions on small data with a tabular foundation model" (Nature, 2025; doi:10.1038/s41586-024-08328-6). The report moves from a limited reproduction on the original benchmark datasets to a biomedical setting in which cohort structure can change the interpretation of predictive performance.
+
+Our contribution is an evaluation of the boundaries of reuse, rather than a new model or a claim of clinical readiness. On six benchmark datasets, the direction of TabPFN's reported advantage reproduced under a simpler, default-setting protocol; we do not claim replication of the original benchmark or its effect size. We then compared eleven models using 400 frozen test sets across five TCGA and CPTAC cancer cohorts, with shared splits and train-only feature selection.
+
+The biomedical evaluation shows why a higher pooled score is not sufficient evidence of useful within-diagnosis prediction. Tree ensembles matched foundation models on pooled tasks, while historical controls using cancer identity or the zero-valued feature pattern approached the pooled scores. These controls provide context, not a fold-matched causal attribution. The corrected fold-aware comparison found little clear change in within-cancer discrimination for most models. A more negative change for foundation models than for trees appeared only on extreme survival, with a ROC AUC interval including zero and a Harrell C-index interval excluding zero among eligible patients.
+
+We believe this fits the Reusability Report format because it identifies conditions under which published code remains competitive and conditions under which its scores require a different interpretation. We distinguish fixed-horizon event classification from censored survival modeling, and treat the extreme-survival endpoint as exploratory. The report also discloses the sensitivity of an earlier estimate to pooling predictions across folds, with the corrected estimator and comparison shown explicitly.
+
+Code is available at https://github.com/HawkFranklin-Research/tab-r1. The workflow retains frozen folds, saved predictions, figure source data and analysis scripts to support inspection of the reported results. The manuscript includes data and code availability statements, author contributions and a declaration of no competing interests.
+
+Thank you for considering this report.
+
+Yours sincerely,
+
+Vatsal Pravinbhai Patel
+Corresponding author
+HawkFranklin Research, India
+vatsal1@hawkfranklin.in

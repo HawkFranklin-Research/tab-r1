@@ -29,14 +29,22 @@
 
 \keywords{tabular foundation models; TabPFN; TabFM; reusability; cancer multiomics; survival prediction; cohort shortcuts}
 \paperurl{https://github.com/HawkFranklin-Research/tab-r1}
-\title{Reusability report: Tabular foundation models for cancer survival prediction from multiomics}
+\title{Reusability report: Tabular foundation models lead in cancer survival prediction}
 \correspondingauthor{vatsal1@hawkfranklin.in}
 \reportnumber{TR-2026-10-02}
 \renewcommand{\today}{2026-10-02}
 
-\author[1]{Vatsal P. Patel\textsuperscript{*}}
+\author[1]{Vatsal Pravinbhai Patel\textsuperscript{*}}
 \author[1]{Satya Prakash Mohanty}
+\author[2]{Bikram Bhakat}
+\author[1,3]{AbhijeetKumar Pravinkumar Patel}
+\author[1,4]{Yash Jayeshbhai Patel}
+\author[1,5]{Ananya Pal}
 \affil[1]{HawkFranklin Research, India}
+\affil[2]{Department of Zoology, The University of Burdwan, Purba Bardhaman, West Bengal, 713104, India}
+\affil[3]{Primary Health Centre Dehri, Valsad, Gujarat, 396170, India}
+\affil[4]{Medical College Baroda and SSG Hospital, Vadodara, Gujarat, 390001, India}
+\affil[5]{Department of Zoology, Bethune College, Kolkata, West Bengal, 700006, India}
 \affil[ ]{\textsuperscript{*}Corresponding author: \href{mailto:vatsal1@hawkfranklin.in}{vatsal1@hawkfranklin.in}}
 
 \begin{abstract}
@@ -59,7 +67,7 @@ In this report we first reproduce TabPFN on datasets from its original benchmark
 \begin{figure}[t]
 \centering
 \includegraphics[width=\linewidth]{figures/reusability/fig1_roadmap_and_design.pdf}
-\caption{\textbf{Study roadmap and evaluation design.} \textbf{a}, The four steps of the report: reproduction of TabPFN on its own benchmark datasets, evaluation within single cancers, evaluation on the pooled cancers with shortcut controls, and a return to within-cancer scoring. The matrices, patient icons and rank connections are schematic, not observed data or measured rankings; model icons illustrate representative families rather than the complete comparator set. \textbf{b}, Patients per cohort: all patients (lightest bar) and those eligible for 3-year survival, 5-year survival and extreme survival (progressively darker bars); the number gives the cohort total. ESCA was too small to form the 5-year and extreme-survival endpoints. \textbf{c}, Fixed-horizon labels: death on or before the horizon is an event (1), follow-up beyond the horizon is a non-event (0), and patients censored before the horizon are excluded; extreme survival compares death within 3 years with survival beyond 5 years. \textbf{d}, Partition of patients in one frozen test set: about 64\% for training, where features are selected; 16\% for validation, used only to choose the decision threshold; and 20\% for testing, scored once. Splits are patient-grouped, identical for every model and frozen before any run.}
+\caption{\textbf{Study roadmap and evaluation design.} \textbf{a}, The four steps of the report: reproduction of TabPFN on its own benchmark datasets, evaluation within single cancers, evaluation on the pooled cancers with shortcut controls, and a return to within-cancer scoring. The tables, colored cohort blocks and paired connections are schematic, not observed data or measured rankings. Colors track the five cohorts through pooling and paired scoring; separate and pooled refer to the training populations. \textbf{b}, Patients per cohort: all patients (lightest bar) and those eligible for 3-year survival, 5-year survival and extreme survival (progressively darker bars); the number gives the cohort total. ESCA was too small to form the 5-year and extreme-survival endpoints. \textbf{c}, Fixed-horizon labels: death on or before the horizon is an event (1), follow-up beyond the horizon is a non-event (0), and patients censored before the horizon are excluded; extreme survival compares death within 3 years with survival beyond 5 years. \textbf{d}, Partition of patients in one frozen test set: about 64\% for training, where features are selected; 16\% for validation, used only to choose the decision threshold; and 20\% for testing, scored once. Splits are patient-grouped, identical for every model and frozen before any run.}
 \label{fig:roadmap}
 \end{figure}
 
@@ -198,7 +206,7 @@ On a single earlier split of each pooled cohort, the cancer-type control was a l
 For each model and endpoint, we scored every test set within each cancer (for cancer-specific models the whole test set; for pooled models the patients of each cancer within the pooled test set), averaged the metric over the 25 test sets and over cancers, and took the difference between pooled and cancer-specific training. Uncertainty came from 2,000 patient-cluster bootstrap resamples, stratified by outcome class within each cancer; the same resampled patients, as weights, were used for every model, both kinds of training and all repeats and folds, so differences between kinds of training and between model families stay paired. The family comparison is the mean change of foundation models (TabFM and the TabPFN versions evaluated at that endpoint) minus the mean change of tree ensembles (random forest, CatBoost, XGBoost and LightGBM), with a 95\% percentile interval. The implementation was validated against scikit-learn ROC AUC and scikit-survival's Harrell C-index. An earlier version of the analysis averaged each patient's predictions over repeats before scoring; it is shown for comparison in Extended Data Fig.~\ref{fig:ed_pool}E.
 
 \subsection*{Reproducibility of this report}
-All quantitative figure panels and tables were generated from saved predictions and metrics; no model was refitted to produce them and no curve or interval was entered by hand. Figure~\ref{fig:roadmap}a uses an AI-generated illustrative schematic, whose matrices, patient icons and rank connections do not represent observed data. The scripts are \path{paper/analysis/reusability/compute_reusability_statistics.py} and \path{paper/analysis/reusability/build_reusability_figures.py} for the main figures, \path{paper/analysis/build_manuscript_assets.py} for tables and Extended Data, and \path{paper/analysis/reusability/fold_aware_contrast.py} for the within-cancer analysis and C-index. We consulted TRIPOD+AI for reporting and PROBAST+AI for risk of bias and applicability, but did not complete formal checklists.\citep{tripodai2024,probastai2024}
+All quantitative figure panels and tables were generated from saved predictions and metrics; no model was refitted to produce them and no curve or interval was entered by hand. Figure~\ref{fig:roadmap}a uses a code-generated vector schematic, whose tables, cohort blocks and paired connections do not represent observed data. The scripts are \path{paper/analysis/reusability/compute_reusability_statistics.py} and \path{paper/analysis/reusability/build_reusability_figures.py} for the main figures, \path{paper/analysis/build_manuscript_assets.py} for tables and Extended Data, and \path{paper/analysis/reusability/fold_aware_contrast.py} for the within-cancer analysis and C-index. We consulted TRIPOD+AI for reporting and PROBAST+AI for risk of bias and applicability, but did not complete formal checklists.\citep{tripodai2024,probastai2024}
 
 \section*{Data availability}
 TCGA and CPTAC data are available from their originating resources under their terms of use. Frozen fold bundles are held in the Hugging Face dataset \path{TABR1-Cancer-OS-LeakageSafe-Folds} under the \path{HawkFranklin-Research} organization. Source data for every figure panel are provided in \path{paper/figures/reusability/source_data} and \path{paper/figures/source_data}.
@@ -207,7 +215,7 @@ TCGA and CPTAC data are available from their originating resources under their t
 All code is available at \url{https://github.com/HawkFranklin-Research/tab-r1}.
 
 \section*{Author contributions}
-V.P.P. and S.P.M. conceived the study. S.P.M. and V.P.P. performed the reproduction experiments; V.P.P. performed the cancer evaluation and analysis. Both authors interpreted the results and wrote the manuscript. Language-model assistance was used for code development, editing and reproducibility checks under human supervision; such tools are not authors and bear no responsibility for the conclusions.
+V.P.P. and S.P.M. conceived the study. S.P.M. and V.P.P. performed the reproduction experiments; V.P.P. performed the cancer evaluation and analysis. V.P.P. and S.P.M. interpreted the results and wrote the manuscript. Bikram Bhakat, AbhijeetKumar Pravinkumar Patel, Yash Jayeshbhai Patel and Ananya Pal reviewed and edited the manuscript and contributed to data visualization. Ananya Pal also contributed to funding acquisition. Language-model assistance was used for code development, editing and reproducibility checks under human supervision; such tools are not authors and bear no responsibility for the conclusions.
 
 \section*{Competing interests}
 The authors declare no competing interests.

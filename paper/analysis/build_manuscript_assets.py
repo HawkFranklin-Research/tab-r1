@@ -723,7 +723,9 @@ def curve_tables(oof: pd.DataFrame) -> tuple[pd.DataFrame, pd.DataFrame]:
     return pd.DataFrame(roc_rows), pd.DataFrame(pr_rows)
 
 
-def build_figure_3(metrics: pd.DataFrame, summary: pd.DataFrame, manifest: pd.DataFrame) -> None:
+def build_figure_3(metrics: pd.DataFrame, summary: pd.DataFrame, manifest: pd.DataFrame, ed_variant: bool = False) -> None:
+    # ed_variant=True writes figure_03_pooling_effect_ed.*, whose panel E compares estimators instead of showing the
+    # patient-averaged paired effect (used as Extended Data Fig. 3 of the reusability report).
     complete_models = ["random_forest", "catboost", "autogluon", "tabfm_default", "tabpfn_v3"]
     oof = load_oof_predictions(metrics, complete_models, ENDPOINT_ORDER)
     oof.to_csv(SOURCE_ROOT / "figure_03_patient_oof_predictions.csv", index=False)
@@ -835,35 +837,60 @@ def build_figure_3(metrics: pd.DataFrame, summary: pd.DataFrame, manifest: pd.Da
     ax_d.set_ylabel("")
     panel_label(ax_d, "D")
 
-    # Paired within-cancer contrast; produced by within_cancer_pooling_contrast.py.
-    ax_e.set_title("Effect of pooled training on within-cancer ROC AUC")
-    contrast = pd.read_csv(SOURCE_ROOT / "figure_03_within_cancer_pooling_summary.csv")
-    models_e = [m for m in MODEL_ORDER if m in set(contrast["model_name"])]
-    offsets = {"os_3yr": -0.22, "os_5yr": 0.0, "extreme_os": 0.22}
-    for y, model_name in enumerate(models_e):
-        for endpoint in ENDPOINT_ORDER:
-            row = contrast[(contrast["model_name"] == model_name) & (contrast["endpoint"] == endpoint)]
-            if row.empty:
-                continue
-            row = row.iloc[0]
-            ypos = y + offsets[endpoint]
-            excludes_zero = row["mean_delta_ci_high"] < 0 or row["mean_delta_ci_low"] > 0
-            ax_e.plot([row["mean_delta_ci_low"], row["mean_delta_ci_high"]], [ypos, ypos], color=ENDPOINT_COLOR[endpoint], linewidth=1.4)
-            ax_e.scatter(
-                row["mean_delta"], ypos, color=ENDPOINT_COLOR[endpoint] if excludes_zero else "white",
-                edgecolor=ENDPOINT_COLOR[endpoint], linewidth=1.3, s=34, zorder=3,
-            )
-    ax_e.axvline(0, color="#7B8791", linestyle="--", linewidth=1)
-    ax_e.set_yticks(range(len(models_e)))
-    ax_e.set_yticklabels([MODEL_LABEL[m] for m in models_e])
-    ax_e.invert_yaxis()
-    ax_e.set_xlabel("Pooled minus cancer-specific ROC AUC (95% CI)")
-    ax_e.legend(
-        handles=[Line2D([0], [0], marker="o", color=ENDPOINT_COLOR[e], label=ENDPOINT_LABEL[e], markersize=6) for e in ENDPOINT_ORDER]
-        + [Line2D([0], [0], marker="o", color="#555555", markerfacecolor="white", linestyle="None", label="CI includes 0", markersize=6)],
-        frameon=False, fontsize=8.5, loc="lower right",
-    )
-    ax_e.set_xlim(-0.145, 0.215)
+    if ed_variant:
+        ax_e.set_title("Estimator sensitivity: mean change after pooling")
+        rs = PAPER / "figures/reusability/source_data"
+        legacy = pd.read_csv(rs / "legacy_patient_averaged/pooling_did.csv").set_index("endpoint")
+        fold = pd.read_csv(rs / "foldaware_pooling_did.csv")
+        fold = fold[fold["metric"] == "auc"].set_index("endpoint")
+        families = [("foundation_mean_delta", "Foundation models", "#158F82", -0.2), ("tree_mean_delta", "Tree ensembles", "#CC6B4E", 0.2)]
+        for i, endpoint in enumerate(ENDPOINT_ORDER):
+            for column, _, colour, off in families:
+                a, b = legacy.loc[endpoint, column], fold.loc[endpoint, column]
+                ax_e.plot([i + off, i + off], [a, b], color=colour, linewidth=1.2, alpha=0.7)
+                ax_e.scatter(i + off, a, s=46, facecolor="white", edgecolor=colour, linewidth=1.5, zorder=3)
+                ax_e.scatter(i + off, b, s=46, color=colour, zorder=3)
+        ax_e.axhline(0, color="#7B8791", linestyle="--", linewidth=1)
+        ax_e.set_xticks(range(3))
+        ax_e.set_xticklabels([ENDPOINT_LABEL[e] for e in ENDPOINT_ORDER])
+        ax_e.set_ylabel("Pooled minus cancer-specific\nwithin-cancer ROC AUC")
+        ax_e.legend(
+            handles=[Line2D([0], [0], marker="o", color="#158F82", linestyle="None", label="Foundation models", markersize=7),
+                     Line2D([0], [0], marker="o", color="#CC6B4E", linestyle="None", label="Tree ensembles", markersize=7),
+                     Line2D([0], [0], marker="o", color="#555555", markerfacecolor="white", linestyle="None", label="Predictions pooled across folds", markersize=7),
+                     Line2D([0], [0], marker="o", color="#555555", linestyle="None", label="Scored within each test set", markersize=7)],
+            frameon=False, fontsize=8.0, loc="lower left",
+        )
+    else:
+        # Paired within-cancer contrast; produced by within_cancer_pooling_contrast.py.
+        ax_e.set_title("Effect of pooled training on within-cancer ROC AUC")
+        contrast = pd.read_csv(SOURCE_ROOT / "figure_03_within_cancer_pooling_summary.csv")
+        models_e = [m for m in MODEL_ORDER if m in set(contrast["model_name"])]
+        offsets = {"os_3yr": -0.22, "os_5yr": 0.0, "extreme_os": 0.22}
+        for y, model_name in enumerate(models_e):
+            for endpoint in ENDPOINT_ORDER:
+                row = contrast[(contrast["model_name"] == model_name) & (contrast["endpoint"] == endpoint)]
+                if row.empty:
+                    continue
+                row = row.iloc[0]
+                ypos = y + offsets[endpoint]
+                excludes_zero = row["mean_delta_ci_high"] < 0 or row["mean_delta_ci_low"] > 0
+                ax_e.plot([row["mean_delta_ci_low"], row["mean_delta_ci_high"]], [ypos, ypos], color=ENDPOINT_COLOR[endpoint], linewidth=1.4)
+                ax_e.scatter(
+                    row["mean_delta"], ypos, color=ENDPOINT_COLOR[endpoint] if excludes_zero else "white",
+                    edgecolor=ENDPOINT_COLOR[endpoint], linewidth=1.3, s=34, zorder=3,
+                )
+        ax_e.axvline(0, color="#7B8791", linestyle="--", linewidth=1)
+        ax_e.set_yticks(range(len(models_e)))
+        ax_e.set_yticklabels([MODEL_LABEL[m] for m in models_e])
+        ax_e.invert_yaxis()
+        ax_e.set_xlabel("Pooled minus cancer-specific ROC AUC (95% CI)")
+        ax_e.legend(
+            handles=[Line2D([0], [0], marker="o", color=ENDPOINT_COLOR[e], label=ENDPOINT_LABEL[e], markersize=6) for e in ENDPOINT_ORDER]
+            + [Line2D([0], [0], marker="o", color="#555555", markerfacecolor="white", linestyle="None", label="CI includes 0", markersize=6)],
+            frameon=False, fontsize=8.5, loc="lower right",
+        )
+        ax_e.set_xlim(-0.145, 0.215)
     panel_label(ax_e, "E")
 
     ax_f.set_title("Task size and discrimination")
@@ -883,7 +910,7 @@ def build_figure_3(metrics: pd.DataFrame, summary: pd.DataFrame, manifest: pd.Da
     ax_f.legend(handles=handles, frameon=False, fontsize=8.5, ncol=2)
     panel_label(ax_f, "F")
 
-    save_figure(fig, "figure_03_pooling_effect")
+    save_figure(fig, "figure_03_pooling_effect_ed" if ed_variant else "figure_03_pooling_effect")
 
 
 def build_figure_4(summary: pd.DataFrame) -> None:
@@ -1207,6 +1234,7 @@ def main() -> None:
     build_figure_1(manifest)
     build_figure_2(metrics, manifest)
     build_figure_3(metrics, summary, manifest)
+    build_figure_3(metrics, summary, manifest, ed_variant=True)
     build_figure_4(summary)
     build_figure_5(metrics, summary)
     build_tables(summary, manifest)

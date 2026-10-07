@@ -29,6 +29,8 @@ dist/
 *.out
 *.toc
 *.synctex.gz
+*.fls
+*.fdb_latexmk
 
 
 # Large/generated model artifacts

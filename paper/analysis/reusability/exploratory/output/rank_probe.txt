@@ -1,0 +1,45 @@
+
+== os_3yr
+                     d_prob  d_rank
+model                              
+autogluon             0.073   0.034
+catboost              0.011   0.019
+lightgbm              0.001   0.014
+logistic_regression   0.071   0.054
+random_forest         0.002   0.012
+tabfm_default        -0.028   0.027
+tabpfn_v3            -0.022  -0.001
+xgboost              -0.005  -0.004
+  FM mean: raw-prob -0.025 | within-fold-rank +0.013    trees: raw-prob +0.002 | within-fold-rank +0.010
+
+== os_5yr
+                     d_prob  d_rank
+model                              
+autogluon             0.010  -0.002
+catboost              0.008   0.012
+lightgbm             -0.037  -0.041
+logistic_regression   0.027   0.017
+random_forest        -0.016  -0.003
+tabfm_default        -0.084  -0.032
+tabpfn_v2             0.007   0.003
+tabpfn_v2_5          -0.015  -0.008
+tabpfn_v2_6          -0.042  -0.018
+tabpfn_v3            -0.070  -0.024
+xgboost               0.000  -0.009
+  FM mean: raw-prob -0.041 | within-fold-rank -0.016    trees: raw-prob -0.011 | within-fold-rank -0.010
+
+== extreme_os
+                     d_prob  d_rank
+model                              
+autogluon            -0.016  -0.049
+catboost             -0.002  -0.007
+lightgbm             -0.013  -0.014
+logistic_regression  -0.041  -0.045
+random_forest         0.007  -0.000
+tabfm_default        -0.081  -0.043
+tabpfn_v2            -0.020  -0.026
+tabpfn_v2_5          -0.027  -0.025
+tabpfn_v2_6          -0.068  -0.059
+tabpfn_v3            -0.052  -0.033
+xgboost              -0.021  -0.001
+  FM mean: raw-prob -0.050 | within-fold-rank -0.037    trees: raw-prob -0.007 | within-fold-rank -0.005

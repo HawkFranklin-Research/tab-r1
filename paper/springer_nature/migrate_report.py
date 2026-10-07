@@ -47,9 +47,17 @@ def frontmatter(source: str) -> str:
     abstract = abstract.strip().removeprefix(r"\noindent ")
     return (
         "\\title{" + title + "}\n"
-        r"\author*[1]{\fnm{Vatsal P.} \sur{Patel}}\email{vatsal1@hawkfranklin.in}" "\n"
+        r"\author*[1]{\fnm{Vatsal Pravinbhai} \sur{Patel}}\email{vatsal1@hawkfranklin.in}" "\n"
         r"\author[1]{\fnm{Satya Prakash} \sur{Mohanty}}" "\n"
+        r"\author[2]{\fnm{Bikram} \sur{Bhakat}}" "\n"
+        r"\author[1,3]{\fnm{AbhijeetKumar Pravinkumar} \sur{Patel}}" "\n"
+        r"\author[1,4]{\fnm{Yash Jayeshbhai} \sur{Patel}}" "\n"
+        r"\author[1,5]{\fnm{Ananya} \sur{Pal}}" "\n"
         r"\affil[1]{\orgname{HawkFranklin Research}, \orgaddress{\country{India}}}" "\n"
+        r"\affil[2]{\orgdiv{Department of Zoology}, \orgname{The University of Burdwan}, \orgaddress{\city{Purba Bardhaman}, \state{West Bengal}, \postcode{713104}, \country{India}}}" "\n"
+        r"\affil[3]{\orgname{Primary Health Centre Dehri}, \orgaddress{\city{Valsad}, \state{Gujarat}, \postcode{396170}, \country{India}}}" "\n"
+        r"\affil[4]{\orgname{Medical College Baroda and SSG Hospital}, \orgaddress{\city{Vadodara}, \state{Gujarat}, \postcode{390001}, \country{India}}}" "\n"
+        r"\affil[5]{\orgdiv{Department of Zoology}, \orgname{Bethune College}, \orgaddress{\city{Kolkata}, \state{West Bengal}, \postcode{700006}, \country{India}}}" "\n"
         "\\abstract{" + abstract + "}\n"
         "\\keywords{" + keywords + "}\n"
         r"\maketitle" "\n"

@@ -8,7 +8,7 @@ Outputs
 - within_cancer_ranks.csv         per-task mean AUC and rank for the 13 cancer-specific tasks
 - within_cancer_friedman.csv      Friedman test and Nemenyi critical difference
 - paired_delta_vs_rf.csv          fold-matched AUC difference from random forest
-- pooling_delta_draws_summary.csv per model/endpoint: mean within-cancer delta + CI (joint bootstrap)
+- legacy_patient_averaged/*.csv   SUPERSEDED patient-averaged pooling estimator (see fold_aware_contrast.py for the current one)
 - pooling_did.csv                 foundation-model minus tree-ensemble delta (difference-in-differences)
 - pooling_share_harmed.csv        share of cancers in which pooled training lowered within-cancer AUC
 """
@@ -140,10 +140,14 @@ def main() -> None:
     ranks.to_csv(OUT / "within_cancer_ranks.csv", index=False)
     friedman.to_csv(OUT / "within_cancer_friedman.csv", index=False)
     delta.to_csv(OUT / "paired_delta_vs_rf.csv", index=False)
+    # Legacy estimator (patient-averaged predictions pooled across folds). Superseded by fold_aware_contrast.py;
+    # kept only for the estimator-sensitivity panel (Extended Data Fig. 3E). Does not feed Figure 5.
     summary, did, harm = pooling_bootstrap(metrics)
-    summary.to_csv(OUT / "pooling_delta_draws_summary.csv", index=False)
-    did.to_csv(OUT / "pooling_did.csv", index=False)
-    harm.to_csv(OUT / "pooling_share_harmed.csv", index=False)
+    legacy = OUT / "legacy_patient_averaged"
+    legacy.mkdir(exist_ok=True)
+    summary.to_csv(legacy / "pooling_delta_draws_summary.csv", index=False)
+    did.to_csv(legacy / "pooling_did.csv", index=False)
+    harm.to_csv(legacy / "pooling_share_harmed.csv", index=False)
     with pd.option_context("display.width", 220):
         print(friedman.round(4).to_string(index=False))
         print(ranks.groupby("model_name")["rank"].mean().sort_values().round(2).to_string())

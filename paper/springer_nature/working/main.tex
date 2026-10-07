@@ -10,10 +10,18 @@
 \setlength{\emergencystretch}{3em}
 \hypersetup{hidelinks}
 \begin{document}
-\title{Reusability report: Tabular foundation models for cancer survival prediction from multiomics}
-\author*[1]{\fnm{Vatsal P.} \sur{Patel}}\email{vatsal1@hawkfranklin.in}
+\title{Reusability report: Tabular foundation models lead in cancer survival prediction}
+\author*[1]{\fnm{Vatsal Pravinbhai} \sur{Patel}}\email{vatsal1@hawkfranklin.in}
 \author[1]{\fnm{Satya Prakash} \sur{Mohanty}}
+\author[2]{\fnm{Bikram} \sur{Bhakat}}
+\author[1,3]{\fnm{AbhijeetKumar Pravinkumar} \sur{Patel}}
+\author[1,4]{\fnm{Yash Jayeshbhai} \sur{Patel}}
+\author[1,5]{\fnm{Ananya} \sur{Pal}}
 \affil[1]{\orgname{HawkFranklin Research}, \orgaddress{\country{India}}}
+\affil[2]{\orgdiv{Department of Zoology}, \orgname{The University of Burdwan}, \orgaddress{\city{Purba Bardhaman}, \state{West Bengal}, \postcode{713104}, \country{India}}}
+\affil[3]{\orgname{Primary Health Centre Dehri}, \orgaddress{\city{Valsad}, \state{Gujarat}, \postcode{396170}, \country{India}}}
+\affil[4]{\orgname{Medical College Baroda and SSG Hospital}, \orgaddress{\city{Vadodara}, \state{Gujarat}, \postcode{390001}, \country{India}}}
+\affil[5]{\orgdiv{Department of Zoology}, \orgname{Bethune College}, \orgaddress{\city{Kolkata}, \state{West Bengal}, \postcode{700006}, \country{India}}}
 \abstract{Tabular foundation models make predictions from a labeled table in a single forward pass, and TabPFN was introduced as giving accurate predictions on small datasets without task-specific tuning. Clinical cohorts are small tables, which makes these models attractive for cancer research. Here we assess the reusability of TabPFN, together with its later generations and Google's TabFM, first on its own benchmark data and then on survival prediction from cancer multiomics. On six of its benchmark datasets, TabPFN again had the highest mean ROC AUC among default-setting models (0.877 against 0.873 for CatBoost), a directional reproduction under a simpler protocol than the original, and five TabPFN generations and TabFM differed by less than 0.01. We then evaluated eleven models on 3,238 patients from five TCGA and CPTAC cancer cohorts using 400 frozen test sets. Within single cancers, survival prediction was difficult for every model and no two nonlinear models differed significantly. Pooling the cancers raised ROC AUC to 0.721 for 3-year survival ($n = 1{,}645$) and 0.786 for extreme survival ($n = 937$), but tree ensembles matched these scores and controls using only cancer type or the pattern of zero-valued features reached similar levels. Scored within each cancer, pooled training changed ROC AUC by only $-0.05$ to $+0.04$ for individual models, and for extreme survival it lowered the ROC AUC of foundation models by 0.021 more than that of tree ensembles (95\% CI, $-0.043$ to $0.003$; Harrell C-index, $-0.022$, $-0.036$ to $-0.007$); at 3 and 5 years the two families did not differ. TabPFN ran without tuning and performed comparably to default tree ensembles on single-cancer survival tasks, but pooled pan-cancer scores should be reported with within-cancer results and shortcut controls.}
 \keywords{tabular foundation models; TabPFN; TabFM; reusability; cancer multiomics; survival prediction; cohort shortcuts}
 \maketitle
