@@ -9,7 +9,7 @@ Nature Machine Intelligence
 Reusability Report
 
 == TITLE ==
-Reusability report: Tabular foundation outstands in cancer survival prediction
+Reusability report: Tabular foundation models lead in cancer survival prediction
 
 == ABSTRACT (280 whitespace-delimited words) ==
 Tabular foundation models make predictions from a labeled table in a single forward pass, and TabPFN was introduced as giving accurate predictions on small datasets without task-specific tuning. Clinical cohorts are small tables, which makes these models attractive for cancer research. Here we assess the reusability of TabPFN, together with its later generations and Google's TabFM, first on its own benchmark data and then on survival prediction from cancer multiomics. On six of its benchmark datasets, TabPFN again had the highest mean ROC AUC among default-setting models (0.877 against 0.873 for CatBoost), a directional reproduction under a simpler protocol than the original, and five TabPFN generations and TabFM differed by less than 0.01. We then evaluated eleven models on 3,238 patients from five TCGA and CPTAC cancer cohorts using 400 frozen test sets. Within single cancers, survival prediction was difficult for every model and no two nonlinear models differed significantly. Pooling the cancers raised ROC AUC to 0.721 for 3-year survival (n = 1,645) and 0.786 for extreme survival (n = 937), but tree ensembles matched these scores and controls using only cancer type or the pattern of zero-valued features reached similar levels. Scored within each cancer, pooled training changed ROC AUC by only -0.05 to +0.04 for individual models, and for extreme survival it lowered the ROC AUC of foundation models by 0.021 more than that of tree ensembles (95% CI, -0.043 to 0.003; Harrell C-index, -0.022, -0.036 to -0.007); at 3 and 5 years the two families did not differ. TabPFN ran without tuning and performed comparably to default tree ensembles on single-cancer survival tasks, but pooled pan-cancer scores should be reported with within-cancer results and shortcut controls.
@@ -21,7 +21,7 @@ tabular foundation models; TabPFN; TabFM; reusability; cancer multiomics; surviv
 1. Vatsal Pravinbhai Patel (corresponding author)
 2. Satya Prakash Mohanty
 3. Bikram Bhakat [2]
-4. Abhijeet Patel [1,3]
+4. AbhijeetKumar Pravinkumar Patel [1,3]
 5. Yash Jayeshbhai Patel [1,4]
 6. Ananya Pal [1,5]
 Vatsal Pravinbhai Patel and Satya Prakash Mohanty: affiliation [1]
@@ -35,13 +35,13 @@ Vatsal Pravinbhai Patel and Satya Prakash Mohanty: affiliation [1]
 vatsal1@hawkfranklin.in
 
 == DATA AVAILABILITY ==
-TCGA and CPTAC data are available from their originating resources under their terms of use. Frozen fold bundles are held in the Hugging Face dataset TABR1-Cancer-OS-LeakageSafe-Folds under the HawkFranklin-Research organization. Source data for every figure panel are provided in paper/figures/reusability/source_data and paper/figures/source_data.
+The TCGA and CPTAC data analysed in this study are publicly available from cBioPortal: https://www.cbioportal.org (TCGA PanCancer Atlas 2018 studies) and LinkedOmics: https://www.linkedomics.org. The 400 frozen patient-grouped test sets, per-patient predictions for every model and test set, and source data for all figures and tables are available in the study repository on GitHub (HawkFranklin-Research/tab-r1-experiments): https://github.com/HawkFranklin-Research/tab-r1-experiments. An archived copy of the frozen test sets, predictions and source data is deposited on figshare (doi:10.6084/m9.figshare.34332477: https://doi.org/10.6084/m9.figshare.34332477).
 
 == CODE AVAILABILITY ==
-All code is available at https://github.com/HawkFranklin-Research/tab-r1.
+All code for data preparation, construction of the frozen test sets, model evaluation, statistical analysis and figure generation is available on GitHub (HawkFranklin-Research/tab-r1-experiments): https://github.com/HawkFranklin-Research/tab-r1-experiments. Because the repository includes per-patient predictions for every model and test set, all reported statistics, figures and tables can be regenerated without refitting any model.
 
 == AUTHOR CONTRIBUTIONS ==
-V.P.P. and S.P.M. conceived the study. S.P.M. and V.P.P. performed the reproduction experiments; V.P.P. performed the cancer evaluation and analysis. V.P.P. and S.P.M. interpreted the results and wrote the manuscript. Bikram Bhakat, Abhijeet Patel, Yash Jayeshbhai Patel and Ananya Pal reviewed and edited the manuscript and contributed to data visualization. Ananya Pal also contributed to funding acquisition. Language-model assistance was used for code development, editing and reproducibility checks under human supervision; such tools are not authors and bear no responsibility for the conclusions.
+V.P.P. and S.P.M. conceived the study. S.P.M. and V.P.P. performed the reproduction experiments; V.P.P. performed the cancer evaluation and analysis. V.P.P. and S.P.M. interpreted the results and wrote the manuscript. Bikram Bhakat, AbhijeetKumar Pravinkumar Patel, Yash Jayeshbhai Patel and Ananya Pal reviewed and edited the manuscript and contributed to data visualization. Ananya Pal also contributed to funding acquisition. Language-model assistance was used for code development, editing and reproducibility checks under human supervision; such tools are not authors and bear no responsibility for the conclusions.
 
 == COMPETING INTERESTS ==
 The authors declare no competing interests.

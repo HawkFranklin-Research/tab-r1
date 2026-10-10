@@ -1,27 +1,46 @@
-7 October 2026
+11 October 2026
 
 The Editors
 Nature Machine Intelligence
 
-Re: Reusability report: Tabular foundation outstands in cancer survival prediction
+Re: Reusability report: Tabular foundation models lead in cancer survival prediction
 
 Dear Editors,
 
-We submit our manuscript for consideration as a Reusability Report in Nature Machine Intelligence. We examine the reuse of the published TabPFN implementation associated with Hollmann and colleagues' "Accurate predictions on small data with a tabular foundation model" (Nature, 2025; doi:10.1038/s41586-024-08328-6). The report moves from a limited reproduction on the original benchmark datasets to a biomedical setting in which cohort structure can change the interpretation of predictive performance.
+We submit our manuscript for consideration as a Reusability Report in Nature Machine Intelligence. It examines the reuse of the published TabPFN implementation from Hollmann and colleagues, “Accurate predictions on small data with a tabular foundation model” (Nature, 2025; doi:10.1038/s41586-024-08328-6).
 
-Our contribution is an evaluation of the boundaries of reuse, rather than a new model or a claim of clinical readiness. On six benchmark datasets, the direction of TabPFN's reported advantage reproduced under a simpler, default-setting protocol; we do not claim replication of the original benchmark or its effect size. We then compared eleven models using 400 frozen test sets across five TCGA and CPTAC cancer cohorts, with shared splits and train-only feature selection.
+TabPFN promises accurate predictions on small tables without tuning, which is exactly the situation of most clinical cohorts. We asked whether that promise holds when the code is taken out of its benchmark and applied to survival prediction from cancer multiomics, and what a high score in that setting actually means.
 
-The biomedical evaluation shows why a higher pooled score is not sufficient evidence of useful within-diagnosis prediction. Tree ensembles matched foundation models on pooled tasks, while historical controls using cancer identity or the zero-valued feature pattern approached the pooled scores. These controls provide context, not a fold-matched causal attribution. The corrected fold-aware comparison found little clear change in within-cancer discrimination for most models. A more negative change for foundation models than for trees appeared only on extreme survival, with a ROC AUC interval including zero and a Harrell C-index interval excluding zero among eligible patients.
+On six datasets from the original benchmark, TabPFN again had the highest mean ROC AUC among default-setting models (0.877 against 0.873 for CatBoost); this reproduces the direction of the original claim under a simpler protocol, not its effect size. We then evaluated four TabPFN generations, Google's TabFM, AutoGluon and five classical learners on 3,238 patients from five TCGA and CPTAC cancer cohorts, using 400 frozen test sets shared by every model. Within single cancers, a foundation model had the best mean ROC AUC in 7 of 13 tasks and TabPFN v2.5 had the best mean rank, although survival was hard for every method and no two nonlinear models differed significantly.
 
-We believe this fits the Reusability Report format because it identifies conditions under which published code remains competitive and conditions under which its scores require a different interpretation. We distinguish fixed-horizon event classification from censored survival modeling, and treat the extreme-survival endpoint as exploratory. The report also discloses the sensitivity of an earlier estimate to pooling predictions across folds, with the corrected estimator and comparison shown explicitly.
+The second half of the report explains why this matters beyond one model. Pooling the five cancers raised ROC AUC to 0.721 for 3-year survival, but tree ensembles matched that score, and controls that knew only the cancer type or the pattern of zero-valued features came close to it. Scored within each cancer, pooled training gave no consistent benefit, and on extreme survival it lowered the C-index of foundation models by 0.022 more than that of tree ensembles. A pooled pan-cancer score can therefore look like a gain in prediction while mostly reflecting which cancer a patient has.
 
-Code is available at https://github.com/HawkFranklin-Research/tab-r1. The workflow retains frozen folds, saved predictions, figure source data and analysis scripts to support inspection of the reported results. The manuscript includes data and code availability statements, author contributions and a declaration of no competing interests.
+We believe the work fits the Reusability Report format because it shows both where the published code remains strong and where its scores need a different reading. TabPFN ran without tuning and was consistently among the best models; our recommendation is that pooled results be reported alongside within-cancer results and simple shortcut controls. We also report openly that an earlier version of one estimate pooled predictions across test sets, and we show the corrected estimate.
+
+All code is available at https://github.com/HawkFranklin-Research/tab-r1-experiments, together with the 400 frozen test sets, per-patient predictions for every model and the source data for every figure and table, so each reported number can be regenerated without refitting a model. An archived copy of these data is deposited on figshare under the reserved DOI 10.6084/m9.figshare.34332477, which becomes active on publication; until then it can be viewed through a private link for the editor: https://figshare.com/s/ea59fbc60b0bc75591e1. We have also prepared an anonymised version of the manuscript in case double-blind review is preferred; in that version the repository link is withheld and shared with you only, and reviewers may request access through the editorial office.
+
+This manuscript is original, has not been published, and is not under consideration at another journal. All authors have approved its submission, and the authors declare no competing interests.
 
 Thank you for considering this report.
 
 Yours sincerely,
 
 Vatsal Pravinbhai Patel
-Corresponding author
+Corresponding author, on behalf of all authors
 HawkFranklin Research, India
 vatsal1@hawkfranklin.in
+
+[[NEW PAGE]]
+
+Authors and contributions
+
+Authors are listed in manuscript order. This page is provided for the editor, because the anonymised version of the manuscript omits names, affiliations and contributions.
+
+1 | Vatsal Pravinbhai Patel (corresponding author; vatsal1@hawkfranklin.in) | HawkFranklin Research, India | Conceived the study; performed the reproduction experiments, the cancer evaluation and the analysis; interpreted the results; wrote the manuscript.
+2 | Satya Prakash Mohanty | HawkFranklin Research, India | Conceived the study; performed the reproduction experiments; interpreted the results; wrote the manuscript.
+3 | Bikram Bhakat | Department of Zoology, The University of Burdwan, Purba Bardhaman, West Bengal, India | Reviewed and edited the manuscript; contributed to data visualization.
+4 | AbhijeetKumar Pravinkumar Patel | HawkFranklin Research, India; Primary Health Centre Dehri, Valsad, Gujarat, India | Reviewed and edited the manuscript; contributed to data visualization.
+5 | Yash Jayeshbhai Patel | HawkFranklin Research, India; Medical College Baroda and SSG Hospital, Vadodara, Gujarat, India | Reviewed and edited the manuscript; contributed to data visualization.
+6 | Ananya Pal | HawkFranklin Research, India; Department of Zoology, Bethune College, Kolkata, West Bengal, India | Reviewed and edited the manuscript; contributed to data visualization and to funding acquisition.
+
+Language-model assistance was used for code development, editing and reproducibility checks under human supervision; such tools are not authors and bear no responsibility for the conclusions. All authors approved the submitted version.

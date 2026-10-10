@@ -7,6 +7,7 @@ import re
 from pathlib import Path
 from docx import Document
 from docx.enum.text import WD_ALIGN_PARAGRAPH
+from docx.oxml.ns import qn
 from docx.shared import Inches, Pt, RGBColor
 
 ROOT = Path(__file__).resolve().parent
@@ -31,6 +32,7 @@ def argument(text: str, command: str) -> str:
 
 
 def plain(text: str) -> str:
+    text = re.sub(r"\\href\{([^{}]*)\}\{([^{}]*)\}", r"\2: \1", text)
     text = text.replace(r"\noindent", "").replace(r"\%", "%")
     text = text.replace(r"\_", "_").replace(r"\&", "&")
     for command in ("path", "url", "texttt", "textbf", "textit"):
@@ -93,26 +95,57 @@ def main() -> None:
     document = Document()
     for s in document.sections:
         s.page_width, s.page_height = Inches(8.5), Inches(11)
-        s.top_margin = s.bottom_margin = Inches(0.75)
-        s.left_margin = s.right_margin = Inches(0.85)
+        s.top_margin = s.bottom_margin = Inches(0.8)
+        s.left_margin = s.right_margin = Inches(1.0)
     style = document.styles["Normal"]
-    style.font.name, style.font.size = "Calibri", Pt(11)
+    # Arial: present in Word, and LibreOffice maps it to metric-identical Liberation Sans, so the PDF matches the .docx
+    style.font.name, style.font.size = "Arial", Pt(10)
     style.font.color.rgb = RGBColor(0, 0, 0)
-    style.paragraph_format.space_after = Pt(7)
-    style.paragraph_format.line_spacing = 1.0
-    blocks = (LETTER / "cover_letter_portal.txt").read_text().strip().split("\n\n")
+    style.paragraph_format.space_after = Pt(6)
+    style.paragraph_format.line_spacing = 1.08
+    letter, _, authors = (LETTER / "cover_letter_portal.txt").read_text().partition("[[NEW PAGE]]")
+    blocks = letter.strip().split("\n\n")
     for i, block in enumerate(blocks):
         p = document.add_paragraph()
         if i == 0:
             p.alignment = WD_ALIGN_PARAGRAPH.RIGHT
         elif block.startswith("Re: "):
             p.paragraph_format.keep_with_next = True
+        if i >= len(blocks) - 3:                       # closing, sign-off and signature stay on one page
+            p.paragraph_format.keep_with_next = i < len(blocks) - 1
+        if i == len(blocks) - 1:
+            p.paragraph_format.space_before = Pt(14)
         for j, line in enumerate(block.splitlines()):
             if j:
                 p.add_run().add_break()
             run = p.add_run(line)
             if block.startswith("Re: "):
                 run.bold = True
+    # Second page: author list in manuscript order with contributions ("n | name | affiliations | contribution" rows -> table)
+    for k, block in enumerate(authors.strip().split("\n\n") if authors.strip() else []):
+        if k == 0:
+            p = document.add_paragraph()
+            p.paragraph_format.page_break_before = True
+            p.add_run(block).bold = True
+            p.runs[0].font.size = Pt(12)
+        elif " | " in block:
+            rows = [line.split(" | ") for line in block.splitlines()]
+            table = document.add_table(rows=len(rows) + 1, cols=4, style="Table Grid")
+            table.autofit = False
+            widths = (0.3, 1.7, 2.1, 2.4)
+            grid = table._tbl.tblGrid.findall(qn("w:gridCol"))           # LibreOffice reads the grid, Word the cell widths
+            for col, width in zip(grid, widths):
+                col.set(qn("w:w"), str(int(width * 1440)))
+            for c, (text, width) in enumerate(zip(("#", "Author", "Affiliation", "Contribution"), widths)):
+                for r, values in enumerate([[text]] + [[row[c]] for row in rows]):
+                    cell = table.cell(r, c)
+                    cell.width = Inches(width)
+                    cell.paragraphs[0].paragraph_format.space_after = Pt(2)
+                    run = cell.paragraphs[0].add_run(values[0])
+                    run.font.size, run.bold = Pt(9), r == 0
+            document.add_paragraph().paragraph_format.space_after = Pt(0)
+        else:
+            document.add_paragraph(block)
     document.core_properties.title = "Cover letter for the cancer multiomics reusability report"
     document.core_properties.author = "Vatsal Pravinbhai Patel"
     document.core_properties.subject = "Draft submission to Nature Machine Intelligence"

@@ -1,0 +1,57 @@
+[
+  {
+    "file": "Fig_1_fig1_roadmap_and_design.pdf",
+    "source": "figures/reusability/fig1_roadmap_and_design.pdf",
+    "sha256": "f89855962d8b7491b21dfa5df44584309414a3d57f25ea29b1058a761e2f8b62"
+  },
+  {
+    "file": "Fig_2_fig2_reproduction.pdf",
+    "source": "figures/reusability/fig2_reproduction.pdf",
+    "sha256": "663dae366444a4711180daeae1e2c15550962e7acdcd1c3b3cd349b157e73c25"
+  },
+  {
+    "file": "Fig_3_fig3_within_cancer.pdf",
+    "source": "figures/reusability/fig3_within_cancer.pdf",
+    "sha256": "f60ce6f7b9669f5c6d158e9240e8ff5e30fb674e5f9fa70d37fb1d021bd53a49"
+  },
+  {
+    "file": "Fig_4_fig4_pooling_and_controls.pdf",
+    "source": "figures/reusability/fig4_pooling_and_controls.pdf",
+    "sha256": "4857f45944799b8503998c08ce8ec06d77a9702ed246b22438b05f354a7524f8"
+  },
+  {
+    "file": "Fig_5_fig5_within_cancer_effect.pdf",
+    "source": "figures/reusability/fig5_within_cancer_effect.pdf",
+    "sha256": "7974521af771c4404b8991527648d4922b3e3bde6902fff31441e1b6221f8d8c"
+  },
+  {
+    "file": "Extended_Data_Fig_1_figure_01_cohort_and_design.pdf",
+    "source": "figures/manuscript/figure_01_cohort_and_design.pdf",
+    "sha256": "301daa0ee762480d352c52051f96631ef2c35bd1be836736f2cbc016d86157ff"
+  },
+  {
+    "file": "Extended_Data_Fig_2_figure_02_within_cancer_performance.pdf",
+    "source": "figures/manuscript/figure_02_within_cancer_performance.pdf",
+    "sha256": "d17576657e6530d2de3e279a125179480454a28f7e0a90938250f98967acd822"
+  },
+  {
+    "file": "Extended_Data_Fig_3_figure_03_pooling_effect_ed.pdf",
+    "source": "figures/manuscript/figure_03_pooling_effect_ed.pdf",
+    "sha256": "52c39302d12c6f5441d7adfe4e868dfea2ef53e4cad7e3844eade6721d048fbb"
+  },
+  {
+    "file": "Extended_Data_Fig_4_figure_04_shortcut_stress_tests.pdf",
+    "source": "figures/manuscript/figure_04_shortcut_stress_tests.pdf",
+    "sha256": "3345de4ffacf8696748a5d55ad3bdc2cc57a3e845bb7e9ee5da54a70ce363332"
+  },
+  {
+    "file": "Extended_Data_Fig_5_figure_05_probabilistic_and_compute.pdf",
+    "source": "figures/manuscript/figure_05_probabilistic_and_compute.pdf",
+    "sha256": "b1898b2c8934b373a2e17bdf62538ea8ac5fdafbb4e4c7327f4c0e0b3dfa6686"
+  },
+  {
+    "file": "Extended_Data_Fig_6_ed_cindex_eligible_patients.pdf",
+    "source": "figures/reusability/ed_cindex_eligible_patients.pdf",
+    "sha256": "5923b50e2e809448069043cf89588d258a61b74c3b25cf6dd5aa43a287e7a66b"
+  }
+]

@@ -8,6 +8,22 @@ No manuscript prose or scientific results were changed.
 The target is Nature Machine Intelligence and the proposed type is Reusability
 Report. These are preparation files, not a completed portal submission.
 
+## Upload folder (one file per portal slot)
+
+| Portal item | File(s) |
+|---|---|
+| Manuscript | ../submission/manuscript.pdf (source: ../submission_source.zip) |
+| Cover letter | ../cover_letter/cover_letter.pdf (editable: cover_letter.docx) |
+| Figures 1-5, Extended Data Figs 1-6 | figures/Fig_<n>_*.pdf, figures/Extended_Data_Fig_<n>_*.pdf |
+| Tables 1-3 | tables/Table_<n>_*.xlsx (or .csv): exactly as typeset; the .xlsx adds a full_precision sheet |
+| Source data | source_data/Source_Data_Fig_<n>.xlsx, Source_Data_Extended_Data_Fig_<n>.xlsx: README sheet, then one sheet per plotted data file |
+
+Regenerate after any change: `python3 collect_portal_figures.py` (figures, byte-for-byte copies) and
+`python3 collect_portal_source_data.py` (tables and source data, no recomputation). Both read the figure and table order
+from submission/manuscript.tex, so numbering always matches the PDF. The cover letter is edited in
+../cover_letter/cover_letter_portal.txt; `python3 prepare_portal.py` rebuilds the .docx, then
+`soffice --headless --convert-to pdf cover_letter/cover_letter.docx --outdir cover_letter` makes the PDF.
+
 ## Before Submission
 
 - The current abstract exceeds the journal's published 150-word Article limit.

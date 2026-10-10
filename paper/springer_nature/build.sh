@@ -5,3 +5,4 @@ cd "$(dirname "$0")"
 python migrate_report.py export
 (cd submission && latexmk -pdf -interaction=nonstopmode -halt-on-error manuscript.tex)
 python verify_migration.py
+python make_double_blind.py
